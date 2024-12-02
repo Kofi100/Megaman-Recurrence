@@ -23,11 +23,20 @@ var restart_scene=false
 var lemons_on_screen_no:int=0
 var restarted_stage=false
 var save_keybinds_path="res://keybinds.txt"#user:// -<stores in user appdata folder 
+var score:int=0
 #res://<- srtores in project folder
 #res means resources
 var savepoint_path="res://savepoint.txt"
 var savepos_x=0;var savepos_y=0;
 var stage_name:String
+var boss_health:float=0;var trigger_boss:bool=false
+var boss:Object;var player:Object
+var lastPlayableScene
+
+#var volumeSound:Dictionary={
+	#"BGM":-10,"SFX":0
+#}
+#var player:CharacterBody2D
 @export var input_dictionary_keys={
 	"move_up":0,
 	"move_down":0,
@@ -68,7 +77,7 @@ func _process(delta):
 		if second_level>=60:
 			minute_level+=1
 			second_level=0
-	set_stage_name()
+	#set_stage_name()
 	#print('GlobalScript:prev.health,current health:',GlobalScript.previous_health,',,, ',GlobalScript.health)
 
 func start_level_timer():
@@ -141,25 +150,38 @@ func load_savepoint_data():
 		push_warning("Savefile doesnt exist:creating new savefile")
 		save_savepoint_data()
 var stage_path
-func set_stage_name():
-	if get_tree().current_scene is Node2D:
-		stage_path=get_tree().current_scene.scene_file_path
-	if stage_path!=null:
-		match stage_path:
-			"res://levels/test stages/test_stage.tscn":
-				stage_name="TEST STAGE"
-			"res://levels/test stages/stage_1.tscn":
-				stage_name="???"
-			"res://levels/test stages/stage_2.tscn":
-				stage_name="??? 2"
+
+func set_stage_name(name_of_stage:String):
+	stage_name=name_of_stage
+	#if get_tree().current_scene is Node2D:
+		#stage_path=get_tree().current_scene.scene_file_path
+	#if stage_path!=null:
+		#match stage_path:
+			#"res://levels/test stages/test_stage.tscn":
+				#stage_name="TEST STAGE"
+			#"res://levels/test stages/stage_1.tscn":
+				#stage_name="???"
+			#"res://levels/test stages/stage_2.tscn":
+				#stage_name="??? 2"
+			##"res://levels/test stages/stage_3.tscn":
+				##stage_name="CYBERSPACE"
+			#"res://levels/test stages/test_boss_room.tscn":
+				#stage_name="TEST BOSS\n ROOM:\n the weapon archive"
 			#"res://levels/test stages/stage_3.tscn":
-				#stage_name="CYBERSPACE"
-			"res://levels/test stages/test_boss_room.tscn":
-				stage_name="TEST BOSS\n ROOM:\n the weapon archive"
-			"res://levels/test stages/stage_3.tscn":
-				stage_name="CYBERSPACE \n DEMO"
-			"res://levels/test stages/stage_4.tscn":
-				stage_name="PIPELINE \n FACTORY"
-			"res://levels/test stages/stage_5_junkman_test.tscn":
-				stage_name="TEST STAGE 5:\n JUNKMAN'S STAGE"
+				#stage_name="CYBERSPACE \n DEMO"
+			#"res://levels/test stages/stage_4.tscn":
+				#stage_name="PIPELINE \n FACTORY"
+			#"res://levels/test stages/stage_5_junkman_test.tscn":
+				#stage_name="TEST STAGE 5:\n JUNKMAN'S STAGE"
 			
+func reset_boss_before_starting_stage():
+	boss=null
+func customSwitchScene(nextScenePath:String):
+	var currentScenePath=get_tree().current_scene.get_scene_file_path()
+	#if currentScenePath==nextScenePath:
+		#return
+	if currentScenePath!=nextScenePath:
+		restarted_level=false
+	elif currentScenePath==nextScenePath:
+		restarted_level=true
+	get_tree().change_scene_to_file(nextScenePath)

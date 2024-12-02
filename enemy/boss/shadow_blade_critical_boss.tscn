@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl21u2el442pm"]
+
+[ext_resource type="Script" path="res://enemy/boss/shadow_blade_critical_boss.gd" id="1_sru8v"]
+[ext_resource type="Texture2D" uid="uid://bqmkmlrmxd3h5" path="res://assets/sprites/weapons/shadow_blade_MM3(23x23).png" id="2_117lv"]
+[ext_resource type="AudioStream" uid="uid://4v0su6t8pguj" path="res://assets/sounds/shadow_blade.wav" id="3_ndxl6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp7im"]
+atlas = ExtResource("2_117lv")
+region = Rect2(46, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phelu"]
+atlas = ExtResource("2_117lv")
+region = Rect2(69, 0, 23, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_241my"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp7im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phelu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wbfb"]
+
+[node name="ShadowBlade_Critical_boss" type="CharacterBody2D"]
+script = ExtResource("1_sru8v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 18.0
+color = Color(0.996256, 0.860476, 0.573534, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_241my")
+autoplay = "default"
+
+[node name="hitBox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("RectangleShape2D_0wbfb")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ShadowBlade" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ndxl6")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

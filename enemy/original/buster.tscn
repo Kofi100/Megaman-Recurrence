@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bj0da1r76l7d0"]
+
+[ext_resource type="Texture2D" uid="uid://di8fwpfolamcx" path="res://assets/sprites/enemies/buster.png" id="1_8s4fi"]
+[ext_resource type="Script" path="res://enemy/original/buster.gd" id="1_qifye"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad6c0"]
+atlas = ExtResource("1_8s4fi")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1v728"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad6c0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj3yo"]
+size = Vector2(6, 3)
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_sb4eb"]
+length = 150.0
+
+[node name="buster" type="CharacterBody2D"]
+script = ExtResource("1_qifye")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1v728")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_sj3yo")
+
+[node name="playerDetect" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetect"]
+shape = SubResource("SeparationRayShape2D_sb4eb")
+
+[node name="allTimers" type="Node2D" parent="."]
+
+[node name="rapidShootTimer" type="Timer" parent="allTimers"]
+wait_time = 0.2
+
+[node name="cooldownTimer" type="Timer" parent="allTimers"]
+one_shot = true
+
+[connection signal="area_entered" from="playerDetect" to="." method="_on_player_detect_area_entered"]
+[connection signal="timeout" from="allTimers/rapidShootTimer" to="." method="_on_rapid_shoot_timer_timeout"]
+[connection signal="timeout" from="allTimers/cooldownTimer" to="." method="_on_cooldown_timer_timeout"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://djmdnd8l3wr1m"]
+
+[ext_resource type="Script" path="res://enemy/boss/shadow_blade_shadow_man.gd" id="1_8hrcq"]
+[ext_resource type="Texture2D" uid="uid://bqmkmlrmxd3h5" path="res://assets/sprites/weapons/shadow_blade_MM3(23x23).png" id="2_jfvby"]
+[ext_resource type="AudioStream" uid="uid://4v0su6t8pguj" path="res://assets/sounds/shadow_blade.wav" id="3_o5ykh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3sea"]
+atlas = ExtResource("2_jfvby")
+region = Rect2(46, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hphx"]
+atlas = ExtResource("2_jfvby")
+region = Rect2(69, 0, 23, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tplfi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3sea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hphx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jevr0"]
+
+[node name="ShadowBlade_ShadowMan" type="CharacterBody2D"]
+position = Vector2(133, 71)
+script = ExtResource("1_8hrcq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0, 0.469614, 0.469614, 1)
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="shootToPlayerTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tplfi")
+autoplay = "default"
+frame_progress = 0.0666092
+
+[node name="hitBox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("RectangleShape2D_jevr0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ShadowBlade" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_o5ykh")
+
+[connection signal="area_entered" from="hitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

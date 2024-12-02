@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://brcksljbkb62y"]
+
+[ext_resource type="Script" path="res://enemy/original/security_camera.gd" id="1_c54r7"]
+[ext_resource type="Texture2D" uid="uid://bqjjkwqnwufya" path="res://assets/sprites/enemies/original/securityCamera.png" id="1_ystui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kjrem"]
+size = Vector2(25, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75lnv"]
+atlas = ExtResource("1_ystui")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j50h"]
+atlas = ExtResource("1_ystui")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylg7e"]
+atlas = ExtResource("1_ystui")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gl0xl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75lnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j50h")
+}],
+"loop": true,
+"name": &"Detect",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylg7e")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_lhov5"]
+length = 233.0
+
+[node name="securityCamera" type="CharacterBody2D"]
+script = ExtResource("1_c54r7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12.5, 1.5)
+shape = SubResource("RectangleShape2D_kjrem")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_gl0xl")
+animation = &"Detect"
+frame_progress = 0.535545
+
+[node name="detectPlayerLine" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+collision_priority = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectPlayerLine"]
+position = Vector2(11, 1)
+rotation = -1.5708
+shape = SubResource("SeparationRayShape2D_lhov5")
+
+[node name="allTimers" type="Node2D" parent="."]
+
+[node name="detectTimer" type="Timer" parent="allTimers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="repeatDetectionTimer" type="Timer" parent="allTimers"]
+wait_time = 0.2
+
+[connection signal="area_entered" from="detectPlayerLine" to="." method="_on_detect_player_line_area_entered"]
+[connection signal="timeout" from="allTimers/detectTimer" to="." method="_on_detect_timer_timeout"]
+[connection signal="timeout" from="allTimers/repeatDetectionTimer" to="." method="_on_repeat_detection_timer_timeout"]

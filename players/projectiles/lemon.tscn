@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7ertpcm3wt14"]
+[gd_scene load_steps=9 format=3 uid="uid://b7ertpcm3wt14"]
 
 [ext_resource type="Texture2D" uid="uid://bekajfg2v56fi" path="res://assets/sprites/player/projectiles/all bullets.png" id="1_2v0fm"]
 [ext_resource type="Script" path="res://players/projectiles/lemon.gd" id="1_s36o1"]
 [ext_resource type="Texture2D" uid="uid://b0v6m28t07gmt" path="res://assets/sprites/player/projectiles/lemon_mm4.png" id="3_nncff"]
 [ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="4_gu0qf"]
+[ext_resource type="Script" path="res://levels/sfx_group.gd" id="5_l2jwy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqjpr"]
 atlas = ExtResource("1_2v0fm")
@@ -49,7 +50,7 @@ texture = ExtResource("3_nncff")
 
 [node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_gu0qf")
-volume_db = -10.0
+script = ExtResource("5_l2jwy")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="collision_monitor" to="." method="_on_collision_monitor_area_entered"]

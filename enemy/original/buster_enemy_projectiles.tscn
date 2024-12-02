@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://wnv24l2vn201"]
+
+[ext_resource type="Script" path="res://enemy/original/buster_enemy_projectiles.gd" id="1_7icdq"]
+[ext_resource type="Texture2D" uid="uid://dw4qy74kjpa3q" path="res://assets/sprites/enemies/met_bullet.png" id="1_wu76p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k53fh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wu76p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5b3s"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtiyx"]
+size = Vector2(6, 6)
+
+[node name="buster_enemy_projectiles" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_7icdq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k53fh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x5b3s")
+debug_color = Color(0.851223, 0.367976, 0.14047, 0.42)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_dtiyx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.38419e-07, 2.38419e-07)
+scale = Vector2(0.4, 0.4)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

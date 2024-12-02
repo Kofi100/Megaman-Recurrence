@@ -1,0 +1,249 @@
+[gd_scene load_steps=25 format=3 uid="uid://dxt1j8tafantj"]
+
+[ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="1_m3kyb"]
+[ext_resource type="Script" path="res://enemy/boss/shadowman_1.gd" id="1_rgkba"]
+[ext_resource type="Script" path="res://enemy/boss/Shadowman/ShadowStop.gd" id="3_o7e52"]
+[ext_resource type="Script" path="res://enemy/boss/Shadowman/ShadowAttackOne.gd" id="4_rdlmb"]
+[ext_resource type="Texture2D" uid="uid://d21bm5jxlk81v" path="res://assets/sprites/enemies/bosses/shadowman.png" id="5_h0056"]
+[ext_resource type="Script" path="res://enemy/boss/Shadowman/ShadowAttackThree.gd" id="5_su10j"]
+[ext_resource type="Script" path="res://enemy/boss/Shadowman/ShadowAttackTwo.gd" id="6_n7e5c"]
+[ext_resource type="Script" path="res://enemy/boss/Shadowman/ShadowIntro.gd" id="7_gbsl2"]
+[ext_resource type="Texture2D" uid="uid://nnbwqgea8iwq" path="res://assets/sprites/miscelleaneous/target_player.png" id="8_n3rex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw33c"]
+atlas = ExtResource("5_h0056")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2078"]
+atlas = ExtResource("5_h0056")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq7f0"]
+atlas = ExtResource("5_h0056")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5hwp"]
+atlas = ExtResource("5_h0056")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfvfa"]
+atlas = ExtResource("5_h0056")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phca8"]
+atlas = ExtResource("5_h0056")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygpph"]
+atlas = ExtResource("5_h0056")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy4fm"]
+atlas = ExtResource("5_h0056")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0edfe"]
+atlas = ExtResource("5_h0056")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_415cp"]
+atlas = ExtResource("5_h0056")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usg84"]
+atlas = ExtResource("5_h0056")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mwwy"]
+atlas = ExtResource("5_h0056")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgw1d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw33c")
+}],
+"loop": true,
+"name": &"Dash",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2078")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq7f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5hwp")
+}, {
+"duration": 30.0,
+"texture": SubResource("AtlasTexture_wfvfa")
+}],
+"loop": false,
+"name": &"Intro",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phca8")
+}],
+"loop": true,
+"name": &"Stop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygpph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy4fm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0edfe")
+}],
+"loop": false,
+"name": &"Throw",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_415cp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usg84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_415cp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usg84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_415cp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mwwy")
+}],
+"loop": false,
+"name": &"ThrowCritical",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufst8"]
+size = Vector2(16, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wsg5"]
+size = Vector2(18, 17)
+
+[node name="Shadowman_1" type="CharacterBody2D"]
+position = Vector2(160, 120)
+collision_layer = 0
+script = ExtResource("1_rgkba")
+
+[node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_m3kyb")]
+initial_state = NodePath("ShadowIntro")
+
+[node name="ShadowStop" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "stopTimer", "animatedSprite")]
+script = ExtResource("3_o7e52")
+shadowman = NodePath("../..")
+stopTimer = NodePath("../../Timers/stopTimer")
+animatedSprite = NodePath("../../AnimatedSprite2D")
+
+[node name="ShadowAttackOne" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "testTimer", "animatedSprite", "topMarker")]
+script = ExtResource("4_rdlmb")
+shadowman = NodePath("../..")
+testTimer = NodePath("../../Timers/Timer")
+animatedSprite = NodePath("../../AnimatedSprite2D")
+topMarker = NodePath("../../top")
+
+[node name="ShadowAttackTwo" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "dashTimer", "animatedSprite")]
+script = ExtResource("6_n7e5c")
+shadowman = NodePath("../..")
+dashTimer = NodePath("../../Timers/dashTimer")
+animatedSprite = NodePath("../../AnimatedSprite2D")
+
+[node name="ShadowAttackThree" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "animatedSprite", "linetouse", "markerLineTop", "markOnPlayer")]
+script = ExtResource("5_su10j")
+shadowman = NodePath("../..")
+animatedSprite = NodePath("../../AnimatedSprite2D")
+linetouse = NodePath("../../Line2D")
+markerLineTop = NodePath("../../top")
+markOnPlayer = NodePath("../../targetPlayer")
+
+[node name="ShadowIntro" type="Node" parent="State Engine" node_paths=PackedStringArray("animatedSprite", "introTimer", "stateEngStopTimer")]
+script = ExtResource("7_gbsl2")
+animatedSprite = NodePath("../../AnimatedSprite2D")
+introTimer = NodePath("../../Timers/introTimer")
+stateEngStopTimer = NodePath("../../Timers/stateEngineStop")
+introTimerStartOnEntry = true
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="stopTimer" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Timer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="dashTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="introTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="stateEngineStop" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
+
+[node name="coolDownTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+offset_left = -41.0
+offset_top = 5.0
+offset_right = -37.0
+offset_bottom = 9.0
+color = Color(0.791951, 0.791951, 1.15514e-06, 1)
+
+[node name="top" type="Marker2D" parent="."]
+position = Vector2(-2, -34)
+
+[node name="targetPlayer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-41, 5)
+texture = ExtResource("8_n3rex")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(11, -24)
+sprite_frames = SubResource("SpriteFrames_sgw1d")
+animation = &"Throw"
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(2, 31, 2, -37)
+width = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_ufst8")
+
+[node name="hitBox" type="Area2D" parent="." groups=["ShadowMan_Boss", "enemy"]]
+position = Vector2(11, -24)
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(-11, 15.5)
+shape = SubResource("RectangleShape2D_1wsg5")
+
+[connection signal="timeout" from="Timers/stateEngineStop" to="." method="_on_state_engine_stop_timeout"]
+[connection signal="area_entered" from="hitBox" to="." method="_on_hit_box_area_entered"]

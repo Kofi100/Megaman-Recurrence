@@ -1,0 +1,250 @@
+[gd_scene load_steps=16 format=3 uid="uid://cnb7llkr0ofpf"]
+
+[ext_resource type="Script" path="res://levels/robot_master_menu.gd" id="1_pefhl"]
+[ext_resource type="Texture2D" uid="uid://ds625p5y8oage" path="res://assets/sprites/miscelleaneous/menus/selectionrobotMasterSprite-export.png" id="2_852fl"]
+[ext_resource type="Texture2D" uid="uid://d0txnl7ywo11h" path="res://assets/sprites/miscelleaneous/menus/fireman.png" id="3_o04lh"]
+[ext_resource type="Texture2D" uid="uid://gf76btbxgpe3" path="res://assets/sprites/enemies/bosses/fireman/idle/0.png" id="3_pkbjl"]
+[ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="4_pwjb0"]
+[ext_resource type="Texture2D" uid="uid://d21bm5jxlk81v" path="res://assets/sprites/enemies/bosses/shadowman.png" id="4_swpwx"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_u4epk"]
+[ext_resource type="AudioStream" uid="uid://dsbotvgkg27hj" path="res://assets/music/Mega Man II GB Stage Select Remix.mp3" id="5_vaglu"]
+[ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="6_4f06v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1tpx"]
+atlas = ExtResource("2_852fl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_livr4"]
+atlas = ExtResource("2_852fl")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywjvu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1tpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_livr4")
+}],
+"loop": true,
+"name": &"Selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_livr4")
+}],
+"loop": true,
+"name": &"notSelected",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fk41j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pkbjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pwjb0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_k88gx"]
+resource_name = "start"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Node2D/pressStartLbl:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tl1ny"]
+_data = {
+"start": SubResource("Animation_k88gx")
+}
+
+[node name="robotMasterMenu" type="Node2D"]
+script = ExtResource("1_pefhl")
+spriteDict = {
+1: NodePath("Node2D/robotMaster1"),
+2: NodePath("Node2D/robotMaster2"),
+3: NodePath("Node2D/robotMaster3"),
+4: NodePath("Node2D/robotMaster4")
+}
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 258.0
+offset_bottom = 226.0
+color = Color(0, 0, 0, 1)
+
+[node name="selected" type="ColorRect" parent="."]
+offset_left = -72.0
+offset_top = 72.0
+offset_right = -24.0
+offset_bottom = 122.0
+color = Color(1, 1, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_left = 1.0
+offset_top = 78.0
+offset_right = 63.0
+offset_bottom = 140.0
+color = Color(0.164706, 0.427451, 1, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D"]
+offset_left = 98.0
+offset_top = 3.0
+offset_right = 158.0
+offset_bottom = 63.0
+color = Color(0.164706, 0.427451, 1, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Node2D"]
+offset_left = 215.0
+offset_top = 87.0
+offset_right = 255.0
+offset_bottom = 127.0
+
+[node name="ColorRect4" type="ColorRect" parent="Node2D"]
+offset_left = 107.0
+offset_top = 183.0
+offset_right = 147.0
+offset_bottom = 223.0
+
+[node name="ColorRect5" type="ColorRect" parent="Node2D"]
+offset_left = 107.0
+offset_top = 87.0
+offset_right = 147.0
+offset_bottom = 127.0
+
+[node name="robotMaster1" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(0, 77)
+sprite_frames = SubResource("SpriteFrames_ywjvu")
+animation = &"notSelected"
+centered = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/robotMaster1"]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_fk41j")
+autoplay = "default"
+frame = 1
+frame_progress = 0.707456
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/robotMaster1"]
+visible = false
+position = Vector2(32, 32)
+texture = ExtResource("3_o04lh")
+
+[node name="robotMaster2" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(96, 0)
+sprite_frames = SubResource("SpriteFrames_ywjvu")
+animation = &"notSelected"
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/robotMaster2"]
+position = Vector2(43, 22)
+texture = ExtResource("4_swpwx")
+hframes = 8
+
+[node name="robotMaster3" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(193, 78)
+sprite_frames = SubResource("SpriteFrames_ywjvu")
+animation = &"notSelected"
+centered = false
+
+[node name="robotMaster4" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(96, 159)
+sprite_frames = SubResource("SpriteFrames_ywjvu")
+animation = &"notSelected"
+centered = false
+
+[node name="robotMaster5" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(96, 77)
+sprite_frames = SubResource("SpriteFrames_ywjvu")
+animation = &"notSelected"
+centered = false
+
+[node name="pressStartLbl" type="Label" parent="Node2D"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 95.0
+offset_bottom = 36.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_u4epk")
+text = "PRESS
+START"
+horizontal_alignment = 1
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="screenTransTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="aniPlayer" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="aniPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_tl1ny")
+}
+autoplay = "start"
+
+[node name="BGM" type="Node2D" parent="."]
+
+[node name="selectYourRobotMaster" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource("5_vaglu")
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="switchRobot" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_4f06v")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -68.0
+offset_top = 13.0
+offset_right = -28.0
+offset_bottom = 53.0
+texture_normal = ExtResource("3_o04lh")
+
+[node name="all_text" type="Node2D" parent="."]
+
+[node name="shadowMan" type="Label" parent="all_text"]
+offset_left = 92.0
+offset_top = 64.0
+offset_right = 236.0
+offset_bottom = 87.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_u4epk")
+text = "SHADOWMAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fireMan" type="Label" parent="all_text"]
+offset_left = -3.0
+offset_top = 142.0
+offset_right = 141.0
+offset_bottom = 165.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_u4epk")
+text = "FIREMAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Timers/screenTransTimer" to="." method="_on_screen_trans_timer_timeout"]
+[connection signal="finished" from="BGM/selectYourRobotMaster" to="." method="_on_select_your_robot_master_finished"]

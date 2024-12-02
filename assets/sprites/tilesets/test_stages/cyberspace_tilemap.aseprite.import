@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cs16lpwgu4f4f"
+path="res://.godot/imported/cyberspace_tilemap.aseprite-a1b5c207d7c38dd3aca4395eb73a7f2f.res"
+
+[deps]
+
+source_file="res://assets/sprites/tilesets/test_stages/cyberspace_tilemap.aseprite"
+dest_files=["res://.godot/imported/cyberspace_tilemap.aseprite-a1b5c207d7c38dd3aca4395eb73a7f2f.res"]
+
+[params]
+

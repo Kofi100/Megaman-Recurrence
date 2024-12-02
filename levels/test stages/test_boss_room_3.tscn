@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3yk3rrk375l7"]
+
+[ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_8nw7h"]
+[ext_resource type="Script" path="res://levels/test stages/test_boss_room_3.gd" id="1_ya5oa"]
+[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_12orj"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_ollv5"]
+[ext_resource type="PackedScene" uid="uid://dxt1j8tafantj" path="res://enemy/boss/shadowman_1.tscn" id="4_53k8f"]
+[ext_resource type="AudioStream" uid="uid://c4o0dihky60n3" path="res://assets/music/Mega Man 3 — Boss Battle (Cover).mp3" id="6_umdjh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtl22"]
+texture = ExtResource("1_8nw7h")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_fg2eq"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_mtl22")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_878qu"]
+size = Vector2(496, 223)
+
+[node name="test_Boss_Room_3" type="Node2D"]
+script = ExtResource("1_ya5oa")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_fg2eq")
+format = 2
+layer_0/tile_data = PackedInt32Array(851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 655360, 0, 0, 720896, 0, 0, 786432, 0, 0, 393216, 0, 0, 327680, 0, 0, 262144, 0, 0, 196608, 0, 0, 131072, 0, 0, 65536, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 65566, 0, 0, 131102, 0, 0, 196638, 0, 0, 262174, 0, 0, 327710, 0, 0, 393246, 0, 0, 458782, 0, 0, 524318, 0, 0, 589854, 0, 0, 655390, 0, 0, 720926, 0, 0, 786462, 0, 0, 851998, 0, 0, 851997, 0, 0, 851996, 0, 0, 851995, 0, 0, 851994, 0, 0, 851993, 0, 0, 851992, 0, 0, 851991, 0, 0, 851990, 0, 0, 851989, 0, 0, 851988, 0, 0, 851987, 0, 0, 851986, 0, 0, 851985, 0, 0, 851984, 0, 0)
+
+[node name="megaman" parent="." instance=ExtResource("3_ollv5")]
+position = Vector2(40, 194)
+
+[node name="Shadowman_1" parent="." instance=ExtResource("4_53k8f")]
+position = Vector2(208, 207)
+
+[node name="boss_theme_test" type="AudioStreamPlayer" parent="." groups=["bgm"]]
+process_mode = 3
+stream = ExtResource("6_umdjh")
+volume_db = -10.0
+
+[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+script = ExtResource("2_12orj")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="New Camera System Addon"]
+position = Vector2(154, 112)
+limit_left = 0
+limit_top = 1
+limit_right = 496
+limit_bottom = 224
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="New Camera System Addon"]
+position = Vector2(248, 112.5)
+shape = SubResource("RectangleShape2D_878qu")
+
+[connection signal="timeout" from="Shadowman_1/Timers/introTimer" to="." method="_on_intro_timer_timeout"]
+[connection signal="finished" from="boss_theme_test" to="." method="_on_boss_theme_test_finished"]
+
+[editable path="Shadowman_1"]

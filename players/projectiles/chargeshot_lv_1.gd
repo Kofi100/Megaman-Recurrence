@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var SPEED = 50000.0
 @export var direction="left"
 var state="active"
+var damagevalue=3
 func _ready():
 	match direction:
 		"left":
@@ -38,7 +39,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_collision_monitor_body_entered(body):
+func _on_collision_monitor_body_entered(_body):
 	#deleted charge shot if touuhing the level's tilemaps
 	#if body.is_in_group("tilemaps"):
 		#queue_free()
@@ -48,10 +49,16 @@ func _on_collision_monitor_body_entered(body):
 func _on_collision_monitor_area_entered(area):
 	if area.is_in_group("enemy") and not area.is_in_group("blockables"):
 		#print('works!')
+		var body=area.get_parent()
 		if state=="active" or state=='blocked':
-			area.get_parent().health-=3
+			if body.is_boss==false:
+				area.get_parent().health-=damagevalue
+			elif body.is_boss==true:
+				body.health-=(damagevalue-body.BossDefenseShot1)
+			GlobalScript.score+=30
 			state='stopped'
 			$hurt_enemy_effect.play()
+			
 			#queue_free()
 	if area.is_in_group("blockables"):
 		state="blocked"

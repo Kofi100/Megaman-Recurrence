@@ -9,7 +9,7 @@ extends CharacterBody2D
 ##This is the default speed which can be adjusted by dashing.
 @export var SPEED = 0
 ##This value deterimines how high a person can jump.
-@export var JUMP_VELOCITY = -300#-340#-4950#orig: -333*3 almost=1000
+@export var JUMP_VELOCITY = -3000#-340#-4950#orig: -333*3 almost=1000
 ##This value defines how much gravity is applied by the engine to the player.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var gravity=900#1000#3000
@@ -41,12 +41,19 @@ var conveyor_push=3000;var on_conveyor=false
 var player_ready:bool=false
 var in_teleporter=false
 var key_dictionary:Array
+var JBufferActive:bool=false;var jumpAvble:bool=true
+var jumpBufferTime;var coyoteJumpTime
+@onready var trigger_leave_timer = $trigger_leave_timer
+@onready var leave_timer = $leave_timer
+
 func _ready():
+	#health
 	#key_dictionary.resize(9)
 	#GlobalScript.playerposx=0
 	#GlobalScript.playerposy=0
 	GlobalScript.lemons_on_screen_no=0
 	GlobalScript.playerhasbeenhit=false
+	GlobalScript.trigger_boss=false
 	#GlobalScript.playerhitcooldowntimer=0
 	player_ready=false
 	anim.play("idle")
@@ -54,8 +61,17 @@ func _ready():
 #	if restart_scene==true:
 #		get_tree().reload_current_scene()
 #		restart_scene=false
+#region Timers Section
 	GlobalScreenTransitionTimer.stop()
+	
+	jumpBufferTime=Timer.new();coyoteJumpTime=Timer.new()
+	jumpBufferTime.wait_time=.1;coyoteJumpTime.wait_time=0.05
+	get_parent().add_child.call_deferred(jumpBufferTime)
+	get_parent().add_child.call_deferred(coyoteJumpTime)
+#endregion
+	
 	if GlobalScript.restarted_level==false:
+		GlobalScript.score=0
 		GlobalScript.reset_level_timer()
 		GlobalScript.start_level_timer()
 		GlobalScript.save_savepoint_data()
@@ -69,7 +85,7 @@ func _ready():
 	MegamanAndItems.weapon1energy=30
 	MegamanAndItems.weapon2energy=30
 	MegamanAndItems.weapon3energy=30
-	GlobalScript.health=GlobalScript.max_health
+	GlobalScript.health=GlobalScript.max_health #health setting
 	$weapon_display.visible=false
 	$player_camera.position_smoothing_enabled=false
 	$hitbox/CollisionShape2D.disabled=true
@@ -80,22 +96,65 @@ var door_transition=false
 func debug_print_custom(name_of_node,var_name_to_be_displayed,variable_name):
 	print(name_of_node,':',str(var_name_to_be_displayed),': ',variable_name)
 
+func leaving(delta):
+	stop=true
+	for i in get_tree().current_scene.get_children(true):
+		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
+			i.stop()
+	if $leave_timer.time_left<=0:
+		velocity.y=0
+		if anim.animation!="spawn":
+			anim.play("spawn")
+		if anim.animation=="spawn" and anim.frame==2:
+			velocity.y=-10000*delta
+			
+			$CollisionShape2D.disabled=true
+			$hitbox/CollisionShape2D.disabled=true
+			$player_constants_checker_area2d/CollisionShape2D.disabled=true
+				
+	else:
+		velocity.y+=gravity*delta
+		if not is_on_floor():anim.play("jump")
+		else:
+			anim.play("idle")
+	move_and_slide()
+var leave_bool=false;var has_played_victory_sound:bool=false
 func _physics_process(delta):
+#region reverse Gravity
+	#code for reverse gravity
+	#gravity=-980
+	#self.scale.y=-1
+#endregion
 	#if in_teleporter==true:
 		#GlobalSc
-		
+	GlobalScript.player=self
+	if leave_bool==true:
+		if has_played_victory_sound==false:
+			has_played_victory_sound=true
+			$all_sounds/level_cleared.play()
+			
+		velocity.x=0
+		$hitbox/CollisionShape2D.disabled=true
+		#leaving(delta)
+	if $reset_cam_entry.time_left>0:
+		$player_constants_checker_area2d/CollisionShape2D.disabled=true
+	elif $reset_cam_entry.time_left<=0:
+		$player_constants_checker_area2d/CollisionShape2D.disabled=false
+	#print($player_constants_checker_area2d/CollisionShape2D.disabled)
+#region Debug Zone
 	##debug
 	#print(name,':GScript:lemon_no:',GlobalScript.lemons_on_screen_no)
 	#debug_print_custom(name,"GScript:lemon_no",GlobalScript.lemons_on_screen_no)
 	#debug_print_custom(name,"cooldown_timer:time_left",$buster_cooldown_timer.time_left)
 	#debug_print_custom(name,'stop,stun_effect,disable_input:',[stop,stun_effect,disable_input])
-	
+	#print(gravity)
 	$charge_timer.text=str(MegamanAndItems.charge_timer)
 	$speed.text=str(velocity*Vector2(pow(delta,1),pow(delta,1)))#*delta
 	#print(JUMP_VELOCITY)
 	#pow(delta,2)
 	#print(ProjectSettings.get_setting("application/run/max_fps",0))
 	##
+#endregion
 	#Limit gravity 
 	velocity.y=clampf(velocity.y,-25200*delta,25200*delta) #since velocity is actually a value *delta
 	
@@ -206,10 +265,11 @@ func _physics_process(delta):
 		#if $all_sounds/charge.get_playback_position()>2.04:
 		##print("seek")
 			#$all_sounds/charge.seek(1.90)
-		if GlobalScript.playerhasbeenhit:
-			$hitbox/CollisionShape2D.disabled=true
-		elif not GlobalScript.playerhasbeenhit:
-			$hitbox/CollisionShape2D.disabled=false
+		if leave_bool==false:
+			if GlobalScript.playerhasbeenhit:
+				$hitbox/CollisionShape2D.disabled=true
+			elif not GlobalScript.playerhasbeenhit:
+				$hitbox/CollisionShape2D.disabled=false
 		change_collisions()
 		if Input.is_action_just_pressed("switch_weapon_left"):
 			GlobalScript.weapon_number-=1
@@ -229,13 +289,42 @@ func _physics_process(delta):
 		elif GlobalScript.playerhitcooldowntimer%5==3:
 			anim.visible=true
 		if player_ready and stop==false:
-
+			
+			#if jumpBufferTime:
+				#
+				#print("timer creating...")
 			# Handle Jump.
-			if Input.is_action_just_pressed("jump") and is_on_floor():
-				velocity.y = JUMP_VELOCITY
+			#if jumpBufferTime.tree_exiting():
+				#print("jumpBuffer getting destroyed")
+			#if tree_exiting()
+			if Input.is_action_just_pressed("jump") and jumpBufferTime.time_left<=0:# is_on_floor():#and !is_on_floor(): #and is_on_floor():# and is_on_floor():
+				jumpBufferTime.start()
+				#velocity.y = JUMP_VELOCITY*delta
+			#print(jumpBufferTime.time_left)
+			
+			
+#region Coyote Jumping(not active)
+			#if is_on_floor():jumpAvble=true
+			#if !is_on_floor() and velocity.y>0 and velocity.y<=15 and coyoteJumpTime.time_left<=0 and jumpAvble==true:
+				#coyoteJumpTime.start()
+				#jumpAvble=false
+				#print("coyoteJmpTime")
+			#if Input.is_action_just_pressed("jump") and coyoteJumpTime.time_left>0:
+				#velocity.y = JUMP_VELOCITY
+				#coyoteJumpTime.stop()
+#endregion
 				
+		
+			#print("Mega:velocity.y",velocity.y)
+			#print("Mega:velocity*delta=i think,pixel/frame/second",velocity*Vector2(delta,delta))
+			if jumpBufferTime.time_left>0 and is_on_floor():
+				#print("hi"+jumpBufferTime.time_left)
+				velocity.y = JUMP_VELOCITY*delta
+				jumpBufferTime.stop()
+			
 			if Input.is_action_just_released("jump") and velocity.y<0:
 				velocity.y=0
+				
 			if onrush==false:
 				if GlobalScript.weapon_number==0:
 					if $buster_cooldown_timer.time_left<=0:
@@ -281,7 +370,12 @@ func _physics_process(delta):
 								$anim.offset.x=-3#-6
 							elif $anim.flip_h==true:
 								$anim.offset.x=3
-						else: $anim.offset.x=0
+						elif $anim.animation=="dash":
+							$anim.offset.y=3
+							
+						else: 
+							$anim.offset.x=0
+							$anim.offset.y=0
 					#else:
 						#if stun_timer>1 and stun_timer<7:
 							##print(stun_timer)
@@ -307,7 +401,7 @@ func _physics_process(delta):
 					#print("megaman:climb:true")
 					play_animation_ladder()
 					#shoot_and_charge_ladder()
-					MegamanAndItems.charge_effect(anim)
+					#MegamanAndItems.charge_effect(anim)
 					#chargeeffect()
 
 				#these codes are for playing animations
@@ -348,7 +442,7 @@ func _physics_process(delta):
 					$anim.offset.x=0
 				#if is_on_floor():
 					if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
-						if anim.animation!="shoot_idle" :#or anim.animation!="stun"
+						if anim.animation!="shoot_idle" and anim.animation!="whistle_idle" :#or anim.animation!="stun"
 							$anim.play("idle")
 					elif Input.is_action_just_released("shoot"):
 						$anim.play("shoot_idle")
@@ -360,6 +454,11 @@ func _physics_process(delta):
 					onrush=false
 				#velocity.y+=gravity*delta
 				#move_and_slide()
+#region debug whistle code by reposition it, i guess would work on it soon
+			#if velocity.x==0 and $whistle_idle_trigger_timer.time_left<=0 and not Input.is_action_pressed("shoot") and not Input.is_action_pressed("jump")and MegamanAndItems.charge_timer<30:
+				#$whistle_idle_trigger_timer.start()
+				#print("megaman: whistle_timer cdn fulfilled")
+#endregion
 		elif stop==true:
 			velocity=Vector2.ZERO
 	elif is_dead:
@@ -406,7 +505,7 @@ func play_animations():
 					if velocity.x!=0:
 						$anim.play("move_by_inch")
 					elif velocity.x==0:
-						if $anim.animation!="shoot_idle":
+						if $anim.animation!="shoot_idle" and anim.animation!="whistle_idle":
 							$anim.play("idle")
 						#MegamanAndItems.charge_timer=0
 		
@@ -675,19 +774,23 @@ func chargeeffect():
 			$anim.material.set_shader_parameter("outlinecolor",(Vector4(0.0,98.0,247.0,255.0))/255)
 
 var rush_jet=preload("res://players/weapons/rush_jet.tscn");var rush_jet_instance
+var rCoilNo=0
 func create_weapons():
 	MegamanAndItems.charge_timer=0
 	if Input.is_action_just_pressed("shoot"):
 		match GlobalScript.weapon_number:
 			1:
-				if MegamanAndItems.weapon1energy>0:
+				if MegamanAndItems.weapon1energy>0 and rCoilNo==0:
 					MegamanAndItems.weapon1energy-=3
+					rCoilNo+=1
 					rush_coil_instance=rush_coil.instantiate()
 					get_parent().add_child(rush_coil_instance)
 					if anim.flip_h==true:
 						rush_coil_instance.global_position=Vector2(global_position.x+20,global_position.y-50)
 					elif anim.flip_h==false:
 						rush_coil_instance.global_position=Vector2(global_position.x-20,global_position.y-50)#100
+					if rush_coil_instance:
+						rush_coil_instance.connect("tree_exited",rCoilLeft)
 			2:
 				if MegamanAndItems.weapon2energy>0:
 					MegamanAndItems.weapon2energy-=3
@@ -711,6 +814,17 @@ func create_weapons():
 							missile_instance.direction="right"
 						false:
 							missile_instance.direction="left"
+
+func rCoilLeft():
+	rCoilNo-=1
+	print(name,":rCoilLeft func active")
+	print("rCoilNo[post Exit]:",rCoilNo)
+	 #suppsoed to be 0 after deduction by 1
+	if rush_coil_instance:
+		rush_coil_instance.disconnect("tree_exited",rCoilLeft)
+	
+
+
 func _on_anim_animation_finished():
 	match anim.animation:
 		"shoot_run":
@@ -831,6 +945,8 @@ func _on_start_timer_timeout():
 	spawn_in_effect_instance.global_position.x=global_position.x
 	spawn_in_effect_instance.global_position.y=global_position.y-500
 	get_parent().add_child(spawn_in_effect_instance)
+	if GlobalScript.restarted_level==false: #if we are entering a new scene,save our starting point
+		GlobalScript.save_savepoint_data()
 
 
 func _on_animation_player_animation_finished(anim_name):
@@ -856,3 +972,19 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_bgm_finished():
 	pass # Replace with function body.
+
+
+func _on_trigger_leave_timer_timeout():
+	get_tree().change_scene_to_file("res://levels/test stages/end_of_level_score_screen.tscn")
+	#GlobalScript.las
+
+func _on_leave_timer_timeout():
+	if$HUD/fade_out_effect/AnimationPlayer.current_animation!='fade_out':
+			#$fade_out_effect.visible=true
+			$HUD/fade_out_effect/AnimationPlayer.play("fade_out")
+			$trigger_leave_timer.start()
+
+
+func _on_whistle_idle_trigger_timer_timeout():
+	anim.play("whistle_idle")
+	print(name,"->whistle_timer: with a wait _time of:",$whistle_idle_trigger_timer.get("wait_time"), "::(s) ::timed out")

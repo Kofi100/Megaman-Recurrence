@@ -1,0 +1,167 @@
+[gd_scene load_steps=19 format=3 uid="uid://c2gjhdosb3pl1"]
+
+[ext_resource type="Texture2D" uid="uid://bg78wlf3gvi3p" path="res://assets/sprites/enemies/bosses/wily_capsule_7/capsule.png" id="1_e40l4"]
+[ext_resource type="Script" path="res://enemy/boss/wily_capsule_7.gd" id="1_gl0u7"]
+[ext_resource type="Texture2D" uid="uid://bf6f76mkrh8hv" path="res://assets/sprites/enemies/bosses/wily_capsule_7/wily_sprites_recreated2.png" id="2_jaocd"]
+[ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="4_48cjy"]
+[ext_resource type="Script" path="res://enemy/boss/Wily7Capsule/Wily7Disappear.gd" id="5_v47od"]
+[ext_resource type="Script" path="res://enemy/boss/Wily7Capsule/Wily7Intro.gd" id="6_1i08d"]
+[ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="7_db37u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj8v4"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjwrn"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lldqg"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j3nn"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8jdu"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6282"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53on6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj8v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjwrn")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lldqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j3nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lldqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j3nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8jdu")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_w6282")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8jdu")
+}, {
+"duration": 30.0,
+"texture": SubResource("AtlasTexture_lldqg")
+}],
+"loop": false,
+"name": &"intro",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7jsh"]
+size = Vector2(33, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h21b4"]
+size = Vector2(33, 35)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cwuxb"]
+particles_animation = true
+particles_anim_h_frames = 9
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_edkrd"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 15.0
+anim_speed_max = 15.0
+
+[node name="wily_capsule_7" type="CharacterBody2D"]
+script = ExtResource("1_gl0u7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_e40l4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -6)
+sprite_frames = SubResource("SpriteFrames_53on6")
+animation = &"intro"
+
+[node name="State Engine" parent="." instance=ExtResource("4_48cjy")]
+
+[node name="Wily7Disappear" type="Node" parent="State Engine"]
+script = ExtResource("5_v47od")
+
+[node name="Wily7Intro" type="Node" parent="State Engine"]
+script = ExtResource("6_1i08d")
+
+[node name="allTimers" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="allTimers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="disappear_time" type="Timer" parent="allTimers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="countdownToShootDown" type="Timer" parent="allTimers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="showWilyTimer" type="Timer" parent="allTimers"]
+wait_time = 0.2
+
+[node name="hitCoolDownTimer" type="Timer" parent="allTimers"]
+one_shot = true
+
+[node name="hitbox_to_be_shot" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_to_be_shot"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_a7jsh")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_h21b4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_cwuxb")
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_edkrd")
+texture = ExtResource("7_db37u")
+lifetime = 10.0
+explosiveness = 0.15
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="allTimers/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="allTimers/disappear_time" to="." method="_on_disappear_time_timeout"]
+[connection signal="timeout" from="allTimers/countdownToShootDown" to="." method="_on_countdown_to_shoot_down_timeout"]
+[connection signal="timeout" from="allTimers/showWilyTimer" to="." method="_on_show_wily_timer_timeout"]
+[connection signal="area_entered" from="hitbox_to_be_shot" to="." method="_on_hitbox_to_be_shot_area_entered"]

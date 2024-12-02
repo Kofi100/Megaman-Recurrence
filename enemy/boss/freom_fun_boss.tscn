@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://xwca7cf3c652"]
+
+[ext_resource type="Script" path="res://enemy/boss/freom_fun_boss.gd" id="1_xmvpm"]
+[ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="2_advf1"]
+[ext_resource type="Texture2D" uid="uid://p1dbxcim8ovg" path="res://assets/sprites/enemies/bosses/Freom_Sprites/0.png" id="3_hhauf"]
+[ext_resource type="Script" path="res://enemy/boss/Freom_Boss/FreomIdle.gd" id="3_uom22"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7duk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hhauf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="freom_fun_boss" type="CharacterBody2D"]
+script = ExtResource("1_xmvpm")
+
+[node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_advf1")]
+initial_state = NodePath("FreomIdle")
+
+[node name="FreomIdle" type="Node" parent="State Engine" node_paths=PackedStringArray("freom")]
+script = ExtResource("3_uom22")
+freom = NodePath("../..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e7duk")
+animation = &"idle"

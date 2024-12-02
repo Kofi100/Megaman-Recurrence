@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3abcy40fvb"]
+
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="1_4la03"]
+[ext_resource type="PackedScene" uid="uid://xwca7cf3c652" path="res://enemy/boss/freom_fun_boss.tscn" id="2_m1dha"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdkfh"]
+size = Vector2(509, 20)
+
+[node name="test_boss_room_Freom" type="Node2D"]
+
+[node name="megaman" parent="." instance=ExtResource("1_4la03")]
+position = Vector2(172, 185)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(256.5, 214)
+shape = SubResource("RectangleShape2D_qdkfh")
+
+[node name="freom_fun_boss" parent="." instance=ExtResource("2_m1dha")]
+position = Vector2(29, 154)
+scale = Vector2(0.5, 0.5)

@@ -155,7 +155,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_vduqy")
 texture = ExtResource("5_eh41v")
-lifetime = 3.0
+lifetime = 1.5
 one_shot = true
 
 [node name="health_of_all_bosses" type="ProgressBar" parent="."]

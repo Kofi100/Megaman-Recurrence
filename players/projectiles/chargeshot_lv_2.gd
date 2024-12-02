@@ -2,7 +2,7 @@ extends CharacterBody2D
 var state="active"
 @export var SPEED = 50000.0
 @export var direction="left"
-
+var damagevalue=5
 func _ready():
 	match direction:
 		"left":
@@ -43,8 +43,11 @@ func _physics_process(delta):
 func _on_collision_monitor_area_entered(area):
 	if area.is_in_group("enemy") and not area.is_in_group("blockables"):
 		#print('works!')
+		var body=area.get_parent()
 		if state=="active" or state=='blocked':
-			area.get_parent().health-=5
+			if body.is_boss==false:area.get_parent().health-=damagevalue
+			elif body.is_boss==true:body.health-=(damagevalue-body.BossDefenseShot2)
+			GlobalScript.score+=50
 			state='stopped'
 			$hurt_enemy_effect.play()
 			#queue_free()
