@@ -27,6 +27,7 @@ func _physics_process(delta):
 		#$hitbox.set_monitoring(true)
 		$hitbox/CollisionShape2D.disabled=false
 	if activate_boss==true:
+		#$boss_theme.play()
 		if ready_pose==false:
 			animated_sprite_2d.play("pose")
 			ready_pose=true

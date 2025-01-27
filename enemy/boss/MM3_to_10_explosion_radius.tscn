@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://d4frnpopmr4ed"]
+
+[ext_resource type="Script" path="res://enemy/boss/mm3_to_10_explosion_radius.gd" id="1_aak1q"]
+[ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="2_vqxsu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tgra"]
+size = Vector2(34, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slmc5"]
+atlas = ExtResource("2_vqxsu")
+region = Rect2(0, 0, 59, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mylu"]
+atlas = ExtResource("2_vqxsu")
+region = Rect2(59, 0, 59, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrre6"]
+atlas = ExtResource("2_vqxsu")
+region = Rect2(118, 0, 59, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2hay"]
+atlas = ExtResource("2_vqxsu")
+region = Rect2(177, 0, 59, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr2t4"]
+atlas = ExtResource("2_vqxsu")
+region = Rect2(236, 0, 59, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6prar"]
+atlas = ExtResource("2_vqxsu")
+region = Rect2(354, 0, 59, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4pn1"]
+atlas = ExtResource("2_vqxsu")
+region = Rect2(413, 0, 59, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbsn1"]
+atlas = ExtResource("2_vqxsu")
+region = Rect2(472, 0, 59, 57)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcbdb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slmc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mylu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrre6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2hay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pr2t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6prar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4pn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbsn1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="mm3_to_10_ExplosionRadius" type="CharacterBody2D"]
+script = ExtResource("1_aak1q")
+
+[node name="bombRadius" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bombRadius"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_8tgra")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jcbdb")
+frame = 7
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

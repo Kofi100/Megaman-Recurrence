@@ -56,3 +56,5 @@ func _on_boss_zone_area_entered(area):
 func _on_start_boss_timer_timeout():
 	GlobalScript.trigger_boss=true
 	GlobalScript.boss.activate_boss=true
+	$fireman_boss/boss_theme.play()
+	$bgm.stop()

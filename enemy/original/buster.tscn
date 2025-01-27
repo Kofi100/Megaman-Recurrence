@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj0da1r76l7d0"]
+[gd_scene load_steps=9 format=3 uid="uid://bj0da1r76l7d0"]
 
 [ext_resource type="Texture2D" uid="uid://di8fwpfolamcx" path="res://assets/sprites/enemies/buster.png" id="1_8s4fi"]
 [ext_resource type="Script" path="res://enemy/original/buster.gd" id="1_qifye"]
+[ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_tie5c"]
+[ext_resource type="Script" path="res://levels/sfx_group.gd" id="4_6b026"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ad6c0"]
 atlas = ExtResource("1_8s4fi")
@@ -49,6 +51,16 @@ wait_time = 0.2
 [node name="cooldownTimer" type="Timer" parent="allTimers"]
 one_shot = true
 
+[node name="busterShot_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tie5c")
+script = ExtResource("4_6b026")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.00001, 74.5)
+scale = Vector2(9.2, 7.45)
+
 [connection signal="area_entered" from="playerDetect" to="." method="_on_player_detect_area_entered"]
 [connection signal="timeout" from="allTimers/rapidShootTimer" to="." method="_on_rapid_shoot_timer_timeout"]
 [connection signal="timeout" from="allTimers/cooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

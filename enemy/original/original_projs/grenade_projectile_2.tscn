@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cll08f53ukkdj"]
+
+[ext_resource type="Texture2D" uid="uid://4xnsrna3x2u7" path="res://assets/sprites/enemies/original/orig_projectiles/grenade_Projectile_Grenademan.png" id="1_2srh0"]
+[ext_resource type="Script" path="res://enemy/original/original_projs/grenade_projectile_2.gd" id="1_cd1ea"]
+
+[sub_resource type="Curve2D" id="Curve2D_h6ou5"]
+_data = {
+"points": PackedVector2Array(0, 0, 100, -100, 0, 0, 0, 0, 0, 0, 200, 0)
+}
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87pud"]
+atlas = ExtResource("1_2srh0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhbgd"]
+atlas = ExtResource("1_2srh0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rsnkq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87pud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhbgd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8k3xy"]
+size = Vector2(6, 8)
+
+[node name="grenadeProjectile2" type="Path2D"]
+curve = SubResource("Curve2D_h6ou5")
+script = ExtResource("1_cd1ea")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = -0.785398
+loop = false
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="PathFollow2D"]
+collision_layer = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D/CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_rsnkq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/CharacterBody2D"]
+shape = SubResource("RectangleShape2D_8k3xy")

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cd2h8y4ul6t18"]
+
+[ext_resource type="Script" path="res://enemy/original/grenade_projectile_grenademan.gd" id="1_i1oq5"]
+[ext_resource type="Texture2D" uid="uid://4xnsrna3x2u7" path="res://assets/sprites/enemies/original/orig_projectiles/grenade_Projectile_Grenademan.png" id="2_5vfpm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf2f6"]
+atlas = ExtResource("2_5vfpm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsvyw"]
+atlas = ExtResource("2_5vfpm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5uf1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf2f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsvyw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhhub"]
+size = Vector2(8, 8)
+
+[node name="grenade_Projectile_Grenademan" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_i1oq5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m5uf1")
+frame_progress = 0.384959
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vhhub")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

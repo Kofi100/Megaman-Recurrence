@@ -70,7 +70,7 @@ func _physics_process(delta):
 			if animated_sprite_2d.frame==1:
 				
 				proj_spawn_timer+=1
-				if proj_spawn_timer==10 or proj_spawn_timer==30 or proj_spawn_timer==50:
+				if proj_spawn_timer==15 or proj_spawn_timer==45 or proj_spawn_timer==75:
 					$all_sounds/shoot.play()
 					if animated_sprite_2d.flip_h==false:
 						bullet_ins=bullet.instantiate()

@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://cea6ffpfklqkn"]
+
+[ext_resource type="Script" path="res://enemy/count_bomb.gd" id="1_hefp1"]
+[ext_resource type="Texture2D" uid="uid://v8ofvppjluri" path="res://assets/sprites/enemies/count-Bomb.png" id="2_heygj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10wg2"]
+atlas = ExtResource("2_heygj")
+region = Rect2(0, 24, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfcg1"]
+atlas = ExtResource("2_heygj")
+region = Rect2(0, 48, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3eb5"]
+atlas = ExtResource("2_heygj")
+region = Rect2(0, 72, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u33c4"]
+atlas = ExtResource("2_heygj")
+region = Rect2(0, 96, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdlne"]
+atlas = ExtResource("2_heygj")
+region = Rect2(0, 120, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0wdc"]
+atlas = ExtResource("2_heygj")
+region = Rect2(0, 0, 20, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_na1jh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10wg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfcg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3eb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u33c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdlne")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0wdc")
+}],
+"loop": true,
+"name": &"not_Activate",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0b8o"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2cca"]
+size = Vector2(16, 22)
+
+[node name="count_Bomb" type="CharacterBody2D"]
+script = ExtResource("1_hefp1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_na1jh")
+animation = &"activate"
+autoplay = "not_Activate"
+frame = 4
+frame_progress = 1.0
+
+[node name="switchDetector" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="switchDetector"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_f0b8o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_a2cca")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.09673e-05, -34.5)
+scale = Vector2(10.1, 4.65)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="switchDetector" to="." method="_on_switch_detector_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

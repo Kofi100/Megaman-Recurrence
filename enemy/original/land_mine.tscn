@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://ber5k7q8cjftl"]
+
+[ext_resource type="Texture2D" uid="uid://4pj7717n72wb" path="res://assets/sprites/enemies/original/landMine.png" id="1_0do6h"]
+[ext_resource type="Script" path="res://enemy/original/land_mine.gd" id="1_28tnn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqwwi"]
+atlas = ExtResource("1_0do6h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bcrb"]
+atlas = ExtResource("1_0do6h")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4h13h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqwwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bcrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqwwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bcrb")
+}],
+"loop": false,
+"name": &"setBomb",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3o2p"]
+size = Vector2(10, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2buo"]
+size = Vector2(10, 4)
+
+[node name="landMine" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_28tnn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4h13h")
+animation = &"setBomb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_q3o2p")
+
+[node name="playerDetect" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetect"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_e2buo")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="playerDetect" to="." method="_on_player_detect_area_entered"]

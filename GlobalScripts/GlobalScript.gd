@@ -32,7 +32,7 @@ var stage_name:String
 var boss_health:float=0;var trigger_boss:bool=false
 var boss:Object;var player:Object
 var lastPlayableScene
-
+var robotMaster=0
 #var volumeSound:Dictionary={
 	#"BGM":-10,"SFX":0
 #}
@@ -77,8 +77,6 @@ func _process(delta):
 		if second_level>=60:
 			minute_level+=1
 			second_level=0
-	#set_stage_name()
-	#print('GlobalScript:prev.health,current health:',GlobalScript.previous_health,',,, ',GlobalScript.health)
 
 func start_level_timer():
 	level_timer_start=true
@@ -159,27 +157,10 @@ func set_stage_name(name_of_stage:String):
 		#match stage_path:
 			#"res://levels/test stages/test_stage.tscn":
 				#stage_name="TEST STAGE"
-			#"res://levels/test stages/stage_1.tscn":
-				#stage_name="???"
-			#"res://levels/test stages/stage_2.tscn":
-				#stage_name="??? 2"
-			##"res://levels/test stages/stage_3.tscn":
-				##stage_name="CYBERSPACE"
-			#"res://levels/test stages/test_boss_room.tscn":
-				#stage_name="TEST BOSS\n ROOM:\n the weapon archive"
-			#"res://levels/test stages/stage_3.tscn":
-				#stage_name="CYBERSPACE \n DEMO"
-			#"res://levels/test stages/stage_4.tscn":
-				#stage_name="PIPELINE \n FACTORY"
-			#"res://levels/test stages/stage_5_junkman_test.tscn":
-				#stage_name="TEST STAGE 5:\n JUNKMAN'S STAGE"
-			
 func reset_boss_before_starting_stage():
 	boss=null
 func customSwitchScene(nextScenePath:String):
 	var currentScenePath=get_tree().current_scene.get_scene_file_path()
-	#if currentScenePath==nextScenePath:
-		#return
 	if currentScenePath!=nextScenePath:
 		restarted_level=false
 	elif currentScenePath==nextScenePath:

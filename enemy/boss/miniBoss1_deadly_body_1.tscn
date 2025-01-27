@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://dscx2x16q1qj1"]
+
+[ext_resource type="Script" path="res://enemy/boss/mini_boss_1_deadly_body_1.gd" id="1_qoam4"]
+[ext_resource type="Texture2D" uid="uid://cjph0yevd7mn" path="res://assets/sprites/enemies/bosses/miniBoss_1_divison1-reMade.png" id="2_v3t1e"]
+[ext_resource type="Texture2D" uid="uid://c0h32htj50ewv" path="res://assets/sprites/enemies/bosses/miniBoss_1_divison1-reMade-sheet.png" id="3_lp8lx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y5rm"]
+size = Vector2(26, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rooxg"]
+size = Vector2(44.6667, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oeum"]
+atlas = ExtResource("3_lp8lx")
+region = Rect2(0, 0, 45, 248)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrlvg"]
+atlas = ExtResource("3_lp8lx")
+region = Rect2(0, 248, 45, 248)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj0sl"]
+atlas = ExtResource("3_lp8lx")
+region = Rect2(0, 496, 45, 248)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq2u1"]
+atlas = ExtResource("3_lp8lx")
+region = Rect2(0, 744, 45, 248)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_muhj5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oeum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrlvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj0sl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq2u1")
+}],
+"loop": true,
+"name": &"active",
+"speed": 12.0
+}]
+
+[node name="deadlyBody1" type="CharacterBody2D"]
+position = Vector2(76, 34)
+scale = Vector2(1.5, 1)
+collision_layer = 0
+script = ExtResource("1_qoam4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -13.0
+offset_top = -16.0
+offset_right = 13.0
+offset_bottom = 84.0
+color = Color(1, 0.054902, 0.321569, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_left = -22.0
+offset_top = 76.0
+offset_right = 23.0
+offset_bottom = 94.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_1y5rm")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.333332, 85)
+shape = SubResource("RectangleShape2D_rooxg")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 85)
+target_position = Vector2(0, 9)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="MiniBoss1Divison1-reMade" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -30)
+texture = ExtResource("2_v3t1e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -30)
+sprite_frames = SubResource("SpriteFrames_muhj5")
+animation = &"active"
+frame = 3
+frame_progress = 0.880576

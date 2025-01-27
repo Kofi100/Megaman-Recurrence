@@ -55,11 +55,13 @@ func _process(delta):
 			$Node2D/robotMaster2.play("notSelected")
 			$Node2D/robotMaster3.play("notSelected")
 			$Node2D/robotMaster4.play("Selected")
-	
+	GlobalScript.robotMaster=robotSelected
 	if transition and transition.screen_Ended:#"transition.screen_Ended" incorrect ref to a signal of another scene
 		if transition.is_connected("screen_Ended",changeScene)==false:#("changeSceneSignal",self,"changeScene")==false:
 			transition.connect("screen_Ended",changeScene)#("changeSceneSignal",self,"changeScene")#("changeScene")
-
+	#if transition and transition.robotMaster:
+		#pass
+		#transition.robotMaster=robotSelected
 @export var spriteDict={}
 func select():
 	var sprite:AnimatedSprite2D=spriteDict.get(robotSelected)
@@ -75,6 +77,7 @@ var transition
 func _on_screen_trans_timer_timeout():
 	transition=preload("res://levels/robot_master_display_scene.tscn").instantiate()
 	add_child(transition);transition.global_position=global_position
+	
 
 
 func _on_select_your_robot_master_finished():

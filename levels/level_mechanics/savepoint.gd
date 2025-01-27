@@ -32,5 +32,3 @@ func _process(_delta):
 			pass
 			#$line_rep.default_color=Color.GREEN
 			animation_player.play("green")
-
-

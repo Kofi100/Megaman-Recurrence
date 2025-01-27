@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmvq4qbc6sxm3"]
+
+[ext_resource type="Script" path="res://enemy/enemy_that_shoots_laser.gd" id="1_h6s00"]
+[ext_resource type="Texture2D" uid="uid://cnu4alokpqxr4" path="res://assets/sprites/enemies/laserProjector.png" id="1_ofcx0"]
+[ext_resource type="Script" path="res://enemy/enemy_Laser_laserBody.gd" id="2_ynn70"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyuda"]
+atlas = ExtResource("1_ofcx0")
+region = Rect2(0, 0, 27, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3tx7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyuda")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hxm0"]
+size = Vector2(152, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dogx"]
+size = Vector2(3, 15)
+
+[node name="enemyThatShootsLaser" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_h6s00")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 0)
+sprite_frames = SubResource("SpriteFrames_e3tx7")
+
+[node name="laserBody" type="CharacterBody2D" parent="."]
+position = Vector2(-150, -36)
+script = ExtResource("2_ynn70")
+
+[node name="laser" type="Line2D" parent="laserBody"]
+points = PackedVector2Array(150, 36, 0, 36)
+default_color = Color(3.7542e-06, 0.683439, 0.683439, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="laser2" type="Line2D" parent="laserBody"]
+points = PackedVector2Array(150, 36, 0, 36)
+width = 3.0
+default_color = Color(0.644952, 0.999999, 0.995552, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Area2D" type="Area2D" parent="laserBody" groups=["enemy"]]
+position = Vector2(150, 36)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="laserBody/Area2D"]
+position = Vector2(-76, 0)
+shape = SubResource("RectangleShape2D_5hxm0")
+
+[node name="RayCast2D" type="RayCast2D" parent="laserBody"]
+position = Vector2(150, 36)
+target_position = Vector2(-152, 0)
+
+[node name="laser_Indicator" type="Line2D" parent="."]
+position = Vector2(-150, -36)
+points = PackedVector2Array(150, 36, 0, 36)
+width = 2.0
+default_color = Color(0.753389, 7.48433e-06, 3.7542e-06, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="countdownTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="emissionTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11.5, -0.5)
+shape = SubResource("RectangleShape2D_0dogx")
+
+[node name="countdown_Ind" type="Label" parent="."]
+offset_left = -25.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = 11.0
+text = "3"
+
+[node name="countdown_Ind2" type="Label" parent="."]
+offset_left = -65.0
+offset_top = -12.0
+offset_right = -52.0
+offset_bottom = 11.0
+text = "3"
+
+[node name="countdown_Ind3" type="Label" parent="."]
+offset_left = -108.0
+offset_top = -12.0
+offset_right = -95.0
+offset_bottom = 11.0
+text = "3"
+
+[node name="countdown_Ind4" type="Label" parent="."]
+offset_left = -150.0
+offset_top = -12.0
+offset_right = -137.0
+offset_bottom = 11.0
+text = "3"
+
+[connection signal="timeout" from="countdownTimer" to="." method="_on_countdown_timer_timeout"]

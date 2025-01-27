@@ -92,11 +92,14 @@ layout_mode = 2
 
 [node name="test_stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../robot_master")
 theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "test_stage"
 
 [node name="robot_master" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+focus_next = NodePath("../test_stage_free_fall")
+focus_previous = NodePath("../test_stage")
 theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "Robot mASTER 
 menu"
@@ -175,6 +178,11 @@ text = "boss3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "ShadowMan Debug"
+
+[node name="shadowMan_stage1" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ns6ek")
+text = "ShadowMan Stage 1"
 
 [node name="side_note_stages" type="RichTextLabel" parent="stage_buttons"]
 visible = false
@@ -285,6 +293,8 @@ autoplay = "zoom_in_out"
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/boss3" to="." method="_on_boss_3_pressed"]
 [connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/boss_Shadow" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/boss_Shadow" to="." method="_on_boss_shadow_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/shadowMan_stage1" to="." method="play_sound_when_mouse_over_button"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/shadowMan_stage1" to="." method="_on_shadow_man_stage_1_pressed"]
 [connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]
 [connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="confirmed" from="Quit_ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

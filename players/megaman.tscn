@@ -409,6 +409,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_5jojv"]
 resource_name = "screen_shake"
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -478,7 +479,8 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"dash"
+animation = &"shoot_run"
+offset = Vector2(1, 0)
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -30,7 +30,8 @@ var new_enemy
 	'tacklefire': preload("res://assets/sprites/enemies/tacklefire.tscn"),
 	"upndown" :preload("res://enemy/upndown.tscn"),
 	"enemy_2" :preload("res://enemy/original/enemy_2.tscn"),
-	"buster":preload("res://enemy/original/buster.tscn")
+	"buster":preload("res://enemy/original/buster.tscn"),
+	"count_bomb":preload("res://enemy/count_bomb.tscn")
 }
 var disappear_nodes={
 	1:'Sprite2D',

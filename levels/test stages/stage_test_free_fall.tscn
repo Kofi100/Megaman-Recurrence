@@ -9,27 +9,13 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gasl1"]
 texture = ExtResource("2_wvyr0")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0 = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
 4:0/0 = 0
-4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:0/0/physics_layer_0/angular_velocity = 0.0
 5:0/0 = 0
-5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:0/0/physics_layer_0/angular_velocity = 0.0
 6:0/0 = 0
-6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-6:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_j71js"]
 physics_layer_0/collision_layer = 1
@@ -68,6 +54,7 @@ position = Vector2(243, 227)
 
 [node name="new_camera_system" parent="Node2D" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("3_bpc5k")]
 collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="Node2D/new_camera_system" index="0"]
 limit_left = 0
@@ -78,6 +65,7 @@ limit_bottom = 1200
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/new_camera_system"]
 position = Vector2(128, 600)
 shape = SubResource("RectangleShape2D_yelpb")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="Node2D/new_camera_system/CollisionShape2D"]
 position = Vector2(-126.708, -59.0268)
@@ -86,6 +74,7 @@ position = Vector2(-126.708, -59.0268)
 visible = false
 position = Vector2(-483, -65)
 collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="Node2D/new_camera_system2" index="0"]
 limit_left = -584
@@ -97,11 +86,13 @@ limit_bottom = 149
 position = Vector2(113.054, 97.461)
 shape = SubResource("RectangleShape2D_iwpfa")
 disabled = true
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
 [node name="new_camera_system3" parent="Node2D" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("3_bpc5k")]
 visible = false
 position = Vector2(-502, 211)
 collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="Node2D/new_camera_system3" index="0"]
 limit_left = -600
@@ -113,6 +104,7 @@ limit_bottom = 432
 position = Vector2(140.595, 104.116)
 shape = SubResource("RectangleShape2D_0vakv")
 disabled = true
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
 [node name="port_test1" type="Area2D" parent="."]
 position = Vector2(316.44, 630.353)

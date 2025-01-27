@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://kjygm8m2f7cy"]
+
+[ext_resource type="Texture2D" uid="uid://dkcdqg3twyc4c" path="res://assets/sprites/enemies/bosses/miniBoss_1_projectile2-Sonic1Style.png" id="1_g2473"]
+[ext_resource type="Script" path="res://enemy/boss/mini_boss_1_proj_2.gd" id="1_sx0n0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6abck"]
+atlas = ExtResource("1_g2473")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5op3v"]
+atlas = ExtResource("1_g2473")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw1uj"]
+atlas = ExtResource("1_g2473")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_up4il"]
+atlas = ExtResource("1_g2473")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umxd7"]
+atlas = ExtResource("1_g2473")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6aak0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6abck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5op3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw1uj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5op3v")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_up4il")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umxd7")
+}],
+"loop": true,
+"name": &"ready",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt86q"]
+size = Vector2(14, 12)
+
+[node name="miniBoss1_proj2" type="CharacterBody2D"]
+script = ExtResource("1_sx0n0")
+SPEED = 5000.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6aak0")
+animation = &"fire"
+frame_progress = 0.480069
+
+[node name="shootTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rt86q")
+
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]

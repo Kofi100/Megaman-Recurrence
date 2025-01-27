@@ -62,6 +62,7 @@ func _on_collision_monitor_area_entered(area):
 			#queue_free()
 	if area.is_in_group("blockables"):
 		state="blocked"
+		$bounce.play()
 
 
 func _on_onscreen_screen_exited():

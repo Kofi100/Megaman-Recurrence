@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bao47g1gead57"]
+[gd_scene load_steps=14 format=3 uid="uid://bao47g1gead57"]
 
 [ext_resource type="Script" path="res://levels/robot_master_display_scene.gd" id="1_g526k"]
 [ext_resource type="Texture2D" uid="uid://ddtvjx6j408ql" path="res://assets/sprites/miscelleaneous/screenTransitionRMaster.png" id="1_namjn"]
+[ext_resource type="Texture2D" uid="uid://gf76btbxgpe3" path="res://assets/sprites/enemies/bosses/fireman/idle/0.png" id="3_mmin3"]
+[ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="4_viicr"]
+[ext_resource type="Texture2D" uid="uid://d21bm5jxlk81v" path="res://assets/sprites/enemies/bosses/shadowman.png" id="5_cpjfu"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_fgrhp"]
+[ext_resource type="AudioStream" uid="uid://c6rjahjyxac4h" path="res://assets/music/Mega Man 3 OST_ Game Start.mp3" id="7_uylcb"]
+[ext_resource type="Script" path="res://resources/bgm_group.gd" id="8_q66bg"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4gw3"]
 particle_flag_disable_z = true
@@ -14,6 +20,80 @@ initial_velocity_min = 250.0
 initial_velocity_max = 250.0
 gravity = Vector3(0, 0, 0)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fo57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mmin3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_viicr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_pyjch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_m5pux"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6fbu"]
+_data = {
+"RESET": SubResource("Animation_pyjch"),
+"new_animation": SubResource("Animation_m5pux")
+}
+
 [node name="robotMasterDisplayScene" type="Node2D"]
 script = ExtResource("1_g526k")
 
@@ -23,7 +103,7 @@ offset_bottom = 232.0
 color = Color(0, 0, 0, 1)
 
 [node name="lifeTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 0.5
 one_shot = true
 
 [node name="stuffToMakeDisappear" type="Node2D" parent="."]
@@ -34,4 +114,37 @@ amount = 50
 process_material = SubResource("ParticleProcessMaterial_b4gw3")
 texture = ExtResource("1_namjn")
 
+[node name="fireMan" type="AnimatedSprite2D" parent="stuffToMakeDisappear"]
+position = Vector2(125, 101)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6fo57")
+autoplay = "default"
+
+[node name="shadowMan" type="Sprite2D" parent="stuffToMakeDisappear"]
+position = Vector2(149, 85)
+scale = Vector2(2, 2)
+texture = ExtResource("5_cpjfu")
+hframes = 8
+
+[node name="nameOfRobotMaster" type="Label" parent="stuffToMakeDisappear"]
+offset_left = 74.0
+offset_top = 132.0
+offset_right = 180.0
+offset_bottom = 155.0
+theme = ExtResource("6_fgrhp")
+text = "fireman"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="stuffToMakeDisappear/nameOfRobotMaster"]
+libraries = {
+"": SubResource("AnimationLibrary_o6fbu")
+}
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_uylcb")
+pitch_scale = 0.8
+script = ExtResource("8_q66bg")
+
 [connection signal="timeout" from="lifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]

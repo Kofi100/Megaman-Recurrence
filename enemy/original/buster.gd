@@ -36,6 +36,7 @@ func _on_rapid_shoot_timer_timeout():
 		var proj=preload("res://enemy/original/buster_enemy_projectiles.tscn").instantiate()
 		get_parent().add_child(proj)
 		proj.global_position=global_position
+		$busterShot_SFX.play()
 	if shootNo>=3:
 		$allTimers/rapidShootTimer.stop()
 		$allTimers/cooldownTimer.start()
@@ -45,4 +46,13 @@ func _on_rapid_shoot_timer_timeout():
 
 
 func _on_cooldown_timer_timeout():
+	$allTimers/rapidShootTimer.start()
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	$allTimers/rapidShootTimer.stop()
+	$allTimers/cooldownTimer.stop()
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	$allTimers/rapidShootTimer.start()
