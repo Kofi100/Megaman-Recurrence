@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4frnpopmr4ed"]
+[gd_scene load_steps=15 format=3 uid="uid://d4frnpopmr4ed"]
 
 [ext_resource type="Script" path="res://enemy/boss/mm3_to_10_explosion_radius.gd" id="1_aak1q"]
 [ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="2_vqxsu"]
+[ext_resource type="Script" path="res://levels/sfx_group.gd" id="3_ed088"]
+[ext_resource type="AudioStream" uid="uid://cscjl67ym8o6x" path="res://assets/sounds/explosion_effect(mm5).mp3" id="3_r67tf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tgra"]
 size = Vector2(34, 35)
@@ -67,15 +69,15 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 12.0
+"speed": 15.0
 }]
 
 [node name="mm3_to_10_ExplosionRadius" type="CharacterBody2D"]
 script = ExtResource("1_aak1q")
 
 [node name="bombRadius" type="Area2D" parent="." groups=["enemy"]]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bombRadius"]
 position = Vector2(0, -0.5)
@@ -85,5 +87,9 @@ shape = SubResource("RectangleShape2D_8tgra")
 sprite_frames = SubResource("SpriteFrames_jcbdb")
 frame = 7
 frame_progress = 1.0
+
+[node name="explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_r67tf")
+script = ExtResource("3_ed088")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

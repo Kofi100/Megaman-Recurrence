@@ -214,6 +214,16 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "24"
 
+[node name="text_lives" type="Label" parent="healthbar"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 62.0
+offset_right = 46.0
+offset_bottom = 82.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+text = "3"
+
 [node name="Sprite2D" type="Sprite2D" parent="healthbar"]
 position = Vector2(4, 65)
 texture = ExtResource("7_65oho")

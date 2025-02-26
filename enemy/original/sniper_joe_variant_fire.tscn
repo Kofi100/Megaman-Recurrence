@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://n1srit3751i5"]
+
+[ext_resource type="Script" path="res://enemy/original/sniper_joe_variant_fire.gd" id="1_3e0ik"]
+[ext_resource type="Texture2D" uid="uid://dqlawsdc80ykm" path="res://assets/sprites/enemies/sniper_joe_variant_fire.png" id="1_48enw"]
+[ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_fh1uj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig26k"]
+atlas = ExtResource("1_48enw")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84jjo"]
+atlas = ExtResource("1_48enw")
+region = Rect2(35, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5rot"]
+atlas = ExtResource("1_48enw")
+region = Rect2(70, 0, 35, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7kfyr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig26k")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84jjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5rot")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kx6bt"]
+size = Vector2(199, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d756w"]
+size = Vector2(11, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5id"]
+size = Vector2(9, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dtph"]
+size = Vector2(9, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bc55x"]
+size = Vector2(13.3004, 19)
+
+[node name="sniper_joe_variant_fire" type="CharacterBody2D"]
+position = Vector2(127.3, 94.5953)
+collision_layer = 0
+script = ExtResource("1_3e0ik")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7kfyr")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(8, 0)
+
+[node name="playerDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetect"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_kx6bt")
+
+[node name="attackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="attackPeriodTimer" type="Timer" parent="."]
+
+[node name="spawnProjectileTimer" type="Timer" parent="attackPeriodTimer"]
+wait_time = 0.2
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.80043, 4.90474)
+shape = SubResource("RectangleShape2D_d756w")
+
+[node name="shieldHitbox" type="Area2D" parent="." groups=["blockables"]]
+collision_layer = 4
+collision_mask = 4
+
+[node name="L" type="CollisionShape2D" parent="shieldHitbox"]
+position = Vector2(-5.30043, 3.40474)
+shape = SubResource("RectangleShape2D_jh5id")
+debug_color = Color(0.572549, 0.6, 0.419608, 0.439216)
+
+[node name="R" type="CollisionShape2D" parent="shieldHitbox"]
+position = Vector2(5.69957, 3.40474)
+shape = SubResource("RectangleShape2D_8dtph")
+debug_color = Color(0.572549, 0.6, 0.419608, 0.345098)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.34978, 5.90474)
+shape = SubResource("RectangleShape2D_bc55x")
+
+[node name="all_sounds" type="Node2D" parent="."]
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="all_sounds"]
+stream = ExtResource("3_fh1uj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.2, 4.9047)
+scale = Vector2(0.85, 1.05)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="playerDetect" to="." method="_on_player_detect_area_entered"]
+[connection signal="timeout" from="attackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="attackPeriodTimer" to="." method="_on_attack_period_timer_timeout"]
+[connection signal="timeout" from="attackPeriodTimer/spawnProjectileTimer" to="." method="_on_spawn_projectile_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

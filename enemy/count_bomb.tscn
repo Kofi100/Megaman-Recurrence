@@ -38,6 +38,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w3eb5")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u33c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdlne")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u33c4")
@@ -46,8 +57,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_cdlne")
 }],
 "loop": false,
-"name": &"activate",
-"speed": 3.0
+"name": &"explode",
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -69,9 +80,9 @@ script = ExtResource("1_hefp1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_na1jh")
-animation = &"activate"
+animation = &"explode"
 autoplay = "not_Activate"
-frame = 4
+frame = 3
 frame_progress = 1.0
 
 [node name="switchDetector" type="Area2D" parent="."]

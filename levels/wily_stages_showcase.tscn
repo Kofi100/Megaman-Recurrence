@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3yj53cpjv5t7"]
+
+[ext_resource type="Texture2D" uid="uid://becc53py6l1f5" path="res://assets/sprites/miscelleaneous/final_Level_Layouts/wily_Stage_3_Wily_Fortitude2.png" id="1_1oreo"]
+[ext_resource type="Texture2D" uid="uid://c4ts0vbwqfca" path="res://assets/sprites/miscelleaneous/final_Level_Layouts/wily_Stage_2_Wily_KingShip.png" id="2_lcjul"]
+
+[node name="wily_Stages_Showcase" type="Node2D"]
+
+[node name="WilyStage3WilyFortitude2" type="Sprite2D" parent="."]
+position = Vector2(139, -6)
+texture = ExtResource("1_1oreo")
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(13, 117)
+texture = ExtResource("2_lcjul")

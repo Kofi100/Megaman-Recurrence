@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dewuncfhoaa34"]
+[gd_scene load_steps=12 format=3 uid="uid://dewuncfhoaa34"]
 
 [ext_resource type="Texture2D" uid="uid://ctcnebfu1i16y" path="res://assets/sprites/enemies/original/grenadeMan.png" id="1_tb7pl"]
 [ext_resource type="Script" path="res://enemy/original/grenade_man.gd" id="1_tjga5"]
@@ -26,13 +26,13 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 5.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_jo36f")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_fjbta")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_14mq3")
 }],
 "loop": true,
@@ -44,10 +44,16 @@ animations = [{
 size = Vector2(20, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35qoo"]
-size = Vector2(22, 24)
+size = Vector2(12, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qwra1"]
-size = Vector2(200, 52)
+size = Vector2(256, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulpma"]
+size = Vector2(9.5, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oui3y"]
+size = Vector2(9, 16)
 
 [node name="grenadeMan" type="CharacterBody2D"]
 script = ExtResource("1_tjga5")
@@ -55,8 +61,7 @@ script = ExtResource("1_tjga5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w8uqe")
 animation = &"throw"
-frame_progress = 0.819049
-flip_h = true
+frame_progress = 0.490142
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)
@@ -69,22 +74,39 @@ position = Vector2(-19, -7)
 position = Vector2(18, -7)
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 4)
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_35qoo")
+debug_color = Color(0.992157, 0.0705882, 0.129412, 0.8)
 
 [node name="detectPlayer" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectPlayer"]
-position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_qwra1")
 
 [node name="coolDown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
+[node name="hitbox_Shield" type="Area2D" parent="." groups=["blockables"]]
+
+[node name="L" type="CollisionShape2D" parent="hitbox_Shield"]
+position = Vector2(-8.75, 3)
+shape = SubResource("RectangleShape2D_ulpma")
+
+[node name="R" type="CollisionShape2D" parent="hitbox_Shield"]
+position = Vector2(8.5, 3)
+shape = SubResource("RectangleShape2D_oui3y")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.5, 9.53674e-07)
+scale = Vector2(8.45, 3.7)
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="area_entered" from="detectPlayer" to="." method="_on_detect_player_area_entered"]
 [connection signal="area_exited" from="detectPlayer" to="." method="_on_detect_player_area_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

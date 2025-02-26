@@ -1,9 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2k6ofydycgiy"]
+[gd_scene load_steps=19 format=3 uid="uid://b2k6ofydycgiy"]
 
 [ext_resource type="Script" path="res://levels/input_rebind_menu.gd" id="1_87vqm"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="2_1p3mi"]
 [ext_resource type="Texture2D" uid="uid://chhq4su6fi50s" path="res://assets/sprites/miscelleaneous/background_input_menu.png" id="2_3qgwf"]
+[ext_resource type="Texture2D" uid="uid://dgd1vwspunt10" path="res://assets/sprites/miscelleaneous/menus/template/background Color.png" id="3_7yj3i"]
 [ext_resource type="Texture2D" uid="uid://celwj44lsursi" path="res://assets/sprites/player/mega_spin.png" id="3_paamk"]
+[ext_resource type="Texture2D" uid="uid://cni3rqym7alh1" path="res://assets/sprites/miscelleaneous/menus/template/outer Borders.png" id="4_ugcoh"]
+[ext_resource type="Texture2D" uid="uid://dk1kmvaxvym5l" path="res://assets/sprites/miscelleaneous/menus/template/border Small.png" id="5_5kxoo"]
 [ext_resource type="AudioStream" uid="uid://dsku1phrwujif" path="res://assets/music/Training(FP2).0.252.ogg" id="5_eglmy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8wgs"]
@@ -70,23 +73,55 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8l4n"]
+
 [node name="input_rebind_menu" type="Node2D"]
 script = ExtResource("1_87vqm")
-node_to_action = {
-0: NodePath("Control/ScrollContainer/VSplitContainer/up_btn"),
-1: NodePath("Control/ScrollContainer/VSplitContainer/down_btn"),
-2: NodePath("Control/ScrollContainer/VSplitContainer/left_btn"),
-3: null,
-4: null,
-5: null,
-6: null,
-7: null,
-8: null,
-9: null
-}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_3qgwf")
+centered = false
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="BackgroundColor" type="Sprite2D" parent="Node2D"]
+visible = false
+texture = ExtResource("3_7yj3i")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0.909804, 0.847059, 1)
+
+[node name="OuterBorders" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("4_ugcoh")
+centered = false
+
+[node name="BorderSmall" type="Sprite2D" parent="Node2D"]
+position = Vector2(3, 18)
+scale = Vector2(3.08642, 1)
+texture = ExtResource("5_5kxoo")
+centered = false
+
+[node name="BorderSmall2" type="Sprite2D" parent="Node2D"]
+position = Vector2(3, 37)
+scale = Vector2(3.08642, 1)
+texture = ExtResource("5_5kxoo")
+centered = false
+
+[node name="BorderSmall3" type="Sprite2D" parent="Node2D"]
+position = Vector2(128, 20.9727)
+rotation = 1.5708
+scale = Vector2(2.22176, 1)
+texture = ExtResource("5_5kxoo")
+centered = false
+
+[node name="BorderSmall4" type="Sprite2D" parent="Node2D"]
+position = Vector2(3, 201)
+scale = Vector2(3.08642, 1)
+texture = ExtResource("5_5kxoo")
 centered = false
 
 [node name="Control" type="Control" parent="."]
@@ -98,9 +133,9 @@ offset_bottom = 40.0
 [node name="ScrollContainer" type="ScrollContainer" parent="Control"]
 layout_mode = 1
 offset_left = 7.0
-offset_top = 28.0
-offset_right = 148.0
-offset_bottom = 185.0
+offset_top = 41.0
+offset_right = 117.0
+offset_bottom = 200.0
 
 [node name="VSplitContainer" type="VBoxContainer" parent="Control/ScrollContainer"]
 layout_mode = 2
@@ -146,7 +181,7 @@ text = "dash"
 layout_mode = 2
 focus_previous = NodePath("../dash_btn")
 theme = ExtResource("2_1p3mi")
-text = "shoot_btn"
+text = "shoot"
 
 [node name="waiting_text_label" type="Label" parent="."]
 visible = false
@@ -159,70 +194,104 @@ text = "WAITING FOR INPUT:
 ...."
 
 [node name="main_menu" type="Button" parent="."]
-offset_left = 157.0
-offset_top = 203.0
-offset_right = 333.0
-offset_bottom = 227.0
+offset_left = 165.0
+offset_top = 204.0
+offset_right = 341.0
+offset_bottom = 238.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("2_1p3mi")
 text = "<main_menu"
 
 [node name="mega_spin" type="AnimatedSprite2D" parent="."]
-position = Vector2(30, 199)
-scale = Vector2(1.5, 1.5)
+position = Vector2(49, 212)
+scale = Vector2(0.647727, 0.647727)
 sprite_frames = SubResource("SpriteFrames_wnmvy")
 animation = &"spinnnn"
-frame_progress = 0.763358
 
-[node name="Label" type="Label" parent="."]
-offset_left = 46.0
-offset_top = 10.0
-offset_right = 214.0
-offset_bottom = 33.0
+[node name="title" type="Label" parent="."]
+offset_left = 49.0
+offset_top = 2.0
+offset_right = 287.0
+offset_bottom = 25.0
 scale = Vector2(0.7, 0.7)
 theme = ExtResource("2_1p3mi")
 text = "INPUT REBIND MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="keyboard" type="Label" parent="."]
+offset_left = 21.0
+offset_top = 22.0
+offset_right = 145.0
+offset_bottom = 41.0
+scale = Vector2(0.7, 0.7)
+theme = ExtResource("2_1p3mi")
+text = "KEYBOARD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="controller" type="Label" parent="."]
+offset_left = 135.0
+offset_top = 22.0
+offset_right = 293.0
+offset_bottom = 41.0
+scale = Vector2(0.7, 0.7)
+theme = ExtResource("2_1p3mi")
+text = "CONTROLLER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label2" type="RichTextLabel" parent="."]
-offset_left = 153.0
-offset_top = 33.0
-offset_right = 343.0
-offset_bottom = 261.0
+offset_left = 141.0
+offset_top = 65.0
+offset_right = 331.0
+offset_bottom = 293.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("2_1p3mi")
-text = "PRESS ANY
-OF THESE KEYS
-AND FOLLOW
-INSTRUCTIONS
-TO RESET THE
-INPUT KEYS
-OF THE GAME.
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o8l4n")
+text = " PRESS ANY
+ OF THESE KEYS
+ AND FOLLOW
+ INSTRUCTIONS
+ TO RESET THE
+ INPUT KEYS
+ OF THE GAME.
 
-PRESS ANY
-BUTTON ON 
-YOUR MOUSE TO
-CANCEL YOUR 
-REQUEST/
-BINDING."
+ PRESS ANY
+ BUTTON ON 
+ YOUR MOUSE TO
+ CANCEL YOUR 
+ REQUEST/
+ BINDING."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_eglmy")
 volume_db = -3.0
 autoplay = true
 
+[node name="Button" type="Button" parent="."]
+offset_left = 133.0
+offset_top = 54.0
+offset_right = 252.0
+offset_bottom = 108.0
+text = "save gamepad"
+
+[node name="Node" type="Node" parent="."]
+
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/up_btn" to="." method="display_label_fxn"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/up_btn" to="." method="_on_up_btn_pressed"]
-[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/down_btn" to="." method="display_label_fxn"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/down_btn" to="." method="_on_down_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/down_btn" to="." method="display_label_fxn"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/left_btn" to="." method="display_label_fxn"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/left_btn" to="." method="_on_left_btn_pressed"]
-[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/right_btn" to="." method="_on_right_btn_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/right_btn" to="." method="display_label_fxn"]
-[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/jump_btn" to="." method="_on_jump_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/right_btn" to="." method="_on_right_btn_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/jump_btn" to="." method="display_label_fxn"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/jump_btn" to="." method="_on_jump_btn_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/dash_btn" to="." method="display_label_fxn"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/dash_btn" to="." method="_on_slide_btn_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/shoot_btn" to="." method="display_label_fxn"]
 [connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/shoot_btn" to="." method="_on_shoot_btn_pressed"]
 [connection signal="pressed" from="main_menu" to="." method="_on_main_menu_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

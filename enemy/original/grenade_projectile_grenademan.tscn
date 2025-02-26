@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd2h8y4ul6t18"]
+[gd_scene load_steps=8 format=3 uid="uid://cd2h8y4ul6t18"]
 
 [ext_resource type="Script" path="res://enemy/original/grenade_projectile_grenademan.gd" id="1_i1oq5"]
 [ext_resource type="Texture2D" uid="uid://4xnsrna3x2u7" path="res://assets/sprites/enemies/original/orig_projectiles/grenade_Projectile_Grenademan.png" id="2_5vfpm"]
@@ -26,10 +26,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vhhub"]
-size = Vector2(8, 8)
+size = Vector2(6, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eunpo"]
+size = Vector2(6, 8)
 
 [node name="grenade_Projectile_Grenademan" type="CharacterBody2D"]
 collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_i1oq5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -44,4 +48,12 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_eunpo")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

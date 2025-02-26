@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dxt1j8tafantj"]
+[gd_scene load_steps=31 format=3 uid="uid://dxt1j8tafantj"]
 
 [ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="1_m3kyb"]
 [ext_resource type="Script" path="res://enemy/boss/shadowman_1.gd" id="1_rgkba"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://enemy/boss/Shadowman/ShadowAttackTwo.gd" id="6_n7e5c"]
 [ext_resource type="Script" path="res://enemy/boss/Shadowman/ShadowIntro.gd" id="7_gbsl2"]
 [ext_resource type="Texture2D" uid="uid://nnbwqgea8iwq" path="res://assets/sprites/miscelleaneous/target_player.png" id="8_n3rex"]
+[ext_resource type="Script" path="res://enemy/boss/ShadowJumpWall.gd" id="8_qi3fe"]
+[ext_resource type="Script" path="res://enemy/boss/ShadowJumpOnFloor.gd" id="9_gmen1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lw33c"]
 atlas = ExtResource("5_h0056")
@@ -29,6 +31,10 @@ region = Rect2(96, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfvfa"]
 atlas = ExtResource("5_h0056")
 region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlm76"]
+atlas = ExtResource("5_h0056")
+region = Rect2(528, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_phca8"]
 atlas = ExtResource("5_h0056")
@@ -58,6 +64,18 @@ region = Rect2(240, 0, 48, 48)
 atlas = ExtResource("5_h0056")
 region = Rect2(288, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybj2u"]
+atlas = ExtResource("5_h0056")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r65k5"]
+atlas = ExtResource("5_h0056")
+region = Rect2(432, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ikur"]
+atlas = ExtResource("5_h0056")
+region = Rect2(480, 0, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_sgw1d"]
 animations = [{
 "frames": [{
@@ -84,6 +102,14 @@ animations = [{
 "loop": false,
 "name": &"Intro",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlm76")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -129,6 +155,25 @@ animations = [{
 "loop": false,
 "name": &"ThrowCritical",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybj2u")
+}],
+"loop": true,
+"name": &"WallSlide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r65k5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ikur")
+}],
+"loop": false,
+"name": &"WallThrow",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufst8"]
@@ -151,18 +196,21 @@ shadowman = NodePath("../..")
 stopTimer = NodePath("../../Timers/stopTimer")
 animatedSprite = NodePath("../../AnimatedSprite2D")
 
-[node name="ShadowAttackOne" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "testTimer", "animatedSprite", "topMarker")]
+[node name="ShadowAttackOne" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "testTimer", "animatedSprite", "topMarker", "stopTimer", "throwAttackOneTimer")]
 script = ExtResource("4_rdlmb")
 shadowman = NodePath("../..")
 testTimer = NodePath("../../Timers/Timer")
 animatedSprite = NodePath("../../AnimatedSprite2D")
 topMarker = NodePath("../../top")
+stopTimer = NodePath("../../Timers/stopTimer")
+throwAttackOneTimer = NodePath("../../Timers/throwAttackOneTimer")
 
-[node name="ShadowAttackTwo" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "dashTimer", "animatedSprite")]
+[node name="ShadowAttackTwo" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "dashTimer", "animatedSprite", "stopTimer")]
 script = ExtResource("6_n7e5c")
 shadowman = NodePath("../..")
 dashTimer = NodePath("../../Timers/dashTimer")
 animatedSprite = NodePath("../../AnimatedSprite2D")
+stopTimer = NodePath("../../Timers/stopTimer")
 
 [node name="ShadowAttackThree" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "animatedSprite", "linetouse", "markerLineTop", "markOnPlayer")]
 script = ExtResource("5_su10j")
@@ -177,12 +225,20 @@ script = ExtResource("7_gbsl2")
 animatedSprite = NodePath("../../AnimatedSprite2D")
 introTimer = NodePath("../../Timers/introTimer")
 stateEngStopTimer = NodePath("../../Timers/stateEngineStop")
-introTimerStartOnEntry = true
+
+[node name="ShadowJumpWall" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "animatedSprite2D")]
+script = ExtResource("8_qi3fe")
+shadowman = NodePath("../..")
+animatedSprite2D = NodePath("../../AnimatedSprite2D")
+
+[node name="ShadowJumpOnFloor" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "animatedsprite2d")]
+script = ExtResource("9_gmen1")
+shadowman = NodePath("../..")
+animatedsprite2d = NodePath("../../AnimatedSprite2D")
 
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="stopTimer" type="Timer" parent="Timers"]
-wait_time = 0.3
 one_shot = true
 
 [node name="Timer" type="Timer" parent="Timers"]
@@ -190,7 +246,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="dashTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 0.7
 one_shot = true
 
 [node name="introTimer" type="Timer" parent="Timers"]
@@ -202,7 +258,10 @@ wait_time = 0.1
 one_shot = true
 
 [node name="coolDownTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+one_shot = true
+
+[node name="throwAttackOneTimer" type="Timer" parent="Timers"]
+wait_time = 0.25
 one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -215,7 +274,7 @@ offset_bottom = 9.0
 color = Color(0.791951, 0.791951, 1.15514e-06, 1)
 
 [node name="top" type="Marker2D" parent="."]
-position = Vector2(-2, -34)
+position = Vector2(-13, -19)
 
 [node name="targetPlayer" type="Sprite2D" parent="."]
 visible = false
@@ -223,9 +282,9 @@ position = Vector2(-41, 5)
 texture = ExtResource("8_n3rex")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(11, -24)
+position = Vector2(1, -24)
 sprite_frames = SubResource("SpriteFrames_sgw1d")
-animation = &"Throw"
+animation = &"Intro"
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -246,4 +305,5 @@ position = Vector2(-11, 15.5)
 shape = SubResource("RectangleShape2D_1wsg5")
 
 [connection signal="timeout" from="Timers/stateEngineStop" to="." method="_on_state_engine_stop_timeout"]
+[connection signal="timeout" from="Timers/throwAttackOneTimer" to="State Engine/ShadowAttackOne" method="_on_throw_attack_one_timer_timeout"]
 [connection signal="area_entered" from="hitBox" to="." method="_on_hit_box_area_entered"]

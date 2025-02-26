@@ -43,6 +43,7 @@ color = Color(0, 0.469614, 0.469614, 1)
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="shootToPlayerTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -51,8 +52,8 @@ autoplay = "default"
 frame_progress = 0.0666092
 
 [node name="hitBox" type="Area2D" parent="." groups=["enemy"]]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
 shape = SubResource("RectangleShape2D_jevr0")
@@ -62,5 +63,8 @@ shape = SubResource("RectangleShape2D_jevr0")
 [node name="ShadowBlade" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_o5ykh")
 
+[node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="area_entered" from="hitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D2" to="." method="_on_visible_on_screen_notifier_2d_2_screen_exited"]

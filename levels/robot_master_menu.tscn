@@ -158,9 +158,9 @@ animation = &"notSelected"
 centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/robotMaster2"]
-position = Vector2(43, 22)
+position = Vector2(33, 23)
 texture = ExtResource("4_swpwx")
-hframes = 8
+hframes = 12
 
 [node name="robotMaster3" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(193, 78)
@@ -190,6 +190,22 @@ theme = ExtResource("4_u4epk")
 text = "PRESS
 START"
 horizontal_alignment = 1
+
+[node name="exit" type="Label" parent="Node2D"]
+offset_left = 209.0
+offset_top = 206.0
+offset_right = 303.0
+offset_bottom = 224.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_u4epk")
+text = "EXIT"
+horizontal_alignment = 1
+
+[node name="exitIndicator" type="ColorRect" parent="Node2D"]
+offset_left = 200.0
+offset_top = 208.0
+offset_right = 215.0
+offset_bottom = 213.0
 
 [node name="Timers" type="Node2D" parent="."]
 

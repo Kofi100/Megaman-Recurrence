@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qlcuslofwceu"
+path="res://.godot/imported/Megaman 10 OST_ Boss Battle _Loop.mp3-d7d8432f6fa5a32506dc56fea2ff61da.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Megaman 10 OST_ Boss Battle _Loop.mp3"
+dest_files=["res://.godot/imported/Megaman 10 OST_ Boss Battle _Loop.mp3-d7d8432f6fa5a32506dc56fea2ff61da.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

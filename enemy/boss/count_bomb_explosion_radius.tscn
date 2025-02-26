@@ -1,7 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://k1cb5s0gf2ac"]
+[gd_scene load_steps=21 format=3 uid="uid://k1cb5s0gf2ac"]
 
 [ext_resource type="Script" path="res://enemy/boss/count_bomb_explosion_radius.gd" id="1_ves63"]
 [ext_resource type="Texture2D" uid="uid://24xnsv81arv4" path="res://assets/sprites/miscelleaneous/mm1_hyperBomb_explosion.png" id="2_x5tsp"]
+[ext_resource type="AudioStream" uid="uid://cscjl67ym8o6x" path="res://assets/sounds/explosion_effect(mm5).mp3" id="3_jyfp6"]
+[ext_resource type="Script" path="res://levels/sfx_group.gd" id="3_uusqt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62lmb"]
 size = Vector2(55, 56)
@@ -127,5 +129,9 @@ shape = SubResource("RectangleShape2D_62lmb")
 sprite_frames = SubResource("SpriteFrames_jcbdb")
 frame = 13
 frame_progress = 1.0
+
+[node name="explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jyfp6")
+script = ExtResource("3_uusqt")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

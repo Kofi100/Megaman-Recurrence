@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://n1jcfi1tcg16"]
+
+[ext_resource type="Script" path="res://enemy/original/original_projs/sniper_joe_variant_fire_projectile.gd" id="1_s1cme"]
+[ext_resource type="Texture2D" uid="uid://cwmnlo17d5wgy" path="res://assets/sprites/enemies/sniper_joe_variant_fire_projectile.png" id="2_14tgi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bipkt"]
+atlas = ExtResource("2_14tgi")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydvx4"]
+atlas = ExtResource("2_14tgi")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iww3"]
+atlas = ExtResource("2_14tgi")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1ka4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bipkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydvx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iww3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stq1k"]
+size = Vector2(7, 8)
+
+[node name="sniper_joe_variant_fire_projectile" type="CharacterBody2D"]
+position = Vector2(124.295, 63.6756)
+script = ExtResource("1_s1cme")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y1ka4")
+autoplay = "default"
+frame = 2
+frame_progress = 0.255578
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.205429, 0.324448)
+shape = SubResource("RectangleShape2D_stq1k")

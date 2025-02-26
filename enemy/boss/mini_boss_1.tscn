@@ -162,7 +162,7 @@ position = Vector2(-32.1573, 1.43495)
 [node name="Marker2D4" type="Marker2D" parent="mainBody"]
 
 [node name="invTimer" type="Timer" parent="mainBody"]
-wait_time = 1.5
+wait_time = 0.5
 one_shot = true
 
 [node name="detectPlayerEntry" type="Area2D" parent="."]
