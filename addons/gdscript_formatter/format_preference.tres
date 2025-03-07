@@ -14,7 +14,7 @@ events = [SubResource("InputEventKey_cltor")]
 [resource]
 script = ExtResource("1_0h0so")
 line_length = 175
-format_on_save = true
+format_on_save = false
 shortcut = SubResource("Shortcut_jmmxl")
 fast_but_unsafe = false
 gdformat_command = "gdformat"

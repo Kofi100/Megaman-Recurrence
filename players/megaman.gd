@@ -41,14 +41,16 @@ var chargeshot_lv2 = preload("res://players/projectiles/chargeshot_lv_2.tscn")
 var chargeshot_lv2_ins
 var rush_coil = preload("res://players/weapons/rush_coil.tscn")
 var rush_coil_instance
-var stop = false
+var direction: float = 0
+var lastDirectionCase: float = 0
+var stop: bool = false
 var timer = 0
 var weapon_number: int = 0
 var max_weapon_number = 3
-var screen_transition_finished = false
-var restart_scene = false
+var screen_transition_finished: bool = false
+var restart_scene: bool = false
 var conveyor_push = 3000
-var on_conveyor = false
+var on_conveyor: bool = false
 var player_ready: bool = false
 var in_teleporter = false
 var key_dictionary: Array
@@ -58,18 +60,22 @@ var jumpBufferTime
 var coyoteJumpTime
 @onready var trigger_leave_timer = $trigger_leave_timer
 @onready var leave_timer = $leave_timer
+var onIce: bool = false
+var justLeftIce: bool = false
 
 
 func _ready():
 	playerCharacter = self
 	#health
 	#key_dictionary.resize(9)
-	#GlobalScript.playerposx=0
-	#GlobalScript.playerposy=0
 	GlobalScript.lemons_on_screen_no = 0
 	GlobalScript.playerhasbeenhit = false
 	GlobalScript.trigger_boss = false
-	#GlobalScript.playerhitcooldowntimer=0
+
+	$anim.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
+	$anim.material.set_shader_parameter("bodycolori", (Vector4(136.0, 232.0, 255.0, 255.0)) / 255)
+	$anim.material.set_shader_parameter("bodycolorii", (Vector4(0.0, 98.0, 247.0, 255.0)) / 255)
+
 	player_ready = false
 	anim.play("idle")
 	anim.visible = false
@@ -153,15 +159,15 @@ func _physics_process(delta):
 	#gravity=-980
 	#self.scale.y=-1
 #endregion
-
-	#if in_teleporter==true:
-	#GlobalSc
+	#if $RayCastLeft.get_collider() != null:
+	#print($RayCastLeft.get_collider().is_in_group("iceTiles"))
+	#print("onIce:", onIce)
+	#print("velocity,speed:", SPEED)
 	GlobalScript.player = self
 	if leave_bool == true:
 		if has_played_victory_sound == false:
 			has_played_victory_sound = true
 			$all_sounds/level_cleared.play()
-
 		velocity.x = 0
 		$hitbox/CollisionShape2D.disabled = true
 		#leaving(delta)
@@ -232,10 +238,10 @@ func _physics_process(delta):
 
 	if dash.is_dashing():
 		SPEED = dashspeed
-	elif not on_conveyor:
+	else:
 		SPEED = normalspeed
-	elif on_conveyor:
-		SPEED = normalspeed - conveyor_push
+	#elif on_conveyor:
+	#SPEED = normalspeed - conveyor_push
 	# Add the gravity.
 	if is_on_floor():
 		if jump_play_effect_timer < 5:
@@ -293,6 +299,8 @@ func _physics_process(delta):
 		#if $all_sounds/charge.get_playback_position()>2.04:
 		##print("seek")
 		#$all_sounds/charge.seek(1.90)
+		$weapon_display.frame = GlobalScript.weapon_number
+
 		if leave_bool == false:
 			if GlobalScript.playerhasbeenhit:
 				$hitbox/CollisionShape2D.disabled = true
@@ -307,8 +315,12 @@ func _physics_process(delta):
 			$weapon_display.visible = true
 			GlobalScript.weapon_number += 1
 			$weapon_display/display_timer.start()
+		#if $RayCastLeft.get_collider() != null and $RayCastLeft.get_collider().is_in_group("iceTiles"):
+		#onIce = true
+		#elif $RayCastLeft.get_collider() == null or not $RayCastLeft.get_collider().is_in_group("iceTiles"):
+		#onIce = false
+		#if is_on_floor() and
 
-		$weapon_display.frame = GlobalScript.weapon_number
 		#weapon_number=Input.get_axis("switch_weapon_left","switch_weapon_right")
 		stun(delta)
 		#plays stun blink effect
@@ -372,7 +384,9 @@ func _physics_process(delta):
 						velocity.y += gravity * delta
 
 						#if anim.animation!="idle":
-					var direction = Input.get_axis("move_left", "move_right")
+					direction = Input.get_axis("move_left", "move_right")
+					if direction != 0:
+						lastDirectionCase = direction
 					if direction and not disable_input:
 						move_an_inch_checker += 1
 						if not is_on_floor():
@@ -382,16 +396,32 @@ func _physics_process(delta):
 								velocity.x = direction * move_an_inch_speed * delta  #1000 *delta
 							elif on_conveyor:
 								velocity.x = direction * (SPEED + conveyor_push) * delta
-							elif not on_conveyor:
+							elif onIce:
+								if direction == -1:
+									velocity.x = direction * (SPEED + 2500) * delta
+									#print("y")
+								elif direction == 1:
+									velocity.x = direction * (SPEED + 2500) * delta
+							else:
 								velocity.x = direction * (SPEED) * delta
 
 						#if anim.animation!="idle":
 					else:
 						move_an_inch_checker = 0
-						if not on_conveyor:
-							velocity.x = move_toward(velocity.x, 0, SPEED)
-						elif on_conveyor:
+
+						if on_conveyor:
 							velocity.x = conveyor_push * delta
+						elif onIce:
+							if lastDirectionCase < 0:
+								velocity.x = -abs(velocity.x) + 100 * delta
+								if velocity.x >= 0:
+									velocity.x = 0
+							elif lastDirectionCase > 0:
+								velocity.x = abs(velocity.x) - 100 * delta
+								if velocity.x <= 0:
+									velocity.x = 0
+						else:  #if not on_conveyor:
+							velocity.x = move_toward(velocity.x, 0, SPEED)
 					play_animations()
 					offsetAnimationFunction()
 
@@ -534,9 +564,9 @@ var frameNo = 0
 
 
 func play_animations():
-	if velocity.x < 0:
+	if direction == -1:  #velocity.x < 0:
 		$anim.flip_h = false
-	elif velocity.x > 0:
+	elif direction == 1:  #velocity.x > 0:
 		$anim.flip_h = true
 	if $anim.animation == "run":
 		frameNo = $anim.frame
@@ -978,3 +1008,13 @@ func _on_whistle_idle_trigger_timer_timeout():
 
 func _on_jump_timer_timeout() -> void:
 	$anim.play("idle")
+
+
+func _on_detect_floor_types_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("iceTiles"):
+		onIce = true
+
+
+func _on_detect_floor_types_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("iceTiles"):
+		onIce = false

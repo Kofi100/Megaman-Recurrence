@@ -60,9 +60,10 @@ script = ExtResource("1_3e0ik")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7kfyr")
-animation = &"idle"
+animation = &"shoot"
 autoplay = "idle"
-offset = Vector2(8, 0)
+frame = 1
+frame_progress = 1.0
 
 [node name="playerDetect" type="Area2D" parent="."]
 

@@ -1,0 +1,258 @@
+[gd_scene load_steps=26 format=3 uid="uid://clsggi0khuir8"]
+
+[ext_resource type="Script" path="res://enemy/insta_death_laser.gd" id="1_h5scb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipvxp"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnfcp"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxrs7"]
+size = Vector2(32, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnvkp"]
+size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prmty"]
+size = Vector2(96, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_710bn"]
+size = Vector2(128, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h0pq"]
+size = Vector2(160, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgp4g"]
+size = Vector2(192, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1k83"]
+size = Vector2(256, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv4xs"]
+size = Vector2(278, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb42c"]
+size = Vector2(310, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1b1x"]
+size = Vector2(342, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1mjs"]
+size = Vector2(374, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htve5"]
+size = Vector2(402, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr5i4"]
+size = Vector2(438, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qirqg"]
+size = Vector2(470, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yumy"]
+size = Vector2(502, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bciaw"]
+size = Vector2(534, 20)
+
+[sub_resource type="Animation" id="Animation_bo6ie"]
+resource_name = "extend"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Line2D:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, -16, 0), PackedVector2Array(-1, 0, -278, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1998, 0.3996, 0.5994, 0.7992, 0.999, 1.1988, 1.3653, 1.5984, 1.7982, 1.998, 2.1978, 2.3976, 2.5974, 2.7972, 2.9637),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_bxrs7"), SubResource("RectangleShape2D_lnvkp"), SubResource("RectangleShape2D_prmty"), SubResource("RectangleShape2D_710bn"), SubResource("RectangleShape2D_2h0pq"), SubResource("RectangleShape2D_fgp4g"), SubResource("RectangleShape2D_e1k83"), SubResource("RectangleShape2D_jv4xs"), SubResource("RectangleShape2D_cb42c"), SubResource("RectangleShape2D_w1b1x"), SubResource("RectangleShape2D_a1mjs"), SubResource("RectangleShape2D_htve5"), SubResource("RectangleShape2D_pr5i4"), SubResource("RectangleShape2D_qirqg"), SubResource("RectangleShape2D_5yumy"), SubResource("RectangleShape2D_bciaw")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msbri"]
+
+[sub_resource type="Animation" id="Animation_6e6fc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Line2D:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_msbri")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7esk8"]
+resource_name = "extend_Right"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Line2D:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 0, 0), PackedVector2Array(0, 0, 278, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1998, 0.3996, 0.5994, 0.7992, 0.999, 1.1988, 1.3653, 1.5984, 1.7982, 1.998, 2.1978, 2.3976, 2.5974, 2.7972, 2.9637),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_bxrs7"), SubResource("RectangleShape2D_lnvkp"), SubResource("RectangleShape2D_prmty"), SubResource("RectangleShape2D_710bn"), SubResource("RectangleShape2D_2h0pq"), SubResource("RectangleShape2D_fgp4g"), SubResource("RectangleShape2D_e1k83"), SubResource("RectangleShape2D_jv4xs"), SubResource("RectangleShape2D_cb42c"), SubResource("RectangleShape2D_w1b1x"), SubResource("RectangleShape2D_a1mjs"), SubResource("RectangleShape2D_htve5"), SubResource("RectangleShape2D_pr5i4"), SubResource("RectangleShape2D_qirqg"), SubResource("RectangleShape2D_5yumy"), SubResource("RectangleShape2D_bciaw")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pbk30"]
+_data = {
+"RESET": SubResource("Animation_6e6fc"),
+"extend": SubResource("Animation_bo6ie"),
+"extend_Right": SubResource("Animation_7esk8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytjae"]
+size = Vector2(10, 40)
+
+[node name="instaDeathLaser" type="Line2D"]
+z_index = 1
+position = Vector2(41.4535, 29.0221)
+script = ExtResource("1_h5scb")
+laser_speed = 40.0
+debugTest = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(278, 0)
+
+[node name="RayCast2D2" type="ShapeCast2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ipvxp")
+target_position = Vector2(0, 0)
+max_results = 10
+collision_mask = 3
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_qnfcp")
+debug_color = Color(0.903134, 0.29825, 0.199133, 0.42)
+
+[node name="repeatDetection" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="delayCollision" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pbk30")
+}
+autoplay = "RESET"
+
+[node name="Area2D" type="Area2D" parent="AnimationPlayer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationPlayer/Area2D"]
+shape = SubResource("RectangleShape2D_msbri")
+debug_color = Color(0, 0.638871, 0.372688, 0.42)
+
+[node name="Line2D" type="Line2D" parent="AnimationPlayer"]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0, 0.588235, 0.2, 1)
+
+[node name="repeatLaserProj" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="instaKillStopper" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="instaKillStopper"]
+position = Vector2(6.54649, 0.977875)
+shape = SubResource("RectangleShape2D_ytjae")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="repeatDetection" to="." method="_on_repeat_detection_timeout"]
+[connection signal="area_entered" from="AnimationPlayer/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="repeatLaserProj" to="." method="_on_repeat_laser_proj_timeout"]
+[connection signal="area_entered" from="instaKillStopper" to="." method="_on_insta_kill_stopper_area_entered"]

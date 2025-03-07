@@ -19,12 +19,16 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	#if $attackTimer.is_stopped() == true:
 	#$AnimatedSprite2D.play("idle")
-	if distance_x > 0:
-		$AnimatedSprite2D.flip_h = true
-		$AnimatedSprite2D.offset.x = -8
-	elif distance_x < 0:
-		$AnimatedSprite2D.offset.x = 8
-		$AnimatedSprite2D.flip_h = false
+	match $AnimatedSprite2D.animation:
+		"idle":
+			if distance_x > 0:
+				$AnimatedSprite2D.flip_h = true
+				$AnimatedSprite2D.offset.x = -8
+			elif distance_x < 0:
+				$AnimatedSprite2D.offset.x = 8
+				$AnimatedSprite2D.flip_h = false
+		"shoot":
+			$AnimatedSprite2D.offset.x = 0
 	if $AnimatedSprite2D.animation == "idle":
 		match $AnimatedSprite2D.flip_h:
 			true:

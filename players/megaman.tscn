@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=63 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -458,6 +458,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5fq1"]
 size = Vector2(15, 23)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufrn6"]
+size = Vector2(18.5, 2)
+
 [node name="megaman" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
@@ -483,7 +486,6 @@ animation = &"shoot_in_air"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-0.33333, 3.33333)
 shape = SubResource("RectangleShape2D_mk5kj")
 debug_color = Color(0.639216, 0.678431, 0, 0.568627)
@@ -699,13 +701,23 @@ visible = false
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_s5fq1")
 
+[node name="detectFloorTypesArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectFloorTypesArea"]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_ufrn6")
+
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-8, 0)
 target_position = Vector2(0, 17)
+hit_from_inside = true
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(10, 0)
 target_position = Vector2(0, 17)
+
+[node name="wasOnIceButOnDiffFloorNowTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
@@ -725,5 +737,7 @@ target_position = Vector2(0, 17)
 [connection signal="timeout" from="leave_timer" to="." method="_on_leave_timer_timeout"]
 [connection signal="timeout" from="trigger_leave_timer" to="." method="_on_trigger_leave_timer_timeout"]
 [connection signal="timeout" from="whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
+[connection signal="body_entered" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_entered"]
+[connection signal="body_exited" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_exited"]
 
 [editable path="dash"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://mvr7cgmeeb7n"]
+
+[ext_resource type="Script" path="res://enemy/original/original_projs/laser_projectile.gd" id="1_t2pnp"]
+[ext_resource type="Texture2D" uid="uid://b85rbuacts05r" path="res://assets/sprites/enemies/laserBlaster_Laser.png" id="2_1oc0x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulo1s"]
+atlas = ExtResource("2_1oc0x")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpxw2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulo1s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p05fu"]
+size = Vector2(30, 16)
+
+[node name="laserProjectile" type="CharacterBody2D"]
+script = ExtResource("1_t2pnp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vpxw2")
+
+[node name="LaserBlasterLaser" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_1oc0x")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_p05fu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

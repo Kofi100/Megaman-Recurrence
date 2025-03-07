@@ -27,7 +27,7 @@ func _process(_delta):
 		#$boss_theme_test.play()
 		#$BGM_ShadowMan.stop()
 		#hasPlayed = true
-	print("ShadowmAN INTRO TIMER:", $Shadowman_1/Timers/introTimer.time_left)
+	#print("ShadowmAN INTRO TIMER:", $Shadowman_1/Timers/introTimer.time_left)
 
 
 func _on_bgm_shadow_man_finished():

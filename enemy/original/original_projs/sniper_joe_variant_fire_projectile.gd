@@ -10,7 +10,7 @@ var time = 0  # Used to track the wave oscillation over time
 
 # Called every frame
 func _physics_process(delta: float) -> void:
-	playerdamagevalue = 3
+	playerdamagevalue = 5
 	# Move the projectile forward with wave motion
 	time += delta
 	var wave_offset = wave_amplitude * sin(wave_frequency * time)  # Calculate wave offset

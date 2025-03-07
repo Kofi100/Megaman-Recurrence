@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://c21l7y4eqyny7"]
+
+[ext_resource type="Script" path="res://enemy/laser_insta_kill_producer.gd" id="1_0rxii"]
+
+[node name="laser_InstaKill_Producer" type="CharacterBody2D"]
+script = ExtResource("1_0rxii")
+
+[node name="repeatShootingLaser" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="countDown" type="Timer" parent="."]
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(8, 0)
+
+[connection signal="timeout" from="repeatShootingLaser" to="." method="_on_repeat_shooting_laser_timeout"]
+[connection signal="timeout" from="countDown" to="." method="_on_count_down_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
