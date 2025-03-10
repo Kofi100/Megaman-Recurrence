@@ -121,10 +121,10 @@ sprite_frames = SubResource("SpriteFrames_6fo57")
 autoplay = "default"
 
 [node name="shadowMan" type="Sprite2D" parent="stuffToMakeDisappear"]
-position = Vector2(149, 85)
+position = Vector2(128, 86)
 scale = Vector2(2, 2)
 texture = ExtResource("5_cpjfu")
-hframes = 8
+hframes = 12
 
 [node name="nameOfRobotMaster" type="Label" parent="stuffToMakeDisappear"]
 offset_left = 74.0

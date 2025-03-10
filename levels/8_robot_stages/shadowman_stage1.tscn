@@ -496,7 +496,7 @@ position = Vector2(8696, 1392)
 position = Vector2(8952, 1392)
 
 [node name="megaman" parent="." instance=ExtResource("3_kvvl3")]
-position = Vector2(5844.71, 535.284)
+position = Vector2(-472, 171)
 
 [node name="stageCameras" type="Node2D" parent="."]
 

@@ -1,0 +1,61 @@
+extends enemy
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+@export var enemyVariant: String = "none"
+@export var shootPellets: bool = false
+
+
+#var state:String="idle"
+func _ready() -> void:
+	match enemyVariant:
+		"none":
+			$Sprite2D.frame = 0
+		"ice":
+			$Sprite2D.frame = 5
+	health = 5
+
+
+#var pellet_No = 0
+
+
+func _physics_process(delta: float) -> void:
+	playerdamagevalue = 4
+	spawn_collectables()
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	if shootPellets == true:
+		for i in 5:
+			var proj = preload("res://enemy/screw_bomber_projectiles.tscn").instantiate()
+			proj.state = i
+			get_parent().add_child(proj)
+			proj.global_position = global_position
+			#pellet_No = pellet_No + 1
+			#print(pellet_No)
+	#pelletNo should be 15 max to keep performance high.
+	move_and_slide()
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	if $idletoShootTimer.is_stopped() == true:
+		$idletoShootTimer.start()
+
+
+func _on_idleto_shoot_timer_timeout() -> void:
+	match enemyVariant:
+		"none":
+			$AnimationPlayer.play("default_Idle_Ready")
+		"ice":
+			#$AnimatedSprite2D.play("ice")
+			$AnimationPlayer.play("ice_Idle_Ready")
+			pass
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	$idletoShootTimer.start()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	$idletoShootTimer.stop()
+	queue_free()

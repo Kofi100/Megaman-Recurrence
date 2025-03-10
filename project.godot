@@ -52,6 +52,7 @@ blockables=""
 player_constants_checker_area2d=""
 iceTiles=""
 instaKillLaser=""
+player_projectiles=""
 
 [input]
 

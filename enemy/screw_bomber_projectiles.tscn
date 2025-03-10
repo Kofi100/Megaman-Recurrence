@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://6ekcuj2dxtd6"]
+
+[ext_resource type="Script" path="res://enemy/screw_bomber_projectiles.gd" id="1_cjg5i"]
+[ext_resource type="Texture2D" uid="uid://dw4qy74kjpa3q" path="res://assets/sprites/enemies/met_bullet.png" id="2_in5x1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cffx3"]
+size = Vector2(6, 6)
+
+[node name="screw_bomber_projectiles" type="CharacterBody2D"]
+script = ExtResource("1_cjg5i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_in5x1")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_cffx3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

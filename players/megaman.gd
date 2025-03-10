@@ -398,10 +398,10 @@ func _physics_process(delta):
 								velocity.x = direction * (SPEED + conveyor_push) * delta
 							elif onIce:
 								if direction == -1:
-									velocity.x = direction * (SPEED + 2500) * delta
+									velocity.x = direction * (SPEED + 500) * delta
 									#print("y")
 								elif direction == 1:
-									velocity.x = direction * (SPEED + 2500) * delta
+									velocity.x = direction * (SPEED + 500) * delta
 							else:
 								velocity.x = direction * (SPEED) * delta
 

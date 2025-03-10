@@ -184,6 +184,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "ShadowMan Stage 1"
 
+[node name="iceman_Stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ns6ek")
+text = "iceMan Stage
+"
+
 [node name="side_note_stages" type="RichTextLabel" parent="stage_buttons"]
 visible = false
 offset_left = 10.0
@@ -295,6 +301,8 @@ autoplay = "zoom_in_out"
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/boss_Shadow" to="." method="_on_boss_shadow_pressed"]
 [connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/shadowMan_stage1" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/shadowMan_stage1" to="." method="_on_shadow_man_stage_1_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/iceman_Stage" to="." method="play_sound_when_mouse_over_button"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/iceman_Stage" to="." method="_on_iceman_stage_pressed"]
 [connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]
 [connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="confirmed" from="Quit_ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

@@ -146,3 +146,7 @@ func _on_boss_shadow_pressed():
 
 func _on_shadow_man_stage_1_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/8_robot_stages/shadowman_stage1.tscn")
+
+
+func _on_iceman_stage_pressed() -> void:
+	get_tree().change_scene_to_file("res://levels/8_robot_stages/iceman_stage.tscn")

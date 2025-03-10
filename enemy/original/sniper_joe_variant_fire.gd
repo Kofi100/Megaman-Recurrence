@@ -68,12 +68,14 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_spawn_projectile_timer_timeout() -> void:
 	var proj = preload("res://enemy/original/original_projs/sniper_joe_variant_fire_projectile.tscn").instantiate()
 	get_parent().add_child(proj)
-	proj.global_position = global_position
+
 	match $AnimatedSprite2D.flip_h:
 		true:
 			proj.direction = Vector2(1, 0)
+			proj.global_position = $shootPositionRight.global_position
 		false:
 			proj.direction = Vector2(-1, 0)
+			proj.global_position = $shootPositionLeft.global_position
 	$all_sounds/shoot.play()
 
 

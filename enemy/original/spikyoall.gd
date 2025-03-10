@@ -7,10 +7,11 @@ const JUMP_VELOCITY = -400.0
 @export var normalspeed = 3000
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var enemyVariant: String = "none"
 
 
 func _ready():
-	playerdamagevalue = 2
+	playerdamagevalue = 3
 	health = 5
 	SPEED = normalspeed
 
@@ -21,10 +22,18 @@ var timer = 0
 
 func _physics_process(delta):
 	distance = GlobalScript.playerposx - global_position.x
-	velocity.x = SPEED * delta
+	if $stopMovingTimer.is_stopped():
+		velocity.x = SPEED * delta
+	else:
+		velocity.x = 0
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	match enemyVariant:
+		"none":
+			$AnimatedSprite2D.play("spikyoall")
+		"fire":
+			$AnimatedSprite2D.play("spikyoall2")
 
 	#check for hole and move away from it
 	if not $check_for_hole_left.is_colliding() and not is_on_wall():
@@ -74,3 +83,8 @@ func _on_detect_player_timer_timeout():
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_projectiles"):
+		$stopMovingTimer.start()

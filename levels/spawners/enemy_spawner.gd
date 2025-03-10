@@ -33,14 +33,17 @@ var new_enemy
 	"buster": preload("res://enemy/original/buster.tscn"),
 	"count_bomb": preload("res://enemy/count_bomb.tscn"),
 	"grenade_man": preload("res://enemy/original/grenade_man.tscn"),
-	"burner_joe": preload("res://enemy/original/sniper_joe_variant_fire.tscn")
+	"burner_joe": preload("res://enemy/original/sniper_joe_variant_fire.tscn"),
+	"screw_bomber": preload("res://enemy/screw_bomber.tscn")
 }
+
 var disappear_nodes = {
 	1: "Sprite2D",
 	2: "index",
 	3: "enemy",
 	4: "enemy_spawn_list",
 }
+@export_enum("none", "fire", "ice") var enemyVariant: String = "none"
 # Called when the node enters the scene tree for the first time.
 var spawn_timer: int = 0
 
@@ -102,6 +105,10 @@ func _process(_delta):
 				has_enemy_spawned = true
 				var enemy_scene = enemy_dictionary.get(enemy_to_spawn)
 				new_enemy = enemy_scene.instantiate()
+				#checks for variants in enemies before changing to their variants
+				if enemyVariant != "none":
+					if "enemyVariant" in new_enemy:
+						new_enemy.enemyVariant = enemyVariant
 				#if node_to_add_to_enemy!=null:
 				#new_node=node_to_add_to_enemy.duplicate()
 				#if node_to_add_to_enemy!=null and new_node!=null:
