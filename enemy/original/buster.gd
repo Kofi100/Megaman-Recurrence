@@ -14,6 +14,8 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_ceiling():
 		velocity.y -= gravity * delta
+	if !$VisibleOnScreenEnabler2D.is_on_screen():
+		$allTimers/rapidShootTimer.stop()
 	#if shooting==true:
 #disables playerdetection if shooting is true and renables when false.
 	#$playerDetect/CollisionShape2D.disabled=shooting

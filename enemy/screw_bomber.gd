@@ -21,16 +21,25 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	playerdamagevalue = 4
+	calculate_player_distance()
 	spawn_collectables()
 	# Add the gravity.
+	$idletoShootTimer.wait_time=.5
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	if abs(distance_x)<=64:
+		#print("DISTANCE REACHED")
+		if $idletoShootTimer.is_stopped()==true:
+			$idletoShootTimer.start()
+	
 	if shootPellets == true:
 		for i in 5:
 			var proj = preload("res://enemy/screw_bomber_projectiles.tscn").instantiate()
 			proj.state = i
+			proj.enemyVariant=enemyVariant
 			get_parent().add_child(proj)
 			proj.global_position = global_position
+			$shootingSound.play()
 			#pellet_No = pellet_No + 1
 			#print(pellet_No)
 	#pelletNo should be 15 max to keep performance high.
@@ -38,8 +47,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
-	if $idletoShootTimer.is_stopped() == true:
-		$idletoShootTimer.start()
+	#if $idletoShootTimer.is_stopped() == true:
+		#$idletoShootTimer.start()
+	pass
 
 
 func _on_idleto_shoot_timer_timeout() -> void:
@@ -53,7 +63,8 @@ func _on_idleto_shoot_timer_timeout() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	$idletoShootTimer.start()
+	#$idletoShootTimer.start()
+	pass
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

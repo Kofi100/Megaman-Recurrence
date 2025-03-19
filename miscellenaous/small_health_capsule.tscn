@@ -43,7 +43,7 @@ autoplay = "active"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nroca")
-hframes = 13
+hframes = 14
 
 [node name="hitbox" type="Area2D" parent="." groups=["capsules"]]
 collision_layer = 2

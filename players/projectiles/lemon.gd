@@ -51,9 +51,10 @@ func _on_collision_monitor_area_entered(area):
 		state = "blocked"
 
 
-func _on_collision_monitor_body_entered(_body):
-	#if body is TileMap:#is_in_group("tilemaps"):
-	#queue_free()
+func _on_collision_monitor_body_entered(body):
+	if body is TileMap or body is TileMapLayer:#is_in_group("tilemaps"):
+		queue_free()
+		print("Lemon collided with tilemap/tilemapLayer")
 	pass
 
 

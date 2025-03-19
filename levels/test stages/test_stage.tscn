@@ -175,7 +175,9 @@ position = Vector2(390, 215)
 enemy_to_spawn = "sniper_joe"
 
 [node name="enemy_spawner3" parent="all_enemies" instance=ExtResource("11_06gft")]
-position = Vector2(339, 165)
+position = Vector2(331, 219)
+enemy_to_spawn = "bombomb"
+enemyVariant = "ice"
 
 [node name="securityCamera" parent="all_enemies" instance=ExtResource("24_6s1yq")]
 position = Vector2(2135.1, 161.735)

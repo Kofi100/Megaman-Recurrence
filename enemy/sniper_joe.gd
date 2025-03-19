@@ -28,11 +28,15 @@ var change = 0
 
 
 func _physics_process(delta):
+	calculate_player_distance()
 	spawn_collectables()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		animated_sprite_2d.play("jump")
+	if abs(distance_x)<30:
+		if is_on_floor():
+			state="jump"
 	#var player=get_parent().get_parent().get_parent().get_node("megaman")
 	#print(player)
 	#print(scale.x)
@@ -126,7 +130,8 @@ func _on_shoot_timer_timeout():
 func _on_animated_sprite_2d_animation_finished():
 	match animated_sprite_2d.animation:
 		"shoot":
-			if abs(GlobalScript.playerposx - global_position.x) < 70:
-				state = "jump"
-			elif abs(GlobalScript.playerposx - global_position.x) >= 70:
-				state = "defend"
+			state="defend"
+			#if abs(GlobalScript.playerposx - global_position.x) < 70:
+				#state = "jump"
+			#elif abs(GlobalScript.playerposx - global_position.x) >= 70:
+				#state = "defend"

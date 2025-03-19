@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://ecw4jn8r44hk"]
+
+[ext_resource type="Script" path="res://enemy/original/original_projs/ice_telly_projectile.gd" id="1_hh2k2"]
+[ext_resource type="Texture2D" uid="uid://03x4twajdtwy" path="res://assets/sprites/enemies/ice_Telly_iceShot.png" id="2_n4j1i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmoa7"]
+atlas = ExtResource("2_n4j1i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c77ad"]
+atlas = ExtResource("2_n4j1i")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnshd"]
+atlas = ExtResource("2_n4j1i")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xs084"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmoa7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c77ad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnshd")
+}],
+"loop": false,
+"name": &"onFloor",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsvqn"]
+size = Vector2(7, 5)
+
+[node name="iceTelly_projectile" type="CharacterBody2D"]
+script = ExtResource("1_hh2k2")
+SPEED = 3000.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xs084")
+animation = &"onFloor"
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 13.5)
+shape = SubResource("RectangleShape2D_jsvqn")
+
+[node name="existTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="existTimer" to="." method="_on_exist_timer_timeout"]

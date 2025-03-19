@@ -37,7 +37,7 @@ script = ExtResource("1_frawo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_vsryd")
-hframes = 13
+hframes = 14
 frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

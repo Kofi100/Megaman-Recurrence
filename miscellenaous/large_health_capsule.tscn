@@ -44,7 +44,7 @@ autoplay = "active"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_q0ufw")
-hframes = 13
+hframes = 14
 frame = 2
 
 [node name="hitbox" type="Area2D" parent="." groups=["capsules"]]

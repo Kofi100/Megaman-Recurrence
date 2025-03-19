@@ -101,9 +101,8 @@ func _process(delta):
 func _on_area_entered(area):
 	if area.is_in_group('player_constants_checker_area2d') :#and area.get_parent().player_ready==true
 		player_camera=area.get_parent().get_node('player_camera')
-		print(name,"Player entered the zone.")
+		print(name,"Player entered me.")
 		if player_camera!=null:
-			print(name.to_upper(),":player camera->",player_camera)
 			zone_camera_2d.set("zone_camera_2d.limit_right",limit_r)
 			zone_camera_2d.limit_right=limit_r
 			zone_camera_2d.limit_top=limit_u
@@ -130,11 +129,11 @@ func _on_area_entered(area):
 			#print(name,"get_Rect().down_bondry->",pos_y+(size_h/2))
 #endregion
 		elif player_camera==null:
-			print("player_camera:cannot be detected")
-			push_error('player camera:cannot be found/no trans. therefore')
+			#print("player_camera:cannot be detected")
+			push_error(name,': player camera:cannot be found. No transition would occur.')
 
 func switch_camera(main_camera:Camera2D,camera_to_switch:Camera2D):
-	print("yh")
+	print("New Camera System: Switching cam to :",name)
 	main_camera.limit_left=camera_to_switch.limit_left
 	main_camera.limit_right=camera_to_switch.limit_right
 	main_camera.limit_top=camera_to_switch.limit_top

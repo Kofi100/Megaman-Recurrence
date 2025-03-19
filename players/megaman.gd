@@ -413,11 +413,11 @@ func _physics_process(delta):
 							velocity.x = conveyor_push * delta
 						elif onIce:
 							if lastDirectionCase < 0:
-								velocity.x = -abs(velocity.x) + 100 * delta
+								velocity.x = -abs(velocity.x) + 200 * delta
 								if velocity.x >= 0:
 									velocity.x = 0
 							elif lastDirectionCase > 0:
-								velocity.x = abs(velocity.x) - 100 * delta
+								velocity.x = abs(velocity.x) - 200 * delta
 								if velocity.x <= 0:
 									velocity.x = 0
 						else:  #if not on_conveyor:
@@ -519,7 +519,7 @@ func offsetAnimationFunction():
 				elif $anim.flip_h == true:
 					$anim.offset.x = 3
 			"dash":
-				$anim.offset.y = 3
+				$anim.offset.y = 6
 			"shoot_run":
 				if $anim.flip_h == false:
 					$anim.offset.x = -5

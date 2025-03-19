@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bp27p2upe550g"]
+
+[ext_resource type="Script" path="res://enemy/bombomb_bomb.gd" id="1_e34oo"]
+[ext_resource type="Texture2D" uid="uid://dq3ybx8lpmupb" path="res://assets/sprites/enemies/bombomb_bomb.png" id="2_b5la4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kth67"]
+atlas = ExtResource("2_b5la4")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrecx"]
+atlas = ExtResource("2_b5la4")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2j2pl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kth67")
+}],
+"loop": true,
+"name": &"ice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrecx")
+}],
+"loop": true,
+"name": &"none",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wg080"]
+size = Vector2(8, 6)
+
+[node name="bombomb_bomb" type="CharacterBody2D"]
+script = ExtResource("1_e34oo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2j2pl")
+animation = &"none"
+
+[node name="CharacterBody2D" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_wg080")

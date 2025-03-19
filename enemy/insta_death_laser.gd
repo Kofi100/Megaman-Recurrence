@@ -5,16 +5,13 @@ extends Line2D
 @export var countDownToShoot: float = 1
 @export var debugTest: bool = false
 
-@onready var shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
-@onready var area_collision: CollisionShape2D = $Area2D/CollisionShape2D
-@onready var shapecast2d: ShapeCast2D = $RayCast2D2
+@onready var shape: RectangleShape2D = $instaDeathLaserCBody2D/Area2D/CollisionShape2D.shape
+@onready var area_collision: CollisionShape2D = $instaDeathLaserCBody2D/Area2D/CollisionShape2D
+@onready var shapecast2d: ShapeCast2D = $RayCast2D2  # Using ShapeCast2D for detection
 
 var start_pos = Vector2.ZERO
 var laser_growth = 0.0
 var laser_active = false
-
-#This is meant to an invisible to detect player collision with the actual animated laser
-
 
 func _ready():
 	$Timer.wait_time = countDownToShoot + 2
@@ -22,88 +19,68 @@ func _ready():
 	reset_laser()
 	set_process(false)
 
-
 func _process(delta):
+	
 	if laser_active:
 		if debugTest == false:
 			laser_length = $RayCast2D.get_collision_point().x - global_position.x
 
+		# Ensure we have two points in Line2D
 		if get_point_count() < 2:
-			add_point(start_pos)  # Ensure at least one point exists
-			add_point(start_pos)  # Second point for the laser to extend
+			add_point(start_pos)
+			add_point(start_pos)
 
 		if laser_growth < laser_length:
-			laser_growth += laser_speed * delta  # Increment size gradually
+			laser_growth += laser_speed * delta  # Increment growth rate
 
-			# ✅ STEP 1: Update Line2D first (visual part)
+			# ✅ STEP 1: Update Line2D FIRST (ensures visual matches collision)
 			var new_end_pos = Vector2(laser_growth, 0)
 			set_point_position(1, new_end_pos)
 
-			# ✅ STEP 2: Set Collision Shape EXACTLY to the last drawn point
-			#shape.size.x = laser_growth # Ensures exact matching
-			#area_collision.position.x = new_end_pos.x / 2  # Aligns with laser tip
-			if scale.x == -1:
-				$instaKillStopper/CollisionShape2D.position.x = new_end_pos.x - 10
-			elif scale.x == 1:
-				$instaKillStopper/CollisionShape2D.position.x = new_end_pos.x + 10
-		else:
-			# ✅ Final correction
-			laser_growth = laser_length
-			var final_pos = Vector2(laser_length, 0)
-			set_point_position(1, final_pos)
-			#shape.size.x = laser_length
-			#area_collision.position.x = laser_length / 2
+			# ✅ STEP 2: Update CollisionShape2D AFTER the Line2D update
+			shape.size.x = laser_growth  # Make sure it matches visually
+			area_collision.position.x = laser_growth / 2  # Align with laser tip
 
+			# ✅ STEP 3: Update ShapeCast2D for detection
+			shapecast2d.target_position.x = laser_growth
+
+		else:
+			# ✅ Final correction to prevent overshooting
+			laser_growth = laser_length
+			set_point_position(1, Vector2(laser_length, 0))
+			shape.size.x = laser_length
+			area_collision.position.x = laser_length / 2
+			shapecast2d.target_position.x = laser_length  # Make sure ShapeCast2D is accurate
 
 func _on_timer_timeout() -> void:
 	add_point(start_pos)
-	add_point(start_pos)  # Adds the second point for extension
+	add_point(start_pos)  # Add second point to extend laser
 	laser_active = true
 	set_process(true)
-	$repeatLaserProj.start()
-
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	$Timer.start()
 
-
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	reset_laser()
 
-
 func _on_repeat_detection_timeout() -> void:
-	shapecast2d.enabled = !shapecast2d.enabled
-
+	shapecast2d.enabled = !shapecast2d.enabled  # Toggle ShapeCast2D detection
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
-		pass  # Add logic for player detection if needed
+		#GlobalScript.health-=27pa
+		pass
+		#$instaDeathLaserCBody2D/Area2D/CollisionShape2D.set_deferred("disabled",true)
 
 
-# ✅ Reset everything properly when off-screen
 func reset_laser():
 	laser_active = false
 	$Timer.stop()
-	$repeatLaserProj.stop()
 	clear_points()
 	laser_growth = 0.0
 	start_pos = Vector2.ZERO
-	shapecast2d.target_position.x = 0
+	shapecast2d.target_position.x = 0  # Reset ShapeCast2D position
 	shape.size.x = 0
 	area_collision.position.x = 0
 	set_process(false)
-
-
-func _on_repeat_laser_proj_timeout() -> void:
-	var instaKillLaser = preload("res://enemy/original/original_projs/laser_projectile_InstaKill.tscn").instantiate()
-	get_parent().add_child(instaKillLaser)
-	instaKillLaser.global_position = global_position
-	if scale.x == -1:
-		instaKillLaser.direction = "left"
-	elif scale.x == 1:
-		instaKillLaser.direction = "right"
-
-
-func _on_insta_kill_stopper_area_entered(area: Area2D) -> void:
-	if area.is_in_group("instaKillLaser"):
-		area.get_parent().queue_free()

@@ -1,8 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://drywjq3yk7svp"]
+[gd_scene load_steps=12 format=3 uid="uid://drywjq3yk7svp"]
 
 [ext_resource type="Texture2D" uid="uid://bwxfv7rhdh12n" path="res://assets/sprites/enemies/octopus_battery.png" id="1_a8mcn"]
 [ext_resource type="Script" path="res://enemy/octopus_battery.gd" id="1_neord"]
-[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_dfrp8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7chgm"]
+atlas = ExtResource("1_a8mcn")
+region = Rect2(0, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xs21"]
+atlas = ExtResource("1_a8mcn")
+region = Rect2(17, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlgsm"]
+atlas = ExtResource("1_a8mcn")
+region = Rect2(34, 17, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qjjcl"]
 atlas = ExtResource("1_a8mcn")
@@ -18,6 +29,20 @@ region = Rect2(34, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vmx28"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7chgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xs21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlgsm")
+}],
+"loop": false,
+"name": &"ice",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qjjcl")
@@ -45,7 +70,7 @@ script = ExtResource("1_neord")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vmx28")
-animation = &"red"
+animation = &"ice"
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 6
@@ -59,17 +84,14 @@ shape = SubResource("RectangleShape2D_1qjda")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dp5io")
 
-[node name="health" type="Label" parent="."]
-offset_left = -24.3333
-offset_top = -29.6667
-offset_right = 25.6667
-offset_bottom = -3.66667
-theme_override_colors/font_color = Color(0, 0, 0.972549, 1)
-theme_override_fonts/font = ExtResource("3_dfrp8")
-text = "health"
-
 [node name="RayCast2D_right" type="RayCast2D" parent="."]
 target_position = Vector2(8, 0)
 
 [node name="RayCast2D_left" type="RayCast2D" parent="."]
 target_position = Vector2(-8, 0)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3.8147e-06, -5)
+scale = Vector2(8, 6.1)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

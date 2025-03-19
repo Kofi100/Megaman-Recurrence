@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmvq4qbc6sxm3"]
+[gd_scene load_steps=11 format=3 uid="uid://bmvq4qbc6sxm3"]
 
 [ext_resource type="Script" path="res://enemy/enemy_that_shoots_laser.gd" id="1_h6s00"]
 [ext_resource type="Texture2D" uid="uid://2piw3rhp28vh" path="res://assets/sprites/enemies/laserBlaster-sheet.png" id="2_txkel"]
 [ext_resource type="Script" path="res://enemy/enemy_Laser_laserBody.gd" id="2_ynn70"]
 [ext_resource type="Texture2D" uid="uid://b85rbuacts05r" path="res://assets/sprites/enemies/laserBlaster_Laser.png" id="4_san8l"]
+[ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="5_gqmhv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_63qsn"]
 atlas = ExtResource("2_txkel")
@@ -96,6 +97,10 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3.5, 0)
 shape = SubResource("RectangleShape2D_0dogx")
+
+[node name="laserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_gqmhv")
+max_distance = 200.0
 
 [connection signal="timeout" from="countdownTimer" to="." method="_on_countdown_timer_timeout"]
 [connection signal="timeout" from="animationPlayTimer" to="." method="_on_animation_play_timer_timeout"]

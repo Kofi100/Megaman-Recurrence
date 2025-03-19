@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0333yea3ut85"]
+[gd_scene load_steps=14 format=3 uid="uid://d0333yea3ut85"]
 
 [ext_resource type="Texture2D" uid="uid://omvbntavfpeg" path="res://assets/sprites/enemies/screw_bomber.png" id="1_3dcq3"]
 [ext_resource type="Script" path="res://enemy/screw_bomber.gd" id="1_k5s1u"]
+[ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_1dovb"]
+[ext_resource type="Script" path="res://levels/sfx_group.gd" id="4_rtwj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3ytg"]
 size = Vector2(15, 8)
@@ -68,7 +70,7 @@ size = Vector2(14, 16)
 
 [sub_resource type="Animation" id="Animation_3xjjf"]
 resource_name = "default_Idle_Ready"
-length = 1.2
+length = 1.8
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -121,7 +123,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_4k2f7"]
 resource_name = "ice_Idle_Ready"
-length = 1.2
+length = 1.8
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -216,6 +218,10 @@ shape = SubResource("RectangleShape2D_v3ytg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.219589, 5.663)
 shape = SubResource("RectangleShape2D_dw5e4")
+
+[node name="shootingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1dovb")
+script = ExtResource("4_rtwj1")
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

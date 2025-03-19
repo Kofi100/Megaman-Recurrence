@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://odjr6f41o1g2"]
+
+[ext_resource type="Script" path="res://enemy/original/original_projs/ice_joe_projectile.gd" id="1_1sl76"]
+[ext_resource type="Texture2D" uid="uid://d03hidomwpe3a" path="res://assets/sprites/enemies/original/orig_projectiles/iceSniperJoe_Snow.png" id="1_t67nb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmewd"]
+atlas = ExtResource("1_t67nb")
+region = Rect2(0, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6eum"]
+atlas = ExtResource("1_t67nb")
+region = Rect2(19, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3o1u"]
+atlas = ExtResource("1_t67nb")
+region = Rect2(38, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nwoe"]
+atlas = ExtResource("1_t67nb")
+region = Rect2(57, 0, 19, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uoifm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmewd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6eum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3o1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nwoe")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nwy1"]
+size = Vector2(12, 12)
+
+[node name="iceJoe_Projectile" type="CharacterBody2D"]
+script = ExtResource("1_1sl76")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uoifm")
+frame = 3
+frame_progress = 1.0
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_8nwy1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

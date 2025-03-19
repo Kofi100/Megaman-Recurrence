@@ -34,7 +34,10 @@ var new_enemy
 	"count_bomb": preload("res://enemy/count_bomb.tscn"),
 	"grenade_man": preload("res://enemy/original/grenade_man.tscn"),
 	"burner_joe": preload("res://enemy/original/sniper_joe_variant_fire.tscn"),
-	"screw_bomber": preload("res://enemy/screw_bomber.tscn")
+	"screw_bomber": preload("res://enemy/screw_bomber.tscn"),
+	"ice_Telly":preload("res://enemy/original/ice_telly.tscn"),
+	"bombomb":preload("res://enemy/bombomb.tscn"),
+	"ice_joe":preload("res://enemy/original/ice_joe.tscn")
 }
 
 var disappear_nodes = {
@@ -44,6 +47,8 @@ var disappear_nodes = {
 	4: "enemy_spawn_list",
 }
 @export_enum("none", "fire", "ice") var enemyVariant: String = "none"
+@export var SetinitialDirection:String
+@export var InitialDirection_Mini:String
 # Called when the node enters the scene tree for the first time.
 var spawn_timer: int = 0
 
@@ -109,6 +114,10 @@ func _process(_delta):
 				if enemyVariant != "none":
 					if "enemyVariant" in new_enemy:
 						new_enemy.enemyVariant = enemyVariant
+				if "InitialDirection" in new_enemy:
+					new_enemy.InitialDirection=SetinitialDirection
+					if "InitialDirection_Mini" in new_enemy:
+						new_enemy.InitialDirection_Mini=InitialDirection_Mini
 				#if node_to_add_to_enemy!=null:
 				#new_node=node_to_add_to_enemy.duplicate()
 				#if node_to_add_to_enemy!=null and new_node!=null:
@@ -121,7 +130,7 @@ func _process(_delta):
 				get_parent().add_child(new_enemy)
 				#entered=false
 				#print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
-		if (enemy_to_spawn == "homer" or enemy_to_spawn == "upndown") and new_enemy == null and $spawn_homer_timer.time_left <= 0:
+		if (enemy_to_spawn == "homer" or enemy_to_spawn == "upndown" or enemy_to_spawn=="bombomb") and new_enemy == null and $spawn_homer_timer.time_left <= 0:
 			$spawn_homer_timer.start()
 			#print(name,":started respawn timer for upndown and homer")
 

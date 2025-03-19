@@ -65,6 +65,7 @@ func _on_countdown_timer_timeout() -> void:
 			laserProj.direction = "left"
 		2:
 			laserProj.direction = "right"
+	$laserSound.play()
 	$AnimatedSprite2D.play("default")
 	$animationPlayTimer.start()
 

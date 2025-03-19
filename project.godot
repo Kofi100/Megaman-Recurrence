@@ -53,6 +53,8 @@ player_constants_checker_area2d=""
 iceTiles=""
 instaKillLaser=""
 player_projectiles=""
+player_hitbox=""
+player=""
 
 [input]
 
