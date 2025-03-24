@@ -124,8 +124,11 @@ func _on_quit_button_pressed():
 
 
 func _on_confirmation_dialog_confirmed():
-	get_tree().change_scene_to_file("res://levels/beginning_screen.tscn")
-	print("GOING TO BEGINNING MENU!!")
+	#get_tree().change_scene_to_file("res://levels/beginning_screen.tscn")
+	#print("GOING TO BEGINNING MENU!!")
+	get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
+	print("GOING TO NEW MAIN MENU")
+	
 
 
 func _on_boss_3_pressed():

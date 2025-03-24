@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cjc0qsx215cf6"
+path="res://.godot/imported/potential_iceManstage_tile.aseprite-83c81a444f719c9d0f59fdc54f4fe2d7.res"
+
+[deps]
+
+source_file="res://assets/sprites/tilesets/8_stages/potential_iceManstage_tile.aseprite"
+dest_files=["res://.godot/imported/potential_iceManstage_tile.aseprite-83c81a444f719c9d0f59fdc54f4fe2d7.res"]
+
+[params]
+

@@ -9,22 +9,33 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("move_up"):
-		menuOption -= 1
-	elif Input.is_action_just_pressed("move_down"):
-		menuOption += 1
+	#get_tree().set_pause(false)
+	#print(menuOption)
+	#print(GlobalScript.lastStageEntered)
+	#if menuOption==1:
+		#$SelectArrow.global_position.x = $robot_Master.global_position.x-20
 	match menuOption:
 		0:
-			$selectionRect.global_position = $continue.global_position
+			#$SelectArrow.global_position.x = $continue.global_position.x-20
+			#$SelectArrow.global_position.y=$continue.global_position.y
+			$SelectArrow.set_global_position(Vector2($continue.global_position.x-20,$continue.global_position.y))
 		1:
-			$selectionRect.global_position = $robot_Master.global_position
+			$SelectArrow.set_global_position(Vector2($robot_Master.global_position.x-20,$robot_Master.global_position.y))
 		2:
-			$selectionRect.global_position = $exit.global_position
-	if Input.is_action_just_pressed("shoot"):
+			$SelectArrow.set_global_position(Vector2($exit.global_position.x-20,$exit.global_position.y))
+	if Input.is_action_just_pressed("pause"):
 		match menuOption:
 			0:
-				get_tree().change_scene_to_file(GlobalScript.lastStageEntered)
+				if GlobalScript.lastStageEntered!=null and GlobalScript.lastStageEntered!="":
+					get_tree().change_scene_to_file(GlobalScript.lastStageEntered)
 			1:
 				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
 			2:
 				get_tree().quit(0)
+func _input(event: InputEvent) -> void:
+	if event is InputEventAction or event is InputEventKey:
+		if event.is_action_pressed("move_up"):
+			menuOption -= 1
+		elif event.is_action_pressed("move_down"):
+			menuOption += 1
+	menuOption=clampi(menuOption,0,2)

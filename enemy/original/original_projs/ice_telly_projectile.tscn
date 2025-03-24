@@ -42,7 +42,7 @@ size = Vector2(7, 5)
 
 [node name="iceTelly_projectile" type="CharacterBody2D"]
 script = ExtResource("1_hh2k2")
-SPEED = 3000.0
+SPEED = 3500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xs084")

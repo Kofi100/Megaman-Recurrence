@@ -343,7 +343,7 @@ metadata/_edit_use_anchors_ = true
 [node name="life_icon" type="Sprite2D" parent="pause_screen_setup"]
 position = Vector2(15, 179.523)
 texture = ExtResource("7_65oho")
-hframes = 13
+hframes = 14
 frame = 10
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup"]

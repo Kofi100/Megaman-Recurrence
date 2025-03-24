@@ -113,12 +113,14 @@ free_fall"
 [node name="text_boss_room_2" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_eie37")
-text = "TEST BOSS ROOM 2"
+text = "TEST BOSS 
+ROOM 2"
 
 [node name="test_camera_room" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_eie37")
-text = "TEST CAMERA ROOM"
+text = "TEST CAMERA
+ROOM"
 
 [node name="tutorial_stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -139,7 +141,8 @@ _stage_test"
 [node name="test_boss_stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_eie37")
-text = "boss(weapon archive)
+text = "boss(weapon 
+archive)
 "
 
 [node name="stage2" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
@@ -177,12 +180,14 @@ text = "boss3
 [node name="boss_Shadow" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
-text = "ShadowMan Debug"
+text = "ShadowMan
+Debug"
 
 [node name="shadowMan_stage1" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
-text = "ShadowMan Stage 1"
+text = "ShadowMan
+Stage 1"
 
 [node name="iceman_Stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -227,22 +232,12 @@ theme = ExtResource("4_eie37")
 text = "00:00:00"
 
 [node name="stage_text" type="Label" parent="."]
-offset_left = 81.0
+offset_left = 40.0
 offset_top = 29.0
-offset_right = 175.0
-offset_bottom = 52.0
+offset_right = 220.0
+offset_bottom = 48.0
 theme = ExtResource("4_eie37")
-text = "STAGES
-"
-horizontal_alignment = 1
-
-[node name="stage_text2" type="Label" parent="."]
-offset_left = 81.0
-offset_top = 5.0
-offset_right = 175.0
-offset_bottom = 28.0
-theme = ExtResource("4_eie37")
-text = "DEBUG
+text = "DEBUG STAGES
 "
 horizontal_alignment = 1
 

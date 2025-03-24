@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_detect_player_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
-		if $shootTimer.is_stopped()==true and is_on_floor():
+		if $shootTimer.is_stopped()==true :#and is_on_floor()
 			$shootTimer.start()
 			$detectPlayerArea/CollisionShape2D.set_deferred("disabled",true)
 

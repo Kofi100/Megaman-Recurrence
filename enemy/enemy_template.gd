@@ -49,7 +49,7 @@ func spawn_collectables():
 	if health <= 0:
 		#get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
 		if is_boss == false:
-			GlobalScript.spawn_collectable_no = randi_range(1, 18)
+			GlobalScript.spawn_collectable_no = randi_range(1, 100)#18
 			if collectables_list.has(GlobalScript.spawn_collectable_no):
 				collectable = collectables_list[GlobalScript.spawn_collectable_no]
 

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipvxp"]
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnfcp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4tdb"]
 size = Vector2(16, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_msbri"]
@@ -219,7 +219,7 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="instaDeathLaserCBody2D/Area2D"]
 position = Vector2(0, -0.0221004)
-shape = SubResource("RectangleShape2D_qnfcp")
+shape = SubResource("RectangleShape2D_g4tdb")
 debug_color = Color(0.903134, 0.29825, 0.199133, 0.42)
 
 [node name="repeatDetection" type="Timer" parent="."]

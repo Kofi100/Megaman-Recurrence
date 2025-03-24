@@ -91,7 +91,7 @@ target_position = Vector2(8, 0)
 target_position = Vector2(-8, 0)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(3.8147e-06, -5)
-scale = Vector2(8, 6.1)
+position = Vector2(1.19209e-06, -5)
+scale = Vector2(5.1, 6.1)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

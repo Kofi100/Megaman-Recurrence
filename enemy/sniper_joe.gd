@@ -70,7 +70,7 @@ func _physics_process(delta):
 			$detect_player/CollisionShape2D.disabled = true
 			if animated_sprite_2d.frame == 1:
 				proj_spawn_timer += 1
-				if proj_spawn_timer == 15 or proj_spawn_timer == 45 or proj_spawn_timer == 75:
+				if proj_spawn_timer == 25 or proj_spawn_timer == 55 or proj_spawn_timer == 85:
 					$all_sounds/shoot.play()
 					if animated_sprite_2d.flip_h == false:
 						bullet_ins = bullet.instantiate()

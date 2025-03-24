@@ -14,7 +14,7 @@ config/name="Megaman_Fangame_1"
 config/description="Fangame
 "
 config/tags=PackedStringArray("engine", "megaman", "rebirth")
-run/main_scene="res://levels/beginning_screen.tscn"
+run/main_scene="res://levels/main_Menu_New.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
 boot_splash/image="res://assets/sprites/miscelleaneous/new_engine_load_screen.png"

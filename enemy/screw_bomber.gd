@@ -4,7 +4,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @export var enemyVariant: String = "none"
 @export var shootPellets: bool = false
-
+var shootOnce:bool=false
 
 #var state:String="idle"
 func _ready() -> void:
@@ -32,7 +32,17 @@ func _physics_process(delta: float) -> void:
 		if $idletoShootTimer.is_stopped()==true:
 			$idletoShootTimer.start()
 	
-	if shootPellets == true:
+	#if shootPellets == true:
+		#for i in 5:
+			#var proj = preload("res://enemy/screw_bomber_projectiles.tscn").instantiate()
+			#proj.state = i
+			#proj.enemyVariant=enemyVariant
+			#get_parent().add_child(proj)
+			#proj.global_position = global_position
+			#$shootingSound.play()
+			##pellet_No = pellet_No + 1
+			##print(pellet_No)
+	if $Sprite2D.get_frame()==9 and shootOnce==false:
 		for i in 5:
 			var proj = preload("res://enemy/screw_bomber_projectiles.tscn").instantiate()
 			proj.state = i
@@ -40,8 +50,11 @@ func _physics_process(delta: float) -> void:
 			get_parent().add_child(proj)
 			proj.global_position = global_position
 			$shootingSound.play()
-			#pellet_No = pellet_No + 1
-			#print(pellet_No)
+		#shootPellets=true
+		shootOnce=true
+	elif $Sprite2D.get_frame()!=9:
+		shootOnce=false
+		#shootPellets=false
 	#pelletNo should be 15 max to keep performance high.
 	move_and_slide()
 

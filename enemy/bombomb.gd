@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	$AnimatedSprite2D.play(enemyVariant)
 	#print(global_position.y-GlobalScript.playerposy)
 	if global_position.y - GlobalScript.playerposy < -80 and happenOnce == false:
-		health = 0
+		queue_free()
 		for i in 2:
 			var projectile = preload("res://enemy/bombomb_bomb.tscn").instantiate()
 			get_parent().add_child(projectile)
@@ -31,7 +31,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timeto_detonate_timeout() -> void:
-	health = 0
+	#health = 0
+	queue_free()
 	for i in 2:
 		var projectile = preload("res://enemy/bombomb_bomb.tscn").instantiate()
 		get_parent().add_child(projectile)

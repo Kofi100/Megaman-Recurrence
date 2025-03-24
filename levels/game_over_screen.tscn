@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://vxgjp04hcsd8"]
+[gd_scene load_steps=4 format=3 uid="uid://vxgjp04hcsd8"]
 
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_at82d"]
 [ext_resource type="Script" path="res://levels/game_over_screen.gd" id="1_ka8nh"]
+[ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="3_2h8ba"]
 
 [node name="gameOverScreen" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_ka8nh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -14,10 +16,10 @@ offset_bottom = 228.0
 color = Color(0, 0, 0, 1)
 
 [node name="selectionRect" type="ColorRect" parent="."]
-offset_left = 27.0
-offset_top = 113.0
-offset_right = 55.0
-offset_bottom = 120.0
+offset_left = -73.0
+offset_top = 101.0
+offset_right = -45.0
+offset_bottom = 108.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = 59.0
@@ -50,3 +52,8 @@ offset_right = 113.0
 offset_bottom = 198.0
 theme = ExtResource("1_at82d")
 text = "EXIT"
+
+[node name="SelectArrow" type="Sprite2D" parent="."]
+position = Vector2(38, 108)
+texture = ExtResource("3_2h8ba")
+centered = false

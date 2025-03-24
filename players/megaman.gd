@@ -519,7 +519,7 @@ func offsetAnimationFunction():
 				elif $anim.flip_h == true:
 					$anim.offset.x = 3
 			"dash":
-				$anim.offset.y = 6
+				$anim.offset.y = 7
 			"shoot_run":
 				if $anim.flip_h == false:
 					$anim.offset.x = -5
@@ -555,6 +555,8 @@ func stun(delta):
 			velocity = Vector2(stun_speed, 0) * delta
 		elif anim.flip_h == true:
 			velocity = Vector2(-stun_speed, 0) * delta
+		if not is_on_floor():
+			velocity.y=8000*delta#WIP 
 		move_and_slide()
 	elif GlobalScript.health <= 0:
 		stop = false

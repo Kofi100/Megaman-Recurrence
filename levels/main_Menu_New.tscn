@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://bdvpbbd5kfuay"]
+
+[ext_resource type="Script" path="res://levels/main_menu_new.gd" id="1_3j47n"]
+[ext_resource type="Texture2D" uid="uid://cfk8f1v6orbk" path="res://assets/sprites/miscelleaneous/main_Menu_new_bg.png" id="1_pk3m2"]
+[ext_resource type="Texture2D" uid="uid://he5chb614i5a" path="res://assets/sprites/miscelleaneous/Mega_Man_logo.png" id="2_7grsx"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_abkrt"]
+[ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="5_qi7wc"]
+[ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="6_qtkfd"]
+[ext_resource type="Script" path="res://resources/bgm_group.gd" id="7_dv4xv"]
+[ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="8_0cdru"]
+[ext_resource type="Script" path="res://levels/sfx_group.gd" id="9_mf1u7"]
+
+[sub_resource type="Animation" id="Animation_r0n11"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nameOFGame:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.512549, 0.791853, 0.970591, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_luih4"]
+resource_name = "new_animation"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nameOFGame:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0999, 0.1998),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.512549, 0.791853, 0.970591, 1), Color(1, 1, 1, 1), Color(0.512549, 0.791853, 0.970591, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sml5h"]
+_data = {
+"RESET": SubResource("Animation_r0n11"),
+"new_animation": SubResource("Animation_luih4")
+}
+
+[node name="MainMenuNew" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_3j47n")
+
+[node name="MainMenuNewBg" type="Sprite2D" parent="."]
+position = Vector2(128, 112)
+texture = ExtResource("1_pk3m2")
+
+[node name="MegaManLogo" type="Sprite2D" parent="."]
+position = Vector2(123, 30)
+scale = Vector2(0.066235, 0.066235)
+texture = ExtResource("2_7grsx")
+
+[node name="nameOFGame" type="Label" parent="."]
+offset_left = 133.0
+offset_top = 38.0
+offset_right = 245.0
+offset_bottom = 61.0
+theme = ExtResource("3_abkrt")
+theme_override_colors/font_color = Color(0.512549, 0.791853, 0.970591, 1)
+text = ":RETURN"
+
+[node name="SelectArrow" type="Sprite2D" parent="."]
+position = Vector2(63, 99)
+texture = ExtResource("5_qi7wc")
+centered = false
+
+[node name="main_Menu_BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_qtkfd")
+parameters/looping = true
+script = ExtResource("7_dv4xv")
+
+[node name="change_Option_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_0cdru")
+script = ExtResource("9_mf1u7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sml5h")
+}
+autoplay = "new_animation"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 79.0
+offset_top = 99.0
+offset_right = 213.0
+offset_bottom = 198.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="start" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_abkrt")
+text = "START"
+
+[node name="tutorial" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_abkrt")
+text = "TUTORIAL"
+
+[node name="debug" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_abkrt")
+text = "DEBUG"
+
+[node name="change_Controls" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_abkrt")
+text = "CHANGE 
+CONTROLS"
+
+[node name="quit" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_abkrt")
+text = "QUIT"

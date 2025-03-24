@@ -482,7 +482,7 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"shoot_in_air"
+animation = &"dash"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

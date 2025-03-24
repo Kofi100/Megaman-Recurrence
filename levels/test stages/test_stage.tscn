@@ -163,7 +163,7 @@ editor_draw_limits = true
 
 [node name="enemy_spawner" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(165, 215)
-enemy_to_spawn = "spikyoall"
+enemy_to_spawn = "screw_bomber"
 visibility = true
 enemyVariant = "fire"
 

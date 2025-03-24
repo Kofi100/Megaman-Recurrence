@@ -20,6 +20,7 @@ func _ready():
 	set_process(false)
 
 func _process(delta):
+	#shape.
 	
 	if laser_active:
 		if debugTest == false:

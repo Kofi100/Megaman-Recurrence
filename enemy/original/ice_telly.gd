@@ -7,6 +7,7 @@ var shootProjectileOnce:bool=false
 
 func _ready() -> void:
 	$Timer.start()
+	health=5
 
 func _physics_process(delta: float) -> void:
 	calculate_player_distance()
