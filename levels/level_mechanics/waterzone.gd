@@ -25,7 +25,7 @@ func _on_body_entered(body):
 		if body.anim!=null:
 			body.anim.speed_scale=0.8
 		#animated_sprite_template.pl
-		print("dey playyy")
+		#print("dey playyy")
  
 
 

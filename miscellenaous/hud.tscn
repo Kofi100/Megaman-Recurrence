@@ -1,9 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=55 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
-[ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
 [ext_resource type="Texture2D" uid="uid://ceiqj8bjouqre" path="res://assets/sprites/miscelleaneous/pause_screen_setup3.png" id="2_jxh0c"]
-[ext_resource type="Texture2D" uid="uid://ckiorwijfvv0x" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_kk.png" id="3_yjobx"]
 [ext_resource type="Texture2D" uid="uid://bko24mknbj21s" path="res://assets/sprites/miscelleaneous/health_megaman_bg.png" id="5_eted2"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="5_g1yve"]
 [ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
@@ -14,7 +12,12 @@
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="7_ixl55"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
 [ext_resource type="Shader" path="res://players/megaman.gdshader" id="9_1ufh6"]
+[ext_resource type="Texture2D" uid="uid://crsv3lsy4ydvs" path="res://assets/sprites/miscelleaneous/pauseScreen_New.png" id="9_3fjw4"]
+[ext_resource type="Texture2D" uid="uid://b1oohir875cby" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_New.png" id="10_b5n2o"]
+[ext_resource type="Texture2D" uid="uid://u3p72jwu1vfj" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_New.png" id="11_m5djj"]
 [ext_resource type="Texture2D" uid="uid://d3yeluainukhd" path="res://assets/sprites/miscelleaneous/progress_bar_megaman_texture.png" id="12_386i2"]
+[ext_resource type="Texture2D" uid="uid://bteovfr5orkh7" path="res://assets/sprites/miscelleaneous/ready_recreated.png" id="16_x5lfv"]
+[ext_resource type="Texture2D" uid="uid://dtp8lf4clnany" path="res://assets/sprites/miscelleaneous/menus/pause_menu_buttons.png" id="18_mmlst"]
 
 [sub_resource type="Animation" id="Animation_nxwht"]
 resource_name = "fade_out"
@@ -82,23 +85,23 @@ _data = {
 "boss_level_up": SubResource("Animation_f5x0v")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
-atlas = ExtResource("2_jftja")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow7iq"]
+atlas = ExtResource("10_b5n2o")
 region = Rect2(0, 0, 32, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g7wdu"]
-atlas = ExtResource("2_jftja")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tkbs"]
+atlas = ExtResource("10_b5n2o")
 region = Rect2(32, 0, 32, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8j6gx"]
-atlas = ExtResource("2_jftja")
+[sub_resource type="AtlasTexture" id="AtlasTexture_er873"]
+atlas = ExtResource("10_b5n2o")
 region = Rect2(0, 38, 32, 38)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g8a33"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g37a2")
+"texture": SubResource("AtlasTexture_ow7iq")
 }],
 "loop": true,
 "name": &"not_selected",
@@ -106,33 +109,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g7wdu")
+"texture": SubResource("AtlasTexture_5tkbs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8j6gx")
+"texture": SubResource("AtlasTexture_er873")
 }],
 "loop": true,
 "name": &"selected",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjj81"]
-atlas = ExtResource("3_yjobx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0ory"]
+atlas = ExtResource("11_m5djj")
 region = Rect2(0, 0, 32, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4x1p"]
-atlas = ExtResource("3_yjobx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg3ad"]
+atlas = ExtResource("11_m5djj")
 region = Rect2(32, 0, 32, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4iyfp"]
-atlas = ExtResource("3_yjobx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_31h5t"]
+atlas = ExtResource("11_m5djj")
 region = Rect2(0, 38, 32, 38)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twexw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cjj81")
+"texture": SubResource("AtlasTexture_f0ory")
 }],
 "loop": true,
 "name": &"not_selected",
@@ -140,10 +143,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k4x1p")
+"texture": SubResource("AtlasTexture_lg3ad")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4iyfp")
+"texture": SubResource("AtlasTexture_31h5t")
 }],
 "loop": true,
 "name": &"selected",
@@ -158,6 +161,152 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_rlxve"]
 events = [SubResource("InputEventKey_pfy3o")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgc44"]
+atlas = ExtResource("18_mmlst")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1nee"]
+atlas = ExtResource("18_mmlst")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_imstj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgc44")
+}],
+"loop": true,
+"name": &"notSelected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1nee")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux27c"]
+atlas = ExtResource("18_mmlst")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwmyv"]
+atlas = ExtResource("18_mmlst")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i6tc0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux27c")
+}],
+"loop": true,
+"name": &"notSelected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwmyv")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q63u"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmlrp"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5j0u"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3db4p"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a1st"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(0, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1lnj"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(128, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g22i"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(256, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6r3t"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(384, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hehg2"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(0, 128, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o570"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(128, 128, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usotr"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(256, 128, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhk4r"]
+atlas = ExtResource("16_x5lfv")
+region = Rect2(384, 128, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2nqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q63u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmlrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5j0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3db4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a1st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1lnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7g22i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6r3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hehg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4o570")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usotr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhk4r")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -279,29 +428,36 @@ libraries = {
 wait_time = 3.0
 one_shot = true
 
-[node name="pause_screen_setup" type="Sprite2D" parent="."]
+[node name="pause_screen_setup_old" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_jxh0c")
 centered = false
 
+[node name="pause_screen_setup" type="Sprite2D" parent="."]
+texture = ExtResource("9_3fjw4")
+centered = false
+
 [node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(138, 178)
+position = Vector2(32, 188)
 sprite_frames = SubResource("SpriteFrames_g8a33")
 animation = &"selected"
-frame = 1
-frame_progress = 0.77691
 
 [node name="w_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(200, 178)
+position = Vector2(89, 188)
 sprite_frames = SubResource("SpriteFrames_twexw")
-animation = &"selected"
-frame_progress = 0.557678
+animation = &"not_selected"
 
 [node name="e_tank_left" type="Label" parent="pause_screen_setup"]
-offset_left = 170.0
-offset_top = 170.0
-offset_right = 249.0
-offset_bottom = 266.0
+anchors_preset = -1
+anchor_left = -0.246094
+anchor_top = -0.357143
+anchor_right = -0.246094
+anchor_bottom = -0.357143
+offset_left = 124.0
+offset_top = 264.0
+offset_right = 140.0
+offset_bottom = 280.0
+scale = Vector2(0.8, 0.8)
 theme = SubResource("Theme_q5jc1")
 theme_override_fonts/font = ExtResource("5_g1yve")
 text = "9"
@@ -310,20 +466,26 @@ metadata/_edit_use_anchors_ = true
 [node name="text" type="Label" parent="pause_screen_setup/e_tank_left"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.544304
-anchor_right = 0.544304
-offset_left = -59.0
+anchor_left = -0.0468751
+anchor_right = -0.0468751
+offset_left = -13.0
 offset_right = 1.0
-offset_bottom = 96.0
+offset_bottom = 16.0
 theme_override_fonts/font = ExtResource("5_g1yve")
 text = "X"
 metadata/_edit_use_anchors_ = true
 
 [node name="w_tank_left" type="Label" parent="pause_screen_setup"]
-offset_left = 232.0
-offset_top = 170.0
-offset_right = 311.0
-offset_bottom = 266.0
+anchors_preset = -1
+anchor_left = -0.253906
+anchor_top = -0.357143
+anchor_right = -0.253906
+anchor_bottom = -0.357143
+offset_left = 182.0
+offset_top = 264.0
+offset_right = 196.0
+offset_bottom = 280.0
+scale = Vector2(0.8, 0.8)
 theme_override_fonts/font = ExtResource("5_g1yve")
 text = "x"
 metadata/_edit_use_anchors_ = true
@@ -331,32 +493,44 @@ metadata/_edit_use_anchors_ = true
 [node name="text" type="Label" parent="pause_screen_setup/w_tank_left"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.556962
-anchor_right = 0.556962
-offset_left = -58.0
+anchor_left = -0.142857
+anchor_right = -0.142857
+offset_left = -12.0
 offset_right = 2.0
-offset_bottom = 96.0
+offset_bottom = 16.0
 theme_override_fonts/font = ExtResource("5_g1yve")
 text = "X"
 metadata/_edit_use_anchors_ = true
 
 [node name="life_icon" type="Sprite2D" parent="pause_screen_setup"]
-position = Vector2(15, 179.523)
+position = Vector2(-113, 68)
 texture = ExtResource("7_65oho")
 hframes = 14
 frame = 10
 
+[node name="Label" type="Label" parent="pause_screen_setup/life_icon"]
+offset_left = 237.0
+offset_top = -42.0
+offset_right = 277.0
+offset_bottom = -24.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+text = "X3"
+metadata/_edit_use_anchors_ = true
+
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup"]
-offset_left = 24.0
-offset_top = 177.0
-offset_right = 81.0004
-offset_bottom = 185.0
-max_value = 27.0
-value = 25.0
+offset_left = 82.0
+offset_top = 38.0
+offset_right = 139.0
+offset_bottom = 46.0
+scale = Vector2(1.5, 1.5)
+max_value = 28.0
+value = 28.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
 [node name="weapons" type="Node2D" parent="pause_screen_setup"]
+position = Vector2(-160, -115)
 
 [node name="mm_buster" type="Sprite2D" parent="pause_screen_setup/weapons"]
 position = Vector2(17, 54)
@@ -364,10 +538,13 @@ texture = ExtResource("6_vmhtx")
 hframes = 4
 
 [node name="Label" type="Label" parent="pause_screen_setup/weapons/mm_buster"]
-offset_left = -11.25
-offset_top = 8.5
-offset_right = 82.75
-offset_bottom = 31.5
+anchors_preset = -1
+anchor_top = -0.3125
+anchor_bottom = -0.3125
+offset_left = 12.0
+offset_top = 5.0
+offset_right = 106.0
+offset_bottom = 23.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
@@ -380,10 +557,10 @@ anchor_left = -0.863283
 anchor_top = -3.29786
 anchor_right = -0.791283
 anchor_bottom = -3.27286
-offset_left = 25.625
-offset_top = 48.5554
-offset_right = 81.4731
-offset_bottom = 56.1554
+offset_left = 212.813
+offset_top = 193.766
+offset_right = 268.661
+offset_bottom = 201.366
 theme = ExtResource("7_ixl55")
 max_value = 28.0
 value = 28.0
@@ -397,10 +574,14 @@ hframes = 4
 frame = 1
 
 [node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_coil"]
-offset_left = -9.75
-offset_top = 8.5
-offset_right = 84.25
-offset_bottom = 31.5
+visible = false
+anchors_preset = -1
+anchor_top = -0.3125
+anchor_bottom = -0.3125
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 23.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
@@ -408,10 +589,10 @@ text = "R.coil"
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_coil"]
-offset_left = 11.8125
-offset_top = -3.33893
-offset_right = 68.8125
-offset_bottom = 4.66107
+offset_left = 158.0
+offset_top = 189.0
+offset_right = 215.0
+offset_bottom = 197.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 27.0
@@ -425,10 +606,13 @@ hframes = 4
 frame = 2
 
 [node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_jet"]
-offset_left = -8.0
-offset_top = 8.5
-offset_right = 86.0
-offset_bottom = 31.5
+anchors_preset = -1
+anchor_top = -0.3125
+anchor_bottom = -0.3125
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 23.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
@@ -436,10 +620,10 @@ text = "R.jet"
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_jet"]
-offset_left = 11.1459
-offset_top = -5.07062
-offset_right = 68.1459
-offset_bottom = 2.92938
+offset_left = 158.0
+offset_top = 174.0
+offset_right = 215.0
+offset_bottom = 182.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 27.0
@@ -449,11 +633,11 @@ metadata/_edit_use_anchors_ = true
 [node name="quit_button" type="Button" parent="pause_screen_setup"]
 process_mode = 3
 process_priority = 1
-offset_left = 214.0
-offset_top = 137.0
-offset_right = 278.0
-offset_bottom = 161.0
-scale = Vector2(0.5, 0.5)
+offset_left = 177.0
+offset_top = 266.0
+offset_right = 241.0
+offset_bottom = 290.0
+scale = Vector2(0.3, 0.3)
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 5
 theme = ExtResource("7_ixl55")
@@ -465,11 +649,11 @@ metadata/_edit_use_anchors_ = true
 [node name="options_btn" type="Button" parent="pause_screen_setup"]
 process_mode = 3
 process_priority = 1
-offset_left = 176.0
-offset_top = 104.0
-offset_right = 288.0
-offset_bottom = 128.0
-scale = Vector2(0.5, 0.5)
+offset_left = 169.0
+offset_top = 235.0
+offset_right = 281.0
+offset_bottom = 259.0
+scale = Vector2(0.3, 0.3)
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 5
 theme = ExtResource("7_ixl55")
@@ -479,44 +663,58 @@ text = "options"
 metadata/_edit_use_anchors_ = true
 
 [node name="restart_level_btn" type="Button" parent="pause_screen_setup"]
-offset_left = 146.0
-offset_top = 116.0
-offset_right = 356.0
-offset_bottom = 140.0
-scale = Vector2(0.5, 0.5)
+anchors_preset = -1
+anchor_left = -0.367188
+anchor_right = -0.367188
+offset_left = 263.0
+offset_top = 242.0
+offset_right = 379.0
+offset_bottom = 282.0
+scale = Vector2(0.3, 0.3)
 theme = ExtResource("7_ixl55")
-text = "restart_level"
+text = "restart
+level"
 metadata/_edit_use_anchors_ = true
 
 [node name="go_to_menu_btn" type="Button" parent="pause_screen_setup"]
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1
-offset_left = 176.0
-offset_top = 128.0
-offset_right = 322.0
-offset_bottom = 152.0
-scale = Vector2(0.5, 0.5)
+anchors_preset = -1
+anchor_left = -0.273438
+anchor_right = -0.273
+offset_left = 244.0
+offset_top = 254.0
+offset_right = 319.888
+offset_bottom = 294.0
+scale = Vector2(0.3, 0.3)
 theme = ExtResource("7_ixl55")
-text = "go to menu"
+text = "go to 
+menu"
 metadata/_edit_use_anchors_ = true
 
 [node name="settings" type="Node2D" parent="pause_screen_setup"]
+position = Vector2(-160, -115)
 
 [node name="volume" type="Node2D" parent="pause_screen_setup/settings"]
 
 [node name="volume_music" type="HSlider" parent="pause_screen_setup/settings/volume"]
-offset_left = 146.0
-offset_top = 207.0
-offset_right = 356.0
-offset_bottom = 223.0
+offset_left = 7.0
+offset_top = 243.0
+offset_right = 217.0
+offset_bottom = 259.0
 scale = Vector2(0.5, 0.5)
 min_value = -60.0
 max_value = 0.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="pause_screen_setup/settings/volume/volume_music"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.638095
+anchor_top = -1.375
+anchor_right = 0.638095
+anchor_bottom = -1.375
 offset_left = -130.0
 offset_right = -6.0
 offset_bottom = 23.0
@@ -536,6 +734,19 @@ dialog_text = "Are You Sure
 You Want to
 Leave?"
 cancel_button_text = "No"
+
+[node name="buttons" type="Node2D" parent="pause_screen_setup"]
+position = Vector2(222, 179)
+
+[node name="moveNextScreenbtn" type="AnimatedSprite2D" parent="pause_screen_setup/buttons"]
+process_mode = 3
+sprite_frames = SubResource("SpriteFrames_imstj")
+animation = &"selected"
+
+[node name="quitStageBtn" type="AnimatedSprite2D" parent="pause_screen_setup/buttons"]
+position = Vector2(0, 18)
+sprite_frames = SubResource("SpriteFrames_i6tc0")
+animation = &"notSelected"
 
 [node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_vp1wl")
@@ -567,18 +778,20 @@ color = Color(1, 0.054902, 0, 1)
 scale = Vector2(0.3, 0.3)
 
 [node name="minutes" type="Label" parent="timer"]
-offset_left = 676.667
-offset_top = 23.3333
-offset_right = 716.667
-offset_bottom = 46.3333
+offset_left = 670.0
+offset_top = 56.6667
+offset_right = 710.0
+offset_bottom = 79.6667
+scale = Vector2(1.5, 1.5)
 theme = ExtResource("7_ixl55")
 text = "xx"
 
 [node name="seconds" type="Label" parent="timer"]
-offset_left = 723.333
-offset_top = 23.3333
-offset_right = 763.333
-offset_bottom = 46.3333
+offset_left = 740.0
+offset_top = 56.6667
+offset_right = 780.0
+offset_bottom = 79.6667
+scale = Vector2(1.5, 1.5)
 theme = ExtResource("7_ixl55")
 text = "xx"
 
@@ -595,14 +808,16 @@ theme = ExtResource("7_ixl55")
 text = "aaa"
 
 [node name="label" type="Label" parent="timer"]
-offset_left = 586.667
-offset_top = 23.3333
-offset_right = 718.667
-offset_bottom = 46.3333
+offset_left = 533.333
+offset_top = 56.6667
+offset_right = 665.333
+offset_bottom = 73.6667
+scale = Vector2(1.5, 1.5)
 theme = ExtResource("7_ixl55")
 text = "Timer:      :"
 
 [node name="stage_name" type="Label" parent="."]
+visible = false
 offset_left = 47.0
 offset_top = 91.0
 offset_right = 217.0
@@ -620,6 +835,7 @@ one_shot = true
 autostart = true
 
 [node name="score" type="Label" parent="."]
+visible = false
 offset_left = 176.0
 offset_top = 14.0
 offset_right = 316.0
@@ -631,6 +847,18 @@ text = "SCORE:000"
 [node name="justDiedTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="ready_Text" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(154, 128)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_m2nqk")
+frame = 11
+frame_progress = 1.0
+
+[node name="playReadyTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
 [node name="fadeInRect" type="ColorRect" parent="."]
 visible = false
@@ -648,3 +876,4 @@ color = Color(0, 0, 0, 1)
 [connection signal="confirmed" from="pause_screen_setup/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="timeout" from="timer/seconds_timer" to="." method="_on_seconds_timer_timeout"]
 [connection signal="timeout" from="justDiedTimer" to="." method="_on_just_died_timer_timeout"]
+[connection signal="timeout" from="playReadyTimer" to="." method="_on_play_ready_timer_timeout"]

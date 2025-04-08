@@ -10,8 +10,8 @@ var selection_index = 1  #var tween=create_tween() #use tween to create a transi
 var pause_input = false
 var color
 var justPausedGameManually: bool = false
-
-
+var onAnotherScreen:bool=false
+var screen2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalScript.trigger_boss = false
@@ -23,6 +23,8 @@ func _ready():
 	$fadeInRect.visible = true
 	tween_fadeIn.tween_property($fadeInRect, "color", Color8(0, 0, 0, 0), 2).from(Color8(0, 0, 0, 255))
 	tween_fadeIn.finished.connect(fadeIn_finished)
+	#$stage_name.visible=true
+
 
 
 var justDied: bool = false
@@ -31,6 +33,8 @@ var justDied: bool = false
 func fadeIn_finished():
 	print("HUD:beginning fade-out finished")
 	$fadeInRect.visible = false
+	#$ready_Text.visible=true
+	
 	#$fade_out_rectangle.color=color
 
 
@@ -46,7 +50,7 @@ func _process(_delta):
 	$healthbar/text_lives.text = str(GlobalScript.lives)
 	$score.text = str("SCORE:", GlobalScript.score)
 	$stage_name.text = "STAGE:\n" + GlobalScript.stage_name
-
+	#print(selection_index)
 	#pause on death effect
 	if GlobalScript.health <= 0 and justDied == false:
 		justDied = true
@@ -146,10 +150,10 @@ func _process(_delta):
 
 	if selection_index < 1:
 		selection_index = 2
-	elif selection_index > 2:
+	elif selection_index > 4:
 		selection_index = 1
-	if !pause_input:  #if input is not paused yet,
-		if Input.is_action_just_pressed("pause") and GlobalScript.health > 0:  #and i pressed the pause button,
+	if !pause_input:  #if input is not paused yet,#and selection_index!=3
+		if Input.is_action_just_pressed("pause") and GlobalScript.health > 0 and Player.playerCharacter.player_ready==true :  #and i pressed the pause button,
 			if justPausedGameManually == false and get_tree().paused == false and GlobalScript.health > 0:  #if the tree is paused/not,set it to the opposite state
 				justPausedGameManually = true
 				get_tree().paused = true
@@ -174,7 +178,7 @@ func _process(_delta):
 		elif Input.is_action_just_pressed("move_right"):
 			selection_index += 1
 			$switch_menu_option_sound.play(0)
-	else:
+	elif justPausedGameManually==false:
 		selection_index = 1
 	if justPausedGameManually == true:
 		if selection_index == 1:  #energy tank selected
@@ -197,6 +201,34 @@ func _process(_delta):
 			$pause_screen_setup/w_tank.play("selected")
 		else:
 			$pause_screen_setup/w_tank.play("not_selected")
+		if selection_index==3:
+			$pause_screen_setup/buttons/moveNextScreenbtn.play("selected")
+			if Input.is_action_just_pressed("shoot") and switchedMenus==false:
+				if screen2==null:
+					screen2=preload("res://miscellenaous/hud_screen_2.tscn").instantiate()
+					add_child(screen2)
+					#$pause_screen_setup.visible=false
+					screen2.connect("tree_exiting", exitMenu)
+					#var tween=
+					#create_tween().tween_property($pause_screen_setup,"modulate",Color8(0,0,0,0),0.2)
+					switchedMenus=true
+			#if screen2==null and onAnotherScreen==true:
+				#print("setting scene to false")
+				#print(screen2)
+				#onAnotherScreen=false
+				#get_tree().paused=true
+				#justPausedGameManually=true
+				#$pause_screen_setup.visible=true
+					#$pause_screen_setup.
+		else:
+			$pause_screen_setup/buttons/moveNextScreenbtn.play("notSelected")
+		if selection_index==4:
+			$pause_screen_setup/buttons/quitStageBtn.play("selected")
+			if Input.is_action_just_pressed("shoot"):
+				get_tree().paused=false
+				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
+		else:
+			$pause_screen_setup/buttons/quitStageBtn.play("notSelected")
 	#print($pause_screen_setup/ProgressBar.value,previous_value)
 
 
@@ -247,7 +279,9 @@ func update_energy_pause_menu():
 
 
 func _on_quit_button_pressed():
-	get_tree().quit(0)
+	#get_tree().quit(0)
+	get_tree().set_pause(false)
+	get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
 
 
 func _on_go_to_menu_btn_pressed():
@@ -308,3 +342,8 @@ func exitMenu():
 func _on_just_died_timer_timeout():
 	#Engine.time_scale=1
 	get_tree().paused = false
+
+
+func _on_play_ready_timer_timeout() -> void:
+	$ready_Text.visible=true
+	$ready_Text.play("default")

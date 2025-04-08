@@ -1,0 +1,137 @@
+[gd_scene load_steps=14 format=3 uid="uid://bys3l8gptyomn"]
+
+[ext_resource type="Script" path="res://enemy/returning_machine_joe.gd" id="1_ib4gf"]
+[ext_resource type="Texture2D" uid="uid://qpqw76676vgk" path="res://assets/sprites/enemies/returningMachineJoe_Spritesheet.png" id="2_60w3e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7olh"]
+atlas = ExtResource("2_60w3e")
+region = Rect2(0, 0, 35, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdbhm"]
+atlas = ExtResource("2_60w3e")
+region = Rect2(0, 93, 35, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpdfg"]
+atlas = ExtResource("2_60w3e")
+region = Rect2(0, 0, 35, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y8vf"]
+atlas = ExtResource("2_60w3e")
+region = Rect2(35, 0, 35, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45e5u"]
+atlas = ExtResource("2_60w3e")
+region = Rect2(70, 0, 35, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nfr8a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7olh")
+}],
+"loop": false,
+"name": &"defend_Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdbhm")
+}],
+"loop": true,
+"name": &"jump_Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpdfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y8vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45e5u")
+}],
+"loop": false,
+"name": &"shoot_Default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utyxq"]
+size = Vector2(11, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f31by"]
+size = Vector2(232, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jouxm"]
+size = Vector2(7, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ix630"]
+size = Vector2(6, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm4ep"]
+size = Vector2(11, 20)
+
+[node name="ReturningMachineJoe" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_ib4gf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nfr8a")
+animation = &"shoot_Default"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_utyxq")
+
+[node name="playerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetection"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_f31by")
+
+[node name="shieldHitbox" type="Area2D" parent="." groups=["blockables"]]
+
+[node name="L" type="CollisionShape2D" parent="shieldHitbox"]
+position = Vector2(-8.5, 1)
+shape = SubResource("RectangleShape2D_jouxm")
+
+[node name="R" type="CollisionShape2D" parent="shieldHitbox"]
+position = Vector2(9, 1)
+shape = SubResource("RectangleShape2D_ix630")
+disabled = true
+
+[node name="repeatShootTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="durationShootTimer" type="Timer" parent="repeatShootTimer"]
+wait_time = 1.8
+one_shot = true
+
+[node name="stopDurationTimer" type="Timer" parent="repeatShootTimer"]
+wait_time = 2.0
+one_shot = true
+
+[node name="shootPositionL" type="Marker2D" parent="."]
+position = Vector2(-15, 3)
+
+[node name="shootPositionR" type="Marker2D" parent="."]
+position = Vector2(15, 3)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_lm4ep")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.999995, -8.5)
+scale = Vector2(7.4, 3.35)
+
+[connection signal="area_entered" from="playerDetection" to="." method="_on_player_detection_area_entered"]
+[connection signal="timeout" from="repeatShootTimer" to="." method="_on_repeat_shoot_timer_timeout"]
+[connection signal="timeout" from="repeatShootTimer/durationShootTimer" to="." method="_on_pause_shoot_timer_timeout"]
+[connection signal="timeout" from="repeatShootTimer/stopDurationTimer" to="." method="_on_stop_duration_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

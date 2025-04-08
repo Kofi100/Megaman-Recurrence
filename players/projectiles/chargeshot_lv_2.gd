@@ -4,12 +4,20 @@ var state="active"
 @export var direction="left"
 var damagevalue=5
 func _ready():
+	#offset for previous Animatiosn before MM6 version
+	#match direction:
+		#"left":
+			#$anim.offset.x=-8
+		#"right":
+			#$anim.offset.x=8
 	match direction:
 		"left":
-			$anim.offset.x=-8
+			$collision_monitor/CollisionShape2D.set_deferred("disabled",false)
+			$collision_monitor/CollisionShape2D_R.set_deferred("disabled",true)
 		"right":
-			$anim.offset.x=8
-	$anim.play("chargeshot_lv2_new2")
+			$collision_monitor/CollisionShape2D.set_deferred("disabled",true)
+			$collision_monitor/CollisionShape2D_R.set_deferred("disabled",false)
+	$anim.play("chargeshot_lv2_mm5")
 	
 
 
@@ -19,10 +27,10 @@ func _physics_process(delta):
 			match direction:
 				"left":
 					#rotation_degrees=180
-					$anim.flip_h=true
+					$anim.flip_h=false
 					velocity.x=-SPEED*delta
 				"right":
-					$anim.flip_h=false
+					$anim.flip_h=true
 					velocity.x= SPEED*delta
 		"blocked":
 			match direction:

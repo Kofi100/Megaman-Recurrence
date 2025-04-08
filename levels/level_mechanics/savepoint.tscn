@@ -3,8 +3,13 @@
 [ext_resource type="Script" path="res://levels/level_mechanics/savepoint.gd" id="1_0gdel"]
 [ext_resource type="Texture2D" uid="uid://rve227akbvrl" path="res://assets/sprites/miscelleaneous/savepoint_arrows_up.png" id="2_ktus5"]
 
+[sub_resource type="Gradient" id="Gradient_u680h"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.909804, 0, 0.152941, 1)
+
 [sub_resource type="Gradient" id="Gradient_hhkl5"]
-colors = PackedColorArray(0.295203, 0.919101, 0, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.295203, 0.919101, 0, 1)
 
 [sub_resource type="Animation" id="Animation_vv8vo"]
 resource_name = "green"
@@ -20,9 +25,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [SubResource("Gradient_hhkl5")]
 }
-
-[sub_resource type="Gradient" id="Gradient_u680h"]
-colors = PackedColorArray(0.909804, 0, 0.152941, 1, 0.328875, 0.0049677, 0.0462737, 1)
 
 [sub_resource type="Animation" id="Animation_43ahs"]
 resource_name = "red"
@@ -56,7 +58,7 @@ collision_mask = 7
 position = Vector2(-3.8147e-06, 0)
 scale = Vector2(5.3, 1)
 points = PackedVector2Array(0, 0, 0, -84)
-gradient = SubResource("Gradient_hhkl5")
+gradient = SubResource("Gradient_u680h")
 texture = ExtResource("2_ktus5")
 texture_mode = 2
 

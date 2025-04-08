@@ -11,7 +11,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(GlobalScript.lives)
+	get_tree().set_pause(false)
+	#print(GlobalScript.lives)
 	if Input.is_action_pressed("die_debug") and Input.is_action_just_pressed("move_up"):
 		get_tree().change_scene_to_file("res://levels/main_menu.tscn")
 	if robotSelected > 5:
@@ -26,13 +27,13 @@ func _process(delta):
 		elif Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_down"):
 			robotSelected += 1
 			$Sounds/switchRobot.play()
-	if Input.is_action_just_pressed("pause") and robotAllowToSelect == false:
+	if Input.is_action_just_pressed("shoot") and robotAllowToSelect == false:
 		if robotSelected != 5:
 			robotAllowToSelect = true
 			$Timers/screenTransTimer.start()
 			$BGM/selectYourRobotMaster.stop()
 		elif robotSelected == 5:
-			get_tree().quit(0)
+			get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
 	match robotSelected:
 		1:
 			#$selected.global_position=$Node2D/ColorRect.global_position
@@ -62,7 +63,11 @@ func _process(delta):
 			$Node2D/robotMaster3.play("notSelected")
 			$Node2D/robotMaster4.play("Selected")
 		5:
-			$Node2D/exitIndicator.global_position = $Node2D/exit.global_position
+			$Node2D/robotMaster1.play("notSelected")
+			$Node2D/robotMaster2.play("notSelected")
+			$Node2D/robotMaster3.play("notSelected")
+			$Node2D/robotMaster4.play("notSelected")
+			$SelectArrow.global_position = $Node2D/exit.global_position-Vector2(10,0)
 	GlobalScript.robotMaster = robotSelected
 	if transition and transition.screen_Ended:  #"transition.screen_Ended" incorrect ref to a signal of another scene
 		if transition.is_connected("screen_Ended", changeScene) == false:  #("changeSceneSignal",self,"changeScene")==false:
@@ -71,9 +76,9 @@ func _process(delta):
 	#pass
 	#transition.robotMaster=robotSelected
 	if robotSelected != 5:
-		$Node2D/exitIndicator.set_visible(false)
+		$SelectArrow.set_visible(false)
 	elif robotSelected == 5:
-		$Node2D/exitIndicator.set_visible(true)
+		$SelectArrow.set_visible(true)
 
 
 @export var spriteDict = {}
@@ -90,7 +95,8 @@ func changeScene():
 		get_tree().change_scene_to_file("res://levels/test stages/stage_4.tscn")
 	if robotSelected == 2:
 		get_tree().change_scene_to_file("res://levels/8_robot_stages/shadowman_stage1.tscn")
-
+	if robotSelected == 3:
+		get_tree().change_scene_to_file("res://levels/8_robot_stages/iceman_stage.tscn")
 
 var transition
 

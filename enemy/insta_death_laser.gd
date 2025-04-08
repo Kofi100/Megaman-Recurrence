@@ -17,6 +17,11 @@ func _ready():
 	$Timer.wait_time = countDownToShoot + 2
 	$repeatDetection.start()
 	reset_laser()
+	if shape:
+		shape=shape.duplicate()#creates a new instance of the (shape) resource,sends it back to the original
+		shape.size=Vector2(16,12)#sets the new instance's size
+		area_collision.shape=shape#attaches the collsionshape node to the actual rect CollisionShape2d.
+		
 	set_process(false)
 
 func _process(delta):
@@ -36,6 +41,7 @@ func _process(delta):
 
 			# ✅ STEP 1: Update Line2D FIRST (ensures visual matches collision)
 			var new_end_pos = Vector2(laser_growth, 0)
+			#scale.x=scale.x
 			set_point_position(1, new_end_pos)
 
 			# ✅ STEP 2: Update CollisionShape2D AFTER the Line2D update

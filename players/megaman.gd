@@ -62,6 +62,7 @@ var coyoteJumpTime
 @onready var leave_timer = $leave_timer
 var onIce: bool = false
 var justLeftIce: bool = false
+@onready var stunSound: SFX = $all_sounds/stun
 
 
 func _ready():
@@ -112,7 +113,7 @@ func _ready():
 	$weapon_display.visible = false
 	$player_camera.position_smoothing_enabled = false
 	$hitbox/CollisionShape2D.disabled = true
-
+	GlobalScript.boss=null
 
 var onrush = false
 var disable_input = false
@@ -733,6 +734,8 @@ func dash_function(delta):
 		if Input.is_action_pressed("dash"):
 			if $dash/Timer.time_left > 0:
 				anim.play("dash")
+				#Offset for Dash animation lies here.
+				anim.offset.y=3
 			#elif $dash/Timer.time_left<=0:
 			#velocity.x=0
 			#anim.play("idle")

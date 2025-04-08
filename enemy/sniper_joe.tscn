@@ -72,7 +72,7 @@ script = ExtResource("1_byx3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m8hlf")
-animation = &"jump"
+animation = &"shoot"
 offset = Vector2(8, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

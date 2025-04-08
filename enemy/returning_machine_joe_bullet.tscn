@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://2tgp1h4qh440"]
+
+[ext_resource type="Script" path="res://enemy/returning_machine_joe_bullet.gd" id="1_wtfdh"]
+[ext_resource type="Texture2D" uid="uid://bx4u85swvgwr4" path="res://assets/sprites/enemies/returningMachineJoe_Parts.png" id="2_tma2k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr4jk"]
+atlas = ExtResource("2_tma2k")
+region = Rect2(0, 0, 28, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2qei4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr4jk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5e23m"]
+size = Vector2(9.5, 5)
+
+[node name="returningMachineJoe_Bullet" type="CharacterBody2D"]
+script = ExtResource("1_wtfdh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_2qei4")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.25, 0.5)
+shape = SubResource("RectangleShape2D_5e23m")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

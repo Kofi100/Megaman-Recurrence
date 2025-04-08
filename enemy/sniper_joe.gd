@@ -16,7 +16,7 @@ var proj_spawn_timer: int = 0
 
 
 func _ready():
-	health = 12
+	health = 8
 	playerdamagevalue = 7
 	state = "defend"
 	animated_sprite_2d.flip_h = false
@@ -34,7 +34,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		animated_sprite_2d.play("jump")
-	if abs(distance_x)<30:
+	if abs(distance_x)<10 and abs(distance_y)<60:
 		if is_on_floor():
 			state="jump"
 	#var player=get_parent().get_parent().get_parent().get_node("megaman")

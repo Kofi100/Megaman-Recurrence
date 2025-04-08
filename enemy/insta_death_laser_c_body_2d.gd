@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends enemy
 
 
 const SPEED = 300.0
@@ -6,5 +6,5 @@ const JUMP_VELOCITY = -400.0
 
 
 func _physics_process(delta: float) -> void:
-	#playerdamagevalue=0
+	playerdamagevalue=27
 	pass

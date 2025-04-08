@@ -28,6 +28,7 @@ func _process(_delta):
 	match saved_player_position:
 		false:#$line_rep.default_color=Color.RED#(ffffff)
 			animation_player.play("red")
+			#$line_rep.default_color=Color.RED
 		true:
 			pass
 			#$line_rep.default_color=Color.GREEN

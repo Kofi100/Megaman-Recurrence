@@ -196,7 +196,7 @@ func _on_left_btn_pressed():
 
 
 func _on_main_menu_pressed():
-	get_tree().change_scene_to_file("res://levels/main_menu.tscn")
+	get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")#("res://levels/main_menu.tscn")
 
 
 func _on_right_btn_pressed():

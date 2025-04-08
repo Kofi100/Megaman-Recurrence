@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://wycuiptn0u6m"]
+
+[ext_resource type="Script" path="res://levels/level_mechanics/laser_wall_mechanic.gd" id="1_7of50"]
+
+[node name="laserWallMechanic" type="CharacterBody2D"]
+script = ExtResource("1_7of50")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 224)
+width = 8.0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 224)
+collision_mask = 7

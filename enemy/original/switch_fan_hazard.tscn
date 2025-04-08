@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dguprs0377r4l"]
+
+[ext_resource type="Script" path="res://enemy/original/switch_fan_hazard.gd" id="1_xvlst"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hkxy"]
+size = Vector2(10, 10)
+
+[node name="switchFanHazard" type="CharacterBody2D"]
+script = ExtResource("1_xvlst")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6hkxy")
+
+[node name="switchStateTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="switchStateTimer" to="." method="_on_switch_state_timer_timeout"]

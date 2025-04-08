@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnb7llkr0ofpf"]
+[gd_scene load_steps=17 format=3 uid="uid://cnb7llkr0ofpf"]
 
 [ext_resource type="Script" path="res://levels/robot_master_menu.gd" id="1_pefhl"]
 [ext_resource type="Texture2D" uid="uid://ds625p5y8oage" path="res://assets/sprites/miscelleaneous/menus/selectionrobotMasterSprite-export.png" id="2_852fl"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_u4epk"]
 [ext_resource type="AudioStream" uid="uid://dsbotvgkg27hj" path="res://assets/music/Mega Man II GB Stage Select Remix.mp3" id="5_vaglu"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="6_4f06v"]
+[ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="10_qvmrj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1tpx"]
 atlas = ExtResource("2_852fl")
@@ -202,10 +203,10 @@ text = "EXIT"
 horizontal_alignment = 1
 
 [node name="exitIndicator" type="ColorRect" parent="Node2D"]
-offset_left = 200.0
-offset_top = 208.0
-offset_right = 215.0
-offset_bottom = 213.0
+offset_left = -30.0
+offset_top = 188.0
+offset_right = -15.0
+offset_bottom = 193.0
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -261,6 +262,11 @@ theme = ExtResource("4_u4epk")
 text = "FIREMAN"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SelectArrow" type="Sprite2D" parent="."]
+position = Vector2(-28, 161)
+texture = ExtResource("10_qvmrj")
+centered = false
 
 [connection signal="timeout" from="Timers/screenTransTimer" to="." method="_on_screen_trans_timer_timeout"]
 [connection signal="finished" from="BGM/selectYourRobotMaster" to="." method="_on_select_your_robot_master_finished"]

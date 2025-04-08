@@ -37,7 +37,8 @@ var new_enemy
 	"screw_bomber": preload("res://enemy/screw_bomber.tscn"),
 	"ice_Telly":preload("res://enemy/original/ice_telly.tscn"),
 	"bombomb":preload("res://enemy/bombomb.tscn"),
-	"ice_joe":preload("res://enemy/original/ice_joe.tscn")
+	"ice_joe":preload("res://enemy/original/ice_joe.tscn"),
+	"returningMachine_Joe":preload("res://enemy/returning_machine_joe.tscn")
 }
 
 var disappear_nodes = {
@@ -132,6 +133,9 @@ func _process(_delta):
 				#print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
 		if (enemy_to_spawn == "homer" or enemy_to_spawn == "upndown" or enemy_to_spawn=="bombomb") and new_enemy == null and $spawn_homer_timer.time_left <= 0:
 			$spawn_homer_timer.start()
+		if GlobalScreenTransitionTimer.is_stopped()==false:
+			if new_enemy:
+				new_enemy.queue_free()
 			#print(name,":started respawn timer for upndown and homer")
 
 	elif entered == false and new_enemy == null:

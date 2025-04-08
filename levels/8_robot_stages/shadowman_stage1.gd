@@ -1,3 +1,4 @@
+#@tool
 extends Node2D
 signal BossDefeated
 var signalReceived: bool = false  #yep,this is a Calamity reference

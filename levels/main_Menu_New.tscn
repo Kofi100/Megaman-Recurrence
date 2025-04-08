@@ -120,6 +120,11 @@ theme = ExtResource("3_abkrt")
 text = "CHANGE 
 CONTROLS"
 
+[node name="options" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_abkrt")
+text = "OPTIONS"
+
 [node name="quit" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_abkrt")
