@@ -1,7 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtv5brsfddchf"]
+[gd_scene load_steps=9 format=3 uid="uid://dtv5brsfddchf"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud_screen_2.gd" id="1_31vcw"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="1_h6hhg"]
+[ext_resource type="Texture2D" uid="uid://bqaqitmfcnclg" path="res://assets/sprites/miscelleaneous/screen_Template_basedOnSamuelX7.png" id="2_4l1ia"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_2aixn"]
+[ext_resource type="Texture2D" uid="uid://dtp8lf4clnany" path="res://assets/sprites/miscelleaneous/menus/pause_menu_buttons.png" id="5_2efr8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgc44"]
+atlas = ExtResource("5_2efr8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1nee"]
+atlas = ExtResource("5_2efr8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntbd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgc44")
+}],
+"loop": true,
+"name": &"notSelected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1nee")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
 
 [node name="hud_Screen2" type="CanvasLayer"]
 process_mode = 3
@@ -12,30 +42,45 @@ offset_right = 259.0
 offset_bottom = 226.0
 color = Color(0, 0, 0, 1)
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(128, 112)
+texture = ExtResource("2_4l1ia")
+
 [node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(80, 75)
+position = Vector2(69, 77)
 texture = ExtResource("1_h6hhg")
 centered = false
 
 [node name="debug" type="Label" parent="."]
-offset_left = 100.0
-offset_top = 70.0
-offset_right = 150.0
-offset_bottom = 93.0
+offset_left = 87.0
+offset_top = 77.0
+offset_right = 167.0
+offset_bottom = 100.0
+theme = ExtResource("4_2aixn")
 text = "Debug"
 
 [node name="restart level" type="Label" parent="."]
-offset_left = 100.0
-offset_top = 91.0
-offset_right = 201.0
-offset_bottom = 114.0
-text = "Restart Level"
+offset_left = 87.0
+offset_top = 98.0
+offset_right = 195.0
+offset_bottom = 133.0
+theme = ExtResource("4_2aixn")
+text = "Restart 
+Level"
 
 [node name="exit" type="Label" parent="."]
-offset_left = 100.0
-offset_top = 114.0
-offset_right = 129.0
-offset_bottom = 137.0
+offset_left = 104.0
+offset_top = 253.0
+offset_right = 158.0
+offset_bottom = 276.0
+theme = ExtResource("4_2aixn")
 text = "Exit"
+
+[node name="move_HUDbtn" type="AnimatedSprite2D" parent="."]
+process_mode = 3
+position = Vector2(27, 199)
+sprite_frames = SubResource("SpriteFrames_ntbd1")
+animation = &"selected"
+flip_h = true
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

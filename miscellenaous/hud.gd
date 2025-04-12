@@ -50,6 +50,7 @@ func _process(_delta):
 	$healthbar/text_lives.text = str(GlobalScript.lives)
 	$score.text = str("SCORE:", GlobalScript.score)
 	$stage_name.text = "STAGE:\n" + GlobalScript.stage_name
+	$fps_Display.text="FPS: "+str(Engine.get_frames_per_second())
 	#print(selection_index)
 	#pause on death effect
 	if GlobalScript.health <= 0 and justDied == false:
@@ -153,7 +154,7 @@ func _process(_delta):
 	elif selection_index > 4:
 		selection_index = 1
 	if !pause_input:  #if input is not paused yet,#and selection_index!=3
-		if Input.is_action_just_pressed("pause") and GlobalScript.health > 0 and Player.playerCharacter.player_ready==true :  #and i pressed the pause button,
+		if Input.is_action_just_pressed("pause") and GlobalScript.health > 0 and Player.playerCharacter.player_ready==true and switchedMenus==false :  #and i pressed the pause button,
 			if justPausedGameManually == false and get_tree().paused == false and GlobalScript.health > 0:  #if the tree is paused/not,set it to the opposite state
 				justPausedGameManually = true
 				get_tree().paused = true

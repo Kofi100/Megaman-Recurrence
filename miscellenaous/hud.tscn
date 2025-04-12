@@ -434,6 +434,7 @@ texture = ExtResource("2_jxh0c")
 centered = false
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("9_3fjw4")
 centered = false
 
@@ -815,6 +816,15 @@ offset_bottom = 73.6667
 scale = Vector2(1.5, 1.5)
 theme = ExtResource("7_ixl55")
 text = "Timer:      :"
+
+[node name="fps_Display" type="Label" parent="."]
+offset_left = 160.0
+offset_top = 27.0
+offset_right = 258.0
+offset_bottom = 44.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+text = "FPS: 60"
 
 [node name="stage_name" type="Label" parent="."]
 visible = false

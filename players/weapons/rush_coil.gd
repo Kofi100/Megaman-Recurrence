@@ -58,6 +58,7 @@ func _physics_process(delta):
 		velocity.y=-spawn_back_speed*delta
 		$CollisionShape2D.disabled=true
 		$jump_zone/CollisionShape2D.disabled=true
+		just_landed=false
 		move_and_slide()
 	offset()
 

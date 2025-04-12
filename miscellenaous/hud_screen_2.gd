@@ -19,11 +19,18 @@ func _process(delta: float) -> void:
 		selection_Index=0
 	match selection_Index:
 		0:
-			$Arrow.global_position=$debug.global_position-Vector2(10,0)
+			$Arrow.global_position=$debug.global_position-Vector2(20,0)
 		1:
-			$Arrow.global_position=$"restart level".global_position-Vector2(10,0)
-		2:
-			$Arrow.global_position=$exit.global_position-Vector2(10,0)
+			$Arrow.global_position=$"restart level".global_position-Vector2(20,0)
+		#2:
+			#$Arrow.global_position=$exit.global_position-Vector2(10,0)
+			
+	if selection_Index!=2:
+		$Arrow.visible=true
+		$move_HUDbtn.play("notSelected")
+	else:
+		$Arrow.visible=false
+		$move_HUDbtn.play("selected")
 	if Input.is_action_just_pressed("shoot"):
 		match selection_Index:
 			0:

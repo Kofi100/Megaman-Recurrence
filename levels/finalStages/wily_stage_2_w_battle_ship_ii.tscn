@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://dffui0far5bar"]
+
+[ext_resource type="PackedScene" uid="uid://bdjbquyil6ca" path="res://assets/sprites/tilesets/test_stages/tiledProject1/wily_battleship_ii_map.tscn" id="1_puahp"]
+[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_o07xv"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_4qflo"]
+[ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="4_2epy0"]
+[ext_resource type="PackedScene" uid="uid://ber5k7q8cjftl" path="res://enemy/original/land_mine.tscn" id="5_3iu8o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhpi0"]
+size = Vector2(2560, 223)
+
+[node name="wilyStage2_WBattleShipII" type="Node2D"]
+
+[node name="wily_battleship_ii_map" parent="." instance=ExtResource("1_puahp")]
+
+[node name="megaman" parent="." instance=ExtResource("3_4qflo")]
+position = Vector2(46, 178)
+
+[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="New Camera System Addon"]
+limit_left = 0
+limit_top = 0
+limit_right = 2560
+limit_bottom = 223
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="New Camera System Addon"]
+position = Vector2(1280, 111.5)
+shape = SubResource("RectangleShape2D_yhpi0")
+
+[node name="allEnemies" type="Node2D" parent="."]
+
+[node name="enemy_spawner" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(416, 117)
+enemy_to_spawn = "returningMachine_Joe"
+
+[node name="enemy_spawner2" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(551, 149)
+enemy_to_spawn = "returningmachine_joe"
+
+[node name="enemy_spawner4" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(736, 134)
+enemy_to_spawn = "returningMachine_Joe"
+
+[node name="enemy_spawner5" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(785, 98)
+enemy_to_spawn = "sniper_joe"
+
+[node name="enemy_spawner3" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(672, 104)
+enemy_to_spawn = "ceiling_shooter"
+
+[node name="enemy_spawner6" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(838, 168)
+enemy_to_spawn = "spikyoall"
+
+[node name="enemy_spawner7" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1059, 150)
+enemy_to_spawn = "spikyoall"
+
+[node name="enemy_spawner8" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1108, 117)
+enemy_to_spawn = "sniper_joe"
+
+[node name="enemy_spawner9" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1297, 120)
+enemy_to_spawn = "spikyoall"
+
+[node name="enemy_spawner10" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1345, 56)
+enemy_to_spawn = "returningMachine_Joe"
+
+[node name="enemy_spawner11" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1378, 197)
+enemy_to_spawn = "sniper_joe"
+
+[node name="enemy_spawner12" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1713, 197)
+enemy_to_spawn = "spikyoall"
+
+[node name="enemy_spawner13" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1872, 120)
+enemy_to_spawn = "ceiling_shooter"
+
+[node name="enemy_spawner14" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1600, 168)
+enemy_to_spawn = "ceiling_shooter"
+
+[node name="enemy_spawner15" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(1633, 100)
+enemy_to_spawn = "sniper_joe"
+
+[node name="enemy_spawner16" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2010, 120)
+enemy_to_spawn = "ceiling_shooter"
+
+[node name="enemy_spawner17" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2160, 151)
+enemy_to_spawn = "returningmachine_joe"
+
+[node name="enemy_spawner18" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2272, 120)
+enemy_to_spawn = "ceiling_shooter"
+
+[node name="enemy_spawner20" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2392, 197)
+enemy_to_spawn = "spikyoall"
+
+[node name="enemy_spawner19" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2240, 197)
+enemy_to_spawn = "spikyoall"
+
+[node name="landMine" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(944, 197)
+
+[node name="landMine2" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(999, 197)

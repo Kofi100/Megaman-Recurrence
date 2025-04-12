@@ -35,10 +35,10 @@ var new_enemy
 	"grenade_man": preload("res://enemy/original/grenade_man.tscn"),
 	"burner_joe": preload("res://enemy/original/sniper_joe_variant_fire.tscn"),
 	"screw_bomber": preload("res://enemy/screw_bomber.tscn"),
-	"ice_Telly":preload("res://enemy/original/ice_telly.tscn"),
+	"ice_telly":preload("res://enemy/original/ice_telly.tscn"),
 	"bombomb":preload("res://enemy/bombomb.tscn"),
 	"ice_joe":preload("res://enemy/original/ice_joe.tscn"),
-	"returningMachine_Joe":preload("res://enemy/returning_machine_joe.tscn")
+	"returningmachine_joe":preload("res://enemy/returning_machine_joe.tscn")
 }
 
 var disappear_nodes = {
@@ -70,6 +70,7 @@ func _enter_tree():
 
 func _process(_delta):
 	display_node = get_node_or_null("enemy_display_sprite")
+	enemy_to_spawn=enemy_to_spawn.to_lower() #turns enemy to spawn to lower case for easier naming and tracking
 	if visibility == true:
 		for i in disappear_nodes:
 			if disappear_nodes.has(i) and i <= 4:

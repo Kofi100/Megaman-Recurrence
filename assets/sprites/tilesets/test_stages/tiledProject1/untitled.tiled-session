@@ -1,0 +1,45 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "wily_battleship_ii_map.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "debug_tileset_basic2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "wily_battleship_ii_map.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 253.66666666666666,
+                "y": 181.33333333333334
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/Dr. Dominic Otchere/Desktop/tiledProject1",
+    "last.imagePath": "C:/Users/Dr. Dominic Otchere/Desktop/tiledProject1",
+    "map.height": 500,
+    "map.lastUsedExportFilter": "Godot 4 Scene files (*.tscn)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 500,
+    "openFiles": [
+        "wily_battleship_ii_map.tmx",
+        "debug_tileset_basic2.tsx"
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "debug_tileset_basic2.tsx",
+        "wily_battleship_ii_map.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

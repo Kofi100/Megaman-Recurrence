@@ -773,7 +773,7 @@ func chargeeffect():
 var rush_jet = preload("res://players/weapons/rush_jet.tscn")
 var rush_jet_instance
 var rCoilNo = 0
-
+var useBuster_WhenRCoil:bool=false
 
 func create_weapons():
 	MegamanAndItems.charge_timer = 0
@@ -791,6 +791,24 @@ func create_weapons():
 						rush_coil_instance.global_position = Vector2(global_position.x - 20, global_position.y - 50)  #100
 					if rush_coil_instance:
 						rush_coil_instance.connect("tree_exited", rCoilLeft)
+				if rCoilNo!=0 and useBuster_WhenRCoil==true:
+					projectile = lemon.instantiate()
+					get_parent().add_child(projectile)
+					if anim.flip_h==false:
+						projectile.direction="left"
+						if is_on_floor():
+							projectile.global_position = $all_proj_spawn_points/ground_left.global_position
+						elif not is_on_floor():
+							anim.play("shoot_in_air")
+							projectile.global_position = $all_proj_spawn_points/air_left.global_position
+					else:
+						projectile.direction="right"
+						if is_on_floor():
+							projectile.global_position = $all_proj_spawn_points/ground_right.global_position
+						elif not is_on_floor():
+							anim.play("shoot_in_air")
+							projectile.global_position = $all_proj_spawn_points/air_right.global_position
+					$all_sounds/shoot.play()
 			2:
 				if MegamanAndItems.weapon2energy > 0:
 					MegamanAndItems.weapon2energy -= 3
@@ -814,7 +832,10 @@ func create_weapons():
 							missile_instance.direction = "right"
 						false:
 							missile_instance.direction = "left"
-
+	
+	if rush_coil_instance!=null and rush_coil_instance.just_landed==true:
+		useBuster_WhenRCoil=true
+	else:useBuster_WhenRCoil=false
 
 func rCoilLeft():
 	rCoilNo -= 1
