@@ -69,6 +69,7 @@ func _enter_tree():
 
 
 func _process(_delta):
+	print(GlobalScreenTransitionTimer.time_left)
 	display_node = get_node_or_null("enemy_display_sprite")
 	enemy_to_spawn=enemy_to_spawn.to_lower() #turns enemy to spawn to lower case for easier naming and tracking
 	if visibility == true:
@@ -134,9 +135,9 @@ func _process(_delta):
 				#print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
 		if (enemy_to_spawn == "homer" or enemy_to_spawn == "upndown" or enemy_to_spawn=="bombomb") and new_enemy == null and $spawn_homer_timer.time_left <= 0:
 			$spawn_homer_timer.start()
-		if GlobalScreenTransitionTimer.is_stopped()==false:
-			if new_enemy:
-				new_enemy.queue_free()
+		#if GlobalScreenTransitionTimer.is_stopped()==false:
+			#if new_enemy:
+				#new_enemy.queue_free()
 			#print(name,":started respawn timer for upndown and homer")
 
 	elif entered == false and new_enemy == null:
@@ -189,6 +190,15 @@ func _process(_delta):
 		display_enemy("spikyoall", 12)
 		display_enemy("ceiling_shooter", 13)
 
+func _physics_process(delta: float) -> void:
+	#code to delete spawned enemies
+	#used to be at _process() fxn but now here cause it works here.
+	#i think it works cause all instances of enemy movements and codes
+	#work at _physics_process() fxn.
+	if GlobalScreenTransitionTimer.is_stopped()==false:
+			if new_enemy!=null: #using !=null cause i think just using "if new_enemy" can detect new_enemy variable 
+				#but cannot detect enemy instance if it gets deleted.
+				new_enemy.queue_free()
 
 func display_enemy(enemy_name: String, frame_display: int):
 	if enemy_to_spawn == enemy_name:

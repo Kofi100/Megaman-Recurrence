@@ -153,3 +153,7 @@ func _on_shadow_man_stage_1_pressed() -> void:
 
 func _on_iceman_stage_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/8_robot_stages/iceman_stage.tscn")
+
+
+func _on_wily_stage_2_wily_battle_ship_pressed() -> void:
+	get_tree().change_scene_to_file("res://levels/finalStages/wily_stage_2_w_battle_ship_ii.tscn")

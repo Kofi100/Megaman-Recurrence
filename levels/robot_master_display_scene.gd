@@ -13,7 +13,7 @@ func _ready():
 		tween.tween_property($stuffToMakeDisappear/fireMan,"position",Vector2(125,101),1.5).from(Vector2(125,0))
 		tween.connect("finished",triggerNameEffect)
 		$stuffToMakeDisappear/nameOfRobotMaster.text="FIREMAN"
-	if robotMaster==2:
+	if robotMaster==3:
 		var tween=create_tween()
 		tween.tween_property($stuffToMakeDisappear/shadowMan,"position",Vector2(149,85),1.5).from(Vector2(149,0))
 		tween.connect("finished",triggerNameEffect)

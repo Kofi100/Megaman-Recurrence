@@ -1,37 +1,227 @@
-[gd_scene load_steps=7 format=3 uid="uid://dffui0far5bar"]
+[gd_scene load_steps=17 format=3 uid="uid://dffui0far5bar"]
 
 [ext_resource type="PackedScene" uid="uid://bdjbquyil6ca" path="res://assets/sprites/tilesets/test_stages/tiledProject1/wily_battleship_ii_map.tscn" id="1_puahp"]
 [ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_o07xv"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_4qflo"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="4_2epy0"]
 [ext_resource type="PackedScene" uid="uid://ber5k7q8cjftl" path="res://enemy/original/land_mine.tscn" id="5_3iu8o"]
+[ext_resource type="AudioStream" uid="uid://bry4488mfekun" path="res://assets/music/Spark The Electric Jester - Megaraph Fleet (Remix).mp3" id="6_a5jn4"]
+[ext_resource type="Script" path="res://resources/bgm_group.gd" id="7_t2d6f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhpi0"]
 size = Vector2(2560, 223)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cfac"]
+size = Vector2(256, 223)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prt11"]
+size = Vector2(256, 223)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yv5jj"]
+size = Vector2(256, 223)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6508b"]
+size = Vector2(720, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjpfd"]
+size = Vector2(256, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l53id"]
+size = Vector2(256, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp6n1"]
+size = Vector2(560, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_br1tr"]
+size = Vector2(416, 224)
 
 [node name="wilyStage2_WBattleShipII" type="Node2D"]
 
 [node name="wily_battleship_ii_map" parent="." instance=ExtResource("1_puahp")]
 
 [node name="megaman" parent="." instance=ExtResource("3_4qflo")]
-position = Vector2(46, 178)
+position = Vector2(3767.14, 577.92)
 
-[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="allCameras" type="Node2D" parent="."]
+
+[node name="New Camera System Addon" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="New Camera System Addon"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon"]
 limit_left = 0
 limit_top = 0
 limit_right = 2560
 limit_bottom = 223
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="New Camera System Addon"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon"]
 position = Vector2(1280, 111.5)
 shape = SubResource("RectangleShape2D_yhpi0")
+
+[node name="New Camera System Addon2" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(2561, 0)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon2"]
+limit_left = 2560
+limit_top = 0
+limit_right = 2816
+limit_bottom = 223
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon2"]
+position = Vector2(127, 112)
+shape = SubResource("RectangleShape2D_2cfac")
+
+[node name="New Camera System Addon3" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(2817, 0)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon3"]
+limit_left = 2816
+limit_top = 0
+limit_right = 3072
+limit_bottom = 223
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon3"]
+position = Vector2(127, 112)
+shape = SubResource("RectangleShape2D_prt11")
+
+[node name="New Camera System Addon4" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(2817, 223)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon4"]
+limit_left = 2816
+limit_top = 223
+limit_right = 3072
+limit_bottom = 446
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon4"]
+position = Vector2(127, 112)
+shape = SubResource("RectangleShape2D_prt11")
+
+[node name="New Camera System Addon5" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(2817, 223)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon5"]
+limit_left = 2816
+limit_top = 447
+limit_right = 3072
+limit_bottom = 670
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon5"]
+position = Vector2(127, 336)
+shape = SubResource("RectangleShape2D_yv5jj")
+
+[node name="New Camera System Addon6" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(2817, 223)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon6"]
+limit_left = 3072
+limit_top = 448
+limit_right = 3792
+limit_bottom = 672
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon6"]
+position = Vector2(615, 337)
+shape = SubResource("RectangleShape2D_6508b")
+
+[node name="New Camera System Addon7" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(3792, 448)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon7"]
+limit_left = 3792
+limit_top = 448
+limit_right = 4048
+limit_bottom = 672
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon7"]
+position = Vector2(128, 112)
+shape = SubResource("RectangleShape2D_mjpfd")
+
+[node name="New Camera System Addon8" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(4048, 448)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon8"]
+limit_left = 4048
+limit_top = 448
+limit_right = 4304
+limit_bottom = 672
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon8"]
+position = Vector2(128, 112)
+shape = SubResource("RectangleShape2D_l53id")
+
+[node name="New Camera System Addon9" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(4304, 448)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon9"]
+limit_left = 4304
+limit_top = 448
+limit_right = 4864
+limit_bottom = 672
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon9"]
+position = Vector2(280, 112)
+shape = SubResource("RectangleShape2D_hp6n1")
+
+[node name="New Camera System Addon10" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(4864, 448)
+script = ExtResource("2_o07xv")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon10"]
+limit_left = 4864
+limit_top = 448
+limit_right = 5280
+limit_bottom = 672
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon10"]
+position = Vector2(208, 112)
+shape = SubResource("RectangleShape2D_br1tr")
 
 [node name="allEnemies" type="Node2D" parent="."]
 
@@ -111,6 +301,58 @@ enemy_to_spawn = "ceiling_shooter"
 position = Vector2(2392, 197)
 enemy_to_spawn = "spikyoall"
 
+[node name="enemy_spawner21" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2992, 614)
+enemy_to_spawn = "returningmachine_joe"
+
+[node name="enemy_spawner22" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2935, 294)
+enemy_to_spawn = "spikyoall"
+
+[node name="enemy_spawner23" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2935, 392)
+enemy_to_spawn = "ceiling_shooter"
+
+[node name="enemy_spawner24" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2945, 518)
+enemy_to_spawn = "sniper_joe"
+
+[node name="enemy_spawner25" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(3280, 646)
+enemy_to_spawn = "sniper_joe"
+
+[node name="enemy_spawner26" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(3424, 646)
+enemy_to_spawn = "sniper_joe"
+
+[node name="enemy_spawner27" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(3552, 646)
+enemy_to_spawn = "sniper_joe"
+
+[node name="enemy_spawner28" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(3728, 615)
+enemy_to_spawn = "returningmachine_joe"
+
+[node name="enemy_spawner30" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(4720, 599)
+enemy_to_spawn = "returningmachine_joe"
+
+[node name="enemy_spawner32" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(4449, 568)
+enemy_to_spawn = "returningmachine_joe"
+
+[node name="enemy_spawner33" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(4519, 536)
+enemy_to_spawn = "returningmachine_joe"
+
+[node name="enemy_spawner31" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(5072, 614)
+enemy_to_spawn = "returningmachine_joe"
+
+[node name="enemy_spawner29" parent="allEnemies" instance=ExtResource("4_2epy0")]
+position = Vector2(2912, 102)
+enemy_to_spawn = "returningmachine_joe"
+
 [node name="enemy_spawner19" parent="allEnemies" instance=ExtResource("4_2epy0")]
 position = Vector2(2240, 197)
 enemy_to_spawn = "spikyoall"
@@ -120,3 +362,31 @@ position = Vector2(944, 197)
 
 [node name="landMine2" parent="allEnemies" instance=ExtResource("5_3iu8o")]
 position = Vector2(999, 197)
+
+[node name="landMine3" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(3200, 647)
+
+[node name="landMine4" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(3322, 647)
+
+[node name="landMine5" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(3373, 647)
+
+[node name="landMine6" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(3494, 647)
+
+[node name="landMine7" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(3616, 646)
+
+[node name="landMine8" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(3680, 646)
+
+[node name="landMine9" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+position = Vector2(3738, 616)
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("6_a5jn4")
+autoplay = true
+parameters/looping = true
+script = ExtResource("7_t2d6f")

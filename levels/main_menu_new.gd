@@ -9,6 +9,7 @@ var options
 func _ready() -> void:
 	$main_Menu_BGM.play()
 	$ScrollContainer.ensure_control_visible(menu_Items[MenuOptionNo])
+	$arrowBlinkTimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -68,3 +69,7 @@ func _input(event: InputEvent) -> void:
 			
 		
 		MenuOptionNo = clampi(MenuOptionNo, 0, 5)
+
+
+func _on_arrow_blink_timer_timeout() -> void:
+	$SelectArrow.visible=!$SelectArrow.visible

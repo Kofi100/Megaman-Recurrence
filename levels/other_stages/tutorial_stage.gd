@@ -73,3 +73,9 @@ func pick_up_current_key_binding(action:String,keys_to_checked:InputEventAction,
 			array_of_inputs_keys[array_position]=OS.get_keycode_string(keys.get_physical_keycode())
 		else:
 			array_of_inputs_keys[array_position]=OS.get_keycode_string(keys.get_keycode())
+
+
+func _on_detect_player_body_entered(body: Node2D) -> void:
+	#if player enters leave_level_node,the bgm stops.
+	if body.is_in_group("player"):
+		$bgm.stop()
