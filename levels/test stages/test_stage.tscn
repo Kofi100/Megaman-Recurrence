@@ -110,7 +110,7 @@ tile_map_data = PackedByteArray("AAABAAEAAAADAAAAAAABAAIAAAADAAAAAAABAAMAAAADAAA
 tile_set = SubResource("TileSet_qvxqa")
 
 [node name="megaman" parent="." instance=ExtResource("2_mabb1")]
-position = Vector2(2496, 45)
+position = Vector2(2190, 114)
 
 [node name="reserve_marker1" type="Marker2D" parent="."]
 position = Vector2(-16, 167)

@@ -34,13 +34,13 @@ func _process(delta):
 				var tween=create_tween()
 				tween.tween_property(picked_node_capsule,'global_position',node_to_go_to.global_position,.5)
 				tween.connect('finished',activate_capsule)
-			elif picked_node_capsule==null:
+			elif picked_node_capsule.isDead==true:#picked_node_capsule==null:
 				picked_capsule=false
 	#		var new_positionx=move_toward(get_node(weapon_capsules[randomize_boss_picker]).global_position.x,node_to_go_to.global_position.x,1000*delta)
 	#		get_node(weapon_capsules[randomize_boss_picker]).global_position.x=new_positionx
 	#		var new_positiony=move_toward(get_node(weapon_capsules[randomize_boss_picker]).global_position.y,node_to_go_to.global_position.y,1000*delta)
 	#		get_node(weapon_capsules[randomize_boss_picker]).global_position.y=new_positiony
-		if picked_node_capsule==null and $all_timers/active_timer.time_left>0:
+		if picked_node_capsule.isDead==true and $all_timers/active_timer.time_left>0:
 			picked_capsule=false
 			$all_timers/active_timer.stop()
 		
@@ -65,8 +65,10 @@ func _process(delta):
 		$bosses_display.visible=false
 		$screen_flicker.visible=false
 		$screen_flicker.stop()
-	if get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
+	print(get_node(weapon_capsules[0]).health)
+	if get_node(weapon_capsules[0]).health==0 and get_node(weapon_capsules[1]).health==0 and get_node(weapon_capsules[2]).health==0:#get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
 		$explosion.set_emitting(true)
+		
 		#$explosion.reparent(get_tree().current_scene)
 		archive_engine_defeat_trigger=true
 		#queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cnb7llkr0ofpf"]
+[gd_scene load_steps=25 format=3 uid="uid://cnb7llkr0ofpf"]
 
 [ext_resource type="Script" path="res://levels/robot_master_menu.gd" id="1_pefhl"]
 [ext_resource type="Texture2D" uid="uid://ds625p5y8oage" path="res://assets/sprites/miscelleaneous/menus/selectionrobotMasterSprite-export.png" id="2_852fl"]
@@ -10,8 +10,10 @@
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_u4epk"]
 [ext_resource type="AudioStream" uid="uid://dsbotvgkg27hj" path="res://assets/music/Mega Man II GB Stage Select Remix.mp3" id="5_vaglu"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="6_4f06v"]
+[ext_resource type="Texture2D" uid="uid://btbx28mqdk60o" path="res://assets/sprites/miscelleaneous/menus/robotMasterPortraits.png" id="9_pdk28"]
 [ext_resource type="Texture2D" uid="uid://cpopo8qyclw50" path="res://assets/sprites/miscelleaneous/1KofiSelected_Samuel_X7_Edited.png" id="9_xcjo7"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="10_qvmrj"]
+[ext_resource type="Texture2D" uid="uid://bvtaowkpq2e15" path="res://assets/sprites/miscelleaneous/1KofiCursor_Samuel_X7.png" id="10_v3hkl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1tpx"]
 atlas = ExtResource("2_852fl")
@@ -116,10 +118,10 @@ _data = {
 [node name="robotMasterMenu" type="Node2D"]
 script = ExtResource("1_pefhl")
 spriteDict = {
-1: NodePath("Node2D/robotMaster1"),
-2: NodePath("Node2D/robotMaster2"),
-3: NodePath("Node2D/robotMaster3"),
-4: NodePath("Node2D/robotMaster4")
+1: NodePath("Node2D/robotMasterOld1"),
+2: NodePath("Node2D/robotMasterOld2"),
+3: NodePath("Node2D/robotMasterOld3"),
+4: NodePath("Node2D/robotMasterOld4")
 }
 
 [node name="ColorRect6" type="ColorRect" parent="."]
@@ -174,36 +176,36 @@ offset_bottom = 326.0
 texture = ExtResource("2_std68")
 centered = false
 
-[node name="robotMaster1" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMasterOld1" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-272, 66)
 sprite_frames = SubResource("SpriteFrames_ywjvu")
 animation = &"notSelected"
 centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/robotMaster1"]
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/robotMasterOld1"]
 visible = false
 position = Vector2(32, 32)
 texture = ExtResource("3_o04lh")
 
-[node name="robotMaster2" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMasterOld2" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-138, -51)
 sprite_frames = SubResource("SpriteFrames_ywjvu")
 animation = &"notSelected"
 centered = false
 
-[node name="robotMaster3" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMasterOld3" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-79, 67)
 sprite_frames = SubResource("SpriteFrames_ywjvu")
 animation = &"notSelected"
 centered = false
 
-[node name="robotMaster4" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMasterOld4" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-176, 148)
 sprite_frames = SubResource("SpriteFrames_ywjvu")
 animation = &"notSelected"
 centered = false
 
-[node name="robotMaster5" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMasterOld5" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-176, 66)
 sprite_frames = SubResource("SpriteFrames_ywjvu")
 animation = &"notSelected"
@@ -243,38 +245,76 @@ offset_right = -19.9957
 offset_bottom = 69.4634
 texture_normal = ExtResource("3_o04lh")
 
-[node name="robotMasterAlt5" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMaster0" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(48, 46)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
 animation = &"notSelected"
 frame_progress = 0.347499
 
-[node name="fireman" type="AnimatedSprite2D" parent="Node2D/robotMasterAlt5"]
+[node name="fireman" type="AnimatedSprite2D" parent="Node2D/robotMaster0"]
+visible = false
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_fk41j")
 autoplay = "default"
 frame = 1
 frame_progress = 0.707456
 
-[node name="robotMasterAlt6" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMaster1" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(128, 46)
+sprite_frames = SubResource("SpriteFrames_ibsq6")
+animation = &"notSelected"
+frame_progress = 0.347499
+
+[node name="Portrait_SlumberMan_Samuel_X7" type="Sprite2D" parent="Node2D/robotMaster1"]
+texture = ExtResource("9_pdk28")
+hframes = 9
+
+[node name="robotMaster2" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(208, 46)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
 animation = &"notSelected"
 
-[node name="shadowman" type="Sprite2D" parent="Node2D/robotMasterAlt6"]
+[node name="shadowman" type="Sprite2D" parent="Node2D/robotMaster2"]
+visible = false
 position = Vector2(1, -9)
 texture = ExtResource("4_swpwx")
 hframes = 12
 
-[node name="robotMasterAlt7" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMaster3" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(48, 110)
+sprite_frames = SubResource("SpriteFrames_ibsq6")
+animation = &"notSelected"
+
+[node name="robotMaster4" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(128, 110)
+sprite_frames = SubResource("SpriteFrames_ibsq6")
+animation = &"notSelected"
+
+[node name="robotMaster5" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(208, 110)
+sprite_frames = SubResource("SpriteFrames_ibsq6")
+animation = &"notSelected"
+
+[node name="robotMaster6" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(48, 174)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
 animation = &"selected"
 
-[node name="robotMasterAlt8" type="AnimatedSprite2D" parent="Node2D"]
+[node name="robotMaster7" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(128, 174)
+sprite_frames = SubResource("SpriteFrames_ibsq6")
+animation = &"notSelected"
+
+[node name="robotMaster8" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(208, 174)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
 animation = &"notSelected"
+
+[node name="MegamanCursor" type="Sprite2D" parent="Node2D"]
+position = Vector2(128, 110)
+texture = ExtResource("10_v3hkl")
+hframes = 3
+vframes = 3
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -332,6 +372,17 @@ offset_bottom = 94.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_u4epk")
 text = "FIREMAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="slumberMan" type="Label" parent="all_text"]
+offset_left = 85.0
+offset_top = 72.0
+offset_right = 251.0
+offset_bottom = 90.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_u4epk")
+text = "SLUMBER MAN"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -20,10 +20,10 @@ func _physics_process(delta):
 			match direction:
 				"left":
 					#rotation_degrees=180
-					$anim.flip_h=true
+					$anim.flip_h=false
 					velocity.x=-SPEED*delta
 				"right":
-					$anim.flip_h=false
+					$anim.flip_h=true
 					velocity.x= SPEED*delta
 		"blocked":
 			match direction:

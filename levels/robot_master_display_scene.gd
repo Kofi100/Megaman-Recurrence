@@ -8,12 +8,12 @@ func _ready():
 	$BGM.play()
 	$stuffToMakeDisappear/fireMan.global_position=Vector2(0,-100);$stuffToMakeDisappear/shadowMan.global_position=Vector2(0,-100)
 	$stuffToMakeDisappear/nameOfRobotMaster.visible_ratio=0
-	if robotMaster==1:
+	if robotMaster==0:
 		var tween=create_tween()
 		tween.tween_property($stuffToMakeDisappear/fireMan,"position",Vector2(125,101),1.5).from(Vector2(125,0))
 		tween.connect("finished",triggerNameEffect)
 		$stuffToMakeDisappear/nameOfRobotMaster.text="FIREMAN"
-	if robotMaster==3:
+	if robotMaster==2:
 		var tween=create_tween()
 		tween.tween_property($stuffToMakeDisappear/shadowMan,"position",Vector2(149,85),1.5).from(Vector2(149,0))
 		tween.connect("finished",triggerNameEffect)

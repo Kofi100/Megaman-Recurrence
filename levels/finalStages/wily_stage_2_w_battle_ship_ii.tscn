@@ -40,7 +40,7 @@ size = Vector2(416, 224)
 [node name="wily_battleship_ii_map" parent="." instance=ExtResource("1_puahp")]
 
 [node name="megaman" parent="." instance=ExtResource("3_4qflo")]
-position = Vector2(3767.14, 577.92)
+position = Vector2(34, 178)
 
 [node name="allCameras" type="Node2D" parent="."]
 

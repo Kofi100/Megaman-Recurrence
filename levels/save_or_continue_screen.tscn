@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvt81ehsm7l7v"]
+
+[ext_resource type="Script" path="res://levels/save_or_continue_screen.gd" id="1_u3ahv"]
+[ext_resource type="Texture2D" uid="uid://bqaqitmfcnclg" path="res://assets/sprites/miscelleaneous/screen_Template_basedOnSamuelX7.png" id="1_yw8dk"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="2_iwhdd"]
+[ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="3_2ixme"]
+
+[node name="saveOrContinueScreen" type="Node2D"]
+script = ExtResource("1_u3ahv")
+
+[node name="ScreenTemplateBasedOnSamuelX7" type="Sprite2D" parent="."]
+texture = ExtResource("1_yw8dk")
+centered = false
+
+[node name="saveGame" type="Label" parent="."]
+offset_left = 65.0
+offset_top = 80.0
+offset_right = 199.0
+offset_bottom = 96.0
+theme = ExtResource("2_iwhdd")
+text = "SAVE GAME"
+
+[node name="quit" type="Label" parent="."]
+offset_left = 65.0
+offset_top = 112.0
+offset_right = 221.0
+offset_bottom = 147.0
+theme = ExtResource("2_iwhdd")
+text = "QUIT to main
+menu"
+
+[node name="continue" type="Label" parent="."]
+offset_left = 65.0
+offset_top = 96.0
+offset_right = 185.0
+offset_bottom = 112.0
+theme = ExtResource("2_iwhdd")
+text = "CONTINUE"
+
+[node name="SelectArrow" type="Sprite2D" parent="."]
+position = Vector2(52, 138)
+texture = ExtResource("3_2ixme")
+centered = false
+
+[node name="arrowBlinkTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="arrowBlinkTimer" to="." method="_on_arrow_blink_timer_timeout"]

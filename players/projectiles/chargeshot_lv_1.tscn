@@ -1,20 +1,20 @@
 [gd_scene load_steps=9 format=3 uid="uid://c168kb8g4tb1j"]
 
 [ext_resource type="Script" path="res://players/projectiles/chargeshot_lv_1.gd" id="1_kmh8a"]
-[ext_resource type="Texture2D" uid="uid://c14i2tnrsasq1" path="res://assets/sprites/player/projectiles/chargeshot_idea2.png" id="2_e4exx"]
+[ext_resource type="Texture2D" uid="uid://dwm7msnrvym47" path="res://assets/sprites/player/projectiles/1Charge1_SamuelX7.png" id="2_5cgws"]
 [ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="3_t5chd"]
 [ext_resource type="Script" path="res://levels/sfx_group.gd" id="4_bhgv0"]
 [ext_resource type="AudioStream" uid="uid://dunhlg1k3ovd1" path="res://assets/sounds/bounced_attack.wav" id="5_8pwpq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_inser"]
-atlas = ExtResource("2_e4exx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq82g"]
+atlas = ExtResource("2_5cgws")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ibpir"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_inser")
+"texture": SubResource("AtlasTexture_vq82g")
 }],
 "loop": true,
 "name": &"chargeshot_lv1",

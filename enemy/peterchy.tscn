@@ -84,6 +84,7 @@ position = Vector2(1.16667, -21.9167)
 scale = Vector2(10.05, 3.10833)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -22.3333
 offset_top = -32.3333
 offset_right = 24.6667
@@ -91,6 +92,7 @@ offset_bottom = -6.33334
 text = "speed"
 
 [node name="index" type="Label" parent="."]
+visible = false
 offset_left = -19.3333
 offset_top = -35.3333
 offset_right = 52.6667

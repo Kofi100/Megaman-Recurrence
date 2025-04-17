@@ -10,11 +10,11 @@ var damagevalue = 1
 
 func _ready():
 	GlobalScript.lemons_on_screen_no += 1
-	match direction:
-		"left":
-			scale.x = -1
-		"right":
-			pass
+	#match direction:
+		#"left":
+			#pass
+		#"right":
+			#scale.x = -1
 
 
 func _physics_process(delta):
@@ -23,8 +23,10 @@ func _physics_process(delta):
 			match direction:
 				"left":
 					velocity.x = -SPEED * delta
+					anim.flip_h=false
 				"right":
 					velocity.x = SPEED * delta
+					anim.flip_h=true
 		"blocked":
 			match direction:
 				"left":

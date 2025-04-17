@@ -19,7 +19,7 @@ func _ready():
 		velocity.x=SPEED
 
 func _physics_process(delta):
-	$Label.text=str(SPEED);$index.text=str(index)
+	#$Label.text=str(SPEED);$index.text=str(index)
 	var distance=GlobalScript.playerposx-global_position.x
 	if not is_on_floor():
 		velocity.y += gravity * delta

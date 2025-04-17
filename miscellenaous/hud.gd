@@ -227,7 +227,7 @@ func _process(_delta):
 			$pause_screen_setup/buttons/quitStageBtn.play("selected")
 			if Input.is_action_just_pressed("shoot"):
 				get_tree().paused=false
-				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
+				get_tree().change_scene_to_file("res://levels/save_or_continue_screen.tscn")
 		else:
 			$pause_screen_setup/buttons/quitStageBtn.play("notSelected")
 	#print($pause_screen_setup/ProgressBar.value,previous_value)

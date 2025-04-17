@@ -118,6 +118,7 @@ layer_1/tile_data = PackedInt32Array(0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0
 position = Vector2(49, 211)
 
 [node name="bgm" type="AudioStreamPlayer" parent="." groups=["bgm"]]
+process_mode = 3
 stream = ExtResource("4_iu8v1")
 
 [node name="all_text" type="Node2D" parent="."]
