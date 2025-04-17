@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cudcle0fy8bip"]
+
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_ggwvb"]
+[ext_resource type="Script" path="res://levels/credits_screen.gd" id="1_nwi1w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2bqx1"]
+
+[node name="credits_Screen" type="Node2D"]
+script = ExtResource("1_nwi1w")
+resetTextInCode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 255.0
+offset_bottom = 224.0
+theme = ExtResource("1_ggwvb")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2bqx1")
+bbcode_enabled = true
+text = "[center]CREDITS
+-------------
+
+SPRITES
+-------------
+
+Samuel_X7
+Kofi K
+
+Music
+-------------
+
+Capcom
+LakeFerperd
+GalaxyTrail
+Berserk Boy 
+Games
+[/center]"

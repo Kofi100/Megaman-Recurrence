@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=62 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -7,7 +7,6 @@
 [ext_resource type="Shader" path="res://players/megaman.gdshader" id="4_rtyrl"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="6_hjfwy"]
 [ext_resource type="AudioStream" uid="uid://crijrqyswqhij" path="res://assets/sounds/hurt.wav" id="6_n1lyq"]
-[ext_resource type="AudioStream" uid="uid://difgv56gvr2pr" path="res://assets/sounds/land.wav" id="6_qyqol"]
 [ext_resource type="AudioStream" uid="uid://d1n3khoiibs67" path="res://assets/sounds/shoot.wav" id="7_im07x"]
 [ext_resource type="Script" path="res://levels/sfx_group.gd" id="8_d6231"]
 [ext_resource type="AudioStream" uid="uid://cmg87ibsgq5t0" path="res://assets/sounds/chargeeffect.wav" id="9_pqlrj"]
@@ -566,10 +565,6 @@ debug_color = Color(0.988235, 0.109804, 0, 0.32549)
 
 [node name="stun" type="AudioStreamPlayer" parent="all_sounds"]
 stream = ExtResource("6_n1lyq")
-script = ExtResource("8_d6231")
-
-[node name="land" type="AudioStreamPlayer" parent="all_sounds"]
-stream = ExtResource("6_qyqol")
 script = ExtResource("8_d6231")
 
 [node name="shoot" type="AudioStreamPlayer" parent="all_sounds"]

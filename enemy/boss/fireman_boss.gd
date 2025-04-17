@@ -63,7 +63,7 @@ func _physics_process(delta):
 					velocity.y=-20000*delta #-3000
 					overall_speed=distance_x*(SPEED/3)#global_position.distance_to(GlobalScript.player.global_position)
 					animated_sprite_2d.play("jump")
-					$land.play()
+					#$land.play()
 					#jump_times+=1
 				
 				

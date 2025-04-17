@@ -66,6 +66,7 @@ var justLeftIce: bool = false
 
 
 func _ready():
+	
 	playerCharacter = self
 	#health
 	#key_dictionary.resize(9)
@@ -95,7 +96,7 @@ func _ready():
 #endregion
 
 	if GlobalScript.restarted_level == false:
-		GlobalScript.score = 0
+		#GlobalScript.score = 0
 		GlobalScript.reset_level_timer()
 		GlobalScript.start_level_timer()
 		GlobalScript.save_savepoint_data()
@@ -248,7 +249,8 @@ func _physics_process(delta):
 		if jump_play_effect_timer < 5:
 			jump_play_effect_timer += 1
 			if jump_play_effect_timer == 1:
-				$all_sounds/land.play()
+				#$all_sounds/land.play()
+				pass
 				#animation_player_2.play('screen_shake') #for testing screen shake later
 	elif not is_on_floor():
 		jump_play_effect_timer = 0
@@ -446,7 +448,7 @@ func _physics_process(delta):
 				if GlobalScript.health <= 0:
 					$restart_timer.start(3.5)
 					is_dead = true
-					GlobalScript.lives = GlobalScript.lives - 1
+					#GlobalScript.lives = GlobalScript.lives - 1
 					var explosion_scene = preload("res://miscellenaous/effects/explosion_scene.tscn")
 					var explosion_scene_instance_or_node = explosion_scene.instantiate()
 					get_parent().add_child(explosion_scene_instance_or_node)
