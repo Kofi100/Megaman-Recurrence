@@ -69,7 +69,7 @@ func _enter_tree():
 
 
 func _process(_delta):
-	print(GlobalScreenTransitionTimer.time_left)
+	#print(GlobalScreenTransitionTimer.time_left)
 	display_node = get_node_or_null("enemy_display_sprite")
 	enemy_to_spawn=enemy_to_spawn.to_lower() #turns enemy to spawn to lower case for easier naming and tracking
 	if visibility == true:

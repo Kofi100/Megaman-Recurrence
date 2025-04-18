@@ -53,13 +53,14 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_be7r0"]
+resource_local_to_scene = true
 shader = ExtResource("9_1ufh6")
-shader_parameter/outline_color_original = null
-shader_parameter/bodycolororiginal1 = null
-shader_parameter/bodycolororiginal2 = null
+shader_parameter/outline_color_original = Color(0, 0, 0, 1)
+shader_parameter/bodycolororiginal1 = Color(0.988235, 0.988235, 0.988235, 1)
+shader_parameter/bodycolororiginal2 = Color(0.988235, 0.894118, 0.627451, 1)
 shader_parameter/outlinecolor = null
-shader_parameter/bodycolori = null
-shader_parameter/bodycolorii = null
+shader_parameter/bodycolori = Color(0, 0.286275, 1, 1)
+shader_parameter/bodycolorii = Color(1, 0, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atsqi"]
 bg_color = Color(0.247059, 0.713726, 0, 1)
@@ -326,18 +327,29 @@ libraries = {
 "": SubResource("AnimationLibrary_phch0")
 }
 
-[node name="weapon_energy" type="ProgressBar" parent="."]
-modulate = Color(1, 0.0156863, 0.109804, 1)
+[node name="weapon_energy" type="TextureProgressBar" parent="."]
 material = SubResource("ShaderMaterial_be7r0")
-offset_left = 38.0
-offset_right = 185.0
-offset_bottom = 27.0
-scale = Vector2(0.3, 0.3)
-theme_override_fonts/font = ExtResource("5_g1yve")
-max_value = 30.0
-value = 30.0
+offset_left = 20.0
+offset_top = 7.0
+offset_right = 28.0
+offset_bottom = 64.0
+max_value = 27.0
+value = 27.0
+fill_mode = 3
+texture_under = ExtResource("5_eted2")
+texture_progress = ExtResource("6_io84m")
+
+[node name="text_weapon_energy" type="Label" parent="weapon_energy"]
+layout_mode = 0
+offset_top = 58.0
+offset_right = 32.0
+offset_bottom = 78.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+text = "27"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -356,25 +368,24 @@ texture_progress = ExtResource("6_io84m")
 [node name="text_health_display" type="Label" parent="healthbar"]
 layout_mode = 0
 offset_left = -3.0
-offset_top = 75.0
+offset_top = 58.0
 offset_right = 29.0
-offset_bottom = 95.0
+offset_bottom = 78.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "24"
 
 [node name="text_lives" type="Label" parent="healthbar"]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 62.0
-offset_right = 46.0
-offset_bottom = 82.0
+offset_top = 85.0
+offset_right = 16.0
+offset_bottom = 105.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "3"
 
 [node name="Sprite2D" type="Sprite2D" parent="healthbar"]
-position = Vector2(4, 65)
+position = Vector2(4, 75)
 texture = ExtResource("7_65oho")
 hframes = 14
 frame = 10

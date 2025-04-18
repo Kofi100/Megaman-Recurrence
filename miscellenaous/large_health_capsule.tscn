@@ -48,8 +48,8 @@ hframes = 14
 frame = 2
 
 [node name="hitbox" type="Area2D" parent="." groups=["capsules"]]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_pfljm")
@@ -61,5 +61,6 @@ shape = SubResource("CircleShape2D_m562j")
 wait_time = 5.0
 one_shot = true
 
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="delete_spawnable_timer" to="." method="_on_delete_spawnable_timer_timeout"]

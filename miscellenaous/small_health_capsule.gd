@@ -21,11 +21,18 @@ func _process(delta):
 
 
 func _on_hitbox_body_entered(body):
-	if body.is_in_group('player'):
-		GlobalScript.health+=2
-		queue_free()
+	#if body.is_in_group('player'):
+		#GlobalScript.health+=2
+		#queue_free()
+	pass
 
 
 func _on_delete_spawnable_timer_timeout():
 	pass # Replace with function body.
 	queue_free()
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_constants_checker_area2d"):
+		GlobalScript.health+=2
+		queue_free()

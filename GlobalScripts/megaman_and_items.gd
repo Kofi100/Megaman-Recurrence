@@ -1,12 +1,12 @@
 extends Node2D
 var charge_timer = 0
-var bodycolor1dictionary: Dictionary = {
+@export var bodycolor1dictionary: Dictionary = {
 	0: Vector4.ZERO,
 	1: Vector4(255, 255, 255, 255),
 	2: Vector4(255, 255, 255, 255),
 	3: Vector4(255, 0, 0, 255),
 }
-var bodycolor2dictionary: Dictionary = {
+@export var bodycolor2dictionary: Dictionary = {
 	0: Vector4.ZERO,
 	1:
 	Vector4(
@@ -26,9 +26,9 @@ var colors: Dictionary = {
 	"LIGHT_BLUE": Vector4(136.0, 232.0, 255.0, 255.0),
 	"DEEP_BLUE": Vector4(0.0, 98.0, 247.0, 255.0)
 }
-var weapon1energy = 30
-var weapon2energy = 30
-var weapon3energy = 30
+var weapon1energy = 27
+var weapon2energy = 27
+var weapon3energy = 27
 var charge_buster_times = [0, 30, 105]
 
 
@@ -71,9 +71,17 @@ func charge_effect(animated_sprite: AnimatedSprite2D):
 			animated_sprite.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 98.0, 247.0, 255.0)) / 255)
 
 
-func change_palette(animated_sprite: AnimatedSprite2D):
+func change_palette(node):
+	if node is AnimatedSprite2D or node is TextureProgressBar:
 	#print(name,':change_palette_fxn:active')
-	if bodycolor1dictionary.has(GlobalScript.weapon_number):
-		animated_sprite.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
-		animated_sprite.material.set_shader_parameter("bodycolori", (bodycolor1dictionary.get(GlobalScript.weapon_number)) / 255)
-		animated_sprite.material.set_shader_parameter("bodycolorii", (bodycolor2dictionary.get(GlobalScript.weapon_number)) / 255)
+		if bodycolor1dictionary.has(GlobalScript.weapon_number):
+			node.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
+			node.material.set_shader_parameter("bodycolori", (bodycolor1dictionary.get(GlobalScript.weapon_number)) / 255)
+			node.material.set_shader_parameter("bodycolorii", (bodycolor2dictionary.get(GlobalScript.weapon_number)) / 255)
+
+#func change_palette(animated_sprite: AnimatedSprite2D):
+	##print(name,':change_palette_fxn:active')
+	#if bodycolor1dictionary.has(GlobalScript.weapon_number):
+		#animated_sprite.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
+		#animated_sprite.material.set_shader_parameter("bodycolori", (bodycolor1dictionary.get(GlobalScript.weapon_number)) / 255)
+		#animated_sprite.material.set_shader_parameter("bodycolorii", (bodycolor2dictionary.get(GlobalScript.weapon_number)) / 255)

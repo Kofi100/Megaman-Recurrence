@@ -107,9 +107,9 @@ func _ready():
 		global_position.y = GlobalScript.playerposy
 	MegamanAndItems.charge_timer = 0
 	GlobalScript.weapon_number = 0
-	MegamanAndItems.weapon1energy = 30
-	MegamanAndItems.weapon2energy = 30
-	MegamanAndItems.weapon3energy = 30
+	MegamanAndItems.weapon1energy = 27
+	MegamanAndItems.weapon2energy = 27
+	MegamanAndItems.weapon3energy = 27
 	GlobalScript.health = GlobalScript.max_health  #health setting
 	$weapon_display.visible = false
 	$player_camera.position_smoothing_enabled = false
@@ -448,7 +448,7 @@ func _physics_process(delta):
 				if GlobalScript.health <= 0:
 					$restart_timer.start(3.5)
 					is_dead = true
-					#GlobalScript.lives = GlobalScript.lives - 1
+					GlobalScript.lives = GlobalScript.lives - 1
 					var explosion_scene = preload("res://miscellenaous/effects/explosion_scene.tscn")
 					var explosion_scene_instance_or_node = explosion_scene.instantiate()
 					get_parent().add_child(explosion_scene_instance_or_node)
