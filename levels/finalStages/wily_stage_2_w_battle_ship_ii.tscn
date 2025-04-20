@@ -1,12 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://dffui0far5bar"]
+[gd_scene load_steps=52 format=3 uid="uid://dffui0far5bar"]
 
 [ext_resource type="PackedScene" uid="uid://bdjbquyil6ca" path="res://assets/sprites/tilesets/test_stages/tiledProject1/wily_battleship_ii_map.tscn" id="1_puahp"]
 [ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_o07xv"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_4qflo"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="4_2epy0"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_v0i2c"]
 [ext_resource type="PackedScene" uid="uid://ber5k7q8cjftl" path="res://enemy/original/land_mine.tscn" id="5_3iu8o"]
 [ext_resource type="AudioStream" uid="uid://bry4488mfekun" path="res://assets/music/Spark The Electric Jester - Megaraph Fleet (Remix).mp3" id="6_a5jn4"]
 [ext_resource type="Script" path="res://resources/bgm_group.gd" id="7_t2d6f"]
+[ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="8_8tve8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhpi0"]
 size = Vector2(2560, 223)
@@ -33,7 +35,117 @@ size = Vector2(256, 224)
 size = Vector2(560, 224)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br1tr"]
-size = Vector2(416, 224)
+size = Vector2(512, 224)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pqos7"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2802p"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6f08"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysgf6"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sp48b"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8p6op"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wf5f5"]
+radius = 3.44385
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gb8lo"]
+radius = 2.85474
+height = 7.84485
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_044cn"]
+radius = 1.8808
+height = 5.7616
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bla7a"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b2ea7"]
+radius = 2.59082
+height = 7.125
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekh5m"]
+size = Vector2(16.3333, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grrsi"]
+size = Vector2(20, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wou1t"]
+size = Vector2(15, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfg8v"]
+size = Vector2(17, 13.8591)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxyvn"]
+size = Vector2(19.0001, 15.8563)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hn4g"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j22uy"]
+size = Vector2(16, 12.2759)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrkne"]
+size = Vector2(17, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8gha"]
+size = Vector2(16, 11.965)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtwu2"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rckgi"]
+size = Vector2(18.4761, 15.088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvdpq"]
+size = Vector2(17, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ydca"]
+size = Vector2(15, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j6lx"]
+size = Vector2(16.0044, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slaek"]
+size = Vector2(16, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_deq2f"]
+size = Vector2(16, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydx6k"]
+size = Vector2(16.0001, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7pa4"]
+size = Vector2(16.0001, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x4lk"]
+size = Vector2(16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mbt4"]
+size = Vector2(16.0002, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_047mx"]
+size = Vector2(16, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4tle"]
+size = Vector2(16.0002, 64)
 
 [node name="wilyStage2_WBattleShipII" type="Node2D"]
 
@@ -41,6 +153,14 @@ size = Vector2(416, 224)
 
 [node name="megaman" parent="." instance=ExtResource("3_4qflo")]
 position = Vector2(34, 178)
+
+[node name="wip_Label" type="Label" parent="."]
+offset_left = 5289.0
+offset_top = 519.0
+offset_right = 5359.0
+offset_bottom = 542.0
+theme = ExtResource("4_v0i2c")
+text = "TBC..."
 
 [node name="allCameras" type="Node2D" parent="."]
 
@@ -206,11 +326,11 @@ timer_exists = true
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon10"]
 limit_left = 4864
 limit_top = 448
-limit_right = 5280
+limit_right = 5376
 limit_bottom = 672
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon10"]
-position = Vector2(208, 112)
+position = Vector2(256, 112)
 shape = SubResource("RectangleShape2D_br1tr")
 
 [node name="allEnemies" type="Node2D" parent="."]
@@ -380,3 +500,139 @@ stream = ExtResource("6_a5jn4")
 autoplay = true
 parameters/looping = true
 script = ExtResource("7_t2d6f")
+
+[node name="ladder" parent="." instance=ExtResource("8_8tve8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder/ontop_platforms" index="0"]
+position = Vector2(1336, 128)
+shape = SubResource("CapsuleShape2D_pqos7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder/ontop_platforms" index="1"]
+position = Vector2(2104, 160)
+shape = SubResource("CapsuleShape2D_2802p")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder/ontop_platforms" index="2"]
+position = Vector2(2216, 160)
+shape = SubResource("CapsuleShape2D_e6f08")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder/ontop_platforms" index="3"]
+position = Vector2(2935, 192)
+shape = SubResource("CapsuleShape2D_ysgf6")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder/ontop_platforms" index="4"]
+position = Vector2(2999, 416)
+shape = SubResource("CapsuleShape2D_sp48b")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder/ontop_platforms" index="5"]
+position = Vector2(2920, 528)
+shape = SubResource("CapsuleShape2D_8p6op")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder/ontop_platforms" index="6"]
+position = Vector2(4152, 528)
+shape = SubResource("CapsuleShape2D_wf5f5")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder/ontop_platforms" index="7"]
+position = Vector2(3959.15, 528.078)
+shape = SubResource("CapsuleShape2D_gb8lo")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder/ontop_platforms" index="8"]
+position = Vector2(3928.86, 608.119)
+shape = SubResource("CapsuleShape2D_044cn")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder/ontop_platforms" index="9"]
+position = Vector2(4487, 576)
+shape = SubResource("CapsuleShape2D_bla7a")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder/ontop_platforms" index="10"]
+position = Vector2(4567, 576)
+shape = SubResource("CapsuleShape2D_b2ea7")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder/top_platforms" index="0"]
+position = Vector2(2936.17, 199)
+shape = SubResource("RectangleShape2D_ekh5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder/top_platforms" index="1"]
+position = Vector2(1336, 136)
+shape = SubResource("RectangleShape2D_grrsi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder/top_platforms" index="2"]
+position = Vector2(2103.5, 165.5)
+shape = SubResource("RectangleShape2D_wou1t")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder/top_platforms" index="3"]
+position = Vector2(2215.5, 166.93)
+shape = SubResource("RectangleShape2D_lfg8v")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder/top_platforms" index="4"]
+position = Vector2(2999.5, 423.928)
+shape = SubResource("RectangleShape2D_rxyvn")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder/top_platforms" index="5"]
+position = Vector2(2920, 536)
+shape = SubResource("RectangleShape2D_5hn4g")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder/top_platforms" index="6"]
+position = Vector2(4152, 534.138)
+shape = SubResource("RectangleShape2D_j22uy")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder/top_platforms" index="7"]
+position = Vector2(3959.5, 533.5)
+shape = SubResource("RectangleShape2D_hrkne")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder/top_platforms" index="8"]
+position = Vector2(3928, 613.982)
+shape = SubResource("RectangleShape2D_k8gha")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder/top_platforms" index="9"]
+position = Vector2(4488, 584)
+shape = SubResource("RectangleShape2D_vtwu2")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder/top_platforms" index="10"]
+position = Vector2(4567.76, 583.544)
+shape = SubResource("RectangleShape2D_rckgi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder"]
+position = Vector2(2215.5, 184)
+shape = SubResource("RectangleShape2D_kvdpq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder"]
+position = Vector2(2103.5, 184)
+shape = SubResource("RectangleShape2D_4ydca")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder"]
+position = Vector2(2936, 232)
+shape = SubResource("RectangleShape2D_6j6lx")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder"]
+position = Vector2(3000, 464)
+shape = SubResource("RectangleShape2D_slaek")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder"]
+position = Vector2(2920, 560)
+shape = SubResource("RectangleShape2D_deq2f")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder"]
+position = Vector2(1336, 160)
+shape = SubResource("RectangleShape2D_ydx6k")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder"]
+position = Vector2(3960, 552)
+shape = SubResource("RectangleShape2D_e7pa4")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder"]
+position = Vector2(3928, 632)
+shape = SubResource("RectangleShape2D_0x4lk")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder"]
+position = Vector2(4152, 592)
+shape = SubResource("RectangleShape2D_8mbt4")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder"]
+position = Vector2(4488, 608)
+shape = SubResource("RectangleShape2D_047mx")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder"]
+position = Vector2(4568, 608)
+shape = SubResource("RectangleShape2D_a4tle")
+
+[editable path="ladder"]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkfaw8regatlq"]
+
+[ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_06wpd"]
+[ext_resource type="Script" path="res://resources/test_animated_sprite_2d.gd" id="1_ubbqf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ex4h"]
+atlas = ExtResource("1_06wpd")
+region = Rect2(0, 90, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3o1u"]
+atlas = ExtResource("1_06wpd")
+region = Rect2(93, 90, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt0ty"]
+atlas = ExtResource("1_06wpd")
+region = Rect2(62, 90, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkpfd"]
+atlas = ExtResource("1_06wpd")
+region = Rect2(93, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1683d"]
+atlas = ExtResource("1_06wpd")
+region = Rect2(124, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdfl8"]
+atlas = ExtResource("1_06wpd")
+region = Rect2(155, 0, 31, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8l5nq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ex4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3o1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt0ty")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkpfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1683d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdfl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1683d")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="testAnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_8l5nq")
+animation = &"idle"
+script = ExtResource("1_ubbqf")
+desiredFPS = 10.0

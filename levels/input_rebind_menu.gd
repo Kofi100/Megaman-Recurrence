@@ -24,7 +24,7 @@ var menuOption: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_keys_to_players()
-	$Control/ScrollContainer/VSplitContainer/up_btn.grab_focus()
+	#$Control/ScrollContainer/VSplitContainer/up_btn.grab_focus()
 	$mega_spin.play("spinnnn")
 
 
@@ -35,6 +35,7 @@ var selected_option: int = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$waiting_text_label.visible = display_label
+	$waiting_text_BG_Color_Rect.visible=display_label
 	if Input.is_action_just_pressed("die_debug") and display_label == true:
 		display_label = false
 	#display_label_fxn()
@@ -46,31 +47,50 @@ func _process(delta):
 		menuOption = 7
 	elif Input.is_action_just_pressed("move_right"):
 		menuOption = 7
+	#match menuOption:
+		#0:
+			#$Control/ScrollContainer/VSplitContainer/up_btn.grab_focus()
+		#1:
+			#$Control/ScrollContainer/VSplitContainer/down_btn.grab_focus()
+		#2:
+			#$Control/ScrollContainer/VSplitContainer/left_btn.grab_focus()
+		#3:
+			#$Control/ScrollContainer/VSplitContainer/right_btn.grab_focus()
+		#4:
+			#$Control/ScrollContainer/VSplitContainer/jump_btn.grab_focus()
+		#5:
+			#$Control/ScrollContainer/VSplitContainer/dash_btn.grab_focus()
+		#6:
+			#$Control/ScrollContainer/VSplitContainer/shoot_btn.grab_focus()
+		#7:
+			#$main_menu.grab_focus()
 	match menuOption:
-		0:
-			$Control/ScrollContainer/VSplitContainer/up_btn.grab_focus()
-		1:
-			$Control/ScrollContainer/VSplitContainer/down_btn.grab_focus()
-		2:
-			$Control/ScrollContainer/VSplitContainer/left_btn.grab_focus()
-		3:
-			$Control/ScrollContainer/VSplitContainer/right_btn.grab_focus()
-		4:
-			$Control/ScrollContainer/VSplitContainer/jump_btn.grab_focus()
-		5:
-			$Control/ScrollContainer/VSplitContainer/dash_btn.grab_focus()
-		6:
-			$Control/ScrollContainer/VSplitContainer/shoot_btn.grab_focus()
-		7:
-			$main_menu.grab_focus()
-
+		0:$selectArrow.set_global_position($keyboard_Settings/up.global_position-Vector2(20,0))
+		1:$selectArrow.set_global_position($keyboard_Settings/down.global_position-Vector2(20,0))
+		2:$selectArrow.set_global_position($keyboard_Settings/left.global_position-Vector2(20,0))
+		3:$selectArrow.set_global_position($keyboard_Settings/right.global_position-Vector2(20,0))
+		4:$selectArrow.set_global_position($keyboard_Settings/jump.global_position-Vector2(20,0))
+		5:$selectArrow.set_global_position($keyboard_Settings/dash.global_position-Vector2(20,0))
+		6:$selectArrow.set_global_position($keyboard_Settings/shoot.global_position-Vector2(20,0))
+		7:$selectArrow.set_global_position($main_menu.global_position-Vector2(20,0))
+	if Input.is_action_just_released("shoot"):
+		if menuOption>=0 and menuOption<=6:
+			display_label_fxn()
+			selected_option=menuOption
+			#if display_label == false:
+				#display_label = true
+			#elif display_label == true:
+				#display_label = false
+		if menuOption==7:
+			get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
+		#0:$selectArrow.set_global_position($keyboard_Settings/up.global_position-Vector2(20,0))
 
 var action_to_get
 
 
 func _input(event):
 	if display_label == true:
-		if event is InputEventKey:
+		if event is InputEventKey and event.keycode!=27:
 			if InputMap.has_action(option_to_action_dict[selected_option]) and event.is_released() == true:
 				action_to_get = option_to_action_dict[selected_option]
 				for i in InputMap.action_get_events(action_to_get):  #input_dictionary_keys
@@ -84,19 +104,21 @@ func _input(event):
 				#InputMap.era
 
 	#if event== InputEventMouse.set_button_mask(1):
-	var left_mouse = InputEventMouseButton.new()
-	left_mouse.button_mask = 1
-	#Button masks detect which button got pressed/released last
-	#eg. "1" is the Left Mouse Button
-	if event is InputEventMouseButton:  #if Input Event is any Mouse button,
-		#print("Input Event:(MouseButton not Gesture)::",event.pressed)
-		if event.pressed == true:  #and event.button_mask==left_mouse.button_mask:
-			#and I have pressed  the button
-			#if event ==InputEventMouseButton:
-			#if  event.is_action_released()
-			#print("yessssss,left button pressed")
-			#set display_label to false therefore deactivating the input change request.
-			display_label = false
+	#var left_mouse = InputEventMouseButton.new()
+	#left_mouse.button_mask = 1
+	##Button masks detect which button got pressed/released last
+	##eg. "1" is the Left Mouse Button
+	#if event is InputEventMouseButton:  #if Input Event is any Mouse button,
+		##print("Input Event:(MouseButton not Gesture)::",event.pressed)
+		#if event.pressed == true:  #and event.button_mask==left_mouse.button_mask:
+			##and I have pressed  the button
+			##if event ==InputEventMouseButton:
+			##if  event.is_action_released()
+			##print("yessssss,left button pressed")
+			##set display_label to false therefore deactivating the input change request.
+			#display_label = false
+		if Input.is_action_just_pressed("die_debug"):
+			display_label=false
 
 
 func save_keybinds(key):  #This saves the keycode of the key you pressed into a file.
@@ -177,8 +199,12 @@ func set_keys_to_players():
 func display_label_fxn():
 	if display_label == false:
 		display_label = true
+		$waiting_text_BG_Color_Rect.visible=true
+		return
 	elif display_label == true:
 		display_label = false
+		$waiting_text_BG_Color_Rect.visible=false
+		return
 
 
 func _on_up_btn_pressed():

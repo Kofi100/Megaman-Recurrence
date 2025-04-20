@@ -505,9 +505,9 @@ var stun_timer = 0
 
 func offsetAnimationFunction():
 	if (
-		anim.animation != "shoot_idle"
-		and anim.animation != "dash"
-		and anim.animation != "shoot_run"
+		#anim.animation != "shoot_idle"
+		anim.animation != "dash"
+		#and anim.animation != "shoot_run"
 		and anim.animation != "jump"
 		and anim.animation != "shoot_in_air"
 		and anim.animation != "run"
@@ -516,18 +516,14 @@ func offsetAnimationFunction():
 		$anim.offset.y = 0
 	else:
 		match anim.animation:
-			"shoot_idle":
-				if $anim.flip_h == false:
-					$anim.offset.x = -3
-				elif $anim.flip_h == true:
-					$anim.offset.x = 3
 			"dash":
 				$anim.offset.y = 7
-			"shoot_run":
-				if $anim.flip_h == false:
-					$anim.offset.x = -5
-				elif $anim.flip_h == true:
-					$anim.offset.x = 5
+			#"shoot_run":
+				#if $anim.flip_h == false:
+					#$anim.offset.x = -2
+				#elif $anim.flip_h == true:
+					#$anim.offset.x = 2
+					#pass
 			"jump":
 				if $anim.flip_h == false:
 					$anim.offset.x = -1
@@ -540,10 +536,16 @@ func offsetAnimationFunction():
 					$anim.offset.x = 3
 			"run":
 				$anim.offset.y = 0
-				if $anim.flip_h == false:
-					$anim.offset.x = -2
-				elif $anim.flip_h == true:
-					$anim.offset.x = 2
+				##if $anim.flip_h == false:
+					##$anim.offset.x = -1
+				##elif $anim.flip_h == true:
+					##$anim.offset.x = 1
+				#pass
+			#"shoot_idle":
+				#if $anim.flip_h == false:
+					#$anim.offset.x = -3
+				#elif $anim.flip_h == true:
+					#$anim.offset.x = 3
 	#else:
 	#$anim.offset.x = 0
 	#$anim.offset.y = 0
@@ -569,6 +571,7 @@ var frameNo = 0
 
 
 func play_animations():
+	#print(anim.animation)
 	if direction == -1:  #velocity.x < 0:
 		$anim.flip_h = false
 	elif direction == 1:  #velocity.x > 0:

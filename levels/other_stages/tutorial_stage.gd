@@ -20,27 +20,40 @@ func _process(delta):
 				#print(i.get_physical_keycode())
 				#print(OS.get_keycode_string(i.keycode))
 				#var inputevent_left=InputEventKey
-				array_of_inputs_keys[0]=OS.get_keycode_string(i.get_physical_keycode())
-				array_of_inputs_keys[1]=OS.get_keycode_string(j.get_physical_keycode())
+				if i.get_physical_keycode()!=0:
+					array_of_inputs_keys[0]=OS.get_keycode_string(i.get_physical_keycode())
+				else:
+					array_of_inputs_keys[0]=OS.get_keycode_string(i.get_keycode())
+				if j.get_physical_keycode()!=0:
+					array_of_inputs_keys[1]=OS.get_keycode_string(j.get_physical_keycode())
+				else:
+					array_of_inputs_keys[1]=OS.get_keycode_string(j.get_keycode())
 				#print(i.keycode)
 				$all_text/arrow_1/left_label.text=str("Key:"+array_of_inputs_keys[0])
 				$all_text/arrow_2/right_label.text=str("Key:"+array_of_inputs_keys[1])
 				#instructions_1.text="PRESS "+str(array_of_inputs_keys[0])+" TO MOVE LEFT\n"+"press "+str(array_of_inputs_keys[1])+" TO MOVE RIGHT"
 	for keys in InputMap.action_get_events("jump"):
-		for keys2 in InputMap.action_get_events("dash"):
-			if keys is InputEventKey and keys2 is InputEventKey:
-				array_of_inputs_keys[2]=OS.get_keycode_string(keys.get_physical_keycode())
+		
+			if keys is InputEventKey :
+				if keys.get_physical_keycode()!=0:
+					array_of_inputs_keys[2]=OS.get_keycode_string(keys.get_physical_keycode())
+				else:
+					array_of_inputs_keys[2]=OS.get_keycode_string(keys.get_keycode())
 				#if keys2.PHYSICAL==true:
 				#print(name,"-> InputMap: Dash:get_physical_keycode():",keys2.get_physical_keycode())#keys2.PHYSICAL)
-				if keys2.get_physical_keycode()!=0:
-					array_of_inputs_keys[3]=OS.get_keycode_string(keys2.get_physical_keycode())
-				else:
-					array_of_inputs_keys[3]=OS.get_keycode_string(keys2.get_keycode())
+
 				#instructions_2.text="PRESS "+str(array_of_inputs_keys[2])+" TO JUMP AND\n"+"press "+str(array_of_inputs_keys[3])+" TO SHOOT AND CHARGE YOUR BUSTER."
 				$all_text/JumpPreview/label.text=str("Key:"+array_of_inputs_keys[2])
-				$all_text/DashPreview/label.text=str("Key:"+array_of_inputs_keys[3])
-				#print(keys2)
 				
+				#print(keys2)
+	for keys2 in InputMap.action_get_events("dash"):
+		if keys2 is InputEventKey:
+			if keys2.get_physical_keycode()!=0:
+				array_of_inputs_keys[3]=OS.get_keycode_string(keys2.get_physical_keycode())
+			else:
+				array_of_inputs_keys[3]=OS.get_keycode_string(keys2.get_keycode())
+			$all_text/DashPreview/label.text=str("Key:"+array_of_inputs_keys[3])
+			#print(array_of_inputs_keys[2])
 	for keys_shoot in InputMap.action_get_events("shoot"):
 		if keys_shoot is InputEventKey:
 			if keys_shoot.get_physical_keycode()!=0:
@@ -62,6 +75,7 @@ func _process(delta):
 					array_of_inputs_keys[6]=OS.get_keycode_string(keys_down.get_physical_keycode())
 				else:
 					array_of_inputs_keys[6]=OS.get_keycode_string(keys_down.get_keycode())
+				#print(array_of_inputs_keys[5])
 			$all_text3/climb.text=str("Press Key:",str(array_of_inputs_keys[5]),"\n around the ladder to move up\n,and press Key: ",str(array_of_inputs_keys[6]),"\nto move down the ladder")
 	#for keys_weap_l in InputMap.action_get_events("switch_weapon_left")
 	pick_up_current_key_binding("switch_weapon_left",null,7)

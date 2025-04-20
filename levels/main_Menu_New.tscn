@@ -57,18 +57,18 @@ position = Vector2(128, 112)
 texture = ExtResource("1_pk3m2")
 
 [node name="MegaManLogo" type="Sprite2D" parent="."]
-position = Vector2(123, 30)
+position = Vector2(98, 33)
 scale = Vector2(0.066235, 0.066235)
 texture = ExtResource("2_7grsx")
 
 [node name="nameOFGame" type="Label" parent="."]
-offset_left = 133.0
-offset_top = 38.0
-offset_right = 245.0
-offset_bottom = 61.0
+offset_left = 79.0
+offset_top = 44.0
+offset_right = 251.0
+offset_bottom = 67.0
 theme = ExtResource("3_abkrt")
 theme_override_colors/font_color = Color(0.512549, 0.791853, 0.970591, 1)
-text = ":RETURN"
+text = ":RECCURENCE"
 
 [node name="SelectArrow" type="Sprite2D" parent="."]
 position = Vector2(63, 99)

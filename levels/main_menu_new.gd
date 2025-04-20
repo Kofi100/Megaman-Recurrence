@@ -48,9 +48,15 @@ func _process(delta: float) -> void:
 				elif menuPoppedUp==true:
 					if options!=null:
 						options.queue_free()
-					menuPoppedUp=false
+						menuPoppedUp=false
+					if options==null:
+						menuPoppedUp=false
 			5:get_tree().quit(0)
-
+	#if Input.is_action_just_pressed("pause") and MenuOptionNo==4:
+		#if menuPoppedUp==true:
+					#if options!=null:
+						#options.queue_free()
+					#menuPoppedUp=false
 
 
 func _input(event: InputEvent) -> void:

@@ -58,9 +58,11 @@ shader = ExtResource("9_1ufh6")
 shader_parameter/outline_color_original = Color(0, 0, 0, 1)
 shader_parameter/bodycolororiginal1 = Color(0.988235, 0.988235, 0.988235, 1)
 shader_parameter/bodycolororiginal2 = Color(0.988235, 0.894118, 0.627451, 1)
+shader_parameter/colorEyesOriginal = null
 shader_parameter/outlinecolor = null
 shader_parameter/bodycolori = Color(0, 0.286275, 1, 1)
 shader_parameter/bodycolorii = Color(1, 0, 1, 1)
+shader_parameter/colorEyesEdit = null
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atsqi"]
 bg_color = Color(0.247059, 0.713726, 0, 1)

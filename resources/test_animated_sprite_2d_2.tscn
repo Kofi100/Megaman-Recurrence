@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://627my02g8jv6"]
+
+[ext_resource type="Script" path="res://resources/test_animated_sprite_2d_2.gd" id="1_45kas"]
+[ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_hl0jk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dblhv"]
+atlas = ExtResource("1_hl0jk")
+region = Rect2(0, 90, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d585r"]
+atlas = ExtResource("1_hl0jk")
+region = Rect2(93, 90, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0ga6"]
+atlas = ExtResource("1_hl0jk")
+region = Rect2(62, 90, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6w3s"]
+atlas = ExtResource("1_hl0jk")
+region = Rect2(93, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc6kf"]
+atlas = ExtResource("1_hl0jk")
+region = Rect2(124, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg10f"]
+atlas = ExtResource("1_hl0jk")
+region = Rect2(155, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us8fg"]
+atlas = ExtResource("1_hl0jk")
+region = Rect2(31, 90, 31, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mmxj5"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_dblhv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d585r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0ga6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d585r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6w3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc6kf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg10f")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_us8fg")
+}],
+"loop": true,
+"name": &"shoot_idle",
+"speed": 5.0
+}]
+
+[node name="testAnimatedSprite2D2" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_mmxj5")
+animation = &"idle"
+frame_progress = 0.172837
+script = ExtResource("1_45kas")
+
+[node name="change" type="Timer" parent="."]
+
+[connection signal="timeout" from="change" to="." method="_on_change_timeout"]

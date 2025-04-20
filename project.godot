@@ -17,7 +17,8 @@ config/tags=PackedStringArray("engine", "megaman", "rebirth")
 run/main_scene="res://levels/main_Menu_New.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
-boot_splash/image="res://assets/sprites/miscelleaneous/new_engine_load_screen.png"
+boot_splash/bg_color=Color(0.141176, 0.819608, 1, 1)
+boot_splash/image="res://assets/sprites/miscelleaneous/menu_megaman_custom_image.png"
 config/icon="res://assets/sprites/miscelleaneous/Mega_Man_Redone_Rebirth_logo_icon.png"
 
 [autoload]
@@ -28,6 +29,7 @@ MegamanAndItems="*res://GlobalScripts/megaman_and_items.tscn"
 GlobalScreenTransitionTimer="*res://GlobalScripts/global_screen_transition_timer.tscn"
 InterStageScene="*res://levels/inter_stage_scene.tscn"
 OptionsSet="*res://resources/optionMenu_Settings.gd"
+ColorPaletteGlobal="*res://GlobalScripts/colorPalette.gd"
 
 [display]
 

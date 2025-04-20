@@ -13,18 +13,18 @@ offset_bottom = 226.0
 color = Color(0, 0, 0, 1)
 
 [node name="BGMSlider" type="HSlider" parent="."]
-offset_left = 37.0
-offset_top = 124.0
-offset_right = 212.0
-offset_bottom = 140.0
+offset_left = 43.0
+offset_top = 96.0
+offset_right = 218.0
+offset_bottom = 112.0
 min_value = -60.0
 max_value = 0.0
 
 [node name="SFXSlider" type="HSlider" parent="."]
-offset_left = 37.0
-offset_top = 166.0
-offset_right = 212.0
-offset_bottom = 182.0
+offset_left = 43.0
+offset_top = 138.0
+offset_right = 218.0
+offset_bottom = 154.0
 min_value = -60.0
 max_value = 0.0
 
@@ -37,18 +37,18 @@ theme = ExtResource("2_8bsxl")
 text = "Exit"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 37.0
-offset_top = 99.0
-offset_right = 187.0
-offset_bottom = 122.0
+offset_left = 43.0
+offset_top = 71.0
+offset_right = 193.0
+offset_bottom = 94.0
 theme = ExtResource("2_8bsxl")
 text = "BGM Volume"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 37.0
-offset_top = 140.0
-offset_right = 187.0
-offset_bottom = 163.0
+offset_left = 43.0
+offset_top = 112.0
+offset_right = 193.0
+offset_bottom = 135.0
 theme = ExtResource("2_8bsxl")
 text = "SFX Volume"
 
