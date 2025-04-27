@@ -50,7 +50,10 @@ func _process(_delta):
 	$healthbar/text_lives.text = str(GlobalScript.lives)
 	$score.text = str("SCORE:", GlobalScript.score)
 	$stage_name.text = "STAGE:\n" + GlobalScript.stage_name
-	$fps_Display.text="FPS: "+str(Engine.get_frames_per_second())
+	$fps_Display.text=str(Engine.get_frames_per_second())
+	
+	$pause_screen_setup/PauseScreenTimer.text="TIMER:"+str(GlobalScript.minute_level).pad_zeros(2)+":"+str(int(GlobalScript.second_level)).pad_zeros(2)
+	$timer/InGame.text="TIMER:"+str(GlobalScript.minute_level).pad_zeros(2)+":"+str(int(GlobalScript.second_level)).pad_zeros(2)
 	#print(selection_index)
 	#pause on death effect
 	if GlobalScript.health <= 0 and justDied == false:
@@ -92,9 +95,9 @@ func _process(_delta):
 
 #endregion
 
-	minutes.text = str(GlobalScript.minute_level).pad_zeros(2)
-	seconds.text = str(int(GlobalScript.second_level)).pad_zeros(2)
-	millsecs.text = str(int(GlobalScript.milliseconds))
+	#minutes.text = str(GlobalScript.minute_level).pad_zeros(2)
+	#seconds.text = str(int(GlobalScript.second_level)).pad_zeros(2)
+	#millsecs.text = str(int(GlobalScript.milliseconds))
 	#millsecs=int()
 	#$pause_screen_setup/ConfirmationDialog.global_position=Vector2(500,500)
 	#print($map.get_size())
@@ -166,12 +169,13 @@ func _process(_delta):
 				justPausedGameManually = false
 	if justPausedGameManually == true:
 		$pause_screen_setup.visible = true
-
 		$fade_out_rectangle.visible = true
+		$timer/InGame.visible=false
 	else:
 		$pause_screen_setup.visible = false
 		$fade_out_rectangle.visible = false
 		$fade_out_rectangle.color = color
+		$timer/InGame.visible=true
 	if justPausedGameManually == true and switchedMenus == false:
 		if Input.is_action_just_pressed("move_left"):
 			selection_index -= 1
@@ -243,10 +247,12 @@ func tween_finished():
 func _on_progress_bar_value_changed(value):  #if the value of the bar changes
 	#previous_value=value
 #	if value<GlobalScript.previous_health:
-	if GlobalScript.previous_health < value:  # and it's value>prev.health,
-		if not $increase_health.playing:  #if the sound is not playing
-			$increase_health.play(0)  #play it
-
+	#this was intended to play a sound if Mega gains health
+	#is a bit glitchy as of now
+	#if GlobalScript.previous_health < value:  # and it's value>prev.health,
+		#if not $increase_health.playing:  #if the sound is not playing
+			#$increase_health.play(0)  #play it
+	pass
 
 #		#if tween.is_running():
 #			$increase_health.play(0)

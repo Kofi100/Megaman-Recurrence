@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dtotf6sf7sca8"]
 
-[ext_resource type="Script" path="res://enemy/boss/mini_boss_1_projectile_1.gd" id="1_hhnhq"]
+[ext_resource type="Script" uid="uid://hobqv7mny2pm" path="res://enemy/boss/mini_boss_1_projectile_1.gd" id="1_hhnhq"]
 [ext_resource type="Texture2D" uid="uid://dp6lkuupm7cma" path="res://assets/sprites/enemies/bosses/miniBoss_1_projectile1.png" id="2_mcwjt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3u12"]

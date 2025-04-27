@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://h4246whbkjhf"]
 
 [ext_resource type="Texture2D" uid="uid://c6w5tlbeue6wr" path="res://assets/sprites/enemies/bombomb.png" id="1_cf3vt"]
-[ext_resource type="Script" path="res://enemy/bombomb.gd" id="1_def14"]
+[ext_resource type="Script" uid="uid://c8hcba76mpddt" path="res://enemy/bombomb.gd" id="1_def14"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5g4u"]
 atlas = ExtResource("1_cf3vt")

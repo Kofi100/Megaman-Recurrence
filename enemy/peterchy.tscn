@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://da5bprtjoqr63"]
 
 [ext_resource type="Texture2D" uid="uid://c5wpbx7lils5k" path="res://assets/sprites/enemies/peterchy.png" id="1_50ri1"]
-[ext_resource type="Script" path="res://enemy/peterchy.gd" id="1_tcfcs"]
+[ext_resource type="Script" uid="uid://bbbb5humt3qat" path="res://enemy/peterchy.gd" id="1_tcfcs"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_ldx57"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_agvco"]

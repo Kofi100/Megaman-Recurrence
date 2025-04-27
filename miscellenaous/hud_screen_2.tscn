@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dtv5brsfddchf"]
 
-[ext_resource type="Script" path="res://miscellenaous/hud_screen_2.gd" id="1_31vcw"]
+[ext_resource type="Script" uid="uid://bklc6yahdb0xf" path="res://miscellenaous/hud_screen_2.gd" id="1_31vcw"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="1_h6hhg"]
 [ext_resource type="Texture2D" uid="uid://bqaqitmfcnclg" path="res://assets/sprites/miscelleaneous/screen_Template_basedOnSamuelX7.png" id="2_4l1ia"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_2aixn"]
@@ -68,13 +68,13 @@ theme = ExtResource("4_2aixn")
 text = "Restart 
 Level"
 
-[node name="exit" type="Label" parent="."]
-offset_left = 104.0
-offset_top = 253.0
-offset_right = 158.0
-offset_bottom = 276.0
+[node name="options" type="Label" parent="."]
+offset_left = 85.0
+offset_top = 133.0
+offset_right = 189.0
+offset_bottom = 156.0
 theme = ExtResource("4_2aixn")
-text = "Exit"
+text = "options"
 
 [node name="move_HUDbtn" type="AnimatedSprite2D" parent="."]
 process_mode = 3

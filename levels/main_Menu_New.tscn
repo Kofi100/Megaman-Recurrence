@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdvpbbd5kfuay"]
+[gd_scene load_steps=14 format=3 uid="uid://bdvpbbd5kfuay"]
 
-[ext_resource type="Script" path="res://levels/main_menu_new.gd" id="1_3j47n"]
+[ext_resource type="Script" uid="uid://bca8ijyhfp2ce" path="res://levels/main_menu_new.gd" id="1_3j47n"]
 [ext_resource type="Texture2D" uid="uid://cfk8f1v6orbk" path="res://assets/sprites/miscelleaneous/main_Menu_new_bg.png" id="1_pk3m2"]
 [ext_resource type="Texture2D" uid="uid://he5chb614i5a" path="res://assets/sprites/miscelleaneous/Mega_Man_logo.png" id="2_7grsx"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_abkrt"]
+[ext_resource type="Texture2D" uid="uid://cggjn081djs4h" path="res://assets/sprites/miscelleaneous/1KofiMenu_Samuel_X7.png" id="4_sgle8"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="5_qi7wc"]
 [ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="6_qtkfd"]
-[ext_resource type="Script" path="res://resources/bgm_group.gd" id="7_dv4xv"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="7_dv4xv"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="8_0cdru"]
-[ext_resource type="Script" path="res://levels/sfx_group.gd" id="9_mf1u7"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="9_mf1u7"]
 
 [sub_resource type="Animation" id="Animation_r0n11"]
 length = 0.001
@@ -44,8 +45,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sml5h"]
 _data = {
-"RESET": SubResource("Animation_r0n11"),
-"new_animation": SubResource("Animation_luih4")
+&"RESET": SubResource("Animation_r0n11"),
+&"new_animation": SubResource("Animation_luih4")
 }
 
 [node name="MainMenuNew" type="Node2D"]
@@ -53,15 +54,22 @@ process_mode = 3
 script = ExtResource("1_3j47n")
 
 [node name="MainMenuNewBg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(128, 112)
 texture = ExtResource("1_pk3m2")
 
 [node name="MegaManLogo" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(98, 33)
 scale = Vector2(0.066235, 0.066235)
 texture = ExtResource("2_7grsx")
 
+[node name="1KofiMenuSamuelX7" type="Sprite2D" parent="."]
+texture = ExtResource("4_sgle8")
+centered = false
+
 [node name="nameOFGame" type="Label" parent="."]
+visible = false
 offset_left = 79.0
 offset_top = 44.0
 offset_right = 251.0
@@ -71,9 +79,9 @@ theme_override_colors/font_color = Color(0.512549, 0.791853, 0.970591, 1)
 text = ":RECCURENCE"
 
 [node name="SelectArrow" type="Sprite2D" parent="."]
-position = Vector2(63, 99)
+position = Vector2(83, 60)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_qi7wc")
-centered = false
 
 [node name="main_Menu_BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_qtkfd")
@@ -86,11 +94,149 @@ script = ExtResource("9_mf1u7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_sml5h")
+&"": SubResource("AnimationLibrary_sml5h")
 }
 autoplay = "new_animation"
 
+[node name="allText" type="Node2D" parent="."]
+position = Vector2(79, 99)
+
+[node name="start" type="Label" parent="allText"]
+visible = false
+offset_left = 13.0
+offset_top = -32.0
+offset_right = 159.0
+offset_bottom = -16.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_abkrt")
+text = "START game"
+horizontal_alignment = 1
+
+[node name="load" type="Label" parent="allText"]
+visible = false
+offset_left = 13.0
+offset_top = -21.0
+offset_right = 147.0
+offset_bottom = -5.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_abkrt")
+text = "LOAD GAME"
+
+[node name="tutorial" type="Label" parent="allText"]
+visible = false
+offset_left = 13.0
+offset_top = -10.0
+offset_right = 139.0
+offset_bottom = 6.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_abkrt")
+text = "TUTORIAL"
+
+[node name="credits" type="Label" parent="allText"]
+visible = false
+offset_left = 13.0
+offset_right = 117.0
+offset_bottom = 16.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_abkrt")
+text = "credits"
+
+[node name="debug" type="Label" parent="allText"]
+visible = false
+offset_left = 13.0
+offset_top = 11.0
+offset_right = 95.0
+offset_bottom = 27.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_abkrt")
+text = "DEBUG"
+
+[node name="change_Controls" type="Label" parent="allText"]
+visible = false
+offset_left = -144.0
+offset_top = 31.0
+offset_right = -18.0
+offset_bottom = 66.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_abkrt")
+text = "CHANGE 
+CONTROLS"
+
+[node name="options" type="Label" parent="allText"]
+visible = false
+offset_left = 13.0
+offset_top = 23.0
+offset_right = 117.0
+offset_bottom = 39.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_abkrt")
+text = "OPTIONS"
+
+[node name="quit" type="Label" parent="allText"]
+visible = false
+offset_left = -2.0
+offset_top = 68.0
+offset_right = 124.0
+offset_bottom = 84.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_abkrt")
+text = "QUIT"
+
+[node name="allText" type="RichTextLabel" parent="allText"]
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 424.0
+offset_bottom = 237.0
+scale = Vector2(0.45, 0.45)
+theme = ExtResource("3_abkrt")
+bbcode_enabled = true
+text = "[center]
+START GAME
+
+load game
+
+tutorial
+
+challenges
+
+credits
+
+debug
+
+options
+
+quit
+[/center]"
+
+[node name="allMarker2Ds" type="Node2D" parent="."]
+position = Vector2(79, 99)
+
+[node name="0" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(6, -38)
+
+[node name="1" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(8, -23)
+
+[node name="2" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(14, -9)
+
+[node name="3" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(7, 5)
+
+[node name="4" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(21, 20)
+
+[node name="5" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(24, 34)
+
+[node name="6" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(20, 49)
+
+[node name="7" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(29, 63)
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
 offset_left = 79.0
 offset_top = 99.0
 offset_right = 213.0
@@ -99,38 +245,10 @@ offset_bottom = 198.0
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 
-[node name="start" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_abkrt")
-text = "START"
-
-[node name="tutorial" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_abkrt")
-text = "TUTORIAL"
-
-[node name="debug" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_abkrt")
-text = "DEBUG"
-
-[node name="change_Controls" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_abkrt")
-text = "CHANGE 
-CONTROLS"
-
-[node name="options" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_abkrt")
-text = "OPTIONS"
-
-[node name="quit" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_abkrt")
-text = "QUIT"
-
 [node name="arrowBlinkTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(128, 0)
 
 [connection signal="timeout" from="arrowBlinkTimer" to="." method="_on_arrow_blink_timer_timeout"]

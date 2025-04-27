@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bys3l8gptyomn"]
 
-[ext_resource type="Script" path="res://enemy/returning_machine_joe.gd" id="1_ib4gf"]
+[ext_resource type="Script" uid="uid://dlwbnhy0wkhet" path="res://enemy/returning_machine_joe.gd" id="1_ib4gf"]
 [ext_resource type="Texture2D" uid="uid://qpqw76676vgk" path="res://assets/sprites/enemies/returningMachineJoe_Spritesheet.png" id="2_60w3e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b7olh"]
@@ -102,10 +102,10 @@ shape = SubResource("RectangleShape2D_ix630")
 disabled = true
 
 [node name="repeatShootTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 
 [node name="durationShootTimer" type="Timer" parent="repeatShootTimer"]
-wait_time = 1.8
+wait_time = 0.5
 one_shot = true
 
 [node name="stopDurationTimer" type="Timer" parent="repeatShootTimer"]

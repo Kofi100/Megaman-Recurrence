@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bmi55txjcagey"]
 
-[ext_resource type="Script" path="res://enemy/original/original_projs/laser_projectile_InstaKill.gd" id="1_1pol7"]
+[ext_resource type="Script" uid="uid://ct0mtmsgl0ey8" path="res://enemy/original/original_projs/laser_projectile_InstaKill.gd" id="1_1pol7"]
 [ext_resource type="Texture2D" uid="uid://b85rbuacts05r" path="res://assets/sprites/enemies/laserBlaster_Laser.png" id="2_iwi7a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ulo1s"]

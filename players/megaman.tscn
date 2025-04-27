@@ -1,14 +1,14 @@
 [gd_scene load_steps=63 format=3 uid="uid://ctdf8l75pwgyp"]
 
-[ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
+[ext_resource type="Script" uid="uid://0j8k3bpxe6qj" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
 [ext_resource type="PackedScene" uid="uid://ckktibuy8fwfs" path="res://players/dash.tscn" id="2_oa303"]
 [ext_resource type="PackedScene" uid="uid://6tusihkhmm8e" path="res://miscellenaous/hud.tscn" id="3_ov4w5"]
-[ext_resource type="Shader" path="res://players/megaman.gdshader" id="4_rtyrl"]
+[ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="4_rtyrl"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="6_hjfwy"]
 [ext_resource type="AudioStream" uid="uid://crijrqyswqhij" path="res://assets/sounds/hurt.wav" id="6_n1lyq"]
 [ext_resource type="AudioStream" uid="uid://d1n3khoiibs67" path="res://assets/sounds/shoot.wav" id="7_im07x"]
-[ext_resource type="Script" path="res://levels/sfx_group.gd" id="8_d6231"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="8_d6231"]
 [ext_resource type="AudioStream" uid="uid://cmg87ibsgq5t0" path="res://assets/sounds/chargeeffect.wav" id="9_pqlrj"]
 [ext_resource type="AudioStream" uid="uid://p80uexe8652b" path="res://assets/sounds/dead.wav" id="10_qghej"]
 [ext_resource type="AudioStream" uid="uid://cnqebubvm8bvy" path="res://assets/sounds/mm5_halfchargeshot.wav" id="12_8ofs0"]
@@ -36,9 +36,9 @@ region = Rect2(273, 0, 39, 30)
 atlas = ExtResource("1_si1fv")
 region = Rect2(312, 0, 39, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ia50b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jjm8"]
 atlas = ExtResource("1_si1fv")
-region = Rect2(279, 0, 31, 30)
+region = Rect2(351, 0, 39, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_su3x7"]
 atlas = ExtResource("1_si1fv")
@@ -147,7 +147,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ia50b")
+"texture": SubResource("AtlasTexture_4jjm8")
 }],
 "loop": false,
 "name": &"climb_transition",
@@ -430,10 +430,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hedug"]
 _data = {
-"RESET": SubResource("Animation_jwedl"),
-"dash": SubResource("Animation_3e2f3"),
-"others": SubResource("Animation_y47pe"),
-"screen_shake": SubResource("Animation_5jojv")
+&"RESET": SubResource("Animation_jwedl"),
+&"dash": SubResource("Animation_3e2f3"),
+&"others": SubResource("Animation_y47pe"),
+&"screen_shake": SubResource("Animation_5jojv")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjlgr"]
@@ -457,7 +457,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eyb8q"]
 _data = {
-"screen_shake": SubResource("Animation_y4o1v")
+&"screen_shake": SubResource("Animation_y4o1v")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5fq1"]
@@ -560,7 +560,7 @@ debug_color = Color(0.960784, 0, 0.505882, 0.419608)
 [node name="hitbox" type="Area2D" parent="." groups=["player_hitbox"]]
 visible = false
 collision_layer = 2
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(-1.66667, 3.66667)
@@ -630,7 +630,7 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_hedug")
+&"": SubResource("AnimationLibrary_hedug")
 }
 autoplay = "others"
 
@@ -655,7 +655,7 @@ autostart = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_eyb8q")
+&"": SubResource("AnimationLibrary_eyb8q")
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -732,6 +732,7 @@ texture = ExtResource("1_si1fv")
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_shape_entered" from="hitbox" to="." method="_on_hitbox_area_shape_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
 [connection signal="timeout" from="weapon_display/display_timer" to="." method="_on_display_timer_timeout"]
 [connection signal="timeout" from="timer_switch_cameras" to="." method="_on_timer_switch_cameras_timeout"]

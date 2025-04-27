@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bp5ru2p7jfmjw"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/laser_wall_switch.gd" id="1_rffq3"]
+[ext_resource type="Script" uid="uid://bmx3mkr8qcq1w" path="res://levels/level_mechanics/laser_wall_switch.gd" id="1_rffq3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ixpf"]
 size = Vector2(16, 16)

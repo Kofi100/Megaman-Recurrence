@@ -63,8 +63,9 @@ var coyoteJumpTime
 var onIce: bool = false
 var justLeftIce: bool = false
 @onready var stunSound: SFX = $all_sounds/stun
-
-
+var deltaAlt
+var hasStunEffectApplied:bool=false
+var playLeaveBGM:bool=true
 func _ready():
 	
 	playerCharacter = self
@@ -136,7 +137,7 @@ func leaving(delta):
 		if anim.animation != "spawn":
 			anim.play("spawn")
 		if anim.animation == "spawn" and anim.frame == 2:
-			velocity.y = -10000 * delta
+			velocity.y = -15000 * delta
 
 			$CollisionShape2D.disabled = true
 			$hitbox/CollisionShape2D.disabled = true
@@ -166,13 +167,18 @@ func _physics_process(delta):
 	#print("onIce:", onIce)
 	#print("velocity,speed:", SPEED)
 	GlobalScript.player = self
+	deltaAlt=delta
+	if playLeaveBGM==false:
+			$leave_timer.wait_time=.2
+	#print($leave_timer.wait_time)
 	if leave_bool == true:
-		if has_played_victory_sound == false:
+		if has_played_victory_sound == false and playLeaveBGM==true:
 			has_played_victory_sound = true
 			$all_sounds/level_cleared.play()
+
 		velocity.x = 0
 		$hitbox/CollisionShape2D.disabled = true
-		#leaving(delta)
+		leaving(delta)
 	if $reset_cam_entry.time_left > 0:
 		$player_constants_checker_area2d/CollisionShape2D.disabled = true
 	elif $reset_cam_entry.time_left <= 0:
@@ -543,9 +549,9 @@ func offsetAnimationFunction():
 				#pass
 			#"shoot_idle":
 				#if $anim.flip_h == false:
-					#$anim.offset.x = -3
+					#$anim.offset.x = -1
 				#elif $anim.flip_h == true:
-					#$anim.offset.x = 3
+					#$anim.offset.x = 1
 	#else:
 	#$anim.offset.x = 0
 	#$anim.offset.y = 0
@@ -592,7 +598,7 @@ func play_animations():
 						$anim.play("move_by_inch")
 					elif velocity.x == 0:
 						#soln1
-						if $anim.animation != "shoot_idle" and anim.animation != "whistle_idle":
+						if $anim.animation != "shoot_idle" and anim.animation != "whistle_idle" and anim.animation!="climb_transition":
 							$anim.play("idle")
 							#$jump_Timer.start()
 							#soln2
@@ -613,7 +619,7 @@ func play_animations():
 
 	elif not is_on_floor():
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
-			if $anim.animation != "shoot_in_air" and anim.animation != "stun_air":
+			if $anim.animation != "shoot_in_air" and anim.animation != "stun_air" and anim.animation!="climb_transition":
 				$anim.play("jump")
 		elif Input.is_action_just_released("shoot") and $buster_cooldown_timer.time_left <= 0:
 			if anim.animation != "shoot_in_air" and anim.animation != "stun_air":
@@ -707,7 +713,7 @@ func play_animation_ladder():
 					#velocity.y=100
 					$anim.play_backwards("climb")
 			#		if $change_climb_detector/CollisionShape2D
-			elif was_leaving == true:
+			elif was_leaving == true and velocity.y<0:
 				#print("about to leave ladder")
 				$anim.play("climb_transition")
 	elif Input.is_action_just_released("shoot"):
@@ -878,6 +884,11 @@ func _on_anim_animation_finished():
 			elif not is_on_floor():
 				anim.play("jump")
 			#elif climb==tru
+		"climb_transition":
+			if is_on_floor():
+				anim.play("idle")
+			else:
+				anim.play("jump")
 
 
 var was_leaving = false
@@ -895,7 +906,7 @@ func _on_change_climb_detector_area_exited(area):
 
 var near_ladder = false
 
-
+var enemyOrHazardHurtValue=0
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("enemy"):
 		if GlobalScript.playerhasbeenhit == false:
@@ -906,6 +917,7 @@ func _on_hitbox_area_entered(area):
 			#stun_effect=true
 			anim.play("stun_air")
 			climb = false
+	#if area.is_in_group("")
 	if area.is_in_group("ladders"):
 		near_ladder = true
 	if area.is_in_group("rushjet"):
@@ -915,6 +927,7 @@ func _on_hitbox_area_entered(area):
 		GlobalScript.health = 0
 	if area.is_in_group("capsules"):
 		$all_sounds/energyup.play()
+		pass
 
 
 func _on_hitbox_area_exited(area):
@@ -1021,7 +1034,10 @@ func _on_bgm_finished():
 
 
 func _on_trigger_leave_timer_timeout():
-	get_tree().change_scene_to_file("res://levels/test stages/end_of_level_score_screen.tscn")
+	if playLeaveBGM==true:
+		get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")#"res://levels/test stages/end_of_level_score_screen.tscn"
+	elif playLeaveBGM==false:
+		get_tree().change_scene_to_file("res://levels/challenges_menu.tscn")
 	#GlobalScript.las
 
 
@@ -1046,6 +1062,18 @@ func _on_detect_floor_types_area_body_entered(body: Node2D) -> void:
 		onIce = true
 
 
+
 func _on_detect_floor_types_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("iceTiles"):
 		onIce = false
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	#Hitbox Codes for Body Nodes like Tiles
+	if body.is_in_group("spikeTiles"):
+		if GlobalScript.playerhasbeenhit == false:
+			GlobalScript.playerhasbeenhit = true
+			GlobalScript.health-=8
+			$all_sounds/stun.play()
+			stun(deltaAlt)#using 0.1 since its close to delta(0.19998,i think)
+			anim.play("stun_air")

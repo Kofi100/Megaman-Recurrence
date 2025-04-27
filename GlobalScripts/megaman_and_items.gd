@@ -49,7 +49,7 @@ func _process(_delta):
 		colors=colors
 		if Engine.is_editor_hint():
 			queue_redraw()
-
+	#ColorPalette.
 
 var charge_confirm = false
 
@@ -59,34 +59,34 @@ func charge_effect(animated_sprite: AnimatedSprite2D):
 	#colorPalette.
 	if charge_timer == 0:
 		charge_confirm = false
-		animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.BLACK / 255)
-		animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.LIGHT_BLUE / 255)
-		animated_sprite.material.set_shader_parameter("bodycolorii", colorPalette.DEEP_BLUE / 255)
+		animated_sprite.material.set_shader_parameter("outlinecolor", ColorPaletteGlobal.BLACK / 255)
+		animated_sprite.material.set_shader_parameter("bodycolori", ColorPaletteGlobal.LIGHT_BLUE / 255)
+		animated_sprite.material.set_shader_parameter("bodycolorii", ColorPaletteGlobal.DEEP_BLUE / 255)
 	elif charge_timer >= 30 and charge_timer < 75 + 30:  #30
 		if not charge_confirm:
 			charge_confirm = true
 			print("Charge visuals initiated")
 		if charge_timer % 14 == 1:
-			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.DEEP_RED) / 255.0)
+			animated_sprite.material.set_shader_parameter("outlinecolor", (ColorPaletteGlobal.DEEP_RED) / 255.0)
 		elif charge_timer % 14 == 5:
-			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.SLIGHTLY_DEEP_RED) / 255.0)
+			animated_sprite.material.set_shader_parameter("outlinecolor", (ColorPaletteGlobal.SLIGHTLY_DEEP_RED) / 255.0)
 		elif charge_timer%14==9:
-			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.LIGHTER_DEEP_RED) / 255.0)
+			animated_sprite.material.set_shader_parameter("outlinecolor", (ColorPaletteGlobal.LIGHTER_DEEP_RED) / 255.0)
 			#print((colors.DEEP_RED) / Vector4i(Vector4255))
 	elif charge_timer >= 75 + 30:
 		#animated_spriteated_sprite2d.material.set_shader_parameter("bodyoutlcharge",(Vector4(0.0,0.0,0.0,255.0))/255)
 		if charge_timer % 14 == 1:
-			animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.DEEP_BLUE / 255)
-			animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.BLACK / 255)
-			animated_sprite.material.set_shader_parameter("bodycolorii", colorPalette.LIGHT_BLUE / 255)
+			animated_sprite.material.set_shader_parameter("outlinecolor", ColorPaletteGlobal.DEEP_BLUE / 255)
+			animated_sprite.material.set_shader_parameter("bodycolori", ColorPaletteGlobal.BLACK / 255)
+			animated_sprite.material.set_shader_parameter("bodycolorii", ColorPaletteGlobal.LIGHT_BLUE / 255)
 		elif charge_timer % 14 == 5:
-			animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.LIGHT_BLUE/ 255)#(Vector4(0.0, 98.0, 247.0, 255.0))
-			animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.DEEP_BLUE / 255)#(Vector4(136.0, 232.0, 255.0, 255.0))
+			animated_sprite.material.set_shader_parameter("outlinecolor", ColorPaletteGlobal.LIGHT_BLUE/ 255)#(Vector4(0.0, 98.0, 247.0, 255.0))
+			animated_sprite.material.set_shader_parameter("bodycolori", ColorPaletteGlobal.DEEP_BLUE / 255)#(Vector4(136.0, 232.0, 255.0, 255.0))
 			animated_sprite.material.set_shader_parameter("bodycolorii", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
 
 		elif charge_timer % 14 == 9:
-			animated_sprite.material.set_shader_parameter("outlinecolor",  colorPalette.LIGHT_BLUE/ 255)
-			animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.DEEP_BLUE / 255)
+			animated_sprite.material.set_shader_parameter("outlinecolor",  ColorPaletteGlobal.LIGHT_BLUE/ 255)
+			animated_sprite.material.set_shader_parameter("bodycolori", ColorPaletteGlobal.DEEP_BLUE / 255)
 			animated_sprite.material.set_shader_parameter("bodycolorii", Vector4(188,188,188,255) / 255)
 
 

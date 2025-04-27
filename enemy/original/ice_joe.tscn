@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://35m1y0p8eygp"]
 
 [ext_resource type="Texture2D" uid="uid://bk3kl00237tgd" path="res://assets/sprites/enemies/ice_joe.png" id="1_l1hya"]
-[ext_resource type="Script" path="res://enemy/original/ice_joe.gd" id="1_xl3js"]
+[ext_resource type="Script" uid="uid://dh74cyrl2l3dd" path="res://enemy/original/ice_joe.gd" id="1_xl3js"]
 [ext_resource type="AudioStream" uid="uid://btgnbrpo8hy6e" path="res://assets/sounds/ice_slasher.wav" id="3_1l4g4"]
-[ext_resource type="Script" path="res://levels/sfx_group.gd" id="4_r4m5p"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_r4m5p"]
 [ext_resource type="AudioStream" uid="uid://cmg87ibsgq5t0" path="res://assets/sounds/chargeeffect.wav" id="5_qiipp"]
 
 [sub_resource type="Animation" id="Animation_0n4oo"]
@@ -216,10 +216,10 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pg808"]
 _data = {
-"RESET": SubResource("Animation_0n4oo"),
-"default": SubResource("Animation_1gejq"),
-"jump": SubResource("Animation_ava1m"),
-"shoot": SubResource("Animation_0vwqy")
+&"RESET": SubResource("Animation_0n4oo"),
+&"default": SubResource("Animation_1gejq"),
+&"jump": SubResource("Animation_ava1m"),
+&"shoot": SubResource("Animation_0vwqy")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivqet"]

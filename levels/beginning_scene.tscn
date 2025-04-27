@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://b7qvqf2las08t"]
+
+[ext_resource type="Texture2D" uid="uid://sjntmg6ajse5" path="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png" id="1_2kwlq"]
+[ext_resource type="Script" uid="uid://cjw203u45k6wp" path="res://levels/beginning_scene.gd" id="1_ts5or"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_p55fo"]
+[ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="4_oyjs6"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="5_dfu3o"]
+[ext_resource type="Texture2D" uid="uid://csbm53joufv0" path="res://assets/sprites/miscelleaneous/1BoxArt_Samuel_X7.png" id="6_l66ht"]
+[ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="7_clrv8"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="8_nuyax"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05wmg"]
+atlas = ExtResource("6_l66ht")
+region = Rect2(0, 0, 242, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clrv8"]
+atlas = ExtResource("6_l66ht")
+region = Rect2(0, 54, 242, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuyax"]
+atlas = ExtResource("6_l66ht")
+region = Rect2(0, 108, 242, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvutv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05wmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clrv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nuyax")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="beginning_Scene" type="Node2D"]
+script = ExtResource("1_ts5or")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -7.0
+offset_right = 260.0
+offset_bottom = 229.0
+color = Color(0, 0, 0, 1)
+
+[node name="1MegamanRecurrenceStartMenuSamuelX7" type="Sprite2D" parent="."]
+texture = ExtResource("1_2kwlq")
+centered = false
+
+[node name="press_Start" type="Label" parent="."]
+offset_left = 61.0
+offset_top = 149.0
+offset_right = 321.0
+offset_bottom = 172.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_p55fo")
+text = "PRESS START BUTTOn"
+
+[node name="blink_Timer" type="Timer" parent="press_Start"]
+wait_time = 0.2
+
+[node name="main_Menu_BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_oyjs6")
+autoplay = true
+parameters/looping = true
+script = ExtResource("5_dfu3o")
+
+[node name="boxArtOrTitle" type="AnimatedSprite2D" parent="."]
+position = Vector2(129, 61)
+sprite_frames = SubResource("SpriteFrames_xvutv")
+
+[node name="inputReceived" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_clrv8")
+script = ExtResource("8_nuyax")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
+
+[connection signal="timeout" from="press_Start/blink_Timer" to="." method="_on_blink_timer_timeout"]
+[connection signal="animation_finished" from="boxArtOrTitle" to="." method="_on_box_art_or_title_animation_finished"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://627my02g8jv6"]
 
-[ext_resource type="Script" path="res://resources/test_animated_sprite_2d_2.gd" id="1_45kas"]
+[ext_resource type="Script" uid="uid://du64jpbsli47s" path="res://resources/test_animated_sprite_2d_2.gd" id="1_45kas"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_hl0jk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dblhv"]

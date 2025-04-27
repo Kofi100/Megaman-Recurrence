@@ -1,8 +1,8 @@
 [gd_scene load_steps=28 format=3 uid="uid://clsggi0khuir8"]
 
 [ext_resource type="Texture2D" uid="uid://c8v7i174xymge" path="res://assets/sprites/enemies/laser_Instadeath.png" id="1_a8s8u"]
-[ext_resource type="Script" path="res://enemy/insta_death_laser.gd" id="1_h5scb"]
-[ext_resource type="Script" path="res://enemy/insta_death_laser_c_body_2d.gd" id="2_ufe5f"]
+[ext_resource type="Script" uid="uid://j60vvfs1pvx1" path="res://enemy/insta_death_laser.gd" id="1_h5scb"]
+[ext_resource type="Script" uid="uid://bnnc148fcylk5" path="res://enemy/insta_death_laser_c_body_2d.gd" id="2_ufe5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipvxp"]
 size = Vector2(16, 16)
@@ -181,9 +181,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbk30"]
 _data = {
-"RESET": SubResource("Animation_6e6fc"),
-"extend": SubResource("Animation_bo6ie"),
-"extend_Right": SubResource("Animation_7esk8")
+&"RESET": SubResource("Animation_6e6fc"),
+&"extend": SubResource("Animation_bo6ie"),
+&"extend_Right": SubResource("Animation_7esk8")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytjae"]

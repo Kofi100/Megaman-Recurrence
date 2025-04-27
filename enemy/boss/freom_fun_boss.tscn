@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://xwca7cf3c652"]
 
-[ext_resource type="Script" path="res://enemy/boss/freom_fun_boss.gd" id="1_xmvpm"]
+[ext_resource type="Script" uid="uid://qe7umxqbe88n" path="res://enemy/boss/freom_fun_boss.gd" id="1_xmvpm"]
 [ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="2_advf1"]
 [ext_resource type="Texture2D" uid="uid://p1dbxcim8ovg" path="res://assets/sprites/enemies/bosses/Freom_Sprites/0.png" id="3_hhauf"]
-[ext_resource type="Script" path="res://enemy/boss/Freom_Boss/FreomIdle.gd" id="3_uom22"]
+[ext_resource type="Script" uid="uid://ri4qybc1fr56" path="res://enemy/boss/Freom_Boss/FreomIdle.gd" id="3_uom22"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e7duk"]
 animations = [{

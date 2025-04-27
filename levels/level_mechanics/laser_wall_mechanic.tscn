@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://wycuiptn0u6m"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/laser_wall_mechanic.gd" id="1_7of50"]
+[ext_resource type="Script" uid="uid://bmjlm37k22702" path="res://levels/level_mechanics/laser_wall_mechanic.gd" id="1_7of50"]
 
 [node name="laserWallMechanic" type="CharacterBody2D"]
 script = ExtResource("1_7of50")

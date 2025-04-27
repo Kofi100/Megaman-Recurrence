@@ -19,13 +19,20 @@ var save_padbinds_path = "res://padbinds.txt"
 }
 
 var menuOption: int = 0
-
+var inputAccept:bool=false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_keys_to_players()
 	#$Control/ScrollContainer/VSplitContainer/up_btn.grab_focus()
 	$mega_spin.play("spinnnn")
+	inputAccept=false
+	#creates a weird loop of sorts...
+	#while true:
+		#if Input.is_action_just_released("shoot"):
+			#inputAccept=false
+			#await get_tree().create_timer(2).timeout
+			#inputAccept=true
 
 
 var display_label = false
@@ -73,7 +80,7 @@ func _process(delta):
 		5:$selectArrow.set_global_position($keyboard_Settings/dash.global_position-Vector2(20,0))
 		6:$selectArrow.set_global_position($keyboard_Settings/shoot.global_position-Vector2(20,0))
 		7:$selectArrow.set_global_position($main_menu.global_position-Vector2(20,0))
-	if Input.is_action_just_released("shoot"):
+	if Input.is_action_just_released("shoot") and inputAccept==true:
 		if menuOption>=0 and menuOption<=6:
 			display_label_fxn()
 			selected_option=menuOption
@@ -89,6 +96,9 @@ var action_to_get
 
 
 func _input(event):
+	if inputAccept==false:
+		display_label=false
+		return
 	if display_label == true:
 		if event is InputEventKey and event.keycode!=27:
 			if InputMap.has_action(option_to_action_dict[selected_option]) and event.is_released() == true:
@@ -253,3 +263,7 @@ func _on_button_pressed() -> void:
 	#scene.pack(inputmap)
 	##inputmap=InputMap.new()
 	#ResourceSaver.save(inputmap,"res://")
+
+
+func _on_delay_input_timer_timeout() -> void:
+	inputAccept=true

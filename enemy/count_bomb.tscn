@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cea6ffpfklqkn"]
 
-[ext_resource type="Script" path="res://enemy/count_bomb.gd" id="1_hefp1"]
+[ext_resource type="Script" uid="uid://de43g00pksqfl" path="res://enemy/count_bomb.gd" id="1_hefp1"]
 [ext_resource type="Texture2D" uid="uid://v8ofvppjluri" path="res://assets/sprites/enemies/count-Bomb.png" id="2_heygj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10wg2"]

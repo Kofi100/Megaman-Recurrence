@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bj0da1r76l7d0"]
 
 [ext_resource type="Texture2D" uid="uid://di8fwpfolamcx" path="res://assets/sprites/enemies/buster.png" id="1_8s4fi"]
-[ext_resource type="Script" path="res://enemy/original/buster.gd" id="1_qifye"]
+[ext_resource type="Script" uid="uid://c2ctcj6e5ex56" path="res://enemy/original/buster.gd" id="1_qifye"]
 [ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_tie5c"]
-[ext_resource type="Script" path="res://levels/sfx_group.gd" id="4_6b026"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_6b026"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ad6c0"]
 atlas = ExtResource("1_8s4fi")

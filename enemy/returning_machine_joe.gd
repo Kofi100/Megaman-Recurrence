@@ -8,6 +8,7 @@ func _ready() -> void:
 	health=12
 
 func _physics_process(delta: float) -> void:
+	$repeatShootTimer/durationShootTimer.wait_time=.9
 	if not is_on_floor():
 		velocity.y+=get_gravity().y*delta
 	calculate_player_distance()
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.flip_h=false
 	if abs(distance_x)<30 and abs(distance_y)<30:
 		if is_on_floor():
-			velocity.y=-40000*delta
+			velocity.y=-22000*delta
 			animated_sprite_2d.play("jump_Default")
 			$playerDetection/CollisionShape2D.set_deferred("disabled",true)
 			$repeatShootTimer/stopDurationTimer.stop()

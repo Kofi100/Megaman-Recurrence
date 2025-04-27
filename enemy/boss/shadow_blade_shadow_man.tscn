@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://djmdnd8l3wr1m"]
 
-[ext_resource type="Script" path="res://enemy/boss/shadow_blade_shadow_man.gd" id="1_8hrcq"]
+[ext_resource type="Script" uid="uid://bvmf5tjxyvym2" path="res://enemy/boss/shadow_blade_shadow_man.gd" id="1_8hrcq"]
 [ext_resource type="Texture2D" uid="uid://bqmkmlrmxd3h5" path="res://assets/sprites/weapons/shadow_blade_MM3(23x23).png" id="2_jfvby"]
 [ext_resource type="AudioStream" uid="uid://4v0su6t8pguj" path="res://assets/sounds/shadow_blade.wav" id="3_o5ykh"]
 

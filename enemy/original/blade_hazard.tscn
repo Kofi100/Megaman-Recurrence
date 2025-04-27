@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4u62mdfswihq"]
 
-[ext_resource type="Script" path="res://enemy/original/blade_hazard.gd" id="1_vae5k"]
+[ext_resource type="Script" uid="uid://cvtenibut5hmy" path="res://enemy/original/blade_hazard.gd" id="1_vae5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enmiv"]
 size = Vector2(26, 25)

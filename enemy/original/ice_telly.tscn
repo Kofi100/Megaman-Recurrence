@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://cn7mr1boxi55c"]
 
 [ext_resource type="Texture2D" uid="uid://ctm0ohtvc0g6v" path="res://assets/sprites/enemies/ice_Telly.png" id="1_oxtba"]
-[ext_resource type="Script" path="res://enemy/original/ice_telly.gd" id="1_ymt7d"]
+[ext_resource type="Script" uid="uid://3cvn3lbwefh8" path="res://enemy/original/ice_telly.gd" id="1_ymt7d"]
 [ext_resource type="Texture2D" uid="uid://celwj44lsursi" path="res://assets/sprites/player/mega_spin.png" id="2_rxyas"]
 [ext_resource type="AudioStream" uid="uid://btgnbrpo8hy6e" path="res://assets/sounds/ice_slasher.wav" id="4_bf2tw"]
-[ext_resource type="Script" path="res://levels/sfx_group.gd" id="5_nfusg"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="5_nfusg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3xfr"]
 atlas = ExtResource("1_oxtba")
@@ -142,9 +142,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hyvrw"]
 _data = {
-"RESET": SubResource("Animation_04die"),
-"default": SubResource("Animation_a6i6y"),
-"shoot": SubResource("Animation_wfqd5")
+&"RESET": SubResource("Animation_04die"),
+&"default": SubResource("Animation_a6i6y"),
+&"shoot": SubResource("Animation_wfqd5")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d43c8"]

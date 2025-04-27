@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://bao47g1gead57"]
 
-[ext_resource type="Script" path="res://levels/robot_master_display_scene.gd" id="1_g526k"]
+[ext_resource type="Script" uid="uid://cp2qu3lbqhshr" path="res://levels/robot_master_display_scene.gd" id="1_g526k"]
 [ext_resource type="Texture2D" uid="uid://ddtvjx6j408ql" path="res://assets/sprites/miscelleaneous/screenTransitionRMaster.png" id="1_namjn"]
 [ext_resource type="Texture2D" uid="uid://gf76btbxgpe3" path="res://assets/sprites/enemies/bosses/fireman/idle/0.png" id="3_mmin3"]
 [ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="4_viicr"]
 [ext_resource type="Texture2D" uid="uid://d21bm5jxlk81v" path="res://assets/sprites/enemies/bosses/shadowman.png" id="5_cpjfu"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_fgrhp"]
 [ext_resource type="AudioStream" uid="uid://c6rjahjyxac4h" path="res://assets/music/Mega Man 3 OST_ Game Start.mp3" id="7_uylcb"]
-[ext_resource type="Script" path="res://resources/bgm_group.gd" id="8_q66bg"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="8_q66bg"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4gw3"]
 particle_flag_disable_z = true
@@ -90,8 +90,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o6fbu"]
 _data = {
-"RESET": SubResource("Animation_pyjch"),
-"new_animation": SubResource("Animation_m5pux")
+&"RESET": SubResource("Animation_pyjch"),
+&"new_animation": SubResource("Animation_m5pux")
 }
 
 [node name="robotMasterDisplayScene" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dscx2x16q1qj1"]
 
-[ext_resource type="Script" path="res://enemy/boss/mini_boss_1_deadly_body_1.gd" id="1_qoam4"]
+[ext_resource type="Script" uid="uid://055j0dlxrynb" path="res://enemy/boss/mini_boss_1_deadly_body_1.gd" id="1_qoam4"]
 [ext_resource type="Texture2D" uid="uid://cjph0yevd7mn" path="res://assets/sprites/enemies/bosses/miniBoss_1_divison1-reMade.png" id="2_v3t1e"]
 [ext_resource type="Texture2D" uid="uid://c0h32htj50ewv" path="res://assets/sprites/enemies/bosses/miniBoss_1_divison1-reMade-sheet.png" id="3_lp8lx"]
 

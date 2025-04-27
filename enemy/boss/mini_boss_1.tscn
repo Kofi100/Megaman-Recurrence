@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://4vhm346mxqkf"]
 
-[ext_resource type="Script" path="res://enemy/boss/mini_boss_1.gd" id="1_f476v"]
+[ext_resource type="Script" uid="uid://crqirt026t6ej" path="res://enemy/boss/mini_boss_1.gd" id="1_f476v"]
 [ext_resource type="Texture2D" uid="uid://1k4rqc3woxgu" path="res://assets/sprites/enemies/bosses/miniBoss_1_divison1.png" id="1_y0nbc"]
-[ext_resource type="Script" path="res://enemy/boss/miniBoss1_mainBody.gd" id="3_wkvv8"]
+[ext_resource type="Script" uid="uid://bf55v248bmf8w" path="res://enemy/boss/miniBoss1_mainBody.gd" id="3_wkvv8"]
 [ext_resource type="Texture2D" uid="uid://c4lpvjaos7sq8" path="res://assets/sprites/enemies/bosses/miniBoss_1_divison2-sheet.png" id="4_3ty45"]
 [ext_resource type="PackedScene" uid="uid://dscx2x16q1qj1" path="res://enemy/boss/miniBoss1_deadly_body_1.tscn" id="5_gd5fr"]
 

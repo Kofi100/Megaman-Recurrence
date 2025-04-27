@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://c3yk3rrk375l7"]
 
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_8nw7h"]
-[ext_resource type="Script" path="res://levels/test stages/test_boss_room_3.gd" id="1_ya5oa"]
-[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_12orj"]
+[ext_resource type="Script" uid="uid://cgyt66mm4ivnf" path="res://levels/test stages/test_boss_room_3.gd" id="1_ya5oa"]
+[ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_12orj"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_ollv5"]
 [ext_resource type="PackedScene" uid="uid://dxt1j8tafantj" path="res://enemy/boss/shadowman_1.tscn" id="4_53k8f"]
 [ext_resource type="AudioStream" uid="uid://qlcuslofwceu" path="res://assets/music/Megaman 10 OST_ Boss Battle _Loop.mp3" id="5_eu3pq"]
-[ext_resource type="Script" path="res://resources/bgm_group.gd" id="6_6lnsa"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="6_6lnsa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtl22"]
 texture = ExtResource("1_8nw7h")

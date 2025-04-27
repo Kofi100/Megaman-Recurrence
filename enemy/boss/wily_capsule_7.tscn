@@ -1,11 +1,11 @@
 [gd_scene load_steps=19 format=3 uid="uid://c2gjhdosb3pl1"]
 
 [ext_resource type="Texture2D" uid="uid://bg78wlf3gvi3p" path="res://assets/sprites/enemies/bosses/wily_capsule_7/capsule.png" id="1_e40l4"]
-[ext_resource type="Script" path="res://enemy/boss/wily_capsule_7.gd" id="1_gl0u7"]
+[ext_resource type="Script" uid="uid://cb6nwj8jmmq6e" path="res://enemy/boss/wily_capsule_7.gd" id="1_gl0u7"]
 [ext_resource type="Texture2D" uid="uid://bf6f76mkrh8hv" path="res://assets/sprites/enemies/bosses/wily_capsule_7/wily_sprites_recreated2.png" id="2_jaocd"]
 [ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="4_48cjy"]
-[ext_resource type="Script" path="res://enemy/boss/Wily7Capsule/Wily7Disappear.gd" id="5_v47od"]
-[ext_resource type="Script" path="res://enemy/boss/Wily7Capsule/Wily7Intro.gd" id="6_1i08d"]
+[ext_resource type="Script" uid="uid://dbb7t2ytp5uii" path="res://enemy/boss/Wily7Capsule/Wily7Disappear.gd" id="5_v47od"]
+[ext_resource type="Script" uid="uid://ovkrogscuvlc" path="res://enemy/boss/Wily7Capsule/Wily7Intro.gd" id="6_1i08d"]
 [ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="7_db37u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gj8v4"]

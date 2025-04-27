@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://bmvq4qbc6sxm3"]
 
-[ext_resource type="Script" path="res://enemy/enemy_that_shoots_laser.gd" id="1_h6s00"]
+[ext_resource type="Script" uid="uid://b7i0k7ygis0e4" path="res://enemy/enemy_that_shoots_laser.gd" id="1_h6s00"]
 [ext_resource type="Texture2D" uid="uid://2piw3rhp28vh" path="res://assets/sprites/enemies/laserBlaster-sheet.png" id="2_txkel"]
-[ext_resource type="Script" path="res://enemy/enemy_Laser_laserBody.gd" id="2_ynn70"]
+[ext_resource type="Script" uid="uid://bf4doiynnh0at" path="res://enemy/enemy_Laser_laserBody.gd" id="2_ynn70"]
 [ext_resource type="Texture2D" uid="uid://b85rbuacts05r" path="res://assets/sprites/enemies/laserBlaster_Laser.png" id="4_san8l"]
 [ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="5_gqmhv"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c21l7y4eqyny7"]
 
-[ext_resource type="Script" path="res://enemy/laser_insta_kill_producer.gd" id="1_0rxii"]
+[ext_resource type="Script" uid="uid://bbbh8o1ggbib5" path="res://enemy/laser_insta_kill_producer.gd" id="1_0rxii"]
 
 [node name="laser_InstaKill_Producer" type="CharacterBody2D"]
 script = ExtResource("1_0rxii")

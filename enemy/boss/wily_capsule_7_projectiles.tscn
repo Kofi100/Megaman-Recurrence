@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://da6pr3mulsw5e"]
 
-[ext_resource type="Script" path="res://enemy/boss/wily_capsule_7_projectiles.gd" id="1_v1b2u"]
+[ext_resource type="Script" uid="uid://sce7d3pt3keo" path="res://enemy/boss/wily_capsule_7_projectiles.gd" id="1_v1b2u"]
 [ext_resource type="Texture2D" uid="uid://c6vxt06kc7nhg" path="res://assets/sprites/enemies/bosses/wily_capsule_7/capsule_balls.png" id="2_tdns0"]
 [ext_resource type="Texture2D" uid="uid://dil21mv8fljt7" path="res://assets/sprites/enemies/bosses/wily_capsule_7/capsule_fire-sheet.png" id="3_c50ct"]
 

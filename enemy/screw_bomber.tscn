@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://d0333yea3ut85"]
 
 [ext_resource type="Texture2D" uid="uid://omvbntavfpeg" path="res://assets/sprites/enemies/screw_bomber.png" id="1_3dcq3"]
-[ext_resource type="Script" path="res://enemy/screw_bomber.gd" id="1_k5s1u"]
+[ext_resource type="Script" uid="uid://chldrki46k000" path="res://enemy/screw_bomber.gd" id="1_k5s1u"]
 [ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_1dovb"]
-[ext_resource type="Script" path="res://levels/sfx_group.gd" id="4_rtwj1"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_rtwj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3ytg"]
 size = Vector2(15, 8)
@@ -140,9 +140,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tc2px"]
 _data = {
-"RESET": SubResource("Animation_kkrf5"),
-"default_Idle_Ready": SubResource("Animation_3xjjf"),
-"ice_Idle_Ready": SubResource("Animation_4k2f7")
+&"RESET": SubResource("Animation_kkrf5"),
+&"default_Idle_Ready": SubResource("Animation_3xjjf"),
+&"ice_Idle_Ready": SubResource("Animation_4k2f7")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw5e4"]

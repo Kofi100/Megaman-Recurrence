@@ -1,17 +1,18 @@
-[gd_scene load_steps=55 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=56 format=3 uid="uid://6tusihkhmm8e"]
 
-[ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
+[ext_resource type="Script" uid="uid://c2d8ca2gmbv22" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://ceiqj8bjouqre" path="res://assets/sprites/miscelleaneous/pause_screen_setup3.png" id="2_jxh0c"]
 [ext_resource type="Texture2D" uid="uid://bko24mknbj21s" path="res://assets/sprites/miscelleaneous/health_megaman_bg.png" id="5_eted2"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="5_g1yve"]
 [ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
+[ext_resource type="Texture2D" uid="uid://0mffs64l1aew" path="res://assets/sprites/miscelleaneous/1PauseMegaIcon_Samuel_X7.png" id="6_dueoh"]
 [ext_resource type="Texture2D" uid="uid://0x2sqe62giq7" path="res://assets/sprites/miscelleaneous/health_megaman.png" id="6_io84m"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="6_ja50w"]
 [ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="6_vmhtx"]
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="7_65oho"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="7_ixl55"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
-[ext_resource type="Shader" path="res://players/megaman.gdshader" id="9_1ufh6"]
+[ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="9_1ufh6"]
 [ext_resource type="Texture2D" uid="uid://crsv3lsy4ydvs" path="res://assets/sprites/miscelleaneous/pauseScreen_New.png" id="9_3fjw4"]
 [ext_resource type="Texture2D" uid="uid://b1oohir875cby" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_New.png" id="10_b5n2o"]
 [ext_resource type="Texture2D" uid="uid://u3p72jwu1vfj" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_New.png" id="11_m5djj"]
@@ -49,7 +50,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_phch0"]
 _data = {
-"fade_out": SubResource("Animation_nxwht")
+&"fade_out": SubResource("Animation_nxwht")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_be7r0"]
@@ -58,11 +59,11 @@ shader = ExtResource("9_1ufh6")
 shader_parameter/outline_color_original = Color(0, 0, 0, 1)
 shader_parameter/bodycolororiginal1 = Color(0.988235, 0.988235, 0.988235, 1)
 shader_parameter/bodycolororiginal2 = Color(0.988235, 0.894118, 0.627451, 1)
-shader_parameter/colorEyesOriginal = null
-shader_parameter/outlinecolor = null
+shader_parameter/colorEyesOriginal = Color(0, 0, 0, 1)
+shader_parameter/outlinecolor = Color(0, 0, 0, 1)
 shader_parameter/bodycolori = Color(0, 0.286275, 1, 1)
 shader_parameter/bodycolorii = Color(1, 0, 1, 1)
-shader_parameter/colorEyesEdit = null
+shader_parameter/colorEyesEdit = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atsqi"]
 bg_color = Color(0.247059, 0.713726, 0, 1)
@@ -85,7 +86,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_460xm"]
 _data = {
-"boss_level_up": SubResource("Animation_f5x0v")
+&"boss_level_up": SubResource("Animation_f5x0v")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ow7iq"]
@@ -326,15 +327,15 @@ color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="fade_out_effect"]
 libraries = {
-"": SubResource("AnimationLibrary_phch0")
+&"": SubResource("AnimationLibrary_phch0")
 }
 
 [node name="weapon_energy" type="TextureProgressBar" parent="."]
 material = SubResource("ShaderMaterial_be7r0")
-offset_left = 20.0
-offset_top = 7.0
-offset_right = 28.0
-offset_bottom = 64.0
+offset_left = 12.0
+offset_top = 16.0
+offset_right = 20.0
+offset_bottom = 73.0
 max_value = 27.0
 value = 27.0
 fill_mode = 3
@@ -343,10 +344,11 @@ texture_progress = ExtResource("6_io84m")
 
 [node name="text_weapon_energy" type="Label" parent="weapon_energy"]
 layout_mode = 0
-offset_top = 58.0
-offset_right = 32.0
-offset_bottom = 78.0
-scale = Vector2(0.5, 0.5)
+offset_left = 1.0
+offset_top = -8.0
+offset_right = 33.0
+offset_bottom = 12.0
+scale = Vector2(0.35, 0.35)
 theme = ExtResource("7_ixl55")
 text = "27"
 
@@ -356,10 +358,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="healthbar" type="TextureProgressBar" parent="."]
-offset_left = 4.0
-offset_top = 7.0
-offset_right = 12.0
-offset_bottom = 64.0
+offset_left = 2.0
+offset_top = 16.0
+offset_right = 10.0
+offset_bottom = 73.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 20.0
@@ -369,28 +371,31 @@ texture_progress = ExtResource("6_io84m")
 
 [node name="text_health_display" type="Label" parent="healthbar"]
 layout_mode = 0
-offset_left = -3.0
-offset_top = 58.0
-offset_right = 29.0
-offset_bottom = 78.0
-scale = Vector2(0.5, 0.5)
+offset_left = -1.0
+offset_top = -8.0
+offset_right = 31.0
+offset_bottom = 12.0
+scale = Vector2(0.35, 0.35)
 theme = ExtResource("7_ixl55")
 text = "24"
 
 [node name="text_lives" type="Label" parent="healthbar"]
 layout_mode = 0
-offset_top = 85.0
-offset_right = 16.0
-offset_bottom = 105.0
-scale = Vector2(0.5, 0.5)
+offset_left = 1.0
+offset_top = 69.0
+offset_right = 17.0
+offset_bottom = 89.0
+scale = Vector2(0.35, 0.35)
 theme = ExtResource("7_ixl55")
 text = "3"
 
 [node name="Sprite2D" type="Sprite2D" parent="healthbar"]
-position = Vector2(4, 75)
-texture = ExtResource("7_65oho")
-hframes = 14
-frame = 10
+position = Vector2(-2, 57)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_dueoh")
+centered = false
+hframes = 2
+frame = 1
 
 [node name="healthbar2" type="ProgressBar" parent="."]
 visible = false
@@ -434,7 +439,7 @@ text = "00"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="boss_healthbar"]
 libraries = {
-"": SubResource("AnimationLibrary_460xm")
+&"": SubResource("AnimationLibrary_460xm")
 }
 
 [node name="timer" type="Timer" parent="boss_healthbar"]
@@ -762,6 +767,15 @@ position = Vector2(0, 18)
 sprite_frames = SubResource("SpriteFrames_i6tc0")
 animation = &"notSelected"
 
+[node name="PauseScreenTimer" type="Label" parent="pause_screen_setup"]
+offset_left = 160.0
+offset_top = 26.0
+offset_right = 312.0
+offset_bottom = 43.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+text = "Timer:xx:xx"
+
 [node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_vp1wl")
 max_distance = 1e+16
@@ -792,20 +806,20 @@ color = Color(1, 0.054902, 0, 1)
 scale = Vector2(0.3, 0.3)
 
 [node name="minutes" type="Label" parent="timer"]
-offset_left = 670.0
-offset_top = 56.6667
-offset_right = 710.0
-offset_bottom = 79.6667
-scale = Vector2(1.5, 1.5)
+offset_left = -286.667
+offset_top = 80.0
+offset_right = -246.667
+offset_bottom = 103.0
+scale = Vector2(1.2, 1.2)
 theme = ExtResource("7_ixl55")
 text = "xx"
 
 [node name="seconds" type="Label" parent="timer"]
-offset_left = 740.0
-offset_top = 56.6667
-offset_right = 780.0
-offset_bottom = 79.6667
-scale = Vector2(1.5, 1.5)
+offset_left = -326.667
+offset_top = 106.667
+offset_right = -286.667
+offset_bottom = 129.667
+scale = Vector2(1.2, 1.2)
 theme = ExtResource("7_ixl55")
 text = "xx"
 
@@ -821,23 +835,24 @@ offset_bottom = 39.0
 theme = ExtResource("7_ixl55")
 text = "aaa"
 
-[node name="label" type="Label" parent="timer"]
-offset_left = 533.333
-offset_top = 56.6667
-offset_right = 665.333
-offset_bottom = 73.6667
-scale = Vector2(1.5, 1.5)
+[node name="InGame" type="Label" parent="timer"]
+offset_left = 580.0
+offset_top = 27.0
+offset_right = 732.0
+offset_bottom = 46.0
+scale = Vector2(1.2, 1.2)
 theme = ExtResource("7_ixl55")
-text = "Timer:      :"
+text = "Timer:xx:xx"
 
 [node name="fps_Display" type="Label" parent="."]
-offset_left = 160.0
-offset_top = 27.0
-offset_right = 258.0
-offset_bottom = 44.0
-scale = Vector2(0.5, 0.5)
+offset_left = 244.0
+offset_top = 217.0
+offset_right = 276.0
+offset_bottom = 234.0
+scale = Vector2(0.35, 0.35)
 theme = ExtResource("7_ixl55")
-text = "FPS: 60"
+text = "60"
+horizontal_alignment = 2
 
 [node name="stage_name" type="Label" parent="."]
 visible = false

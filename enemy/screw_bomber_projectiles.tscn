@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://6ekcuj2dxtd6"]
 
-[ext_resource type="Script" path="res://enemy/screw_bomber_projectiles.gd" id="1_cjg5i"]
+[ext_resource type="Script" uid="uid://cbvu2byoh7en8" path="res://enemy/screw_bomber_projectiles.gd" id="1_cjg5i"]
 [ext_resource type="Texture2D" uid="uid://jidtp3onvm5y" path="res://assets/sprites/enemies/blaster_beak_bullet.png" id="2_owkdf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cffx3"]

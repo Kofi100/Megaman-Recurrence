@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cd2h8y4ul6t18"]
 
-[ext_resource type="Script" path="res://enemy/original/grenade_projectile_grenademan.gd" id="1_i1oq5"]
+[ext_resource type="Script" uid="uid://8jfxpmnquts" path="res://enemy/original/grenade_projectile_grenademan.gd" id="1_i1oq5"]
 [ext_resource type="Texture2D" uid="uid://4xnsrna3x2u7" path="res://assets/sprites/enemies/original/orig_projectiles/grenade_Projectile_Grenademan.png" id="2_5vfpm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rf2f6"]

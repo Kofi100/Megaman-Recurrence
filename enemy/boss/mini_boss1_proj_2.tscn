@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://kjygm8m2f7cy"]
 
 [ext_resource type="Texture2D" uid="uid://dkcdqg3twyc4c" path="res://assets/sprites/enemies/bosses/miniBoss_1_projectile2-Sonic1Style.png" id="1_g2473"]
-[ext_resource type="Script" path="res://enemy/boss/mini_boss_1_proj_2.gd" id="1_sx0n0"]
+[ext_resource type="Script" uid="uid://dpi8nrmjfcq6i" path="res://enemy/boss/mini_boss_1_proj_2.gd" id="1_sx0n0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6abck"]
 atlas = ExtResource("1_g2473")

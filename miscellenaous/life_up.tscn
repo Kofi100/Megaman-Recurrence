@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfrbicmbbfe7u"]
 
-[ext_resource type="Script" path="res://miscellenaous/life_up.gd" id="1_8c5b3"]
+[ext_resource type="Script" uid="uid://5rgh567f2vsu" path="res://miscellenaous/life_up.gd" id="1_8c5b3"]
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="1_61f8m"]
 [ext_resource type="AudioStream" uid="uid://050kkt3li38u" path="res://assets/sounds/1up.wav" id="3_nkeg0"]
-[ext_resource type="Script" path="res://levels/sfx_group.gd" id="4_mlx5l"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_mlx5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlnwf"]
 size = Vector2(16, 15)

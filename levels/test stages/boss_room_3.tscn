@@ -1,40 +1,26 @@
 [gd_scene load_steps=16 format=3 uid="uid://csi6248lvsbko"]
 
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_22mmi"]
-[ext_resource type="Script" path="res://levels/test stages/boss_room_3.gd" id="1_m1664"]
+[ext_resource type="Script" uid="uid://dmn7jt8egwen4" path="res://levels/test stages/boss_room_3.gd" id="1_m1664"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_ve3pt"]
 [ext_resource type="PackedScene" uid="uid://c2gjhdosb3pl1" path="res://enemy/boss/wily_capsule_7.tscn" id="3_g5whv"]
 [ext_resource type="Texture2D" uid="uid://cn4nfvmm8ja7q" path="res://assets/sprites/miscelleaneous/custom_healthbars/wily7health-50.png" id="4_bo52j"]
 [ext_resource type="AudioStream" uid="uid://b5b448p0iuy70" path="res://assets/music/Final Wily Battle - Mega Man 7 [OST].ogg" id="5_ov4h5"]
-[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="6_3k1q1"]
+[ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="6_3k1q1"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="7_jue8g"]
 [ext_resource type="PackedScene" uid="uid://c86rlo00ectxx" path="res://hud_boss_bar.tscn" id="8_eyi58"]
-[ext_resource type="Script" path="res://resources/bgm_group.gd" id="8_mafl1"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="8_mafl1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vg854"]
 texture = ExtResource("1_22mmi")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0 = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
 4:0/0 = 0
-4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:0/0/physics_layer_0/angular_velocity = 0.0
 5:0/0 = 0
-5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:0/0/physics_layer_0/angular_velocity = 0.0
 6:0/0 = 0
-6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-6:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_sgdsp"]
 physics_layer_0/collision_layer = 1
@@ -62,7 +48,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rl2m7"]
 _data = {
-"new_animation": SubResource("Animation_gx65o")
+&"new_animation": SubResource("Animation_gx65o")
 }
 
 [node name="boss_room_3" type="Node2D"]

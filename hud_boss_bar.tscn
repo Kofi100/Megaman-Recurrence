@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c86rlo00ectxx"]
 
-[ext_resource type="Script" path="res://hud_boss_bar.gd" id="1_odj72"]
+[ext_resource type="Script" uid="uid://dy8xw43wvr4ns" path="res://hud_boss_bar.gd" id="1_odj72"]
 
 [node name="HUD_BossBar" type="CanvasLayer"]
 process_mode = 3

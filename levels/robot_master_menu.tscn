@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://cnb7llkr0ofpf"]
 
-[ext_resource type="Script" path="res://levels/robot_master_menu.gd" id="1_pefhl"]
+[ext_resource type="Script" uid="uid://ciuduaxwp3hw3" path="res://levels/robot_master_menu.gd" id="1_pefhl"]
 [ext_resource type="Texture2D" uid="uid://ds625p5y8oage" path="res://assets/sprites/miscelleaneous/menus/selectionrobotMasterSprite-export.png" id="2_852fl"]
 [ext_resource type="Texture2D" uid="uid://c2c7bkij3vvv6" path="res://assets/sprites/miscelleaneous/1KofiStageSelect_Samuel_X7_Edited.png" id="2_std68"]
 [ext_resource type="Texture2D" uid="uid://d0txnl7ywo11h" path="res://assets/sprites/miscelleaneous/menus/fireman.png" id="3_o04lh"]
@@ -112,7 +112,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tl1ny"]
 _data = {
-"start": SubResource("Animation_k88gx")
+&"start": SubResource("Animation_k88gx")
 }
 
 [node name="robotMasterMenu" type="Node2D"]
@@ -245,6 +245,11 @@ position = Vector2(208, 110)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
 animation = &"notSelected"
 
+[node name="Portrait_SatelliteMan_Samuel_X7" type="Sprite2D" parent="Node2D/robotMaster5"]
+texture = ExtResource("9_pdk28")
+hframes = 9
+frame = 1
+
 [node name="robotMaster6" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(48, 174)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
@@ -265,6 +270,7 @@ position = Vector2(128, 110)
 texture = ExtResource("10_v3hkl")
 hframes = 3
 vframes = 3
+frame = 4
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -276,7 +282,7 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="aniPlayer"]
 libraries = {
-"": SubResource("AnimationLibrary_tl1ny")
+&"": SubResource("AnimationLibrary_tl1ny")
 }
 autoplay = "start"
 
@@ -303,6 +309,30 @@ text = "SHADOWMAN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="satelliteMan" type="Label" parent="all_text"]
+offset_left = 183.0
+offset_top = 134.0
+offset_right = 317.0
+offset_bottom = 169.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("4_u4epk")
+text = "Satellite 
+man"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="satelliteMan2" type="Label" parent="all_text"]
+offset_left = 108.0
+offset_top = 198.0
+offset_right = 217.0
+offset_bottom = 233.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("4_u4epk")
+text = "RADICAL
+MAN"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="iceMan" type="Label" parent="all_text"]
 offset_left = 25.0
 offset_top = 199.0
@@ -326,14 +356,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="slumberMan" type="Label" parent="all_text"]
-offset_left = 85.0
-offset_top = 72.0
-offset_right = 251.0
-offset_bottom = 90.0
-scale = Vector2(0.5, 0.5)
+offset_left = 106.0
+offset_top = 70.0
+offset_right = 218.0
+offset_bottom = 105.0
+scale = Vector2(0.4, 0.4)
 theme = ExtResource("4_u4epk")
-text = "SLUMBER MAN"
-horizontal_alignment = 1
+text = "SLUMBER 
+MAN"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="SelectArrow" type="Sprite2D" parent="."]

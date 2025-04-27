@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://bh0igfh3wr8uf"]
 
-[ext_resource type="Script" path="res://enemy/walking_bomb.gd" id="1_60goj"]
+[ext_resource type="Script" uid="uid://2cihsrej50ue" path="res://enemy/walking_bomb.gd" id="1_60goj"]
 [ext_resource type="Texture2D" uid="uid://brb834rh55occ" path="res://assets/sprites/enemies/walking bomb.png" id="1_auwyg"]
 [ext_resource type="Texture2D" uid="uid://c3pajt1rftd0w" path="res://assets/sprites/miscelleaneous/mm6_death_animations.png" id="3_oqdro"]
-[ext_resource type="Script" path="res://enemy/walking_bomb_explosion_container.gd" id="4_5jrmp"]
+[ext_resource type="Script" uid="uid://ddyflstcrf26a" path="res://enemy/walking_bomb_explosion_container.gd" id="4_5jrmp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yybr"]
 atlas = ExtResource("1_auwyg")

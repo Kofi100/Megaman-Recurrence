@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bkfaw8regatlq"]
 
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_06wpd"]
-[ext_resource type="Script" path="res://resources/test_animated_sprite_2d.gd" id="1_ubbqf"]
+[ext_resource type="Script" uid="uid://dgb6jx1ifjf3i" path="res://resources/test_animated_sprite_2d.gd" id="1_ubbqf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ex4h"]
 atlas = ExtResource("1_06wpd")

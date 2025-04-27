@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://b2k6ofydycgiy"]
 
-[ext_resource type="Script" path="res://levels/input_rebind_menu.gd" id="1_87vqm"]
+[ext_resource type="Script" uid="uid://38apb2khd8pc" path="res://levels/input_rebind_menu.gd" id="1_87vqm"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="2_1p3mi"]
 [ext_resource type="Texture2D" uid="uid://chhq4su6fi50s" path="res://assets/sprites/miscelleaneous/background_input_menu.png" id="2_3qgwf"]
 [ext_resource type="Texture2D" uid="uid://dgd1vwspunt10" path="res://assets/sprites/miscelleaneous/menus/template/background Color.png" id="3_7yj3i"]
@@ -315,5 +315,11 @@ theme = ExtResource("2_1p3mi")
 text = "WAITING FOR INPUT:
 ...."
 
+[node name="delayInputTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="delayInputTimer" to="." method="_on_delay_input_timer_timeout"]

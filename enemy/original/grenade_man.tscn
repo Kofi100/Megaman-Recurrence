@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dewuncfhoaa34"]
 
 [ext_resource type="Texture2D" uid="uid://ctcnebfu1i16y" path="res://assets/sprites/enemies/original/grenadeMan.png" id="1_tb7pl"]
-[ext_resource type="Script" path="res://enemy/original/grenade_man.gd" id="1_tjga5"]
+[ext_resource type="Script" uid="uid://bn67sxyswo80l" path="res://enemy/original/grenade_man.gd" id="1_tjga5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jo36f"]
 atlas = ExtResource("1_tb7pl")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://vxgjp04hcsd8"]
 
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_at82d"]
-[ext_resource type="Script" path="res://levels/game_over_screen.gd" id="1_ka8nh"]
+[ext_resource type="Script" uid="uid://cl1so21ki2lc2" path="res://levels/game_over_screen.gd" id="1_ka8nh"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="3_2h8ba"]
 
 [node name="gameOverScreen" type="Node2D"]

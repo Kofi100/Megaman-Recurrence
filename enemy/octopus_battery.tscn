@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://drywjq3yk7svp"]
 
 [ext_resource type="Texture2D" uid="uid://bwxfv7rhdh12n" path="res://assets/sprites/enemies/octopus_battery.png" id="1_a8mcn"]
-[ext_resource type="Script" path="res://enemy/octopus_battery.gd" id="1_neord"]
+[ext_resource type="Script" uid="uid://djqpeladaq5k7" path="res://enemy/octopus_battery.gd" id="1_neord"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7chgm"]
 atlas = ExtResource("1_a8mcn")

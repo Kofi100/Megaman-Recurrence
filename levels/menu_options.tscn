@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://hvubi4sflrhv"]
+[gd_scene load_steps=4 format=3 uid="uid://hvubi4sflrhv"]
 
-[ext_resource type="Script" path="res://levels/menu_options.gd" id="1_b2uew"]
+[ext_resource type="Script" uid="uid://lbdch1eb0g0j" path="res://levels/menu_options.gd" id="1_b2uew"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="2_8bsxl"]
+[ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="3_rm025"]
 
 [node name="menuOptions" type="CanvasLayer"]
 process_mode = 3
@@ -13,18 +14,18 @@ offset_bottom = 226.0
 color = Color(0, 0, 0, 1)
 
 [node name="BGMSlider" type="HSlider" parent="."]
-offset_left = 43.0
-offset_top = 96.0
-offset_right = 218.0
-offset_bottom = 112.0
+offset_left = -68.0
+offset_top = -35.0
+offset_right = 107.0
+offset_bottom = -19.0
 min_value = -60.0
 max_value = 0.0
 
 [node name="SFXSlider" type="HSlider" parent="."]
-offset_left = 43.0
-offset_top = 138.0
-offset_right = 218.0
-offset_bottom = 154.0
+offset_left = -68.0
+offset_top = -18.0
+offset_right = 107.0
+offset_bottom = -2.0
 min_value = -60.0
 max_value = 0.0
 
@@ -36,20 +37,69 @@ offset_bottom = 220.0
 theme = ExtResource("2_8bsxl")
 text = "Exit"
 
-[node name="Label" type="Label" parent="."]
-offset_left = 43.0
-offset_top = 71.0
-offset_right = 193.0
-offset_bottom = 94.0
+[node name="Title" type="Label" parent="."]
+offset_left = 71.0
+offset_top = 10.0
+offset_right = 175.0
+offset_bottom = 26.0
 theme = ExtResource("2_8bsxl")
-text = "BGM Volume"
+text = "OPTIONS"
+vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 43.0
-offset_top = 112.0
-offset_right = 193.0
-offset_bottom = 135.0
+[node name="volume_Text" type="Label" parent="."]
+offset_left = 71.0
+offset_top = 56.0
+offset_right = 167.0
+offset_bottom = 72.0
 theme = ExtResource("2_8bsxl")
-text = "SFX Volume"
+text = "Volume"
 
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[node name="BGM" type="Label" parent="volume_Text"]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 48.0
+offset_bottom = 40.0
+theme = ExtResource("2_8bsxl")
+text = "bgm:"
+
+[node name="SFX" type="Label" parent="volume_Text"]
+layout_mode = 0
+offset_top = 41.0
+offset_right = 58.0
+offset_bottom = 57.0
+theme = ExtResource("2_8bsxl")
+text = "SFX:"
+
+[node name="SelectArrow" type="Sprite2D" parent="."]
+position = Vector2(51, 73)
+texture = ExtResource("3_rm025")
+centered = false
+
+[node name="values" type="Node2D" parent="."]
+
+[node name="BGM" type="Label" parent="values"]
+offset_left = 131.0
+offset_top = 73.0
+offset_right = 177.0
+offset_bottom = 91.0
+theme = ExtResource("2_8bsxl")
+text = "-20"
+horizontal_alignment = 2
+
+[node name="SFX" type="Label" parent="values"]
+offset_left = 131.0
+offset_top = 97.0
+offset_right = 177.0
+offset_bottom = 115.0
+theme = ExtResource("2_8bsxl")
+text = "-20"
+horizontal_alignment = 2
+
+[node name="input_Rebind" type="Label" parent="."]
+offset_left = 71.0
+offset_top = 121.0
+offset_right = 197.0
+offset_bottom = 155.0
+theme = ExtResource("2_8bsxl")
+text = "CHANGE 
+CONTROLS"

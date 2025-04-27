@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://wnv24l2vn201"]
 
-[ext_resource type="Script" path="res://enemy/original/buster_enemy_projectiles.gd" id="1_7icdq"]
+[ext_resource type="Script" uid="uid://cqjivtp5jf36i" path="res://enemy/original/buster_enemy_projectiles.gd" id="1_7icdq"]
 [ext_resource type="Texture2D" uid="uid://dw4qy74kjpa3q" path="res://assets/sprites/enemies/met_bullet.png" id="1_wu76p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k53fh"]

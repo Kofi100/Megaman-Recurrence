@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://b1b7b1r0diol4"]
 
 [ext_resource type="Texture2D" uid="uid://b6ottyj6jtygc" path="res://assets/sprites/tilesets/debug_tileset_basic.png" id="1_pejg5"]
-[ext_resource type="Script" path="res://levels/other_stages/tutorial_stage.gd" id="1_wdx3c"]
+[ext_resource type="Script" uid="uid://ckk56fj5k81dj" path="res://levels/other_stages/tutorial_stage.gd" id="1_wdx3c"]
 [ext_resource type="Texture2D" uid="uid://c3xedxw4lb0tw" path="res://assets/sprites/miscelleaneous/screen_checker_256x240.png" id="2_rwtjs"]
 [ext_resource type="Texture2D" uid="uid://cdi7x6xfw5ja3" path="res://assets/sprites/tilesets/test_stages/tutorial_stage_bg_natural_lmao.png" id="4_2pxrq"]
 [ext_resource type="AudioStream" uid="uid://dsku1phrwujif" path="res://assets/music/Training(FP2).0.252.ogg" id="4_iu8v1"]
@@ -84,7 +84,7 @@ height = 13.0
 size = Vector2(25.5052, 12.6369)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85i4x"]
-size = Vector2(16, 80)
+size = Vector2(16, 74)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ki4gf"]
 size = Vector2(63, 22.5)
@@ -228,6 +228,7 @@ position = Vector2(1949, 193)
 position = Vector2(48, 224)
 
 [node name="all_camera_systems_nodes" type="Node2D" parent="."]
+visible = false
 
 [node name="new_camera_system2" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
 position = Vector2(384, 122)
@@ -390,7 +391,7 @@ position = Vector2(632.247, 102.318)
 shape = SubResource("RectangleShape2D_0eg7r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ladder"]
-position = Vector2(632, 136)
+position = Vector2(632, 139)
 shape = SubResource("RectangleShape2D_85i4x")
 
 [node name="all_text3" type="Node2D" parent="."]

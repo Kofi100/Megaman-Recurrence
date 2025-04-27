@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dguprs0377r4l"]
 
-[ext_resource type="Script" path="res://enemy/original/switch_fan_hazard.gd" id="1_xvlst"]
+[ext_resource type="Script" uid="uid://cexrgm3ho6srg" path="res://enemy/original/switch_fan_hazard.gd" id="1_xvlst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hkxy"]
 size = Vector2(10, 10)

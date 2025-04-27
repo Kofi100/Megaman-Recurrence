@@ -26,14 +26,16 @@ func _physics_process(delta):
 		velocity.x = SPEED * delta
 	else:
 		velocity.x = 0
+		$AnimatedSprite2D.pause()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	match enemyVariant:
-		"none":
-			$AnimatedSprite2D.play("spikyoall")
-		"fire":
-			$AnimatedSprite2D.play("spikyoall2")
+	if $stopMovingTimer.is_stopped():
+		match enemyVariant:
+			"none":
+				$AnimatedSprite2D.play("spikyoall")
+			"fire":
+				$AnimatedSprite2D.play("spikyoall2")
 
 	#check for hole and move away from it
 	if not $check_for_hole_left.is_colliding() and not is_on_wall():

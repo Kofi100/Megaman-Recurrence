@@ -1,28 +1,77 @@
-[gd_scene load_steps=4 format=3 uid="uid://cudcle0fy8bip"]
+[gd_scene load_steps=6 format=3 uid="uid://cudcle0fy8bip"]
 
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_ggwvb"]
-[ext_resource type="Script" path="res://levels/credits_screen.gd" id="1_nwi1w"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2bqx1"]
+[ext_resource type="Script" uid="uid://wt15r0kigsbl" path="res://levels/credits_screen.gd" id="1_nwi1w"]
+[ext_resource type="Script" uid="uid://dnmugh24h6abf" path="res://levels/credits_autoscroll.gd" id="3_n0iox"]
+[ext_resource type="AudioStream" uid="uid://3hdu3cvqvx5s" path="res://assets/music/[Spark the Electric Jester OST] 18 - Reynol Complex (Stage 13).mp3" id="4_ipopa"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="5_qnqfc"]
 
 [node name="credits_Screen" type="Node2D"]
 script = ExtResource("1_nwi1w")
 resetTextInCode = true
+scrollSpeed = 0.5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 225.0
+color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_right = 255.0
-offset_bottom = 224.0
+offset_left = 1.0
+offset_top = 224.0
+offset_right = 366.0
+offset_bottom = 1152.0
+scale = Vector2(0.7, 0.7)
 theme = ExtResource("1_ggwvb")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_2bqx1")
 bbcode_enabled = true
 text = "[center]CREDITS
 -------------
+
+
+
+
+
+
+
+Team Members
+-------------
+
+Kofi K
+Samuel_X7
+Omega Prime
+Saito The One
+
+
+
+
+
+
+Robot Masters
+-------------
+
+Kofi K - Satellite Man
+Samuel_X7- Slumber Man
+Omega Prime- Ent Man
+Saito The One- Radical Man
+
+Other RMs by Capcom
+
+
+
+
+
+
 
 SPRITES
 -------------
 
 Samuel_X7
 Kofi K
+
+
+
+
+
 
 Music
 -------------
@@ -32,4 +81,36 @@ LakeFerperd
 GalaxyTrail
 Berserk Boy 
 Games
+FamiTard
+SpeedVGM
 [/center]"
+fit_content = true
+scroll_following = true
+script = ExtResource("3_n0iox")
+
+[node name="ColorRect" type="ColorRect" parent="RichTextLabel"]
+visible = false
+layout_mode = 0
+offset_left = -81.0
+offset_top = 891.0
+offset_right = 440.0
+offset_bottom = 987.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 3.0
+offset_right = 290.0
+offset_bottom = 22.0
+scale = Vector2(0.7, 0.7)
+theme = ExtResource("1_ggwvb")
+text = "PRESS START TO EXIT"
+
+[node name="scroll_Timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ipopa")
+autoplay = true
+script = ExtResource("5_qnqfc")
+
+[connection signal="timeout" from="scroll_Timer" to="." method="_on_scroll_timer_timeout"]

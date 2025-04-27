@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqpowbf5t4nxt"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/waterzone.gd" id="1_y5t8i"]
+[ext_resource type="Script" uid="uid://2m6l3n3l8a3m" path="res://levels/level_mechanics/waterzone.gd" id="1_y5t8i"]
 
 [node name="waterzone" type="Area2D"]
 collision_layer = 3

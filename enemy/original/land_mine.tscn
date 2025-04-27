@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ber5k7q8cjftl"]
 
 [ext_resource type="Texture2D" uid="uid://4pj7717n72wb" path="res://assets/sprites/enemies/original/landMine.png" id="1_0do6h"]
-[ext_resource type="Script" path="res://enemy/original/land_mine.gd" id="1_28tnn"]
+[ext_resource type="Script" uid="uid://bbqpj4cjye5up" path="res://enemy/original/land_mine.gd" id="1_28tnn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqwwi"]
 atlas = ExtResource("1_0do6h")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bp27p2upe550g"]
 
-[ext_resource type="Script" path="res://enemy/bombomb_bomb.gd" id="1_e34oo"]
+[ext_resource type="Script" uid="uid://cy1sosaq7x7lm" path="res://enemy/bombomb_bomb.gd" id="1_e34oo"]
 [ext_resource type="Texture2D" uid="uid://dq3ybx8lpmupb" path="res://assets/sprites/enemies/bombomb_bomb.png" id="2_b5la4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kth67"]

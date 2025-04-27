@@ -1,5 +1,22 @@
 CREDITS
 -------------
+Team Members
+-------------
+
+Kofi K
+Samuel_X7
+Omega Prime
+Saito The One
+
+Robot Masters
+-------------
+
+Kofi K - Satellite Man
+Samuel_X7- Slumber Man
+Omega Prime- Ent Man
+Saito The One- Radical Man
+
+Other RMs by Capcom
 
 SPRITES
 -------------
@@ -15,3 +32,5 @@ LakeFerperd
 GalaxyTrail
 Berserk Boy 
 Games
+FamiTard
+SpeedVGM

@@ -1,6 +1,7 @@
 @tool
-extends Resource
-class_name ColorPalette
+#extends Resource
+extends Node2D
+#class_name ColorPalette
 #@export var colorDictionary:Dictionary={
 var LIGHT_VIOLET= Vector4(135.0, 0.0, 142.0, 255.0)
 var BLACK= Vector4(0, 0, 0, 255)

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://82y653b08mb4"]
+
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_jltsh"]
+[ext_resource type="Script" uid="uid://cbgrfweajtdff" path="res://levels/disclaimer_screen.gd" id="1_sq0mc"]
+
+[node name="disclaimer_Screen" type="Node2D"]
+script = ExtResource("1_sq0mc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 1)
+
+[node name="disclaimer" type="Label" parent="."]
+offset_right = 853.0
+offset_bottom = 747.0
+scale = Vector2(0.3, 0.3)
+theme = ExtResource("1_jltsh")
+text = "Megaman reccurence is a non-commercial, unofficial fan-made game inspired by the Mega Man series. 
+
+This project is not affiliated with, endorsed by, or connected to Capcom or any of its subsidiaries in any official capacity. 
+
+All Mega Man characters, logos, and related materials are trademarks and copyrights of Capcom."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="switch_Screen_Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="switch_Screen_Timer" to="." method="_on_switch_screen_timer_timeout"]

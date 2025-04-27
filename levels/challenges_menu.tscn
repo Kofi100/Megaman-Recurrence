@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpcoht0uqtud6"]
+
+[ext_resource type="Script" uid="uid://cb103yjgyftkt" path="res://levels/challenges_menu.gd" id="1_g5o4u"]
+[ext_resource type="Texture2D" uid="uid://bqaqitmfcnclg" path="res://assets/sprites/miscelleaneous/screen_Template_basedOnSamuelX7.png" id="2_5xrl8"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_65fpv"]
+[ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="4_cjxd0"]
+
+[node name="challengesMenu" type="Node2D"]
+script = ExtResource("1_g5o4u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5xrl8")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 87.0
+offset_right = 247.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_65fpv")
+theme_override_constants/outline_size = 5
+text = "CHALLENGES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 467.0
+offset_bottom = 403.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_65fpv")
+bbcode_enabled = true
+text = "[center]
+challenge 1
+
+challenge 2
+
+exit
+[/center]"
+
+[node name="allMarkers" type="Node2D" parent="."]
+
+[node name="0" type="Marker2D" parent="allMarkers"]
+position = Vector2(77, 30)
+
+[node name="1" type="Marker2D" parent="allMarkers"]
+position = Vector2(77, 47)
+
+[node name="2" type="Marker2D" parent="allMarkers"]
+position = Vector2(77, 62)
+
+[node name="SelectArrow" type="Sprite2D" parent="."]
+position = Vector2(65, 30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_cjxd0")

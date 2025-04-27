@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://n1srit3751i5"]
 
-[ext_resource type="Script" path="res://enemy/original/sniper_joe_variant_fire.gd" id="1_3e0ik"]
+[ext_resource type="Script" uid="uid://ladgr2o3enn0" path="res://enemy/original/sniper_joe_variant_fire.gd" id="1_3e0ik"]
 [ext_resource type="Texture2D" uid="uid://dqlawsdc80ykm" path="res://assets/sprites/enemies/sniper_joe_variant_fire.png" id="1_48enw"]
 [ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_fh1uj"]
 

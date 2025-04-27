@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx7f7vntpmice"]
 
-[ext_resource type="Script" path="res://enemy/boss/mini_boss_1_projectile_1_v_2.gd" id="1_bjxa8"]
+[ext_resource type="Script" uid="uid://c1n8hmpvvspr2" path="res://enemy/boss/mini_boss_1_projectile_1_v_2.gd" id="1_bjxa8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5umf1"]
 size = Vector2(27, 25)

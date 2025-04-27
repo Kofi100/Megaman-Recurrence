@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhd0rwq10coyk"]
+[gd_scene load_steps=2 format=3 uid="uid://dhd0rwq10coyk"]
 
-[ext_resource type="Script" path="res://GlobalScripts/megaman_and_items.gd" id="1_f63vt"]
-[ext_resource type="Script" path="res://GlobalScripts/colorPalette.gd" id="2_0rg77"]
-
-[sub_resource type="Resource" id="Resource_fr60j"]
-script = ExtResource("2_0rg77")
+[ext_resource type="Script" uid="uid://bosmhx8vfetoy" path="res://GlobalScripts/megaman_and_items.gd" id="1_f63vt"]
 
 [node name="Megaman and Items" type="Node2D"]
 script = ExtResource("1_f63vt")
-colorPalette = SubResource("Resource_fr60j")
 colors = {
 "BLACK": Vector4(0, 0, 0, 255),
 "DEEP_BLUE": Vector4(0, 98, 247, 255),

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://n1jcfi1tcg16"]
 
-[ext_resource type="Script" path="res://enemy/original/original_projs/sniper_joe_variant_fire_projectile.gd" id="1_s1cme"]
+[ext_resource type="Script" uid="uid://dsvetpxcgxjy5" path="res://enemy/original/original_projs/sniper_joe_variant_fire_projectile.gd" id="1_s1cme"]
 [ext_resource type="Texture2D" uid="uid://cwmnlo17d5wgy" path="res://assets/sprites/enemies/sniper_joe_variant_fire_projectile.png" id="2_14tgi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bipkt"]
