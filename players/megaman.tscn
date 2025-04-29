@@ -586,7 +586,7 @@ one_shot = true
 [node name="weapon_display" type="Sprite2D" parent="."]
 position = Vector2(-1.33333, -26)
 texture = ExtResource("16_2l2k5")
-vframes = 8
+vframes = 12
 
 [node name="display_timer" type="Timer" parent="weapon_display"]
 wait_time = 0.5

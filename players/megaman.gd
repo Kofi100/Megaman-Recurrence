@@ -154,7 +154,16 @@ func leaving(delta):
 
 var leave_bool = false
 var has_played_victory_sound: bool = false
-
+var WeaponCheckDirection:int=0
+func checkWeaponAvalability():
+	if MegamanAndItems.weaponNumberEnabled.has(GlobalScript.weapon_number):
+		if MegamanAndItems.weaponNumberEnabled[GlobalScript.weapon_number]==true:
+			pass
+		else:
+			if WeaponCheckDirection==-1:
+				GlobalScript.weapon_number-=1
+			if WeaponCheckDirection==1:
+				GlobalScript.weapon_number+=1
 
 func _physics_process(delta):
 #region reverse Gravity
@@ -319,19 +328,24 @@ func _physics_process(delta):
 		change_collisions()
 		if Input.is_action_just_pressed("switch_weapon_left"):
 			GlobalScript.weapon_number -= 1
+			WeaponCheckDirection=-1
+			#checkWeaponAavability(-1)
 			$weapon_display.visible = true
 			$weapon_display/display_timer.start()
 		elif Input.is_action_just_pressed("switch_weapon_right"):
 			$weapon_display.visible = true
 			GlobalScript.weapon_number += 1
+			WeaponCheckDirection=1
+			#checkWeaponAavability(1)
 			$weapon_display/display_timer.start()
+		checkWeaponAvalability()
+		#print(GlobalScript.weapon_number)
 		#if $RayCastLeft.get_collider() != null and $RayCastLeft.get_collider().is_in_group("iceTiles"):
 		#onIce = true
 		#elif $RayCastLeft.get_collider() == null or not $RayCastLeft.get_collider().is_in_group("iceTiles"):
 		#onIce = false
 		#if is_on_floor() and
 
-		#weapon_number=Input.get_axis("switch_weapon_left","switch_weapon_right")
 		stun(delta)
 		#plays stun blink effect
 		if GlobalScript.playerhitcooldowntimer % 5 == 1:
@@ -366,7 +380,7 @@ func _physics_process(delta):
 			#print("Mega:velocity.y",velocity.y)
 			#print("Mega:velocity*delta=i think,pixel/frame/second",velocity*Vector2(delta,delta))
 			if jumpBufferTime.time_left > 0 and is_on_floor():
-				#print("hi"+jumpBufferTime.time_left)
+				#print(name+":"+Jump Buffer Time Left:"+jumpBufferTime.time_left)
 				velocity.y = JUMP_VELOCITY * delta
 				jumpBufferTime.stop()
 
@@ -379,22 +393,17 @@ func _physics_process(delta):
 					if $buster_cooldown_timer.time_left <= 0:
 						shoot_and_charge()
 						MegamanAndItems.charge_effect(anim)
-					#chargeeffect()
 				else:
 					MegamanAndItems.change_palette($anim)
 					create_weapons()
 				
 				if climb == false:
-					#if not stun_effect:
 					if near_ladder:
 						if Input.is_action_pressed("move_up"):
 							climb = true
 
-						#if anim.animation!="idle":
 					if not is_on_floor():
 						velocity.y += gravity * delta
-
-						#if anim.animation!="idle":
 					direction = Input.get_axis("move_left", "move_right")
 					if direction != 0:
 						lastDirectionCase = direction
@@ -410,13 +419,12 @@ func _physics_process(delta):
 							elif onIce:
 								if direction == -1:
 									velocity.x = direction * (SPEED + 500) * delta
-									#print("y")
+									
 								elif direction == 1:
 									velocity.x = direction * (SPEED + 500) * delta
 							else:
 								velocity.x = direction * (SPEED) * delta
 
-						#if anim.animation!="idle":
 					else:
 						move_an_inch_checker = 0
 
@@ -431,7 +439,7 @@ func _physics_process(delta):
 								velocity.x = abs(velocity.x) - 200 * delta
 								if velocity.x <= 0:
 									velocity.x = 0
-						else:  #if not on_conveyor:
+						else: 
 							velocity.x = move_toward(velocity.x, 0, SPEED)
 					play_animations()
 					offsetAnimationFunction()
@@ -467,7 +475,6 @@ func _physics_process(delta):
 				MegamanAndItems.charge_timer = clampi(MegamanAndItems.charge_timer, 0, 5)
 				if $buster_cooldown_timer.time_left <= 0:
 					shoot_and_charge()
-				#chargeeffect()
 				MegamanAndItems.charge_effect(anim)
 				if $anim.animation == "shoot_idle":
 					if $anim.flip_h == false:
@@ -476,7 +483,6 @@ func _physics_process(delta):
 						$anim.offset.x = 6
 				else:
 					$anim.offset.x = 0
-					#if is_on_floor():
 					if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 						if anim.animation != "shoot_idle" and anim.animation != "whistle_idle":  #or anim.animation!="stun"
 							$anim.play("idle")
@@ -488,8 +494,6 @@ func _physics_process(delta):
 					anim.flip_h = true
 				if Input.is_action_just_pressed("jump"):
 					onrush = false
-				#velocity.y+=gravity*delta
-				#move_and_slide()
 #region debug whistle code by reposition it, i guess would work on it soon
 		#if velocity.x==0 and $whistle_idle_trigger_timer.time_left<=0 and not Input.is_action_pressed("shoot") and not Input.is_action_pressed("jump")and MegamanAndItems.charge_timer<30:
 		#$whistle_idle_trigger_timer.start()
@@ -526,12 +530,6 @@ func offsetAnimationFunction():
 		match anim.animation:
 			"dash":
 				$anim.offset.y = 7
-			#"shoot_run":
-				#if $anim.flip_h == false:
-					#$anim.offset.x = -2
-				#elif $anim.flip_h == true:
-					#$anim.offset.x = 2
-					#pass
 			"jump":
 				if $anim.flip_h == false:
 					$anim.offset.x = -1
@@ -544,16 +542,6 @@ func offsetAnimationFunction():
 					$anim.offset.x = 3
 			"run":
 				$anim.offset.y = 0
-				##if $anim.flip_h == false:
-					##$anim.offset.x = -1
-				##elif $anim.flip_h == true:
-					##$anim.offset.x = 1
-				#pass
-			#"shoot_idle":
-				#if $anim.flip_h == false:
-					#$anim.offset.x = -1
-				#elif $anim.flip_h == true:
-					#$anim.offset.x = 1
 	#else:
 	#$anim.offset.x = 0
 	#$anim.offset.y = 0
@@ -579,16 +567,14 @@ var frameNo = 0
 
 
 func play_animations():
-	#print(anim.animation)
-	if direction == -1:  #velocity.x < 0:
+	if direction == -1:
 		$anim.flip_h = false
-	elif direction == 1:  #velocity.x > 0:
+	elif direction == 1:
 		$anim.flip_h = true
 	if $anim.animation == "run":
 		frameNo = $anim.frame
 	#print("FrameNo:", frameNo)
-	#if anim.animation == "jump" and is_on_floor():
-	#$jump_Timer.start()
+
 	if is_on_floor():
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 			if anim.animation != "stun_air":
@@ -674,13 +660,9 @@ func shoot_and_charge():
 			elif not is_on_floor():
 				MegamanAndItems.charge_timer = 0
 				if $anim.flip_h == false:
-					#lemon_ins=lemon.instantiate()
-					#get_parent().add_child(projectile)
 					projectile.direction = "left"
 					projectile.global_position = $all_proj_spawn_points/air_left.global_position
 				elif $anim.flip_h == true:
-					#lemon_ins=lemon.instantiate()
-					#get_parent().add_child(projectile)
 					projectile.direction = "right"
 					projectile.global_position = $all_proj_spawn_points/air_right.global_position
 			elif climb == true:
@@ -712,16 +694,16 @@ func play_animation_ladder():
 					$anim.play("climb")
 
 				elif Input.is_action_pressed("move_down"):
-					#velocity.y=100
+					
 					$anim.play_backwards("climb")
 			#		if $change_climb_detector/CollisionShape2D
 			elif was_leaving == true and velocity.y<0:
-				#print("about to leave ladder")
+				#print(name,": Is about to leave ladder")
 				$anim.play("climb_transition")
 	elif Input.is_action_just_released("shoot"):
 		if anim.animation != "shoot_on_ladder":
 			anim.play("shoot_on_ladder")
-			#print('still playing')
+			
 			if Input.is_action_pressed("move_left"):
 				anim.flip_h = false
 			elif Input.is_action_pressed("move_right"):
@@ -791,7 +773,6 @@ var alarmSignal=preload("res://players/weapons/alarm_man_weapon_ring.tscn");
 var alarmSignal2=preload("res://players/weapons/alarm_man_weapon_ring.tscn")
 var alarmSignalInstance;var alarmSignalInstance2;
 func create_weapons():
-	#print(GlobalScript.weapon_number)
 	MegamanAndItems.charge_timer = 0
 	if Input.is_action_just_pressed("shoot"):
 		match GlobalScript.weapon_number:
@@ -930,7 +911,6 @@ func _on_anim_animation_finished():
 			player_ready = true
 			$hitbox/CollisionShape2D.disabled = false
 		"stun_air":
-			#print(name,':stun_air animation done')
 			disable_input = false
 			stun_effect = false
 			stop = false
@@ -938,7 +918,6 @@ func _on_anim_animation_finished():
 				anim.play("idle")
 			elif not is_on_floor():
 				anim.play("jump")
-			#elif climb==tru
 		"climb_transition":
 			if is_on_floor():
 				anim.play("idle")
@@ -969,14 +948,11 @@ func _on_hitbox_area_entered(area):
 			GlobalScript.previous_health = GlobalScript.health  #previous health used to check increasign health,collects the health of the player
 			GlobalScript.health -= area.get_parent().playerdamagevalue  #this transfers a value of damage from the enemy to the player  #2,before,the player's health actually gets reduced
 			$all_sounds/stun.play()
-			#stun_effect=true
 			anim.play("stun_air")
 			climb = false
-	#if area.is_in_group("")
 	if area.is_in_group("ladders"):
 		near_ladder = true
 	if area.is_in_group("rushjet"):
-		#$anim.play("idle")
 		onrush = true
 	if area.is_in_group("deathzone"):
 		GlobalScript.health = 0
@@ -989,7 +965,7 @@ func _on_hitbox_area_exited(area):
 	if area.is_in_group("ladders"):
 		near_ladder = false
 		climb = false
-		#print("Megaman:about to leave ladder")
+		#print("Megaman:About to leave ladder [area_exited]")
 
 
 #var
@@ -999,7 +975,6 @@ var ladder_collider: Object
 func _on_hitbox_area_shape_entered(_area_rid, area, area_shape_index, _local_shape_index):
 	if area.is_in_group("ladders"):
 		ladder_collider = area.shape_owner_get_owner(area_shape_index)
-		#print(ladder_collider,'of Area:',area)
 
 
 func _on_hitbox_area_shape_exited(_area_rid, _area, _area_shape_index, _local_shape_index):

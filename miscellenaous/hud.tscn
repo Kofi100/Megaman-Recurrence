@@ -13,7 +13,7 @@
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="7_ixl55"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
 [ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="9_1ufh6"]
-[ext_resource type="Texture2D" uid="uid://crsv3lsy4ydvs" path="res://assets/sprites/miscelleaneous/pauseScreen_New.png" id="9_3fjw4"]
+[ext_resource type="Texture2D" uid="uid://dvw1sv3ia1bbd" path="res://assets/sprites/miscelleaneous/1KofiWeaponScreen.png" id="9_lhw3c"]
 [ext_resource type="Texture2D" uid="uid://b1oohir875cby" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_New.png" id="10_b5n2o"]
 [ext_resource type="Texture2D" uid="uid://u3p72jwu1vfj" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_New.png" id="11_m5djj"]
 [ext_resource type="Texture2D" uid="uid://d3yeluainukhd" path="res://assets/sprites/miscelleaneous/progress_bar_megaman_texture.png" id="12_386i2"]
@@ -452,17 +452,16 @@ texture = ExtResource("2_jxh0c")
 centered = false
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("9_3fjw4")
+texture = ExtResource("9_lhw3c")
 centered = false
 
 [node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(32, 188)
+position = Vector2(32, 192)
 sprite_frames = SubResource("SpriteFrames_g8a33")
 animation = &"selected"
 
 [node name="w_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(89, 188)
+position = Vector2(89, 192)
 sprite_frames = SubResource("SpriteFrames_twexw")
 animation = &"not_selected"
 
@@ -528,10 +527,10 @@ hframes = 14
 frame = 10
 
 [node name="Label" type="Label" parent="pause_screen_setup/life_icon"]
-offset_left = 237.0
-offset_top = -42.0
-offset_right = 277.0
-offset_bottom = -24.0
+offset_left = 238.0
+offset_top = -46.0
+offset_right = 278.0
+offset_bottom = -28.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "X3"
@@ -539,9 +538,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup"]
 offset_left = 82.0
-offset_top = 38.0
+offset_top = 34.0
 offset_right = 139.0
-offset_bottom = 46.0
+offset_bottom = 42.0
 scale = Vector2(1.5, 1.5)
 max_value = 28.0
 value = 28.0
@@ -576,10 +575,10 @@ anchor_left = -0.863283
 anchor_top = -3.29786
 anchor_right = -0.791283
 anchor_bottom = -3.27286
-offset_left = 212.813
-offset_top = 193.766
-offset_right = 268.661
-offset_bottom = 201.366
+offset_left = 213.813
+offset_top = 184.766
+offset_right = 269.661
+offset_bottom = 192.366
 theme = ExtResource("7_ixl55")
 max_value = 28.0
 value = 28.0
@@ -609,9 +608,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_coil"]
 offset_left = 158.0
-offset_top = 189.0
+offset_top = 181.0
 offset_right = 215.0
-offset_bottom = 197.0
+offset_bottom = 189.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 27.0
@@ -640,9 +639,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_jet"]
 offset_left = 158.0
-offset_top = 174.0
+offset_top = 165.0
 offset_right = 215.0
-offset_bottom = 182.0
+offset_bottom = 173.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 27.0
@@ -759,19 +758,20 @@ position = Vector2(222, 179)
 
 [node name="moveNextScreenbtn" type="AnimatedSprite2D" parent="pause_screen_setup/buttons"]
 process_mode = 3
+position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_imstj")
 animation = &"selected"
 
 [node name="quitStageBtn" type="AnimatedSprite2D" parent="pause_screen_setup/buttons"]
-position = Vector2(0, 18)
+position = Vector2(0, 21)
 sprite_frames = SubResource("SpriteFrames_i6tc0")
 animation = &"notSelected"
 
 [node name="PauseScreenTimer" type="Label" parent="pause_screen_setup"]
 offset_left = 160.0
-offset_top = 26.0
+offset_top = 22.0
 offset_right = 312.0
-offset_bottom = 43.0
+offset_bottom = 39.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "Timer:xx:xx"

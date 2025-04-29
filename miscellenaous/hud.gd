@@ -50,7 +50,7 @@ func _process(_delta):
 	$healthbar/text_lives.text = str(GlobalScript.lives)
 	$score.text = str("SCORE:", GlobalScript.score)
 	$stage_name.text = "STAGE:\n" + GlobalScript.stage_name
-	$fps_Display.text=str(Engine.get_frames_per_second())
+	$fps_Display.text=str(int(Engine.get_frames_per_second()))
 	
 	$pause_screen_setup/PauseScreenTimer.text="TIMER:"+str(GlobalScript.minute_level).pad_zeros(2)+":"+str(int(GlobalScript.second_level)).pad_zeros(2)
 	$timer/InGame.text="TIMER:"+str(GlobalScript.minute_level).pad_zeros(2)+":"+str(int(GlobalScript.second_level)).pad_zeros(2)
