@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0qt1tage6wfy"]
+
+[ext_resource type="Script" uid="uid://rwqtoatltmv1" path="res://players/weapons/alarm_man_weapon_ring.gd" id="1_56kc8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w23eh"]
+size = Vector2(29.1506, 10.6962)
+
+[node name="alarm_Man_weapon_Ring" type="CharacterBody2D"]
+rotation = 1.5708
+script = ExtResource("1_56kc8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -13.1244
+offset_top = -5.26795
+offset_right = 14.8756
+offset_bottom = 4.73205
+
+[node name="Area2D" type="Area2D" parent="." groups=["player_projectiles"]]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.04904, 0)
+shape = SubResource("RectangleShape2D_w23eh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.969677, 0.106603)
+scale = Vector2(1.46265, 0.545327)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

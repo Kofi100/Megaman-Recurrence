@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=59 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" uid="uid://0j8k3bpxe6qj" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -13,9 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://p80uexe8652b" path="res://assets/sounds/dead.wav" id="10_qghej"]
 [ext_resource type="AudioStream" uid="uid://cnqebubvm8bvy" path="res://assets/sounds/mm5_halfchargeshot.wav" id="12_8ofs0"]
 [ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="13_ljqus"]
-[ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="14_dxwv6"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="14_m8qn1"]
 [ext_resource type="AudioStream" uid="uid://cfktcngh0i3yi" path="res://assets/sounds/mm4_5_victorytheme.wav" id="15_hhrnh"]
+[ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="16_2l2k5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
 shader = ExtResource("4_rtyrl")
@@ -311,35 +311,6 @@ size = Vector2(9.66667, 18.6667)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thm8m"]
 size = Vector2(13.5, 20.167)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i8d2s"]
-atlas = ExtResource("14_dxwv6")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6jddd"]
-atlas = ExtResource("14_dxwv6")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_djh73"]
-atlas = ExtResource("14_dxwv6")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y632c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i8d2s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6jddd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_djh73")
-}],
-"loop": false,
-"name": &"display",
-"speed": 1.0
-}]
-
 [sub_resource type="Animation" id="Animation_jwedl"]
 length = 0.001
 tracks/0/type = "value"
@@ -612,10 +583,10 @@ script = ExtResource("8_d6231")
 wait_time = 0.05
 one_shot = true
 
-[node name="weapon_display" type="AnimatedSprite2D" parent="."]
+[node name="weapon_display" type="Sprite2D" parent="."]
 position = Vector2(-1.33333, -26)
-sprite_frames = SubResource("SpriteFrames_y632c")
-animation = &"display"
+texture = ExtResource("16_2l2k5")
+vframes = 8
 
 [node name="display_timer" type="Timer" parent="weapon_display"]
 wait_time = 0.5
@@ -725,6 +696,17 @@ visible = false
 position = Vector2(30, 97)
 texture = ExtResource("1_si1fv")
 
+[node name="weaponNodes" type="Node2D" parent="."]
+
+[node name="timers" type="Node2D" parent="weaponNodes"]
+
+[node name="alarmWeaponSwitchPosTimer" type="Timer" parent="weaponNodes/timers"]
+wait_time = 0.5
+
+[node name="alarmWeaponTimeOutTimer" type="Timer" parent="weaponNodes/timers"]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
@@ -746,5 +728,7 @@ texture = ExtResource("1_si1fv")
 [connection signal="timeout" from="whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
 [connection signal="body_entered" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_entered"]
 [connection signal="body_exited" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_exited"]
+[connection signal="timeout" from="weaponNodes/timers/alarmWeaponSwitchPosTimer" to="." method="_on_alarm_weapon_switch_pos_timer_timeout"]
+[connection signal="timeout" from="weaponNodes/timers/alarmWeaponTimeOutTimer" to="." method="_on_alarm_weapon_time_out_timer_timeout"]
 
 [editable path="dash"]

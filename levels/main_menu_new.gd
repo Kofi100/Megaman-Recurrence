@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 		4:$SelectArrow.global_position=$"allMarker2Ds/4".global_position
 		5:$SelectArrow.global_position=$"allMarker2Ds/5".global_position
 		6:$SelectArrow.global_position=$"allMarker2Ds/6".global_position
+		7:$SelectArrow.global_position=$"allMarker2Ds/7".global_position
 	#for i in $allMarker2Ds.get_children():
 		#if i is Marker2D:
 			#var nameToVar=i.na
@@ -106,7 +107,7 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("move_down"):
 			MenuOptionNo+=1
 			$change_Option_SFX.play()
-		MenuOptionNo=clampi(MenuOptionNo,0,6)
+		MenuOptionNo=clampi(MenuOptionNo,0,7)
 	pass
 
 

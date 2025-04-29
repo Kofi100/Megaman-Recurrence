@@ -45,8 +45,8 @@ var direction: float = 0
 var lastDirectionCase: float = 0
 var stop: bool = false
 var timer = 0
-var weapon_number: int = 0
-var max_weapon_number = 3
+#var weapon_number: int = 0
+var max_weapon_number = 8
 var screen_transition_finished: bool = false
 var restart_scene: bool = false
 var conveyor_push = 3000
@@ -308,6 +308,7 @@ func _physics_process(delta):
 		#if $all_sounds/charge.get_playback_position()>2.04:
 		##print("seek")
 		#$all_sounds/charge.seek(1.90)
+		
 		$weapon_display.frame = GlobalScript.weapon_number
 
 		if leave_bool == false:
@@ -373,6 +374,7 @@ func _physics_process(delta):
 				velocity.y = 0
 
 			if onrush == false:
+				activeUseOfWeapons()
 				if GlobalScript.weapon_number == 0:
 					if $buster_cooldown_timer.time_left <= 0:
 						shoot_and_charge()
@@ -381,7 +383,7 @@ func _physics_process(delta):
 				else:
 					MegamanAndItems.change_palette($anim)
 					create_weapons()
-
+				
 				if climb == false:
 					#if not stun_effect:
 					if near_ladder:
@@ -445,7 +447,7 @@ func _physics_process(delta):
 						global_position.x = ladder_collider.global_position.x
 					play_animation_ladder()
 					#these codes are for playing animations
-					var direction = Input.get_axis("move_up", "move_down")
+					direction = Input.get_axis("move_up", "move_down")
 					if direction and anim.animation != "shoot_on_ladder" and not disable_input:
 						velocity.y = direction * 3500 * delta
 					else:
@@ -785,12 +787,34 @@ var rush_jet = preload("res://players/weapons/rush_jet.tscn")
 var rush_jet_instance
 var rCoilNo = 0
 var useBuster_WhenRCoil:bool=false
-
+var alarmSignal=preload("res://players/weapons/alarm_man_weapon_ring.tscn");
+var alarmSignal2=preload("res://players/weapons/alarm_man_weapon_ring.tscn")
+var alarmSignalInstance;var alarmSignalInstance2;
 func create_weapons():
+	#print(GlobalScript.weapon_number)
 	MegamanAndItems.charge_timer = 0
 	if Input.is_action_just_pressed("shoot"):
 		match GlobalScript.weapon_number:
 			1:
+				if alarmSignalInstance==null and alarmSignalInstance2==null:
+					alarmSignalInstance=alarmSignal.instantiate()
+					alarmSignalInstance2=alarmSignal2.instantiate()
+					#alarmSignalInstance2=preload("res://players/weapons/alarm_man_weapon_ring.tscn").instantiate()
+					get_parent().add_child(alarmSignalInstance)
+					get_parent().add_child(alarmSignalInstance2)
+					alarmSignalInstance.initialSignalDirection="left"
+					alarmSignalInstance2.initialSignalDirection="right"
+					alarmSignalInstance.global_position=global_position+Vector2(-20,-20)
+					alarmSignalInstance2.global_position=global_position+Vector2(20,-20)
+					$weaponNodes/timers/alarmWeaponSwitchPosTimer.start()
+					$weaponNodes/timers/alarmWeaponTimeOutTimer.start()
+				elif alarmSignalInstance!=null and alarmSignalInstance2!=null:
+					alarmSignalInstance.changeState=true#releaseSignal.emit()
+					alarmSignalInstance2.changeState=true#releaseSignal.emit()
+					$weaponNodes/timers/alarmWeaponTimeOutTimer.stop()
+					$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
+			7:
+				
 				if MegamanAndItems.weapon1energy > 0 and rCoilNo == 0:
 					MegamanAndItems.weapon1energy -= 3
 					rCoilNo += 1
@@ -820,7 +844,7 @@ func create_weapons():
 							anim.play("shoot_in_air")
 							projectile.global_position = $all_proj_spawn_points/air_right.global_position
 					$all_sounds/shoot.play()
-			2:
+			8:
 				if MegamanAndItems.weapon2energy > 0:
 					MegamanAndItems.weapon2energy -= 3
 					rush_jet_instance = rush_jet.instantiate()
@@ -831,7 +855,7 @@ func create_weapons():
 					elif anim.flip_h == false:
 						rush_jet_instance.global_position = Vector2(global_position.x, global_position.y - 100)
 						rush_jet_instance.direction = "left"
-			3:
+			10:
 				if MegamanAndItems.weapon3energy > 0:
 					MegamanAndItems.weapon3energy -= 2
 					const MISSILE = preload("res://players/weapons/missile.tscn")
@@ -843,11 +867,42 @@ func create_weapons():
 							missile_instance.direction = "right"
 						false:
 							missile_instance.direction = "left"
-	
+		
+	#activeUseOfWeaponSection
 	if rush_coil_instance!=null and rush_coil_instance.just_landed==true:
 		useBuster_WhenRCoil=true
 	else:useBuster_WhenRCoil=false
+	#if GlobalScript.weapon_number==1:
+			#if alarmSignalInstance!=null and alarmSignalInstance.changeState==false and alarmSignalInstance2!=null and alarmSignalInstance2.changeState==false:
+				#alarmSignalInstance.global_position=global_position+Vector2(-20,-20)
+				#alarmSignalInstance2.global_position=global_position+Vector2(20,-20)
+	#elif GlobalScript.weapon_number!=1:
+		#if alarmSignalInstance!=null and alarmSignalInstance2!=null:
+			#alarmSignalInstance.queue_free()
+			#alarmSignalInstance2.queue_free()
 
+#Function to actively check your weapon and their state and change them.
+func activeUseOfWeapons():
+	if GlobalScript.weapon_number==1:
+			if alarmSignalInstance!=null and alarmSignalInstance.changeState==false and alarmSignalInstance2!=null and alarmSignalInstance2.changeState==false:
+				alarmSignalInstance.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+				alarmSignalInstance2.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+				if setAlarmWeaponPosToUp==true:
+					alarmSignalInstance.global_position=global_position+Vector2(-20,-20)
+					alarmSignalInstance2.global_position=global_position+Vector2(20,-20)
+				elif setAlarmWeaponPosToUp==false:
+					alarmSignalInstance.global_position=global_position+Vector2(-20,20)
+					alarmSignalInstance2.global_position=global_position+Vector2(20,20)
+			elif alarmSignalInstance!=null and alarmSignalInstance.changeState==true and alarmSignalInstance2!=null and alarmSignalInstance2.changeState==true:
+				alarmSignalInstance.global_position=global_position+Vector2(-20,0)
+				alarmSignalInstance2.global_position=global_position+Vector2(20,0)
+	elif GlobalScript.weapon_number!=1:
+		if alarmSignalInstance!=null and alarmSignalInstance2!=null:
+			alarmSignalInstance.queue_free()
+			alarmSignalInstance2.queue_free()
+			$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
+
+#Function to check it Rush Coil has left or not.
 func rCoilLeft():
 	rCoilNo -= 1
 	print(name, ":rCoilLeft func active")
@@ -976,9 +1031,9 @@ func _on_display_timer_timeout():
 
 
 func delete_weapons():
-	if GlobalScript.weapon_number != 1:
+	if GlobalScript.weapon_number != 7:
 		get_tree().call_group("rush_coil", "delete")
-	elif GlobalScript.weapon_number != 2:
+	elif GlobalScript.weapon_number != 8:
 		get_tree().call_group("rush_jet", "delete")
 
 
@@ -1077,3 +1132,15 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 			$all_sounds/stun.play()
 			stun(deltaAlt)#using 0.1 since its close to delta(0.19998,i think)
 			anim.play("stun_air")
+
+var setAlarmWeaponPosToUp:bool=true
+func _on_alarm_weapon_switch_pos_timer_timeout() -> void:
+	#alternates b/n the true and false states(up and down states)
+	if alarmSignalInstance!=null and alarmSignalInstance2!=null:
+		setAlarmWeaponPosToUp=!setAlarmWeaponPosToUp
+
+
+func _on_alarm_weapon_time_out_timer_timeout() -> void:
+	if alarmSignalInstance!=null and alarmSignalInstance2!=null:
+		alarmSignalInstance.queue_free()
+		alarmSignalInstance2.queue_free()

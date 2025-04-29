@@ -1,25 +1,52 @@
-@tool
+#@tool
 extends Node2D
 var charge_timer = 0
 @export var colorPalette:ColorPalette
 @export var resetColors:bool=false
+@export var weaponNumberEnabled={
+	0:true,
+	1:true,
+	2:true,
+	3:true,
+	4:true,
+	5:true,
+	6:true,
+	7:true,
+	8:true
+}
 @export var bodycolor1dictionary: Dictionary = {
 	0: Vector4.ZERO,
-	1: Vector4(255, 255, 255, 255),
-	2: Vector4(255, 255, 255, 255),
-	3: Vector4(255, 0, 0, 255),
+	1:ColorPaletteGlobal.CREAM,
+	2:ColorPaletteGlobal.GREY,
+	3:ColorPaletteGlobal.GREY,
+	4:ColorPaletteGlobal.GREY,
+	5:ColorPaletteGlobal.GREY,
+	6:ColorPaletteGlobal.GREY,
+	7:ColorPaletteGlobal.GREY,
+	8:ColorPaletteGlobal.GREY
+	#1: Vector4(255, 255, 255, 255),
+	#2: Vector4(255, 255, 255, 255),
+	#3: Vector4(255, 0, 0, 255),
 }
 @export var bodycolor2dictionary: Dictionary = {
 	0: Vector4.ZERO,
-	1:
-	Vector4(
-		216,
-		40,
-		0,
-		255,
-	),
-	2: Vector4(216, 40, 0, 255),
-	3: Vector4(255, 0, 0, 255),
+	1:ColorPaletteGlobal.DARK_CREAM,
+	2:ColorPaletteGlobal.GREY,
+	3:ColorPaletteGlobal.GREY,
+	4:ColorPaletteGlobal.GREY,
+	5:ColorPaletteGlobal.GREY,
+	6:ColorPaletteGlobal.GREY,
+	7:ColorPaletteGlobal.GREY,
+	8:ColorPaletteGlobal.GREY
+	#1:
+	#Vector4(
+		#216,
+		#40,
+		#0,
+		#255,
+	#),
+	#2: Vector4(216, 40, 0, 255),
+	#3: Vector4(255, 0, 0, 255),
 }
 @export var colors: Dictionary = {
 	"LIGHT_VIOLET": Vector4(135.0, 0.0, 142.0, 255.0),
@@ -30,7 +57,8 @@ var charge_timer = 0
 	"DEEP_BLUE": Vector4(0.0, 98.0, 247.0, 255.0),
 	"DEEP_RED":Vector4(168.0,0.0,32.0,255.0),
 	"SLIGHTLY_DEEP_RED":Vector4(228.0,0.0,88.0,255.0),
-	"LIGHTER_DEEP_RED":Vector4(248.0,88.0,152.0,255.0)
+	"LIGHTER_DEEP_RED":Vector4(248.0,88.0,152.0,255.0),
+	
 }
 var weapon1energy = 27
 var weapon2energy = 27
@@ -50,7 +78,8 @@ func _process(_delta):
 		if Engine.is_editor_hint():
 			queue_redraw()
 	#ColorPalette.
-
+	#print(bodycolor1dictionary[1])
+	#print(ColorPaletteGlobal.GREY)
 var charge_confirm = false
 
 
@@ -97,7 +126,18 @@ func change_palette(node):
 			node.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
 			node.material.set_shader_parameter("bodycolori", (bodycolor1dictionary.get(GlobalScript.weapon_number)) / 255)
 			node.material.set_shader_parameter("bodycolorii", (bodycolor2dictionary.get(GlobalScript.weapon_number)) / 255)
-
+		#if (bodycolor1dictionary.get(GlobalScript.weapon_number)) is Vector4:
+			#print(bodycolor1dictionary.get(GlobalScript.weapon_number))
+		if bodycolor1dictionary.has(GlobalScript.weapon_number):
+			match GlobalScript.weapon_number:
+				1:
+					set_Individual_Colors(node,ColorPaletteGlobal.CREAM,ColorPaletteGlobal.DARK_CREAM)
+				5:
+					set_Individual_Colors(node,ColorPaletteGlobal.OLIVE,ColorPaletteGlobal.DEEP_OLIVE)
+func set_Individual_Colors(node,InnerBodyColor:Color,OuterBodyColor:Color):
+	node.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
+	node.material.set_shader_parameter("bodycolori", InnerBodyColor)
+	node.material.set_shader_parameter("bodycolorii", OuterBodyColor)
 #func change_palette(animated_sprite: AnimatedSprite2D):
 	##print(name,':change_palette_fxn:active')
 	#if bodycolor1dictionary.has(GlobalScript.weapon_number):

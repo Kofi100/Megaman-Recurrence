@@ -46,7 +46,7 @@ var switchedMenus: bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	$healthbar/text_health_display.text = str(health_bar.value)
+	$healthbar/text_health_display.text = str(int(health_bar.value))
 	$healthbar/text_lives.text = str(GlobalScript.lives)
 	$score.text = str("SCORE:", GlobalScript.score)
 	$stage_name.text = "STAGE:\n" + GlobalScript.stage_name

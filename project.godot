@@ -14,7 +14,7 @@ config/name="Megaman Recurrence"
 config/description="A WIP 
 "
 config/tags=PackedStringArray("megaman")
-run/main_scene="res://levels/disclaimer_screen.tscn"
+run/main_scene="uid://cju6hrw6xsta7"
 config/features=PackedStringArray("4.3.2", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0.141176, 0.819608, 1, 1)
@@ -23,13 +23,13 @@ config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Sa
 
 [autoload]
 
-StageFunctions="*res://GlobalScripts/StageFunctions.gd"
 GlobalScript="*res://GlobalScripts/GlobalScript.gd"
+StageFunctions="*res://GlobalScripts/StageFunctions.gd"
+ColorPaletteGlobal="*res://GlobalScripts/colorPalette.gd"
 MegamanAndItems="*res://GlobalScripts/megaman_and_items.tscn"
 GlobalScreenTransitionTimer="*res://GlobalScripts/global_screen_transition_timer.tscn"
 InterStageScene="*res://levels/inter_stage_scene.tscn"
 OptionsSet="*res://resources/optionMenu_Settings.gd"
-ColorPaletteGlobal="*res://GlobalScripts/colorPalette.gd"
 
 [display]
 
