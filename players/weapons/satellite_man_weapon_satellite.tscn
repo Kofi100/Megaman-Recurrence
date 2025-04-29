@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwm6da3s45xll"]
+
+[ext_resource type="Script" uid="uid://djjr2fvhbfurk" path="res://players/weapons/satellite_man_weapon_satellite.gd" id="1_skmno"]
+
+[node name="satellite_Man_weapon_Satellite" type="CharacterBody2D"]
+script = ExtResource("1_skmno")
+
+[node name="timer" type="Node2D" parent="."]
+
+[node name="upDownTimer" type="Timer" parent="timer"]
+
+[node name="shootTimer" type="Timer" parent="timer"]
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 3.0
+
+[connection signal="timeout" from="timer/upDownTimer" to="." method="_on_up_down_timer_timeout"]
+[connection signal="timeout" from="timer/shootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -314,6 +314,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if !is_dead:
+		
 		#if $all_sounds/charge.get_playback_position()>2.04:
 		##print("seek")
 		#$all_sounds/charge.seek(1.90)
@@ -339,6 +340,8 @@ func _physics_process(delta):
 			#checkWeaponAavability(1)
 			$weapon_display/display_timer.start()
 		checkWeaponAvalability()
+		#placing it here to work even in Screen Transitions and Flinches
+		activeUseOfWeapons()
 		#print(GlobalScript.weapon_number)
 		#if $RayCastLeft.get_collider() != null and $RayCastLeft.get_collider().is_in_group("iceTiles"):
 		#onIce = true
@@ -388,7 +391,7 @@ func _physics_process(delta):
 				velocity.y = 0
 
 			if onrush == false:
-				activeUseOfWeapons()
+				
 				if GlobalScript.weapon_number == 0:
 					if $buster_cooldown_timer.time_left <= 0:
 						shoot_and_charge()
@@ -772,6 +775,8 @@ var useBuster_WhenRCoil:bool=false
 var alarmSignal=preload("res://players/weapons/alarm_man_weapon_ring.tscn");
 var alarmSignal2=preload("res://players/weapons/alarm_man_weapon_ring.tscn")
 var alarmSignalInstance;var alarmSignalInstance2;
+var satellite_Weapon=preload("res://players/weapons/satellite_man_weapon_satellite.tscn")
+var satellite_SatelliteMini;
 func create_weapons():
 	MegamanAndItems.charge_timer = 0
 	if Input.is_action_just_pressed("shoot"):
@@ -790,10 +795,21 @@ func create_weapons():
 					$weaponNodes/timers/alarmWeaponSwitchPosTimer.start()
 					$weaponNodes/timers/alarmWeaponTimeOutTimer.start()
 				elif alarmSignalInstance!=null and alarmSignalInstance2!=null:
-					alarmSignalInstance.changeState=true#releaseSignal.emit()
-					alarmSignalInstance2.changeState=true#releaseSignal.emit()
-					$weaponNodes/timers/alarmWeaponTimeOutTimer.stop()
-					$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
+					if alarmSignalInstance.changeState==false and alarmSignalInstance.changeState2==false:
+						alarmSignalInstance.changeState=true#releaseSignal.emit()
+						alarmSignalInstance2.changeState=true#releaseSignal.emit()
+						alarmSignalInstance.changeState2=true
+						$weaponNodes/timers/alarmWeaponTimeOutTimer.stop()
+						$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
+					elif alarmSignalInstance.changeState==true and alarmSignalInstance.changeState2==true:
+						if alarmSignalInstance.shootOut==false:
+							alarmSignalInstance.shootOut=true
+							alarmSignalInstance2.shootOut=true
+			6:
+				if satellite_SatelliteMini==null:
+					satellite_SatelliteMini=satellite_Weapon.instantiate()
+					add_child(satellite_SatelliteMini)
+					satellite_SatelliteMini.global_position=global_position-Vector2(0,20)
 			7:
 				
 				if MegamanAndItems.weapon1energy > 0 and rCoilNo == 0:
@@ -874,7 +890,7 @@ func activeUseOfWeapons():
 				elif setAlarmWeaponPosToUp==false:
 					alarmSignalInstance.global_position=global_position+Vector2(-20,20)
 					alarmSignalInstance2.global_position=global_position+Vector2(20,20)
-			elif alarmSignalInstance!=null and alarmSignalInstance.changeState==true and alarmSignalInstance2!=null and alarmSignalInstance2.changeState==true:
+			elif alarmSignalInstance!=null and alarmSignalInstance.changeState==true  and alarmSignalInstance.shootOut==false and alarmSignalInstance2!=null and alarmSignalInstance2.changeState==true:
 				alarmSignalInstance.global_position=global_position+Vector2(-20,0)
 				alarmSignalInstance2.global_position=global_position+Vector2(20,0)
 	elif GlobalScript.weapon_number!=1:
@@ -882,7 +898,15 @@ func activeUseOfWeapons():
 			alarmSignalInstance.queue_free()
 			alarmSignalInstance2.queue_free()
 			$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
-
+	if GlobalScript.weapon_number==6:
+		if satellite_SatelliteMini!=null:
+			if anim.flip_h==false:
+				satellite_SatelliteMini.global_position.x=global_position.x+20
+			elif anim.flip_h==true:
+				satellite_SatelliteMini.global_position.x=global_position.x-20
+	else:
+		if satellite_SatelliteMini!=null:
+			satellite_SatelliteMini.queue_free()
 #Function to check it Rush Coil has left or not.
 func rCoilLeft():
 	rCoilNo -= 1

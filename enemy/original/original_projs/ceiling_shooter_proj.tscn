@@ -13,7 +13,7 @@ SPEED = 5000.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_8rpx2")
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 2
 collision_mask = 2
 

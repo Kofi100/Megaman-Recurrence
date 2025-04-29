@@ -462,12 +462,11 @@ position = Vector2(21, 176)
 [node name="leave_level_node" parent="." instance=ExtResource("3_3ir5o")]
 position = Vector2(1472, 168)
 
-[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 visible = false
 script = ExtResource("5_yxjt6")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="New Camera System Addon"]

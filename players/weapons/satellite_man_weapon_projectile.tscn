@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://yayk3j3utsqq"]
+
+[ext_resource type="Script" uid="uid://d1411nbdsnek7" path="res://players/weapons/satellite_man_weapon_projectile.gd" id="1_ljxlf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljxlf"]
+size = Vector2(10, 9)
+
+[node name="satellite_man_weapon_projectile" type="CharacterBody2D"]
+script = ExtResource("1_ljxlf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 5.0
+color = Color(0.434379, 0.000131204, 0.434375, 1)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="." groups=["player_projectiles"]]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ljxlf")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

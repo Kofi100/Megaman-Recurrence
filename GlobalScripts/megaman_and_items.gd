@@ -1,7 +1,7 @@
 #@tool
 extends Node2D
 var charge_timer = 0
-@export var colorPalette:ColorPalette
+@export var colorPalette:ColorPaletteResource
 @export var resetColors:bool=false
 @export var weaponNumberEnabled={
 	0:true,
@@ -17,18 +17,18 @@ var charge_timer = 0
 #Deleted BodyColor1 and 2 since they cannot accept ColorPaletteGlobalValues
 #Might be painful but needed to keep code clean
 #@export var C:Vector2=[ColorPaletteGlobal.LAVENDER,ColorPaletteGlobal.GREY]
-@export var colors: Dictionary = {
-	"LIGHT_VIOLET": Vector4(135.0, 0.0, 142.0, 255.0),
-	"BLACK": Vector4(0, 0, 0, 255),
-	"WHITE": Vector4(255, 255, 255, 255),
-	"LIGHTER_VIOLET": Vector4(251.0, 179.0, 255.0, 255.0),
-	"LIGHT_BLUE": Vector4(136.0, 232.0, 255.0, 255.0),
-	"DEEP_BLUE": Vector4(0.0, 98.0, 247.0, 255.0),
-	"DEEP_RED":Vector4(168.0,0.0,32.0,255.0),
-	"SLIGHTLY_DEEP_RED":Vector4(228.0,0.0,88.0,255.0),
-	"LIGHTER_DEEP_RED":Vector4(248.0,88.0,152.0,255.0),
-	
-}
+#@export var colors: Dictionary = {
+	#"LIGHT_VIOLET": Vector4(135.0, 0.0, 142.0, 255.0),
+	#"BLACK": Vector4(0, 0, 0, 255),
+	#"WHITE": Vector4(255, 255, 255, 255),
+	#"LIGHTER_VIOLET": Vector4(251.0, 179.0, 255.0, 255.0),
+	#"LIGHT_BLUE": Vector4(136.0, 232.0, 255.0, 255.0),
+	#"DEEP_BLUE": Vector4(0.0, 98.0, 247.0, 255.0),
+	#"DEEP_RED":Vector4(168.0,0.0,32.0,255.0),
+	#"SLIGHTLY_DEEP_RED":Vector4(228.0,0.0,88.0,255.0),
+	#"LIGHTER_DEEP_RED":Vector4(248.0,88.0,152.0,255.0),
+	#
+#}
 var weapon1energy = 27
 var weapon2energy = 27
 var weapon3energy = 27
@@ -43,7 +43,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if resetColors==true:
-		colors=colors
+		#colors=colors
 		if Engine.is_editor_hint():
 			queue_redraw()
 	#ColorPalette.
@@ -57,34 +57,34 @@ func charge_effect(animated_sprite: AnimatedSprite2D):
 	#colorPalette.
 	if charge_timer == 0:
 		charge_confirm = false
-		animated_sprite.material.set_shader_parameter("outlinecolor", ColorPaletteGlobal.BLACK / 255)
-		animated_sprite.material.set_shader_parameter("bodycolori", ColorPaletteGlobal.LIGHT_BLUE / 255)
-		animated_sprite.material.set_shader_parameter("bodycolorii", ColorPaletteGlobal.DEEP_BLUE / 255)
+		animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.BLACK / 255)
+		animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.LIGHT_BLUE / 255)
+		animated_sprite.material.set_shader_parameter("bodycolorii", colorPalette.DEEP_BLUE / 255)
 	elif charge_timer >= 30 and charge_timer < 75 + 30:  #30
 		if not charge_confirm:
 			charge_confirm = true
 			print("Charge visuals initiated")
 		if charge_timer % 14 == 1:
-			animated_sprite.material.set_shader_parameter("outlinecolor", (ColorPaletteGlobal.DEEP_RED) / 255.0)
+			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.DEEP_RED) / 255.0)
 		elif charge_timer % 14 == 5:
-			animated_sprite.material.set_shader_parameter("outlinecolor", (ColorPaletteGlobal.SLIGHTLY_DEEP_RED) / 255.0)
+			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.SLIGHTLY_DEEP_RED) / 255.0)
 		elif charge_timer%14==9:
-			animated_sprite.material.set_shader_parameter("outlinecolor", (ColorPaletteGlobal.LIGHTER_DEEP_RED) / 255.0)
+			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.LIGHTER_DEEP_RED) / 255.0)
 			#print((colors.DEEP_RED) / Vector4i(Vector4255))
 	elif charge_timer >= 75 + 30:
 		#animated_spriteated_sprite2d.material.set_shader_parameter("bodyoutlcharge",(Vector4(0.0,0.0,0.0,255.0))/255)
 		if charge_timer % 14 == 1:
-			animated_sprite.material.set_shader_parameter("outlinecolor", ColorPaletteGlobal.DEEP_BLUE / 255)
-			animated_sprite.material.set_shader_parameter("bodycolori", ColorPaletteGlobal.BLACK / 255)
-			animated_sprite.material.set_shader_parameter("bodycolorii", ColorPaletteGlobal.LIGHT_BLUE / 255)
+			animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.DEEP_BLUE / 255)
+			animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.BLACK / 255)
+			animated_sprite.material.set_shader_parameter("bodycolorii", colorPalette.LIGHT_BLUE / 255)
 		elif charge_timer % 14 == 5:
-			animated_sprite.material.set_shader_parameter("outlinecolor", ColorPaletteGlobal.LIGHT_BLUE/ 255)#(Vector4(0.0, 98.0, 247.0, 255.0))
-			animated_sprite.material.set_shader_parameter("bodycolori", ColorPaletteGlobal.DEEP_BLUE / 255)#(Vector4(136.0, 232.0, 255.0, 255.0))
+			animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.LIGHT_BLUE/ 255)#(Vector4(0.0, 98.0, 247.0, 255.0))
+			animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.DEEP_BLUE / 255)#(Vector4(136.0, 232.0, 255.0, 255.0))
 			animated_sprite.material.set_shader_parameter("bodycolorii", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
 
 		elif charge_timer % 14 == 9:
-			animated_sprite.material.set_shader_parameter("outlinecolor",  ColorPaletteGlobal.LIGHT_BLUE/ 255)
-			animated_sprite.material.set_shader_parameter("bodycolori", ColorPaletteGlobal.DEEP_BLUE / 255)
+			animated_sprite.material.set_shader_parameter("outlinecolor",  colorPalette.LIGHT_BLUE/ 255)
+			animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.DEEP_BLUE / 255)
 			animated_sprite.material.set_shader_parameter("bodycolorii", Vector4(188,188,188,255) / 255)
 
 
@@ -100,11 +100,11 @@ func change_palette(node):
 		if weaponNumberEnabled.has(GlobalScript.weapon_number):
 			match GlobalScript.weapon_number:
 				1:
-					set_Individual_Colors(node,ColorPaletteGlobal.CREAM,ColorPaletteGlobal.DARK_CREAM)
+					set_Individual_Colors(node,colorPalette.CREAM,colorPalette.DARK_CREAM)
 				5:
-					set_Individual_Colors(node,ColorPaletteGlobal.OLIVE,ColorPaletteGlobal.DEEP_OLIVE)
-				6:set_Individual_Colors(node,ColorPaletteGlobal.LIGHT_VIOLET,ColorPaletteGlobal.VIOLET)
-				7:set_Individual_Colors(node,ColorPaletteGlobal.LAVENDER,ColorPaletteGlobal.DEEPER_LAVENDER)
+					set_Individual_Colors(node,colorPalette.OLIVE,colorPalette.DEEP_OLIVE)
+				6:set_Individual_Colors(node,colorPalette.LIGHT_VIOLET,colorPalette.VIOLET)
+				7:set_Individual_Colors(node,colorPalette.LAVENDER,colorPalette.DEEPER_LAVENDER)
 func set_Individual_Colors(node,InnerBodyColor:Color,OuterBodyColor:Color):
 	node.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
 	node.material.set_shader_parameter("bodycolori", InnerBodyColor)

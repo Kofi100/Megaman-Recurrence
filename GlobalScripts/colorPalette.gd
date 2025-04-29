@@ -1,7 +1,7 @@
 #@tool
-#extends Resource
-extends Node2D
-#class_name ColorPalette
+extends Resource
+#extends Node2D
+class_name ColorPaletteResource
 #@export var colorDictionary:Dictionary={
 
 var BLACK= Vector4(0, 0, 0, 255)
@@ -21,6 +21,7 @@ var OLIVE=Color("f8b800",1.0)
 var DEEP_OLIVE=Color("007800",1.0)
 var LIGHT_VIOLET= Color("8970ff",1.0)
 var VIOLET=Color("0000d9",1.0)
+var UNKNOWN=Color("dd00ff",1.0)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

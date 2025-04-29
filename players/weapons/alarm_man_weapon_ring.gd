@@ -3,6 +3,8 @@ var releaseSignal:Signal
 var speed:float=1000
 @export var initialSignalDirection="left"
 var changeState:bool=false
+var shootOut:bool=false
+var changeState2:bool=false
 var setAlarmWeaponPosToUp:bool=true
 func _ready() -> void:
 	if initialSignalDirection=="left":
@@ -24,12 +26,19 @@ func _physics_process(delta: float) -> void:
 			rotation_degrees=30
 		elif initialSignalDirection=="right":
 			rotation_degrees=-30
-	if changeState==true:
-		if initialSignalDirection=="left":
-			rotation_degrees=90
-			
-		if initialSignalDirection=="right":
-			rotation_degrees=90
+	if changeState==true and shootOut==false:
+			if initialSignalDirection=="left":
+				rotation_degrees=90
+				
+			if initialSignalDirection=="right":
+				rotation_degrees=90
+	elif changeState==true and shootOut==true:
+			if initialSignalDirection=="left":
+				rotation_degrees=90
+				velocity.x=-10000*delta
+			elif initialSignalDirection=="right":
+				rotation_degrees=90
+				velocity.x=10000*delta
 		#if setAlarmWeaponPosToUp==true:#shoots up
 			#if initialSignalDirection=="left":
 				#velocity.x=-10000*delta
@@ -57,4 +66,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		area.get_parent().health-=5
-		
+		$hitEnemy.play()
+		#queue_free()
