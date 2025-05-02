@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 			1:
 				get_tree().set_pause(false)
 				get_tree().reload_current_scene()
+				#MegamanAndItems.reload_palette()
 			2:
 				if options_Screen==null and onAnotherMenu==false:
 					options_Screen=preload("res://levels/menu_options.tscn").instantiate()

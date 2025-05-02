@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://n345c548guuc"]
 
-[ext_resource type="Script" uid="uid://dbbh6ondv5qj" path="res://enemy/sniper_joe_bullet.gd" id="1_r0sgj"]
+[ext_resource type="Script" path="res://enemy/sniper_joe_bullet.gd" id="1_r0sgj"]
 [ext_resource type="Texture2D" uid="uid://be7vysuqxl40q" path="res://assets/sprites/enemies/sniper_joe_bullet.png" id="2_k84vn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dc6n1"]

@@ -328,6 +328,7 @@ func _on_restart_level_btn_pressed():
 	get_tree().paused = false
 	justPausedGameManually = false
 	get_tree().reload_current_scene()
+	#MegamanAndItems.reload_palette()
 
 
 func _on_timer_timeout():

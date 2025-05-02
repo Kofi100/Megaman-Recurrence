@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://mvr7cgmeeb7n"]
 
-[ext_resource type="Script" uid="uid://cpw6t16kdnpxd" path="res://enemy/original/original_projs/laser_projectile.gd" id="1_t2pnp"]
+[ext_resource type="Script" path="res://enemy/original/original_projs/laser_projectile.gd" id="1_t2pnp"]
 [ext_resource type="Texture2D" uid="uid://b85rbuacts05r" path="res://assets/sprites/enemies/laserBlaster_Laser.png" id="2_1oc0x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ulo1s"]
@@ -32,7 +32,7 @@ sprite_frames = SubResource("SpriteFrames_vpxw2")
 position = Vector2(0, 1)
 texture = ExtResource("2_1oc0x")
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 2
 collision_mask = 2
 

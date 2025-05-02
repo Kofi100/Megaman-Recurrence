@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ecw4jn8r44hk"]
 
-[ext_resource type="Script" uid="uid://b4utq87pjd4g2" path="res://enemy/original/original_projs/ice_telly_projectile.gd" id="1_hh2k2"]
+[ext_resource type="Script" path="res://enemy/original/original_projs/ice_telly_projectile.gd" id="1_hh2k2"]
 [ext_resource type="Texture2D" uid="uid://03x4twajdtwy" path="res://assets/sprites/enemies/ice_Telly_iceShot.png" id="2_n4j1i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bmoa7"]
@@ -48,7 +48,7 @@ SPEED = 3500.0
 sprite_frames = SubResource("SpriteFrames_xs084")
 animation = &"onFloor"
 
-[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 2
 collision_mask = 3
 

@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cggjn081djs4h" path="res://assets/sprites/miscelleaneous/1KofiMenu_Samuel_X7.png" id="4_sgle8"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="5_qi7wc"]
 [ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="6_qtkfd"]
-[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="7_dv4xv"]
+[ext_resource type="Script" path="res://resources/bgm_group.gd" id="7_dv4xv"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="8_0cdru"]
-[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="9_mf1u7"]
+[ext_resource type="Script" path="res://levels/sfx_group.gd" id="9_mf1u7"]
 
 [sub_resource type="Animation" id="Animation_r0n11"]
 length = 0.001

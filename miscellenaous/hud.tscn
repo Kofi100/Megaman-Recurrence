@@ -452,6 +452,7 @@ texture = ExtResource("2_jxh0c")
 centered = false
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("9_lhw3c")
 centered = false
 

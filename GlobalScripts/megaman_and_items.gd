@@ -51,7 +51,12 @@ func _process(_delta):
 	#print(ColorPaletteGlobal.GREY)
 var charge_confirm = false
 
+## In your autoload script (e.g., GlobalPalette.gd)
+#var color_palette: ColorPalette
 
+func reload_palette():
+	#colorPalette=load("res://GlobalScripts/colorPalette.gd")
+	pass
 func charge_effect(animated_sprite: AnimatedSprite2D):
 	#ColorPaletteGlobal.colorDictionary.
 	#colorPalette.

@@ -1,8 +1,8 @@
-extends CharacterBody2D
-var state="active"
-@export var SPEED = 50000.0
-@export var direction="left"
-var damagevalue=5
+extends Player_Projectile
+#var state="active"
+#@export var SPEED = 50000.0
+#@export var direction="left"
+#var damagevalue=5
 func _ready():
 	#offset for previous Animatiosn before MM6 version
 	#match direction:
@@ -22,6 +22,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	SPEED=15000
 	match state:
 		"active":
 			match direction:

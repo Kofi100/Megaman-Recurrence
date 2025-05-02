@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://2tgp1h4qh440"]
 
-[ext_resource type="Script" uid="uid://dmc7p7etes1s7" path="res://enemy/returning_machine_joe_bullet.gd" id="1_wtfdh"]
+[ext_resource type="Script" path="res://enemy/returning_machine_joe_bullet.gd" id="1_wtfdh"]
 [ext_resource type="Texture2D" uid="uid://bx4u85swvgwr4" path="res://assets/sprites/enemies/returningMachineJoe_Parts.png" id="2_tma2k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jr4jk"]
@@ -28,7 +28,7 @@ script = ExtResource("1_wtfdh")
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_2qei4")
 
-[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 2
 collision_mask = 2
 

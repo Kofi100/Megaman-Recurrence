@@ -1,11 +1,12 @@
-extends CharacterBody2D
+extends Player_Projectile
+#class_name Player_Projectile
 
-@export var SPEED = 50000.0
-const JUMP_VELOCITY = -400.0
-@export var direction = "left"
-var state = "active"
-@onready var anim = $anim
-var damagevalue = 1
+#@export var SPEED = 50000.0
+#const JUMP_VELOCITY = -400.0
+#@export var direction = "left"
+#@export var state = "active"
+##@onready var anim = $anim
+#@export var damagevalue = 1
 
 
 func _ready():
@@ -23,10 +24,10 @@ func _physics_process(delta):
 			match direction:
 				"left":
 					velocity.x = -SPEED * delta
-					anim.flip_h=false
+					$anim.flip_h=false
 				"right":
 					velocity.x = SPEED * delta
-					anim.flip_h=true
+					$anim.flip_h=true
 		"blocked":
 			match direction:
 				"left":

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rwqtoatltmv1" path="res://players/weapons/alarm_man_weapon_ring.gd" id="1_56kc8"]
 [ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="2_mj063"]
-[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="3_droww"]
+[ext_resource type="Script" path="res://levels/sfx_group.gd" id="3_droww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w23eh"]
 size = Vector2(29.1506, 10.6962)
@@ -10,6 +10,8 @@ size = Vector2(29.1506, 10.6962)
 [node name="alarm_Man_weapon_Ring" type="CharacterBody2D"]
 rotation = 1.5708
 script = ExtResource("1_56kc8")
+SPEED = 10000.0
+damagevalue = 3.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -13.1244
@@ -18,8 +20,8 @@ offset_right = 14.8756
 offset_bottom = 4.73205
 
 [node name="Area2D" type="Area2D" parent="." groups=["player_projectiles"]]
-collision_layer = 5
-collision_mask = 5
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["player_projectiles"]]
 position = Vector2(1.04904, 0)

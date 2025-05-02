@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://odjr6f41o1g2"]
 
-[ext_resource type="Script" uid="uid://rq3kijxcyn3w" path="res://enemy/original/original_projs/ice_joe_projectile.gd" id="1_1sl76"]
+[ext_resource type="Script" path="res://enemy/original/original_projs/ice_joe_projectile.gd" id="1_1sl76"]
 [ext_resource type="Texture2D" uid="uid://d03hidomwpe3a" path="res://assets/sprites/enemies/original/orig_projectiles/iceSniperJoe_Snow.png" id="1_t67nb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmewd"]

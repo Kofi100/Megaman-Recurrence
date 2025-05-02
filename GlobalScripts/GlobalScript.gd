@@ -62,9 +62,10 @@ func _ready():
 	set_keys_to_players()
 	pass
 
-
+var array=[null,null,null]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#print(array)
 	#energy_tank_no=5
 	if playerhasbeenhit:
 		#print('Globalscript:playerhasbeenhit:works')

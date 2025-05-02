@@ -1,9 +1,9 @@
-extends CharacterBody2D
+extends Player_Projectile
 
-@export var SPEED = 50000.0
-@export var direction="left"
-var state="active"
-var damagevalue=3
+#@export var SPEED = 50000.0
+#@export var direction="left"
+#var state="active"
+#var damagevalue=3
 func _ready():
 	match direction:
 		"left":
