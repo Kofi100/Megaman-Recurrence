@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0qt1tage6wfy"]
+[gd_scene load_steps=6 format=3 uid="uid://b0qt1tage6wfy"]
 
 [ext_resource type="Script" uid="uid://rwqtoatltmv1" path="res://players/weapons/alarm_man_weapon_ring.gd" id="1_56kc8"]
 [ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="2_mj063"]
 [ext_resource type="Script" path="res://levels/sfx_group.gd" id="3_droww"]
+[ext_resource type="Texture2D" uid="uid://vkb7i71po50v" path="res://assets/sprites/weapons/1RingerAlarm_Samuel_X7.png" id="4_droww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w23eh"]
-size = Vector2(29.1506, 10.6962)
+size = Vector2(14, 14)
 
 [node name="alarm_Man_weapon_Ring" type="CharacterBody2D"]
 rotation = 1.5708
@@ -14,6 +15,7 @@ SPEED = 10000.0
 damagevalue = 3.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -13.1244
 offset_top = -5.26795
 offset_right = 14.8756
@@ -24,17 +26,25 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["player_projectiles"]]
-position = Vector2(1.04904, 0)
+position = Vector2(3.61034e-08, 2.38419e-07)
 shape = SubResource("RectangleShape2D_w23eh")
+disabled = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.969677, 0.106603)
-scale = Vector2(1.46265, 0.545327)
+position = Vector2(-0.00112835, -0.101428)
+scale = Vector2(0.748414, 0.746423)
 
 [node name="hitEnemy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mj063")
 script = ExtResource("3_droww")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+rotation = -1.5708
+texture = ExtResource("4_droww")
+flip_h = true
+flip_v = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -8,7 +8,7 @@ uniform vec4 bodycolorii:source_color;
 uniform vec4 colorEyesEdit:source_color;
 void fragment(){
 	vec4 color=texture(TEXTURE,UV);
-	
+
 	if (color==outline_color_original){
 		COLOR=outlinecolor;
 	}

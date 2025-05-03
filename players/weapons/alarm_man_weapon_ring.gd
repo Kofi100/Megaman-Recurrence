@@ -1,3 +1,4 @@
+#@tool
 extends Player_Projectile
 var releaseSignal:Signal
 #var speed:float=1000
@@ -21,7 +22,7 @@ func _ready() -> void:
 		"UR","DL":
 			rotation_degrees=30
 		"L","R":
-			$ColorRect.set_visible(false)
+			$Sprite2D.set_visible(false)
 			if $Area2D/CollisionShape2D.is_inside_tree():
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
 			
@@ -47,16 +48,16 @@ func _physics_process(delta: float) -> void:
 		match initialSignalDirection:
 			"UL","DR":
 				rotation_degrees=-30
-				$ColorRect.set_visible(true)
+				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"UR","DL":
 				rotation_degrees=30
-				$ColorRect.set_visible(true)
+				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"L","R":
 				rotation_degrees=90
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
-				$ColorRect.set_visible(false)
+				$Sprite2D.set_visible(false)
 		#match initialSignalDirection:
 			#"L":
 				#global_position=parent_Player.global_position+Vector2(0,-20)
@@ -76,34 +77,34 @@ func _physics_process(delta: float) -> void:
 			"UL","DR":
 				rotation_degrees=-30
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
-				$ColorRect.set_visible(false)
+				$Sprite2D.set_visible(false)
 			"UR","DL":
 				rotation_degrees=30
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
-				$ColorRect.set_visible(false)
+				$Sprite2D.set_visible(false)
 			"L","R":
-				rotation_degrees=90
-				$ColorRect.set_visible(true)
+				
+				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
-		#match initialSignalDirection:
-			#"L":
+		match initialSignalDirection:
+			"L":rotation_degrees=90
 				#global_position=parent_Player.global_position+Vector2(0,-20)
-			#"R":
+			"R":rotation_degrees=-90
 				#global_position=parent_Player.global_position+Vector2(0,20)
 	if changeState==true:
 		match initialSignalDirection:
 			"L":
 				rotation_degrees=90
 				velocity.x=-SPEED*delta
-				$ColorRect.set_visible(true)
+				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"R":
-				rotation_degrees=90
+				rotation_degrees=-90
 				velocity.x=SPEED*delta
-				$ColorRect.set_visible(true)
+				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"UL","UR","DL","DR":
-				$ColorRect.set_visible(false)
+				$Sprite2D.set_visible(false)
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
 			#if initialSignalDirection=="left":
 				#
