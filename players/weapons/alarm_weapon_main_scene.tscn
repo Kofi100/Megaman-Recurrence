@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ux4ft03lc5b"]
+
+[ext_resource type="PackedScene" uid="uid://b0qt1tage6wfy" path="res://players/weapons/alarm_man_weapon_ring.tscn" id="1_6q7vo"]
+[ext_resource type="Script" uid="uid://b2dgc0nxk8pg" path="res://players/weapons/alarm_weapon_main_scene.gd" id="1_qfyxo"]
+[ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="2_qfyxo"]
+
+[node name="alarm_Weapon_Main_Scene" type="Node2D"]
+script = ExtResource("1_qfyxo")
+
+[node name="alarm_Man_weapon_Ring" parent="." instance=ExtResource("1_6q7vo")]
+position = Vector2(-20, -20)
+initialSignalDirection = "UL"
+
+[node name="alarm_Man_weapon_Ring2" parent="." instance=ExtResource("1_6q7vo")]
+position = Vector2(20, -20)
+initialSignalDirection = "UR"
+
+[node name="alarm_Man_weapon_Ring3" parent="." instance=ExtResource("1_6q7vo")]
+position = Vector2(-20, 20)
+initialSignalDirection = "DL"
+
+[node name="alarm_Man_weapon_Ring4" parent="." instance=ExtResource("1_6q7vo")]
+position = Vector2(20, 20)
+initialSignalDirection = "DR"
+
+[node name="alarm_Man_weapon_Ring5" parent="." instance=ExtResource("1_6q7vo")]
+position = Vector2(-32, -1)
+
+[node name="alarm_Man_weapon_Ring6" parent="." instance=ExtResource("1_6q7vo")]
+position = Vector2(32, 0)
+initialSignalDirection = "R"
+
+[node name="Megaman" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(176, 51)
+texture = ExtResource("2_qfyxo")
+
+[node name="timer" type="Node2D" parent="."]
+
+[node name="switchPosTimer" type="Timer" parent="timer"]
+wait_time = 0.25
+
+[node name="endSessionTimer" type="Timer" parent="timer"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="timer/switchPosTimer" to="." method="_on_switch_pos_timer_timeout"]
+[connection signal="timeout" from="timer/endSessionTimer" to="." method="_on_end_session_timer_timeout"]

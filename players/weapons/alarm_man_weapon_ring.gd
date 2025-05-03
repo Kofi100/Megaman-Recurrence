@@ -6,7 +6,7 @@ var changeState:bool=false
 var shootOut:bool=false
 var changeState2:bool=false
 var setAlarmWeaponPosToUp:bool=true
-var parent_Player
+#var parent_Player
 #Player_Projectile.speed=10000
 #var damagevalue=5
 func _ready() -> void:
@@ -14,14 +14,14 @@ func _ready() -> void:
 		#rotation_degrees=-30
 	#elif initialSignalDirection=="right":
 		#rotation_degrees=30
-	parent_Player=get_parent()
+	#parent_Player=get_parent()
 	match initialSignalDirection:
 		"UL","DR":
 			rotation_degrees=-30
 		"UR","DL":
 			rotation_degrees=30
 		"L","R":
-			set_visible(false)
+			$ColorRect.set_visible(false)
 			if $Area2D/CollisionShape2D.is_inside_tree():
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
 			
@@ -30,16 +30,16 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#SPEED=10000
-	match initialSignalDirection:
-			"UL":
-				#gloparent_Player
-				global_position=parent_Player.global_position+Vector2(-20,-20)
-			"UR":
-				global_position=parent_Player.global_position+Vector2(20,-20)
-			"DL":
-				global_position=parent_Player.global_position+Vector2(-20,20)
-			"DR":
-				global_position=parent_Player.global_position+Vector2(20,20)
+	#match initialSignalDirection:
+			#"UL":
+				##gloparent_Player
+				#global_position=parent_Player.global_position+Vector2(-20,-20)
+			#"UR":
+				#global_position=parent_Player.global_position+Vector2(20,-20)
+			#"DL":
+				#global_position=parent_Player.global_position+Vector2(-20,20)
+			#"DR":
+				#global_position=parent_Player.global_position+Vector2(20,20)
 
 	
 	#if releaseSignal.
@@ -47,17 +47,21 @@ func _physics_process(delta: float) -> void:
 		match initialSignalDirection:
 			"UL","DR":
 				rotation_degrees=-30
-				set_visible(true)
+				$ColorRect.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"UR","DL":
 				rotation_degrees=30
-				set_visible(true)
+				$ColorRect.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"L","R":
 				rotation_degrees=90
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
-				set_visible(false)
-			
+				$ColorRect.set_visible(false)
+		#match initialSignalDirection:
+			#"L":
+				#global_position=parent_Player.global_position+Vector2(0,-20)
+			#"R":
+				#global_position=parent_Player.global_position+Vector2(0,20)
 		#if initialSignalDirection=="left":
 			#rotation_degrees=-30
 		#elif initialSignalDirection=="right":
@@ -72,32 +76,34 @@ func _physics_process(delta: float) -> void:
 			"UL","DR":
 				rotation_degrees=-30
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
-				set_visible(false)
+				$ColorRect.set_visible(false)
 			"UR","DL":
 				rotation_degrees=30
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
-				set_visible(false)
+				$ColorRect.set_visible(false)
 			"L","R":
 				rotation_degrees=90
-				set_visible(true)
+				$ColorRect.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
-		match initialSignalDirection:
-			"L":
-				global_position=parent_Player.global_position+Vector2(0,-20)
-			"R":
-				global_position=parent_Player.global_position+Vector2(0,20)
+		#match initialSignalDirection:
+			#"L":
+				#global_position=parent_Player.global_position+Vector2(0,-20)
+			#"R":
+				#global_position=parent_Player.global_position+Vector2(0,20)
 	if changeState==true:
 		match initialSignalDirection:
 			"L":
 				rotation_degrees=90
 				velocity.x=-SPEED*delta
-				set_visible(true)
+				$ColorRect.set_visible(true)
+				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"R":
 				rotation_degrees=90
 				velocity.x=SPEED*delta
-				set_visible(true)
+				$ColorRect.set_visible(true)
+				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"UL","UR","DL","DR":
-				set_visible(false)
+				$ColorRect.set_visible(false)
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
 			#if initialSignalDirection=="left":
 				#
@@ -105,26 +111,7 @@ func _physics_process(delta: float) -> void:
 				#rotation_degrees=90
 				#velocity.x=SPEED*delta
 	#elif changeState==true and shootOut==true:
-			#if initialSignalDirection=="left":
-				#rotation_degrees=90
-				#velocity.x=-10000*delta
-			#elif initialSignalDirection=="right":
-				#rotation_degrees=90
-				#velocity.x=10000*delta
-		#if setAlarmWeaponPosToUp==true:#shoots up
-			#if initialSignalDirection=="left":
-				#velocity.x=-10000*delta
-				#velocity.y=-10000*delta
-			#if initialSignalDirection=="right":
-				#velocity.x=10000*delta
-				#velocity.y=-10000*delta
-		#elif setAlarmWeaponPosToUp==false:#shoots down
-			#if initialSignalDirection=="left":
-				#velocity.x=-10000*delta
-				#velocity.y=10000*delta
-			#if initialSignalDirection=="right":
-				#velocity.x=10000*delta
-				#velocity.y=10000*delta
+
 	move_and_slide()
 func releaseFunction():
 	changeState=true

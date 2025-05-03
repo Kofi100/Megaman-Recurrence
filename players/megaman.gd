@@ -780,66 +780,25 @@ var alarmSignal=preload("res://players/weapons/alarm_man_weapon_ring.tscn");
 var alarmSignal2=preload("res://players/weapons/alarm_man_weapon_ring.tscn")
 var alarmSignalInstance;var alarmSignalInstance2;
 var alarmSignalInstanceArray=[null,null,null,null,null,null]#:Array=Array[6]
+var alarmMain
 var satellite_Weapon=preload("res://players/weapons/satellite_man_weapon_satellite.tscn")
 var satellite_SatelliteMini;
 func create_weapons():
-	print("alarmSignalInstanceArray:",alarmSignalInstanceArray[5])
+	#print("alarmSignalInstanceArray[5]:",alarmSignalInstanceArray[5])
 	MegamanAndItems.charge_timer = 0
 	if Input.is_action_just_pressed("shoot"):
 		match GlobalScript.weapon_number:
 			1:
-				
-				if alarmSignalInstanceArray.has(null):#find(null,0)==-1:
-					#checks if all values are null,if not they're no 
-					#null values,then it'll return -1
-					for i in 6:
-						if alarmSignalInstanceArray[i]==null:
-							alarmSignalInstanceArray[i]=alarmSignal.instantiate()
-							add_child(alarmSignalInstanceArray[i])#get_parent().
-					if not alarmSignalInstanceArray.has(null):#alarmSignalInstanceArray.find(null,0)==-1:
-						alarmSignalInstanceArray[0].initialSignalDirection="UL";
-						alarmSignalInstanceArray[1].initialSignalDirection="UR";
-						alarmSignalInstanceArray[2].initialSignalDirection="DL";
-						alarmSignalInstanceArray[3].initialSignalDirection="DR";
-						alarmSignalInstanceArray[4].initialSignalDirection="L";
-						alarmSignalInstanceArray[5].initialSignalDirection="R"
-						
-					$weaponNodes/timers/alarmWeaponSwitchPosTimer.start()
-					$weaponNodes/timers/alarmWeaponTimeOutTimer.start()
+				if alarmMain==null:
+					alarmMain=preload("res://players/weapons/alarm_weapon_main_scene.tscn").instantiate()
+					add_child(alarmMain)
 					print("Mega:set_all values to Alarm weapon")
-
-				#if alarmSignalInstance==null and alarmSignalInstance2==null:
-					#alarmSignalInstance=alarmSignal.instantiate()
-					#alarmSignalInstance2=alarmSignal2.instantiate()
-					##alarmSignalInstance2=preload("res://players/weapons/alarm_man_weapon_ring.tscn").instantiate()
-					#get_parent().add_child(alarmSignalInstance)
-					#get_parent().add_child(alarmSignalInstance2)
-					#alarmSignalInstance.initialSignalDirection="left"
-					#alarmSignalInstance2.initialSignalDirection="right"
-					#alarmSignalInstance.global_position=global_position+Vector2(-20,-20)
-					#alarmSignalInstance2.global_position=global_position+Vector2(20,-20)
-					#$weaponNodes/timers/alarmWeaponSwitchPosTimer.start()
-					#$weaponNodes/timers/alarmWeaponTimeOutTimer.start()
-				elif not alarmSignalInstanceArray.has(null):#alarmSignalInstanceArray.find(null,0)==-1:#alarmSignalInstance!=null and alarmSignalInstance2!=null:
-					#for i in 5:
-					for alarm in alarmSignalInstanceArray:
-						if alarm!=null: 
-							if alarm.changeState==false:
-								alarm.changeState=true
-					$weaponNodes/timers/alarmWeaponTimeOutTimer.stop()
-					$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
-					#if alarmSignalInstance.changeState==false:#nd alarmSignalInstance.changeState2==false:
-						#alarmSignalInstance.global_position=global_position+Vector2(-20,0)
-						#alarmSignalInstance2.global_position=global_position+Vector2(20,0)
-						#alarmSignalInstance.changeState=true#releaseSignal.emit()
-						#alarmSignalInstance2.changeState=true#releaseSignal.emit()
-						#alarmSignalInstance.changeState2=true
-						#$weaponNodes/timers/alarmWeaponTimeOutTimer.stop()
-						#$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
-					#elif alarmSignalInstance.changeState==true and alarmSignalInstance.changeState2==true:
-						#if alarmSignalInstance.shootOut==false:
-							#alarmSignalInstance.shootOut=true
-							#alarmSignalInstance2.shootOut=true
+				#if alarmSignalInstanceArray.has(null):#find(null,0)==-1:
+					##checks if all values are null,if not they're no 
+					##null values,then it'll return -1
+				elif alarmMain!=null:
+					if alarmMain.changeState==false:
+						alarmMain.changeState=true
 			6:
 				if satellite_SatelliteMini==null:
 					satellite_SatelliteMini=satellite_Weapon.instantiate()
@@ -915,49 +874,13 @@ func create_weapons():
 
 #Function to actively check your weapon and their state and change them.
 func activeUseOfWeapons():
-	clean_Dead_Objects_from_Array(alarmSignalInstanceArray)
+	#clean_Dead_Objects_from_Array(alarmSignalInstanceArray)
 	if GlobalScript.weapon_number==1:
-			if alarmSignalInstanceArray.find(null,0)==-1:
-				for alarm in alarmSignalInstanceArray:
-					if alarm!=null:
-				#for i in 5:
-						pass
-						#alarm.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-			#if alarmSignalInstance!=null and alarmSignalInstance.changeState==false and alarmSignalInstance2!=null and alarmSignalInstance2.changeState==false:
-				#alarmSignalInstance.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-				#alarmSignalInstance2.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-				#if setAlarmWeaponPosToUp==true:
-					#alarmSignalInstance.global_position=global_position+Vector2(-20,-20)
-					#alarmSignalInstance2.global_position=global_position+Vector2(20,-20)
-				#elif setAlarmWeaponPosToUp==false:
-					#alarmSignalInstance.global_position=global_position+Vector2(-20,20)
-					#alarmSignalInstance2.global_position=global_position+Vector2(20,20)
-			#if  alarmSignalInstanceArray.find(null,0)!=-1:
-				#alarmSignalInstanceArray.clear()
-				#for i in 5:
-					#if alarmSignalInstanceArray[i]!=null:
-						#alarmSignalInstanceArray[i].queue_free()
-			#if alarmSignalInstance==null and alarmSignalInstance2!=null:
-				#alarmSignalInstance2.queue_free()
-			#elif alarmSignalInstance2==null and alarmSignalInstance!=null:
-				#alarmSignalInstance.queue_free()
-			#fixes position of Alarm Signal to be at side of Mega no matter what
-			#elif alarmSignalInstance!=null and alarmSignalInstance.changeState==true  and alarmSignalInstance.shootOut==false and alarmSignalInstance2!=null and alarmSignalInstance2.changeState==true:
-				#alarmSignalInstance.global_position=global_position+Vector2(-20,0)
-				#alarmSignalInstance2.global_position=global_position+Vector2(20,0)
+		pass
 	elif GlobalScript.weapon_number!=1:
-		if not alarmSignalInstanceArray.has(null):#find(null,0)==-1:
-				for alarm in alarmSignalInstanceArray:
-					if alarm!=null:
-						alarm.queue_free()
-				#alarmSignalInstanceArray.clear()
-				
-				$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
-		
-		#if alarmSignalInstance!=null and alarmSignalInstance2!=null:
-			#alarmSignalInstance.queue_free()
-			#alarmSignalInstance2.queue_free()
-			#$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
+		if alarmMain!=null:
+			alarmMain.queue_free()
+
 	if GlobalScript.weapon_number==6:
 		if satellite_SatelliteMini!=null:
 			if anim.flip_h==false:

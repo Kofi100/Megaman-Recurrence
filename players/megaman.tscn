@@ -701,7 +701,7 @@ texture = ExtResource("1_si1fv")
 [node name="timers" type="Node2D" parent="weaponNodes"]
 
 [node name="alarmWeaponSwitchPosTimer" type="Timer" parent="weaponNodes/timers"]
-wait_time = 0.2
+wait_time = 0.5
 
 [node name="alarmWeaponTimeOutTimer" type="Timer" parent="weaponNodes/timers"]
 wait_time = 3.0
