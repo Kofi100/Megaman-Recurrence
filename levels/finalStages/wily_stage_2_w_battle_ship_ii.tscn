@@ -1,13 +1,13 @@
 [gd_scene load_steps=52 format=3 uid="uid://dffui0far5bar"]
 
 [ext_resource type="PackedScene" uid="uid://bdjbquyil6ca" path="res://assets/sprites/tilesets/test_stages/tiledProject1/wily_battleship_ii_map.tscn" id="1_puahp"]
-[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_o07xv"]
+[ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_o07xv"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_4qflo"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="4_2epy0"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_v0i2c"]
 [ext_resource type="PackedScene" uid="uid://ber5k7q8cjftl" path="res://enemy/original/land_mine.tscn" id="5_3iu8o"]
 [ext_resource type="AudioStream" uid="uid://bry4488mfekun" path="res://assets/music/Spark The Electric Jester - Megaraph Fleet (Remix).mp3" id="6_a5jn4"]
-[ext_resource type="Script" path="res://resources/bgm_group.gd" id="7_t2d6f"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="7_t2d6f"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="8_8tve8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhpi0"]

@@ -40,7 +40,7 @@ script = ExtResource("1_e34oo")
 sprite_frames = SubResource("SpriteFrames_2j2pl")
 animation = &"none"
 
-[node name="CharacterBody2D" type="Area2D" parent="." groups=["enemy"]]
+[node name="CharacterBody2D" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 7
 collision_mask = 7
 

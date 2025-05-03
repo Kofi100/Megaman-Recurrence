@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://rwqtoatltmv1" path="res://players/weapons/alarm_man_weapon_ring.gd" id="1_56kc8"]
 [ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="2_mj063"]
-[ext_resource type="Script" path="res://levels/sfx_group.gd" id="3_droww"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="3_droww"]
 [ext_resource type="Texture2D" uid="uid://vkb7i71po50v" path="res://assets/sprites/weapons/1RingerAlarm_Samuel_X7.png" id="4_droww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w23eh"]
 size = Vector2(14, 14)
 
 [node name="alarm_Man_weapon_Ring" type="CharacterBody2D"]
-rotation = 1.5708
+rotation = 0.523599
 script = ExtResource("1_56kc8")
 SPEED = 10000.0
 damagevalue = 3.0
@@ -31,8 +31,8 @@ shape = SubResource("RectangleShape2D_w23eh")
 disabled = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-0.00112835, -0.101428)
-scale = Vector2(0.748414, 0.746423)
+position = Vector2(-0.454927, 1.30302)
+scale = Vector2(1.43253, 1.47831)
 
 [node name="hitEnemy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mj063")
@@ -40,7 +40,6 @@ script = ExtResource("3_droww")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 rotation = -1.5708
 texture = ExtResource("4_droww")
 flip_h = true

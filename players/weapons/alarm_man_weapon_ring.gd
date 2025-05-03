@@ -11,16 +11,21 @@ var setAlarmWeaponPosToUp:bool=true
 #Player_Projectile.speed=10000
 #var damagevalue=5
 func _ready() -> void:
+	damagevalue=3
 	#if initialSignalDirection=="left":
 		#rotation_degrees=-30
 	#elif initialSignalDirection=="right":
 		#rotation_degrees=30
 	#parent_Player=get_parent()
 	match initialSignalDirection:
-		"UL","DR":
-			rotation_degrees=-30
-		"UR","DL":
-			rotation_degrees=30
+		#"UL":
+			#rotation_degrees=-210
+		#"UR":
+			#rotation_degrees=210
+		#"DL":
+			#rotation_degrees=30
+		#"DR":
+			#rotation_degrees=-30
 		"L","R":
 			$Sprite2D.set_visible(false)
 			if $Area2D/CollisionShape2D.is_inside_tree():
@@ -47,15 +52,15 @@ func _physics_process(delta: float) -> void:
 	if setAlarmWeaponPosToUp==true:
 		match initialSignalDirection:
 			"UL","DR":
-				rotation_degrees=-30
+				#rotation_degrees=-30
 				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"UR","DL":
-				rotation_degrees=30
+				#rotation_degrees=30
 				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"L","R":
-				rotation_degrees=90
+				#rotation_degrees=90
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
 				$Sprite2D.set_visible(false)
 		#match initialSignalDirection:
@@ -75,31 +80,31 @@ func _physics_process(delta: float) -> void:
 			#rotation_degrees=-30
 		match initialSignalDirection:
 			"UL","DR":
-				rotation_degrees=-30
+				#rotation_degrees=-30
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
 				$Sprite2D.set_visible(false)
 			"UR","DL":
-				rotation_degrees=30
+				#rotation_degrees=30
 				$Area2D/CollisionShape2D.set_deferred("disabled",true)
 				$Sprite2D.set_visible(false)
 			"L","R":
 				
 				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
-		match initialSignalDirection:
-			"L":rotation_degrees=90
-				#global_position=parent_Player.global_position+Vector2(0,-20)
-			"R":rotation_degrees=-90
-				#global_position=parent_Player.global_position+Vector2(0,20)
+		#match initialSignalDirection:
+			#"L":rotation_degrees=90
+				##global_position=parent_Player.global_position+Vector2(0,-20)
+			#"R":rotation_degrees=-90
+				##global_position=parent_Player.global_position+Vector2(0,20)
 	if changeState==true:
 		match initialSignalDirection:
 			"L":
-				rotation_degrees=90
+				#rotation_degrees=90
 				velocity.x=-SPEED*delta
 				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
 			"R":
-				rotation_degrees=-90
+				#rotation_degrees=-90
 				velocity.x=SPEED*delta
 				$Sprite2D.set_visible(true)
 				$Area2D/CollisionShape2D.set_deferred("disabled",false)
@@ -124,14 +129,18 @@ func is_in_exactly_this_group(node: Node, group_name: String) -> bool:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	
 	queue_free()
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		var enemyBody=area.get_parent()
-		if is_in_exactly_this_group(enemyBody,"enemy"):
-			area.get_parent().health-=damagevalue
+		#print(enemyBody.name)
+		if is_in_exactly_this_group(area,"enemy"):
+			
+			enemyBody.health-=damagevalue
+			#print("alarmSignal=>damaged:",enemyBody.name)
 		elif area.is_in_group("enemy_Projectile"):#not is_in_exactly_this_group(enemyBody,"enemy"):
 			enemyBody.queue_free()
 		$hitEnemy.play()
