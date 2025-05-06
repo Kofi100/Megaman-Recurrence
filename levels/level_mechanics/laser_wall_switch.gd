@@ -24,7 +24,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 			$switchOnTimer.start()
 			
 			isOn=false
-		area.get_parent().queue_free()
+		if area.get_parent().shouldBeDestroyedByLaserSwitch==true:
+			area.get_parent().queue_free()
 
 
 func _on_switch_on_timer_timeout() -> void:

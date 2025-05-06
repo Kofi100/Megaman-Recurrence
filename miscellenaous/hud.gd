@@ -264,27 +264,30 @@ func weapon_energy_update():
 		
 	else:
 		$weapon_energy.visible = false
-
-	match GlobalScript.weapon_number:
-		1:
-			#$weapon_energy.set_modulate(Color(255, 4, 28, 255))
-			
-			$weapon_energy.value = MegamanAndItems.weapon1energy
-			MegamanAndItems.change_palette($weapon_energy)
-			#$weapon_energy.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
-			#$weapon_energy.material.set_shader_parameter("bodycolori", (Vector4i(255,255,255,255)) / 255)
-			#$weapon_energy.material.set_shader_parameter("bodycolorii", (Vector4i(255,0,0,255)) / 255)
-			$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon1energy)
-		2:
-			#$weapon_energy.set_modulate(Color(255, 4, 28, 255))
-			$weapon_energy.value = MegamanAndItems.weapon2energy
-			MegamanAndItems.change_palette($weapon_energy)
-			$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon2energy)
-		3:
-			#$weapon_energy.set_modulate(Color.MINT_CREAM)
-			$weapon_energy.value = MegamanAndItems.weapon3energy
-			MegamanAndItems.change_palette($weapon_energy)
-			$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon3energy)
+	if MegamanAndItems.weaponEnergy.has(GlobalScript.weapon_number):
+		$weapon_energy.value=MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]
+		$weapon_energy/text_weapon_energy.text=str(int(MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]))
+		MegamanAndItems.change_palette($weapon_energy)
+	#match GlobalScript.weapon_number:
+		#1:
+			##$weapon_energy.set_modulate(Color(255, 4, 28, 255))
+			#
+			#$weapon_energy.value = MegamanAndItems.weapon1energy
+			#MegamanAndItems.change_palette($weapon_energy)
+			##$weapon_energy.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
+			##$weapon_energy.material.set_shader_parameter("bodycolori", (Vector4i(255,255,255,255)) / 255)
+			##$weapon_energy.material.set_shader_parameter("bodycolorii", (Vector4i(255,0,0,255)) / 255)
+			#$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon1energy)
+		#2:
+			##$weapon_energy.set_modulate(Color(255, 4, 28, 255))
+			#$weapon_energy.value = MegamanAndItems.weapon2energy
+			#MegamanAndItems.change_palette($weapon_energy)
+			#$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon2energy)
+		#3:
+			##$weapon_energy.set_modulate(Color.MINT_CREAM)
+			#$weapon_energy.value = MegamanAndItems.weapon3energy
+			#MegamanAndItems.change_palette($weapon_energy)
+			#$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon3energy)
 	update_energy_pause_menu()
 
 

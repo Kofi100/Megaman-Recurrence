@@ -15,6 +15,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	calculate_player_distance()
+	spawn_collectables()#might deactivate later during testing
 	if $Timer/move_Duration_Timer.is_stopped()==false:
 		if direction==true:
 			velocity.x=-500*delta

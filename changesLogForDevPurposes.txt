@@ -1,0 +1,3 @@
+Megaman -removed mask4 for experimentation on main player scene
+might incase anything goes wrong
+also changed mask 4's name to water just incase

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://yi8o5d7677eq"]
+
+[ext_resource type="Script" uid="uid://cj0dci0mfjhia" path="res://enemy/punk_riot_projectile.gd" id="1_byknq"]
+[ext_resource type="Texture2D" uid="uid://s344a2fk3fy8" path="res://assets/sprites/enemies/punkRiotProjectile.png" id="2_piyx2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja7cu"]
+size = Vector2(12, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_piyx2"]
+size = Vector2(12, 4)
+
+[node name="punk_riot_projectile" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_byknq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_piyx2")
+flip_h = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_ja7cu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_piyx2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.76837e-07, 0)
+scale = Vector2(0.6, 0.2)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

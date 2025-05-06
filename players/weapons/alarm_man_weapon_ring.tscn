@@ -13,6 +13,7 @@ rotation = 0.523599
 script = ExtResource("1_56kc8")
 SPEED = 10000.0
 damagevalue = 3.0
+shouldBeDestroyedByLaserSwitch = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

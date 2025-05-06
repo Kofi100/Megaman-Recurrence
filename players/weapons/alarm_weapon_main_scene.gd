@@ -34,13 +34,29 @@ func _physics_process(delta: float) -> void:
 
 func _on_switch_pos_timer_timeout() -> void:
 	setAlarmWeaponPosToUp=!setAlarmWeaponPosToUp
-	if $alarm_Man_weapon_Ring.changeState==false:
-		$alarm_Man_weapon_Ring.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-		$alarm_Man_weapon_Ring2.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-		$alarm_Man_weapon_Ring3.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-		$alarm_Man_weapon_Ring4.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-		$alarm_Man_weapon_Ring5.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-		$alarm_Man_weapon_Ring6.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+	var rings = [
+		$alarm_Man_weapon_Ring,
+		$alarm_Man_weapon_Ring2,
+		$alarm_Man_weapon_Ring3,
+		$alarm_Man_weapon_Ring4,
+		$alarm_Man_weapon_Ring5,
+		$alarm_Man_weapon_Ring6
+	]
+	for ring in rings:
+		if ring and is_instance_valid(ring):
+			if ring.changeState==false:
+				ring.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+			#ring.changeState = changeState
+		else:
+			# Optional: Print a warning or handle missing rings
+			print(name,":Warning: Switch Postion Timer Tried to access a freed/null ring")
+	#if $alarm_Man_weapon_Ring.changeState==false:
+		#$alarm_Man_weapon_Ring.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+		#$alarm_Man_weapon_Ring2.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+		#$alarm_Man_weapon_Ring3.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+		#$alarm_Man_weapon_Ring4.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+		#$alarm_Man_weapon_Ring5.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
+		#$alarm_Man_weapon_Ring6.setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
 
 
 func _on_end_session_timer_timeout() -> void:

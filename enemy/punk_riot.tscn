@@ -1,0 +1,130 @@
+[gd_scene load_steps=12 format=3 uid="uid://bq64303c70syx"]
+
+[ext_resource type="Texture2D" uid="uid://b6h6ay2mxala1" path="res://assets/sprites/enemies/1Rad-Riots_Samuel_X7.png" id="1_0gjp8"]
+[ext_resource type="Script" uid="uid://6ecgmco8imwj" path="res://enemy/punk_riot.gd" id="1_rprwk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rprwk"]
+atlas = ExtResource("1_0gjp8")
+region = Rect2(0, 0, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt5q8"]
+atlas = ExtResource("1_0gjp8")
+region = Rect2(50, 0, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pnc0"]
+atlas = ExtResource("1_0gjp8")
+region = Rect2(100, 0, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3ppy"]
+atlas = ExtResource("1_0gjp8")
+region = Rect2(150, 0, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gbwd"]
+atlas = ExtResource("1_0gjp8")
+region = Rect2(200, 0, 50, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xmqf1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rprwk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_rprwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt5q8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pnc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3ppy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gbwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pnc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3ppy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gbwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pnc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3ppy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gbwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rprwk")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gjp8"]
+size = Vector2(13, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5q8"]
+size = Vector2(13, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pnc0"]
+size = Vector2(188, 148)
+
+[node name="punkRiot" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_rprwk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xmqf1")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_0gjp8")
+
+[node name="timer" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="timer"]
+one_shot = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_yt5q8")
+
+[node name="player_Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_Detect"]
+shape = SubResource("RectangleShape2D_6pnc0")
+
+[node name="shootPos_L" type="Marker2D" parent="."]
+position = Vector2(-17, 0)
+
+[node name="shootPos_R" type="Marker2D" parent="."]
+position = Vector2(17, 0)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.5, -0.500001)
+scale = Vector2(4.45, 3.75)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="timer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="player_Detect" to="." method="_on_player_detect_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

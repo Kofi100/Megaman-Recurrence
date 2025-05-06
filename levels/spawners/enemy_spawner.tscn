@@ -7,7 +7,6 @@
 
 [node name="enemy_spawner" type="Node2D" groups=["enemy_spawner"]]
 script = ExtResource("1_ck4dl")
-visibility = false
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 light_mask = 3
@@ -46,7 +45,6 @@ theme_override_fonts/font = ExtResource("3_rcgh2")
 text = "enemy selected"
 
 [node name="enemy_spawn_list" type="Label" parent="."]
-visible = false
 offset_left = -68.3333
 offset_top = -15.0
 offset_right = 103.667

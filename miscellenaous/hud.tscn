@@ -418,10 +418,10 @@ offset_bottom = 245.0
 color = Color(0, 0, 0, 1)
 
 [node name="boss_healthbar" type="TextureProgressBar" parent="."]
-offset_left = 236.0
-offset_top = 8.0
-offset_right = 244.0
-offset_bottom = 65.0
+offset_left = 234.0
+offset_top = 16.0
+offset_right = 242.0
+offset_bottom = 73.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
 fill_mode = 3
@@ -837,9 +837,9 @@ theme = ExtResource("7_ixl55")
 text = "aaa"
 
 [node name="InGame" type="Label" parent="timer"]
-offset_left = 580.0
+offset_left = 656.667
 offset_top = 27.0
-offset_right = 732.0
+offset_right = 808.667
 offset_bottom = 46.0
 scale = Vector2(1.2, 1.2)
 theme = ExtResource("7_ixl55")

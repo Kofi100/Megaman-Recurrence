@@ -1,4 +1,4 @@
-#@tool
+@tool
 extends Node2D
 
 @export var node_to_add_to_enemy: Node2D
@@ -38,7 +38,8 @@ var new_enemy
 	"ice_telly":preload("res://enemy/original/ice_telly.tscn"),
 	"bombomb":preload("res://enemy/bombomb.tscn"),
 	"ice_joe":preload("res://enemy/original/ice_joe.tscn"),
-	"returningmachine_joe":preload("res://enemy/returning_machine_joe.tscn")
+	"returningmachine_joe":preload("res://enemy/returning_machine_joe.tscn"),
+	"punk_riot":preload("res://enemy/punk_riot.tscn")
 }
 
 var disappear_nodes = {
@@ -67,10 +68,8 @@ var display_node
 func _enter_tree():
 	request_ready()
 
-
+var enemy_Preview
 func _process(_delta):
-	#print(GlobalScreenTransitionTimer.time_left)
-	display_node = get_node_or_null("enemy_display_sprite")
 	enemy_to_spawn=enemy_to_spawn.to_lower() #turns enemy to spawn to lower case for easier naming and tracking
 	if visibility == true:
 		for i in disappear_nodes:
@@ -87,108 +86,130 @@ func _process(_delta):
 				node.visible = false  #print(i)
 			if i == 5:
 				i = 1
-	#to be used later
+	
+	
+	
+	
+	if Engine.is_editor_hint():
+		visibility=true
+		if enemy_dictionary.has(enemy_to_spawn) and enemy_Preview==null:
+			enemy_Preview=enemy_dictionary[enemy_to_spawn].instantiate()
+			add_child(enemy_Preview)
+		elif !enemy_dictionary.has(enemy_to_spawn):
+			if enemy_Preview!=null:
+				enemy_Preview.queue_free()
+		if enemy_Preview!=null:
+			enemy_Preview.global_position=global_position
+		
 
-#	if GlobalScript.spawn_enemy:
-#		if $VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)==false:
-#			$VisibleOnScreenNotifier2D.connect('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)
-#	elif not GlobalScript.spawn_enemy:
-#		if $VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)==true:
-#			$VisibleOnScreenNotifier2D.disconnect('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)
-	#displays enemies to be spawned
-	#print('new'+enemy_to_spawn)
-	#testing if new variables can be made..kinda
-#	var new='new_'+enemy_to_spawn
+	else:
+		visibility=false
+		#print(GlobalScreenTransitionTimer.time_left)
+		display_node = get_node_or_null("enemy_display_sprite")
 
-	$enemy.text = enemy_to_spawn
-	if entered == true and GlobalScreenTransitionTimer.time_left <= 0:
-		#timer+=1
-#		if new_enemy==null and enemy_to_spawn!='homer':
-#			has_enemy_spawned=false
-#		elif new_enemy==null and enemy_to_spawn=='homer':
-#			if
-		#if timer==1:
-		if not has_enemy_spawned and new_enemy == null:
-			if enemy_dictionary.has(enemy_to_spawn):
-				has_enemy_spawned = true
-				var enemy_scene = enemy_dictionary.get(enemy_to_spawn)
-				new_enemy = enemy_scene.instantiate()
-				#checks for variants in enemies before changing to their variants
-				if enemyVariant != "none":
-					if "enemyVariant" in new_enemy:
-						new_enemy.enemyVariant = enemyVariant
-				if "InitialDirection" in new_enemy:
-					new_enemy.InitialDirection=SetinitialDirection
-					if "InitialDirection_Mini" in new_enemy:
-						new_enemy.InitialDirection_Mini=InitialDirection_Mini
-				#if node_to_add_to_enemy!=null:
-				#new_node=node_to_add_to_enemy.duplicate()
-				#if node_to_add_to_enemy!=null and new_node!=null:
-				##new_node.parent
-				#new_node.reparent(new_enemy)
-				#new_enemy.add_child(new_node)
 
-				#new_enemy.index=spawn_index
-				new_enemy.position = position
-				get_parent().add_child(new_enemy)
-				#entered=false
-				#print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
-		if (enemy_to_spawn == "homer" or enemy_to_spawn == "upndown" or enemy_to_spawn=="bombomb") and new_enemy == null and $spawn_homer_timer.time_left <= 0:
-			$spawn_homer_timer.start()
-		#if GlobalScreenTransitionTimer.is_stopped()==false:
-			#if new_enemy:
-				#new_enemy.queue_free()
-			#print(name,":started respawn timer for upndown and homer")
+		#to be used later
 
-	elif entered == false and new_enemy == null:
-		#timer=0
-		has_enemy_spawned = false
-	if enemy_to_spawn == "tacklefire":
-		spawn_timer += 1
-		if spawn_timer % 30 == 1:
+	#	if GlobalScript.spawn_enemy:
+	#		if $VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)==false:
+	#			$VisibleOnScreenNotifier2D.connect('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)
+	#	elif not GlobalScript.spawn_enemy:
+	#		if $VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)==true:
+	#			$VisibleOnScreenNotifier2D.disconnect('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)
+		#displays enemies to be spawned
+		#print('new'+enemy_to_spawn)
+		#testing if new variables can be made..kinda
+	#	var new='new_'+enemy_to_spawn
+
+		$enemy.text = enemy_to_spawn
+		if entered == true and GlobalScreenTransitionTimer.time_left <= 0:
+			#timer+=1
+	#		if new_enemy==null and enemy_to_spawn!='homer':
+	#			has_enemy_spawned=false
+	#		elif new_enemy==null and enemy_to_spawn=='homer':
+	#			if
+			#if timer==1:
+			if not has_enemy_spawned and new_enemy == null:
+				if enemy_dictionary.has(enemy_to_spawn):
+					has_enemy_spawned = true
+					var enemy_scene = enemy_dictionary.get(enemy_to_spawn)
+					new_enemy = enemy_scene.instantiate()
+					#checks for variants in enemies before changing to their variants
+					if enemyVariant != "none":
+						if "enemyVariant" in new_enemy:
+							new_enemy.enemyVariant = enemyVariant
+					if "InitialDirection" in new_enemy:
+						new_enemy.InitialDirection=SetinitialDirection
+						if "InitialDirection_Mini" in new_enemy:
+							new_enemy.InitialDirection_Mini=InitialDirection_Mini
+					#if node_to_add_to_enemy!=null:
+					#new_node=node_to_add_to_enemy.duplicate()
+					#if node_to_add_to_enemy!=null and new_node!=null:
+					##new_node.parent
+					#new_node.reparent(new_enemy)
+					#new_enemy.add_child(new_node)
+
+					#new_enemy.index=spawn_index
+					new_enemy.position = position
+					get_parent().add_child(new_enemy)
+					#entered=false
+					#print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
+			if (enemy_to_spawn == "homer" or enemy_to_spawn == "upndown" or enemy_to_spawn=="bombomb") and new_enemy == null and $spawn_homer_timer.time_left <= 0:
+				$spawn_homer_timer.start()
+			#if GlobalScreenTransitionTimer.is_stopped()==false:
+				#if new_enemy:
+					#new_enemy.queue_free()
+				#print(name,":started respawn timer for upndown and homer")
+
+		elif entered == false and new_enemy == null:
+			#timer=0
 			has_enemy_spawned = false
-#region Previous code to stop enemies upon transitioning to new screen
-	# previous code to stop enemies upon transitioning to new screen
-	#if GlobalScreenTransitionTimer.time_left>0:
-	##for i in get_tree().current_scene.get_children():
-	##if i is enemy:
-	##if new_enemy!=null:
-	#if new_enemy!=null:
-	#new_enemy.set_physics_process(false)
-	#new_enemy.velocity=Vector2.ZERO
-	#elif GlobalScreenTransitionTimer.time_left<=0:
-	##for i in get_tree().current_scene.get_children():
-	##if i is enemy:
-	#if new_enemy!=null:
-	#new_enemy.set_physics_process(true)
-#finding way to despawn all Enemies upon screen transition
-	#if GlobalScreenTransitionTimer.time_left > 0:
-	#for anyNode in get_tree().current_scene.get_children():
-	#if anyNode is enemy and anyNode.is_boss == false:
-	#anyNode.queue_free()
-	#new_enemy.queue_free()
+		if enemy_to_spawn == "tacklefire":
+			spawn_timer += 1
+			if spawn_timer % 30 == 1:
+				has_enemy_spawned = false
+	#region Previous code to stop enemies upon transitioning to new screen
+		# previous code to stop enemies upon transitioning to new screen
+		#if GlobalScreenTransitionTimer.time_left>0:
+		##for i in get_tree().current_scene.get_children():
+		##if i is enemy:
+		##if new_enemy!=null:
+		#if new_enemy!=null:
+		#new_enemy.set_physics_process(false)
+		#new_enemy.velocity=Vector2.ZERO
+		#elif GlobalScreenTransitionTimer.time_left<=0:
+		##for i in get_tree().current_scene.get_children():
+		##if i is enemy:
+		#if new_enemy!=null:
+		#new_enemy.set_physics_process(true)
+	#finding way to despawn all Enemies upon screen transition
+		#if GlobalScreenTransitionTimer.time_left > 0:
+		#for anyNode in get_tree().current_scene.get_children():
+		#if anyNode is enemy and anyNode.is_boss == false:
+		#anyNode.queue_free()
+		#new_enemy.queue_free()
 
-#func check_for_dead_enemy(index):
-##	if index==spawn_index:
-##		has_enemy_spawned=false
-	#if enemy_to_spawn=='homer':
-	#$spawn_homer_timer.start()
-#endregion
-	if display_node != null:
-		display_node.visible = visibility_enemy_display
-		display_enemy("new_shotman", 0)
-		display_enemy("mechakkero", 1)
-		display_enemy("peterchy", 2)
-		display_enemy("walking_bomb", 3)
-		display_enemy("met", 4)
-		display_enemy("sniper_joe", 5)
-		display_enemy("octopus_battery", 6)
-		display_enemy("homer", 8)
-		display_enemy("paraysu", 9)
-		display_enemy("pickelman_bull", 10)
-		display_enemy("yambou", 11)
-		display_enemy("spikyoall", 12)
-		display_enemy("ceiling_shooter", 13)
+	#func check_for_dead_enemy(index):
+	##	if index==spawn_index:
+	##		has_enemy_spawned=false
+		#if enemy_to_spawn=='homer':
+		#$spawn_homer_timer.start()
+	#endregion
+		if display_node != null:
+			display_node.visible = visibility_enemy_display
+			display_enemy("new_shotman", 0)
+			display_enemy("mechakkero", 1)
+			display_enemy("peterchy", 2)
+			display_enemy("walking_bomb", 3)
+			display_enemy("met", 4)
+			display_enemy("sniper_joe", 5)
+			display_enemy("octopus_battery", 6)
+			display_enemy("homer", 8)
+			display_enemy("paraysu", 9)
+			display_enemy("pickelman_bull", 10)
+			display_enemy("yambou", 11)
+			display_enemy("spikyoall", 12)
+			display_enemy("ceiling_shooter", 13)
 
 func _physics_process(delta: float) -> void:
 	#code to delete spawned enemies

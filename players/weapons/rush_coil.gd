@@ -1,4 +1,5 @@
 extends CharacterBody2D
+#code has to be refactored asap to be like Megaman's spawn.
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 @export var spawn_in_speed=30000
@@ -16,10 +17,14 @@ func _ready():
 	spawn_rush=true
 var spawn_play=0;var just_landed:bool=false
 func _physics_process(delta):
+	print(name,"GlobalPos:",global_position)
+	
 	if is_on_floor() and not just_landed:#reutnr to u later
 		$move_back_timer.start()
 		just_landed=true
+		
 	# Add the gravity.
+	print("Rush,justLanded:",just_landed)
 	if spawn_rush==true:
 		stop_normal_movements=true
 		spawn_play+=1

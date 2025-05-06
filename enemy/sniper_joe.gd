@@ -21,6 +21,7 @@ func _ready():
 	state = "defend"
 	animated_sprite_2d.flip_h = false
 	animated_sprite_2d.offset.x = 8
+	animated_sprite_2d.play("defend")
 	$shield_hitbox/right.disabled = true
 
 

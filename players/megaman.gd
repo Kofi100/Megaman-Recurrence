@@ -46,7 +46,7 @@ var lastDirectionCase: float = 0
 var stop: bool = false
 var timer = 0
 #var weapon_number: int = 0
-var max_weapon_number = 8
+var max_weapon_number = 11
 var screen_transition_finished: bool = false
 var restart_scene: bool = false
 var conveyor_push = 3000
@@ -61,6 +61,7 @@ var coyoteJumpTime
 @onready var trigger_leave_timer = $trigger_leave_timer
 @onready var leave_timer = $leave_timer
 var onIce: bool = false
+var inWater:bool=false
 var justLeftIce: bool = false
 @onready var stunSound: SFX = $all_sounds/stun
 var deltaAlt
@@ -110,9 +111,12 @@ func _ready():
 		global_position.y = GlobalScript.playerposy
 	MegamanAndItems.charge_timer = 0
 	GlobalScript.weapon_number = 0
-	MegamanAndItems.weapon1energy = 27
-	MegamanAndItems.weapon2energy = 27
-	MegamanAndItems.weapon3energy = 27
+	#MegamanAndItems.weapon1energy = 27
+	#MegamanAndItems.weapon2energy = 27
+	#MegamanAndItems.weapon3energy = 27
+	for keyValue in MegamanAndItems.weaponEnergy:#using keyValue since weaponEnergy is a dictionary.
+		MegamanAndItems.weaponEnergy[keyValue]=27
+	#MegamanAndItems.weaponEnergy.fill()
 	GlobalScript.health = GlobalScript.max_health  #health setting
 	$weapon_display.visible = false
 	$player_camera.position_smoothing_enabled = false
@@ -411,6 +415,12 @@ func _physics_process(delta):
 
 					if not is_on_floor():
 						velocity.y += gravity * delta
+					if inWater:
+						gravity=500
+						anim.speed_scale=0.8
+					else:
+						gravity=900
+						anim.speed_scale=1.0
 					direction = Input.get_axis("move_left", "move_right")
 					if direction != 0:
 						lastDirectionCase = direction
@@ -787,12 +797,15 @@ func create_weapons():
 	#print("alarmSignalInstanceArray[5]:",alarmSignalInstanceArray[5])
 	MegamanAndItems.charge_timer = 0
 	if Input.is_action_just_pressed("shoot"):
+		#deductWeaponEnergy()
 		match GlobalScript.weapon_number:
 			1:
 				if alarmMain==null:
-					alarmMain=preload("res://players/weapons/alarm_weapon_main_scene.tscn").instantiate()
-					add_child(alarmMain)
-					print("Mega:set_all values to Alarm weapon")
+					if WeaponEnergyGreaterThanZero():
+						alarmMain=preload("res://players/weapons/alarm_weapon_main_scene.tscn").instantiate()
+						add_child(alarmMain)
+						print("Mega:set_all values to Alarm weapon")
+						deductWeaponEnergy()
 				#if alarmSignalInstanceArray.has(null):#find(null,0)==-1:
 					##checks if all values are null,if not they're no 
 					##null values,then it'll return -1
@@ -800,14 +813,17 @@ func create_weapons():
 					if alarmMain.changeState==false:
 						alarmMain.changeState=true
 			6:
-				if satellite_SatelliteMini==null:
-					satellite_SatelliteMini=satellite_Weapon.instantiate()
-					add_child(satellite_SatelliteMini)
-					satellite_SatelliteMini.global_position=global_position-Vector2(0,20)
-			7:
+				if WeaponEnergyGreaterThanZero():#checkIfWeaponEnergyLessEqualZero()==false:
+					if satellite_SatelliteMini==null:
+						satellite_SatelliteMini=satellite_Weapon.instantiate()
+						add_child(satellite_SatelliteMini)
+						satellite_SatelliteMini.global_position=global_position-Vector2(0,20)
+						deductWeaponEnergy()
+			9:
 				
-				if MegamanAndItems.weapon1energy > 0 and rCoilNo == 0:
-					MegamanAndItems.weapon1energy -= 3
+				#if MegamanAndItems.weapon1energy > 0 and rCoilNo == 0:
+					#MegamanAndItems.weapon1energy -= 3
+				if WeaponEnergyGreaterThanZero():
 					rCoilNo += 1
 					rush_coil_instance = rush_coil.instantiate()
 					get_parent().add_child(rush_coil_instance)
@@ -816,7 +832,9 @@ func create_weapons():
 					elif anim.flip_h == false:
 						rush_coil_instance.global_position = Vector2(global_position.x - 20, global_position.y - 50)  #100
 					if rush_coil_instance:
+						print("Rush has spawned")
 						rush_coil_instance.connect("tree_exited", rCoilLeft)
+					deductWeaponEnergy()
 				if rCoilNo!=0 and useBuster_WhenRCoil==true:
 					projectile = lemon.instantiate()
 					get_parent().add_child(projectile)
@@ -835,9 +853,10 @@ func create_weapons():
 							anim.play("shoot_in_air")
 							projectile.global_position = $all_proj_spawn_points/air_right.global_position
 					$all_sounds/shoot.play()
-			8:
-				if MegamanAndItems.weapon2energy > 0:
-					MegamanAndItems.weapon2energy -= 3
+						
+			10:
+				#if MegamanAndItems.weapon2energy > 0:
+					#MegamanAndItems.weapon2energy -= 3
 					rush_jet_instance = rush_jet.instantiate()
 					get_parent().add_child(rush_jet_instance)
 					if anim.flip_h == true:
@@ -847,8 +866,8 @@ func create_weapons():
 						rush_jet_instance.global_position = Vector2(global_position.x, global_position.y - 100)
 						rush_jet_instance.direction = "left"
 			10:
-				if MegamanAndItems.weapon3energy > 0:
-					MegamanAndItems.weapon3energy -= 2
+				#if MegamanAndItems.weapon3energy > 0:
+					#MegamanAndItems.weapon3energy -= 2
 					const MISSILE = preload("res://players/weapons/missile.tscn")
 					var missile_instance = MISSILE.instantiate()
 					get_parent().add_child(missile_instance)
@@ -890,6 +909,26 @@ func activeUseOfWeapons():
 	else:
 		if satellite_SatelliteMini!=null:
 			satellite_SatelliteMini.queue_free()
+func WeaponEnergyGreaterThanZero():
+	if MegamanAndItems.weaponEnergy.has(GlobalScript.weapon_number):
+		return MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]>0
+	
+func deductWeaponEnergy():
+	if MegamanAndItems.weaponEnergy.has(GlobalScript.weapon_number):
+		
+		var costofWeapon=MegamanAndItems.weaponEnergyCost[GlobalScript.weapon_number]
+		#var weaponEnergy=MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]
+		#not using value above since it doesnt alter the value of weaponEnergy dictionary
+		#MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]-=
+		if MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]>0:
+			#weaponEnergy-=costofWeapon
+			MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]-=costofWeapon
+			print("Mega.deductWeaponEnergy():Weapon Energy Deducted by=>",costofWeapon)
+			#print(weaponEnergy)
+			#print(MegamanAndItems.weaponEnergy[GlobalScript.weapon_number])
+		else:
+			#return
+			print("Mega.deductWeaponEnergy():Weapon Energy <=0")
 #Function to check it Rush Coil has left or not.
 func rCoilLeft():
 	rCoilNo -= 1
@@ -1142,3 +1181,19 @@ func _on_alarm_weapon_time_out_timer_timeout() -> void:
 			alarmSignalInstanceArray[i]=null
 	
 	pass
+
+
+func _on_player_constants_checker_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("waterTiles"):
+		inWater=true
+		var waterSplash=preload("res://miscellenaous/effects/water_enter_exit_effect.tscn").instantiate()
+		waterSplash.position=position+Vector2(0,11)
+		get_parent().call_deferred("add_child",waterSplash)
+
+
+func _on_player_constants_checker_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("waterTiles"):
+		inWater=false
+		var waterSplash=preload("res://miscellenaous/effects/water_enter_exit_effect.tscn").instantiate()
+		waterSplash.position=position+Vector2(0,15)
+		get_parent().call_deferred("add_child",waterSplash)

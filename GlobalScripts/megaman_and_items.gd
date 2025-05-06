@@ -12,7 +12,38 @@ var charge_timer = 0
 	5:true,
 	6:true,
 	7:true,
-	8:true
+	8:true,
+	9:true,
+	10:true,
+	11:false
+}
+@export var weaponEnergy={
+	0:27,
+	1:27,
+	2:27,
+	3:27,
+	4:27,
+	5:27,
+	6:27,
+	7:27,
+	8:27,
+	9:27,
+	10:27,
+	11:27
+}
+@export var weaponEnergyCost={
+	0:0,
+	1:0,
+	2:0,
+	3:0,
+	4:0,
+	5:0,
+	6:0,
+	7:0,
+	8:0,
+	9:0,
+	10:0,
+	11:0
 }
 #Deleted BodyColor1 and 2 since they cannot accept ColorPaletteGlobalValues
 #Might be painful but needed to keep code clean
@@ -46,6 +77,9 @@ func _process(_delta):
 		#colors=colors
 		if Engine.is_editor_hint():
 			queue_redraw()
+	for keyValue in weaponEnergy:
+		if weaponEnergy[keyValue]<=0:
+			weaponEnergy[keyValue]=0
 	#ColorPalette.
 	#print(bodycolor1dictionary[1])
 	#print(ColorPaletteGlobal.GREY)
@@ -110,6 +144,8 @@ func change_palette(node):
 					set_Individual_Colors(node,colorPalette.OLIVE,colorPalette.DEEP_OLIVE)
 				6:set_Individual_Colors(node,colorPalette.LIGHT_VIOLET,colorPalette.VIOLET)
 				7:set_Individual_Colors(node,colorPalette.LAVENDER,colorPalette.DEEPER_LAVENDER)
+				9:set_Individual_Colors(node,colorPalette.WHITE,colorPalette.DEEP_RED)
+				10:set_Individual_Colors(node,colorPalette.WHITE,colorPalette.DEEP_RED)
 func set_Individual_Colors(node,InnerBodyColor:Color,OuterBodyColor:Color):
 	node.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
 	node.material.set_shader_parameter("bodycolori", InnerBodyColor)

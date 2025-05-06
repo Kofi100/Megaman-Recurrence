@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://crijrqyswqhij" path="res://assets/sounds/hurt.wav" id="6_n1lyq"]
 [ext_resource type="AudioStream" uid="uid://d1n3khoiibs67" path="res://assets/sounds/shoot.wav" id="7_im07x"]
 [ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="8_d6231"]
-[ext_resource type="AudioStream" uid="uid://cmg87ibsgq5t0" path="res://assets/sounds/chargeeffect.wav" id="9_pqlrj"]
+[ext_resource type="AudioStream" uid="uid://dgrixbrecs045" path="res://assets/sounds/chargeeffect2.wav" id="10_2l2k5"]
 [ext_resource type="AudioStream" uid="uid://p80uexe8652b" path="res://assets/sounds/dead.wav" id="10_qghej"]
 [ext_resource type="AudioStream" uid="uid://cnqebubvm8bvy" path="res://assets/sounds/mm5_halfchargeshot.wav" id="12_8ofs0"]
 [ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="13_ljqus"]
@@ -550,8 +550,7 @@ volume_db = -10.0
 script = ExtResource("8_d6231")
 
 [node name="charge" type="AudioStreamPlayer" parent="all_sounds"]
-stream = ExtResource("9_pqlrj")
-volume_db = -5.0
+stream = ExtResource("10_2l2k5")
 script = ExtResource("8_d6231")
 
 [node name="dead" type="AudioStreamPlayer" parent="all_sounds"]
@@ -615,6 +614,7 @@ position = Vector2(5.43555, 11.4275)
 
 [node name="player_constants_checker_area2d" type="Area2D" parent="." groups=["player_constants_checker_area2d"]]
 visible = false
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_constants_checker_area2d"]
 position = Vector2(-1, 3.5)
@@ -720,6 +720,8 @@ one_shot = true
 [connection signal="timeout" from="timer_switch_cameras" to="." method="_on_timer_switch_cameras_timeout"]
 [connection signal="timeout" from="jump_Timer" to="." method="_on_jump_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="player_constants_checker_area2d" to="." method="_on_player_constants_checker_area_2d_body_entered"]
+[connection signal="body_exited" from="player_constants_checker_area2d" to="." method="_on_player_constants_checker_area_2d_body_exited"]
 [connection signal="timeout" from="start_timer" to="." method="_on_start_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

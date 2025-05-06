@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://damcxffuj3ybr"]
+
+[ext_resource type="Script" uid="uid://du6iyunfk8lqi" path="res://enemy/shield_riot.gd" id="1_boa8k"]
+[ext_resource type="Texture2D" uid="uid://b6h6ay2mxala1" path="res://assets/sprites/enemies/1Rad-Riots_Samuel_X7.png" id="1_ud70e"]
+[ext_resource type="PackedScene" uid="uid://c4hgg20qx3q5v" path="res://enemy/shield_riot_shield.tscn" id="2_10gv0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10gv0"]
+atlas = ExtResource("1_ud70e")
+region = Rect2(0, 40, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boa8k"]
+atlas = ExtResource("1_ud70e")
+region = Rect2(50, 40, 50, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcfy3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10gv0")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boa8k")
+}],
+"loop": true,
+"name": &"jumping",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ud70e"]
+size = Vector2(13, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcfy3"]
+size = Vector2(13, 26)
+
+[node name="shield_Riot" type="CharacterBody2D"]
+script = ExtResource("1_boa8k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jcfy3")
+animation = &"falling"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_ud70e")
+
+[node name="shield_Riot_shield" parent="." instance=ExtResource("2_10gv0")]
+position = Vector2(-13, -3)
+
+[node name="Marker2D_L" type="Marker2D" parent="."]
+position = Vector2(-13, -3)
+
+[node name="Marker2D_R" type="Marker2D" parent="."]
+position = Vector2(13, -3)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_jcfy3")

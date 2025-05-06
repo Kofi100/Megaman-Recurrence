@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://de642uam6cfbb"]
+
+[ext_resource type="PackedScene" uid="uid://yi8o5d7677eq" path="res://enemy/punk_riot_projectile.tscn" id="1_dgn17"]
+[ext_resource type="PackedScene" uid="uid://dy261aygrybsk" path="res://miscellenaous/ball_test.tscn" id="2_idrgp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4tfp"]
+size = Vector2(20, 240)
+
+[node name="bounceTest" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 110)
+shape = SubResource("RectangleShape2D_c4tfp")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+rotation = -1.5723
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, 110)
+shape = SubResource("RectangleShape2D_c4tfp")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(240, 0)
+rotation = 0.00677943
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0, 110)
+shape = SubResource("RectangleShape2D_c4tfp")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(226, 229)
+rotation = 1.57004
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(0, 110)
+shape = SubResource("RectangleShape2D_c4tfp")
+
+[node name="punk_riot_projectile" parent="." instance=ExtResource("1_dgn17")]
+position = Vector2(40, 144)
+
+[node name="ball_Test" parent="." instance=ExtResource("2_idrgp")]
+position = Vector2(204, 67)
