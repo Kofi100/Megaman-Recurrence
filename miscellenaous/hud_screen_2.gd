@@ -47,7 +47,8 @@ func _process(delta: float) -> void:
 			2:
 				if options_Screen==null and onAnotherMenu==false:
 					options_Screen=preload("res://levels/menu_options.tscn").instantiate()
-					add_child(options_Screen)
+					get_parent().add_child(options_Screen)
+					
 					#options_Screen.z_index=2
 					onAnotherMenu=true
 					options_Screen.connect("tree_exiting",leavingOtherScreen)# to connect to custom function to detect deletion:work on it later

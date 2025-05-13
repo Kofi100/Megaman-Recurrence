@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=58 format=4 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Script" uid="uid://dlehv47nswkvi" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="2_7t3qb"]
@@ -37,7 +37,6 @@
 [ext_resource type="PackedScene" uid="uid://clsggi0khuir8" path="res://enemy/insta_death_laser.tscn" id="31_6gsmh"]
 [ext_resource type="PackedScene" uid="uid://wycuiptn0u6m" path="res://levels/level_mechanics/laser_wall_mechanic.tscn" id="32_3ab5o"]
 [ext_resource type="PackedScene" uid="uid://bp5ru2p7jfmjw" path="res://levels/level_mechanics/laser_wall_switch.tscn" id="33_6toia"]
-[ext_resource type="PackedScene" uid="uid://c54ab0tcoyhob" path="res://enemy/ent_enemy_small.tscn" id="34_p77m4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0e7h"]
 resource_name = "debug_tileset"
@@ -277,7 +276,7 @@ tile_map_data = PackedByteArray("AADKAAkAAAAAAAAAAADLAAkAAAAAAAAAAADMAAkAAAAAAAA
 tile_set = SubResource("TileSet_ctirt")
 
 [node name="megaman" parent="." instance=ExtResource("2_mabb1")]
-position = Vector2(3353, 113)
+position = Vector2(2873, 204)
 
 [node name="reserve_marker1" type="Marker2D" parent="."]
 position = Vector2(-16, 167)
@@ -420,7 +419,15 @@ position = Vector2(2744, 181)
 enemy_to_spawn = "sniper_joe"
 
 [node name="enemy_spawner5" parent="all_enemies" instance=ExtResource("11_06gft")]
-position = Vector2(3558, 177)
+position = Vector2(3050, 205)
+enemy_to_spawn = "shield_riot"
+
+[node name="enemy_spawner6" parent="all_enemies" instance=ExtResource("11_06gft")]
+position = Vector2(3428, 127)
+enemy_to_spawn = "shield_riot"
+
+[node name="enemy_spawner7" parent="all_enemies" instance=ExtResource("11_06gft")]
+position = Vector2(3208, 148)
 enemy_to_spawn = "punk_riot"
 
 [node name="all_collectables" type="Node2D" parent="."]
@@ -555,9 +562,6 @@ position = Vector2(973, 159)
 
 [node name="sniper_joe_variant_fire" parent="." instance=ExtResource("30_b6m6j")]
 position = Vector2(1394.8, 159.591)
-
-[node name="entEnemySmall" parent="." instance=ExtResource("34_p77m4")]
-position = Vector2(3061, 222)
 
 [node name="instaDeathLaser" parent="." instance=ExtResource("31_6gsmh")]
 position = Vector2(681.674, 255.852)

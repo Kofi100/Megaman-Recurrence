@@ -1,12 +1,17 @@
 extends CharacterBody2D
 @onready var delete_spawnable_timer: Timer = $delete_spawnable_timer
 var blink_timer:float=0
-
+var randomChance
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var playerCollectedItem:bool=false
 func _ready() -> void:
 	$delete_spawnable_timer.start()
+	randomChance=randi_range(1,100)
+	if randomChance<=5:
+		$Sprite2D.frame=13
+	else:
+		$Sprite2D.frame=10
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

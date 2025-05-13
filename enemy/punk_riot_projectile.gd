@@ -2,6 +2,7 @@ extends enemy
 
 var miniState: int
 var base_speed: float = 500  # Increased from 50 for better movement
+var base_speedY:float=100
 var bouncesLeft: int = 2
 var gravity: float = 300  # Reduced gravity for more controlled bounces
 var setDirection:bool=false
@@ -26,26 +27,26 @@ func _physics_process(delta: float) -> void:
 				match miniState:
 					1:
 						velocity.x = -base_speed
-						velocity.y = -150  # Consistent medium value
+						velocity.y = -base_speedY  # Consistent medium value
 					2:
 						velocity.x = -base_speed
 						velocity.y = 0
 					3:
 						velocity.x = -base_speed
-						velocity.y = 150  # Matches the upward case
+						velocity.y = base_speedY  # Matches the upward case
 		
 			"right":
 				#$Sprite2D.flip_h = true
 				match miniState:
 					1:
 						velocity.x = base_speed
-						velocity.y = -150  # Same as left side
+						velocity.y = -base_speedY  # Same as left side
 					2:
 						velocity.x = base_speed
 						velocity.y = 0
 					3:
 						velocity.x = base_speed
-						velocity.y = 150  # Same as left side
+						velocity.y = base_speedY  # Same as left side
 		setDirection=true
 	#sets projectile to be facing current direction
 	look_at(position*velocity)
@@ -69,8 +70,8 @@ func handleBounce(collision: KinematicCollision2D):
 	velocity *= 0.8
 	
 	# Debugging help:
-	print("Bounce! Remaining: ", bouncesLeft)
-	print("New Velocity: ", velocity)
+	#print("Bounce! Remaining: ", bouncesLeft)
+	#print("New Velocity: ", velocity)
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

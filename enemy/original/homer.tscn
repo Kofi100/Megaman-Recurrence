@@ -1,7 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://7sfehmaj5wp3"]
+[gd_scene load_steps=17 format=3 uid="uid://7sfehmaj5wp3"]
 
 [ext_resource type="Script" uid="uid://ruhxqayndnhy" path="res://enemy/original/homer.gd" id="1_bcwbf"]
 [ext_resource type="Texture2D" uid="uid://5m7sreduekxg" path="res://assets/sprites/enemies/original/homer.png" id="1_ljslv"]
+[ext_resource type="Shader" uid="uid://gtsl2tlh5nhx" path="res://resources/enemyFlash_EffectShader.gdshader" id="2_wkh3i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0atpn"]
+shader = ExtResource("2_wkh3i")
+shader_parameter/isActive = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qk82x"]
 atlas = ExtResource("1_ljslv")
@@ -86,6 +91,7 @@ collision_layer = 0
 script = ExtResource("1_bcwbf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_0atpn")
 sprite_frames = SubResource("SpriteFrames_r3bnb")
 animation = &"homer"
 frame_progress = 0.547183

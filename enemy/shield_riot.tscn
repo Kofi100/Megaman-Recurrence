@@ -38,6 +38,7 @@ size = Vector2(13, 26)
 size = Vector2(13, 26)
 
 [node name="shield_Riot" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_boa8k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

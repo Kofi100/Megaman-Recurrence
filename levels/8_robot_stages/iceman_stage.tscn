@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://c6lscr7lmayds"]
+[gd_scene load_steps=90 format=4 uid="uid://c6lscr7lmayds"]
 
 [ext_resource type="Script" uid="uid://dq5sikwjyvusk" path="res://levels/8_robot_stages/iceman_stage.gd" id="1_fdmt0"]
 [ext_resource type="Texture2D" uid="uid://c3xedxw4lb0tw" path="res://assets/sprites/miscelleaneous/screen_checker_256x240.png" id="1_jxgi7"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="16_l2u6n"]
 [ext_resource type="AudioStream" uid="uid://b5rowhgujqll8" path="res://assets/music/Cold Man Stage (Mega Man & Bass) - 8 Bit Remix (2.0 VERSION)(ogg).ogg" id="17_1txou"]
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="18_wgstm"]
+[ext_resource type="AudioStream" uid="uid://djjsieh7d7qut" path="res://assets/music/KSI - Thick Of It (feat. Trippie Redd) [Official Music Video].mp3" id="19_meybd"]
 [ext_resource type="PackedScene" uid="uid://dqpowbf5t4nxt" path="res://levels/level_mechanics/waterzone.tscn" id="24_aujep"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ojlvb"]
@@ -927,6 +928,12 @@ process_mode = 3
 stream = ExtResource("17_1txou")
 script = ExtResource("9_m75jr")
 
+[node name="BGM2" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("19_meybd")
+parameters/looping = true
+script = ExtResource("9_m75jr")
+
 [node name="allEnemies" type="Node2D" parent="."]
 
 [node name="enemy_spawner" parent="allEnemies" instance=ExtResource("11_swhqw")]
@@ -1097,43 +1104,43 @@ enemy_to_spawn = "ice_joe"
 
 [node name="enemy_spawner21" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(4658, -181)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner22" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(4873, -181)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner24" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(4873, -181)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner25" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(5111, -220)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner26" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(5283, -184)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner27" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(5180, 224)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner28" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(5708, -181)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner56" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(6109, -181)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner62" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(5963, -181)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner29" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(5402, 148)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner30" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(5239, 0)
@@ -1152,11 +1159,11 @@ enemyVariant = "ice"
 
 [node name="enemy_spawner34" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(2882, 27)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner35" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(2743, 27)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner45" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(7816, -282)
@@ -1264,35 +1271,35 @@ enemy_to_spawn = "ice_joe"
 
 [node name="enemy_spawner67" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(8416, -448)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner68" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(8563, -448)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner69" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(8283, -448)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner70" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(11602, -442)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner71" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(11969, -442)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner72" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(12212, -442)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner86" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(12403, -442)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner87" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(12706, -442)
-enemy_to_spawn = "ice_Telly"
+enemy_to_spawn = "ice_telly"
 
 [node name="enemy_spawner73" parent="allEnemies" instance=ExtResource("11_swhqw")]
 position = Vector2(12034, -246)
@@ -1399,5 +1406,6 @@ position = Vector2(7973.5, -279)
 shape = SubResource("RectangleShape2D_mke0d")
 
 [connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]
+[connection signal="finished" from="BGM2" to="." method="_on_bgm_finished"]
 
 [editable path="ladder"]

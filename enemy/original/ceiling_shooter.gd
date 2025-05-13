@@ -14,6 +14,7 @@ func _physics_process(delta):
 	playerdamagevalue=4
 	#health=5
 	spawn_collectables()
+	hurtFlash($AnimatedSprite2D)
 	distancex=GlobalScript.playerposx-global_position.x
 	distancey=GlobalScript.playerposy-global_position.y
 	#enemy_class.playerdamagevalue=4

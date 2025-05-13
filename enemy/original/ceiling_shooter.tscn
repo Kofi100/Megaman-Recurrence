@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhuc4lcl5clpc"]
+[gd_scene load_steps=11 format=3 uid="uid://dhuc4lcl5clpc"]
 
 [ext_resource type="Texture2D" uid="uid://c2pqrpkiqjoos" path="res://assets/sprites/enemies/original/ceiling shooter.png" id="1_a08p8"]
 [ext_resource type="Script" uid="uid://dquhi68og01gt" path="res://enemy/original/ceiling_shooter.gd" id="1_dhti3"]
 [ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_wtnc1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qp6qu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d82ua"]
 atlas = ExtResource("1_a08p8")
@@ -39,6 +41,7 @@ size = Vector2(281, 175)
 script = ExtResource("1_dhti3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_qp6qu")
 position = Vector2(-0.5, 5.5)
 sprite_frames = SubResource("SpriteFrames_o6evi")
 frame_progress = 0.261611

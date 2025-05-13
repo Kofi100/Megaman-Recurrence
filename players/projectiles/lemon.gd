@@ -46,6 +46,7 @@ func _on_collision_monitor_area_entered(area):
 		#print('lemons:works!')
 		if state == "active" or state == "blocked":
 			area.get_parent().health -= damagevalue  #1#area.get_parent().enemyreceivedamagevalue
+			area.get_parent().hasBeenHurt=true
 			state = "stopped"
 			$hurt_enemy_effect.play()
 			GlobalScript.score += 10

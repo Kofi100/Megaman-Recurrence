@@ -28,6 +28,7 @@ func _physics_process(delta: float) -> void:
 			$alarm_Man_weapon_Ring5.reparent(get_tree().current_scene)
 		if is_instance_valid($alarm_Man_weapon_Ring6) and $alarm_Man_weapon_Ring6.get_parent() == self:
 			$alarm_Man_weapon_Ring6.reparent(get_tree().current_scene)
+		#print(rings[4])
 	if rings[4]==null and rings[5]==null:#for ring in rings:
 		#chekcings rings4 and 5(L and R rings) since they'll be freed after leavign the screen
 		queue_free()

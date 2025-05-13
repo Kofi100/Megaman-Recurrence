@@ -177,6 +177,7 @@ size = Vector2(8.58335, 21)
 z_index = 1
 script = ExtResource("1_bkydj")
 SPEED = 15000.0
+damagevalue = 5.0
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4y8vj")

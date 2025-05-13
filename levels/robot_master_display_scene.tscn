@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bao47g1gead57"]
+[gd_scene load_steps=15 format=3 uid="uid://bao47g1gead57"]
 
 [ext_resource type="Script" uid="uid://cp2qu3lbqhshr" path="res://levels/robot_master_display_scene.gd" id="1_g526k"]
-[ext_resource type="Texture2D" uid="uid://ddtvjx6j408ql" path="res://assets/sprites/miscelleaneous/screenTransitionRMaster.png" id="1_namjn"]
+[ext_resource type="Texture2D" uid="uid://daj2m2ofp0qtq" path="res://assets/sprites/miscelleaneous/1KofiStageStart_Samuel_X7.png" id="2_rfmjh"]
 [ext_resource type="Texture2D" uid="uid://gf76btbxgpe3" path="res://assets/sprites/enemies/bosses/fireman/idle/0.png" id="3_mmin3"]
+[ext_resource type="Texture2D" uid="uid://b542u5o27a2ch" path="res://assets/sprites/miscelleaneous/stars_Little.png" id="3_rfmjh"]
 [ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="4_viicr"]
 [ext_resource type="Texture2D" uid="uid://d21bm5jxlk81v" path="res://assets/sprites/enemies/bosses/shadowman.png" id="5_cpjfu"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_fgrhp"]
@@ -11,14 +12,15 @@
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4gw3"]
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(150, 1, 1)
+emission_shape_scale = Vector3(0, 22, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(0, 1, 0)
+direction = Vector3(-1, 0, 0)
 spread = 0.0
 initial_velocity_min = 250.0
 initial_velocity_max = 250.0
 gravity = Vector3(0, 0, 0)
+scale_min = 0.5
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6fo57"]
 animations = [{
@@ -108,29 +110,33 @@ one_shot = true
 
 [node name="stuffToMakeDisappear" type="Node2D" parent="."]
 
+[node name="1KofiStageStartSamuelX7" type="Sprite2D" parent="stuffToMakeDisappear"]
+texture = ExtResource("2_rfmjh")
+centered = false
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="stuffToMakeDisappear"]
-position = Vector2(125, 1)
+position = Vector2(260, 112)
 amount = 50
+texture = ExtResource("3_rfmjh")
+lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_b4gw3")
-texture = ExtResource("1_namjn")
 
 [node name="fireMan" type="AnimatedSprite2D" parent="stuffToMakeDisappear"]
-position = Vector2(125, 101)
-scale = Vector2(2, 2)
+position = Vector2(125, 110)
 sprite_frames = SubResource("SpriteFrames_6fo57")
 autoplay = "default"
 
 [node name="shadowMan" type="Sprite2D" parent="stuffToMakeDisappear"]
-position = Vector2(128, 86)
-scale = Vector2(2, 2)
+position = Vector2(127, 102)
 texture = ExtResource("5_cpjfu")
 hframes = 12
 
 [node name="nameOfRobotMaster" type="Label" parent="stuffToMakeDisappear"]
-offset_left = 74.0
-offset_top = 132.0
-offset_right = 180.0
-offset_bottom = 155.0
+offset_left = 110.0
+offset_top = 145.0
+offset_right = 216.0
+offset_bottom = 168.0
+scale = Vector2(0.3, 0.3)
 theme = ExtResource("6_fgrhp")
 text = "fireman"
 horizontal_alignment = 1
@@ -138,7 +144,7 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="stuffToMakeDisappear/nameOfRobotMaster"]
 libraries = {
-"": SubResource("AnimationLibrary_o6fbu")
+&"": SubResource("AnimationLibrary_o6fbu")
 }
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]

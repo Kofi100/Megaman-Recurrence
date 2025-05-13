@@ -41,6 +41,7 @@ var selected_option: int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	get_tree().paused=false
 	$waiting_text_label.visible = display_label
 	$waiting_text_BG_Color_Rect.visible=display_label
 	if Input.is_action_just_pressed("die_debug") and display_label == true:

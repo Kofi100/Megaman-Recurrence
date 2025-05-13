@@ -29,6 +29,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#var enemyBody=area.get_parent()
 		##if is_in_exactly_this_group(enemyBody,"enemy"):
 		area.get_parent().health-=damagevalue
+		area.get_parent().hasBeenHurt=true
 		queue_free()
 		#elif enemyBody.is_in_group("enemy_Projectile"):#not is_in_exactly_this_group(enemyBody,"enemy"):
 			#enemyBody.queue_free()

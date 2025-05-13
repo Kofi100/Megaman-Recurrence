@@ -25,7 +25,8 @@ func _physics_process(delta):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("player") or body.is_in_group("tilemaps"):
-		queue_free()
+		#queue_free()
+		pass
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

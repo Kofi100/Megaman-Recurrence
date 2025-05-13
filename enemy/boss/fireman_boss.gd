@@ -15,7 +15,6 @@ func _ready():
 	health=27
 	set_new_state=0
 func _physics_process(delta):
-	print(jump_times)
 	is_boss=true
 	BossDefenseShot1=2
 	BossDefenseShot2=3

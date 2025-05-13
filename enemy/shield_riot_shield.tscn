@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4hgg20qx3q5v"]
+[gd_scene load_steps=9 format=3 uid="uid://c4hgg20qx3q5v"]
 
 [ext_resource type="Script" uid="uid://8imnjvyjjkwg" path="res://enemy/shield_riot_shield.gd" id="1_eag5v"]
 [ext_resource type="Texture2D" uid="uid://b6h6ay2mxala1" path="res://assets/sprites/enemies/1Rad-Riots_Samuel_X7.png" id="1_syq0u"]
+[ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="3_euv2p"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_lide1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eag5v"]
 atlas = ExtResource("1_syq0u")
@@ -37,13 +39,18 @@ script = ExtResource("1_eag5v")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_euv2p")
 
-[node name="hitbox" type="Area2D" parent="." groups=["blockables"]]
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_syq0u")
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_euv2p")
+script = ExtResource("4_lide1")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

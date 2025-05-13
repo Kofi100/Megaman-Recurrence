@@ -33,6 +33,7 @@ func _physics_process(delta):
 	$text.text=str(health)
 	#essential codes
 	distance=GlobalScript.playerposx-global_position.x
+	hurtFlash($Sprite2D)
 	if health<=0 and isDead==false:
 		$explosion.set_emitting(true)
 		$explosion_audio_effect.play()

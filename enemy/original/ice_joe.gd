@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	calculate_player_distance()
 	#var distance_y=global_position.y-GlobalScript.playerposy
 	spawn_collectables()
+	hurtFlash($IceJoe)
 	playerdamagevalue = 5
 	# Add the gravity.
 	if not is_on_floor():

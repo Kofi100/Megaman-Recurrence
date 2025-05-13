@@ -20,6 +20,7 @@ func _physics_process(delta):
 	var new_pos2=move_toward(global_position.y,GlobalScript.playerposy,speed*delta)
 	move_and_slide()
 	spawn_collectables()
+	hurtFlash($AnimatedSprite2D)
 	global_position.x=new_pos
 	global_position.y=new_pos2
 	#not so good code

@@ -31,6 +31,7 @@ var change = 0
 func _physics_process(delta):
 	calculate_player_distance()
 	spawn_collectables()
+	hurtFlash($AnimatedSprite2D)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta

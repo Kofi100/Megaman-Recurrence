@@ -10,6 +10,9 @@ var state = ""
 var index: int
 var distance_x: int = 0
 var distance_y: int = 0
+var timeLeft:float=0
+var hasBeenHurt:bool=false
+
 var boss_defeated: Signal
 var collectables_list = {
 	1: preload("res://miscellenaous/small_health_capsule.tscn"),
@@ -75,3 +78,36 @@ func spawn_collectables():
 		var explsion_new = explosion.instantiate()
 		get_parent().add_child(explsion_new)
 		explsion_new.position = position
+var hurtEffectNo=2
+func hurtFlash(enemySprite):
+	if enemySprite!=null and enemySprite is AnimatedSprite2D or enemySprite is Sprite2D:
+		match hurtEffectNo:
+			1:#changes visibility
+				if hasBeenHurt==true:
+					#var previous_Color=enemySprite.get_modulate()
+					enemySprite.visible=false
+					
+					#enemySprite.set_modulate(Color.BLACK)
+					#set_modulate()
+					await get_tree().create_timer(.1).timeout
+					enemySprite.visible=true
+					#enemySprite.set_modulate(previous_Color)
+					hasBeenHurt=false
+			2:#uses a shader to change the visible part of the sprite to flash white for a while
+				var shader=load("res://resources/enemyFlash_EffectShader.gdshader")
+				if shader:
+					var materialCustom=ShaderMaterial.new()
+					materialCustom.shader=shader
+					enemySprite.material=materialCustom
+				if hasBeenHurt==true:
+					#var previous_Color=enemySprite.get_modulate()
+					enemySprite.material.set_shader_parameter("isActive",true)
+					#enemySprite.visible=false
+					
+					#enemySprite.set_modulate(Color.BLACK)
+					#set_modulate()
+					await get_tree().create_timer(.1).timeout
+					#enemySprite.visible=true
+					enemySprite.material.set_shader_parameter("isActive",false)
+					#enemySprite.set_modulate(previous_Color)
+					hasBeenHurt=false

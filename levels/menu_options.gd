@@ -24,7 +24,7 @@ func _process(_delta):
 		menuOption-=1
 	elif Input.is_action_just_pressed("move_down"):
 		menuOption+=1
-	menuOption=clampi(menuOption,0,2)
+	menuOption=clampi(menuOption,0,3)
 	match menuOption:
 		0:
 			$SelectArrow.set_global_position($volume_Text/BGM.global_position-Vector2(20,0))
@@ -51,7 +51,9 @@ func _process(_delta):
 		3:$SelectArrow.set_global_position($Exit.global_position-Vector2(20,0))
 	if Input.is_action_just_pressed("shoot"):
 		match menuOption:
-			2:get_tree().change_scene_to_file("res://levels/input_rebind_menu.tscn")
+			2:
+				get_tree().paused=false
+				get_tree().change_scene_to_file("res://levels/input_rebind_menu.tscn")
 			3:
 				self.queue_free()
 

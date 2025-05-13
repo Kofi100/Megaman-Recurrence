@@ -140,6 +140,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if is_in_exactly_this_group(area,"enemy"):
 			
 			enemyBody.health-=damagevalue
+			area.get_parent().hasBeenHurt=true
 			#print("alarmSignal=>damaged:",enemyBody.name)
 		elif area.is_in_group("enemy_Projectile"):#not is_in_exactly_this_group(enemyBody,"enemy"):
 			enemyBody.queue_free()

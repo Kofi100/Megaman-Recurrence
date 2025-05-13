@@ -272,7 +272,7 @@ func _physics_process(delta):
 		if jump_play_effect_timer < 5:
 			jump_play_effect_timer += 1
 			if jump_play_effect_timer == 1:
-				#$all_sounds/land.play()
+				$all_sounds/mm10land.play()
 				pass
 				#animation_player_2.play('screen_shake') #for testing screen shake later
 	elif not is_on_floor():

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djjsieh7d7qut"
+path="res://.godot/imported/KSI - Thick Of It (feat. Trippie Redd) [Official Music Video].mp3-ba3d93fb9e366df5af7bb465deaaf778.mp3str"
+
+[deps]
+
+source_file="res://assets/music/KSI - Thick Of It (feat. Trippie Redd) [Official Music Video].mp3"
+dest_files=["res://.godot/imported/KSI - Thick Of It (feat. Trippie Redd) [Official Music Video].mp3-ba3d93fb9e366df5af7bb465deaaf778.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

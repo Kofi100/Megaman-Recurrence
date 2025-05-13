@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bq64303c70syx"]
+[gd_scene load_steps=14 format=3 uid="uid://bq64303c70syx"]
 
 [ext_resource type="Texture2D" uid="uid://b6h6ay2mxala1" path="res://assets/sprites/enemies/1Rad-Riots_Samuel_X7.png" id="1_0gjp8"]
 [ext_resource type="Script" uid="uid://6ecgmco8imwj" path="res://enemy/punk_riot.gd" id="1_rprwk"]
+[ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_6pnc0"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_l3ppy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rprwk"]
 atlas = ExtResource("1_0gjp8")
@@ -82,7 +84,7 @@ size = Vector2(13, 25)
 size = Vector2(13, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6pnc0"]
-size = Vector2(188, 148)
+size = Vector2(282, 176)
 
 [node name="punkRiot" type="CharacterBody2D"]
 collision_layer = 0
@@ -99,6 +101,7 @@ shape = SubResource("RectangleShape2D_0gjp8")
 [node name="timer" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="timer"]
+wait_time = 0.1
 one_shot = true
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
@@ -123,6 +126,11 @@ position = Vector2(17, 0)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1.5, -0.500001)
 scale = Vector2(4.45, 3.75)
+
+[node name="shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6pnc0")
+script = ExtResource("4_l3ppy")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="timer/Timer" to="." method="_on_timer_timeout"]

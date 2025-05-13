@@ -360,7 +360,7 @@ metadata/_aseprite_wizard_config_ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_1hs6r")
+&"": SubResource("AnimationLibrary_1hs6r")
 }
 
 [node name="timers" type="Node2D" parent="."]
@@ -457,16 +457,16 @@ shape = SubResource("RectangleShape2D_knou7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hurt_animation"]
 libraries = {
-"": SubResource("AnimationLibrary_5nefa")
+&"": SubResource("AnimationLibrary_5nefa")
 }
 
 [node name="explosion" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_1rp2j")
 emitting = false
 amount = 1
-process_material = SubResource("ParticleProcessMaterial_u1xl2")
 texture = ExtResource("4_w5t66")
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_u1xl2")
 
 [node name="explosion_audio_effect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_cal3n")

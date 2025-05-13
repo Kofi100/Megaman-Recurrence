@@ -2,13 +2,18 @@ extends enemy
 var playerAround=false
 func _ready() -> void:
 	$AnimatedSprite2D.play("idle")
-	health=5
+	health=3
 	playerdamagevalue=3
 var proj:enemy
 var shootOnce:bool=false
+var shootRandomizer:int=0
+var shootRandomizeOnce:bool=false
 func _physics_process(delta: float) -> void:
 	calculate_player_distance()
 	spawn_collectables()
+	hurtFlash($AnimatedSprite2D)
+	if not is_on_floor():
+		velocity.y+=get_gravity().y*delta
 	if distance_x<0:
 		$AnimatedSprite2D.flip_h=false
 	elif distance_x>=0:
@@ -16,6 +21,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity+=get_gravity()*delta
 	if $AnimatedSprite2D.animation=="shoot":
+		if shootRandomizeOnce==false:
+			shootRandomizer=randi_range(0,2)
+			shootRandomizeOnce=true
 		if $AnimatedSprite2D.frame==2 or $AnimatedSprite2D.frame==5 or $AnimatedSprite2D.frame==8:#match $AnimatedSprite2D.frame:
 			#2,5,8:
 				if shootOnce==false:
@@ -24,6 +32,7 @@ func _physics_process(delta: float) -> void:
 					get_parent().add_child(proj)
 					#proj.global_position=global_position
 					if proj!=null:
+						
 						if $AnimatedSprite2D.flip_h==false:
 							proj.global_position=$shootPos_L.global_position
 							proj.state="left"
@@ -31,13 +40,28 @@ func _physics_process(delta: float) -> void:
 						elif $AnimatedSprite2D.flip_h==true:
 							proj.global_position=$shootPos_R.global_position
 							proj.state="right"
-						match $AnimatedSprite2D.frame:
-							2:proj.miniState=1
-							5:proj.miniState=2
-							8:proj.miniState=3
+						if shootRandomizer==0:
+							match $AnimatedSprite2D.frame:
+								2:proj.miniState=1
+								5:proj.miniState=2
+								8:proj.miniState=3
+						elif shootRandomizer==1:
+							match $AnimatedSprite2D.frame:
+								2:proj.miniState=3
+								5:proj.miniState=1
+								8:proj.miniState=2
+						elif shootRandomizer==2:
+							match $AnimatedSprite2D.frame:
+								2:proj.miniState=2
+								5:proj.miniState=3
+								8:proj.miniState=1
+					$shoot.play()
 					shootOnce=true
 		else:
 			shootOnce=false
+	elif $AnimatedSprite2D.animation=="idle":
+		shootRandomizeOnce=false
+	move_and_slide()
 
 
 

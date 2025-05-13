@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b2pw70oh6yh45"
+path="res://.godot/imported/MMR OST Intro Stage.ogg-cfa084af20b1dd2caaed75c9aab71bba.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/MMR OST Intro Stage.ogg"
+dest_files=["res://.godot/imported/MMR OST Intro Stage.ogg-cfa084af20b1dd2caaed75c9aab71bba.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -23,6 +23,7 @@ func _physics_process(delta: float) -> void:
 	playerdamagevalue = 4
 	calculate_player_distance()
 	spawn_collectables()
+	hurtFlash($Sprite2D)
 	# Add the gravity.
 	$idletoShootTimer.wait_time=.5
 	if not is_on_floor():

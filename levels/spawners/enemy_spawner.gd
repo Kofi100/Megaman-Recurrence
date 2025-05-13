@@ -39,7 +39,8 @@ var new_enemy
 	"bombomb":preload("res://enemy/bombomb.tscn"),
 	"ice_joe":preload("res://enemy/original/ice_joe.tscn"),
 	"returningmachine_joe":preload("res://enemy/returning_machine_joe.tscn"),
-	"punk_riot":preload("res://enemy/punk_riot.tscn")
+	"punk_riot":preload("res://enemy/punk_riot.tscn"),
+	"shield_riot":preload("res://enemy/shield_riot.tscn")
 }
 
 var disappear_nodes = {
