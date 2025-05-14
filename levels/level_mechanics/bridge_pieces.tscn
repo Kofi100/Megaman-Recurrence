@@ -56,7 +56,6 @@ _data = {
 [node name="bridgePieces" type="CharacterBody2D" groups=["FallingBridgeTile"]]
 position = Vector2(40, 0)
 script = ExtResource("1_x7uvo")
-original_Position = Vector2(40, 0)
 
 [node name="mainPiece" type="CharacterBody2D" parent="."]
 
