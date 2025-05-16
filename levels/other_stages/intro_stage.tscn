@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dlfd7xcaae7i4"]
+[gd_scene load_steps=56 format=4 uid="uid://dlfd7xcaae7i4"]
 
 [ext_resource type="PackedScene" uid="uid://bkflp1spldgrk" path="res://resources/screen_grid.tscn" id="1_0bu30"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_kj02u"]
@@ -12,6 +12,35 @@
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="5_qbex0"]
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="8_mxcrg"]
 [ext_resource type="PackedScene" uid="uid://c12ytesumw43d" path="res://levels/level_mechanics/deathzones.tscn" id="10_r43wy"]
+[ext_resource type="PackedScene" uid="uid://dn3yiy0stfnly" path="res://enemy/new_shotman.tscn" id="12_7uyxu"]
+[ext_resource type="PackedScene" uid="uid://canmfhqjc5ro1" path="res://enemy/mechakkero.tscn" id="13_tmap4"]
+[ext_resource type="PackedScene" uid="uid://da5bprtjoqr63" path="res://enemy/peterchy.tscn" id="14_meo38"]
+[ext_resource type="PackedScene" uid="uid://bh0igfh3wr8uf" path="res://enemy/walking_bomb.tscn" id="15_qxh8b"]
+[ext_resource type="PackedScene" uid="uid://bvsnh1g0ygwje" path="res://enemy/met.tscn" id="16_qgdqx"]
+[ext_resource type="PackedScene" uid="uid://dsrq7ljrj02jw" path="res://enemy/sniper_joe.tscn" id="17_s4v2q"]
+[ext_resource type="PackedScene" uid="uid://drywjq3yk7svp" path="res://enemy/octopus_battery.tscn" id="18_g74uj"]
+[ext_resource type="PackedScene" uid="uid://c1me2bdf4ckac" path="res://enemy/hologran.tscn" id="19_rdlsw"]
+[ext_resource type="PackedScene" uid="uid://7sfehmaj5wp3" path="res://enemy/original/homer.tscn" id="20_bblci"]
+[ext_resource type="PackedScene" uid="uid://dvht6a4f8lbge" path="res://enemy/paraysu.tscn" id="21_xahhu"]
+[ext_resource type="PackedScene" uid="uid://c5ic628g6wkd0" path="res://enemy/pickelman_bull.tscn" id="22_248qj"]
+[ext_resource type="PackedScene" uid="uid://dk8wlxx8w3w40" path="res://enemy/yambou.tscn" id="23_d54ci"]
+[ext_resource type="PackedScene" uid="uid://cvio6n4hx5rbd" path="res://enemy/original/spikyoall.tscn" id="24_j4ygb"]
+[ext_resource type="PackedScene" uid="uid://dhuc4lcl5clpc" path="res://enemy/original/ceiling_shooter.tscn" id="25_ygatl"]
+[ext_resource type="PackedScene" uid="uid://b2pa17rbtytg3" path="res://assets/sprites/enemies/tacklefire.tscn" id="26_63j47"]
+[ext_resource type="PackedScene" uid="uid://3dm01r0fub5r" path="res://enemy/upndown.tscn" id="27_4ytsx"]
+[ext_resource type="PackedScene" uid="uid://yl62qjlbgf3s" path="res://enemy/original/enemy_2.tscn" id="28_k3jne"]
+[ext_resource type="PackedScene" uid="uid://bj0da1r76l7d0" path="res://enemy/original/buster.tscn" id="29_qr1g8"]
+[ext_resource type="PackedScene" uid="uid://cea6ffpfklqkn" path="res://enemy/count_bomb.tscn" id="30_lgyqw"]
+[ext_resource type="PackedScene" uid="uid://dewuncfhoaa34" path="res://enemy/original/grenade_man.tscn" id="31_rjepv"]
+[ext_resource type="PackedScene" uid="uid://n1srit3751i5" path="res://enemy/original/sniper_joe_variant_fire.tscn" id="32_sflhx"]
+[ext_resource type="PackedScene" uid="uid://d0333yea3ut85" path="res://enemy/screw_bomber.tscn" id="33_fwbgc"]
+[ext_resource type="PackedScene" uid="uid://cn7mr1boxi55c" path="res://enemy/original/ice_telly.tscn" id="34_4vq0p"]
+[ext_resource type="PackedScene" uid="uid://h4246whbkjhf" path="res://enemy/bombomb.tscn" id="35_8qi7b"]
+[ext_resource type="PackedScene" uid="uid://35m1y0p8eygp" path="res://enemy/original/ice_joe.tscn" id="36_mj5rb"]
+[ext_resource type="PackedScene" uid="uid://bys3l8gptyomn" path="res://enemy/returning_machine_joe.tscn" id="37_o7yh0"]
+[ext_resource type="PackedScene" uid="uid://bq64303c70syx" path="res://enemy/punk_riot.tscn" id="38_eefb3"]
+[ext_resource type="PackedScene" uid="uid://damcxffuj3ybr" path="res://enemy/shield_riot.tscn" id="39_1p4cc"]
+[ext_resource type="PackedScene" uid="uid://bjgmp3dha5tlw" path="res://enemy/batallion_balloon.tscn" id="40_lgvbd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ukgt6"]
 texture = ExtResource("2_qrtgs")
@@ -20,9 +49,10 @@ texture_region_size = Vector2i(256, 224)
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
+4:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_g2bun"]
-tile_size = Vector2i(256, 224)
+tile_size = Vector2i(254, 224)
 sources/0 = SubResource("TileSetAtlasSource_ukgt6")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5kuma"]
@@ -167,7 +197,7 @@ visible = false
 scroll_scale = Vector2(0.2, 0.2)
 
 [node name="city_BG" type="TileMapLayer" parent="Parallax2D"]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAACAAAAAAACAAAAAAADAAAAAAADAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAABAAAAAAAGAAAAAAACAAAAAAAHAAAAAAADAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAABAAAAAAAKAAAAAAACAAAAAAALAAAAAAADAAAAAAAMAAAAAAAAAAAAAAANAAAAAAABAAAAAAAOAAAAAAACAAAAAAAPAAAAAAADAAAAAAABAAAAAAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAAEAAAAAAACAAAAAAAEAAAAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAAAAAAHAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAJAAAAAAAEAAAAAAAKAAAAAAAEAAAAAAALAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAEAAAAAAABAAAAAAAEAAAAAAADAAAAAAAEAAAAAAAEAAAAAAAEAAAAAAA=")
 tile_set = SubResource("TileSet_g2bun")
 
 [node name="bridge_Background2" type="TileMapLayer" parent="."]
@@ -182,7 +212,7 @@ tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAA
 tile_set = SubResource("TileSet_txw83")
 
 [node name="megaman" parent="." instance=ExtResource("2_1xojc")]
-position = Vector2(14.9519, 146.524)
+position = Vector2(15, 147)
 
 [node name="bridge_Foreground" type="TileMapLayer" parent="."]
 z_index = 1
@@ -344,85 +374,575 @@ shape = SubResource("RectangleShape2D_cqys7")
 
 [node name="allEnemies" type="Node2D" parent="."]
 
-[node name="enemy_spawner" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(623, 145)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner2" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner2" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1292, 112)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner3" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner3" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(955, 317)
 enemy_to_spawn = "mechakkero"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("mechakkero")
 
-[node name="enemy_spawner4" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner4" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1548, 152)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner6" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner6" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1819, 171)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner7" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner7" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2276, 137)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner18" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner18" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2498, 142)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner8" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner8" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(3402, 128)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner9" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner9" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(3745, 127)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner10" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner10" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2726, 11)
-enemy_to_spawn = "shield_riot"
+enemy_to_spawn = "batallion_balloon_delivery"
+riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner19" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner19" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2885, -67)
 enemy_to_spawn = "shield_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("shield_Riot")
 
-[node name="enemy_spawner20" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner20" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(3542, 8)
-enemy_to_spawn = "shield_riot"
+enemy_to_spawn = "batallion_balloon_delivery"
+riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner12" parent="allEnemies" instance=ExtResource("5_qbex0")]
-position = Vector2(4531, 7)
-enemy_to_spawn = "shield_riot"
+[node name="enemy_spawner12" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
+position = Vector2(4483, 9)
+enemy_to_spawn = "batallion_balloon"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("batallion_Balloon")
 
-[node name="enemy_spawner13" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner13" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4874, 7)
-enemy_to_spawn = "shield_riot"
+enemy_to_spawn = "batallion_balloon"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("batallion_Balloon")
 
-[node name="enemy_spawner11" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner11" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4293, 154)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner15" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner15" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(5331, 3)
-enemy_to_spawn = "shield_riot"
+enemy_to_spawn = "batallion_balloon_delivery"
+riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner16" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner16" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(5670, 6)
-enemy_to_spawn = "shield_riot"
+enemy_to_spawn = "batallion_balloon_delivery"
+riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner17" parent="allEnemies" instance=ExtResource("5_qbex0")]
-position = Vector2(5831, 2)
-enemy_to_spawn = "shield_riot"
+[node name="enemy_spawner17" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
+position = Vector2(6139, 7)
+enemy_to_spawn = "batallion_balloon_delivery"
+riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner14" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner14" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4745, 151)
 enemy_to_spawn = "punk_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner5" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner5" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1878, -42)
 enemy_to_spawn = "shield_riot"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
+enemy_Preview = NodePath("shield_Riot")
 
 [node name="deathzones" parent="." instance=ExtResource("10_r43wy")]
 

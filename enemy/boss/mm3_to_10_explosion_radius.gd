@@ -8,10 +8,11 @@ const JUMP_VELOCITY = -400.0
 func _ready() -> void:
 	$AnimatedSprite2D.play("default")
 	$explosion.play()
+	playerdamagevalue = 5
 
 
 func _physics_process(delta: float) -> void:
-	playerdamagevalue = 5
+	
 	if $AnimatedSprite2D.frame == 4:
 		$bombRadius/CollisionShape2D.disabled = false
 	elif $AnimatedSprite2D.frame != 4:

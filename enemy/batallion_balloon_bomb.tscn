@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://c7bgvfrw25ry"]
+
+[ext_resource type="Texture2D" uid="uid://c7qst3km1xl45" path="res://assets/sprites/enemies/1BattalionBalloon_Bomb_OmegaPrime_Samuel_X7.png" id="1_0tghx"]
+[ext_resource type="Script" uid="uid://cc3vvammmqkk3" path="res://enemy/batallion_balloon_bomb.gd" id="1_4225w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4225w"]
+atlas = ExtResource("1_0tghx")
+region = Rect2(0, 0, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2os6j"]
+atlas = ExtResource("1_0tghx")
+region = Rect2(218, 0, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebm2v"]
+atlas = ExtResource("1_0tghx")
+region = Rect2(436, 0, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5teif"]
+atlas = ExtResource("1_0tghx")
+region = Rect2(109, 131, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nim81"]
+atlas = ExtResource("1_0tghx")
+region = Rect2(327, 131, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05rux"]
+atlas = ExtResource("1_0tghx")
+region = Rect2(0, 262, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbj8w"]
+atlas = ExtResource("1_0tghx")
+region = Rect2(218, 262, 109, 131)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u0gry"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4225w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2os6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebm2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5teif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nim81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05rux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbj8w")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tghx"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4225w"]
+size = Vector2(14, 14)
+
+[node name="batallion_balloon_Bomb" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_4225w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u0gry")
+animation = &"activate"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_0tghx")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_4225w")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-4, 0)
+target_position = Vector2(0, 10)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+target_position = Vector2(0, 10)
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2(4, 0)
+target_position = Vector2(0, 10)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

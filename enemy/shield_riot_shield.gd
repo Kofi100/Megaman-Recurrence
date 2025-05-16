@@ -23,8 +23,11 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 			#$hurt.play()
 		#elif damage>1:#damage>=5
 		##$AnimatedSprite2D.play("default")
+		#not using code below since the main Player projectiles have a code to auto deduct
+		#health of enemies 
 		#health-=damage
-		area.get_parent().state="blocked"
+		#area.get_parent().state="blocked"
+		
 		$hurt.play()
 		#$hurt.play()
 		#area.get_parent().queue_free()

@@ -40,7 +40,9 @@ var new_enemy
 	"ice_joe":preload("res://enemy/original/ice_joe.tscn"),
 	"returningmachine_joe":preload("res://enemy/returning_machine_joe.tscn"),
 	"punk_riot":preload("res://enemy/punk_riot.tscn"),
-	"shield_riot":preload("res://enemy/shield_riot.tscn")
+	"shield_riot":preload("res://enemy/shield_riot.tscn"),
+	"batallion_balloon":preload("res://enemy/batallion_balloon.tscn"),
+	"batallion_balloon_delivery":preload("res://enemy/batallion_balloon_delivery.tscn")
 }
 
 var disappear_nodes = {
@@ -52,6 +54,7 @@ var disappear_nodes = {
 @export_enum("none", "fire", "ice") var enemyVariant: String = "none"
 @export var SetinitialDirection:String
 @export var InitialDirection_Mini:String
+@export_enum("shield_riot","dyna_riot") var riotToDeliver:String=""
 # Called when the node enters the scene tree for the first time.
 var spawn_timer: int = 0
 
@@ -69,7 +72,7 @@ var display_node
 func _enter_tree():
 	request_ready()
 
-var enemy_Preview
+@export var enemy_Preview:CharacterBody2D
 func _process(_delta):
 	enemy_to_spawn=enemy_to_spawn.to_lower() #turns enemy to spawn to lower case for easier naming and tracking
 	if visibility == true:
@@ -101,6 +104,8 @@ func _process(_delta):
 				enemy_Preview.queue_free()
 		if enemy_Preview!=null:
 			enemy_Preview.global_position=global_position
+			if enemy_to_spawn=="batallion_balloon_delivery":
+				enemy_Preview.riotToDeliver=riotToDeliver
 		
 
 	else:
@@ -157,6 +162,8 @@ func _process(_delta):
 					#print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
 			if (enemy_to_spawn == "homer" or enemy_to_spawn == "upndown" or enemy_to_spawn=="bombomb") and new_enemy == null and $spawn_homer_timer.time_left <= 0:
 				$spawn_homer_timer.start()
+			if enemy_to_spawn=="batallion_balloon_delivery":
+				new_enemy.riotToDeliver=riotToDeliver
 			#if GlobalScreenTransitionTimer.is_stopped()==false:
 				#if new_enemy:
 					#new_enemy.queue_free()

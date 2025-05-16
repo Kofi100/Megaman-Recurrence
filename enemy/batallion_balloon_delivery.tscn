@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd2mhlpccj7c2"]
+
+[ext_resource type="Script" uid="uid://8pooqiojppde" path="res://enemy/batallion_balloon_delivery.gd" id="1_73hky"]
+[ext_resource type="Texture2D" uid="uid://df3af7x8xfiv3" path="res://assets/sprites/enemies/1BattalionBalloon_RiotDelivery_OmegaPrime_Samuel_X7.png" id="1_eh0e5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73hky"]
+atlas = ExtResource("1_eh0e5")
+region = Rect2(0, 0, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spiex"]
+atlas = ExtResource("1_eh0e5")
+region = Rect2(109, 0, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqvty"]
+atlas = ExtResource("1_eh0e5")
+region = Rect2(218, 0, 109, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diqev"]
+atlas = ExtResource("1_eh0e5")
+region = Rect2(327, 0, 109, 131)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ai1nt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73hky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spiex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqvty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diqev")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 12.0
+}]
+
+[node name="batallion_Balloon_Delivery" type="CharacterBody2D"]
+script = ExtResource("1_73hky")
+riotToDeliver = "shield_riot"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, -0.500001)
+scale = Vector2(5.45, 6.55)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_ai1nt")
+animation = &"flying"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 44)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
