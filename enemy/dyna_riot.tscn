@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://bx04n6opjbceh"]
+
+[ext_resource type="Texture2D" uid="uid://b6h6ay2mxala1" path="res://assets/sprites/enemies/1Rad-Riots_Samuel_X7.png" id="1_iu8uc"]
+[ext_resource type="Script" uid="uid://corsmfrbt01ev" path="res://enemy/dyna_riot.gd" id="1_oeuj1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeuj1"]
+atlas = ExtResource("1_iu8uc")
+region = Rect2(100, 80, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjij5"]
+atlas = ExtResource("1_iu8uc")
+region = Rect2(150, 80, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt6kk"]
+atlas = ExtResource("1_iu8uc")
+region = Rect2(200, 80, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmioh"]
+atlas = ExtResource("1_iu8uc")
+region = Rect2(50, 80, 50, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu326"]
+atlas = ExtResource("1_iu8uc")
+region = Rect2(100, 80, 50, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bu326"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeuj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjij5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt6kk")
+}],
+"loop": false,
+"name": &"artISANEXPLOSION",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmioh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu326")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oeuj1"]
+size = Vector2(14, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjij5"]
+size = Vector2(14, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gt6kk"]
+size = Vector2(16, 23)
+
+[node name="dyna_Riot" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_oeuj1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bu326")
+animation = &"artISANEXPLOSION"
+
+[node name="CollisionShape2D_Idle" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4.5)
+shape = SubResource("RectangleShape2D_oeuj1")
+
+[node name="CollisionShape2D_Jump" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_yjij5")
+disabled = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_gt6kk")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 35)
+target_position = Vector2(0, 11)
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

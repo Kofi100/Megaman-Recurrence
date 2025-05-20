@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://de1fpvmyt0f4l"
+path="res://.godot/imported/SFX 098_MM10Land.mp3-74c23701907009d0bf54d1d07a794871.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/SFX 098_MM10Land.mp3"
+dest_files=["res://.godot/imported/SFX 098_MM10Land.mp3-74c23701907009d0bf54d1d07a794871.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

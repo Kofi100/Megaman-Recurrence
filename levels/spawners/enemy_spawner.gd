@@ -41,8 +41,10 @@ var new_enemy
 	"returningmachine_joe":preload("res://enemy/returning_machine_joe.tscn"),
 	"punk_riot":preload("res://enemy/punk_riot.tscn"),
 	"shield_riot":preload("res://enemy/shield_riot.tscn"),
+	"dyna_riot":preload("res://enemy/dyna_riot.tscn"),
 	"batallion_balloon":preload("res://enemy/batallion_balloon.tscn"),
-	"batallion_balloon_delivery":preload("res://enemy/batallion_balloon_delivery.tscn")
+	"batallion_balloon_delivery":preload("res://enemy/batallion_balloon_delivery.tscn"),
+
 }
 
 var disappear_nodes = {

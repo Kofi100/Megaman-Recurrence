@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="4_pwjb0"]
 [ext_resource type="Texture2D" uid="uid://d21bm5jxlk81v" path="res://assets/sprites/enemies/bosses/shadowman.png" id="4_swpwx"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_u4epk"]
-[ext_resource type="AudioStream" uid="uid://dsbotvgkg27hj" path="res://assets/music/Mega Man II GB Stage Select Remix.mp3" id="5_vaglu"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="6_4f06v"]
 [ext_resource type="Texture2D" uid="uid://btbx28mqdk60o" path="res://assets/sprites/miscelleaneous/menus/robotMasterPortraits.png" id="9_pdk28"]
 [ext_resource type="Texture2D" uid="uid://cpopo8qyclw50" path="res://assets/sprites/miscelleaneous/1KofiSelected_Samuel_X7_Edited.png" id="9_xcjo7"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="10_qvmrj"]
 [ext_resource type="Texture2D" uid="uid://bvtaowkpq2e15" path="res://assets/sprites/miscelleaneous/1KofiCursor_Samuel_X7.png" id="10_v3hkl"]
+[ext_resource type="AudioStream" uid="uid://c5f3n6rbtnw4j" path="res://assets/music/MMR OST Stage Select.ogg" id="12_2otdt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1tpx"]
 atlas = ExtResource("2_852fl")
@@ -65,7 +65,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"notSelected",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -76,7 +76,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"selected",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fk41j"]
@@ -95,7 +95,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_k88gx"]
 resource_name = "start"
-length = 0.3
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -104,7 +104,7 @@ tracks/0/path = NodePath("../Node2D/pressStartLbl:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -260,10 +260,20 @@ position = Vector2(128, 174)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
 animation = &"notSelected"
 
+[node name="Portrait_RadicalMan_Samuel_X8" type="Sprite2D" parent="Node2D/robotMaster7"]
+texture = ExtResource("9_pdk28")
+hframes = 9
+frame = 3
+
 [node name="robotMaster8" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(208, 174)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
 animation = &"notSelected"
+
+[node name="Portrait_AlarmMan_Samuel_X7" type="Sprite2D" parent="Node2D/robotMaster8"]
+texture = ExtResource("9_pdk28")
+hframes = 9
+frame = 2
 
 [node name="MegamanCursor" type="Sprite2D" parent="Node2D"]
 position = Vector2(128, 110)
@@ -289,7 +299,7 @@ autoplay = "start"
 [node name="BGM" type="Node2D" parent="."]
 
 [node name="selectYourRobotMaster" type="AudioStreamPlayer" parent="BGM"]
-stream = ExtResource("5_vaglu")
+stream = ExtResource("12_2otdt")
 
 [node name="Sounds" type="Node2D" parent="."]
 
@@ -321,21 +331,33 @@ text = "Satellite
 vertical_alignment = 1
 
 [node name="radicalMan" type="Label" parent="all_text"]
-offset_left = 108.0
+offset_left = 106.0
 offset_top = 198.0
-offset_right = 217.0
+offset_right = 215.0
 offset_bottom = 233.0
 scale = Vector2(0.4, 0.4)
 theme = ExtResource("4_u4epk")
 text = "RADICAL
+MAN   "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="currentMan" type="Label" parent="all_text"]
+offset_left = 28.0
+offset_top = 198.0
+offset_right = 137.0
+offset_bottom = 233.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("4_u4epk")
+text = "CURRENT
 MAN"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="alarmMan" type="Label" parent="all_text"]
-offset_left = 183.0
+offset_left = 187.0
 offset_top = 198.0
-offset_right = 292.0
+offset_right = 296.0
 offset_bottom = 233.0
 scale = Vector2(0.4, 0.4)
 theme = ExtResource("4_u4epk")
@@ -345,10 +367,10 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="iceMan" type="Label" parent="all_text"]
-offset_left = 25.0
-offset_top = 199.0
-offset_right = 115.0
-offset_bottom = 222.0
+offset_left = -59.0
+offset_top = 219.0
+offset_right = 31.0
+offset_bottom = 242.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_u4epk")
 text = "ICEMAN"
@@ -374,18 +396,18 @@ offset_bottom = 105.0
 scale = Vector2(0.4, 0.4)
 theme = ExtResource("4_u4epk")
 text = "SLUMBER 
-MAN"
+MAN    "
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="entMan" type="Label" parent="all_text"]
-offset_left = 196.0
+offset_left = 189.0
 offset_top = 70.0
-offset_right = 284.0
+offset_right = 290.0
 offset_bottom = 105.0
 scale = Vector2(0.4, 0.4)
 theme = ExtResource("4_u4epk")
-text = "ENT       
+text = "ENT         
 MAN"
 horizontal_alignment = 2
 vertical_alignment = 1

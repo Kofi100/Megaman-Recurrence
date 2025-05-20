@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://55ipuobgiaeo"]
+
+[ext_resource type="Texture2D" uid="uid://bus216obwmyo3" path="res://assets/sprites/miscelleaneous/batallionBalloonBG.png" id="1_gdywd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2xqhv"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[node name="particle_TestStage" type="Node2D"]
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_2xqhv")
+position = Vector2(285, 111)
+amount = 4
+texture = ExtResource("1_gdywd")
+lifetime = 5.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 4
+emission_points = PackedVector2Array(0, -100, 0, -75)
+emission_colors = PackedColorArray()
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+anim_speed_min = 5.0
+anim_speed_max = 5.0

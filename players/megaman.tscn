@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=60 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" uid="uid://0j8k3bpxe6qj" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="13_ljqus"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="14_m8qn1"]
 [ext_resource type="AudioStream" uid="uid://cfktcngh0i3yi" path="res://assets/sounds/mm4_5_victorytheme.wav" id="15_hhrnh"]
+[ext_resource type="AudioStream" uid="uid://de1fpvmyt0f4l" path="res://assets/sounds/SFX 098_MM10Land.mp3" id="16_2ctiv"]
 [ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="16_2l2k5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
@@ -577,6 +578,7 @@ volume_db = -10.0
 script = ExtResource("8_d6231")
 
 [node name="mm10land" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("16_2ctiv")
 script = ExtResource("8_d6231")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"
 

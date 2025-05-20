@@ -10,9 +10,9 @@ func _physics_process(delta: float) -> void:
 	$bomb_Timer.wait_time=.7
 	if not setDirection:
 		if distance_x<0:
-			velocity.x=-50
+			velocity.x=-40
 		elif distance_x>=0:
-			velocity.x=50
+			velocity.x=40
 		setDirection=true
 	
 	if velocity.x<0:

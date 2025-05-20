@@ -1,7 +1,8 @@
-[gd_scene load_steps=56 format=4 uid="uid://dlfd7xcaae7i4"]
+[gd_scene load_steps=60 format=4 uid="uid://dlfd7xcaae7i4"]
 
 [ext_resource type="PackedScene" uid="uid://bkflp1spldgrk" path="res://resources/screen_grid.tscn" id="1_0bu30"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_kj02u"]
+[ext_resource type="Script" uid="uid://bkbi12eddckkq" path="res://levels/other_stages/intro_stage.gd" id="1_meo38"]
 [ext_resource type="AudioStream" uid="uid://by15wamtcddm6" path="res://assets/music/MMR OST Intro Stage V2.ogg" id="1_ukgt6"]
 [ext_resource type="Texture2D" uid="uid://befsqfnmmjgp3" path="res://assets/sprites/tilesets/8_stages/1BridgeTiles_IntroStage_Samuel_X7.png" id="2_0bu30"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_1xojc"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c3xedxw4lb0tw" path="res://assets/sprites/miscelleaneous/screen_checker_256x240.png" id="3_r7b7d"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="5_qbex0"]
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="8_mxcrg"]
+[ext_resource type="Texture2D" uid="uid://bus216obwmyo3" path="res://assets/sprites/miscelleaneous/batallionBalloonBG.png" id="8_tmap4"]
 [ext_resource type="PackedScene" uid="uid://c12ytesumw43d" path="res://levels/level_mechanics/deathzones.tscn" id="10_r43wy"]
 [ext_resource type="PackedScene" uid="uid://dn3yiy0stfnly" path="res://enemy/new_shotman.tscn" id="12_7uyxu"]
 [ext_resource type="PackedScene" uid="uid://canmfhqjc5ro1" path="res://enemy/mechakkero.tscn" id="13_tmap4"]
@@ -41,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://bq64303c70syx" path="res://enemy/punk_riot.tscn" id="38_eefb3"]
 [ext_resource type="PackedScene" uid="uid://damcxffuj3ybr" path="res://enemy/shield_riot.tscn" id="39_1p4cc"]
 [ext_resource type="PackedScene" uid="uid://bjgmp3dha5tlw" path="res://enemy/batallion_balloon.tscn" id="40_lgvbd"]
+[ext_resource type="PackedScene" uid="uid://dd2mhlpccj7c2" path="res://enemy/batallion_balloon_delivery.tscn" id="43_qxh8b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ukgt6"]
 texture = ExtResource("2_qrtgs")
@@ -54,6 +57,12 @@ texture_region_size = Vector2i(256, 224)
 [sub_resource type="TileSet" id="TileSet_g2bun"]
 tile_size = Vector2i(254, 224)
 sources/0 = SubResource("TileSetAtlasSource_ukgt6")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_meo38"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5kuma"]
 texture = ExtResource("1_kj02u")
@@ -182,6 +191,7 @@ size = Vector2(768, 224)
 size = Vector2(6691, 37)
 
 [node name="intro_stage" type="Node2D"]
+script = ExtResource("1_meo38")
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -199,6 +209,25 @@ scroll_scale = Vector2(0.2, 0.2)
 [node name="city_BG" type="TileMapLayer" parent="Parallax2D"]
 tile_map_data = PackedByteArray("AAAAAAAAAAAEAAAAAAACAAAAAAAEAAAAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAAAAAAHAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAJAAAAAAAEAAAAAAAKAAAAAAAEAAAAAAALAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAEAAAAAAABAAAAAAAEAAAAAAADAAAAAAAEAAAAAAAEAAAAAAAEAAAAAAA=")
 tile_set = SubResource("TileSet_g2bun")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_meo38")
+position = Vector2(267, 32)
+texture = ExtResource("8_tmap4")
+lifetime = 10.0
+preprocess = 1.0
+randomness = 0.5
+fixed_fps = 30
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(1, 50)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+anim_speed_min = 5.0
+anim_speed_max = 5.0
 
 [node name="bridge_Background2" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAFAAYAAQACAAgAAAAFAAcAAQACAAgAAAAFAAgAAQACAAgAAAAFAAkAAQACAAgAAAAIAAMAAQACAAgAAAAIAAQAAQACAAgAAAAIAAUAAQACAAgAAAAIAAYAAQACAAgAAAAIAAcAAQACAAgAAAAIAAgAAQACAAgAAAAIAAkAAQACAAgAAAALAAAAAQACAAgAAAALAAEAAQACAAgAAAALAAIAAQACAAgAAAALAAMAAQACAAgAAAALAAQAAQACAAgAAAALAAUAAQACAAgAAAALAAYAAQACAAgAAAALAAcAAQACAAgAAAALAAgAAQACAAgAAAALAAkAAQACAAgAAAAAAAkAAQAAAAgAAAABAAgAAQAAAAgAAAABAAkAAQAAAAkAAAACAAcAAQAAAAgAAAACAAgAAQAAAAkAAAADAAYAAQAAAAgAAAADAAcAAQAAAAkAAAAEAAUAAQAAAAgAAAAEAAYAAQAAAAkAAAAFAAQAAQAAAAgAAAAFAAUAAQABAAgAAAAGAAMAAQAAAAgAAAAGAAQAAQAAAAkAAAAHAAIAAQAAAAgAAAAHAAMAAQAAAAkAAAAIAAEAAQAAAAgAAAAIAAIAAQABAAgAAAAJAAAAAQAAAAgAAAAJAAEAAQAAAAkAAAAKAP//AQAAAAgAAAAKAAAAAQAAAAkAAAALAP7/AQAAAAgAAAALAP//AQABAAgAAAAMAP7/AQAAAAkAAAAOAAMAAQACAAgAAAAOAAQAAQACAAgAAAAOAAUAAQACAAgAAAAOAAYAAQACAAgAAAAOAAcAAQACAAgAAAAOAAgAAQACAAgAAAAOAAkAAQACAAgAAAAOAAIAAQACAAgAAAAOAAEAAQACAAgAAAAOAAAAAQACAAgAAAAOAP//AQACAAgAAAAOAP7/AQACAAgAAAAcAAkAAQAAAAgAAAAdAAgAAQAAAAgAAAAdAAkAAQAAAAkAAAAeAAcAAQAAAAgAAAAeAAgAAQAAAAkAAAAfAAYAAQAAAAgAAAAfAAcAAQAAAAkAAAAgAAUAAQAAAAgAAAAgAAYAAQAAAAkAAAAhAAQAAQAAAAgAAAAhAAUAAQABAAgAAAAhAAYAAQACAAgAAAAhAAcAAQACAAgAAAAhAAgAAQACAAgAAAAhAAkAAQACAAgAAAAiAAMAAQAAAAgAAAAiAAQAAQAAAAkAAAAjAAIAAQAAAAgAAAAjAAMAAQAAAAkAAAAkAAEAAQAAAAgAAAAkAAIAAQABAAgAAAAkAAMAAQACAAgAAAAkAAQAAQACAAgAAAAkAAUAAQACAAgAAAAkAAYAAQACAAgAAAAkAAcAAQACAAgAAAAkAAgAAQACAAgAAAAkAAkAAQACAAgAAAAlAAAAAQAAAAgAAAAlAAEAAQAAAAkAAAAmAP//AQAAAAgAAAAmAAAAAQAAAAkAAAAnAP7/AQAAAAgAAAAnAP//AQABAAgAAAAnAAAAAQACAAgAAAAnAAEAAQACAAgAAAAnAAIAAQACAAgAAAAnAAMAAQACAAgAAAAnAAQAAQACAAgAAAAnAAUAAQACAAgAAAAnAAYAAQACAAgAAAAnAAcAAQACAAgAAAAnAAgAAQACAAgAAAAnAAkAAQACAAgAAAAoAP7/AQAAAAkAAAAqAP7/AQACAAgAAAAqAP//AQACAAgAAAAqAAAAAQACAAgAAAAqAAEAAQACAAgAAAAqAAIAAQACAAgAAAAqAAMAAQACAAgAAAAqAAQAAQACAAgAAAAqAAUAAQACAAgAAAAqAAYAAQACAAgAAAAqAAcAAQACAAgAAAAqAAgAAQACAAgAAAAqAAkAAQACAAgAAAAsAP7/AQAEAAgAAAAsAP//AQAEAAkAAAAtAP//AQAEAAgAAAAtAAAAAQADAAgAAAAtAAEAAQACAAgAAAAtAAIAAQACAAgAAAAtAAMAAQACAAgAAAAtAAQAAQACAAgAAAAtAAUAAQACAAgAAAAtAAYAAQACAAgAAAAtAAcAAQACAAgAAAAtAAgAAQACAAgAAAAtAAkAAQACAAgAAAAuAAAAAQAEAAgAAAAuAAEAAQAEAAkAAAAvAAEAAQAEAAgAAAAvAAIAAQAEAAkAAAAwAAIAAQAEAAgAAAAwAAMAAQADAAgAAAAwAAQAAQACAAgAAAAwAAUAAQACAAgAAAAwAAYAAQACAAgAAAAwAAcAAQACAAgAAAAwAAgAAQACAAgAAAAwAAkAAQACAAgAAAAxAAMAAQAEAAgAAAAxAAQAAQAEAAkAAAAyAAQAAQAEAAgAAAAyAAUAAQAEAAkAAAAzAAUAAQAEAAgAAAAzAAYAAQAEAAkAAAA0AAYAAQAEAAgAAAA0AAcAAQADAAgAAAA0AAgAAQACAAgAAAA0AAkAAQACAAgAAAA1AAcAAQAEAAgAAAA1AAgAAQAEAAkAAAA2AAgAAQAEAAgAAAA2AAkAAQAEAAkAAAA3AAkAAQAEAAgAAAA4AAkAAQAAAAgAAAA5AAgAAQAAAAgAAAA5AAkAAQAAAAkAAAA6AAcAAQAAAAgAAAA6AAgAAQAAAAkAAAA7AAYAAQAAAAgAAAA7AAcAAQAAAAkAAAA8AAUAAQAAAAgAAAA8AAYAAQAAAAkAAAA9AAQAAQAAAAgAAAA9AAUAAQABAAgAAAA9AAYAAQACAAgAAAA9AAcAAQACAAgAAAA9AAgAAQACAAgAAAA9AAkAAQACAAgAAAA+AAMAAQAAAAgAAAA+AAQAAQAAAAkAAAA/AAIAAQAAAAgAAAA/AAMAAQAAAAkAAABAAAEAAQAAAAgAAABAAAIAAQABAAgAAABAAAMAAQACAAgAAABAAAQAAQACAAgAAABAAAUAAQACAAgAAABAAAYAAQACAAgAAABAAAcAAQACAAgAAABAAAgAAQACAAgAAABAAAkAAQACAAgAAABBAAAAAQAAAAgAAABBAAEAAQAAAAkAAABCAP//AQAAAAgAAABCAAAAAQAAAAkAAABDAP7/AQAAAAgAAABDAP//AQABAAgAAABDAAAAAQACAAgAAABDAAEAAQACAAgAAABDAAIAAQACAAgAAABDAAMAAQACAAgAAABDAAQAAQACAAgAAABDAAUAAQACAAgAAABDAAYAAQACAAgAAABDAAcAAQACAAgAAABDAAgAAQACAAgAAABDAAkAAQACAAgAAABEAP7/AQAAAAkAAABGAP7/AQACAAgAAABGAP//AQACAAgAAABGAAAAAQACAAgAAABGAAEAAQACAAgAAABGAAIAAQACAAgAAABGAAMAAQACAAgAAABGAAQAAQACAAgAAABGAAUAAQACAAgAAABGAAYAAQACAAgAAABGAAcAAQACAAgAAABGAAgAAQACAAgAAABGAAkAAQACAAgAAABIAP7/AQAEAAgAAABIAP//AQAEAAkAAABJAP//AQAEAAgAAABJAAAAAQADAAgAAABJAAEAAQACAAgAAABJAAIAAQACAAgAAABJAAMAAQACAAgAAABJAAQAAQACAAgAAABJAAUAAQACAAgAAABJAAYAAQACAAgAAABJAAcAAQACAAgAAABJAAgAAQACAAgAAABJAAkAAQACAAgAAABKAAAAAQAEAAgAAABKAAEAAQAEAAkAAABLAAEAAQAEAAgAAABLAAIAAQAEAAkAAABMAAIAAQAEAAgAAABMAAMAAQADAAgAAABMAAQAAQACAAgAAABMAAUAAQACAAgAAABMAAYAAQACAAgAAABMAAcAAQACAAgAAABMAAgAAQACAAgAAABMAAkAAQACAAgAAABNAAMAAQAEAAgAAABNAAQAAQAEAAkAAABOAAQAAQAEAAgAAABOAAUAAQAEAAkAAABPAAUAAQAEAAgAAABPAAYAAQAEAAkAAABQAAYAAQAEAAgAAABQAAcAAQADAAgAAABQAAgAAQACAAgAAABQAAkAAQACAAgAAABRAAcAAQAEAAgAAABRAAgAAQAEAAkAAABSAAgAAQAEAAgAAABSAAkAAQAEAAkAAABTAAkAAQAEAAgAAAARAAYAAQACAAgAAAARAAcAAQACAAgAAAARAAgAAQACAAgAAAARAAkAAQACAAgAAAAUAAkAAQACAAgAAAAQAP7/AQAEAAgAAAAQAP//AQAEAAkAAAARAP//AQAEAAgAAAARAAAAAQADAAgAAAARAAEAAQACAAgAAAARAAIAAQACAAgAAAARAAMAAQACAAgAAAARAAQAAQACAAgAAAARAAUAAQACAAgAAAASAAAAAQAEAAgAAAASAAEAAQAEAAkAAAATAAEAAQAEAAgAAAATAAIAAQAEAAkAAAAUAAIAAQAEAAgAAAAUAAMAAQADAAgAAAAUAAQAAQACAAgAAAAUAAUAAQACAAgAAAAUAAYAAQACAAgAAAAUAAcAAQACAAgAAAAUAAgAAQACAAgAAAAVAAMAAQAEAAgAAAAVAAQAAQAEAAkAAAAWAAQAAQAEAAgAAAAWAAUAAQAEAAkAAAAXAAUAAQAEAAgAAAAXAAYAAQAEAAkAAAAYAAYAAQAEAAgAAAAYAAcAAQADAAgAAAAYAAgAAQACAAgAAAAYAAkAAQACAAgAAAAZAAcAAQAEAAgAAAAZAAgAAQAEAAkAAAAaAAgAAQAEAAgAAAAaAAkAAQAEAAkAAAAbAAkAAQAEAAgAAAB1AAkAAQAAAAgAAAB2AAgAAQAAAAgAAAB2AAkAAQAAAAkAAAB3AAcAAQAAAAgAAAB3AAgAAQAAAAkAAAB4AAYAAQAAAAgAAAB4AAcAAQAAAAkAAAB5AAUAAQAAAAgAAAB5AAYAAQAAAAkAAAB6AAQAAQAAAAgAAAB6AAUAAQABAAgAAAB6AAYAAQACAAgAAAB6AAcAAQACAAgAAAB6AAgAAQACAAgAAAB6AAkAAQACAAgAAAB7AAMAAQAAAAgAAAB7AAQAAQAAAAkAAAB8AAIAAQAAAAgAAAB8AAMAAQAAAAkAAAB9AAEAAQAAAAgAAAB9AAIAAQABAAgAAAB9AAMAAQACAAgAAAB9AAQAAQACAAgAAAB9AAUAAQACAAgAAAB9AAYAAQACAAgAAAB9AAcAAQACAAgAAAB9AAgAAQACAAgAAAB9AAkAAQACAAgAAAB+AAAAAQAAAAgAAAB+AAEAAQAAAAkAAAB/AP//AQAAAAgAAAB/AAAAAQAAAAkAAACAAP7/AQAAAAgAAACAAP//AQABAAgAAACAAAAAAQACAAgAAACAAAEAAQACAAgAAACAAAIAAQACAAgAAACAAAMAAQACAAgAAACAAAQAAQACAAgAAACAAAUAAQACAAgAAACAAAYAAQACAAgAAACAAAcAAQACAAgAAACAAAgAAQACAAgAAACAAAkAAQACAAgAAACBAP7/AQAAAAkAAACDAP7/AQACAAgAAACDAP//AQACAAgAAACDAAAAAQACAAgAAACDAAEAAQACAAgAAACDAAIAAQACAAgAAACDAAMAAQACAAgAAACDAAQAAQACAAgAAACDAAUAAQACAAgAAACDAAYAAQACAAgAAACDAAcAAQACAAgAAACDAAgAAQACAAgAAACDAAkAAQACAAgAAACFAP7/AQAEAAgAAACFAP//AQAEAAkAAACGAP//AQAEAAgAAACGAAAAAQADAAgAAACGAAEAAQACAAgAAACGAAIAAQACAAgAAACGAAMAAQACAAgAAACGAAQAAQACAAgAAACGAAUAAQACAAgAAACGAAYAAQACAAgAAACGAAcAAQACAAgAAACGAAgAAQACAAgAAACGAAkAAQACAAgAAACHAAAAAQAEAAgAAACHAAEAAQAEAAkAAACIAAEAAQAEAAgAAACIAAIAAQAEAAkAAACJAAIAAQAEAAgAAACJAAMAAQADAAgAAACJAAQAAQACAAgAAACJAAUAAQACAAgAAACJAAYAAQACAAgAAACJAAcAAQACAAgAAACJAAgAAQACAAgAAACJAAkAAQACAAgAAACKAAMAAQAEAAgAAACKAAQAAQAEAAkAAACLAAQAAQAEAAgAAACLAAUAAQAEAAkAAACMAAUAAQAEAAgAAACMAAYAAQAEAAkAAACNAAYAAQAEAAgAAACNAAcAAQADAAgAAACNAAgAAQACAAgAAACNAAkAAQACAAgAAACOAAcAAQAEAAgAAACOAAgAAQAEAAkAAACPAAgAAQAEAAgAAACPAAkAAQAEAAkAAACQAAkAAQAEAAgAAACRAAkAAQAAAAgAAACSAAgAAQAAAAgAAACSAAkAAQAAAAkAAACTAAcAAQAAAAgAAACTAAgAAQAAAAkAAACUAAYAAQAAAAgAAACUAAcAAQAAAAkAAACVAAUAAQAAAAgAAACVAAYAAQAAAAkAAACWAAQAAQAAAAgAAACWAAUAAQABAAgAAACWAAYAAQACAAgAAACWAAcAAQACAAgAAACWAAgAAQACAAgAAACWAAkAAQACAAgAAACXAAMAAQAAAAgAAACXAAQAAQAAAAkAAACYAAIAAQAAAAgAAACYAAMAAQAAAAkAAACZAAEAAQAAAAgAAACZAAIAAQABAAgAAACZAAMAAQACAAgAAACZAAQAAQACAAgAAACZAAUAAQACAAgAAACZAAYAAQACAAgAAACZAAcAAQACAAgAAACZAAgAAQACAAgAAACZAAkAAQACAAgAAACaAAAAAQAAAAgAAACaAAEAAQAAAAkAAACbAP//AQAAAAgAAACbAAAAAQAAAAkAAACcAP7/AQAAAAgAAACcAP//AQABAAgAAACcAAAAAQACAAgAAACcAAEAAQACAAgAAACcAAIAAQACAAgAAACcAAMAAQACAAgAAACcAAQAAQACAAgAAACcAAUAAQACAAgAAACcAAYAAQACAAgAAACcAAcAAQACAAgAAACcAAgAAQACAAgAAACcAAkAAQACAAgAAACdAP7/AQAAAAkAAACfAP7/AQACAAgAAACfAP//AQACAAgAAACfAAAAAQACAAgAAACfAAEAAQACAAgAAACfAAIAAQACAAgAAACfAAMAAQACAAgAAACfAAQAAQACAAgAAACfAAUAAQACAAgAAACfAAYAAQACAAgAAACfAAcAAQACAAgAAACfAAgAAQACAAgAAACfAAkAAQACAAgAAAChAP7/AQAEAAgAAAChAP//AQAEAAkAAACiAP//AQAEAAgAAACiAAAAAQADAAgAAACiAAEAAQACAAgAAACiAAIAAQACAAgAAACiAAMAAQACAAgAAACiAAQAAQACAAgAAACiAAUAAQACAAgAAACiAAYAAQACAAgAAACiAAcAAQACAAgAAACiAAgAAQACAAgAAACiAAkAAQACAAgAAACjAAAAAQAEAAgAAACjAAEAAQAEAAkAAACkAAEAAQAEAAgAAACkAAIAAQAEAAkAAAClAAIAAQAEAAgAAAClAAMAAQADAAgAAAClAAQAAQACAAgAAAClAAUAAQACAAgAAAClAAYAAQACAAgAAAClAAcAAQACAAgAAAClAAgAAQACAAgAAAClAAkAAQACAAgAAACmAAMAAQAEAAgAAACmAAQAAQAEAAkAAACnAAQAAQAEAAgAAACnAAUAAQAEAAkAAACoAAUAAQAEAAgAAACoAAYAAQAEAAkAAACpAAYAAQAEAAgAAACpAAcAAQADAAgAAACpAAgAAQACAAgAAACpAAkAAQACAAgAAACqAAcAAQAEAAgAAACqAAgAAQAEAAkAAACrAAgAAQAEAAgAAACrAAkAAQAEAAkAAACsAAkAAQAEAAgAAABWAAgAAQAAAAgAAABXAAcAAQAAAAgAAABYAAYAAQAAAAgAAABZAAUAAQAAAAgAAABZAAYAAQAAAAkAAABaAAQAAQAAAAgAAABbAAMAAQAAAAgAAABcAAIAAQAAAAgAAABcAAMAAQAAAAkAAABdAAEAAQAAAAgAAABeAAAAAQAAAAgAAABfAP//AQAAAAgAAABfAAAAAQAAAAkAAABgAP7/AQAAAAgAAABlAP//AQAEAAkAAABmAAAAAQADAAgAAABmAAEAAQACAAgAAABnAAEAAQAEAAkAAABoAAIAAQAEAAkAAABpAAMAAQADAAgAAABpAAQAAQACAAgAAABqAAQAAQAEAAkAAABrAAUAAQAEAAkAAABsAAYAAQAEAAkAAABtAAcAAQADAAgAAABtAAgAAQACAAgAAABuAAgAAQAEAAkAAABvAAkAAQAEAAkAAABWAAkAAQAAAAkAAABXAAgAAQAAAAkAAABYAAcAAQAAAAkAAABaAAUAAQABAAgAAABaAAYAAQACAAgAAABaAAcAAQACAAgAAABaAAgAAQACAAgAAABaAAkAAQACAAgAAABbAAQAAQAAAAkAAABdAAIAAQABAAgAAABdAAMAAQACAAgAAABdAAQAAQACAAgAAABdAAUAAQACAAgAAABdAAYAAQACAAgAAABdAAcAAQACAAgAAABdAAgAAQACAAgAAABdAAkAAQACAAgAAABeAAEAAQAAAAkAAABgAP//AQABAAgAAABgAAAAAQACAAgAAABgAAEAAQACAAgAAABgAAIAAQACAAgAAABgAAMAAQACAAgAAABgAAQAAQACAAgAAABgAAUAAQACAAgAAABgAAYAAQACAAgAAABgAAcAAQACAAgAAABgAAgAAQACAAgAAABgAAkAAQACAAgAAABhAP7/AQAAAAkAAABjAP7/AQACAAgAAABjAP//AQACAAgAAABjAAAAAQACAAgAAABjAAEAAQACAAgAAABjAAIAAQACAAgAAABjAAMAAQACAAgAAABjAAQAAQACAAgAAABjAAUAAQACAAgAAABjAAYAAQACAAgAAABjAAcAAQACAAgAAABjAAgAAQACAAgAAABjAAkAAQACAAgAAABlAP7/AQAEAAgAAABmAP//AQAEAAgAAABmAAIAAQACAAgAAABmAAMAAQACAAgAAABmAAQAAQACAAgAAABmAAUAAQACAAgAAABmAAYAAQACAAgAAABmAAcAAQACAAgAAABmAAgAAQACAAgAAABmAAkAAQACAAgAAABnAAAAAQAEAAgAAABoAAEAAQAEAAgAAABpAAIAAQAEAAgAAABpAAUAAQACAAgAAABpAAYAAQACAAgAAABpAAcAAQACAAgAAABpAAgAAQACAAgAAABpAAkAAQACAAgAAABqAAMAAQAEAAgAAABrAAQAAQAEAAgAAABsAAUAAQAEAAgAAABtAAYAAQAEAAgAAABtAAkAAQACAAgAAABuAAcAAQAEAAgAAABvAAgAAQAEAAgAAABwAAkAAQAEAAgAAABxAAoAAQAEAAgAAABwAAoAAQAEAAkAAABtAAoAAQACAAgAAABpAAoAAQACAAgAAABmAAoAAQACAAgAAABjAAoAAQACAAgAAABgAAoAAQACAAgAAABdAAoAAQACAAgAAABaAAoAAQACAAgAAABVAAkAAQAAAAgAAABVAAoAAQAAAAkAAABUAAoAAQAAAAgAAAByAAsAAQAEAAgAAABUAAsAAQAAAAkAAABxAAsAAQAEAAkAAABaAAsAAQACAAgAAABdAAsAAQACAAgAAABgAAsAAQACAAgAAABjAAsAAQACAAgAAABmAAsAAQACAAgAAABpAAsAAQACAAgAAABtAAsAAQACAAgAAACtAAkAAQAAAAgAAACuAAgAAQAAAAgAAACuAAkAAQAAAAkAAACvAAcAAQAAAAgAAACvAAgAAQAAAAkAAACwAAYAAQAAAAgAAACwAAcAAQAAAAkAAACxAAUAAQAAAAgAAACxAAYAAQAAAAkAAACyAAQAAQAAAAgAAACyAAUAAQABAAgAAACyAAYAAQACAAgAAACyAAcAAQACAAgAAACyAAgAAQACAAgAAACyAAkAAQACAAgAAACzAAMAAQAAAAgAAACzAAQAAQAAAAkAAAC0AAIAAQAAAAgAAAC0AAMAAQAAAAkAAAC1AAEAAQAAAAgAAAC1AAIAAQABAAgAAAC1AAMAAQACAAgAAAC1AAQAAQACAAgAAAC1AAUAAQACAAgAAAC1AAYAAQACAAgAAAC1AAcAAQACAAgAAAC1AAgAAQACAAgAAAC1AAkAAQACAAgAAAC2AAAAAQAAAAgAAAC2AAEAAQAAAAkAAAC3AP//AQAAAAgAAAC3AAAAAQAAAAkAAAC4AP7/AQAAAAgAAAC4AP//AQABAAgAAAC4AAAAAQACAAgAAAC4AAEAAQACAAgAAAC4AAIAAQACAAgAAAC4AAMAAQACAAgAAAC4AAQAAQACAAgAAAC4AAUAAQACAAgAAAC4AAYAAQACAAgAAAC4AAcAAQACAAgAAAC4AAgAAQACAAgAAAC4AAkAAQACAAgAAAC5AP7/AQAAAAkAAAC7AP7/AQACAAgAAAC7AP//AQACAAgAAAC7AAAAAQACAAgAAAC7AAEAAQACAAgAAAC7AAIAAQACAAgAAAC7AAMAAQACAAgAAAC7AAQAAQACAAgAAAC7AAUAAQACAAgAAAC7AAYAAQACAAgAAAC7AAcAAQACAAgAAAC7AAgAAQACAAgAAAC7AAkAAQACAAgAAAC9AP7/AQAEAAgAAAC9AP//AQAEAAkAAAC+AP//AQAEAAgAAAC+AAAAAQADAAgAAAC+AAEAAQACAAgAAAC+AAIAAQACAAgAAAC+AAMAAQACAAgAAAC+AAQAAQACAAgAAAC+AAUAAQACAAgAAAC+AAYAAQACAAgAAAC+AAcAAQACAAgAAAC+AAgAAQACAAgAAAC+AAkAAQACAAgAAAC/AAAAAQAEAAgAAAC/AAEAAQAEAAkAAADAAAEAAQAEAAgAAADAAAIAAQAEAAkAAADBAAIAAQAEAAgAAADBAAMAAQADAAgAAADBAAQAAQACAAgAAADBAAUAAQACAAgAAADBAAYAAQACAAgAAADBAAcAAQACAAgAAADBAAgAAQACAAgAAADBAAkAAQACAAgAAADCAAMAAQAEAAgAAADCAAQAAQAEAAkAAADDAAQAAQAEAAgAAADDAAUAAQAEAAkAAADEAAUAAQAEAAgAAADEAAYAAQAEAAkAAADFAAYAAQAEAAgAAADFAAcAAQADAAgAAADFAAgAAQACAAgAAADFAAkAAQACAAgAAADGAAcAAQAEAAgAAADGAAgAAQAEAAkAAADHAAgAAQAEAAgAAADHAAkAAQAEAAkAAADIAAkAAQAEAAgAAADJAAkAAQAAAAgAAADKAAgAAQAAAAgAAADKAAkAAQAAAAkAAADLAAcAAQAAAAgAAADLAAgAAQAAAAkAAADMAAYAAQAAAAgAAADMAAcAAQAAAAkAAADNAAUAAQAAAAgAAADNAAYAAQAAAAkAAADOAAQAAQAAAAgAAADOAAUAAQABAAgAAADOAAYAAQACAAgAAADOAAcAAQACAAgAAADOAAgAAQACAAgAAADOAAkAAQACAAgAAADPAAMAAQAAAAgAAADPAAQAAQAAAAkAAADQAAIAAQAAAAgAAADQAAMAAQAAAAkAAADRAAEAAQAAAAgAAADRAAIAAQABAAgAAADRAAMAAQACAAgAAADRAAQAAQACAAgAAADRAAUAAQACAAgAAADRAAYAAQACAAgAAADRAAcAAQACAAgAAADRAAgAAQACAAgAAADRAAkAAQACAAgAAADSAAAAAQAAAAgAAADSAAEAAQAAAAkAAADTAP//AQAAAAgAAADTAAAAAQAAAAkAAADUAP7/AQAAAAgAAADUAP//AQABAAgAAADUAAAAAQACAAgAAADUAAEAAQACAAgAAADUAAIAAQACAAgAAADUAAMAAQACAAgAAADUAAQAAQACAAgAAADUAAUAAQACAAgAAADUAAYAAQACAAgAAADUAAcAAQACAAgAAADUAAgAAQACAAgAAADUAAkAAQACAAgAAADVAP7/AQAAAAkAAADXAP7/AQACAAgAAADXAP//AQACAAgAAADXAAAAAQACAAgAAADXAAEAAQACAAgAAADXAAIAAQACAAgAAADXAAMAAQACAAgAAADXAAQAAQACAAgAAADXAAUAAQACAAgAAADXAAYAAQACAAgAAADXAAcAAQACAAgAAADXAAgAAQACAAgAAADXAAkAAQACAAgAAADZAP7/AQAEAAgAAADZAP//AQAEAAkAAADaAP//AQAEAAgAAADaAAAAAQADAAgAAADaAAEAAQACAAgAAADaAAIAAQACAAgAAADaAAMAAQACAAgAAADaAAQAAQACAAgAAADaAAUAAQACAAgAAADaAAYAAQACAAgAAADaAAcAAQACAAgAAADaAAgAAQACAAgAAADaAAkAAQACAAgAAADbAAAAAQAEAAgAAADbAAEAAQAEAAkAAADcAAEAAQAEAAgAAADcAAIAAQAEAAkAAADdAAIAAQAEAAgAAADdAAMAAQADAAgAAADdAAQAAQACAAgAAADdAAUAAQACAAgAAADdAAYAAQACAAgAAADdAAcAAQACAAgAAADdAAgAAQACAAgAAADdAAkAAQACAAgAAADeAAMAAQAEAAgAAADeAAQAAQAEAAkAAADfAAQAAQAEAAgAAADfAAUAAQAEAAkAAADgAAUAAQAEAAgAAADgAAYAAQAEAAkAAADhAAYAAQAEAAgAAADhAAcAAQADAAgAAADhAAgAAQACAAgAAADhAAkAAQACAAgAAADiAAcAAQAEAAgAAADiAAgAAQAEAAkAAADjAAgAAQAEAAgAAADjAAkAAQAEAAkAAADkAAkAAQAEAAgAAADlAAkAAQAAAAgAAADmAAgAAQAAAAgAAADmAAkAAQAAAAkAAADnAAcAAQAAAAgAAADnAAgAAQAAAAkAAADoAAYAAQAAAAgAAADoAAcAAQAAAAkAAADpAAUAAQAAAAgAAADpAAYAAQAAAAkAAADqAAQAAQAAAAgAAADqAAUAAQABAAgAAADqAAYAAQACAAgAAADqAAcAAQACAAgAAADqAAgAAQACAAgAAADqAAkAAQACAAgAAADrAAMAAQAAAAgAAADrAAQAAQAAAAkAAADsAAIAAQAAAAgAAADsAAMAAQAAAAkAAADtAAEAAQAAAAgAAADtAAIAAQABAAgAAADtAAMAAQACAAgAAADtAAQAAQACAAgAAADtAAUAAQACAAgAAADtAAYAAQACAAgAAADtAAcAAQACAAgAAADtAAgAAQACAAgAAADtAAkAAQACAAgAAADuAAAAAQAAAAgAAADuAAEAAQAAAAkAAADvAP//AQAAAAgAAADvAAAAAQAAAAkAAADwAP7/AQAAAAgAAADwAP//AQABAAgAAADwAAAAAQACAAgAAADwAAEAAQACAAgAAADwAAIAAQACAAgAAADwAAMAAQACAAgAAADwAAQAAQACAAgAAADwAAUAAQACAAgAAADwAAYAAQACAAgAAADwAAcAAQACAAgAAADwAAgAAQACAAgAAADwAAkAAQACAAgAAADxAP7/AQAAAAkAAADzAP7/AQACAAgAAADzAP//AQACAAgAAADzAAAAAQACAAgAAADzAAEAAQACAAgAAADzAAIAAQACAAgAAADzAAMAAQACAAgAAADzAAQAAQACAAgAAADzAAUAAQACAAgAAADzAAYAAQACAAgAAADzAAcAAQACAAgAAADzAAgAAQACAAgAAADzAAkAAQACAAgAAAD1AP7/AQAEAAgAAAD1AP//AQAEAAkAAAD2AP//AQAEAAgAAAD2AAAAAQADAAgAAAD2AAEAAQACAAgAAAD2AAIAAQACAAgAAAD2AAMAAQACAAgAAAD2AAQAAQACAAgAAAD2AAUAAQACAAgAAAD2AAYAAQACAAgAAAD2AAcAAQACAAgAAAD2AAgAAQACAAgAAAD2AAkAAQACAAgAAAD3AAAAAQAEAAgAAAD3AAEAAQAEAAkAAAD4AAEAAQAEAAgAAAD4AAIAAQAEAAkAAAD5AAIAAQAEAAgAAAD5AAMAAQADAAgAAAD5AAQAAQACAAgAAAD5AAUAAQACAAgAAAD5AAYAAQACAAgAAAD5AAcAAQACAAgAAAD5AAgAAQACAAgAAAD5AAkAAQACAAgAAAD6AAMAAQAEAAgAAAD6AAQAAQAEAAkAAAD7AAQAAQAEAAgAAAD7AAUAAQAEAAkAAAD8AAUAAQAEAAgAAAD8AAYAAQAEAAkAAAD9AAYAAQAEAAgAAAD9AAcAAQADAAgAAAD9AAgAAQACAAgAAAD9AAkAAQACAAgAAAD+AAcAAQAEAAgAAAD+AAgAAQAEAAkAAAD/AAgAAQAEAAgAAAD/AAkAAQAEAAkAAAAAAQkAAQAEAAgAAAABAQkAAQAAAAgAAAACAQgAAQAAAAgAAAACAQkAAQAAAAkAAAADAQcAAQAAAAgAAAADAQgAAQAAAAkAAAAEAQYAAQAAAAgAAAAEAQcAAQAAAAkAAAAFAQUAAQAAAAgAAAAFAQYAAQAAAAkAAAAGAQQAAQAAAAgAAAAGAQUAAQABAAgAAAAGAQYAAQACAAgAAAAGAQcAAQACAAgAAAAGAQgAAQACAAgAAAAGAQkAAQACAAgAAAAHAQMAAQAAAAgAAAAHAQQAAQAAAAkAAAAIAQIAAQAAAAgAAAAIAQMAAQAAAAkAAAAJAQEAAQAAAAgAAAAJAQIAAQABAAgAAAAJAQMAAQACAAgAAAAJAQQAAQACAAgAAAAJAQUAAQACAAgAAAAJAQYAAQACAAgAAAAJAQcAAQACAAgAAAAJAQgAAQACAAgAAAAJAQkAAQACAAgAAAAKAQAAAQAAAAgAAAAKAQEAAQAAAAkAAAALAf//AQAAAAgAAAALAQAAAQAAAAkAAAAMAf7/AQAAAAgAAAAMAf//AQABAAgAAAAMAQAAAQACAAgAAAAMAQEAAQACAAgAAAAMAQIAAQACAAgAAAAMAQMAAQACAAgAAAAMAQQAAQACAAgAAAAMAQUAAQACAAgAAAAMAQYAAQACAAgAAAAMAQcAAQACAAgAAAAMAQgAAQACAAgAAAAMAQkAAQACAAgAAAANAf7/AQAAAAkAAAAPAf7/AQACAAgAAAAPAf//AQACAAgAAAAPAQAAAQACAAgAAAAPAQEAAQACAAgAAAAPAQIAAQACAAgAAAAPAQMAAQACAAgAAAAPAQQAAQACAAgAAAAPAQUAAQACAAgAAAAPAQYAAQACAAgAAAAPAQcAAQACAAgAAAAPAQgAAQACAAgAAAAPAQkAAQACAAgAAAARAf7/AQAEAAgAAAARAf//AQAEAAkAAAASAf//AQAEAAgAAAASAQAAAQADAAgAAAASAQEAAQACAAgAAAASAQIAAQACAAgAAAASAQMAAQACAAgAAAASAQQAAQACAAgAAAASAQUAAQACAAgAAAASAQYAAQACAAgAAAASAQcAAQACAAgAAAASAQgAAQACAAgAAAASAQkAAQACAAgAAAATAQAAAQAEAAgAAAATAQEAAQAEAAkAAAAUAQEAAQAEAAgAAAAUAQIAAQAEAAkAAAAVAQIAAQAEAAgAAAAVAQMAAQADAAgAAAAVAQQAAQACAAgAAAAVAQUAAQACAAgAAAAVAQYAAQACAAgAAAAVAQcAAQACAAgAAAAVAQgAAQACAAgAAAAVAQkAAQACAAgAAAAWAQMAAQAEAAgAAAAWAQQAAQAEAAkAAAAXAQQAAQAEAAgAAAAXAQUAAQAEAAkAAAAYAQUAAQAEAAgAAAAYAQYAAQAEAAkAAAAZAQYAAQAEAAgAAAAZAQcAAQADAAgAAAAZAQgAAQACAAgAAAAZAQkAAQACAAgAAAAaAQcAAQAEAAgAAAAaAQgAAQAEAAkAAAAbAQgAAQAEAAgAAAAbAQkAAQAEAAkAAAAcAQkAAQAEAAgAAAA=")
@@ -229,10 +258,11 @@ tile_set = SubResource("TileSet_h6mcg")
 
 [node name="allCameras" type="Node2D" parent="."]
 
-[node name="New Camera System Addon" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_35qat")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon"]
@@ -245,11 +275,12 @@ limit_bottom = 224
 position = Vector2(128.5, 111.5)
 shape = SubResource("RectangleShape2D_xesa1")
 
-[node name="New Camera System Addon2" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon2" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(256, 0)
 script = ExtResource("3_35qat")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon2"]
@@ -262,11 +293,12 @@ limit_bottom = 224
 position = Vector2(384.5, 112)
 shape = SubResource("RectangleShape2D_lj05t")
 
-[node name="New Camera System Addon3" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon3" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(1023, 0)
 script = ExtResource("3_35qat")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon3"]
@@ -279,11 +311,12 @@ limit_bottom = 224
 position = Vector2(513, 112)
 shape = SubResource("RectangleShape2D_tvi5s")
 
-[node name="New Camera System Addon4" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon4" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2047, 0)
 script = ExtResource("3_35qat")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon4"]
@@ -296,11 +329,12 @@ limit_bottom = 224
 position = Vector2(513, 112)
 shape = SubResource("RectangleShape2D_tvi5s")
 
-[node name="New Camera System Addon5" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon5" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(3071, 0)
 script = ExtResource("3_35qat")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon5"]
@@ -313,11 +347,12 @@ limit_bottom = 224
 position = Vector2(513, 112)
 shape = SubResource("RectangleShape2D_tvi5s")
 
-[node name="New Camera System Addon6" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon6" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4095, 0)
 script = ExtResource("3_35qat")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon6"]
@@ -330,11 +365,12 @@ limit_bottom = 224
 position = Vector2(513, 112)
 shape = SubResource("RectangleShape2D_ukgt6")
 
-[node name="New Camera System Addon7" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon7" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(5119, 0)
 script = ExtResource("3_35qat")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon7"]
@@ -347,11 +383,12 @@ limit_bottom = 224
 position = Vector2(385, 112)
 shape = SubResource("RectangleShape2D_g2bun")
 
-[node name="New Camera System Addon8" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon8" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(5887, 0)
 script = ExtResource("3_35qat")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon8"]
@@ -366,7 +403,7 @@ shape = SubResource("RectangleShape2D_cqys7")
 
 [node name="allEnemies" type="Node2D" parent="."]
 
-[node name="enemy_spawner" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(623, 145)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -400,8 +437,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner2" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner2" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1292, 112)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -435,8 +473,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner3" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner3" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(955, 317)
 enemy_to_spawn = "mechakkero"
 enemy_dictionary = {
@@ -470,8 +509,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("mechakkero")
 
-[node name="enemy_spawner4" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner4" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1548, 152)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -505,8 +545,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner6" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner6" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1819, 171)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -540,8 +581,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner7" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner7" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2276, 137)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -575,8 +617,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner18" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner18" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2498, 142)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -610,8 +653,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner8" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner8" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(3402, 128)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -645,8 +689,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner9" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner9" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(3745, 127)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -680,13 +725,47 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner10" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner10" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2726, 11)
 enemy_to_spawn = "batallion_balloon_delivery"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"batallion_balloon_delivery": ExtResource("43_qxh8b"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
 riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner19" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner19" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2885, -67)
 enemy_to_spawn = "shield_riot"
 enemy_dictionary = {
@@ -720,13 +799,47 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("shield_Riot")
 
-[node name="enemy_spawner20" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner20" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(3542, 8)
 enemy_to_spawn = "batallion_balloon_delivery"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"batallion_balloon_delivery": ExtResource("43_qxh8b"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
 riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner12" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner12" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4483, 9)
 enemy_to_spawn = "batallion_balloon"
 enemy_dictionary = {
@@ -760,8 +873,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("batallion_Balloon")
 
-[node name="enemy_spawner13" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner13" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4874, 7)
 enemy_to_spawn = "batallion_balloon"
 enemy_dictionary = {
@@ -795,8 +909,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("batallion_Balloon")
 
-[node name="enemy_spawner11" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner11" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4293, 154)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -830,23 +945,123 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner15" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner15" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(5331, 3)
 enemy_to_spawn = "batallion_balloon_delivery"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"batallion_balloon_delivery": ExtResource("43_qxh8b"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
 riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner16" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner16" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(5670, 6)
 enemy_to_spawn = "batallion_balloon_delivery"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"batallion_balloon_delivery": ExtResource("43_qxh8b"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
 riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner17" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner17" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(6139, 7)
 enemy_to_spawn = "batallion_balloon_delivery"
+enemy_dictionary = {
+"batallion_balloon": ExtResource("40_lgvbd"),
+"batallion_balloon_delivery": ExtResource("43_qxh8b"),
+"bombomb": ExtResource("35_8qi7b"),
+"burner_joe": ExtResource("32_sflhx"),
+"buster": ExtResource("29_qr1g8"),
+"ceiling_shooter": ExtResource("25_ygatl"),
+"count_bomb": ExtResource("30_lgyqw"),
+"enemy_2": ExtResource("28_k3jne"),
+"grenade_man": ExtResource("31_rjepv"),
+"hologran": ExtResource("19_rdlsw"),
+"homer": ExtResource("20_bblci"),
+"ice_joe": ExtResource("36_mj5rb"),
+"ice_telly": ExtResource("34_4vq0p"),
+"mechakkero": ExtResource("13_tmap4"),
+"met": ExtResource("16_qgdqx"),
+"new_shotman": ExtResource("12_7uyxu"),
+"octopus_battery": ExtResource("18_g74uj"),
+"paraysu": ExtResource("21_xahhu"),
+"peterchy": ExtResource("14_meo38"),
+"pickelman_bull": ExtResource("22_248qj"),
+"punk_riot": ExtResource("38_eefb3"),
+"returningmachine_joe": ExtResource("37_o7yh0"),
+"screw_bomber": ExtResource("33_fwbgc"),
+"shield_riot": ExtResource("39_1p4cc"),
+"sniper_joe": ExtResource("17_s4v2q"),
+"spikyoall": ExtResource("24_j4ygb"),
+"tacklefire": ExtResource("26_63j47"),
+"upndown": ExtResource("27_4ytsx"),
+"walking_bomb": ExtResource("15_qxh8b"),
+"yambou": ExtResource("23_d54ci")
+}
 riotToDeliver = "shield_riot"
+enemy_Preview = NodePath("batallion_Balloon_Delivery")
 
-[node name="enemy_spawner14" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner14" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4745, 151)
 enemy_to_spawn = "punk_riot"
 enemy_dictionary = {
@@ -880,8 +1095,9 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("punkRiot")
 
-[node name="enemy_spawner5" parent="allEnemies" instance=ExtResource("5_qbex0")]
+[node name="enemy_spawner5" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1878, -42)
 enemy_to_spawn = "shield_riot"
 enemy_dictionary = {
@@ -915,6 +1131,7 @@ enemy_dictionary = {
 "walking_bomb": ExtResource("15_qxh8b"),
 "yambou": ExtResource("23_d54ci")
 }
+enemy_Preview = NodePath("shield_Riot")
 
 [node name="deathzones" parent="." instance=ExtResource("10_r43wy")]
 

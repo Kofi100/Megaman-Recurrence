@@ -67,21 +67,8 @@ func _process(delta):
 		elif robotSelected == 9:
 			get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
 	#if robotSelected==0:
-		#pass
-	#else:
-		#pass
-	#if robotSelected==0:
 		#$Node2D/robotMasterAlt5.play("selected")
 	#else:$Node2D/robotMasterAlt5.play("notSelected")
-	#if robotSelected==2:
-		#$Node2D/robotMasterAlt6.play("selected")
-	#else:$Node2D/robotMasterAlt6.play("notSelected")
-	#if robotSelected==6:
-		#$Node2D/robotMasterAlt7.play("selected")
-	#else:$Node2D/robotMasterAlt7.play("notSelected")
-	#if robotSelected==8:
-		#$Node2D/robotMasterAlt8.play("selected")
-	#else:$Node2D/robotMasterAlt8.play("notSelected")
 	playSelectForSingleRM(0,$Node2D/robotMaster0)
 	playSelectForSingleRM(1,$Node2D/robotMaster1)
 	playSelectForSingleRM(2,$Node2D/robotMaster2)
@@ -107,40 +94,7 @@ func _process(delta):
 		$Node2D/MegamanCursor.frame=robotSelected
 	else:
 		$Node2D/MegamanCursor.set_frame(4)
-	#match robotSelected:
-		#1:
-			##$selected.global_position=$Node2D/ColorRect.global_position
-			#$Node2D/robotMasterAlt5.play("selected")
-			#$Node2D/robotMasterAlt6.play("notSelected")
-			#$Node2D/robotMasterAlt7.play("notSelected")
-			#$Node2D/robotMasterAlt8.play("notSelected")
-		#2:
-			##$selected.global_position=$Node2D/ColorRect2.global_position
-			#$Node2D/robotMasterAlt5.play("notSelected")
-			#$Node2D/robotMasterAlt6.play("selected")
-			#$Node2D/robotMasterAlt7.play("notSelected")
-			#$Node2D/robotMasterAlt8.play("notSelected")
-		#3:
-			##$selected.global_position=$Node2D/ColorRect3.global_position
-			##$selected.global_position=$Node2D/ColorRect2.global_position
-			#$Node2D/robotMasterAlt5.play("notSelected")
-			#$Node2D/robotMasterAlt6.play("notSelected")
-			#$Node2D/robotMasterAlt7.play("selected")
-			#$Node2D/robotMasterAlt8.play("notSelected")
-		#4:
-			##$selected.global_position=$Node2D/Color .global_positionds
-			##$selected.global_position=$Node2D/ColorRect3.global_position
-			##$selected.global_position=$Node2D/ColorRect2.global_position
-			#$Node2D/robotMasterAlt5.play("notSelected")
-			#$Node2D/robotMasterAlt6.play("notSelected")
-			#$Node2D/robotMasterAlt7.play("notSelected")
-			#$Node2D/robotMasterAlt8.play("selected")
-		#5:
-			#$Node2D/robotMasterAlt5.play("notSelected")
-			#$Node2D/robotMasterAlt6.play("notSelected")
-			#$Node2D/robotMasterAlt7.play("notSelected")
-			#$Node2D/robotMasterAlt8.play("notSelected")
-			#$SelectArrow.global_position = $Node2D/exit.global_position-Vector2(20,3)
+	#printOutValue()
 	GlobalScript.robotMaster = robotSelected
 	if transition and transition.screen_Ended:  #"transition.screen_Ended" incorrect ref to a signal of another scene
 		if transition.is_connected("screen_Ended", changeScene) == false:  #("changeSceneSignal",self,"changeScene")==false:
@@ -158,8 +112,9 @@ func _process(delta):
 
 
 @export var spriteDict = {}
-
-
+#func printOutValue():
+	#print("$Node2D/MegamanCursor.frame,robotSelected:",$Node2D/MegamanCursor.frame,robotSelected)
+	#await get_tree().create_timer(2).timeout
 func select():
 	var sprite: AnimatedSprite2D = spriteDict.get(robotSelected)
 	if sprite:

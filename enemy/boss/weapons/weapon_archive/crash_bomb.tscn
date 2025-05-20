@@ -102,9 +102,9 @@ z_as_relative = false
 material = SubResource("CanvasItemMaterial_h6qpw")
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_jks88")
 texture = ExtResource("3_hewch")
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_jks88")
 
 [node name="destroy_node_timer" type="Timer" parent="."]
 wait_time = 2.0
