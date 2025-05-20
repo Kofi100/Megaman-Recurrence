@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv5b4jg8dyhgn"]
+[gd_scene load_steps=13 format=3 uid="uid://dv5b4jg8dyhgn"]
 
 [ext_resource type="Script" uid="uid://dcxehvtygpvs8" path="res://levels/capcom_logo_screen.gd" id="1_glovb"]
 [ext_resource type="Texture2D" uid="uid://celua2bbdr3at" path="res://assets/sprites/miscelleaneous/capcom_Logo.png" id="1_hgadf"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="2_dhk7a"]
+[ext_resource type="AudioStream" uid="uid://dy678rn6ajbwu" path="res://assets/music/Capcom Logo(MM6).mp3" id="4_mhuyu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcdqn"]
 atlas = ExtResource("1_hgadf")
@@ -88,12 +89,16 @@ theme = ExtResource("2_dhk7a")
 text = "Inspired by:"
 
 [node name="showTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.5
 one_shot = true
 
 [node name="hideTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 1.5
 one_shot = true
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mhuyu")
+autoplay = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="showTimer" to="." method="_on_timer_timeout"]

@@ -3,6 +3,8 @@ extends Node2D
 var charge_timer = 0
 @export var colorPalette:ColorPaletteResource
 @export var resetColors:bool=false
+#stuff we need to add to the save files
+#bosses defeated=>weapons enabled
 @export var weaponNumberEnabled={
 	0:true,
 	1:true,
@@ -17,6 +19,11 @@ var charge_timer = 0
 	10:true,
 	11:false
 }
+#intro Stage completed
+@export var introStageComplete:bool=false
+
+
+
 @export var weaponEnergy={
 	0:27,
 	1:27,
@@ -69,7 +76,11 @@ var Vector4255:Vector4i=Vector4i(255.0,255.0,255.0,255.0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass  # Replace with function body.
+	loadData()
 
+func _init() -> void:
+	pass
+	#cant place loaddate() since it might lead to errors during intialization
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -156,3 +167,34 @@ func set_Individual_Colors(node,InnerBodyColor:Color,OuterBodyColor:Color):
 		#animated_sprite.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
 		#animated_sprite.material.set_shader_parameter("bodycolori", (bodycolor1dictionary.get(GlobalScript.weapon_number)) / 255)
 		#animated_sprite.material.set_shader_parameter("bodycolorii", (bodycolor2dictionary.get(GlobalScript.weapon_number)) / 255)
+
+func saveWeaponState():
+	pass
+
+func saveData():
+	pass
+	var file=FileAccess.open("res://savefile1.txt",FileAccess.WRITE)
+	if file:
+		file.store_var(introStageComplete)
+		#file.store_string("\n")
+		file.store_var(weaponNumberEnabled)
+		file.close()
+		push_warning(name,":Save Data complete!")
+		print(name,":Save Data complete!\n")
+		print(introStageComplete,"\n",weaponNumberEnabled)
+func loadData():
+	if not FileAccess.file_exists("res://savefile1.txt"):
+		push_warning(name,":File does not exist..creating new entry")
+		print(name,":File does not exist..creating new entry\n")
+		saveData()
+		return
+	var file=FileAccess.open("res://savefile1.txt",FileAccess.READ)
+	#get_tree().create_timer(1).timeout
+	if file:
+		var introSavedState=file.get_var()
+		introStageComplete=introSavedState
+		var weaponEnabledSaveState=file.get_var()
+		weaponNumberEnabled=weaponEnabledSaveState
+		push_warning(name,":Successfully loaded data")
+		print(name,":Successfully loaded data\n")
+		print(introStageComplete,"\n",weaponNumberEnabled)

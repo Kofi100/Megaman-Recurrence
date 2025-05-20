@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7qvqf2las08t"]
+[gd_scene load_steps=12 format=3 uid="uid://b7qvqf2las08t"]
 
 [ext_resource type="Texture2D" uid="uid://sjntmg6ajse5" path="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png" id="1_2kwlq"]
 [ext_resource type="Script" uid="uid://cjw203u45k6wp" path="res://levels/beginning_scene.gd" id="1_ts5or"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_p55fo"]
-[ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="4_oyjs6"]
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="5_dfu3o"]
 [ext_resource type="Texture2D" uid="uid://csbm53joufv0" path="res://assets/sprites/miscelleaneous/1BoxArt_Samuel_X7.png" id="6_l66ht"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="7_clrv8"]
@@ -65,9 +64,7 @@ text = "PRESS START BUTTOn"
 wait_time = 0.2
 
 [node name="main_Menu_BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_oyjs6")
 autoplay = true
-parameters/looping = true
 script = ExtResource("5_dfu3o")
 
 [node name="boxArtOrTitle" type="AnimatedSprite2D" parent="."]

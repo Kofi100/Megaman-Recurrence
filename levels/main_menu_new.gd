@@ -52,9 +52,9 @@ func _process(delta: float) -> void:
 				#get_tree().change_scene_to_file("res://levels/input_rebind_menu.tscn")
 		match MenuOptionNo:
 			0:
-				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
+				get_tree().change_scene_to_file("res://levels/other_stages/intro_stage.tscn")
 			1:
-				pass
+				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
 				
 			2:
 				get_tree().change_scene_to_file("res://levels/other_stages/tutorial_stage.tscn")

@@ -19,7 +19,7 @@ func _on_area_2d_body_entered(body):
 		$sound_effect.play()
 		for i in $Area2D.get_children():
 			if i is CollisionShape2D or i is CollisionPolygon2D:
-				i.disabled=true
+				i.set_deferred("disabled",true)
 		
 
 
