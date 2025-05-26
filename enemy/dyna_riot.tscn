@@ -37,7 +37,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"artISANEXPLOSION",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -71,7 +71,7 @@ script = ExtResource("1_oeuj1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bu326")
-animation = &"artISANEXPLOSION"
+animation = &"idle"
 
 [node name="CollisionShape2D_Idle" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 4.5)

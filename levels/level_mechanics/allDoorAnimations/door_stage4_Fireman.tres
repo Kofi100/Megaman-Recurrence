@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://br2kiqmc3lg4i"]
+
+[ext_resource type="Texture2D" uid="uid://3bqkvravfl6c" path="res://assets/sprites/miscelleaneous/doorAnimations/door_spritesheet_Stage4_Fireman.png" id="1_s2weq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuclq"]
+atlas = ExtResource("1_s2weq")
+region = Rect2(0, 0, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xgl4"]
+atlas = ExtResource("1_s2weq")
+region = Rect2(16, 0, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b1k3"]
+atlas = ExtResource("1_s2weq")
+region = Rect2(0, 65, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg6sc"]
+atlas = ExtResource("1_s2weq")
+region = Rect2(16, 65, 16, 65)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuclq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xgl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b1k3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg6sc")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"open_close",
+"speed": 10.0
+}]

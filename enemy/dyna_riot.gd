@@ -56,7 +56,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			var explosion=preload("res://enemy/boss/count_bomb_explosion_radius.tscn").instantiate()
 			add_child(explosion)
 			explosion.parent=self
-			explosion.scale=Vector2(1.5,1.5)
+			explosion.scale=Vector2(2,2)
 			explosion.playerdamagevalue=5
 
 

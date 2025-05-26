@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bd8e0x4cvtwbf"]
+
+[ext_resource type="Texture2D" uid="uid://d0pu7hfmivucq" path="res://assets/sprites/miscelleaneous/door_spritesheet.png" id="1_07bki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17ty"]
+atlas = ExtResource("1_07bki")
+region = Rect2(0, 0, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxwam"]
+atlas = ExtResource("1_07bki")
+region = Rect2(16, 0, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vthrf"]
+atlas = ExtResource("1_07bki")
+region = Rect2(0, 65, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5tg4"]
+atlas = ExtResource("1_07bki")
+region = Rect2(16, 65, 16, 65)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxwam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vthrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5tg4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"open_close",
+"speed": 10.0
+}]

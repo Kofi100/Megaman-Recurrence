@@ -329,7 +329,7 @@ func _physics_process(delta):
 		
 		$weapon_display.frame = GlobalScript.weapon_number
 
-		if leave_bool == false:
+		if leave_bool == false and player_ready==true:
 			if GlobalScript.playerhasbeenhit:
 				$hitbox/CollisionShape2D.disabled = true
 			elif not GlobalScript.playerhasbeenhit:
@@ -743,11 +743,16 @@ func dash_function(delta):
 				get_parent().add_child(dash_effect_instance)
 				velocity.x = 10000 * delta
 				move_and_slide()
-		if Input.is_action_pressed("dash"):
-			if $dash/Timer.time_left > 0:
-				anim.play("dash")
-				#Offset for Dash animation lies here.
-				anim.offset.y=3
+		#if $dash/Timer.time_left()
+		#if :
+		if Input.is_action_pressed("dash") and $dash/Timer.time_left > 0:
+			anim.play("dash")
+			if anim.flip_h==false:
+				velocity.x=-dashspeed*delta
+			elif anim.flip_h==true:
+				velocity.x=dashspeed*delta
+			#Offset for Dash animation lies here.
+			anim.offset.y=3
 			#elif $dash/Timer.time_left<=0:
 			#velocity.x=0
 			#anim.play("idle")

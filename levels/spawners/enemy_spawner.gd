@@ -164,7 +164,7 @@ func _process(_delta):
 					#print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
 			if (enemy_to_spawn == "homer" or enemy_to_spawn == "upndown" or enemy_to_spawn=="bombomb") and new_enemy == null and $spawn_homer_timer.time_left <= 0:
 				$spawn_homer_timer.start()
-			if enemy_to_spawn=="batallion_balloon_delivery":
+			if enemy_to_spawn=="batallion_balloon_delivery" and is_instance_valid(enemy_to_spawn):
 				new_enemy.riotToDeliver=riotToDeliver
 			#if GlobalScreenTransitionTimer.is_stopped()==false:
 				#if new_enemy:
