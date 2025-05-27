@@ -5,7 +5,7 @@ extends CanvasLayer
 @onready var seconds = $timer/seconds
 @onready var millsecs = $timer/millsecs
 var music_node
-var selection_index = 1  #var tween=create_tween() #use tween to create a transiton effect for increasing the health of the player
+var selection_index = 0  #var tween=create_tween() #use tween to create a transiton effect for increasing the health of the player
 ##This boolean pauses all inputs to the HUD for some effects.
 var pause_input = false
 var color
@@ -148,7 +148,7 @@ func _process(_delta):
 		$timer/seconds_timer.set_timer_process_callback(true)
 
 	if selection_index < 0:
-		selection_index = 13
+		selection_index = 12
 	elif selection_index > 16:
 		selection_index = 0
 	if !pause_input:  #if input is not paused yet,#and selection_index!=3
@@ -173,30 +173,41 @@ func _process(_delta):
 		$timer/InGame.visible=true
 	if justPausedGameManually == true and switchedMenus == false:
 		if Input.is_action_just_pressed("move_left"):
+			var originalIndex=selection_index
 			selection_index -= 1
+			if MegamanAndItems.weaponNumberEnabled.has(selection_index):
+				while selection_index>=0 and (selection_index<13 and not MegamanAndItems.weaponNumberEnabled[selection_index]):
+					selection_index-=1
+					if selection_index==-1:
+						selection_index=12
+				
 			$switch_menu_option_sound.play(0)
+			#if selection_index<13:
+				#if MegamanAndItems.weaponNumberEnabled[selection_index]==false:
+					#selection_index-=1
+					#GlobalScript.weapon_number-=1
 		elif Input.is_action_just_pressed("move_right"):
+			var originalIndex=selection_index
 			selection_index += 1
+			#if MegamanAndItems.weaponNumberEnabled.has(selection_index)
+			if MegamanAndItems.weaponNumberEnabled.has(selection_index):  #and selection_index!=12:
+				while selection_index<12 and not MegamanAndItems.weaponNumberEnabled[selection_index]:
+					selection_index+=1
 			$switch_menu_option_sound.play(0)
+			#if selection_index<13:
+				#if GlobalScript.weapon_number==selection_index and MegamanAndItems.weaponNumberEnabled[selection_index]==false:
+					#selection_index+=1
+					#GlobalScript.weapon_number+=1
+		print(GlobalScript.weapon_number,selection_index)
 	elif justPausedGameManually==false:
 	#checks if e tank and other options were selected before 
 	#resetting the selection Index and weapon Number since weapons get affected too
-		if selection_index>=13:
+		if selection_index>=12:
 			selection_index = 0
 			GlobalScript.weapon_number=0
 	if justPausedGameManually == true:
-		#if GlobalScript.weapon_number==selection_index and MegamanAndItems.weaponNumberEnabled[selection_index]==false:
-			#selection_index+=1
-		#if selection_index==0:
-			#$pause_screen_setup/weapons/mm_buster.frame=0
-			#GlobalScript.weapon_number=0
-		#else:
-			#$pause_screen_setup/weapons/mm_buster.frame=1
-		#if selection_index==1 and MegamanAndItems.weaponNumberEnabled[1]==true:
-			#$pause_screen_setup/weapons/r_Alarm.frame=0
-			#GlobalScript.weapon_number=1
-		#else:
-			#$pause_screen_setup/weapons/r_Alarm.frame=1
+		if selection_index<13:
+			GlobalScript.weapon_number=selection_index
 		switchToWeaponNumber(selection_index,0,$pause_screen_setup/weapons/mm_buster)
 		switchToWeaponNumber(selection_index,1,$pause_screen_setup/weapons/r_Alarm)
 		switchToWeaponNumber(selection_index,2,null)
@@ -205,14 +216,16 @@ func _process(_delta):
 		switchToWeaponNumber(selection_index,5,$pause_screen_setup/weapons/o_Stomper)
 		switchToWeaponNumber(selection_index,6,$pause_screen_setup/weapons/s_Strike)
 		switchToWeaponNumber(selection_index,7,$pause_screen_setup/weapons/s_Pillow)
-		
+		switchToWeaponNumber(selection_index,8,null)
+		switchToWeaponNumber(selection_index,9,null)
+		switchToWeaponNumber(selection_index,10,null)
 		#if selection_index==5 and MegamanAndItems.weaponNumberEnabled[5]==true:
 			#$pause_screen_setup/weapons/o_Stomper.frame=0
 			#GlobalScript.weapon_number=5
 		#else:
 			#$pause_screen_setup/weapons/o_Stomper.frame=1
 		
-		if selection_index == 13:  #energy tank selected
+		if selection_index == 12:  #energy tank selected
 			$pause_screen_setup/e_tank.play("selected")
 			if Input.is_action_just_pressed("shoot") and GlobalScript.health < GlobalScript.max_health:  #shoot pressed,health<max_health
 				if GlobalScript.energy_tank_no > 0:  #if energy tank no>0,
@@ -228,11 +241,11 @@ func _process(_delta):
 					#if tween.
 		else:
 			$pause_screen_setup/e_tank.play("not_selected")
-		if selection_index == 14:
+		if selection_index == 13:
 			$pause_screen_setup/w_tank.play("selected")
 		else:
 			$pause_screen_setup/w_tank.play("not_selected")
-		if selection_index==15:
+		if selection_index==14:
 			$pause_screen_setup/buttons/moveNextScreenbtn.play("selected")
 			if Input.is_action_just_pressed("shoot") and switchedMenus==false:
 				if screen2==null:
@@ -253,7 +266,7 @@ func _process(_delta):
 					#$pause_screen_setup.
 		else:
 			$pause_screen_setup/buttons/moveNextScreenbtn.play("notSelected")
-		if selection_index==16:
+		if selection_index==15:
 			$pause_screen_setup/buttons/quitStageBtn.play("selected")
 			if Input.is_action_just_pressed("shoot"):
 				get_tree().paused=false
@@ -266,7 +279,7 @@ func switchToWeaponNumber(selectionIdx,weaponIdx,sprite:Sprite2D):
 	if selectionIdx==weaponIdx and is_instance_valid(sprite):
 		if MegamanAndItems.weaponNumberEnabled[weaponIdx]==true:
 			sprite.frame=0
-			GlobalScript.weapon_number=selection_index
+			
 			var path=String(sprite.get_path())
 			var labelPath=NodePath(path+"/Label")#path+"/Label"
 			var label=get_node(labelPath)
