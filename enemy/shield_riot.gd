@@ -2,6 +2,7 @@ extends enemy
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 var hasJumped:bool=false
 var speed:int=5000
+@onready var shield=$shield_Riot_shield
 func _ready() -> void:
 	playerdamagevalue = 3
 	health=5
@@ -30,11 +31,13 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 	elif distance_x >= 0:
 		$AnimatedSprite2D.flip_h = true
-	match $AnimatedSprite2D.flip_h:
-		false:
-			$shield_Riot_shield.global_position=$Marker2D_L.global_position
-		true:
-			$shield_Riot_shield.global_position=$Marker2D_R.global_position
+	#checks if shield is valid before setting position
+	if is_instance_valid(shield):
+		match $AnimatedSprite2D.flip_h:
+			false:
+				shield.global_position=$Marker2D_L.global_position
+			true:
+				shield.global_position=$Marker2D_R.global_position
 	move_and_slide()
 #print("hello")
 func jump_To_Target(delta):

@@ -95,11 +95,6 @@ func _process(_delta):
 
 #endregion
 
-	#minutes.text = str(GlobalScript.minute_level).pad_zeros(2)
-	#seconds.text = str(int(GlobalScript.second_level)).pad_zeros(2)
-	#millsecs.text = str(int(GlobalScript.milliseconds))
-	#millsecs=int()
-	#$pause_screen_setup/ConfirmationDialog.global_position=Vector2(500,500)
 	#print($map.get_size())
 	$pause_screen_setup/ProgressBar.value = GlobalScript.health
 	health_bar.value = GlobalScript.health
@@ -152,10 +147,10 @@ func _process(_delta):
 		GlobalScript.start_level_timer()
 		$timer/seconds_timer.set_timer_process_callback(true)
 
-	if selection_index < 1:
-		selection_index = 2
-	elif selection_index > 4:
-		selection_index = 1
+	if selection_index < 0:
+		selection_index = 13
+	elif selection_index > 16:
+		selection_index = 0
 	if !pause_input:  #if input is not paused yet,#and selection_index!=3
 		if Input.is_action_just_pressed("pause") and GlobalScript.health > 0 and Player.playerCharacter.player_ready==true and switchedMenus==false :  #and i pressed the pause button,
 			if justPausedGameManually == false and get_tree().paused == false and GlobalScript.health > 0:  #if the tree is paused/not,set it to the opposite state
@@ -184,9 +179,40 @@ func _process(_delta):
 			selection_index += 1
 			$switch_menu_option_sound.play(0)
 	elif justPausedGameManually==false:
-		selection_index = 1
+	#checks if e tank and other options were selected before 
+	#resetting the selection Index and weapon Number since weapons get affected too
+		if selection_index>=13:
+			selection_index = 0
+			GlobalScript.weapon_number=0
 	if justPausedGameManually == true:
-		if selection_index == 1:  #energy tank selected
+		#if GlobalScript.weapon_number==selection_index and MegamanAndItems.weaponNumberEnabled[selection_index]==false:
+			#selection_index+=1
+		#if selection_index==0:
+			#$pause_screen_setup/weapons/mm_buster.frame=0
+			#GlobalScript.weapon_number=0
+		#else:
+			#$pause_screen_setup/weapons/mm_buster.frame=1
+		#if selection_index==1 and MegamanAndItems.weaponNumberEnabled[1]==true:
+			#$pause_screen_setup/weapons/r_Alarm.frame=0
+			#GlobalScript.weapon_number=1
+		#else:
+			#$pause_screen_setup/weapons/r_Alarm.frame=1
+		switchToWeaponNumber(selection_index,0,$pause_screen_setup/weapons/mm_buster)
+		switchToWeaponNumber(selection_index,1,$pause_screen_setup/weapons/r_Alarm)
+		switchToWeaponNumber(selection_index,2,null)
+		switchToWeaponNumber(selection_index,3,null)
+		switchToWeaponNumber(selection_index,4,null)
+		switchToWeaponNumber(selection_index,5,$pause_screen_setup/weapons/o_Stomper)
+		switchToWeaponNumber(selection_index,6,$pause_screen_setup/weapons/s_Strike)
+		switchToWeaponNumber(selection_index,7,$pause_screen_setup/weapons/s_Pillow)
+		
+		#if selection_index==5 and MegamanAndItems.weaponNumberEnabled[5]==true:
+			#$pause_screen_setup/weapons/o_Stomper.frame=0
+			#GlobalScript.weapon_number=5
+		#else:
+			#$pause_screen_setup/weapons/o_Stomper.frame=1
+		
+		if selection_index == 13:  #energy tank selected
 			$pause_screen_setup/e_tank.play("selected")
 			if Input.is_action_just_pressed("shoot") and GlobalScript.health < GlobalScript.max_health:  #shoot pressed,health<max_health
 				if GlobalScript.energy_tank_no > 0:  #if energy tank no>0,
@@ -202,11 +228,11 @@ func _process(_delta):
 					#if tween.
 		else:
 			$pause_screen_setup/e_tank.play("not_selected")
-		if selection_index == 2:
+		if selection_index == 14:
 			$pause_screen_setup/w_tank.play("selected")
 		else:
 			$pause_screen_setup/w_tank.play("not_selected")
-		if selection_index==3:
+		if selection_index==15:
 			$pause_screen_setup/buttons/moveNextScreenbtn.play("selected")
 			if Input.is_action_just_pressed("shoot") and switchedMenus==false:
 				if screen2==null:
@@ -227,7 +253,7 @@ func _process(_delta):
 					#$pause_screen_setup.
 		else:
 			$pause_screen_setup/buttons/moveNextScreenbtn.play("notSelected")
-		if selection_index==4:
+		if selection_index==16:
 			$pause_screen_setup/buttons/quitStageBtn.play("selected")
 			if Input.is_action_just_pressed("shoot"):
 				get_tree().paused=false
@@ -236,6 +262,26 @@ func _process(_delta):
 			$pause_screen_setup/buttons/quitStageBtn.play("notSelected")
 	#print($pause_screen_setup/ProgressBar.value,previous_value)
 
+func switchToWeaponNumber(selectionIdx,weaponIdx,sprite:Sprite2D):
+	if selectionIdx==weaponIdx and is_instance_valid(sprite):
+		if MegamanAndItems.weaponNumberEnabled[weaponIdx]==true:
+			sprite.frame=0
+			GlobalScript.weapon_number=selection_index
+			var path=String(sprite.get_path())
+			var labelPath=NodePath(path+"/Label")#path+"/Label"
+			var label=get_node(labelPath)
+			#print(labelPath)
+			label.set_modulate(Color.BLUE)
+			#$pause_screen_setup/life_icon/Label.font_color
+	
+	else:
+		if is_instance_valid(sprite):
+			sprite.frame=1
+			var path=String(sprite.get_path())
+			var labelPath=NodePath(path+"/Label")#path+"/Label"
+			var label=get_node(labelPath)
+			#print(labelPath)
+			label.set_modulate(Color.WHITE)
 
 func tween_finished():
 	GlobalScript.health = GlobalScript.max_health
@@ -268,26 +314,6 @@ func weapon_energy_update():
 		$weapon_energy.value=MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]
 		$weapon_energy/text_weapon_energy.text=str(int(MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]))
 		MegamanAndItems.change_palette($weapon_energy)
-	#match GlobalScript.weapon_number:
-		#1:
-			##$weapon_energy.set_modulate(Color(255, 4, 28, 255))
-			#
-			#$weapon_energy.value = MegamanAndItems.weapon1energy
-			#MegamanAndItems.change_palette($weapon_energy)
-			##$weapon_energy.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
-			##$weapon_energy.material.set_shader_parameter("bodycolori", (Vector4i(255,255,255,255)) / 255)
-			##$weapon_energy.material.set_shader_parameter("bodycolorii", (Vector4i(255,0,0,255)) / 255)
-			#$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon1energy)
-		#2:
-			##$weapon_energy.set_modulate(Color(255, 4, 28, 255))
-			#$weapon_energy.value = MegamanAndItems.weapon2energy
-			#MegamanAndItems.change_palette($weapon_energy)
-			#$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon2energy)
-		#3:
-			##$weapon_energy.set_modulate(Color.MINT_CREAM)
-			#$weapon_energy.value = MegamanAndItems.weapon3energy
-			#MegamanAndItems.change_palette($weapon_energy)
-			#$weapon_energy/text_weapon_energy.text=str(MegamanAndItems.weapon3energy)
 	update_energy_pause_menu()
 
 

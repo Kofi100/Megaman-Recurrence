@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=61 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" uid="uid://c2d8ca2gmbv22" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://ceiqj8bjouqre" path="res://assets/sprites/miscelleaneous/pause_screen_setup3.png" id="2_jxh0c"]
@@ -17,7 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://b1oohir875cby" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_New.png" id="10_b5n2o"]
 [ext_resource type="Texture2D" uid="uid://u3p72jwu1vfj" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_New.png" id="11_m5djj"]
 [ext_resource type="Texture2D" uid="uid://d3yeluainukhd" path="res://assets/sprites/miscelleaneous/progress_bar_megaman_texture.png" id="12_386i2"]
+[ext_resource type="Texture2D" uid="uid://o1nyc7ijj4vy" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/megaBuster.png" id="14_4sr84"]
+[ext_resource type="Texture2D" uid="uid://ci4c3opwa4iga" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/ringAlarm.png" id="15_4hidn"]
+[ext_resource type="Texture2D" uid="uid://bhremofn54vty" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/ollieStomper.png" id="16_4hidn"]
 [ext_resource type="Texture2D" uid="uid://bteovfr5orkh7" path="res://assets/sprites/miscelleaneous/ready_recreated.png" id="16_x5lfv"]
+[ext_resource type="Texture2D" uid="uid://b62glp3nbtju3" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/satelliteStrike.png" id="17_ft544"]
+[ext_resource type="Texture2D" uid="uid://xcbpmjf38vc4" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/slumberPillow.png" id="18_88lmw"]
 [ext_resource type="Texture2D" uid="uid://dtp8lf4clnany" path="res://assets/sprites/miscelleaneous/menus/pause_menu_buttons.png" id="18_mmlst"]
 
 [sub_resource type="Animation" id="Animation_nxwht"]
@@ -452,7 +457,6 @@ texture = ExtResource("2_jxh0c")
 centered = false
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("9_lhw3c")
 centered = false
 
@@ -552,22 +556,22 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-160, -115)
 
 [node name="mm_buster" type="Sprite2D" parent="pause_screen_setup/weapons"]
-position = Vector2(17, 54)
-texture = ExtResource("6_vmhtx")
-hframes = 4
+position = Vector2(200, 187)
+texture = ExtResource("14_4sr84")
+hframes = 2
 
 [node name="Label" type="Label" parent="pause_screen_setup/weapons/mm_buster"]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
-offset_left = 12.0
-offset_top = 5.0
-offset_right = 106.0
-offset_bottom = 23.0
+offset_left = 18.0
+offset_top = -4.0
+offset_right = 142.0
+offset_bottom = 14.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
-text = "Buster"
+text = "M. Buster"
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/mm_buster"]
@@ -576,10 +580,164 @@ anchor_left = -0.863283
 anchor_top = -3.29786
 anchor_right = -0.791283
 anchor_bottom = -3.27286
-offset_left = 213.813
-offset_top = 184.766
-offset_right = 269.661
-offset_bottom = 192.366
+offset_left = 30.8125
+offset_top = 51.7658
+offset_right = 86.6605
+offset_bottom = 59.3658
+theme = ExtResource("7_ixl55")
+max_value = 28.0
+value = 28.0
+texture_progress = ExtResource("12_386i2")
+metadata/_edit_use_anchors_ = true
+
+[node name="r_Alarm" type="Sprite2D" parent="pause_screen_setup/weapons"]
+position = Vector2(200, 203)
+texture = ExtResource("15_4hidn")
+hframes = 2
+
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/r_Alarm"]
+modulate = Color(1, 0.843137, 0.439216, 1)
+anchors_preset = -1
+anchor_top = -0.3125
+anchor_bottom = -0.3125
+offset_left = 18.0
+offset_top = -4.0
+offset_right = 128.0
+offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+theme_override_fonts/font = ExtResource("5_g1yve")
+text = "R. ALARM"
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/r_Alarm"]
+anchors_preset = -1
+anchor_left = -0.863283
+anchor_top = -3.29786
+anchor_right = -0.791283
+anchor_bottom = -3.27286
+offset_left = 30.8125
+offset_top = 51.7658
+offset_right = 86.6605
+offset_bottom = 59.3658
+theme = ExtResource("7_ixl55")
+max_value = 28.0
+value = 28.0
+texture_progress = ExtResource("12_386i2")
+metadata/_edit_use_anchors_ = true
+
+[node name="o_Stomper" type="Sprite2D" parent="pause_screen_setup/weapons"]
+position = Vector2(200, 267)
+texture = ExtResource("16_4hidn")
+hframes = 2
+
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/o_Stomper"]
+anchors_preset = -1
+anchor_top = -0.3125
+anchor_bottom = -0.3125
+offset_left = 18.0
+offset_top = -4.0
+offset_right = 158.0
+offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+theme_override_fonts/font = ExtResource("5_g1yve")
+text = "o. stomper"
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/o_Stomper"]
+anchors_preset = -1
+anchor_left = -0.863283
+anchor_top = -3.29786
+anchor_right = -0.791283
+anchor_bottom = -3.27286
+offset_left = 30.8125
+offset_top = 51.7658
+offset_right = 86.6605
+offset_bottom = 59.3658
+theme = ExtResource("7_ixl55")
+max_value = 28.0
+value = 28.0
+texture_progress = ExtResource("12_386i2")
+metadata/_edit_use_anchors_ = true
+
+[node name="s_Strike" type="Sprite2D" parent="pause_screen_setup/weapons"]
+position = Vector2(312, 187)
+texture = ExtResource("17_ft544")
+hframes = 2
+
+[node name="ColorRect" type="ColorRect" parent="pause_screen_setup/weapons/s_Strike"]
+offset_left = 15.0
+offset_top = -9.0
+offset_right = 82.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/s_Strike"]
+anchors_preset = -1
+anchor_top = -0.3125
+anchor_bottom = -0.3125
+offset_left = 17.0
+offset_top = -4.0
+offset_right = 127.0
+offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+theme_override_fonts/font = ExtResource("5_g1yve")
+text = "S. STRIKE"
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/s_Strike"]
+anchors_preset = -1
+anchor_left = -0.863283
+anchor_top = -3.29786
+anchor_right = -0.791283
+anchor_bottom = -3.27286
+offset_left = 30.8125
+offset_top = 51.7658
+offset_right = 86.6605
+offset_bottom = 59.3658
+theme = ExtResource("7_ixl55")
+max_value = 28.0
+value = 28.0
+texture_progress = ExtResource("12_386i2")
+metadata/_edit_use_anchors_ = true
+
+[node name="s_Pillow" type="Sprite2D" parent="pause_screen_setup/weapons"]
+position = Vector2(312, 203)
+texture = ExtResource("18_88lmw")
+hframes = 2
+
+[node name="ColorRect2" type="ColorRect" parent="pause_screen_setup/weapons/s_Pillow"]
+offset_left = 15.0
+offset_top = -8.0
+offset_right = 82.0
+offset_bottom = -1.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/s_Pillow"]
+anchors_preset = -1
+anchor_top = -0.3125
+anchor_bottom = -0.3125
+offset_left = 17.0
+offset_top = -4.0
+offset_right = 137.0
+offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+theme_override_fonts/font = ExtResource("5_g1yve")
+text = "S. PILLOW"
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/s_Pillow"]
+anchors_preset = -1
+anchor_left = -0.863283
+anchor_top = -3.29786
+anchor_right = -0.791283
+anchor_bottom = -3.27286
+offset_left = 30.8125
+offset_top = 51.7658
+offset_right = 86.6605
+offset_bottom = 59.3658
 theme = ExtResource("7_ixl55")
 max_value = 28.0
 value = 28.0
@@ -776,6 +934,8 @@ offset_bottom = 39.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "Timer:xx:xx"
+
+[node name="Node2D" type="Node2D" parent="pause_screen_setup"]
 
 [node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_vp1wl")

@@ -33,7 +33,6 @@ b = Vector2(-0.249981, 34.3333)
 
 [node name="door" type="StaticBody2D"]
 script = ExtResource("1_5oyk0")
-greyReplacement = Color(0.737255, 0.737255, 0.737255, 1)
 whiteReplacement = Color(1, 0.988235, 0.988235, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

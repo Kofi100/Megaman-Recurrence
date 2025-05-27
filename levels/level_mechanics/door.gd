@@ -30,7 +30,11 @@ func _process(_delta):
 	#change_color(animated_sprite_2d,greyReplacement,whiteReplacement)
 	#change_color(animated_sprite_2d_2,greyReplacement,whiteReplacement)
 	if spriteframes!=null:
-		pass
+		$AnimatedSprite2D.sprite_frames=spriteframes
+		$AnimatedSprite2D2.sprite_frames=spriteframes
+	else:
+		$AnimatedSprite2D.sprite_frames=load("res://levels/level_mechanics/doorAnimationTemplate.tres")
+		$AnimatedSprite2D2.sprite_frames=load("res://levels/level_mechanics/doorAnimationTemplate.tres")
 	if Engine.is_editor_hint():
 		pass
 	elif not Engine.is_editor_hint():

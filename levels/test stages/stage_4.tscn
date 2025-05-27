@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://cqi6bkstebj1g"]
+[gd_scene load_steps=78 format=4 uid="uid://cqi6bkstebj1g"]
 
 [ext_resource type="Script" uid="uid://c5qbux1niteby" path="res://levels/test stages/stage_4.gd" id="1_c7otw"]
 [ext_resource type="Texture2D" uid="uid://dtyasmoomxvhh" path="res://assets/sprites/tilesets/test_stages/pipeline_tilemap.png" id="1_mhear"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="18_ukv8f"]
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="20_myl1r"]
 [ext_resource type="PackedScene" uid="uid://4w0eroyrq7m5" path="res://enemy/boss/fireman_boss.tscn" id="21_wewc2"]
-[ext_resource type="Shader" uid="uid://be5cw6khneqd0" path="res://levels/level_mechanics/door.gdshader" id="22_jb58g"]
+[ext_resource type="SpriteFrames" uid="uid://br2kiqmc3lg4i" path="res://levels/level_mechanics/allDoorAnimations/door_stage4_Fireman.tres" id="22_417rf"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_bbapg"]
 tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1, 1, 262144, 0, 65537, 262144, 1, 2, 327680, 0, 65538, 327680, 1)
@@ -274,22 +274,6 @@ size = Vector2(594.196, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la6ep"]
 size = Vector2(707.5, 27.9664)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_417rf"]
-resource_local_to_scene = true
-shader = ExtResource("22_jb58g")
-shader_parameter/greyOriginal = Color(0.737255, 0.737255, 0.737255, 1)
-shader_parameter/greyReplacement = Color(0.988235, 0.596078, 0.219608, 1)
-shader_parameter/whiteOriginal = Color(0, 0, 0, 1)
-shader_parameter/whiteReplacement = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0m3b"]
-resource_local_to_scene = true
-shader = ExtResource("22_jb58g")
-shader_parameter/greyOriginal = Color(0.737255, 0.737255, 0.737255, 1)
-shader_parameter/greyReplacement = Color(0.737255, 0.737255, 0.737255, 1)
-shader_parameter/whiteOriginal = Color(0.988235, 0.988235, 0.988235, 1)
-shader_parameter/whiteReplacement = Color(1, 0.988235, 0.988235, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u61wm"]
 size = Vector2(27.0688, 230)
@@ -926,24 +910,15 @@ position = Vector2(4547, -890)
 
 [node name="door2" parent="Node2D" instance=ExtResource("20_myl1r")]
 position = Vector2(5897, -913)
-greyReplacement = Color(0.247059, 0.247059, 0.454902, 1)
 whiteReplacement = Color(0.988235, 0.596078, 0.219608, 1)
 
 [node name="door" parent="Node2D" instance=ExtResource("20_myl1r")]
 position = Vector2(5624, -1056)
-greyReplacement = Color(0.247059, 0.247059, 0.454902, 1)
-whiteReplacement = Color(0.988235, 0.596078, 0.219608, 1)
+spriteframes = ExtResource("22_417rf")
 
 [node name="door3" parent="Node2D" instance=ExtResource("20_myl1r")]
 position = Vector2(5880, -1056)
-greyReplacement = Color(0.247059, 0.247059, 0.454902, 1)
-whiteReplacement = Color(0.988235, 0.596078, 0.219608, 1)
-
-[node name="AnimatedSprite2D" parent="Node2D/door3" index="0"]
-material = SubResource("ShaderMaterial_417rf")
-
-[node name="AnimatedSprite2D2" parent="Node2D/door3" index="1"]
-material = SubResource("ShaderMaterial_u0m3b")
+spriteframes = ExtResource("22_417rf")
 
 [node name="fireman_boss" parent="." instance=ExtResource("21_wewc2")]
 position = Vector2(6079, -1040)
@@ -979,4 +954,3 @@ shape = SubResource("RectangleShape2D_u61wm")
 [editable path="all_camera_systems/new_camera_system13"]
 [editable path="all_camera_systems/new_camera_system14"]
 [editable path="all_camera_systems/new_camera_system15"]
-[editable path="Node2D/door3"]

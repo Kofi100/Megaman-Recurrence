@@ -65,7 +65,7 @@ func _process(delta):
 		$bosses_display.visible=false
 		$screen_flicker.visible=false
 		$screen_flicker.stop()
-	print(get_node(weapon_capsules[0]).health)
+	#print(get_node(weapon_capsules[0]).health)
 	if get_node(weapon_capsules[0]).health==0 and get_node(weapon_capsules[1]).health==0 and get_node(weapon_capsules[2]).health==0:#get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
 		$explosion.set_emitting(true)
 		
