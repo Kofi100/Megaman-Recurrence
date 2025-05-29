@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 			#velocity.y=-20000*delta
 			jump_To_Target(delta)
 			hasJumped=true
+			pass
 			#$AnimatedSprite2D.play("jumping")
 	else:
 		hasJumped=false

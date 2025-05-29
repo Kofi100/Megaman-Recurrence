@@ -7,9 +7,16 @@ process_mode = 3
 script = ExtResource("1_odj72")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 247.0
-offset_right = 255.0
-offset_bottom = 76.0
+offset_left = 234.0
+offset_top = 15.0
+offset_right = 242.0
+offset_bottom = 91.0
 max_value = 40.0
-value = 38.0
+value = 40.0
 fill_mode = 3
+
+[node name="timeDelayPlayerClearSound" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="timeDelayPlayerClearSound" to="." method="_on_time_delay_player_clear_sound_timeout"]

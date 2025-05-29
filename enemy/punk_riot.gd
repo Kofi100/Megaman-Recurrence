@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		if shootRandomizeOnce==false:
 			shootRandomizer=randi_range(0,2)
 			shootRandomizeOnce=true
-		if $AnimatedSprite2D.frame==2 or $AnimatedSprite2D.frame==5 or $AnimatedSprite2D.frame==8:#match $AnimatedSprite2D.frame:
+		if $AnimatedSprite2D.frame==3 or $AnimatedSprite2D.frame==6 or $AnimatedSprite2D.frame==9:#match $AnimatedSprite2D.frame:
 			#2,5,8:
 				if shootOnce==false:
 					proj=preload("res://enemy/punk_riot_projectile.tscn").instantiate()
@@ -42,19 +42,19 @@ func _physics_process(delta: float) -> void:
 							proj.state="right"
 						if shootRandomizer==0:
 							match $AnimatedSprite2D.frame:
-								2:proj.miniState=1
-								5:proj.miniState=2
-								8:proj.miniState=3
+								3:proj.miniState=1
+								6:proj.miniState=2
+								9:proj.miniState=3
 						elif shootRandomizer==1:
 							match $AnimatedSprite2D.frame:
-								2:proj.miniState=3
-								5:proj.miniState=1
-								8:proj.miniState=2
+								3:proj.miniState=3
+								6:proj.miniState=1
+								9:proj.miniState=2
 						elif shootRandomizer==2:
 							match $AnimatedSprite2D.frame:
-								2:proj.miniState=2
-								5:proj.miniState=3
-								8:proj.miniState=1
+								3:proj.miniState=2
+								6:proj.miniState=3
+								9:proj.miniState=1
 					$shoot.play()
 					shootOnce=true
 		else:

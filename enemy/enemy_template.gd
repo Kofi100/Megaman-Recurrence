@@ -73,10 +73,13 @@ func spawn_collectables():
 			boss_defeated.emit()
 			self.set_physics_process(false)
 			self.visible = false
-			self.global_position = Vector2(-500, 500)
+			var explosionSpread=preload("res://miscellenaous/effects/explosion_scene.tscn").instantiate()
+			get_parent().add_child(explosionSpread)
+			explosionSpread.global_position=global_position
+			#self.global_position = Vector2(-500, 500)
 		var explosion = preload("res://enemy/effects/explosion_enemy.tscn")
 		var explsion_new = explosion.instantiate()
-		get_parent().add_child(explsion_new)
+		get_parent().add_child.call_deferred(explsion_new)
 		explsion_new.position = position
 var hurtEffectNo=2
 func hurtFlash(enemySprite):

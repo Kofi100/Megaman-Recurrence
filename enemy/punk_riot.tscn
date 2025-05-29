@@ -13,6 +13,10 @@ region = Rect2(0, 0, 50, 40)
 atlas = ExtResource("1_0gjp8")
 region = Rect2(50, 0, 50, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gbwd"]
+atlas = ExtResource("1_0gjp8")
+region = Rect2(200, 0, 50, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6pnc0"]
 atlas = ExtResource("1_0gjp8")
 region = Rect2(100, 0, 50, 40)
@@ -20,10 +24,6 @@ region = Rect2(100, 0, 50, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l3ppy"]
 atlas = ExtResource("1_0gjp8")
 region = Rect2(150, 0, 50, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2gbwd"]
-atlas = ExtResource("1_0gjp8")
-region = Rect2(200, 0, 50, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xmqf1"]
 animations = [{
@@ -41,6 +41,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yt5q8")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2gbwd")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6pnc0")
@@ -74,7 +77,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shoot",
-"speed": 10.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gjp8"]
@@ -92,7 +95,9 @@ script = ExtResource("1_rprwk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xmqf1")
-animation = &"idle"
+animation = &"shoot"
+frame = 12
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2.5)

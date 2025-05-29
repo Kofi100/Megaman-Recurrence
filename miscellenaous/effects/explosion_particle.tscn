@@ -55,4 +55,15 @@ SPEED = 5000.0
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_ppqlc")
 animation = &"explosion"
-frame_progress = 0.443961
+frame_progress = 0.273332
+
+[node name="life_Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(5.96046e-08, 1)
+scale = Vector2(1.1, 1.1)
+
+[connection signal="timeout" from="life_Timer" to="." method="_on_life_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,8 +1,8 @@
 extends enemy
 
 var miniState: int
-var base_speed: float = 500  # Increased from 50 for better movement
-var base_speedY:float=50
+var base_speed: float = 350  # Increased from 50 for better movement
+var base_speedY:float=30
 var bouncesLeft: int = 2
 var gravity: float = 300  # Reduced gravity for more controlled bounces
 var setDirection:bool=false

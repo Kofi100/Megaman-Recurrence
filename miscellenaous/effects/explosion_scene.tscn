@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dboyxxstj86mo"]
+[gd_scene load_steps=4 format=3 uid="uid://dboyxxstj86mo"]
 
 [ext_resource type="Script" uid="uid://dp1pisvvjb1ty" path="res://miscellenaous/effects/explosion_scene.gd" id="1_200c4"]
+[ext_resource type="AudioStream" uid="uid://p80uexe8652b" path="res://assets/sounds/dead.wav" id="2_8qapl"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="3_nipw6"]
 
 [node name="explosion_scene" type="Node2D"]
 script = ExtResource("1_200c4")
+
+[node name="BossDeadSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8qapl")
+script = ExtResource("3_nipw6")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"

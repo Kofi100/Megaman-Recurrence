@@ -136,12 +136,14 @@ func debug_print_custom(name_of_node, var_name_to_be_displayed, variable_name):
 
 
 func leaving(delta):
-	stop = true
-	for i in get_tree().current_scene.get_children(true):
-		if i.is_class("AudioStreamPlayer") or i.is_class("AudioStreamPlayer2D"):
-			i.stop()
+	if $leave_timer.time_left<$leave_timer.wait_time/2:
+		stop = true
+	#for i in get_tree().current_scene.get_children(true):
+		#if i.is_class("AudioStreamPlayer") or i.is_class("AudioStreamPlayer2D"):
+			#i.stop()
 	if $leave_timer.time_left <= 0:
-		velocity.y = 0
+		#velocity.y = 0
+		pass
 		if anim.animation != "spawn":
 			anim.play("spawn")
 		if anim.animation == "spawn" and anim.frame == 2:
@@ -172,7 +174,7 @@ func checkWeaponAvalability():
 				GlobalScript.weapon_number-=1
 			if WeaponCheckDirection==1:
 				GlobalScript.weapon_number+=1
-
+var enabledLeavingCode:bool=false
 func _physics_process(delta):
 #region reverse Gravity
 	#code for reverse gravity
@@ -193,9 +195,11 @@ func _physics_process(delta):
 			has_played_victory_sound = true
 			$all_sounds/level_cleared.play()
 
-		velocity.x = 0
+		#velocity.x = 0
 		$hitbox/CollisionShape2D.disabled = true
-		leaving(delta)
+		if  enabledLeavingCode:
+			leaving(delta)
+			
 	if $reset_cam_entry.time_left > 0:
 		$player_constants_checker_area2d/CollisionShape2D.disabled = true
 	elif $reset_cam_entry.time_left <= 0:
@@ -1165,29 +1169,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 			stun(deltaAlt)#using 0.1 since its close to delta(0.19998,i think)
 			anim.play("stun_air")
 
-var setAlarmWeaponPosToUp:bool=true
-func _on_alarm_weapon_switch_pos_timer_timeout() -> void:
-	#alternates b/n the true and false states(up and down states)
-	setAlarmWeaponPosToUp=!setAlarmWeaponPosToUp
-	#print(setAlarmWeaponPosToUp)
-	for i in range(alarmSignalInstanceArray.size()):
-		if alarmSignalInstanceArray[i]!=null:
-	#if alarmSignalInstance!=null and alarmSignalInstance2!=null:
-			alarmSignalInstanceArray[i].setAlarmWeaponPosToUp=setAlarmWeaponPosToUp
-
-
-func _on_alarm_weapon_time_out_timer_timeout() -> void:
-	#if alarmSignalInstance!=null and alarmSignalInstance2!=null:
-		#alarmSignalInstance.queue_free()
-		#alarmSignalInstance2.queue_free()
-	$weaponNodes/timers/alarmWeaponSwitchPosTimer.stop()
-	for i in range(alarmSignalInstanceArray.size()):
-		if alarmSignalInstanceArray[i]!=null:
-			alarmSignalInstanceArray[i]=null
-	
-	pass
-
-
 func _on_player_constants_checker_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("waterTiles"):
 		inWater=true
@@ -1202,3 +1183,7 @@ func _on_player_constants_checker_area_2d_body_exited(body: Node2D) -> void:
 		var waterSplash=preload("res://miscellenaous/effects/water_enter_exit_effect.tscn").instantiate()
 		waterSplash.position=position+Vector2(0,15)
 		get_parent().call_deferred("add_child",waterSplash)
+
+
+func _on_level_cleared_finished() -> void:
+	enabledLeavingCode=true

@@ -576,6 +576,7 @@ script = ExtResource("8_d6231")
 stream = ExtResource("15_hhrnh")
 volume_db = -10.0
 script = ExtResource("8_d6231")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
 [node name="mm10land" type="AudioStreamPlayer" parent="all_sounds"]
 stream = ExtResource("16_2ctiv")
@@ -657,6 +658,7 @@ theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "SPEED Y:"
 
 [node name="leave_timer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [node name="trigger_leave_timer" type="Timer" parent="."]
@@ -721,6 +723,7 @@ one_shot = true
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_shape_entered" from="hitbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="finished" from="all_sounds/level_cleared" to="." method="_on_level_cleared_finished"]
 [connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
 [connection signal="timeout" from="weapon_display/display_timer" to="." method="_on_display_timer_timeout"]
 [connection signal="timeout" from="timer_switch_cameras" to="." method="_on_timer_switch_cameras_timeout"]
@@ -736,7 +739,5 @@ one_shot = true
 [connection signal="timeout" from="whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
 [connection signal="body_entered" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_entered"]
 [connection signal="body_exited" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_exited"]
-[connection signal="timeout" from="weaponNodes/timers/alarmWeaponSwitchPosTimer" to="." method="_on_alarm_weapon_switch_pos_timer_timeout"]
-[connection signal="timeout" from="weaponNodes/timers/alarmWeaponTimeOutTimer" to="." method="_on_alarm_weapon_time_out_timer_timeout"]
 
 [editable path="dash"]

@@ -34,7 +34,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 10.0
+"speed": 15.0
 }]
 
 [node name="beginning_Scene" type="Node2D"]

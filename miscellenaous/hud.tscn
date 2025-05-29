@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://0mffs64l1aew" path="res://assets/sprites/miscelleaneous/1PauseMegaIcon_Samuel_X7.png" id="6_dueoh"]
 [ext_resource type="Texture2D" uid="uid://0x2sqe62giq7" path="res://assets/sprites/miscelleaneous/health_megaman.png" id="6_io84m"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="6_ja50w"]
-[ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="6_vmhtx"]
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="7_65oho"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="7_ixl55"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
@@ -24,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b62glp3nbtju3" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/satelliteStrike.png" id="17_ft544"]
 [ext_resource type="Texture2D" uid="uid://xcbpmjf38vc4" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/slumberPillow.png" id="18_88lmw"]
 [ext_resource type="Texture2D" uid="uid://dtp8lf4clnany" path="res://assets/sprites/miscelleaneous/menus/pause_menu_buttons.png" id="18_mmlst"]
+[ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="19_kw0r2"]
 
 [sub_resource type="Animation" id="Animation_nxwht"]
 resource_name = "fade_out"
@@ -460,6 +460,13 @@ centered = false
 texture = ExtResource("9_lhw3c")
 centered = false
 
+[node name="BGHider" type="ColorRect" parent="pause_screen_setup"]
+offset_left = 29.0
+offset_top = 62.0
+offset_right = 236.0
+offset_bottom = 161.0
+color = Color(0, 0, 0, 1)
+
 [node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
 position = Vector2(32, 192)
 sprite_frames = SubResource("SpriteFrames_g8a33")
@@ -561,6 +568,7 @@ texture = ExtResource("14_4sr84")
 hframes = 2
 
 [node name="Label" type="Label" parent="pause_screen_setup/weapons/mm_buster"]
+modulate = Color(1, 0.843137, 0.439216, 1)
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -596,7 +604,6 @@ texture = ExtResource("15_4hidn")
 hframes = 2
 
 [node name="Label" type="Label" parent="pause_screen_setup/weapons/r_Alarm"]
-modulate = Color(1, 0.843137, 0.439216, 1)
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -745,20 +752,19 @@ texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
 [node name="rush_coil" type="Sprite2D" parent="pause_screen_setup/weapons"]
-position = Vector2(170, 54)
-texture = ExtResource("6_vmhtx")
-hframes = 4
-frame = 1
+position = Vector2(312, 235)
+texture = ExtResource("19_kw0r2")
+vframes = 12
+frame = 9
 
 [node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_coil"]
-visible = false
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
-offset_left = 11.0
-offset_top = 5.0
-offset_right = 105.0
-offset_bottom = 23.0
+offset_left = 17.0
+offset_top = -4.0
+offset_right = 111.0
+offset_bottom = 14.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
@@ -766,10 +772,9 @@ text = "R.coil"
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_coil"]
-offset_left = 158.0
-offset_top = 181.0
-offset_right = 215.0
-offset_bottom = 189.0
+offset_left = 17.0
+offset_right = 74.0
+offset_bottom = 8.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 27.0
@@ -777,19 +782,19 @@ texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
 [node name="rush_jet" type="Sprite2D" parent="pause_screen_setup/weapons"]
-position = Vector2(170, 86)
-texture = ExtResource("6_vmhtx")
-hframes = 4
-frame = 2
+position = Vector2(312, 251)
+texture = ExtResource("19_kw0r2")
+vframes = 12
+frame = 10
 
 [node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_jet"]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
-offset_left = 11.0
-offset_top = 5.0
-offset_right = 105.0
-offset_bottom = 23.0
+offset_left = 17.0
+offset_top = -4.0
+offset_right = 111.0
+offset_bottom = 14.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
@@ -797,10 +802,41 @@ text = "R.jet"
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_jet"]
-offset_left = 158.0
-offset_top = 165.0
-offset_right = 215.0
-offset_bottom = 173.0
+offset_left = 17.0
+offset_top = -1.0
+offset_right = 74.0
+offset_bottom = 7.0
+theme = ExtResource("7_ixl55")
+max_value = 27.0
+value = 27.0
+texture_progress = ExtResource("12_386i2")
+metadata/_edit_use_anchors_ = true
+
+[node name="rush_search" type="Sprite2D" parent="pause_screen_setup/weapons"]
+position = Vector2(312, 267)
+texture = ExtResource("19_kw0r2")
+vframes = 12
+frame = 11
+
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_search"]
+anchors_preset = -1
+anchor_top = -0.3125
+anchor_bottom = -0.3125
+offset_left = 17.0
+offset_top = -4.0
+offset_right = 111.0
+offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+theme_override_fonts/font = ExtResource("5_g1yve")
+text = "R.search"
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_search"]
+offset_left = 17.0
+offset_top = -1.0
+offset_right = 74.0
+offset_bottom = 7.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 27.0

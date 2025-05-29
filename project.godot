@@ -17,8 +17,9 @@ config/tags=PackedStringArray("megaman")
 run/main_scene="uid://82y653b08mb4"
 config/features=PackedStringArray("4.3.2", "GL Compatibility")
 run/max_fps=60
-boot_splash/bg_color=Color(0.141176, 0.819608, 1, 1)
-boot_splash/image="res://assets/sprites/miscelleaneous/menu_megaman_custom_image.png"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://n78odx6cia5"
 config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png"
 
 [autoload]
@@ -34,7 +35,6 @@ OptionsSet="*res://resources/optionMenu_Settings.gd"
 
 window/size/viewport_width=256
 window/size/viewport_height=224
-window/size/mode=2
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 

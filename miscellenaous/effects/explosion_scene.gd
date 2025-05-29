@@ -18,6 +18,9 @@ func _ready():
 			add_child(new)
 			new.state=j
 			new.SPEED=new.SPEED/2
+	$BossDeadSound.play()
+	#X509Certificate
+	#var import=Input.new()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

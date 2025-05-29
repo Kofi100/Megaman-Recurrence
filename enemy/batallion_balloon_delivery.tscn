@@ -44,8 +44,8 @@ script = ExtResource("1_73hky")
 riotToDeliver = "shield_riot"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.5, -0.500001)
-scale = Vector2(5.45, 6.55)
+position = Vector2(-7.62939e-06, 2.5)
+scale = Vector2(12.1, 8.35)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1

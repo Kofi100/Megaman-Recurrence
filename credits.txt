@@ -7,6 +7,7 @@ Kofi K
 Samuel_X7
 Omega Prime
 Saito The One
+Ghost_Entity
 
 Robot Masters
 -------------
@@ -36,3 +37,4 @@ Berserk Boy
 Games
 FamiTard
 SpeedVGM
+Ghost_Entity

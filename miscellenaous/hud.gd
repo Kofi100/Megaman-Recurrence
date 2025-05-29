@@ -198,7 +198,7 @@ func _process(_delta):
 				#if GlobalScript.weapon_number==selection_index and MegamanAndItems.weaponNumberEnabled[selection_index]==false:
 					#selection_index+=1
 					#GlobalScript.weapon_number+=1
-		print(GlobalScript.weapon_number,selection_index)
+		#print(GlobalScript.weapon_number,selection_index)
 	elif justPausedGameManually==false:
 	#checks if e tank and other options were selected before 
 	#resetting the selection Index and weapon Number since weapons get affected too
@@ -217,8 +217,11 @@ func _process(_delta):
 		switchToWeaponNumber(selection_index,6,$pause_screen_setup/weapons/s_Strike)
 		switchToWeaponNumber(selection_index,7,$pause_screen_setup/weapons/s_Pillow)
 		switchToWeaponNumber(selection_index,8,null)
-		switchToWeaponNumber(selection_index,9,null)
-		switchToWeaponNumber(selection_index,10,null)
+		switchToWeaponNumber(selection_index,9,$pause_screen_setup/weapons/rush_coil)
+		switchToWeaponNumber(selection_index,10,$pause_screen_setup/weapons/rush_jet)
+		switchToWeaponNumber(selection_index,11,$pause_screen_setup/weapons/rush_search)
+		
+		#MegamanAndItems.weaponNumberEnabled[1]=false
 		#if selection_index==5 and MegamanAndItems.weaponNumberEnabled[5]==true:
 			#$pause_screen_setup/weapons/o_Stomper.frame=0
 			#GlobalScript.weapon_number=5
@@ -285,16 +288,23 @@ func switchToWeaponNumber(selectionIdx,weaponIdx,sprite:Sprite2D):
 			var label=get_node(labelPath)
 			#print(labelPath)
 			label.set_modulate(Color.BLUE)
+		else:
+			sprite.visible=false
 			#$pause_screen_setup/life_icon/Label.font_color
 	
 	else:
 		if is_instance_valid(sprite):
-			sprite.frame=1
-			var path=String(sprite.get_path())
-			var labelPath=NodePath(path+"/Label")#path+"/Label"
-			var label=get_node(labelPath)
-			#print(labelPath)
-			label.set_modulate(Color.WHITE)
+			if MegamanAndItems.weaponNumberEnabled[weaponIdx]==true:
+				sprite.frame=1
+				var path=String(sprite.get_path())
+				var labelPath=NodePath(path+"/Label")#path+"/Label"
+				var label=get_node(labelPath)
+				#print(labelPath)
+				label.set_modulate(Color.WHITE)
+			else:
+				sprite.visible=false
+#func showAvailableWeapons():
+	#pass
 
 func tween_finished():
 	GlobalScript.health = GlobalScript.max_health

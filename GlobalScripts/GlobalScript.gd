@@ -58,7 +58,10 @@ var lives = 3
 
 
 func _ready():
+	##multiples window screen size
+	##could be useful to increase screen sizes manually
 	DisplayServer.window_set_size(DisplayServer.window_get_size() * 3)
+	##
 	set_keys_to_players()
 	pass
 

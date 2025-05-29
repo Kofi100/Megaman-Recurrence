@@ -16,7 +16,7 @@ var charge_timer = 0
 	7:true,
 	8:false,
 	9:false,
-	10:false,
+	10:true,
 	11:false
 }
 #intro Stage completed

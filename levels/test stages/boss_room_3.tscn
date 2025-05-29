@@ -117,7 +117,7 @@ position = Vector2(40, 208)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_rl2m7")
+&"": SubResource("AnimationLibrary_rl2m7")
 }
 autoplay = "new_animation"
 

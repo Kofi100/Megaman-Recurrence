@@ -399,9 +399,8 @@ shape = SubResource("RectangleShape2D_ur6y8")
 [node name="all_camera_systems" type="Node2D" parent="."]
 visible = false
 
-[node name="new_camera_system" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system" index="0"]
@@ -415,10 +414,9 @@ position = Vector2(1534.5, 123.5)
 shape = SubResource("RectangleShape2D_pspai")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system2" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system2" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(2944, -119)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system2" index="0"]
@@ -432,10 +430,9 @@ position = Vector2(-5, 1)
 shape = SubResource("RectangleShape2D_cgfj6")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system3" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system3" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(3713, -360)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system3" index="0"]
@@ -449,10 +446,9 @@ position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_wx2h1")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system4" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system4" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(3204, -117)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system4" index="0"]
@@ -466,10 +462,9 @@ position = Vector2(124, -1.5)
 shape = SubResource("RectangleShape2D_3r3p8")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system5" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system5" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(3714, -119)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system5" index="0"]
@@ -483,10 +478,9 @@ position = Vector2(-1.5, -0.5)
 shape = SubResource("RectangleShape2D_8hwbd")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system6" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system6" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(3969, -356)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system6" index="0"]
@@ -500,10 +494,9 @@ position = Vector2(-1, -3)
 shape = SubResource("RectangleShape2D_ye8i6")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system7" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system7" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(4226, -359)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system7" index="0"]
@@ -517,10 +510,9 @@ position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_ie3bi")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system8" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system8" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(2946, 121)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system8" index="0"]
@@ -534,10 +526,9 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_4yfk7")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system9" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system9" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(129, 124)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system9" index="0"]
@@ -551,10 +542,9 @@ position = Vector2(-9, -4)
 shape = SubResource("RectangleShape2D_0d0ma")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system10" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system10" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(4224, -600)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system10" index="0"]
@@ -568,10 +558,9 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_u3xmi")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system11" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system11" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(4482, -601)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system11" index="0"]
@@ -585,10 +574,9 @@ position = Vector2(-2, -6)
 shape = SubResource("RectangleShape2D_32ojy")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system12" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system12" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(4479, -841)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system12" index="0"]
@@ -602,10 +590,9 @@ position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_5bb1l")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system13" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system13" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(4481, -1081)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system13" index="0"]
@@ -619,10 +606,9 @@ position = Vector2(-1.5, 0.5)
 shape = SubResource("RectangleShape2D_d70wq")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system14" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system14" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(4737, -1079)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system14" index="0"]
@@ -636,10 +622,9 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_lsar4")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system15" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("6_1dtem")]
+[node name="new_camera_system15" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("6_1dtem")]
 position = Vector2(4992, -1079)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system15" index="0"]
@@ -653,12 +638,11 @@ position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_dtryq")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(5152.27, -1141.62)
 script = ExtResource("15_xd2nn")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/Camera_System"]
@@ -672,12 +656,11 @@ limit_top = -1199
 limit_right = 5376
 limit_bottom = -960
 
-[node name="Camera_System3" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System3" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(5647.66, -1134.5)
 script = ExtResource("15_xd2nn")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/Camera_System3"]
@@ -691,12 +674,11 @@ limit_top = -1200
 limit_right = 5887
 limit_bottom = -960
 
-[node name="Camera_System2" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System2" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(5427.8, -1147.45)
 script = ExtResource("15_xd2nn")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/Camera_System2"]
@@ -710,12 +692,11 @@ limit_top = -1199
 limit_right = 5632
 limit_bottom = -959
 
-[node name="Camera_System4" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System4" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(5955, -1101.89)
 script = ExtResource("15_xd2nn")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/Camera_System4"]
@@ -731,142 +712,115 @@ limit_bottom = -959
 
 [node name="all_enemies" type="Node2D" parent="."]
 
-[node name="enemy_spawner" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(600, 150)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner2" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner2" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(947, 135)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner3" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner3" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(1144, 32)
 enemy_to_spawn = "homer"
-enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner4" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner4" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(609, 396)
 enemy_to_spawn = "met"
-enemy_Preview = NodePath("met")
 
-[node name="enemy_spawner5" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner5" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(1127, -96)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner6" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner6" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(1463, 150)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner7" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner7" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(1496, 64)
 enemy_to_spawn = "homer"
-enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner8" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner8" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(793, 80)
 enemy_to_spawn = "homer"
-enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner9" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner9" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(2651, 287)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner10" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner10" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(2770, 144)
 enemy_to_spawn = "burner_joe"
-enemy_Preview = NodePath("sniper_joe_variant_fire")
 
-[node name="enemy_spawner11" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner11" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(3000, 150)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner12" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner12" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(3655, -192)
 enemy_to_spawn = "homer"
-enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner27" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner27" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(3279, -25)
 enemy_to_spawn = "spikyoall"
 enemyVariant = "fire"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner13" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner13" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(4238, -362)
 enemy_to_spawn = "spikyoall"
 enemyVariant = "fire"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner14" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner14" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(2668, 170)
 enemy_to_spawn = "burner_joe"
-enemy_Preview = NodePath("sniper_joe_variant_fire")
 
-[node name="enemy_spawner15" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner15" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(4216, -280)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner26" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner26" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(2872.98, 240.307)
 enemy_to_spawn = "upndown"
-enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner16" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner16" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(3999, -158)
 enemy_to_spawn = "homer"
-enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner17" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner17" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(3744, -57)
 enemy_to_spawn = "burner_joe"
-enemy_Preview = NodePath("sniper_joe_variant_fire")
 
-[node name="enemy_spawner18" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner18" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(1092, 134)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner19" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner19" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(1720, 199)
 enemy_to_spawn = "burner_joe"
-enemy_Preview = NodePath("sniper_joe_variant_fire")
 
-[node name="enemy_spawner22" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner22" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(2464, 240)
 enemy_to_spawn = "upndown"
-enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner21" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner21" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(2376, 240)
 enemy_to_spawn = "upndown"
-enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner20" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner20" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(2056, 240.836)
 enemy_to_spawn = "upndown"
-enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner23" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner23" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(4412, -498)
 enemy_to_spawn = "upndown"
-enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner24" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner24" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(4527, -498)
 enemy_to_spawn = "upndown"
-enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner25" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner25" parent="all_enemies" instance=ExtResource("7_3vmgc")]
 position = Vector2(4480, -498)
 enemy_to_spawn = "upndown"
-enemy_Preview = NodePath("upndown")
 
 [node name="all_deathzones" type="Node2D" parent="."]
 

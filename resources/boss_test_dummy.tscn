@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://6sthxx6ehcl5"]
+
+[ext_resource type="Script" uid="uid://ouac80ugbfvm" path="res://resources/boss_test_dummy.gd" id="1_0q07c"]
+[ext_resource type="Texture2D" uid="uid://bjmaalo35e72x" path="res://assets/sprites/miscelleaneous/boss_Dummy.png" id="1_stu72"]
+[ext_resource type="PackedScene" uid="uid://c86rlo00ectxx" path="res://hud_boss_bar.tscn" id="3_3eb8j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stu72"]
+size = Vector2(16, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0q07c"]
+size = Vector2(10, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eb8j"]
+size = Vector2(14, 18)
+
+[node name="bossTest_Dummy" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_0q07c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -14.0
+offset_top = -36.0
+offset_right = 14.0
+offset_bottom = 36.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_stu72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15.5)
+shape = SubResource("RectangleShape2D_stu72")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_0q07c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_3eb8j")
+
+[node name="HUD_BossBar" parent="." instance=ExtResource("3_3eb8j")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

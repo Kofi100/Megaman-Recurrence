@@ -8,7 +8,8 @@ const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite_2d = $AnimatedSprite2D
-
+func _ready() -> void:
+	$life_Timer.start()
 
 func _physics_process(delta):
 	animated_sprite_2d.play('explosion')
@@ -36,3 +37,11 @@ func _physics_process(delta):
 			velocity.y=-SPEED*delta
 
 	move_and_slide()
+
+
+func _on_life_timer_timeout() -> void:
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
