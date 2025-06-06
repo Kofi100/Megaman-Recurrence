@@ -9,7 +9,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	pass
+	#writing this to delete this when screen transitions
+	#since enemy_spawner cannot handle this well itm
+	if not GlobalScreenTransitionTimer.is_stopped():
+		queue_free()
 	calculate_player_distance()
 	spawn_collectables()
 	hurtFlash($AnimatedSprite2D)

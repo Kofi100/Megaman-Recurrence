@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="4_viicr"]
 [ext_resource type="Texture2D" uid="uid://d21bm5jxlk81v" path="res://assets/sprites/enemies/bosses/shadowman.png" id="5_cpjfu"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_fgrhp"]
-[ext_resource type="AudioStream" uid="uid://c6rjahjyxac4h" path="res://assets/music/Mega Man 3 OST_ Game Start.mp3" id="7_uylcb"]
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="8_q66bg"]
+[ext_resource type="AudioStream" uid="uid://dl0o128um1fw2" path="res://assets/music/Stage_Start.ogg" id="8_rfmjh"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4gw3"]
 particle_flag_disable_z = true
@@ -148,7 +148,7 @@ libraries = {
 }
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_uylcb")
+stream = ExtResource("8_rfmjh")
 script = ExtResource("8_q66bg")
 
 [connection signal="timeout" from="lifeTimer" to="." method="_on_life_timer_timeout"]

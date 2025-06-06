@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cnqebubvm8bvy" path="res://assets/sounds/mm5_halfchargeshot.wav" id="12_8ofs0"]
 [ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="13_ljqus"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="14_m8qn1"]
-[ext_resource type="AudioStream" uid="uid://cfktcngh0i3yi" path="res://assets/sounds/mm4_5_victorytheme.wav" id="15_hhrnh"]
+[ext_resource type="AudioStream" uid="uid://dbylvqio5n61y" path="res://assets/music/Stage_Clear.ogg" id="15_2ctiv"]
 [ext_resource type="AudioStream" uid="uid://de1fpvmyt0f4l" path="res://assets/sounds/SFX 098_MM10Land.mp3" id="16_2ctiv"]
 [ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="16_2l2k5"]
 
@@ -573,8 +573,7 @@ stream = ExtResource("14_m8qn1")
 script = ExtResource("8_d6231")
 
 [node name="level_cleared" type="AudioStreamPlayer" parent="all_sounds"]
-stream = ExtResource("15_hhrnh")
-volume_db = -10.0
+stream = ExtResource("15_2ctiv")
 script = ExtResource("8_d6231")
 metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
@@ -658,7 +657,7 @@ theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "SPEED Y:"
 
 [node name="leave_timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 8.0
 one_shot = true
 
 [node name="trigger_leave_timer" type="Timer" parent="."]

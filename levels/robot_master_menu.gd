@@ -17,7 +17,11 @@ var selectionDictionary={
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$BGM/selectYourRobotMaster.play()
+	#$BGM/selectYourRobotMaster.play()
+	$BGM/intro.play()
+	await  $BGM/intro.finished
+	$BGM/loop.play()
+	#pitch for main dr.wily stages could be 0.9 to make it sinister
 	
 
 
@@ -63,7 +67,8 @@ func _process(delta):
 		if robotSelected==0 or robotSelected==2 or robotSelected==6 :
 			robotAllowToSelect = true
 			$Timers/screenTransTimer.start()
-			$BGM/selectYourRobotMaster.stop()
+			$BGM/intro.stop()
+			$BGM/loop.stop()
 		elif robotSelected == 9:
 			get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
 	#if robotSelected==0:

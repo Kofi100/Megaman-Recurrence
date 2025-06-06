@@ -230,6 +230,9 @@ func _physics_process(delta: float) -> void:
 			if new_enemy!=null: #using !=null cause i think just using "if new_enemy" can detect new_enemy variable 
 				#but cannot detect enemy instance if it gets deleted.
 				new_enemy.queue_free()
+			#if "enemyIns" in new_enemy :#!=null:
+				#if is_instance_valid(new_enemy.enemyIns):
+					#new_enemy.enemyIns.queue_free()
 
 func display_enemy(enemy_name: String, frame_display: int):
 	if enemy_to_spawn == enemy_name:

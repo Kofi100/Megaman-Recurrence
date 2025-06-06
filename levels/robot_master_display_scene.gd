@@ -11,12 +11,12 @@ func _ready():
 	if robotMaster==0:
 		var tween=create_tween()
 		#tween.tween_property($stuffToMakeDisappear/fireMan,"position",Vector2(125,101),1.5).from(Vector2(125,0))
-		tween.tween_property($stuffToMakeDisappear/fireMan,"position",Vector2(127,110),1.5).from(Vector2(300,110))
+		tween.tween_property($stuffToMakeDisappear/fireMan,"position",Vector2(127,110),1).from(Vector2(300,110))
 		tween.connect("finished",triggerNameEffect)
 		$stuffToMakeDisappear/nameOfRobotMaster.text="FIREMAN"
 	if robotMaster==2:
 		var tween=create_tween()
-		tween.tween_property($stuffToMakeDisappear/shadowMan,"position",Vector2(149,110),1.5).from(Vector2(300,110))
+		tween.tween_property($stuffToMakeDisappear/shadowMan,"position",Vector2(149,110),1).from(Vector2(300,110))
 		tween.connect("finished",triggerNameEffect)
 		$stuffToMakeDisappear/nameOfRobotMaster.text="SHADOWMAN"
 # Called every frame. 'delta' is the elapsed time since the previous frame.

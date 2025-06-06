@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cnb7llkr0ofpf"]
+[gd_scene load_steps=27 format=3 uid="uid://cnb7llkr0ofpf"]
 
 [ext_resource type="Script" uid="uid://ciuduaxwp3hw3" path="res://levels/robot_master_menu.gd" id="1_pefhl"]
 [ext_resource type="Texture2D" uid="uid://ds625p5y8oage" path="res://assets/sprites/miscelleaneous/menus/selectionrobotMasterSprite-export.png" id="2_852fl"]
@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://cpopo8qyclw50" path="res://assets/sprites/miscelleaneous/1KofiSelected_Samuel_X7_Edited.png" id="9_xcjo7"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="10_qvmrj"]
 [ext_resource type="Texture2D" uid="uid://bvtaowkpq2e15" path="res://assets/sprites/miscelleaneous/1KofiCursor_Samuel_X7.png" id="10_v3hkl"]
-[ext_resource type="AudioStream" uid="uid://c5f3n6rbtnw4j" path="res://assets/music/MMR OST Stage Select.ogg" id="12_2otdt"]
+[ext_resource type="AudioStream" uid="uid://bqso3ys20uub1" path="res://assets/music/Stage_Select_Loop.ogg" id="12_c6cp7"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="13_c6cp7"]
+[ext_resource type="AudioStream" uid="uid://cysmgvaumklms" path="res://assets/music/Stage_Select_Intro.ogg" id="14_0nrns"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1tpx"]
 atlas = ExtResource("2_852fl")
@@ -169,13 +171,13 @@ position = Vector2(32, 32)
 texture = ExtResource("3_o04lh")
 
 [node name="pressStartLbl" type="Label" parent="Node2D"]
-offset_left = 85.0
-offset_top = 9.0
-offset_right = 259.0
-offset_bottom = 25.0
+offset_left = 45.0
+offset_top = 4.0
+offset_right = 391.0
+offset_bottom = 38.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_u4epk")
-text = "PRESS START"
+text = "SELECT YOUR ROBOT MASTER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -298,8 +300,16 @@ autoplay = "start"
 
 [node name="BGM" type="Node2D" parent="."]
 
-[node name="selectYourRobotMaster" type="AudioStreamPlayer" parent="BGM"]
-stream = ExtResource("12_2otdt")
+[node name="loop" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource("12_c6cp7")
+parameters/looping = true
+script = ExtResource("13_c6cp7")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
+
+[node name="intro" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource("14_0nrns")
+script = ExtResource("13_c6cp7")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
 [node name="Sounds" type="Node2D" parent="."]
 
@@ -421,5 +431,4 @@ centered = false
 wait_time = 0.2
 
 [connection signal="timeout" from="Timers/screenTransTimer" to="." method="_on_screen_trans_timer_timeout"]
-[connection signal="finished" from="BGM/selectYourRobotMaster" to="." method="_on_select_your_robot_master_finished"]
 [connection signal="timeout" from="arrowBlinkTimer" to="." method="_on_arrow_blink_timer_timeout"]

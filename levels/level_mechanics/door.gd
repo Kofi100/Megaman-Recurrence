@@ -1,6 +1,6 @@
 @tool
 extends StaticBody2D
-
+var WentThruLeftDoor:bool=false
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animated_sprite_2d_2 = $AnimatedSprite2D2
 
@@ -57,11 +57,13 @@ func _on_detect_left_body_entered(body):
 		body.door_transition=true
 		animated_sprite_2d.play("open_close")
 		animated_sprite_2d_2.play("open_close")
+		WentThruLeftDoor=true
 		$door_enter_close.play()
+		
 
 var exited_door=false
 func _on_detect_right_body_entered(body):
-	if body.is_in_group('player'):
+	if body.is_in_group('player') and WentThruLeftDoor:
 		exited_door=true
 		animated_sprite_2d.play_backwards("open_close")
 		animated_sprite_2d_2.play_backwards("open_close")

@@ -8,7 +8,8 @@ func _ready() -> void:
 	health=12
 
 func _physics_process(delta: float) -> void:
-	$repeatShootTimer/durationShootTimer.wait_time=.9
+	$repeatShootTimer/durationShootTimer.wait_time=.3
+	hurtFlash($AnimatedSprite2D)
 	if not is_on_floor():
 		velocity.y+=get_gravity().y*delta
 	calculate_player_distance()

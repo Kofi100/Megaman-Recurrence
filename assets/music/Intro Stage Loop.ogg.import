@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dj6uwda620bvj"
+path="res://.godot/imported/Intro Stage Loop.ogg-8d31d4202fc0c5c3a380f1d57d2d52eb.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Intro Stage Loop.ogg"
+dest_files=["res://.godot/imported/Intro Stage Loop.ogg-8d31d4202fc0c5c3a380f1d57d2d52eb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

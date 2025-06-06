@@ -7,7 +7,7 @@ var menuPoppedUp:bool=false
 var options
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#$main_Menu_BGM.play()
+	$main_Menu_BGM.play()
 	#$ScrollContainer.ensure_control_visible(menu_Items[MenuOptionNo])
 	$arrowBlinkTimer.start()
 

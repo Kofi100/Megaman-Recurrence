@@ -325,9 +325,9 @@ script = ExtResource("1_32714")
 
 [node name="fade_out_effect" type="ColorRect" parent="."]
 offset_left = -4.0
-offset_top = -52.0
-offset_right = 279.0
-offset_bottom = 299.0
+offset_top = -2.0
+offset_right = 260.0
+offset_bottom = 227.0
 color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="fade_out_effect"]
@@ -457,6 +457,7 @@ texture = ExtResource("2_jxh0c")
 centered = false
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("9_lhw3c")
 centered = false
 
@@ -846,10 +847,10 @@ metadata/_edit_use_anchors_ = true
 [node name="quit_button" type="Button" parent="pause_screen_setup"]
 process_mode = 3
 process_priority = 1
-offset_left = 177.0
-offset_top = 266.0
-offset_right = 241.0
-offset_bottom = 290.0
+offset_left = 275.0
+offset_top = 204.0
+offset_right = 343.0
+offset_bottom = 232.0
 scale = Vector2(0.3, 0.3)
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 5
@@ -862,10 +863,10 @@ metadata/_edit_use_anchors_ = true
 [node name="options_btn" type="Button" parent="pause_screen_setup"]
 process_mode = 3
 process_priority = 1
-offset_left = 169.0
-offset_top = 235.0
-offset_right = 281.0
-offset_bottom = 259.0
+offset_left = 267.0
+offset_top = 173.0
+offset_right = 383.0
+offset_bottom = 201.0
 scale = Vector2(0.3, 0.3)
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 5
@@ -879,10 +880,10 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = -1
 anchor_left = -0.367188
 anchor_right = -0.367188
-offset_left = 263.0
-offset_top = 242.0
-offset_right = 379.0
-offset_bottom = 282.0
+offset_left = 361.0
+offset_top = 180.0
+offset_right = 481.0
+offset_bottom = 224.0
 scale = Vector2(0.3, 0.3)
 theme = ExtResource("7_ixl55")
 text = "restart
@@ -896,10 +897,10 @@ process_physics_priority = 1
 anchors_preset = -1
 anchor_left = -0.273438
 anchor_right = -0.273
-offset_left = 244.0
-offset_top = 254.0
-offset_right = 319.888
-offset_bottom = 294.0
+offset_left = 342.0
+offset_top = 192.0
+offset_right = 421.888
+offset_bottom = 236.0
 scale = Vector2(0.3, 0.3)
 theme = ExtResource("7_ixl55")
 text = "go to 
@@ -924,10 +925,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="pause_screen_setup/settings/volume/volume_music"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.638095
-anchor_top = -1.375
-anchor_right = 0.638095
-anchor_bottom = -1.375
+anchor_left = 0.619048
+anchor_top = -1.125
+anchor_right = 0.619048
+anchor_bottom = -1.125
 offset_left = -130.0
 offset_right = -6.0
 offset_bottom = 23.0
@@ -1004,9 +1005,9 @@ scale = Vector2(0.3, 0.3)
 
 [node name="minutes" type="Label" parent="timer"]
 offset_left = -286.667
-offset_top = 80.0
+offset_top = 106.667
 offset_right = -246.667
-offset_bottom = 103.0
+offset_bottom = 129.667
 scale = Vector2(1.2, 1.2)
 theme = ExtResource("7_ixl55")
 text = "xx"

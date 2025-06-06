@@ -59,6 +59,7 @@ var jumpAvble: bool = true
 var jumpBufferTime
 var coyoteJumpTime
 @onready var trigger_leave_timer = $trigger_leave_timer
+#timer deterimining how long stays on screen before despawning
 @onready var leave_timer = $leave_timer
 var onIce: bool = false
 var inWater:bool=false
@@ -166,14 +167,17 @@ var leave_bool = false
 var has_played_victory_sound: bool = false
 var WeaponCheckDirection:int=0
 func checkWeaponAvalability():
+	
 	if MegamanAndItems.weaponNumberEnabled.has(GlobalScript.weapon_number):
 		if MegamanAndItems.weaponNumberEnabled[GlobalScript.weapon_number]==true:
 			pass
-		else:
+		elif MegamanAndItems.weaponNumberEnabled[GlobalScript.weapon_number]==false:
 			if WeaponCheckDirection==-1:
 				GlobalScript.weapon_number-=1
 			if WeaponCheckDirection==1:
 				GlobalScript.weapon_number+=1
+	#print(GlobalScript.weapon_number)
+	#print(MegamanAndItems.weaponNumberEnabled)
 var enabledLeavingCode:bool=false
 func _physics_process(delta):
 #region reverse Gravity
@@ -523,12 +527,15 @@ func _physics_process(delta):
 		elif stop == true:
 			velocity = Vector2.ZERO
 	elif is_dead:
-		anim.visible = false
+		#stun_air plays via hud which receives the change in the health value first
+		#anim.play("stun_air")
 		GlobalScript.restarted_level = true
 		GlobalScript.pause_level_timer()
-
+		anim.visible = false
 		$hitbox/CollisionShape2D.disabled = true
 		$CollisionShape2D.disabled = true
+		#await get_tree().create_timer(.2).timeout
+		
 
 
 var dead_effect_timer = 0

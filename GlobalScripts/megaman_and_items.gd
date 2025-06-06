@@ -147,7 +147,7 @@ func change_palette(node):
 			#node.material.set_shader_parameter("bodycolorii", (bodycolor2dictionary.get(GlobalScript.weapon_number)) / 255)
 		#if (bodycolor1dictionary.get(GlobalScript.weapon_number)) is Vector4:
 			#print(bodycolor1dictionary.get(GlobalScript.weapon_number))
-		if weaponNumberEnabled.has(GlobalScript.weapon_number):
+		if weaponNumberEnabled.has(GlobalScript.weapon_number) and weaponNumberEnabled[GlobalScript.weapon_number]==true:
 			match GlobalScript.weapon_number:
 				1:
 					set_Individual_Colors(node,colorPalette.CREAM,colorPalette.DARK_CREAM)

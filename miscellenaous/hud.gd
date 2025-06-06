@@ -65,6 +65,9 @@ func _process(_delta):
 			$justDiedTimer.start()
 	if $justDiedTimer.is_stopped() == false:
 		#Engine.time_scale=0.1
+		if is_instance_valid(Player.playerCharacter):
+			if GlobalScript.health<=0:
+				Player.playerCharacter.anim.play("stun_air")
 		get_tree().paused = true
 	if $stage_name/stage_display_timer.time_left <= 0:
 		$stage_name.visible = false
@@ -149,7 +152,7 @@ func _process(_delta):
 
 	if selection_index < 0:
 		selection_index = 12
-	elif selection_index > 16:
+	elif selection_index > 15:
 		selection_index = 0
 	if !pause_input:  #if input is not paused yet,#and selection_index!=3
 		if Input.is_action_just_pressed("pause") and GlobalScript.health > 0 and Player.playerCharacter.player_ready==true and switchedMenus==false :  #and i pressed the pause button,
@@ -172,7 +175,7 @@ func _process(_delta):
 		$fade_out_rectangle.color = color
 		$timer/InGame.visible=true
 	if justPausedGameManually == true and switchedMenus == false:
-		if Input.is_action_just_pressed("move_left"):
+		if Input.is_action_just_pressed("move_up"):
 			var originalIndex=selection_index
 			selection_index -= 1
 			if MegamanAndItems.weaponNumberEnabled.has(selection_index):
@@ -186,7 +189,7 @@ func _process(_delta):
 				#if MegamanAndItems.weaponNumberEnabled[selection_index]==false:
 					#selection_index-=1
 					#GlobalScript.weapon_number-=1
-		elif Input.is_action_just_pressed("move_right"):
+		elif Input.is_action_just_pressed("move_down"):
 			var originalIndex=selection_index
 			selection_index += 1
 			#if MegamanAndItems.weaponNumberEnabled.has(selection_index)
