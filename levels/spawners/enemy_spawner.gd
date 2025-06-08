@@ -44,7 +44,7 @@ var new_enemy
 	"dyna_riot":preload("res://enemy/dyna_riot.tscn"),
 	"batallion_balloon":preload("res://enemy/batallion_balloon.tscn"),
 	"batallion_balloon_delivery":preload("res://enemy/batallion_balloon_delivery.tscn"),
-
+	"koptar":preload("res://enemy/koptar.tscn"),
 }
 
 var disappear_nodes = {
@@ -64,6 +64,8 @@ var spawn_timer: int = 0
 func _ready():
 	pass
 
+#func _enter_tree() -> void:
+	#
 
 var spawn_homer = false
 var has_enemy_spawned = false
@@ -73,6 +75,7 @@ var display_node
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _enter_tree():
 	request_ready()
+	notify_property_list_changed()
 
 @export var enemy_Preview:CharacterBody2D
 func _process(_delta):

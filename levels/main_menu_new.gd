@@ -13,20 +13,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if menuPoppedUp==true:
-		MenuOptionNo=5
-	#match MenuOptionNo:
-		#0:
-			#$SelectArrow.global_position=Vector2($ScrollContainer/VBoxContainer/start.global_position.x - 20, $ScrollContainer/VBoxContainer/start.global_position.y)
-		#1:
-			#$SelectArrow.global_position.x=$ScrollContainer/VBoxContainer/tutorial.global_position.x - 20
-			#$SelectArrow.global_position.y= $ScrollContainer/VBoxContainer/tutorial.global_position.y
-		#2:
-			#$SelectArrow.global_position=(Vector2($ScrollContainer/VBoxContainer/debug.global_position.x - 20, $ScrollContainer/VBoxContainer/debug.global_position.y))
-		#3:
-			#$SelectArrow.global_position=(Vector2($ScrollContainer/VBoxContainer/change_Controls.global_position.x - 20, $ScrollContainer/VBoxContainer/change_Controls.global_position.y))
-		#4:$SelectArrow.global_position=$ScrollContainer/VBoxContainer/options.global_position-Vector2(20,0)
-		#5:$SelectArrow.global_position=(Vector2($ScrollContainer/VBoxContainer/quit.global_position.x - 20, $ScrollContainer/VBoxContainer/quit.global_position.y))
 	match MenuOptionNo:
 		0:$SelectArrow.global_position=$"allMarker2Ds/0".global_position
 		1:$SelectArrow.global_position=$"allMarker2Ds/1".global_position
@@ -36,20 +22,8 @@ func _process(delta: float) -> void:
 		5:$SelectArrow.global_position=$"allMarker2Ds/5".global_position
 		6:$SelectArrow.global_position=$"allMarker2Ds/6".global_position
 		7:$SelectArrow.global_position=$"allMarker2Ds/7".global_position
-	#for i in $allMarker2Ds.get_children():
-		#if i is Marker2D:
-			#var nameToVar=i.na
+
 	if Input.is_action_just_pressed("shoot"):
-		#print("pressed")
-		#match MenuOptionNo:
-			#0:
-				#get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
-			#1:
-				#get_tree().change_scene_to_file("res://levels/other_stages/tutorial_stage.tscn")
-			#2:
-				#get_tree().change_scene_to_file("res://levels/main_menu.tscn")
-			#3:
-				#get_tree().change_scene_to_file("res://levels/input_rebind_menu.tscn")
 		match MenuOptionNo:
 			0:
 				get_tree().change_scene_to_file("res://levels/other_stages/intro_stage.tscn")
@@ -64,6 +38,7 @@ func _process(delta: float) -> void:
 				#get_tree().change_scene_to_file("res://levels/input_rebind_menu.tscn")
 			5:
 				get_tree().change_scene_to_file("res://levels/main_menu.tscn")
+				pass
 			6:
 				#dont declare options here
 				if menuPoppedUp==false:
@@ -74,7 +49,7 @@ func _process(delta: float) -> void:
 					if options!=null:
 						options.queue_free()
 						menuPoppedUp=false
-					if options==null:
+					if options==null or not is_instance_valid(options):
 						menuPoppedUp=false
 			7:get_tree().quit(0)
 	#if Input.is_action_just_pressed("pause") and MenuOptionNo==4:
@@ -82,6 +57,12 @@ func _process(delta: float) -> void:
 					#if options!=null:
 						#options.queue_free()
 					#menuPoppedUp=false
+	#match MenuOptionNo:
+		#6:
+	if options==null or not is_instance_valid(options):
+		menuPoppedUp=false
+	#if is_instance_valid(options):
+		#options.visible=true
 
 
 func _input(event: InputEvent) -> void:
@@ -101,12 +82,13 @@ func _input(event: InputEvent) -> void:
 		#
 		#MenuOptionNo = clampi(MenuOptionNo, 0, 5)
 	if event is InputEventAction or event is InputEventKey:
-		if event.is_action_pressed("move_up"):
-			MenuOptionNo-=1
-			$change_Option_SFX.play()
-		elif event.is_action_pressed("move_down"):
-			MenuOptionNo+=1
-			$change_Option_SFX.play()
+		if menuPoppedUp==false:
+			if event.is_action_pressed("move_up"):
+				MenuOptionNo-=1
+				$change_Option_SFX.play()
+			elif event.is_action_pressed("move_down"):
+				MenuOptionNo+=1
+				$change_Option_SFX.play()
 		MenuOptionNo=clampi(MenuOptionNo,0,7)
 	pass
 

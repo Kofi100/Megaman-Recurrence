@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var minutes = $timer/minutes
 @onready var seconds = $timer/seconds
 @onready var millsecs = $timer/millsecs
+@export_category("other values")
 var music_node
 var selection_index = 0  #var tween=create_tween() #use tween to create a transiton effect for increasing the health of the player
 ##This boolean pauses all inputs to the HUD for some effects.
@@ -12,6 +13,7 @@ var color
 var justPausedGameManually: bool = false
 var onAnotherScreen:bool=false
 var screen2
+@export var colorPalette:ColorPaletteResource
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalScript.trigger_boss = false
@@ -290,7 +292,7 @@ func switchToWeaponNumber(selectionIdx,weaponIdx,sprite:Sprite2D):
 			var labelPath=NodePath(path+"/Label")#path+"/Label"
 			var label=get_node(labelPath)
 			#print(labelPath)
-			label.set_modulate(Color.BLUE)
+			label.set_modulate(colorPalette.LIGHT_YELLOW_FROM_LIFE_BAR)
 		else:
 			sprite.visible=false
 			#$pause_screen_setup/life_icon/Label.font_color

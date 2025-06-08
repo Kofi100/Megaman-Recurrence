@@ -1,7 +1,8 @@
-[gd_scene load_steps=61 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=63 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" uid="uid://c2d8ca2gmbv22" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://ceiqj8bjouqre" path="res://assets/sprites/miscelleaneous/pause_screen_setup3.png" id="2_jxh0c"]
+[ext_resource type="Script" uid="uid://0pdrrcvqglff" path="res://GlobalScripts/colorPalette.gd" id="2_kw0r2"]
 [ext_resource type="Texture2D" uid="uid://bko24mknbj21s" path="res://assets/sprites/miscelleaneous/health_megaman_bg.png" id="5_eted2"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="5_g1yve"]
 [ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
@@ -24,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://xcbpmjf38vc4" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/slumberPillow.png" id="18_88lmw"]
 [ext_resource type="Texture2D" uid="uid://dtp8lf4clnany" path="res://assets/sprites/miscelleaneous/menus/pause_menu_buttons.png" id="18_mmlst"]
 [ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="19_kw0r2"]
+
+[sub_resource type="Resource" id="Resource_li0i3"]
+script = ExtResource("2_kw0r2")
+metadata/_custom_type_script = "uid://0pdrrcvqglff"
 
 [sub_resource type="Animation" id="Animation_nxwht"]
 resource_name = "fade_out"
@@ -321,7 +326,9 @@ animations = [{
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1
+layer = 2
 script = ExtResource("1_32714")
+colorPalette = SubResource("Resource_li0i3")
 
 [node name="fade_out_effect" type="ColorRect" parent="."]
 offset_left = -4.0

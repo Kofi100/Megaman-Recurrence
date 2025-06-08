@@ -7,7 +7,9 @@ func _ready():
 	GlobalScript.spawn_enemy=true
 	#$bgm.volume_db=-15
 	GlobalScript.set_stage_name("TEST STAGE")
-
+	await $bgm.finished
+	#$bgm.stream=preload("res://assets/music/[Spark the Electric Jester OST] 18 - Reynol Complex (Stage 13).mp3")
+	$bgm.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -16,7 +18,7 @@ func _process(_delta):
 	#print("Value of EngScaleV.Slider:"+$Node2D2/HUD_Debug/EngScaleVSlider.value)
 	StageFunctions.switch_camera(player_camera,stage_camera)
 	#StageFunctions.loop_music($bgm,0,354.48)
-	StageFunctions.loop_music($bgm,0,273)
+	#StageFunctions.loop_music($bgm,0,273)
 	#print($bgm.get)
 	#if tree_exiting():
 func _physics_process(delta):

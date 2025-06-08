@@ -1,0 +1,181 @@
+[gd_scene load_steps=22 format=3 uid="uid://cfxvhbgax335h"]
+
+[ext_resource type="Script" uid="uid://bcrgvftik8q2q" path="res://enemy/koptar.gd" id="1_cu2fr"]
+[ext_resource type="Texture2D" uid="uid://cvx56fha573ck" path="res://assets/sprites/enemies/1Koptar.png" id="1_nhiml"]
+[ext_resource type="PackedScene" uid="uid://cmq6qo2wgo8nc" path="res://enemy/kopta_spiky_ball.tscn" id="3_bas1m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu2fr"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(0, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bas1m"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(31, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mif3"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(62, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tno6j"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(93, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfgmt"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(0, 31, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6i31"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(31, 31, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhbe0"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(62, 31, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7j1d"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(93, 31, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ahx0"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(0, 62, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyrjw"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(31, 62, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbf8l"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(62, 62, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16krr"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(93, 62, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbj6e"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(0, 93, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd622"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(31, 93, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gn68"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(62, 93, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te1h7"]
+atlas = ExtResource("1_nhiml")
+region = Rect2(93, 93, 31, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb6uv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu2fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bas1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mif3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tno6j")
+}],
+"loop": true,
+"name": &"idle_Move",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfgmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6i31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhbe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7j1d")
+}],
+"loop": true,
+"name": &"idle_Still",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ahx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyrjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbf8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16krr")
+}],
+"loop": true,
+"name": &"triggered_Move",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbj6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd622")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gn68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te1h7")
+}],
+"loop": true,
+"name": &"triggered_Still",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bas1m"]
+size = Vector2(20, 25)
+
+[node name="koptar" type="CharacterBody2D"]
+script = ExtResource("1_cu2fr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pb6uv")
+animation = &"triggered_Move"
+frame_progress = 0.98116
+
+[node name="koptaSpikyBall" parent="." instance=ExtResource("3_bas1m")]
+position = Vector2(1, 25)
+
+[node name="ballReleaseTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="retreatTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_bas1m")
+
+[node name="triggeredTimer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(5, 0)
+scale = Vector2(15.85, 14.05)
+
+[connection signal="timeout" from="ballReleaseTimer" to="." method="_on_ball_release_timer_timeout"]
+[connection signal="timeout" from="retreatTimer" to="." method="_on_retreat_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -67,6 +67,10 @@ func _process(delta):
 		if robotSelected==0 or robotSelected==2 or robotSelected==6 :
 			robotAllowToSelect = true
 			$Timers/screenTransTimer.start()
+			$Sounds/selectRM.play()
+			startBlinking()
+			$aniPlayer/AnimationPlayer.stop()
+			
 			$BGM/intro.stop()
 			$BGM/loop.stop()
 		elif robotSelected == 9:
@@ -85,16 +89,6 @@ func _process(delta):
 	playSelectForSingleRM(8,$Node2D/robotMaster8)
 	if robotSelected==9:
 		$SelectArrow.global_position = $Node2D/exit.global_position-Vector2(20,3)
-	#match robotSelected:
-		#0:$Node2D/MegamanCursor.frame=0
-		#1:$Node2D/MegamanCursor.frame=1
-		#2:$Node2D/MegamanCursor.frame=2
-		#3:$Node2D/MegamanCursor.frame=5
-		#4:$Node2D/MegamanCursor.set_frame(6)
-		#5:$Node2D/MegamanCursor.set_frame(7)
-		#6:$Node2D/MegamanCursor.set_frame(8)
-		#7:$Node2D/MegamanCursor.set_frame(3)
-		#8:$Node2D/MegamanCursor.set_frame(4)
 	if robotSelected<=8:
 		$Node2D/MegamanCursor.frame=robotSelected
 	else:
@@ -127,8 +121,11 @@ func select():
 
 func playSelectForSingleRM(RM_Index:int,animatedSprite:AnimatedSprite2D):
 	if robotSelected==RM_Index:
-		animatedSprite.play("selected")
-	else:
+		if robotAllowToSelect==false:
+			animatedSprite.play("selected")
+		elif robotAllowToSelect==true:
+			animatedSprite.stop()
+	elif robotSelected!=RM_Index:
 		animatedSprite.play("notSelected")
 
 func changeScene():
@@ -140,7 +137,19 @@ func changeScene():
 		get_tree().change_scene_to_file("res://levels/8_robot_stages/iceman_stage.tscn")
 
 var transition
-
+func startBlinking():
+	#$Node2D/Layout.material.set_shader_parameter("startBlinking",true)
+	#for animatedSprite2d in get_children(true):
+		#if animatedSprite2d is AnimatedSprite2D:
+	$Node2D/robotMaster0.material.set_shader_parameter("startBlinking",true)
+	$Node2D/robotMaster1.material.set_shader_parameter("startBlinking",true)
+	$Node2D/robotMaster2.material.set_shader_parameter("startBlinking",true)
+	$Node2D/robotMaster3.material.set_shader_parameter("startBlinking",true)
+	$Node2D/robotMaster4.material.set_shader_parameter("startBlinking",true)
+	$Node2D/robotMaster5.material.set_shader_parameter("startBlinking",true)
+	$Node2D/robotMaster6.material.set_shader_parameter("startBlinking",true)
+	$Node2D/robotMaster7.material.set_shader_parameter("startBlinking",true)
+	$Node2D/robotMaster8.material.set_shader_parameter("startBlinking",true)
 
 func _on_screen_trans_timer_timeout():
 	transition = preload("res://levels/robot_master_display_scene.tscn").instantiate()

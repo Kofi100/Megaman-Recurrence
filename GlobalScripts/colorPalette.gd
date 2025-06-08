@@ -22,6 +22,7 @@ var DEEP_OLIVE=Color("007800",1.0)
 var LIGHT_VIOLET= Color("8970ff",1.0)
 var VIOLET=Color("0000d9",1.0)
 var UNKNOWN=Color("dd00ff",1.0)
+var LIGHT_YELLOW_FROM_LIFE_BAR=Color("fce4a0",1.0)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
