@@ -454,6 +454,7 @@ func _physics_process(delta):
 						move_an_inch_checker = 0
 
 						if on_conveyor:
+							
 							velocity.x = conveyor_push * delta
 						elif onIce:
 							if lastDirectionCase < 0:
@@ -1158,6 +1159,8 @@ func _on_jump_timer_timeout() -> void:
 func _on_detect_floor_types_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("iceTiles"):
 		onIce = true
+	if body is Conveyor:
+		pass
 
 
 

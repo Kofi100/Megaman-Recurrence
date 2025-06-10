@@ -8,7 +8,8 @@ func _ready() -> void:
 	health=12
 
 func _physics_process(delta: float) -> void:
-	$repeatShootTimer/durationShootTimer.wait_time=.3
+	$repeatShootTimer/durationShootTimer.wait_time=.7
+	
 	hurtFlash($AnimatedSprite2D)
 	if not is_on_floor():
 		velocity.y+=get_gravity().y*delta
@@ -66,23 +67,26 @@ func _on_player_detection_area_entered(area: Area2D) -> void:
 			$repeatShootTimer/stopDurationTimer.start()
 
 
-
+var shootTimes=0
 func _on_repeat_shoot_timer_timeout() -> void:
 	#code to spawn projectiles
-	var proj=preload("res://enemy/returning_machine_joe_bullet.tscn").instantiate()
-	get_parent().add_child(proj)
-	
-	if animated_sprite_2d.flip_h==false:
-		proj.direction="left"
-		proj.global_position=$shootPositionL.global_position
-	elif animated_sprite_2d.flip_h==true:
-		proj.direction="right"
-		proj.global_position=$shootPositionR.global_position
+	if shootTimes<3:
+		var proj=preload("res://enemy/returning_machine_joe_bullet.tscn").instantiate()
+		get_parent().add_child(proj)
+		
+		if animated_sprite_2d.flip_h==false:
+			proj.direction="left"
+			proj.global_position=$shootPositionL.global_position
+		elif animated_sprite_2d.flip_h==true:
+			proj.direction="right"
+			proj.global_position=$shootPositionR.global_position
+		shootTimes+=1
 	
 
 
 func _on_pause_shoot_timer_timeout() -> void:
 	$repeatShootTimer.stop()
+	shootTimes=0
 	$playerDetection/CollisionShape2D.set_deferred("disabled",false)
 	animated_sprite_2d.play("defend_Default")
 	#$repeatShootTimer/stopDurationTimer.start()

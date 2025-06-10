@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b57pwyvy3rda8"]
+
+[ext_resource type="Script" uid="uid://kb54mytaw51s" path="res://enemy/furnace_steel_pieces.gd" id="1_gllrw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx44l"]
+size = Vector2(23, 19)
+
+[node name="furnaceSteelPieces" type="CharacterBody2D"]
+script = ExtResource("1_gllrw")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_left = -11.0
+offset_top = -52.0
+offset_right = 12.0
+offset_bottom = 52.0
+color = Color(1, 0.439216, 0.0352941, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -11.0
+offset_top = -10.0
+offset_right = 12.0
+offset_bottom = 9.0
+color = Color(1, 0.301961, 0, 1)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_yx44l")

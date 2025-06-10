@@ -59,8 +59,24 @@ func _process(delta):
 		connect("area_entered",_on_area_entered)
 	if zone_camera_2d==null:
 		zone_camera_2d=get_node_or_null("Camera2D")
+		#if no camera has been assigned yet,create a new local one 
+		#and add it to this node
+		#also make zone_Camera_2d be this new camera2D node
+		if zone_camera_2d==null:
+			var camera=Camera2D.new()
+			add_child(camera)
+			camera.position=position
+			zone_camera_2d=camera
 	if collision_limits_camera==null:
 		collision_limits_camera=get_node_or_null("CollisionShape2D")
+		#creates new collsionshape,sets its shape and size and adds it to node
+		#also sets collisionShape2D to collision_limits_camera
+		#if collision_limits_camera==null:
+			#var collisionShape2D=CollisionShape2D.new()
+			#add_child(collisionShape2D)
+			#collisionShape2D.shape=RectangleShape2D.new()
+			#collisionShape2D.shape.size=Vector2(256,240)
+			#collision_limits_camera=collisionShape2D
 	if GlobalTimerChecker==null:
 		timer_exists=false
 		GlobalTimerChecker=GlobalScreenTransitionTimer#get_tree().current_scene.get_node_or_null("Transition_Timer")#GlobalScreenTransitionTimer

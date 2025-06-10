@@ -5,7 +5,7 @@ var speed:int=5000
 @onready var shield=$shield_Riot_shield
 func _ready() -> void:
 	playerdamagevalue = 3
-	health=5
+	health=2
 
 
 func _physics_process(delta: float) -> void:

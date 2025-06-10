@@ -12,7 +12,8 @@ var new_node
 var new_enemy
 @export var visibility = true
 @export var visibility_enemy_display = false
-@export var enemy_dictionary: Dictionary = {
+#@export
+var enemy_dictionary: Dictionary = {
 	"new_shotman": preload("res://enemy/new_shotman.tscn"),
 	"mechakkero": preload("res://enemy/mechakkero.tscn"),
 	"peterchy": preload("res://enemy/peterchy.tscn"),
@@ -75,7 +76,7 @@ var display_node
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _enter_tree():
 	request_ready()
-	notify_property_list_changed()
+	#notify_property_list_changed()
 
 @export var enemy_Preview:CharacterBody2D
 func _process(_delta):

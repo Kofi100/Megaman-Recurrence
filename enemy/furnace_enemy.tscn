@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyemfpstef0rl"]
+
+[ext_resource type="Script" uid="uid://2wlp0r5r83p1" path="res://enemy/furnace_enemy.gd" id="1_enme6"]
+
+[node name="furnaceEnemy" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_enme6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 20.0
+offset_bottom = 19.0
+
+[node name="throwDownTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="coolDownTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="throwDownTimer" to="." method="_on_throw_down_timer_timeout"]
+[connection signal="timeout" from="coolDownTimer" to="." method="_on_cool_down_timer_timeout"]

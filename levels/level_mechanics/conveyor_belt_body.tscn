@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b64mf8xlqq2oc"]
+
+[ext_resource type="Script" uid="uid://cptrlj57af544" path="res://levels/level_mechanics/conveyor_belt_body.gd" id="1_1mt6b"]
+[ext_resource type="Texture2D" uid="uid://b6ottyj6jtygc" path="res://assets/sprites/tilesets/debug_tileset_basic.png" id="2_1gswo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vi1bw"]
+size = Vector2(216, 16)
+
+[node name="conveyorBeltBody" type="StaticBody2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_1mt6b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(108, 9)
+scale = Vector2(13.5, 1)
+texture = ExtResource("2_1gswo")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(108, 9)
+shape = SubResource("RectangleShape2D_vi1bw")

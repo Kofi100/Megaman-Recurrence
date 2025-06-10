@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmq6qo2wgo8nc"]
+[gd_scene load_steps=8 format=3 uid="uid://cmq6qo2wgo8nc"]
 
 [ext_resource type="Script" uid="uid://s3b5f55g2nje" path="res://enemy/kopta_spiky_ball.gd" id="1_4l214"]
 [ext_resource type="Texture2D" uid="uid://cd4qk14ekaenm" path="res://assets/sprites/enemies/1Koptar_SpikyBall.png" id="2_qu5b4"]
@@ -27,6 +27,8 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4l214"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qu5b4"]
+
 [node name="koptaSpikyBall" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_4l214")
@@ -38,5 +40,12 @@ sprite_frames = SubResource("SpriteFrames_02qp2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4l214")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_qu5b4")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

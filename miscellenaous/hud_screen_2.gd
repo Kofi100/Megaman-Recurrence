@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if onAnotherMenu==false:
 		if Input.is_action_just_pressed("move_up"):
 			selection_Index-=1
@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 			3:
 				queue_free()
 				
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	#if event is In
 	pass
 #func leavingOtherS

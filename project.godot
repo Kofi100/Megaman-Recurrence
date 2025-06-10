@@ -14,12 +14,13 @@ config/name="Megaman Recurrence"
 config/description="A WIP 
 "
 config/tags=PackedStringArray("megaman")
-run/main_scene="uid://cju6hrw6xsta7"
+run/main_scene="uid://82y653b08mb4"
 config/features=PackedStringArray("4.3.2", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
 config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png"
+config/git_describe="af1caa3"
 
 [autoload]
 

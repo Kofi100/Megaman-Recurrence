@@ -1,76 +1,12 @@
-[gd_scene load_steps=36 format=3 uid="uid://dy5155ckq0051"]
+[gd_scene load_steps=5 format=3 uid="uid://dy5155ckq0051"]
 
 [ext_resource type="Script" uid="uid://dkonn20hs25u6" path="res://levels/spawners/enemy_spawner.gd" id="1_ck4dl"]
 [ext_resource type="Texture2D" uid="uid://cumkqjvnmnl1h" path="res://assets/sprites/miscelleaneous/miscell_original_v1.png" id="1_v4gol"]
-[ext_resource type="PackedScene" uid="uid://dn3yiy0stfnly" path="res://enemy/new_shotman.tscn" id="2_p0hx7"]
 [ext_resource type="Texture2D" uid="uid://v66b3nr1wrgy" path="res://assets/sprites/miscelleaneous/enemy_display_spritesheet_redone_rebirth_engine.png" id="3_g47hr"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_rcgh2"]
-[ext_resource type="PackedScene" uid="uid://canmfhqjc5ro1" path="res://enemy/mechakkero.tscn" id="3_xai84"]
-[ext_resource type="PackedScene" uid="uid://da5bprtjoqr63" path="res://enemy/peterchy.tscn" id="4_83yn8"]
-[ext_resource type="PackedScene" uid="uid://bh0igfh3wr8uf" path="res://enemy/walking_bomb.tscn" id="5_tkb6k"]
-[ext_resource type="PackedScene" uid="uid://bvsnh1g0ygwje" path="res://enemy/met.tscn" id="6_3cmqr"]
-[ext_resource type="PackedScene" uid="uid://dsrq7ljrj02jw" path="res://enemy/sniper_joe.tscn" id="7_cb76h"]
-[ext_resource type="PackedScene" uid="uid://drywjq3yk7svp" path="res://enemy/octopus_battery.tscn" id="8_55axt"]
-[ext_resource type="PackedScene" uid="uid://c1me2bdf4ckac" path="res://enemy/hologran.tscn" id="9_q3iun"]
-[ext_resource type="PackedScene" uid="uid://7sfehmaj5wp3" path="res://enemy/original/homer.tscn" id="10_mu2pm"]
-[ext_resource type="PackedScene" uid="uid://dvht6a4f8lbge" path="res://enemy/paraysu.tscn" id="11_2rcnf"]
-[ext_resource type="PackedScene" uid="uid://c5ic628g6wkd0" path="res://enemy/pickelman_bull.tscn" id="12_xausm"]
-[ext_resource type="PackedScene" uid="uid://dk8wlxx8w3w40" path="res://enemy/yambou.tscn" id="13_xl6g0"]
-[ext_resource type="PackedScene" uid="uid://cvio6n4hx5rbd" path="res://enemy/original/spikyoall.tscn" id="14_x0n37"]
-[ext_resource type="PackedScene" uid="uid://dhuc4lcl5clpc" path="res://enemy/original/ceiling_shooter.tscn" id="15_7mmhy"]
-[ext_resource type="PackedScene" uid="uid://b2pa17rbtytg3" path="res://assets/sprites/enemies/tacklefire.tscn" id="16_t5654"]
-[ext_resource type="PackedScene" uid="uid://3dm01r0fub5r" path="res://enemy/upndown.tscn" id="17_f4y3g"]
-[ext_resource type="PackedScene" uid="uid://yl62qjlbgf3s" path="res://enemy/original/enemy_2.tscn" id="18_iir73"]
-[ext_resource type="PackedScene" uid="uid://bj0da1r76l7d0" path="res://enemy/original/buster.tscn" id="19_mevsm"]
-[ext_resource type="PackedScene" uid="uid://cea6ffpfklqkn" path="res://enemy/count_bomb.tscn" id="20_blobw"]
-[ext_resource type="PackedScene" uid="uid://dewuncfhoaa34" path="res://enemy/original/grenade_man.tscn" id="21_ce5em"]
-[ext_resource type="PackedScene" uid="uid://n1srit3751i5" path="res://enemy/original/sniper_joe_variant_fire.tscn" id="22_ehf87"]
-[ext_resource type="PackedScene" uid="uid://d0333yea3ut85" path="res://enemy/screw_bomber.tscn" id="23_p0kwd"]
-[ext_resource type="PackedScene" uid="uid://cn7mr1boxi55c" path="res://enemy/original/ice_telly.tscn" id="24_osl5c"]
-[ext_resource type="PackedScene" uid="uid://h4246whbkjhf" path="res://enemy/bombomb.tscn" id="25_ngfvy"]
-[ext_resource type="PackedScene" uid="uid://35m1y0p8eygp" path="res://enemy/original/ice_joe.tscn" id="26_h727g"]
-[ext_resource type="PackedScene" uid="uid://bys3l8gptyomn" path="res://enemy/returning_machine_joe.tscn" id="27_0tdy6"]
-[ext_resource type="PackedScene" uid="uid://bq64303c70syx" path="res://enemy/punk_riot.tscn" id="28_qy7bb"]
-[ext_resource type="PackedScene" uid="uid://damcxffuj3ybr" path="res://enemy/shield_riot.tscn" id="29_tr5ki"]
-[ext_resource type="PackedScene" uid="uid://bx04n6opjbceh" path="res://enemy/dyna_riot.tscn" id="30_dn70v"]
-[ext_resource type="PackedScene" uid="uid://bjgmp3dha5tlw" path="res://enemy/batallion_balloon.tscn" id="31_3dyvp"]
-[ext_resource type="PackedScene" uid="uid://dd2mhlpccj7c2" path="res://enemy/batallion_balloon_delivery.tscn" id="32_c3f50"]
 
 [node name="enemy_spawner" type="Node2D" groups=["enemy_spawner"]]
 script = ExtResource("1_ck4dl")
-enemy_dictionary = {
-"batallion_balloon": ExtResource("31_3dyvp"),
-"batallion_balloon_delivery": ExtResource("32_c3f50"),
-"bombomb": ExtResource("25_ngfvy"),
-"burner_joe": ExtResource("22_ehf87"),
-"buster": ExtResource("19_mevsm"),
-"ceiling_shooter": ExtResource("15_7mmhy"),
-"count_bomb": ExtResource("20_blobw"),
-"dyna_riot": ExtResource("30_dn70v"),
-"enemy_2": ExtResource("18_iir73"),
-"grenade_man": ExtResource("21_ce5em"),
-"hologran": ExtResource("9_q3iun"),
-"homer": ExtResource("10_mu2pm"),
-"ice_joe": ExtResource("26_h727g"),
-"ice_telly": ExtResource("24_osl5c"),
-"mechakkero": ExtResource("3_xai84"),
-"met": ExtResource("6_3cmqr"),
-"new_shotman": ExtResource("2_p0hx7"),
-"octopus_battery": ExtResource("8_55axt"),
-"paraysu": ExtResource("11_2rcnf"),
-"peterchy": ExtResource("4_83yn8"),
-"pickelman_bull": ExtResource("12_xausm"),
-"punk_riot": ExtResource("28_qy7bb"),
-"returningmachine_joe": ExtResource("27_0tdy6"),
-"screw_bomber": ExtResource("23_p0kwd"),
-"shield_riot": ExtResource("29_tr5ki"),
-"sniper_joe": ExtResource("7_cb76h"),
-"spikyoall": ExtResource("14_x0n37"),
-"tacklefire": ExtResource("16_t5654"),
-"upndown": ExtResource("17_f4y3g"),
-"walking_bomb": ExtResource("5_tkb6k"),
-"yambou": ExtResource("13_xl6g0")
-}
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 light_mask = 3

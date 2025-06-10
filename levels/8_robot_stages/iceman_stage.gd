@@ -5,7 +5,7 @@ var changeChance
 func _ready() -> void:
 	changeChance=randi_range(1,100)
 	#print(changeChance)
-	if changeChance<=50:
+	if changeChance<=5:
 		$BGM2.play()
 	else:
 		$BGM.play()

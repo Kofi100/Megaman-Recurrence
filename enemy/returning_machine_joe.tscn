@@ -105,7 +105,7 @@ disabled = true
 wait_time = 0.1
 
 [node name="durationShootTimer" type="Timer" parent="repeatShootTimer"]
-wait_time = 0.3
+wait_time = 0.5
 one_shot = true
 
 [node name="stopDurationTimer" type="Timer" parent="repeatShootTimer"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqxlm1li22gud"]
+
+[ext_resource type="Texture2D" uid="uid://b6pivlcupxvl0" path="res://assets/sprites/miscelleaneous/mechanics/allConveyorsSpritesheet.png" id="1_60bkg"]
+[ext_resource type="Script" uid="uid://6v48yu734yqe" path="res://levels/level_mechanics/conveyor_belt_main.gd" id="1_yj3xa"]
+[ext_resource type="PackedScene" uid="uid://b64mf8xlqq2oc" path="res://levels/level_mechanics/conveyor_belt_body.tscn" id="3_g1vfr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tijqw"]
+texture = ExtResource("1_60bkg")
+0:0/animation_columns = 2
+0:0/animation_frame_0/duration = 0.5
+0:0/animation_frame_1/duration = 0.5
+0:0/0 = 0
+0:1/animation_columns = 2
+0:1/animation_frame_0/duration = 0.5
+0:1/animation_frame_1/duration = 0.5
+0:1/0 = 0
+0:2/animation_columns = 2
+0:2/animation_frame_0/duration = 0.2
+0:2/animation_frame_1/duration = 0.2
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_o2n3g"]
+sources/0 = SubResource("TileSetAtlasSource_tijqw")
+
+[node name="conveyorBeltMain" type="TileMapLayer"]
+tile_set = SubResource("TileSet_o2n3g")
+script = ExtResource("1_yj3xa")
+
+[node name="conveyorBeltBody" parent="." instance=ExtResource("3_g1vfr")]

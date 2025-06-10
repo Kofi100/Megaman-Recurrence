@@ -10,7 +10,7 @@ var hitPlayer:bool=false
 var foundPlayer:bool=false
 var playerPos=0
 func _ready() -> void:
-	health=3
+	health=2
 	playerdamagevalue=2
 	state="idle"
 	

@@ -189,7 +189,6 @@ offset_bottom = 128.0
 [node name="Layout" type="AnimatedSprite2D" parent="Node2D"]
 sprite_frames = SubResource("SpriteFrames_x1pcf")
 autoplay = "default"
-frame_progress = 0.622487
 centered = false
 
 [node name="robotMasterOld1" type="AnimatedSprite2D" parent="Node2D"]
@@ -235,7 +234,7 @@ offset_bottom = 193.0
 material = SubResource("ShaderMaterial_68ec8")
 position = Vector2(48, 46)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
-animation = &"selected"
+animation = &"notSelected"
 
 [node name="fireman" type="AnimatedSprite2D" parent="Node2D/robotMaster0"]
 visible = false
@@ -334,7 +333,7 @@ frame = 4
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="screenTransTimer" type="Timer" parent="Timers"]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
 
 [node name="aniPlayer" type="Node2D" parent="."]

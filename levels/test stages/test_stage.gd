@@ -21,7 +21,7 @@ func _process(_delta):
 	#StageFunctions.loop_music($bgm,0,273)
 	#print($bgm.get)
 	#if tree_exiting():
-func _physics_process(delta):
+func _physics_process(_delta):
 	Engine.time_scale=$Node2D2/HUD_Debug/EngScaleVSlider.value
 
 func _on_enter_player_body_entered(body):

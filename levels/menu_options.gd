@@ -74,5 +74,5 @@ func _on_exit_pressed():
 	self.queue_free()
 
 
-func _on_bgm_slider_drag_ended(value_changed):
+func _on_bgm_slider_drag_ended(_value_changed):
 	pass  # Replace with function body.

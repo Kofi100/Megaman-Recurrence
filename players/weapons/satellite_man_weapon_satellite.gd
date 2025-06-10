@@ -36,10 +36,10 @@ func find_enemies_in_only_group(group_name: String):
 	enemies_in_range.clear()
 	var potential_enemies = get_tree().get_nodes_in_group(group_name)
 	
-	for enemy in potential_enemies:
+	for enemyNode in potential_enemies:
 		# Check if enemy is ONLY in the specified group
-		if is_in_exactly_this_group(enemy, group_name):
-			enemies_in_range.append(enemy)
+		if is_in_exactly_this_group(enemyNode, group_name):
+			enemies_in_range.append(enemyNode)
 
 # Strict group membership check
 func is_in_exactly_this_group(node: Node, group_name: String) -> bool:
@@ -52,12 +52,12 @@ func find_closest_enemy():
 	var closest = null
 	var closest_distance = INF
 	
-	for enemy in enemies_in_range:
-		if is_instance_valid(enemy) and enemy.is_inside_tree():
-			var distance = global_position.distance_to(enemy.global_position)
+	for enemyNode in enemies_in_range:
+		if is_instance_valid(enemyNode) and enemyNode.is_inside_tree():
+			var distance = global_position.distance_to(enemyNode.global_position)
 			if distance < closest_distance and distance<250:
 				closest_distance = distance
-				closest = enemy
+				closest = enemyNode
 	#print(closest_distance)
 	
 	return closest
@@ -68,12 +68,12 @@ func _on_up_down_timer_timeout() -> void:
 func shootAtEnemy():
 	if not is_instance_valid(closest_enemy) or not closest_enemy.is_inside_tree():
 		return
-	
-	var projectile = preload("res://players/weapons/satellite_man_weapon_projectile.tscn").instantiate()
-	get_tree().current_scene.add_child(projectile)
-	projectile.global_position = global_position
-	projectile.set_target(closest_enemy)  # Pass the enemy reference instead of coordinates
-
+	if MegamanAndItems.weaponEnergy[6]>0:
+		var projectile = preload("res://players/weapons/satellite_man_weapon_projectile.tscn").instantiate()
+		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = global_position
+		projectile.set_target(closest_enemy)  # Pass the enemy reference instead of coordinates
+		MegamanAndItems.weaponEnergy[6]-=4
 func _on_shoot_timer_timeout() -> void:
 	if is_instance_valid(closest_enemy) and closest_enemy.is_inside_tree() and global_position.distance_to(closest_enemy.global_position)<250:
 		shootAtEnemy()

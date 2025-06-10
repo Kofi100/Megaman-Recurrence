@@ -20,7 +20,7 @@ func _process(delta):
 			$Sprite2D.visible=false
 
 
-func _on_hitbox_body_entered(body):
+func _on_hitbox_body_entered(_body):
 	#if body.is_in_group('player'):
 		#GlobalScript.health+=2
 		#queue_free()

@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkcy8u031arjw"]
+[gd_scene load_steps=15 format=3 uid="uid://dkcy8u031arjw"]
 
 [ext_resource type="Script" uid="uid://bvkmrlf0or0tl" path="res://levels/beginning_screen_Old.gd" id="1_ykeyu"]
 [ext_resource type="Texture2D" uid="uid://b3rnah75ygp42" path="res://assets/sprites/miscelleaneous/menu_megaman_custom_image_2.png" id="2_88k3a"]
-[ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="3_4qvbs"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="4_0c5qe"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="5_u4ak4"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_45gl4"]
@@ -101,11 +100,10 @@ texture = ExtResource("2_88k3a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_pp1ya")
+&"": SubResource("AnimationLibrary_pp1ya")
 }
 
 [node name="main_menu_music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_4qvbs")
 
 [node name="hoverButtonSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_0c5qe")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=64 format=4 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Script" uid="uid://dlehv47nswkvi" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="2_7t3qb"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cf415o5cbw1ly" path="res://assets/sprites/tilesets/test_stages/water_Surface_Debug.png" id="7_w0tqa"]
 [ext_resource type="PackedScene" uid="uid://dsrq7ljrj02jw" path="res://enemy/sniper_joe.tscn" id="8_60iu1"]
 [ext_resource type="PackedScene" uid="uid://ctdj2q3rpw4o1" path="res://enemy/original/electric_gabyoall.tscn" id="8_ycmm6"]
+[ext_resource type="PackedScene" uid="uid://b64mf8xlqq2oc" path="res://levels/level_mechanics/conveyor_belt_body.tscn" id="9_ctirt"]
 [ext_resource type="PackedScene" uid="uid://cjqb26cj5laga" path="res://miscellenaous/energy_tank.tscn" id="10_j6rho"]
 [ext_resource type="PackedScene" uid="uid://bsrhpqbjecu3t" path="res://enemy/boss/weapon_archive_boss.tscn" id="10_l07ml"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="11_06gft"]
@@ -22,48 +23,24 @@
 [ext_resource type="Texture2D" uid="uid://bnm45vf1cmict" path="res://assets/sprites/enemies/bosses/robot masters concept art-by His Grace.png" id="12_5xn54"]
 [ext_resource type="Texture2D" uid="uid://vxk7p03b556m" path="res://assets/sprites/enemies/bosses/shadow man test display.png" id="13_dco8f"]
 [ext_resource type="PackedScene" uid="uid://die537ieus3fp" path="res://enemy/original/laser_test.tscn" id="14_28iij"]
-[ext_resource type="PackedScene" uid="uid://dn3yiy0stfnly" path="res://enemy/new_shotman.tscn" id="14_w0tqa"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="15_wlqon"]
-[ext_resource type="PackedScene" uid="uid://canmfhqjc5ro1" path="res://enemy/mechakkero.tscn" id="15_ypbqq"]
-[ext_resource type="PackedScene" uid="uid://da5bprtjoqr63" path="res://enemy/peterchy.tscn" id="16_cc5oq"]
 [ext_resource type="PackedScene" uid="uid://r0q5qrdcqeo6" path="res://enemy/press.tscn" id="16_msnav"]
-[ext_resource type="PackedScene" uid="uid://bh0igfh3wr8uf" path="res://enemy/walking_bomb.tscn" id="17_snc2g"]
 [ext_resource type="PackedScene" uid="uid://b2t2agmjcu5y8" path="res://levels/level_mechanics/locked_door.tscn" id="17_xjbpy"]
 [ext_resource type="PackedScene" uid="uid://2ctria5jyvy2" path="res://levels/level_mechanics/key.tscn" id="18_37g2q"]
-[ext_resource type="PackedScene" uid="uid://bvsnh1g0ygwje" path="res://enemy/met.tscn" id="18_mlemh"]
-[ext_resource type="PackedScene" uid="uid://drywjq3yk7svp" path="res://enemy/octopus_battery.tscn" id="19_amwpf"]
 [ext_resource type="PackedScene" uid="uid://cqq0eny4dibnj" path="res://levels/level_mechanics/portal.tscn" id="19_hsbrs"]
-[ext_resource type="PackedScene" uid="uid://c1me2bdf4ckac" path="res://enemy/hologran.tscn" id="20_awc2e"]
+[ext_resource type="PackedScene" uid="uid://dyemfpstef0rl" path="res://enemy/furnace_enemy.tscn" id="19_wn5xw"]
 [ext_resource type="PackedScene" uid="uid://b4o667c308o0j" path="res://enemy/original/spike_master.tscn" id="20_uo4qy"]
-[ext_resource type="PackedScene" uid="uid://7sfehmaj5wp3" path="res://enemy/original/homer.tscn" id="21_bvco1"]
 [ext_resource type="PackedScene" uid="uid://qokvs3cu8xwe" path="res://enemy/original/laser_2.tscn" id="21_oceno"]
-[ext_resource type="PackedScene" uid="uid://dvht6a4f8lbge" path="res://enemy/paraysu.tscn" id="22_sxbf7"]
-[ext_resource type="PackedScene" uid="uid://c5ic628g6wkd0" path="res://enemy/pickelman_bull.tscn" id="23_p6p1l"]
 [ext_resource type="PackedScene" uid="uid://brcksljbkb62y" path="res://enemy/original/security_camera.tscn" id="24_6s1yq"]
-[ext_resource type="PackedScene" uid="uid://dk8wlxx8w3w40" path="res://enemy/yambou.tscn" id="24_fxnjj"]
-[ext_resource type="PackedScene" uid="uid://cvio6n4hx5rbd" path="res://enemy/original/spikyoall.tscn" id="25_72d86"]
 [ext_resource type="PackedScene" uid="uid://bj0da1r76l7d0" path="res://enemy/original/buster.tscn" id="26_1j80y"]
-[ext_resource type="PackedScene" uid="uid://dhuc4lcl5clpc" path="res://enemy/original/ceiling_shooter.tscn" id="26_nr62y"]
 [ext_resource type="PackedScene" uid="uid://bmvq4qbc6sxm3" path="res://enemy/enemy_that_shoots_laser.tscn" id="27_co7ru"]
-[ext_resource type="PackedScene" uid="uid://b2pa17rbtytg3" path="res://assets/sprites/enemies/tacklefire.tscn" id="27_xpw24"]
-[ext_resource type="PackedScene" uid="uid://3dm01r0fub5r" path="res://enemy/upndown.tscn" id="28_603wd"]
 [ext_resource type="PackedScene" uid="uid://cea6ffpfklqkn" path="res://enemy/count_bomb.tscn" id="28_xy0ib"]
-[ext_resource type="PackedScene" uid="uid://yl62qjlbgf3s" path="res://enemy/original/enemy_2.tscn" id="29_bb2p0"]
 [ext_resource type="PackedScene" uid="uid://ber5k7q8cjftl" path="res://enemy/original/land_mine.tscn" id="29_yo11i"]
 [ext_resource type="PackedScene" uid="uid://n1srit3751i5" path="res://enemy/original/sniper_joe_variant_fire.tscn" id="30_b6m6j"]
 [ext_resource type="PackedScene" uid="uid://clsggi0khuir8" path="res://enemy/insta_death_laser.tscn" id="31_6gsmh"]
 [ext_resource type="PackedScene" uid="uid://wycuiptn0u6m" path="res://levels/level_mechanics/laser_wall_mechanic.tscn" id="32_3ab5o"]
-[ext_resource type="PackedScene" uid="uid://dewuncfhoaa34" path="res://enemy/original/grenade_man.tscn" id="32_liewx"]
 [ext_resource type="PackedScene" uid="uid://bp5ru2p7jfmjw" path="res://levels/level_mechanics/laser_wall_switch.tscn" id="33_6toia"]
-[ext_resource type="PackedScene" uid="uid://d0333yea3ut85" path="res://enemy/screw_bomber.tscn" id="34_iokj7"]
-[ext_resource type="PackedScene" uid="uid://cn7mr1boxi55c" path="res://enemy/original/ice_telly.tscn" id="35_1rsd0"]
-[ext_resource type="PackedScene" uid="uid://h4246whbkjhf" path="res://enemy/bombomb.tscn" id="36_qkbun"]
-[ext_resource type="PackedScene" uid="uid://35m1y0p8eygp" path="res://enemy/original/ice_joe.tscn" id="37_j62kv"]
-[ext_resource type="PackedScene" uid="uid://bq64303c70syx" path="res://enemy/punk_riot.tscn" id="38_llvrb"]
-[ext_resource type="PackedScene" uid="uid://damcxffuj3ybr" path="res://enemy/shield_riot.tscn" id="39_v5ob3"]
-[ext_resource type="PackedScene" uid="uid://bjgmp3dha5tlw" path="res://enemy/batallion_balloon.tscn" id="40_18o05"]
-[ext_resource type="PackedScene" uid="uid://dd2mhlpccj7c2" path="res://enemy/batallion_balloon_delivery.tscn" id="41_yhp0m"]
-[ext_resource type="PackedScene" uid="uid://cfxvhbgax335h" path="res://enemy/koptar.tscn" id="47_ypbqq"]
+[ext_resource type="PackedScene" uid="uid://bqxlm1li22gud" path="res://levels/level_mechanics/conveyor_belt_main.tscn" id="40_dlh6p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0e7h"]
 resource_name = "debug_tileset"
@@ -329,7 +306,7 @@ tile_map_data = PackedByteArray("AADKAAkAAQAAAAAAAADLAAkAAQAAAAAAAADMAAkAAQAAAAA
 tile_set = SubResource("TileSet_ctirt")
 
 [node name="megaman" parent="." instance=ExtResource("2_mabb1")]
-position = Vector2(3420, 177)
+position = Vector2(3367, 143)
 
 [node name="reserve_marker1" type="Marker2D" parent="."]
 position = Vector2(-16, 167)
@@ -391,38 +368,6 @@ editor_draw_limits = true
 [node name="enemy_spawner" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
 position = Vector2(165, 215)
 enemy_to_spawn = "screw_bomber"
-enemy_dictionary = {
-"batallion_balloon": ExtResource("40_18o05"),
-"batallion_balloon_delivery": ExtResource("41_yhp0m"),
-"bombomb": ExtResource("36_qkbun"),
-"burner_joe": ExtResource("30_b6m6j"),
-"buster": ExtResource("26_1j80y"),
-"ceiling_shooter": ExtResource("26_nr62y"),
-"count_bomb": ExtResource("28_xy0ib"),
-"enemy_2": ExtResource("29_bb2p0"),
-"grenade_man": ExtResource("32_liewx"),
-"hologran": ExtResource("20_awc2e"),
-"homer": ExtResource("21_bvco1"),
-"ice_joe": ExtResource("37_j62kv"),
-"ice_telly": ExtResource("35_1rsd0"),
-"mechakkero": ExtResource("15_ypbqq"),
-"met": ExtResource("18_mlemh"),
-"new_shotman": ExtResource("14_w0tqa"),
-"octopus_battery": ExtResource("19_amwpf"),
-"paraysu": ExtResource("22_sxbf7"),
-"peterchy": ExtResource("16_cc5oq"),
-"pickelman_bull": ExtResource("23_p6p1l"),
-"punk_riot": ExtResource("38_llvrb"),
-"returningmachine_joe": ExtResource("5_vbc4i"),
-"screw_bomber": ExtResource("34_iokj7"),
-"shield_riot": ExtResource("39_v5ob3"),
-"sniper_joe": ExtResource("8_60iu1"),
-"spikyoall": ExtResource("25_72d86"),
-"tacklefire": ExtResource("27_xpw24"),
-"upndown": ExtResource("28_603wd"),
-"walking_bomb": ExtResource("17_snc2g"),
-"yambou": ExtResource("24_fxnjj")
-}
 enemyVariant = "fire"
 enemy_Preview = NodePath("screw_bomber")
 
@@ -432,75 +377,11 @@ position = Vector2(296, 32)
 [node name="enemy_spawner2" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
 position = Vector2(440, 215)
 enemy_to_spawn = "sniper_joe"
-enemy_dictionary = {
-"batallion_balloon": ExtResource("40_18o05"),
-"batallion_balloon_delivery": ExtResource("41_yhp0m"),
-"bombomb": ExtResource("36_qkbun"),
-"burner_joe": ExtResource("30_b6m6j"),
-"buster": ExtResource("26_1j80y"),
-"ceiling_shooter": ExtResource("26_nr62y"),
-"count_bomb": ExtResource("28_xy0ib"),
-"enemy_2": ExtResource("29_bb2p0"),
-"grenade_man": ExtResource("32_liewx"),
-"hologran": ExtResource("20_awc2e"),
-"homer": ExtResource("21_bvco1"),
-"ice_joe": ExtResource("37_j62kv"),
-"ice_telly": ExtResource("35_1rsd0"),
-"mechakkero": ExtResource("15_ypbqq"),
-"met": ExtResource("18_mlemh"),
-"new_shotman": ExtResource("14_w0tqa"),
-"octopus_battery": ExtResource("19_amwpf"),
-"paraysu": ExtResource("22_sxbf7"),
-"peterchy": ExtResource("16_cc5oq"),
-"pickelman_bull": ExtResource("23_p6p1l"),
-"punk_riot": ExtResource("38_llvrb"),
-"returningmachine_joe": ExtResource("5_vbc4i"),
-"screw_bomber": ExtResource("34_iokj7"),
-"shield_riot": ExtResource("39_v5ob3"),
-"sniper_joe": ExtResource("8_60iu1"),
-"spikyoall": ExtResource("25_72d86"),
-"tacklefire": ExtResource("27_xpw24"),
-"upndown": ExtResource("28_603wd"),
-"walking_bomb": ExtResource("17_snc2g"),
-"yambou": ExtResource("24_fxnjj")
-}
 enemy_Preview = NodePath("sniper_joe")
 
 [node name="enemy_spawner3" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
 position = Vector2(331, 219)
 enemy_to_spawn = "bombomb"
-enemy_dictionary = {
-"batallion_balloon": ExtResource("40_18o05"),
-"batallion_balloon_delivery": ExtResource("41_yhp0m"),
-"bombomb": ExtResource("36_qkbun"),
-"burner_joe": ExtResource("30_b6m6j"),
-"buster": ExtResource("26_1j80y"),
-"ceiling_shooter": ExtResource("26_nr62y"),
-"count_bomb": ExtResource("28_xy0ib"),
-"enemy_2": ExtResource("29_bb2p0"),
-"grenade_man": ExtResource("32_liewx"),
-"hologran": ExtResource("20_awc2e"),
-"homer": ExtResource("21_bvco1"),
-"ice_joe": ExtResource("37_j62kv"),
-"ice_telly": ExtResource("35_1rsd0"),
-"mechakkero": ExtResource("15_ypbqq"),
-"met": ExtResource("18_mlemh"),
-"new_shotman": ExtResource("14_w0tqa"),
-"octopus_battery": ExtResource("19_amwpf"),
-"paraysu": ExtResource("22_sxbf7"),
-"peterchy": ExtResource("16_cc5oq"),
-"pickelman_bull": ExtResource("23_p6p1l"),
-"punk_riot": ExtResource("38_llvrb"),
-"returningmachine_joe": ExtResource("5_vbc4i"),
-"screw_bomber": ExtResource("34_iokj7"),
-"shield_riot": ExtResource("39_v5ob3"),
-"sniper_joe": ExtResource("8_60iu1"),
-"spikyoall": ExtResource("25_72d86"),
-"tacklefire": ExtResource("27_xpw24"),
-"upndown": ExtResource("28_603wd"),
-"walking_bomb": ExtResource("17_snc2g"),
-"yambou": ExtResource("24_fxnjj")
-}
 enemyVariant = "ice"
 enemy_Preview = NodePath("bombomb")
 
@@ -569,111 +450,15 @@ arrayOfLasers = [NodePath("../../laserWallMechanic8"), NodePath("../../laserWall
 [node name="enemy_spawner4" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
 position = Vector2(2744, 181)
 enemy_to_spawn = "sniper_joe"
-enemy_dictionary = {
-"batallion_balloon": ExtResource("40_18o05"),
-"batallion_balloon_delivery": ExtResource("41_yhp0m"),
-"bombomb": ExtResource("36_qkbun"),
-"burner_joe": ExtResource("30_b6m6j"),
-"buster": ExtResource("26_1j80y"),
-"ceiling_shooter": ExtResource("26_nr62y"),
-"count_bomb": ExtResource("28_xy0ib"),
-"enemy_2": ExtResource("29_bb2p0"),
-"grenade_man": ExtResource("32_liewx"),
-"hologran": ExtResource("20_awc2e"),
-"homer": ExtResource("21_bvco1"),
-"ice_joe": ExtResource("37_j62kv"),
-"ice_telly": ExtResource("35_1rsd0"),
-"mechakkero": ExtResource("15_ypbqq"),
-"met": ExtResource("18_mlemh"),
-"new_shotman": ExtResource("14_w0tqa"),
-"octopus_battery": ExtResource("19_amwpf"),
-"paraysu": ExtResource("22_sxbf7"),
-"peterchy": ExtResource("16_cc5oq"),
-"pickelman_bull": ExtResource("23_p6p1l"),
-"punk_riot": ExtResource("38_llvrb"),
-"returningmachine_joe": ExtResource("5_vbc4i"),
-"screw_bomber": ExtResource("34_iokj7"),
-"shield_riot": ExtResource("39_v5ob3"),
-"sniper_joe": ExtResource("8_60iu1"),
-"spikyoall": ExtResource("25_72d86"),
-"tacklefire": ExtResource("27_xpw24"),
-"upndown": ExtResource("28_603wd"),
-"walking_bomb": ExtResource("17_snc2g"),
-"yambou": ExtResource("24_fxnjj")
-}
 enemy_Preview = NodePath("sniper_joe")
 
 [node name="enemy_spawner5" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(3050, 13)
-enemy_dictionary = {
-"batallion_balloon": ExtResource("40_18o05"),
-"batallion_balloon_delivery": ExtResource("41_yhp0m"),
-"bombomb": ExtResource("36_qkbun"),
-"burner_joe": ExtResource("30_b6m6j"),
-"buster": ExtResource("26_1j80y"),
-"ceiling_shooter": ExtResource("26_nr62y"),
-"count_bomb": ExtResource("28_xy0ib"),
-"enemy_2": ExtResource("29_bb2p0"),
-"grenade_man": ExtResource("32_liewx"),
-"hologran": ExtResource("20_awc2e"),
-"homer": ExtResource("21_bvco1"),
-"ice_joe": ExtResource("37_j62kv"),
-"ice_telly": ExtResource("35_1rsd0"),
-"mechakkero": ExtResource("15_ypbqq"),
-"met": ExtResource("18_mlemh"),
-"new_shotman": ExtResource("14_w0tqa"),
-"octopus_battery": ExtResource("19_amwpf"),
-"paraysu": ExtResource("22_sxbf7"),
-"peterchy": ExtResource("16_cc5oq"),
-"pickelman_bull": ExtResource("23_p6p1l"),
-"punk_riot": ExtResource("38_llvrb"),
-"returningmachine_joe": ExtResource("5_vbc4i"),
-"screw_bomber": ExtResource("34_iokj7"),
-"shield_riot": ExtResource("39_v5ob3"),
-"sniper_joe": ExtResource("8_60iu1"),
-"spikyoall": ExtResource("25_72d86"),
-"tacklefire": ExtResource("27_xpw24"),
-"upndown": ExtResource("28_603wd"),
-"walking_bomb": ExtResource("17_snc2g"),
-"yambou": ExtResource("24_fxnjj")
-}
 riotToDeliver = "shield_riot"
 
 [node name="enemy_spawner6" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
 position = Vector2(3409, -41)
 enemy_to_spawn = "shield_riot"
-enemy_dictionary = {
-"batallion_balloon": ExtResource("40_18o05"),
-"batallion_balloon_delivery": ExtResource("41_yhp0m"),
-"bombomb": ExtResource("36_qkbun"),
-"burner_joe": ExtResource("30_b6m6j"),
-"buster": ExtResource("26_1j80y"),
-"ceiling_shooter": ExtResource("26_nr62y"),
-"count_bomb": ExtResource("28_xy0ib"),
-"enemy_2": ExtResource("29_bb2p0"),
-"grenade_man": ExtResource("32_liewx"),
-"hologran": ExtResource("20_awc2e"),
-"homer": ExtResource("21_bvco1"),
-"ice_joe": ExtResource("37_j62kv"),
-"ice_telly": ExtResource("35_1rsd0"),
-"mechakkero": ExtResource("15_ypbqq"),
-"met": ExtResource("18_mlemh"),
-"new_shotman": ExtResource("14_w0tqa"),
-"octopus_battery": ExtResource("19_amwpf"),
-"paraysu": ExtResource("22_sxbf7"),
-"peterchy": ExtResource("16_cc5oq"),
-"pickelman_bull": ExtResource("23_p6p1l"),
-"punk_riot": ExtResource("38_llvrb"),
-"returningmachine_joe": ExtResource("5_vbc4i"),
-"screw_bomber": ExtResource("34_iokj7"),
-"shield_riot": ExtResource("39_v5ob3"),
-"sniper_joe": ExtResource("8_60iu1"),
-"spikyoall": ExtResource("25_72d86"),
-"tacklefire": ExtResource("27_xpw24"),
-"upndown": ExtResource("28_603wd"),
-"walking_bomb": ExtResource("17_snc2g"),
-"yambou": ExtResource("24_fxnjj")
-}
 enemy_Preview = NodePath("shield_Riot")
 
 [node name="enemy_spawner7" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
@@ -681,8 +466,11 @@ position = Vector2(3056, 84)
 enemy_to_spawn = "dyna_riot"
 enemy_Preview = NodePath("dyna_Riot")
 
-[node name="koptar" parent="all_enemies" instance=ExtResource("47_ypbqq")]
-position = Vector2(3549, 76)
+[node name="enemy_spawner8" parent="all_enemies" instance=ExtResource("11_06gft")]
+position = Vector2(3551, -30)
+
+[node name="furnaceEnemy" parent="all_enemies" instance=ExtResource("19_wn5xw")]
+position = Vector2(3419, 18)
 
 [node name="all_collectables" type="Node2D" parent="."]
 
@@ -833,6 +621,26 @@ position = Vector2(1102, -16)
 position = Vector2(1166, 73)
 arrayOfLasers = [NodePath("../laserWallMechanic"), NodePath("../laserWallMechanic2"), NodePath("../laserWallMechanic3")]
 
+[node name="sniper_joe2" parent="." instance=ExtResource("8_60iu1")]
+position = Vector2(3449, 129)
+
+[node name="large_health_capsule" parent="." instance=ExtResource("12_2bvdr")]
+position = Vector2(3415, 135)
+
+[node name="energy_tank" parent="." instance=ExtResource("10_j6rho")]
+position = Vector2(3394.53, 135.522)
+
+[node name="conveyorBeltMain" parent="." instance=ExtResource("40_dlh6p")]
+tile_map_data = PackedByteArray("AADTAAsAAAAAAAEAAADhAAsAAAAAAAEAAADgAAsAAAAAAAIAAADfAAsAAAAAAAIAAADeAAsAAAAAAAIAAADdAAsAAAAAAAIAAADcAAsAAAAAAAIAAADbAAsAAAAAAAIAAADaAAsAAAAAAAIAAADZAAsAAAAAAAIAAADYAAsAAAAAAAIAAADXAAsAAAAAAAIAAADWAAsAAAAAAAIAAADVAAsAAAAAAAIAAADUAAsAAAAAAAIAAAA=")
+
+[node name="conveyorBeltBody" parent="conveyorBeltMain" index="0"]
+position = Vector2(3376, 175)
+initialDirection = "Right"
+
+[node name="conveyorBeltBody3" parent="conveyorBeltMain" instance=ExtResource("9_ctirt")]
+position = Vector2(3400, 175)
+initialDirection = "Right"
+
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="enter_player" to="." method="_on_enter_player_body_entered"]
 [connection signal="tree_exiting" from="all_enemies/enemy_spawner7/dyna_Riot" to="all_enemies/enemy_spawner7/dyna_Riot" method="_on_tree_exiting"]
@@ -840,3 +648,4 @@ arrayOfLasers = [NodePath("../laserWallMechanic"), NodePath("../laserWallMechani
 [editable path="ladder"]
 [editable path="Node2D/laser_test"]
 [editable path="laser2"]
+[editable path="conveyorBeltMain"]

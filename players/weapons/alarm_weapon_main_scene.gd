@@ -4,7 +4,7 @@ var changeState:bool=false
 func _ready() -> void:
 	$timer/switchPosTimer.start()
 	$timer/endSessionTimer.start()
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Check if all rings exist before modifying them
 	var rings = [
 		$alarm_Man_weapon_Ring,

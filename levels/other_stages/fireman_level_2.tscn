@@ -1,0 +1,130 @@
+[gd_scene load_steps=16 format=4 uid="uid://c7namwr1op05g"]
+
+[ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_6xuaf"]
+[ext_resource type="Script" uid="uid://bnw0kgqn3ipbg" path="res://levels/other_stages/fireman_level_2.gd" id="1_qe5p5"]
+[ext_resource type="PackedScene" uid="uid://bkflp1spldgrk" path="res://resources/screen_grid.tscn" id="2_jen3k"]
+[ext_resource type="PackedScene" uid="uid://dyemfpstef0rl" path="res://enemy/furnace_enemy.tscn" id="2_yabea"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_yabea"]
+[ext_resource type="AudioStream" uid="uid://b734qsbbc1dv5" path="res://assets/music/Mega Man Wily's Revenge⎪Wily Stage 1 Remix.mp3" id="5_4a7g7"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="6_jen3k"]
+[ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="7_4a7g7"]
+[ext_resource type="PackedScene" uid="uid://bqxlm1li22gud" path="res://levels/level_mechanics/conveyor_belt_main.tscn" id="9_2dl61"]
+[ext_resource type="PackedScene" uid="uid://b64mf8xlqq2oc" path="res://levels/level_mechanics/conveyor_belt_body.tscn" id="10_iaejr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jlosn"]
+texture = ExtResource("1_6xuaf")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_y35fs"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_jlosn")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jen3k"]
+size = Vector2(768, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwhhe"]
+size = Vector2(512, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dl61"]
+size = Vector2(256, 224)
+
+[node name="fireman_Level2" type="Node2D"]
+script = ExtResource("1_qe5p5")
+
+[node name="screenGrid" parent="." instance=ExtResource("2_jen3k")]
+visible = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("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AABCAAwAAAAAAAAAAABCAA0AAAAAAAAAAABDAAwAAAAAAAAAAABDAA0AAAAAAAAAAABEAAwAAAAAAAAAAABEAA0AAAAAAAAAAABFAAwAAAAAAAAAAABFAA0AAAAAAAAAAABGAAwAAAAAAAAAAABGAA0AAAAAAAAAAABHAAwAAAAAAAAAAABHAA0AAAAAAAAAAABIAAwAAAAAAAAAAABIAA0AAAAAAAAAAABJAAwAAAAAAAAAAABJAA0AAAAAAAAAAABKAAwAAAAAAAAAAABKAA0AAAAAAAAAAABLAAwAAAAAAAAAAABLAA0AAAAAAAAAAABMAAwAAAAAAAAAAABMAA0AAAAAAAAAAABNAAwAAAAAAAAAAABNAA0AAAAAAAAAAABOAAwAAAAAAAAAAABOAA0AAAAAAAAAAABPAAwAAAAAAAAAAABPAA0AAAAAAAAAAABQAAwAAAAAAAAAAABQAA0AAAAAAAAAAABRAAwAAAAAAAAAAABRAA0AAAAAAAAAAABSAAwAAAAAAAAAAABSAA0AAAAAAAAAAABTAAwAAAAAAAAAAABTAA0AAAAAAAAAAABUAAwAAAAAAAAAAABUAA0AAAAAAAAAAABVAAwAAAAAAAAAAABVAA0AAAAAAAAAAABWAAwAAAAAAAAAAABWAA0AAAAAAAAAAABXAAwAAAAAAAAAAABXAA0AAAAAAAAAAABYAAwAAAAAAAAAAABYAA0AAAAAAAAAAABZAAwAAAAAAAAAAABZAA0AAAAAAAAAAABaAAwAAAAAAAAAAABaAA0AAAAAAAAAAABbAAwAAAAAAAAAAABbAA0AAAAAAAAAAABcAAwAAAAAAAAAAABcAA0AAAAAAAAAAABdAAwAAAAAAAAAAABdAA0AAAAAAAAAAABeAAwAAAAAAAAAAABeAA0AAAAAAAAAAABfAAwAAAAAAAAAAABfAA0AAAAAAAAAAABgAAwAAAAAAAAAAABgAA0AAAAAAAAAAABhAAwAAAAAAAAAAABhAA0AAAAAAAAAAABiAAwAAAAAAAAAAABiAA0AAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_y35fs")
+
+[node name="furnaceEnemy" parent="." instance=ExtResource("2_yabea")]
+position = Vector2(384, 17)
+
+[node name="furnaceEnemy2" parent="." instance=ExtResource("2_yabea")]
+position = Vector2(470, 18)
+
+[node name="furnaceEnemy3" parent="." instance=ExtResource("2_yabea")]
+position = Vector2(568, 18)
+
+[node name="megaman" parent="." instance=ExtResource("3_yabea")]
+position = Vector2(17, 178)
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4a7g7")
+parameters/looping = true
+script = ExtResource("6_jen3k")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
+
+[node name="allCameras" type="Node2D" parent="."]
+visible = false
+
+[node name="New Camera System Addon" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("7_4a7g7")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon"]
+limit_left = 0
+limit_top = 0
+limit_right = 768
+limit_bottom = 224
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon"]
+position = Vector2(384, 112)
+shape = SubResource("RectangleShape2D_jen3k")
+
+[node name="New Camera System Addon2" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(768, 0)
+script = ExtResource("7_4a7g7")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon2"]
+limit_left = 768
+limit_top = 0
+limit_right = 1280
+limit_bottom = 224
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon2"]
+position = Vector2(256, 112)
+shape = SubResource("RectangleShape2D_dwhhe")
+
+[node name="New Camera System Addon3" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(1407, 104)
+script = ExtResource("7_4a7g7")
+zone_camera_2d = NodePath("@Camera2D@28825")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon3"]
+position = Vector2(1, 8)
+shape = SubResource("RectangleShape2D_2dl61")
+
+[node name="conveyorBeltMain" parent="." instance=ExtResource("9_2dl61")]
+tile_map_data = PackedByteArray("AAAJAAsAAAAAAAEAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAPAAsAAAAAAAIAAAAQAAsAAAAAAAIAAAARAAsAAAAAAAIAAAASAAsAAAAAAAIAAAATAAsAAAAAAAIAAAAUAAsAAAAAAAIAAAAVAAsAAAAAAAIAAAAWAAsAAAAAAAIAAAA=")
+
+[node name="conveyorBeltBody" parent="conveyorBeltMain" index="0"]
+position = Vector2(144, 175)
+initialDirection = "Right"
+
+[node name="conveyorBeltBody2" parent="conveyorBeltMain" instance=ExtResource("10_iaejr")]
+position = Vector2(152, 175)
+initialDirection = "Right"
+
+[editable path="conveyorBeltMain"]

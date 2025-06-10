@@ -4,7 +4,7 @@ extends Player_Projectile
 var target_enemy: Node2D = null  # Will store reference to enemy
 var directionInGame: Vector2 = Vector2.ZERO
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_instance_valid(target_enemy) and target_enemy.is_inside_tree():
 		# Calculate direction to current enemy position (not initial position)
 		directionInGame = (target_enemy.global_position - global_position).normalized()
@@ -14,8 +14,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 # Modified to take enemy reference instead of coordinates
-func set_target(enemy: Node2D):
-	target_enemy = enemy
+func set_target(enemyNode: Node2D):
+	target_enemy = enemyNode
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
