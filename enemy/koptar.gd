@@ -77,17 +77,18 @@ func _physics_process(delta: float) -> void:
 						$AnimatedSprite2D.play("triggered_Move")
 				else:
 					$AnimatedSprite2D.play("triggered_Still")
-				await get_tree().create_timer(1.5).timeout
+				await get_tree().create_timer(.5).timeout
 				triggered=true
 				state="triggered"
 	else:
-		if abs(distance_x)>5:
-				$AnimatedSprite2D.play("triggered_Move")
-		else:
-			$AnimatedSprite2D.play("triggered_Still")
-		await get_tree().create_timer(.5).timeout
-		triggered=true
-		state="triggered"
+		if triggered==false:
+			if abs(distance_x)>5:
+					$AnimatedSprite2D.play("triggered_Move")
+			else:
+				$AnimatedSprite2D.play("triggered_Still")
+			await get_tree().create_timer(.5).timeout
+			triggered=true
+			state="triggered"
 	move_and_slide()
 
 

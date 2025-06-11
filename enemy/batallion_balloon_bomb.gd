@@ -9,7 +9,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	playerdamagevalue=2
 	collision=move_and_collide(velocity*delta)
-	var rayCollide=$RayCast2D.is_colliding() or $RayCast2D2.is_colliding() or $RayCast2D3.is_colliding()
+	var rayCollide=$RayCast2D.is_colliding() or $RayCast2D2.is_colliding() or $RayCast2D3.is_colliding() or $RayCast2D4.is_colliding() or $RayCast2D5.is_colliding()
 	#isOnGround seems to be glitchy when detecting the florr,so I'm using a raycast
 	#if collision:
 		#isOnGround=collision.get_normal().dot(Vector2.UP)>0.7

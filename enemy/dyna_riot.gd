@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		"art":
 			pass
 			$AnimatedSprite2D.play("artISANEXPLOSION")
-	if abs(distance_x)<=20:
+	if abs(distance_x)<=35:
 		if not hasJumped:
 			state='jump'
 			velocity.y=-10000*delta

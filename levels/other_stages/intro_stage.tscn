@@ -199,7 +199,6 @@ parameters/looping = true
 script = ExtResource("8_mxcrg")
 
 [node name="screenGrid" parent="." instance=ExtResource("1_0bu30")]
-visible = false
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.2, 0.2)
@@ -239,7 +238,7 @@ tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAQANAAo
 tile_set = SubResource("TileSet_txw83")
 
 [node name="megaman" parent="." instance=ExtResource("2_1xojc")]
-position = Vector2(4079, 163)
+position = Vector2(19, 147)
 
 [node name="bridge_Foreground" type="TileMapLayer" parent="."]
 z_index = 1
@@ -439,7 +438,7 @@ shape = SubResource("RectangleShape2D_qgdqx")
 [node name="New Camera System Addon11" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(8713.35, 16.6116)
 script = ExtResource("3_35qat")
-zone_camera_2d = NodePath("@Camera2D@27625")
+zone_camera_2d = NodePath("@Camera2D@33868")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -452,7 +451,7 @@ shape = SubResource("RectangleShape2D_ea108")
 [node name="New Camera System Addon12" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(9481, 17)
 script = ExtResource("3_35qat")
-zone_camera_2d = NodePath("@Camera2D@27626")
+zone_camera_2d = NodePath("@Camera2D@33869")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true

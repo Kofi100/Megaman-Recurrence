@@ -61,7 +61,7 @@ func spawn_collectables():
 			if collectable != null:
 				var new_collectable = collectable.instantiate()
 				new_collectable.position = position
-				get_parent().add_child(new_collectable)
+				get_tree().current_scene.add_child(new_collectable)
 				if new_collectable.delete_spawnable_timer != null:
 					#print('delete timer triggered')
 					new_collectable.delete_spawnable_timer.start()

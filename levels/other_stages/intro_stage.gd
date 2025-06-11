@@ -13,6 +13,11 @@ func _ready() -> void:
 		if i!=0 :
 			MegamanAndItems.weaponNumberEnabled[i]=false
 			print(i)
+	#disable Rush Utilities
+	MegamanAndItems.weaponNumberEnabled[9]=false
+	MegamanAndItems.weaponNumberEnabled[10]=false
+	MegamanAndItems.weaponNumberEnabled[11]=false
+	#re-enable Mega Buster if disabled
 	MegamanAndItems.weaponNumberEnabled[0]=true
 	#checks originalWeaponEnabledDict and weaponNumberEnabled dictionaries
 	#after copying operation

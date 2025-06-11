@@ -26,13 +26,6 @@ theme = ExtResource("1_ggwvb")
 bbcode_enabled = true
 text = "[center]CREDITS
 -------------
-
-
-
-
-
-
-
 Team Members
 -------------
 
@@ -41,9 +34,6 @@ Samuel_X7
 Omega Prime
 Saito The One
 Ghost_Entity
-
-
-
 
 
 
@@ -59,19 +49,14 @@ Other RMs by Capcom
 
 
 
-
-
-
-
 SPRITES
 -------------
 
 Samuel_X7
 Omega Prime
 Saito The One
+Ghost_Entity
 Kofi K
-
-
 
 
 
@@ -85,19 +70,20 @@ Berserk Boy
 Games
 FamiTard
 SpeedVGM
+Melody-Man(https://www.youtube.com/@Melody-Man)
 Ghost_Entity
+
 [/center]"
 fit_content = true
 scroll_following = true
 script = ExtResource("3_n0iox")
 
 [node name="ColorRect" type="ColorRect" parent="RichTextLabel"]
-visible = false
 layout_mode = 0
-offset_left = -81.0
-offset_top = 891.0
-offset_right = 440.0
-offset_bottom = 987.0
+offset_left = -55.7143
+offset_top = 844.286
+offset_right = 465.286
+offset_bottom = 903.286
 
 [node name="Label" type="Label" parent="."]
 offset_left = 32.0

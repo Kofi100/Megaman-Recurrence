@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 
 
 func _on_scroll_timer_timeout() -> void:
-	currentLine=currentLine+1
+	#currentLine=currentLine+1
 	$RichTextLabel.scroll_to_line(currentLine)#$RichTextLabel.line
 	#pass
 	#currentLine += scrollSpeed

@@ -882,7 +882,7 @@ func create_weapons():
 					elif anim.flip_h == false:
 						rush_jet_instance.global_position = Vector2(global_position.x, global_position.y - 100)
 						rush_jet_instance.direction = "left"
-			10:
+			11:
 				#if MegamanAndItems.weapon3energy > 0:
 					#MegamanAndItems.weapon3energy -= 2
 					const MISSILE = preload("res://players/weapons/missile.tscn")

@@ -1,4 +1,5 @@
 extends StaticBody2D
+
 @export_enum("Left","Right") var initialDirection="Left"
 @export var speedInPixels:float=60.0
 func _ready() -> void:

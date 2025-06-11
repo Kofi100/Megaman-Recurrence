@@ -20,6 +20,8 @@ func _on_body_entered(body):
 	if body.is_in_group("player"):
 		playerindeathzone=true
 		#print("duh")
+	if body is enemy:
+		body.health=0
 
 
 func _on_body_exited(body):

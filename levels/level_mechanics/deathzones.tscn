@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cbwutxy2cfkfh" path="res://levels/level_mechanics/deathzones.gd" id="1_q45j8"]
 
 [node name="deathzones" type="Area2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_q45j8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

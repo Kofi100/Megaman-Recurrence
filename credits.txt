@@ -25,6 +25,7 @@ SPRITES
 Samuel_X7
 Omega Prime
 Saito The One
+Ghost_Entity
 Kofi K
 
 Music
@@ -37,4 +38,5 @@ Berserk Boy
 Games
 FamiTard
 SpeedVGM
+Melody-Man(https://www.youtube.com/@Melody-Man)
 Ghost_Entity

@@ -58,6 +58,7 @@ var disappear_nodes = {
 @export var SetinitialDirection:String
 @export var InitialDirection_Mini:String
 @export_enum("shield_riot","dyna_riot") var riotToDeliver:String=""
+var riot_Instance=null
 # Called when the node enters the scene tree for the first time.
 var spawn_timer: int = 0
 
@@ -145,7 +146,10 @@ func _process(_delta):
 				if enemy_dictionary.has(enemy_to_spawn):
 					has_enemy_spawned = true
 					var enemy_scene = enemy_dictionary.get(enemy_to_spawn)
-					new_enemy = enemy_scene.instantiate()
+					if enemy_to_spawn!="batallion_balloon_delivery":
+						new_enemy = enemy_scene.instantiate()
+					elif not is_instance_valid(riot_Instance):
+						new_enemy = enemy_scene.instantiate()
 					#checks for variants in enemies before changing to their variants
 					if enemyVariant != "none":
 						if "enemyVariant" in new_enemy:
@@ -170,6 +174,7 @@ func _process(_delta):
 				$spawn_homer_timer.start()
 			if enemy_to_spawn=="batallion_balloon_delivery" and is_instance_valid(enemy_to_spawn):
 				new_enemy.riotToDeliver=riotToDeliver
+				riot_Instance=new_enemy.enemyIns
 			#if GlobalScreenTransitionTimer.is_stopped()==false:
 				#if new_enemy:
 					#new_enemy.queue_free()

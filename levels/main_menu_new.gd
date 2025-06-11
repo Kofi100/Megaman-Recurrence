@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		match MenuOptionNo:
 			0:
-				get_tree().change_scene_to_file("res://levels/other_stages/intro_stage.tscn")
+				get_tree().change_scene_to_file("res://levels/other_stages/intro_stage_new.tscn")
 			1:
 				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
 				
