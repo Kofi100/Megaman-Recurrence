@@ -20,7 +20,7 @@ color = Color(0, 0, 0, 1)
 offset_left = 1.0
 offset_top = 224.0
 offset_right = 366.0
-offset_bottom = 1152.0
+offset_bottom = 1112.0
 scale = Vector2(0.7, 0.7)
 theme = ExtResource("1_ggwvb")
 bbcode_enabled = true
@@ -55,7 +55,7 @@ SPRITES
 Samuel_X7
 Omega Prime
 Saito The One
-Ghost_Entity
+Gh0st_Σ^t¡ty
 Kofi K
 
 
@@ -63,6 +63,7 @@ Kofi K
 Music
 -------------
 
+Gh0st_Σ^t¡ty
 Capcom
 LakeFerperd
 GalaxyTrail
@@ -70,8 +71,9 @@ Berserk Boy
 Games
 FamiTard
 SpeedVGM
-Melody-Man(https://www.youtube.com/@Melody-Man)
-Ghost_Entity
+Melody-Man
+(https://www.youtube.com/@Melody-Man)
+
 
 [/center]"
 fit_content = true
@@ -79,11 +81,16 @@ scroll_following = true
 script = ExtResource("3_n0iox")
 
 [node name="ColorRect" type="ColorRect" parent="RichTextLabel"]
+visible = false
 layout_mode = 0
 offset_left = -55.7143
 offset_top = 844.286
 offset_right = 465.286
 offset_bottom = 903.286
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="RichTextLabel"]
+position = Vector2(182.857, 453.571)
+scale = Vector2(18.2857, 45.3571)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 32.0
@@ -102,4 +109,5 @@ stream = ExtResource("4_ipopa")
 autoplay = true
 script = ExtResource("5_qnqfc")
 
+[connection signal="screen_exited" from="RichTextLabel/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="scroll_Timer" to="." method="_on_scroll_timer_timeout"]

@@ -16,10 +16,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	#show values
-	$values/BGM.text= str(OptionsSet.data["volumeSound"]["BGM"])
-	$values/SFX.text = str(OptionsSet.data["volumeSound"]["SFX"])
-	BGMValue=clampi(BGMValue,-60,0)
-	SFXValue=clampi(SFXValue,-60,0)
+	$values/BGM.text= str(int(OptionsSet.data["volumeSound"]["BGM"]))
+	$values/SFX.text = str(int(OptionsSet.data["volumeSound"]["SFX"]))
+	BGMValue=clampi(BGMValue,-59,-1)
+	SFXValue=clampi(SFXValue,-59,-1)
 	if Input.is_action_just_pressed("move_up"):
 		menuOption-=1
 	elif Input.is_action_just_pressed("move_down"):
@@ -56,6 +56,8 @@ func _process(_delta):
 				get_tree().change_scene_to_file("res://levels/input_rebind_menu.tscn")
 			3:
 				self.queue_free()
+	#BGMValue=clampi(BGMValue,-60,0)
+	#SFXValue=clampi(SFXValue,-60,0)
 
 
 func changeBGMVolume(value_changed: bool):

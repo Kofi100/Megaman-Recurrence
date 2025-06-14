@@ -1,0 +1,112 @@
+[gd_scene load_steps=13 format=3 uid="uid://drpu7l60ourvs"]
+
+[ext_resource type="Script" uid="uid://dqfhuu2ry3uk4" path="res://enemy/wooleep.gd" id="1_stigf"]
+[ext_resource type="Texture2D" uid="uid://ctfyocnvtijad" path="res://assets/sprites/enemies/1Wooleep.png" id="2_vfqbg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0tpv"]
+atlas = ExtResource("2_vfqbg")
+region = Rect2(82, 29, 41, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgq7g"]
+atlas = ExtResource("2_vfqbg")
+region = Rect2(82, 0, 41, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xd6c"]
+atlas = ExtResource("2_vfqbg")
+region = Rect2(0, 29, 41, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cftq0"]
+atlas = ExtResource("2_vfqbg")
+region = Rect2(41, 29, 41, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdl42"]
+atlas = ExtResource("2_vfqbg")
+region = Rect2(0, 0, 41, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eema"]
+atlas = ExtResource("2_vfqbg")
+region = Rect2(41, 0, 41, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75bt1"]
+atlas = ExtResource("2_vfqbg")
+region = Rect2(82, 0, 41, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwpda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0tpv")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgq7g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xd6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cftq0")
+}],
+"loop": false,
+"name": &"leap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdl42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eema")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75bt1")
+}],
+"loop": false,
+"name": &"spawnIn",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6idl3"]
+size = Vector2(33, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stigf"]
+size = Vector2(29, 23)
+
+[node name="wooleep" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_stigf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xwpda")
+animation = &"spawnIn"
+frame = 2
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6idl3")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_stigf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-27, -27)
+scale = Vector2(5.4, 4.2)
+rect = Rect2(-10, -10, 30, 30)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -61,13 +61,14 @@ func spawn_collectables():
 			if collectable != null:
 				var new_collectable = collectable.instantiate()
 				new_collectable.position = position
-				get_tree().current_scene.add_child(new_collectable)
+				get_tree().current_scene.add_child(new_collectable)#adds collectable to current scene instead of parent of enemy to prevent unwanted spawns
 				if new_collectable.delete_spawnable_timer != null:
 					#print('delete timer triggered')
 					new_collectable.delete_spawnable_timer.start()
 			else:
-				print("its a null case of the collectanles")
-				print("spawn_collectable_no:", GlobalScript.spawn_collectable_no)
+				pass
+				#print("its a null case of the collectanles")
+				#print("spawn_collectable_no:", GlobalScript.spawn_collectable_no)
 			queue_free()
 		if is_boss == true:
 			boss_defeated.emit()

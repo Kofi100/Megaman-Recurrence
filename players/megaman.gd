@@ -611,7 +611,9 @@ func play_animations():
 					if anim.animation != "shoot_run":
 						anim.play("run")
 				elif move_an_inch_checker < 10:
-					if velocity.x != 0:
+					#make sure that shoot_idle animation plays when player
+					#releases shoot button while moving an inch
+					if velocity.x != 0 and anim.animation!="shoot_idle":
 						$anim.play("move_by_inch")
 					elif velocity.x == 0:
 						#soln1
@@ -631,7 +633,7 @@ func play_animations():
 						anim.play("shoot_run")
 						$anim.frame = frameNo
 				if move_an_inch_checker < 10:
-					if anim.animation != "shoot_idle":
+					if anim.animation != "shoot_idle": #and anim.animation!="move_by_inch":
 						anim.play("shoot_idle")
 
 	elif not is_on_floor():

@@ -7,7 +7,7 @@ Kofi K
 Samuel_X7
 Omega Prime
 Saito The One
-Ghost_Entity
+Gh0st_Σ^t¡ty
 
 Robot Masters
 -------------
@@ -25,12 +25,12 @@ SPRITES
 Samuel_X7
 Omega Prime
 Saito The One
-Ghost_Entity
+Gh0st_Σ^t¡ty
 Kofi K
 
 Music
 -------------
-
+Gh0st_Σ^t¡ty
 Capcom
 LakeFerperd
 GalaxyTrail
@@ -39,4 +39,3 @@ Games
 FamiTard
 SpeedVGM
 Melody-Man(https://www.youtube.com/@Melody-Man)
-Ghost_Entity

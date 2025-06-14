@@ -152,23 +152,26 @@ offset_left = 30.0
 offset_top = 49.0
 offset_right = 108.0
 offset_bottom = 65.0
+scale = Vector2(0.5, 0.5)
 focus_next = NodePath("../down")
 theme = ExtResource("2_1p3mi")
 text = "up"
 
 [node name="down" type="Label" parent="keyboard_Settings"]
 offset_left = 30.0
-offset_top = 69.0
+offset_top = 58.0
 offset_right = 108.0
-offset_bottom = 85.0
+offset_bottom = 74.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("2_1p3mi")
 text = "down"
 
 [node name="left" type="Label" parent="keyboard_Settings"]
 offset_left = 30.0
-offset_top = 89.0
+offset_top = 66.0
 offset_right = 108.0
-offset_bottom = 105.0
+offset_bottom = 82.0
+scale = Vector2(0.5, 0.5)
 focus_next = NodePath("../right")
 focus_previous = NodePath("../down")
 theme = ExtResource("2_1p3mi")
@@ -176,9 +179,10 @@ text = "left"
 
 [node name="right" type="Label" parent="keyboard_Settings"]
 offset_left = 30.0
-offset_top = 109.0
+offset_top = 74.0
 offset_right = 108.0
-offset_bottom = 125.0
+offset_bottom = 90.0
+scale = Vector2(0.5, 0.5)
 focus_next = NodePath("../jump")
 focus_previous = NodePath("../left")
 theme = ExtResource("2_1p3mi")
@@ -186,9 +190,10 @@ text = "right"
 
 [node name="jump" type="Label" parent="keyboard_Settings"]
 offset_left = 30.0
-offset_top = 129.0
+offset_top = 82.0
 offset_right = 108.0
-offset_bottom = 145.0
+offset_bottom = 98.0
+scale = Vector2(0.5, 0.5)
 focus_next = NodePath("../dash")
 focus_previous = NodePath("../right")
 theme = ExtResource("2_1p3mi")
@@ -196,26 +201,162 @@ text = "jump"
 
 [node name="dash" type="Label" parent="keyboard_Settings"]
 offset_left = 30.0
-offset_top = 149.0
+offset_top = 90.0
 offset_right = 108.0
-offset_bottom = 165.0
+offset_bottom = 106.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("2_1p3mi")
 text = "dash"
 
 [node name="shoot" type="Label" parent="keyboard_Settings"]
 offset_left = 30.0
-offset_top = 169.0
+offset_top = 98.0
 offset_right = 108.0
-offset_bottom = 185.0
+offset_bottom = 114.0
+scale = Vector2(0.5, 0.5)
 focus_previous = NodePath("../dash")
 theme = ExtResource("2_1p3mi")
 text = "shoot"
 
+[node name="pause" type="Label" parent="keyboard_Settings"]
+offset_left = 30.0
+offset_top = 106.0
+offset_right = 194.0
+offset_bottom = 122.0
+scale = Vector2(0.5, 0.5)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "START"
+
+[node name="switchWeaponL" type="Label" parent="keyboard_Settings"]
+offset_left = 30.0
+offset_top = 115.0
+offset_right = 194.0
+offset_bottom = 131.0
+scale = Vector2(0.5, 0.5)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "sw. weapon L"
+
+[node name="switchWeaponR" type="Label" parent="keyboard_Settings"]
+offset_left = 30.0
+offset_top = 125.0
+offset_right = 194.0
+offset_bottom = 141.0
+scale = Vector2(0.5, 0.5)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "sw. weapon R"
+
+[node name="gampad_Settings" type="Node2D" parent="."]
+position = Vector2(125, 0)
+
+[node name="up" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 49.0
+offset_right = 108.0
+offset_bottom = 65.0
+scale = Vector2(0.5, 0.5)
+focus_next = NodePath("../down")
+theme = ExtResource("2_1p3mi")
+text = "up"
+
+[node name="down" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 58.0
+offset_right = 108.0
+offset_bottom = 74.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("2_1p3mi")
+text = "down"
+
+[node name="left" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 66.0
+offset_right = 108.0
+offset_bottom = 82.0
+scale = Vector2(0.5, 0.5)
+focus_next = NodePath("../right")
+focus_previous = NodePath("../down")
+theme = ExtResource("2_1p3mi")
+text = "left"
+
+[node name="right" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 74.0
+offset_right = 108.0
+offset_bottom = 90.0
+scale = Vector2(0.5, 0.5)
+focus_next = NodePath("../jump")
+focus_previous = NodePath("../left")
+theme = ExtResource("2_1p3mi")
+text = "right"
+
+[node name="jump" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 82.0
+offset_right = 108.0
+offset_bottom = 98.0
+scale = Vector2(0.5, 0.5)
+focus_next = NodePath("../dash")
+focus_previous = NodePath("../right")
+theme = ExtResource("2_1p3mi")
+text = "jump"
+
+[node name="dash" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 90.0
+offset_right = 108.0
+offset_bottom = 106.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("2_1p3mi")
+text = "dash"
+
+[node name="shoot" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 98.0
+offset_right = 108.0
+offset_bottom = 114.0
+scale = Vector2(0.5, 0.5)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "shoot"
+
+[node name="pause" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 106.0
+offset_right = 194.0
+offset_bottom = 122.0
+scale = Vector2(0.5, 0.5)
+focus_previous = NodePath("../../keyboard_Settings/dash")
+theme = ExtResource("2_1p3mi")
+text = "START"
+
+[node name="switchWeaponL" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 115.0
+offset_right = 194.0
+offset_bottom = 131.0
+scale = Vector2(0.5, 0.5)
+focus_previous = NodePath("../../keyboard_Settings/dash")
+theme = ExtResource("2_1p3mi")
+text = "sw. weapon L"
+
+[node name="switchWeaponR" type="Label" parent="gampad_Settings"]
+offset_left = 30.0
+offset_top = 125.0
+offset_right = 194.0
+offset_bottom = 141.0
+scale = Vector2(0.5, 0.5)
+focus_previous = NodePath("../../keyboard_Settings/dash")
+theme = ExtResource("2_1p3mi")
+text = "sw. weapon R"
+
 [node name="Label2" type="RichTextLabel" parent="."]
-offset_left = 141.0
-offset_top = 64.0
-offset_right = 331.0
-offset_bottom = 340.0
+offset_left = 55.0
+offset_top = 143.0
+offset_right = 409.0
+offset_bottom = 315.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("2_1p3mi")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o8l4n")
@@ -281,10 +422,10 @@ volume_db = -3.0
 autoplay = true
 
 [node name="Button" type="Button" parent="."]
-offset_left = 167.0
-offset_top = 43.0
-offset_right = 339.0
-offset_bottom = 90.0
+offset_left = 186.0
+offset_top = 3.0
+offset_right = 362.0
+offset_bottom = 54.0
 scale = Vector2(0.25, 0.25)
 theme = ExtResource("2_1p3mi")
 text = "save 
@@ -294,6 +435,7 @@ gamepad(wip)"
 
 [node name="selectArrow" type="Sprite2D" parent="."]
 position = Vector2(8, 49)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_y8vdx")
 centered = false
 
