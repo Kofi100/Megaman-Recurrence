@@ -62,7 +62,8 @@ func _ready():
 	##could be useful to increase screen sizes manually
 	DisplayServer.window_set_size(DisplayServer.window_get_size() * 3)
 	##
-	set_keys_to_players()
+	#set_keys_to_players()
+	load_bindings()
 	pass
 
 var array=[null,null,null]
@@ -189,3 +190,85 @@ func customSwitchScene(nextScenePath: String):
 	elif currentScenePath == nextScenePath:
 		restarted_level = true
 	get_tree().change_scene_to_file(nextScenePath)
+
+
+func load_bindings():
+	load_keyboard_bindings()
+	load_gamepad_bindings()
+
+const KEYBOARD_BINDS_PATH = "user://keyboard_binds.cfg"
+const GAMEPAD_BINDS_PATH = "user://gamepad_binds.cfg"
+
+var action_names = [
+	"move_up", "move_down", "move_left", "move_right", "jump",
+	"dash", "shoot", "pause", "switch_weapon_left", "switch_weapon_right"
+]
+
+func clear_action_events(action: String, event_type):
+	for e in InputMap.action_get_events(action):
+		match event_type:
+			"InputEventJoypadButton":
+				if e is InputEventJoypadButton:
+					InputMap.action_erase_event(action, e)
+			"InputEventJoypadMotion":
+				if e is InputEventJoypadMotion:
+					InputMap.action_erase_event(action, e)
+			"InputEventKey":
+				if e is InputEventKey:
+					InputMap.action_erase_event(action, e)
+			"MOUSE":
+				if e is InputEventMouseButton:
+					InputMap.action_erase_event(action, e)
+	
+func load_keyboard_bindings():
+	var config = ConfigFile.new()
+	var err = config.load(KEYBOARD_BINDS_PATH)
+	
+	if err != OK:
+		return
+	
+	for action in action_names:
+		if config.has_section_key(action, "type"):
+			var type = config.get_value(action, "type")
+			var event: InputEvent
+			
+			if type == "key":
+				event = InputEventKey.new()
+				event.keycode = config.get_value(action, "keycode")
+				event.physical_keycode = config.get_value(action, "physical_keycode")
+			elif type == "mouse":
+				event = InputEventMouseButton.new()
+				event.button_index = config.get_value(action, "button_index")
+			
+			if event:
+				clear_action_events(action, InputEventKey)
+				clear_action_events(action, InputEventMouseButton)
+				InputMap.action_add_event(action, event)
+
+func load_gamepad_bindings():
+	var config = ConfigFile.new()
+	var err = config.load(GAMEPAD_BINDS_PATH)
+	
+	if err != OK:
+		return
+	
+	for action in action_names:
+		if config.has_section_key(action, "type"):
+			var type = config.get_value(action, "type")
+			var event: InputEvent
+			
+			if type == "gamepad_button":
+				event = InputEventJoypadButton.new()
+				event.button_index = config.get_value(action, "button_index")
+				#event.device = config.get_value(action, "device", 0)
+			elif type == "gamepad_axis":
+				event = InputEventJoypadMotion.new()
+				event.axis = config.get_value(action, "axis")
+				event.axis_value = config.get_value(action, "axis_value")
+				#event.device = config.get_value(action, "device", 0)
+				event.deadzone = 0.2
+			
+			if event:
+				clear_action_events(action, InputEventJoypadButton)
+				clear_action_events(action, InputEventJoypadMotion)
+				InputMap.action_add_event(action, event)

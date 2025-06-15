@@ -1,262 +1,360 @@
 extends Node2D
-var save_keybinds_path = "res://keybinds.txt"
-var save_padbinds_path = "res://padbinds.txt"
-@export_enum("move_up","move_down","move_left","move_right","jump","dash","shoot","pause","switch_weapon_left","switch_weapon_right")var InputAction="move_up"
 
-@export var input_dictionary_keys = {
-	"move_up": 0,
-	"move_down": 0,
-	"move_left": 0,
-	"move_right": 0,
-	"jump": 0,
-	"dash": 0,
-	"shoot": 0,
-	"pause": 0,
-	"switch_weapon_left": 0,
-	"switch_weapon_right": 0,
+# File paths
+const KEYBOARD_BINDS_PATH = "user://keyboard_binds.cfg"
+const GAMEPAD_BINDS_PATH = "user://gamepad_binds.cfg"
+
+# Input actions
+enum InputActions {
+	MOVE_UP,
+	MOVE_DOWN,
+	MOVE_LEFT,
+	MOVE_RIGHT,
+	JUMP,
+	DASH,
+	SHOOT,
+	PAUSE,
+	SWITCH_WEAPON_LEFT,
+	SWITCH_WEAPON_RIGHT
 }
-#@export var node_to_action = {0: null, 1: null, 2: null, 3: null, 4: null, 5: null, 6: null, 7: null, 8: null, 9: null}
-@export var option_to_action_dict = {
-	0: "move_up", 1: "move_down", 2: "move_left", 3: "move_right", 4: "jump", 5: "dash", 6: "shoot", 7: "pause", 8: "switch_weapon_left", 9: "switch_weapon_right"
-}
-@export var option_to_action_dict_GamePad = {
-	10: "move_up", 11: "move_down", 12: "move_left", 13: "move_right", 14: "jump", 15: "dash", 16: "shoot", 17: "pause", 18: "switch_weapon_left", 19: "switch_weapon_right"
-}
-var menuOption: int = 0
-var inputAccept:bool=false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	set_keys_to_players()
-	#$Control/ScrollContainer/VSplitContainer/up_btn.grab_focus()
-	$mega_spin.play("spinnnn")
-	inputAccept=false
-	#creates a weird loop of sorts...
-	#while true:
-		#if Input.is_action_just_released("shoot"):
-			#inputAccept=false
-			#await get_tree().create_timer(2).timeout
-			#inputAccept=true
+# UI navigation
+var current_selection: int = 0
+var max_options: int = 20
+var is_waiting_for_input: bool = false
+var current_action: String = ""
+var is_keyboard_binding: bool = true
 
-
-var display_label = false
-var selected_option: int = 0
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	menuOption=clampi(menuOption,0,20)
-	get_tree().paused=false
-	$waiting_text_label.visible = display_label
-	$waiting_text_BG_Color_Rect.visible=display_label
-	if Input.is_action_just_pressed("die_debug") and display_label == true:
-		display_label = false
-	#display_label_fxn()
-	if Input.is_action_just_pressed("move_up"):
-		menuOption -= 1
-	elif Input.is_action_just_pressed("move_down"):
-		menuOption += 1
-	elif Input.is_action_just_pressed("move_left"):
-		menuOption+=10
-	elif Input.is_action_just_pressed("move_right"):
-		menuOption+=10
-
-	match menuOption:
-		0:$selectArrow.set_global_position($keyboard_Settings/up.global_position-Vector2(10,0))
-		1:$selectArrow.set_global_position($keyboard_Settings/down.global_position-Vector2(10,0))
-		2:$selectArrow.set_global_position($keyboard_Settings/left.global_position-Vector2(10,0))
-		3:$selectArrow.set_global_position($keyboard_Settings/right.global_position-Vector2(10,0))
-		4:$selectArrow.set_global_position($keyboard_Settings/jump.global_position-Vector2(10,0))
-		5:$selectArrow.set_global_position($keyboard_Settings/dash.global_position-Vector2(10,0))
-		6:$selectArrow.set_global_position($keyboard_Settings/shoot.global_position-Vector2(10,0))
-		7:$selectArrow.set_global_position($keyboard_Settings/pause.global_position-Vector2(10,0))
-		8:$selectArrow.set_global_position($keyboard_Settings/switchWeaponL.global_position-Vector2(10,0))
-		9:$selectArrow.set_global_position($keyboard_Settings/switchWeaponR.global_position-Vector2(10,0))
-
-		10:$selectArrow.set_global_position($gampad_Settings/up.global_position-Vector2(10,0))
-		11:$selectArrow.set_global_position($gampad_Settings/down.global_position-Vector2(10,0))
-		12:$selectArrow.set_global_position($gampad_Settings/left.global_position-Vector2(10,0))
-		13:$selectArrow.set_global_position($gampad_Settings/right.global_position-Vector2(10,0))
-		14:$selectArrow.set_global_position($gampad_Settings/jump.global_position-Vector2(10,0))
-		15:$selectArrow.set_global_position($gampad_Settings/dash.global_position-Vector2(10,0))
-		16:$selectArrow.set_global_position($gampad_Settings/shoot.global_position-Vector2(10,0))
-		17:$selectArrow.set_global_position($gampad_Settings/pause.global_position-Vector2(10,0))
-		18:$selectArrow.set_global_position($gampad_Settings/switchWeaponL.global_position-Vector2(10,0))
-		19:$selectArrow.set_global_position($gampad_Settings/switchWeaponR.global_position-Vector2(10,0))
-		
-		20:$selectArrow.set_global_position($main_menu.global_position-Vector2(10,0))
-	match menuOption:
-		0,10:InputAction="move_up"
-		1,11:InputAction="move_down"
-		2,12:InputAction="move_left"
-		3,13:InputAction="move_right"
-		4,14:InputAction="jump"
-		5,15:InputAction="dash"
-		6,16:InputAction="shoot"
-		7,17:InputAction="pause"
-		8,18:InputAction="switch_weapon_left"
-		9,19:InputAction="switch_weapon_right"
+@onready var ui_elements = {
+	# Keyboard bindings
+	0: $keyboard_Settings/up,
+	1: $keyboard_Settings/down,
+	2: $keyboard_Settings/left,
+	3: $keyboard_Settings/right,
+	4: $keyboard_Settings/jump,
+	5: $keyboard_Settings/dash,
+	6: $keyboard_Settings/shoot,
+	7: $keyboard_Settings/pause,
+	8: $keyboard_Settings/switchWeaponL,
+	9: $keyboard_Settings/switchWeaponR,
 	
-	if Input.is_action_just_released("shoot") and inputAccept==true:
-		if menuOption>=0 and menuOption<=19:
-			display_label_fxn()
-			selected_option=menuOption
-		if menuOption==20:
-			get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
-		#0:$selectArrow.set_global_position($keyboard_Settings/up.global_position-Vector2(20,0))
+	# Gamepad bindings
+	10: $gampad_Settings/up,
+	11: $gampad_Settings/down,
+	12: $gampad_Settings/left,
+	13: $gampad_Settings/right,
+	14: $gampad_Settings/jump,
+	15: $gampad_Settings/dash,
+	16: $gampad_Settings/shoot,
+	17: $gampad_Settings/pause,
+	18: $gampad_Settings/switchWeaponL,
+	19: $gampad_Settings/switchWeaponR,
+	
+	# Main menu
+	20: $main_menu
+}
 
-#var action_to_get
-var currentDeviceVar
+var action_names = [
+	"move_up", "move_down", "move_left", "move_right", "jump",
+	"dash", "shoot", "pause", "switch_weapon_left", "switch_weapon_right"
+]
+
+func _ready():
+	load_bindings()
+	update_ui_display()
+	$selectArrow.position = ui_elements[0].position - Vector2(10, 0)
+
+func _process(delta):
+	if is_waiting_for_input:
+		return
+	$mega_spin.play("spinnnn")
+	handle_navigation_input()
+	update_selection_arrow()
+	handle_confirmation_input()
+	update_ui_display()
+	#print(InputMap.get_actions())
+
+func handle_navigation_input():
+	if Input.is_action_just_pressed("move_up"):
+		current_selection -=1
+	elif Input.is_action_just_pressed("move_down"):
+		current_selection +=1
+	elif Input.is_action_just_pressed("move_left"):
+		current_selection -= 10
+	elif Input.is_action_just_pressed("move_right"):
+		current_selection += 10
+	current_selection=clampi(current_selection,0,20)
+
+func update_selection_arrow():
+	if current_selection in ui_elements:
+		
+		$selectArrow.position = ui_elements[current_selection].position - Vector2(23, 0)
+		if current_selection>9 and current_selection<=19:
+			$selectArrow.position = ui_elements[current_selection].position + Vector2(100, 0)
+		#print(ui_elements[current_selection])
+func handle_confirmation_input():
+	if Input.is_action_just_released("pause"):
+		if current_selection in range(0, 20):
+			start_rebinding()
+		elif current_selection == 20:
+			get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
+
+func start_rebinding():
+	current_action = action_names[current_selection % 10]
+	is_keyboard_binding = current_selection < 10
+	is_waiting_for_input = true
+	$waiting_text_label.visible = true
+	$waiting_text_BG_Color_Rect.visible = true
 
 func _input(event):
-	#currentDeviceVar=event.get_device()
-	#print(currentDeviceVar)
-	if inputAccept==false:
-		display_label=false
+	if !is_waiting_for_input:
 		return
-	if display_label == true:
-		if event is InputEventKey and event.keycode!=27:
-			if InputMap.has_action(InputAction) and event.is_released() == true:
-				#action_to_get = option_to_action_dict[selected_option]
-				for i:InputEventKey in InputMap.action_get_events(InputAction):  #input_dictionary_keys
-					#if i is InputEventKey:
-					print(i)
-					InputMap.action_erase_event(InputAction, i)  #REMOVE ALL INPUT KEYS FOR ACTION EVENT
-					InputMap.action_add_event(InputAction, event)  #ADD THE NEW KEY TO THE ACTION EVENT IN INPUT MAP
-					print("previous keybind deleted, added new key:", OS.get_keycode_string(event.keycode))
-					save_keybinds(event)
-					display_label = false
-		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-			if InputMap.has_action(InputAction) and event.is_released():
-				if event is InputEventJoypadMotion:
-					for previousMotion:InputEventJoypadMotion in InputMap.action_get_events(InputAction):
-						InputMap.action_erase_event(InputAction,previousMotion)
-						print(previousMotion,":deleted")
-					InputMap.action_add_event(InputAction,event)
-					InputMap.action_set_deadzone(InputAction,0.2)
-					print(event,":added with deadzone")
-					save_padbinds(event)
-					display_label=false
-				if event is InputEventJoypadButton:
-					for previousButton:InputEventJoypadButton in InputMap.action_get_events(InputAction):
-						InputMap.action_erase_event(InputAction,previousButton)
-						print(previousButton,":deleted")
-					InputMap.action_add_event(InputAction,event)
-					#InputMap.action_set_deadzone(InputAction,0.2)
-					print(event,":added with deadzone")
-					save_padbinds(event)
-					display_label=false
-			pass
+	
+	if Input.is_action_just_pressed("die_debug"):
+		cancel_rebinding()
+		return
+	
+	if is_keyboard_binding and (event is InputEventKey):# or event is InputEventMouseButton):
+		if event.is_released():
+			rebind_keyboard_action(event)
+	elif !is_keyboard_binding and (event is InputEventJoypadButton or event is InputEventJoypadMotion):
+		if event.is_released():
+			rebind_gamepad_action(event)
+
+func rebind_keyboard_action(event: InputEvent):
+	# Clear existing keyboard bindings for this action
+	clear_action_events(current_action, "InputEventKey")
+	#for events in InputMap.action_get_events(current_action):
+		#
+		#if events is InputEventAction or event is InputEventKey:
+			#print(events)
+			#InputMap.action_erase_event(current_action,events)
+	#clear_action_events(current_action, InputEventMouseButton)
+	
+	# Add new binding
+	InputMap.action_add_event(current_action, event)
+	save_keyboard_binding()
+	finish_rebinding()
+
+func rebind_gamepad_action(event: InputEvent):
+	# Clear existing gamepad bindings for this action
+	clear_action_events(current_action, "InputEventJoypadButton")
+	clear_action_events(current_action, "InputEventJoypadMotion")
+	
+	# Add new binding
+	if event is InputEventJoypadMotion:
+		event.deadzone = 0.2
+	InputMap.action_add_event(current_action, event)
+	save_gamepad_binding()
+	finish_rebinding()
+
+func clear_action_events(action: String, event_type:String):
+	for e in InputMap.action_get_events(action):
+		match event_type:
+			"InputEventJoypadButton":
+				if e is InputEventJoypadButton:
+					print(e)
+					InputMap.action_erase_event(action, e)
+			"InputEventJoypadMotion":
+				if e is InputEventJoypadMotion:
+					print(e)
+					InputMap.action_erase_event(action, e)
+			"InputEventKey":
+				if e is InputEventKey:
+					print(e)
+					InputMap.action_erase_event(action, e)
+			"MOUSE":
+				if e is InputEventMouseButton:
+					print(e)
+					InputMap.action_erase_event(action, e)
+		print(action,":cleared")
+func finish_rebinding():
+	is_waiting_for_input = false
+	$waiting_text_label.visible = false
+	$waiting_text_BG_Color_Rect.visible = false
+	update_ui_display()
+
+func cancel_rebinding():
+	is_waiting_for_input = false
+	$waiting_text_label.visible = false
+	$waiting_text_BG_Color_Rect.visible = false
+
+func save_keyboard_binding():
+	var config = ConfigFile.new()
+	for actionTest in action_names:
+		if InputMap.get_actions().has(actionTest):
+			#print(actionTest)
+			var firstEvent=get_first_keyboard_event(actionTest)
+			if firstEvent is InputEventKey:
+					config.set_value(actionTest, "type", "key")
+					config.set_value(actionTest, "keycode", firstEvent.keycode)
+					config.set_value(actionTest, "physical_keycode", firstEvent.physical_keycode)
+	#if event is InputEventKey:
+		#config.set_value(action, "type", "key")
+		#config.set_value(action, "keycode", event.keycode)
+		#config.set_value(action, "physical_keycode", event.physical_keycode)
+	#elif event is InputEventMouseButton:
+		#config.set_value(action, "type", "mouse")
+		#config.set_value(action, "button_index", event.button_index)
+	config.save(KEYBOARD_BINDS_PATH)
+
+func save_gamepad_binding():
+	var config = ConfigFile.new()
+	for action in InputMap.get_actions():
+		if action_names.has(action):
+			var firstEvent=get_first_gamepad_event(action)
+			if firstEvent is InputEventJoypadButton:
+				config.set_value(action, "type", "gamepad_button")
+				config.set_value(action, "button_index", firstEvent.button_index)
+				config.set_value(action, "device", firstEvent.device)
+			elif firstEvent is InputEventJoypadMotion:
+				config.set_value(action, "type", "gamepad_axis")
+				config.set_value(action, "axis", firstEvent.axis)
+				config.set_value(action, "axis_value", firstEvent.axis_value)
+				config.set_value(action, "device", firstEvent.device)
+	
+	config.save(GAMEPAD_BINDS_PATH)
+
+func load_bindings():
+	load_keyboard_bindings()
+	load_gamepad_bindings()
+
+func load_keyboard_bindings():
+	var config = ConfigFile.new()
+	var err = config.load(KEYBOARD_BINDS_PATH)
+	
+	if err != OK:
+		return
+	
+	for action in action_names:
+		if config.has_section_key(action, "type"):
+			var type = config.get_value(action, "type")
+			var event: InputEvent
 			
-				#InputMap.era
-		if Input.is_action_just_pressed("die_debug"):
-			display_label=false
+			if type == "key":
+				event = InputEventKey.new()
+				event.keycode = config.get_value(action, "keycode")
+				event.physical_keycode = config.get_value(action, "physical_keycode")
+			elif type == "mouse":
+				event = InputEventMouseButton.new()
+				event.button_index = config.get_value(action, "button_index")
+			
+			if event:
+				clear_action_events(action, "InputEventKey")
+				clear_action_events(action, "InputEventMouseButton")
+				InputMap.action_add_event(action, event)
 
-
-func save_keybinds(key):  #This saves the keycode of the key you pressed into a file.
-	if key is InputEventKey:
-		input_dictionary_keys[InputAction] = key.keycode
-
-		var file_open = FileAccess.open(save_keybinds_path, FileAccess.WRITE)
-		if file_open.is_open() == true:
-			print("\n file opened")
-		if file_open != null:
-			file_open.store_string(str(input_dictionary_keys))
-			print("\n file stored input dictionary")
-			file_open.close()
-			print("\n input keybinds saved successfully 🥳")
-
-
-func save_padbinds(padEvent):  #This saves the keycode of the key you pressed into a file.
-	if padEvent is InputEventJoypadButton or InputEventJoypadMotion:
-		if padEvent is InputEventJoypadButton:
-			input_dictionary_keys[InputAction] = padEvent.button_index
-		elif padEvent is InputEventJoypadMotion:
-			input_dictionary_keys[InputAction] = padEvent.axis_value
-
-		var file_open = FileAccess.open(save_padbinds_path, FileAccess.WRITE)
-		if file_open.is_open() == true:
-			print("\n file opened")
-		if file_open != null:
-			file_open.store_string(str(input_dictionary_keys))
-			print("\n file stored input dictionary")
-			file_open.close()
-			print("\n input Gamepad Keybinds: Saved successfully 🥳")
-
-
-func set_keys_to_players():
-	var keyBoardSettingFile = FileAccess.open(save_keybinds_path, FileAccess.READ)
-	#
-	#if keyBoardSettingFile != null:
-		  ##.is_open()
+func load_gamepad_bindings():
+	var config = ConfigFile.new()
+	var err = config.load(GAMEPAD_BINDS_PATH)
 	
-	if keyBoardSettingFile == null:
-		print("keyBoardSettingFile:null: creating new file...")
-		createNewFile(save_keybinds_path)
+	if err != OK:
 		return
 	
-	print(name, " --> opened keybind save file successfully")
-	var keybinds_as_dict = str_to_var(keyBoardSettingFile.get_line())
-	print("saved keybinds_as_dict: ", keybinds_as_dict)
+	for action in action_names:
+		if config.has_section_key(action, "type"):
+			var type = config.get_value(action, "type")
+			var event: InputEvent
+			
+			if type == "gamepad_button":
+				event = InputEventJoypadButton.new()
+				event.button_index = config.get_value(action, "button_index")
+				#event.device = config.get_value(action, "device", 0)
+			elif type == "gamepad_axis":
+				event = InputEventJoypadMotion.new()
+				event.axis = config.get_value(action, "axis")
+				event.axis_value = config.get_value(action, "axis_value")
+				#event.device = config.get_value(action, "device", 0)
+				event.deadzone = 0.2
+			
+			if event:
+				clear_action_events(action, "InputEventJoypadButton")
+				clear_action_events(action, "InputEventJoypadMotion")
+				InputMap.action_add_event(action, event)
+
+func update_ui_display():
+	for i in range(10):
+		update_keyboard_button_display(i)
+		update_gamepad_button_display(i + 10)
+
+func update_keyboard_button_display(index: int):
+	var action = action_names[index]
+	var button = ui_elements[index]
+	#var event = get_first_keyboard_event(action)
 	
-	if keybinds_as_dict == null:
-		print(name, "-> keybinds_as_dict:null: creating new file...")
-		createNewFile(save_keybinds_path)
-		return
+	#for actionA in action_names:
+		#if InputMap.has_action(actionA):
+			#
+	for event in InputMap.action_get_events(action):
+
+		if event is InputEventAction or event is InputEventKey:
+			var string=event_to_string(event)
+			#if action=="move_up" :
+				#print(event)
+			button.text = str(action)+":"+event_to_string(event)
+	#if event is InputEventAction or event_to_string(event)==null:
+		#button.text = str(action)+":"+"NULL"
+		#return
+	if action=="switch_weapon_left":
+		action="switch W L"
+	if action=="switch_weapon_right":
+		action="switch W R"
+	#button.text = str(action)+":"+event_to_string(event)
+
+func update_gamepad_button_display(index: int):
+	var action = action_names[index - 10]
+	var button = ui_elements[index]
+	var event = get_first_gamepad_event(action)
+	if action=="switch_weapon_left":
+		action="switch W L"
+	if action=="switch_weapon_right":
+		action="switch W R"
+	button.text = str(action)+":"+event_to_string(event)
+
+func get_first_keyboard_event(action: String) -> InputEvent:
+	for event in InputMap.action_get_events(action):
+		if event is InputEventKey or event is InputEventAction:
+			return event
+	return null
+
+func get_first_gamepad_event(action: String) -> InputEvent:
+	for event in InputMap.action_get_events(action):
+		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+			return event
+	return null
+
+func event_to_string(event: InputEvent) -> String:
+	if event == null:
+		return "Unbound"
 	
-	#if keybinds_as_dict != null:
-	#check if inputCommand is in keybinds_as_dict and input_dictionary_keys
-	for inputCommand in keybinds_as_dict:
-		if input_dictionary_keys.has(inputCommand):
-			#check if inputCommand keyCode is not null or zero.
-			if keybinds_as_dict[inputCommand] != 0 and keybinds_as_dict[inputCommand] != null:
-				input_dictionary_keys[inputCommand] = keybinds_as_dict[inputCommand]
-				#create new InputEventKey and set it's keycode to inputCommand's keycode
-				var new_InputKey = InputEventKey.new()
-				new_InputKey.keycode = keybinds_as_dict[inputCommand]
-				#check if InputMap has the inputCommand and
-				if InputMap.has_action(inputCommand):
-					#check thru its events for InputEventKeys
-					for previousKey:InputEventKey in InputMap.action_get_events(inputCommand):
-						#if previousKey is InputEventKey:
-						#delete previous ones and add new ones instead
-						InputMap.action_erase_event(inputCommand, previousKey)
-						InputMap.action_add_event(inputCommand, new_InputKey)
-						print("\n newKey set:action:", inputCommand, "->", OS.get_keycode_string(new_InputKey.keycode))
-
-func createNewFile(filePath:String):
-	var file_open = FileAccess.open(filePath, FileAccess.WRITE)
-	if file_open.is_open() == true:
-		print("\n file opened")
-	if file_open != null:
-		file_open.store_string(str(input_dictionary_keys))
-		print("\n file stored input dictionary")
-		file_open.close()
-		print("\n input keybinds saved successfully 🥳")
-
-func display_label_fxn():
-	if display_label == false:
-		display_label = true
-		$waiting_text_BG_Color_Rect.visible=true
-		return
-	elif display_label == true:
-		display_label = false
-		$waiting_text_BG_Color_Rect.visible=false
-		return
-
+	if event is InputEventKey:
+		if event.keycode:
+			return OS.get_keycode_string(event.keycode)
+		elif event.physical_keycode:
+			return OS.get_keycode_string(event.physical_keycode)
+	elif event is InputEventMouseButton:
+		return "Mouse " + str(event.button_index)
+	elif event is InputEventJoypadButton:
+		return "Button " + str(event.button_index)
+	elif event is InputEventJoypadMotion:
+		var axis_name = "Axis " + str(event.axis)
+		axis_name += "+" if event.axis_value > 0 else "-"
+		return axis_name
+	return "Unknown"
 
 func _on_up_btn_pressed():
-	selected_option = 0
+	#selected_option = 0
+	pass
 
 
 func _on_down_btn_pressed():
 	pass  # Replace with function body.
-	selected_option = 1
+	#selected_option = 1
 
 
 func _on_left_btn_pressed():
 	pass  # Replace with function body.
-	selected_option = 2
+	#selected_option = 2
 
 
 func _on_main_menu_pressed():
@@ -264,19 +362,23 @@ func _on_main_menu_pressed():
 
 
 func _on_right_btn_pressed():
-	selected_option = 3
+	#selected_option = 3
+	pass
 
 
 func _on_jump_btn_pressed():
-	selected_option = 4
+	#selected_option = 4
+	pass
 
 
 func _on_slide_btn_pressed():
-	selected_option = 5
+	#selected_option = 5
+	pass
 
 
 func _on_shoot_btn_pressed():
-	selected_option = 6
+	#selected_option = 6
+	pass
 
 
 func _on_audio_stream_player_finished():
@@ -294,4 +396,5 @@ func _on_button_pressed() -> void:
 
 
 func _on_delay_input_timer_timeout() -> void:
-	inputAccept=true
+	#inputAccept=true
+	pass
