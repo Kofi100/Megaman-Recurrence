@@ -39,6 +39,10 @@ var lastStageEntered: String
 var robotMaster = 0
 var lives = 3
 
+const KEYBOARD_BINDS_PATH = "res://keyboard_binds.cfg"
+const GAMEPAD_BINDS_PATH = "res://gamepad_binds.cfg"
+
+var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "dash", "shoot", "pause", "switch_weapon_left", "switch_weapon_right"]
 #var volumeSound:Dictionary={
 #"BGM":-10,"SFX":0
 #}
@@ -66,7 +70,10 @@ func _ready():
 	load_bindings()
 	pass
 
-var array=[null,null,null]
+
+var array = [null, null, null]
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print(array)
@@ -196,13 +203,6 @@ func load_bindings():
 	load_keyboard_bindings()
 	load_gamepad_bindings()
 
-const KEYBOARD_BINDS_PATH = "user://keyboard_binds.cfg"
-const GAMEPAD_BINDS_PATH = "user://gamepad_binds.cfg"
-
-var action_names = [
-	"move_up", "move_down", "move_left", "move_right", "jump",
-	"dash", "shoot", "pause", "switch_weapon_left", "switch_weapon_right"
-]
 
 func clear_action_events(action: String, event_type):
 	for e in InputMap.action_get_events(action):
@@ -219,19 +219,20 @@ func clear_action_events(action: String, event_type):
 			"MOUSE":
 				if e is InputEventMouseButton:
 					InputMap.action_erase_event(action, e)
-	
+
+
 func load_keyboard_bindings():
 	var config = ConfigFile.new()
 	var err = config.load(KEYBOARD_BINDS_PATH)
-	
+
 	if err != OK:
 		return
-	
+
 	for action in action_names:
 		if config.has_section_key(action, "type"):
 			var type = config.get_value(action, "type")
 			var event: InputEvent
-			
+
 			if type == "key":
 				event = InputEventKey.new()
 				event.keycode = config.get_value(action, "keycode")
@@ -239,24 +240,25 @@ func load_keyboard_bindings():
 			elif type == "mouse":
 				event = InputEventMouseButton.new()
 				event.button_index = config.get_value(action, "button_index")
-			
+
 			if event:
 				clear_action_events(action, InputEventKey)
 				clear_action_events(action, InputEventMouseButton)
 				InputMap.action_add_event(action, event)
 
+
 func load_gamepad_bindings():
 	var config = ConfigFile.new()
 	var err = config.load(GAMEPAD_BINDS_PATH)
-	
+
 	if err != OK:
 		return
-	
+
 	for action in action_names:
 		if config.has_section_key(action, "type"):
 			var type = config.get_value(action, "type")
 			var event: InputEvent
-			
+
 			if type == "gamepad_button":
 				event = InputEventJoypadButton.new()
 				event.button_index = config.get_value(action, "button_index")
@@ -267,7 +269,7 @@ func load_gamepad_bindings():
 				event.axis_value = config.get_value(action, "axis_value")
 				#event.device = config.get_value(action, "device", 0)
 				event.deadzone = 0.2
-			
+
 			if event:
 				clear_action_events(action, InputEventJoypadButton)
 				clear_action_events(action, InputEventJoypadMotion)

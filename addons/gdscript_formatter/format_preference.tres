@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dnomyqct0jotq" path="res://addons/gdscript_formatter/scripts/preference.gd" id="1_0h0so"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cltor"]
+device = -1
 alt_pressed = true
 shift_pressed = true
-pressed = true
 keycode = 70
 
 [sub_resource type="Shortcut" id="Shortcut_jmmxl"]
