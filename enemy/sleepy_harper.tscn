@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://cujgw7o7hpbmi"]
+
+[ext_resource type="Script" uid="uid://3eunoerf2wex" path="res://enemy/sleepy_harper.gd" id="1_fhqpq"]
+[ext_resource type="Texture2D" uid="uid://bm5t5cu0w5gh2" path="res://assets/sprites/enemies/1SleepyHarper_Samuel_X7.png" id="1_kk3tm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhqpq"]
+atlas = ExtResource("1_kk3tm")
+region = Rect2(0, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o31n"]
+atlas = ExtResource("1_kk3tm")
+region = Rect2(24, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eys3v"]
+atlas = ExtResource("1_kk3tm")
+region = Rect2(48, 0, 24, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_256bk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhqpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o31n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eys3v")
+}],
+"loop": true,
+"name": &"playing",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk3tm"]
+size = Vector2(18, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhqpq"]
+size = Vector2(18, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o31n"]
+size = Vector2(18, 24)
+
+[node name="sleepyHarper" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_fhqpq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_256bk")
+animation = &"playing"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_kk3tm")
+
+[node name="shootProjectile" type="Timer" parent="."]
+autostart = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="L" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_fhqpq")
+
+[node name="R" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-7, 2)
+shape = SubResource("RectangleShape2D_6o31n")
+disabled = true
+
+[connection signal="timeout" from="shootProjectile" to="." method="_on_shoot_projectile_timeout"]

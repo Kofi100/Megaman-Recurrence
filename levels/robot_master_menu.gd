@@ -62,9 +62,9 @@ func _process(delta):
 				if selectionDictionary[robotSelected]==false:
 					robotSelected+=1
 		
-	if Input.is_action_just_pressed("shoot") and robotAllowToSelect == false:
+	if Input.is_action_just_pressed("pause") and robotAllowToSelect == false:
 		#need to work on this for new structure
-		if robotSelected==0 or robotSelected==2 or robotSelected==6 :
+		if robotSelected==0 or robotSelected==1 or robotSelected==2 or robotSelected==6 :
 			robotAllowToSelect = true
 			$Timers/screenTransTimer.start()
 			$Sounds/selectRM.play()
@@ -131,6 +131,8 @@ func playSelectForSingleRM(RM_Index:int,animatedSprite:AnimatedSprite2D):
 func changeScene():
 	if robotSelected == 0:
 		get_tree().change_scene_to_file("res://levels/test stages/stage_4.tscn")
+	if robotSelected==1:
+		get_tree().change_scene_to_file("res://levels/8_robot_stages/slumber_man_stage.tscn")
 	if robotSelected == 2:
 		get_tree().change_scene_to_file("res://levels/8_robot_stages/shadowman_stage1.tscn")
 	if robotSelected == 6:

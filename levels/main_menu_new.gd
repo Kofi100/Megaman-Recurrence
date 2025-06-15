@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 		6:$SelectArrow.global_position=$"allMarker2Ds/6".global_position
 		7:$SelectArrow.global_position=$"allMarker2Ds/7".global_position
 
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("pause"):
 		match MenuOptionNo:
 			0:
 				get_tree().change_scene_to_file("res://levels/other_stages/intro_stage_new.tscn")
@@ -81,7 +81,7 @@ func _input(event: InputEvent) -> void:
 			#
 		#
 		#MenuOptionNo = clampi(MenuOptionNo, 0, 5)
-	if event is InputEventAction or event is InputEventKey:
+	if event :
 		if menuPoppedUp==false:
 			if event.is_action_pressed("move_up"):
 				MenuOptionNo-=1

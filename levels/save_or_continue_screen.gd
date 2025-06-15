@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 		0:$SelectArrow.set_global_position($saveGame.global_position-Vector2(20,0))
 		1:$SelectArrow.set_global_position($continue.global_position-Vector2(20,0))
 		2:$SelectArrow.set_global_position($quit.global_position-Vector2(20,0))
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("pause"):
 		match menuIndex:
 			0:
 				pass

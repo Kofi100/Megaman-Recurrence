@@ -82,7 +82,7 @@ func update_selection_arrow():
 
 
 func handle_confirmation_input():
-	if Input.is_action_just_released("pause"):
+	if Input.is_action_just_released("shoot"):
 		if current_selection in range(0, 20):
 			start_rebinding()
 		elif current_selection == 20:
@@ -135,8 +135,8 @@ func rebind_gamepad_action(event: InputEvent):
 	clear_action_events(current_action, "InputEventJoypadMotion")
 
 	# Add new binding
-	if event is InputEventJoypadMotion:
-		event.deadzone = 0.2
+	#if event is InputEventJoypadMotion:
+		#event.deadzone = 0.2
 	InputMap.action_add_event(current_action, event)
 	save_gamepad_binding()
 	finish_rebinding()
@@ -267,7 +267,7 @@ func load_gamepad_bindings():
 				event.axis = config.get_value(action, "axis")
 				event.axis_value = config.get_value(action, "axis_value")
 				#event.device = config.get_value(action, "device", 0)
-				event.deadzone = 0.2
+				#event.deadzone = 0.2
 
 			if event:
 				clear_action_events(action, "InputEventJoypadButton")

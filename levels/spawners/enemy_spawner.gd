@@ -46,7 +46,8 @@ var enemy_dictionary: Dictionary = {
 	"batallion_balloon":preload("res://enemy/batallion_balloon.tscn"),
 	"batallion_balloon_delivery":preload("res://enemy/batallion_balloon_delivery.tscn"),
 	"koptar":preload("res://enemy/koptar.tscn"),
-	"wooleep":preload("res://enemy/wooleep.tscn")
+	"wooleep":preload("res://enemy/wooleep.tscn"),
+	"sleepy_harper":preload("res://enemy/sleepy_harper.tscn")
 }
 
 var disappear_nodes = {

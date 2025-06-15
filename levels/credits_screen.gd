@@ -39,9 +39,9 @@ func _process(delta: float) -> void:
 		#print(endYPosition,"    ",$RichTextLabel/ColorRect.global_position.y)
 		#if endYPosition<224*1.2:#checks if richtextlabel has crossed the top of the scene and changes scene to the Main Menu
 		#print($RichTextLabel.visible)
-		await get_tree().create_timer(3).timeout
-		if not $RichTextLabel.is_visible_in_tree():
-			get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
+		#await get_tree().create_timer(3).timeout
+		#if not $RichTextLabel.is_visible_in_tree():
+			#get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
 			
 
 func _on_scroll_timer_timeout() -> void:

@@ -472,18 +472,14 @@ position = Vector2(3419, 18)
 
 [node name="enemy_spawner9" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
 position = Vector2(3888, 211)
-enemy_to_spawn = "wooleep"
-enemy_Preview = NodePath("wooleep")
+enemy_to_spawn = "sleepy_harper"
+enemy_Preview = NodePath("sleepyHarper")
 
-[node name="enemy_spawner10" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner10" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(4013, 210)
-enemy_to_spawn = "wooleep"
-enemy_Preview = NodePath("wooleep")
 
-[node name="enemy_spawner11" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner11" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(4133, 210)
-enemy_to_spawn = "wooleep"
-enemy_Preview = NodePath("wooleep")
 
 [node name="all_collectables" type="Node2D" parent="."]
 

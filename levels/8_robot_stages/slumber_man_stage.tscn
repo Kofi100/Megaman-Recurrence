@@ -1,3 +1,215 @@
-[gd_scene format=3 uid="uid://p823lmf7qcqs"]
+[gd_scene load_steps=17 format=4 uid="uid://p823lmf7qcqs"]
+
+[ext_resource type="AudioStream" uid="uid://c853gkcojdsww" path="res://assets/music/Slumber Man Loop.ogg" id="1_b6o7e"]
+[ext_resource type="Texture2D" uid="uid://corf5n0sw8f1o" path="res://assets/sprites/tilesets/8_stages/1SlumberTiles_Samuel_X7.png" id="1_kf6wa"]
+[ext_resource type="PackedScene" uid="uid://bkflp1spldgrk" path="res://resources/screen_grid.tscn" id="1_sbcxh"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="2_nt4c0"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_6ct3d"]
+[ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="4_2py4x"]
+[ext_resource type="Texture2D" uid="uid://bx3w7pvd2xeua" path="res://assets/sprites/tilesets/8_stages/1SlumberBackground.png" id="4_nt4c0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58n5x"]
+texture = ExtResource("4_nt4c0")
+texture_region_size = Vector2i(256, 224)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_g21xf"]
+tile_size = Vector2i(256, 224)
+sources/0 = SubResource("TileSetAtlasSource_58n5x")
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_6ct3d"]
+tile_data = PackedInt32Array(0, 0, 5, 65536, 0, 6, 131072, 0, 7, 196608, 0, 8, 1, 65536, 5, 65537, 65536, 6, 131073, 65536, 7, 196609, 65536, 8, 2, 131072, 5, 65538, 131072, 6, 131074, 131072, 7, 196610, 131072, 8, 3, 196608, 5, 65539, 196608, 6, 131075, 196608, 7, 196611, 196608, 8)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2py4x"]
+tile_data = PackedInt32Array(0, 262144, 5, 65536, 262144, 6, 131072, 262144, 7, 196608, 262144, 8, 262144, 262144, 9, 1, 327680, 5, 65537, 327680, 6, 131073, 327680, 7, 196609, 327680, 8, 262145, 327680, 9)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_i2dt4"]
+tile_data = PackedInt32Array(0, 393216, 5, 65536, 393216, 6, 131072, 393216, 7, 196608, 393216, 8)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_b6o7e"]
+tile_data = PackedInt32Array(0, 393216, 0, 65536, 393216, 1, 131072, 393216, 2, 196608, 393216, 3, 1, 458752, 0, 65537, 458752, 1, 131073, 458752, 2, 196609, 458752, 3, 2, 524288, 0, 65538, 524288, 1, 131074, 524288, 2, 196610, 524288, 3, 3, 589824, 0, 65539, 589824, 1, 131075, 589824, 2, 196611, 589824, 3)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sbcxh"]
+texture = ExtResource("1_kf6wa")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+6:3/0 = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:3/0 = 0
+7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:3/0 = 0
+8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:5/0 = 0
+4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:5/0 = 0
+5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:5/0 = 0
+6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:5/0 = 0
+0:6/0 = 0
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:6/0 = 0
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:6/0 = 0
+2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:6/0 = 0
+3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:6/0 = 0
+4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:6/0 = 0
+5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:6/0 = 0
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:6/0 = 0
+0:7/0 = 0
+0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:7/0 = 0
+1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:7/0 = 0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:7/0 = 0
+3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:7/0 = 0
+4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:7/0 = 0
+5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:7/0 = 0
+6:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:7/0 = 0
+0:8/0 = 0
+0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:8/0 = 0
+1:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:8/0 = 0
+2:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:8/0 = 0
+3:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:8/0 = 0
+4:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:8/0 = 0
+5:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:8/0 = 0
+6:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:8/0 = 0
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0 = 0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:2/0 = 0
+9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:3/0 = 0
+9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:9/0 = 0
+5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:9/0 = 0
+4:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_6ct3d"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_sbcxh")
+pattern_0 = SubResource("TileMapPattern_6ct3d")
+pattern_1 = SubResource("TileMapPattern_2py4x")
+pattern_2 = SubResource("TileMapPattern_i2dt4")
+pattern_3 = SubResource("TileMapPattern_b6o7e")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2dt4"]
+size = Vector2(512, 225)
 
 [node name="slumberManStage" type="Node2D"]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("1_b6o7e")
+autoplay = true
+parameters/looping = true
+script = ExtResource("2_nt4c0")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
+
+[node name="screenGrid" parent="." instance=ExtResource("1_sbcxh")]
+tile_map_data = PackedByteArray("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")
+GridNumber = 147
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="BG" type="TileMapLayer" parent="Parallax2D"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_g21xf")
+
+[node name="level" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAwAAAAAAAUAAAAAAA0AAAAAAAYAAAABAAwAAAABAAUAAAABAA0AAAABAAYAAAACAAwAAAACAAUAAAACAA0AAAACAAYAAAADAAwAAAADAAUAAAADAA0AAAADAAYAAAAEAAwAAAAAAAUAAAAEAA0AAAAAAAYAAAAFAAwAAAABAAUAAAAFAA0AAAABAAYAAAAGAAwAAAACAAUAAAAGAA0AAAACAAYAAAAHAAwAAAADAAUAAAAHAA0AAAADAAYAAAAIAAwAAAAEAAYAAAAIAA0AAAAEAAcAAAAJAAwAAAAFAAYAAAAJAA0AAAAFAAcAAAAKAAwAAAAEAAYAAAAKAA0AAAAEAAcAAAALAAwAAAAFAAYAAAALAA0AAAAFAAcAAAAMAAwAAAAEAAYAAAAMAA0AAAAEAAcAAAANAAwAAAAFAAYAAAANAA0AAAAFAAcAAAAOAAwAAAAEAAYAAAAOAA0AAAAEAAcAAAAPAAwAAAAFAAYAAAAPAA0AAAAFAAcAAAAIAAsAAAAEAAUAAAAJAAsAAAAFAAUAAAAKAAsAAAAEAAUAAAALAAsAAAAFAAUAAAAMAAsAAAAEAAUAAAANAAsAAAAFAAUAAAAOAAsAAAAEAAUAAAAPAAsAAAAFAAUAAAD//wwAAAAGAAUAAAD//w0AAAAGAAYAAAD//w4AAAAGAAcAAAD//w8AAAAGAAgAAAD//wgAAAAGAAUAAAD//wkAAAAGAAYAAAD//woAAAAGAAcAAAD//wsAAAAGAAgAAAD//wQAAAAGAAUAAAD//wUAAAAGAAYAAAD//wYAAAAGAAcAAAD//wcAAAAGAAgAAAD//wAAAAAGAAUAAAD//wEAAAAGAAYAAAD//wIAAAAGAAcAAAD//wMAAAAGAAgAAAAAAA4AAAAAAAcAAAAAAA8AAAAAAAYAAAAAABAAAAAAAAcAAAABAA4AAAABAAcAAAABAA8AAAABAAYAAAABABAAAAABAAcAAAACAA4AAAACAAcAAAACAA8AAAACAAYAAAACABAAAAACAAcAAAADAA4AAAADAAcAAAADAA8AAAADAAYAAAADABAAAAADAAcAAAAEAA4AAAAAAAcAAAAEAA8AAAAAAAYAAAAEABAAAAAAAAcAAAAFAA4AAAABAAcAAAAFAA8AAAABAAYAAAAFABAAAAABAAcAAAAGAA4AAAACAAcAAAAGAA8AAAACAAYAAAAGABAAAAACAAcAAAAHAA4AAAADAAcAAAAHAA8AAAADAAYAAAAHABAAAAADAAcAAAAIAA4AAAAEAAYAAAAIAA8AAAAEAAcAAAAIABAAAAAEAAYAAAAJAA4AAAAFAAYAAAAJAA8AAAAFAAcAAAAJABAAAAAFAAYAAAAKAA4AAAAEAAYAAAAKAA8AAAAEAAcAAAAKABAAAAAEAAYAAAALAA4AAAAFAAYAAAALAA8AAAAFAAcAAAALABAAAAAFAAYAAAAMAA4AAAAEAAYAAAAMAA8AAAAEAAcAAAAMABAAAAAEAAYAAAANAA4AAAAFAAYAAAANAA8AAAAFAAcAAAANABAAAAAFAAYAAAAOAA4AAAAEAAgAAAAOAA8AAAAEAAYAAAAOABAAAAAEAAcAAAAPAA4AAAAFAAgAAAAPAA8AAAAFAAYAAAAPABAAAAAFAAcAAAAIABEAAAAEAAcAAAAJABEAAAAFAAcAAAAKABEAAAAEAAcAAAALABEAAAAFAAcAAAAMABEAAAAEAAcAAAANABEAAAAFAAcAAAAOABEAAAAEAAYAAAAOABIAAAAEAAcAAAAPABEAAAAFAAYAAAAPABIAAAAFAAcAAAAQAAsAAAAAAAUAAAAQAAwAAAAAAAYAAAARAAsAAAABAAUAAAARAAwAAAABAAYAAAASAAsAAAACAAUAAAASAAwAAAACAAYAAAATAAsAAAADAAUAAAATAAwAAAADAAYAAAAUAAsAAAAAAAcAAAAUAAwAAAAAAAYAAAAVAAsAAAABAAcAAAAVAAwAAAABAAYAAAAWAAsAAAACAAcAAAAWAAwAAAACAAYAAAAXAAsAAAADAAcAAAAXAAwAAAADAAYAAAAYAAsAAAAAAAUAAAAYAAwAAAAAAAYAAAAZAAsAAAABAAUAAAAZAAwAAAABAAYAAAAQAA0AAAAAAAcAAAARAA0AAAABAAcAAAASAA0AAAACAAcAAAATAA0AAAADAAcAAAAUAA0AAAAAAAcAAAAVAA0AAAABAAcAAAAWAA0AAAACAAcAAAAXAA0AAAADAAcAAAAYAA0AAAAAAAcAAAAZAA0AAAABAAcAAAAaAAsAAAACAAUAAAAaAAwAAAACAAYAAAAaAA0AAAACAAcAAAAbAAsAAAADAAUAAAAbAAwAAAADAAYAAAAbAA0AAAADAAcAAAAcAAsAAAAAAAcAAAAcAAwAAAAAAAYAAAAcAA0AAAAAAAcAAAAdAAsAAAABAAcAAAAdAAwAAAABAAYAAAAdAA0AAAABAAcAAAAeAAsAAAACAAcAAAAeAAwAAAACAAYAAAAeAA0AAAACAAcAAAAfAAsAAAADAAcAAAAfAAwAAAADAAYAAAAfAA0AAAADAAcAAAAUAAkAAAAAAAUAAAAUAAoAAAAAAAYAAAAVAAkAAAABAAUAAAAVAAoAAAABAAYAAAAWAAkAAAACAAUAAAAWAAoAAAACAAYAAAAXAAkAAAADAAUAAAAXAAoAAAADAAYAAAAcAAkAAAAAAAUAAAAcAAoAAAAAAAYAAAAdAAkAAAABAAUAAAAdAAoAAAABAAYAAAAeAAkAAAACAAUAAAAeAAoAAAACAAYAAAAfAAkAAAADAAUAAAAfAAoAAAADAAYAAAA=")
+tile_set = SubResource("TileSet_6ct3d")
+
+[node name="megaman" parent="." instance=ExtResource("3_6ct3d")]
+position = Vector2(17, 178)
+
+[node name="cameras" type="Node2D" parent="."]
+
+[node name="New Camera System Addon" type="Area2D" parent="cameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("4_2py4x")
+zone_camera_2d = NodePath("@Camera2D@48403")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cameras/New Camera System Addon"]
+position = Vector2(256, 112.5)
+shape = SubResource("RectangleShape2D_i2dt4")
+
+[node name="New Camera System Addon2" type="Area2D" parent="cameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(512, 0)
+script = ExtResource("4_2py4x")
+zone_camera_2d = NodePath("@Camera2D@48404")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cameras/New Camera System Addon2"]
+position = Vector2(256, 112.5)
+shape = SubResource("RectangleShape2D_i2dt4")

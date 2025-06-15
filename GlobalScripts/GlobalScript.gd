@@ -204,7 +204,7 @@ func load_bindings():
 	load_gamepad_bindings()
 
 
-func clear_action_events(action: String, event_type):
+func clear_action_events(action: String, event_type:String):
 	for e in InputMap.action_get_events(action):
 		match event_type:
 			"InputEventJoypadButton":
@@ -242,8 +242,8 @@ func load_keyboard_bindings():
 				event.button_index = config.get_value(action, "button_index")
 
 			if event:
-				clear_action_events(action, InputEventKey)
-				clear_action_events(action, InputEventMouseButton)
+				clear_action_events(action, "InputEventKey")
+				clear_action_events(action, "InputEventMouseButton")
 				InputMap.action_add_event(action, event)
 
 
@@ -268,9 +268,9 @@ func load_gamepad_bindings():
 				event.axis = config.get_value(action, "axis")
 				event.axis_value = config.get_value(action, "axis_value")
 				#event.device = config.get_value(action, "device", 0)
-				event.deadzone = 0.2
+				#event.deadzone = 0.2
 
 			if event:
-				clear_action_events(action, InputEventJoypadButton)
-				clear_action_events(action, InputEventJoypadMotion)
+				clear_action_events(action, "InputEventJoypadButton")
+				clear_action_events(action, "InputEventJoypadMotion")
 				InputMap.action_add_event(action, event)

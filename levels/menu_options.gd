@@ -49,7 +49,7 @@ func _process(_delta):
 		2:
 			$SelectArrow.set_global_position($input_Rebind.global_position-Vector2(20,0))
 		3:$SelectArrow.set_global_position($Exit.global_position-Vector2(20,0))
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("pause"):
 		match menuOption:
 			2:
 				get_tree().paused=false
