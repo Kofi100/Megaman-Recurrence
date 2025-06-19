@@ -365,25 +365,22 @@ editor_draw_limits = true
 
 [node name="all_enemies" type="Node2D" parent="."]
 
-[node name="enemy_spawner" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(165, 215)
 enemy_to_spawn = "screw_bomber"
 enemyVariant = "fire"
-enemy_Preview = NodePath("screw_bomber")
 
 [node name="electric_gabyoall" parent="all_enemies" instance=ExtResource("8_ycmm6")]
 position = Vector2(296, 32)
 
-[node name="enemy_spawner2" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner2" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(440, 215)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner3" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner3" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(331, 219)
 enemy_to_spawn = "bombomb"
 enemyVariant = "ice"
-enemy_Preview = NodePath("bombomb")
 
 [node name="securityCamera" parent="all_enemies" instance=ExtResource("24_6s1yq")]
 position = Vector2(2135.1, 161.735)
@@ -447,19 +444,17 @@ arrayOfLasers = [NodePath("../laserWallMechanic9")]
 position = Vector2(129, 84)
 arrayOfLasers = [NodePath("../../laserWallMechanic8"), NodePath("../../laserWallMechanic10"), NodePath("../../laserWallMechanic11")]
 
-[node name="enemy_spawner4" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner4" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(2744, 181)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
 [node name="enemy_spawner5" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(3050, 13)
 riotToDeliver = "shield_riot"
 
-[node name="enemy_spawner6" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner6" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(3409, -41)
 enemy_to_spawn = "shield_riot"
-enemy_Preview = NodePath("shield_Riot")
 
 [node name="enemy_spawner7" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(3056, 84)
@@ -470,16 +465,17 @@ position = Vector2(3551, -30)
 [node name="furnaceEnemy" parent="all_enemies" instance=ExtResource("19_wn5xw")]
 position = Vector2(3419, 18)
 
-[node name="enemy_spawner9" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
-position = Vector2(3888, 211)
+[node name="enemy_spawner9" parent="all_enemies" instance=ExtResource("11_06gft")]
+position = Vector2(3889, 184)
 enemy_to_spawn = "sleepy_harper"
-enemy_Preview = NodePath("sleepyHarper")
 
 [node name="enemy_spawner10" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(4013, 210)
+enemy_to_spawn = "sleepy_harper"
 
 [node name="enemy_spawner11" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(4133, 210)
+enemy_to_spawn = "sleepy_harper"
 
 [node name="all_collectables" type="Node2D" parent="."]
 

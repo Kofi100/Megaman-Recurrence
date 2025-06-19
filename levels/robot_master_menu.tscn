@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cnb7llkr0ofpf"]
+[gd_scene load_steps=33 format=3 uid="uid://cnb7llkr0ofpf"]
 
 [ext_resource type="Script" uid="uid://ciuduaxwp3hw3" path="res://levels/robot_master_menu.gd" id="1_pefhl"]
 [ext_resource type="Shader" uid="uid://lbqniq1vkvlc" path="res://levels/robot_master_menu_Layout_Flash.gdshader" id="2_68ec8"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://d0txnl7ywo11h" path="res://assets/sprites/miscelleaneous/menus/fireman.png" id="3_o04lh"]
 [ext_resource type="Texture2D" uid="uid://gf76btbxgpe3" path="res://assets/sprites/enemies/bosses/fireman/idle/0.png" id="3_pkbjl"]
 [ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="4_pwjb0"]
-[ext_resource type="Texture2D" uid="uid://d21bm5jxlk81v" path="res://assets/sprites/enemies/bosses/shadowman.png" id="4_swpwx"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_u4epk"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="6_4f06v"]
 [ext_resource type="Texture2D" uid="uid://btbx28mqdk60o" path="res://assets/sprites/miscelleaneous/menus/robotMasterPortraits.png" id="9_pdk28"]
@@ -261,11 +260,10 @@ position = Vector2(208, 46)
 sprite_frames = SubResource("SpriteFrames_ibsq6")
 animation = &"notSelected"
 
-[node name="shadowman" type="Sprite2D" parent="Node2D/robotMaster2"]
-visible = false
-position = Vector2(1, -9)
-texture = ExtResource("4_swpwx")
-hframes = 12
+[node name="Portrait_EntMan_OmegaPrime+Samuel_X7" type="Sprite2D" parent="Node2D/robotMaster2"]
+texture = ExtResource("9_pdk28")
+hframes = 9
+frame = 5
 
 [node name="robotMaster3" type="AnimatedSprite2D" parent="Node2D"]
 material = SubResource("ShaderMaterial_68ec8")
