@@ -466,12 +466,11 @@ position = Vector2(3551, -30)
 position = Vector2(3419, 18)
 
 [node name="enemy_spawner9" parent="all_enemies" instance=ExtResource("11_06gft")]
-position = Vector2(3889, 184)
-enemy_to_spawn = "sleepy_harper"
+position = Vector2(3887, 216)
+enemy_to_spawn = "floor_sweeper"
 
 [node name="enemy_spawner10" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(4013, 210)
-enemy_to_spawn = "sleepy_harper"
 
 [node name="enemy_spawner11" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(4133, 210)

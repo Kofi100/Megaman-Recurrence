@@ -5,7 +5,7 @@ func _ready() -> void:
 	
 	health=2
 	playerdamagevalue=1
-	originalPos=Vector2(global_position.x,Player.playerCharacter.global_position.y)
+	originalPos=Vector2(global_position.x,global_position.y)#Player.playerCharacter.global_position.y)
 	calculate_player_distance()
 	if distance_x<0:
 		$AnimatedSprite2D.flip_h=false
@@ -19,10 +19,10 @@ func _ready() -> void:
 		$hitbox/R.disabled=false
 	if distance_x<0:
 		global_position.x=global_position.x+250
-		global_position.y=Player.playerCharacter.global_position.y
+		#global_position.y=Player.playerCharacter.global_position.y
 	elif distance_x>=0:
 		global_position.x=global_position.x-250
-		global_position.y=Player.playerCharacter.global_position.y
+		#global_position.y=Player.playerCharacter.global_position.y
 	#print(Player.playerCharacter.global_position.y)
 	#print(originalPos)
 
@@ -32,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		var newx=move_toward(global_position.x,originalPos.x,250*delta)
 		#var newy=move_toward(global_position.y,originalPos.y,250*delta)
 		global_position.x=newx
+		
 		#global_position.y=newy
 	#if not is_on_floor():
 		#velocity+=get_gravity()*delta

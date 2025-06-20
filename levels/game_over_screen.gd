@@ -4,7 +4,14 @@ var menuOption = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass  # Replace with function body.
+	$BGM.play()
+	await  $BGM.finished
+	#$BGM.stream=preload("res://assets/music/Game Over Part 2 Intro Ghost_Entity.ogg")
+	$BGM2.play()
+	await $BGM2.finished
+	$BGM2_Loop.play()
+	#$BGM.play()
+	#$BGM
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +40,7 @@ func _process(delta: float) -> void:
 			2:
 				get_tree().quit(0)
 func _input(event: InputEvent) -> void:
-	if event is InputEventAction or event is InputEventKey:
+	if event:
 		if event.is_action_pressed("move_up"):
 			menuOption -= 1
 		elif event.is_action_pressed("move_down"):

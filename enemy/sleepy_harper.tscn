@@ -43,6 +43,7 @@ size = Vector2(18, 24)
 
 [node name="sleepyHarper" type="CharacterBody2D"]
 collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_fhqpq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

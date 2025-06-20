@@ -3,7 +3,19 @@ extends Node2D
 
 @export var node_to_add_to_enemy: Node2D
 var new_node
-@export var enemy_to_spawn: String = ""
+@export_enum("new_shotman","mechakkero","peterchy","walking_bomb",
+"met","sniper_joe","octopus_battery","hologran","homer","paraysu",
+"pickelman_bull","yambou","spikyoall","ceiling_shooter","tacklefire",
+"upndown","enemy_2","buster","count_bomb","grenade_man","burner_joe",
+"screw_bomber","ice_telly","bombomb","ice_joe","returningmachine_joe",
+"punk_riot","shield_riot","dyna_riot","batallion_balloon","batallion_balloon_delivery","koptar",
+"wooleep","sleepy_harper","floor_sweeper") var enemy_to_spawn: String = "" :
+	#detect changes in enemy_to_spawn
+	#to prevent overlapping old and new enemies
+	set(value):
+		if enemy_to_spawn!=value:
+			enemy_to_spawn=""
+			enemy_to_spawn=value
 #@export var spawn_index:int
 #var new_shotman=preload("")
 #var peterchy=preload("res://enemy/peterchy.tscn")
@@ -47,8 +59,10 @@ var enemy_dictionary: Dictionary = {
 	"batallion_balloon_delivery":preload("res://enemy/batallion_balloon_delivery.tscn"),
 	"koptar":preload("res://enemy/koptar.tscn"),
 	"wooleep":preload("res://enemy/wooleep.tscn"),
-	"sleepy_harper":preload("res://enemy/sleepy_harper.tscn")
+	"sleepy_harper":preload("res://enemy/sleepy_harper.tscn"),
+	"floor_sweeper":preload("res://enemy/floor_sweeper.tscn")
 }
+#@export
 
 var disappear_nodes = {
 	1: "Sprite2D",
@@ -82,6 +96,10 @@ func _enter_tree():
 	#notify_property_list_changed()
 
 @export var enemy_Preview:CharacterBody2D
+func setEnemyName(value):
+	if enemy_to_spawn!=value:
+		enemy_to_spawn=""
+		enemy_to_spawn=value
 func _process(_delta):
 	enemy_to_spawn=enemy_to_spawn.to_lower() #turns enemy to spawn to lower case for easier naming and tracking
 	if visibility == true:
