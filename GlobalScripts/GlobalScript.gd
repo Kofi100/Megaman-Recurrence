@@ -1,3 +1,4 @@
+##A script which contains main Global variables and functions
 extends Node
 var health = 1
 var previous_health = 0
@@ -65,6 +66,7 @@ func _ready():
 	##multiples window screen size
 	##could be useful to increase screen sizes manually
 	DisplayServer.window_set_size(DisplayServer.window_get_size() * 3)
+	DisplayServer.window_set_position(Vector2(400,100))
 	##
 	#set_keys_to_players()
 	load_bindings()
@@ -196,7 +198,23 @@ func customSwitchScene(nextScenePath: String):
 		restarted_level = false
 	elif currentScenePath == nextScenePath:
 		restarted_level = true
+	#const nextPath=nextScenePath
 	get_tree().change_scene_to_file(nextScenePath)
+
+##Function to quickly switch scenes. Requires a Node variable instantiated to work.
+func FastSwitchScene(nextScene: Node):
+	var currentScenePath = get_tree().current_scene.get_scene_file_path()
+	var nextScenePath=nextScene.get_scene_file_path()
+	if currentScenePath != nextScenePath:
+		restarted_level = false
+	elif currentScenePath == nextScenePath:
+		restarted_level = true
+	#adds new scene to root,removes current scene
+	#and sets current scene to new scene
+	get_tree().get_root().add_child(nextScene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene=nextScene
+	#var nextScene:PackedScene=preload(ScenesDictionary.INTRO_STAGE)
 
 
 func load_bindings():

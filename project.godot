@@ -14,15 +14,17 @@ config/name="Megaman Recurrence"
 config/description="A WIP 
 "
 config/tags=PackedStringArray("megaman")
-run/main_scene="uid://82y653b08mb4"
+run/main_scene="uid://cju6hrw6xsta7"
 config/features=PackedStringArray("4.3.2", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
 config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png"
+config/git_describe="b79500b"
 
 [autoload]
 
+ScenesDictionary="*res://GlobalScripts/ScenesDictionary.gd"
 GlobalScript="*res://GlobalScripts/GlobalScript.gd"
 StageFunctions="*res://GlobalScripts/StageFunctions.gd"
 MegamanAndItems="*res://GlobalScripts/megaman_and_items.tscn"
@@ -34,6 +36,8 @@ OptionsSet="*res://resources/optionMenu_Settings.gd"
 
 window/size/viewport_width=256
 window/size/viewport_height=224
+window/size/initial_position_type=0
+window/size/initial_position=Vector2i(400, 100)
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 

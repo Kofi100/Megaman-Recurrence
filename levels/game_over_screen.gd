@@ -25,11 +25,11 @@ func _process(delta: float) -> void:
 		0:
 			#$SelectArrow.global_position.x = $continue.global_position.x-20
 			#$SelectArrow.global_position.y=$continue.global_position.y
-			$SelectArrow.set_global_position(Vector2($continue.global_position.x-20,$continue.global_position.y))
+			$SelectArrow.set_global_position(Vector2($continue.global_position.x-10,$continue.global_position.y))
 		1:
-			$SelectArrow.set_global_position(Vector2($robot_Master.global_position.x-20,$robot_Master.global_position.y))
+			$SelectArrow.set_global_position(Vector2($robot_Master.global_position.x-10,$robot_Master.global_position.y))
 		2:
-			$SelectArrow.set_global_position(Vector2($exit.global_position.x-20,$exit.global_position.y))
+			$SelectArrow.set_global_position(Vector2($exit.global_position.x-10,$exit.global_position.y))
 	if Input.is_action_just_pressed("pause"):
 		match menuOption:
 			0:

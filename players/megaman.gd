@@ -334,8 +334,8 @@ func _physics_process(delta):
 		#if $all_sounds/charge.get_playback_position()>2.04:
 		##print("seek")
 		#$all_sounds/charge.seek(1.90)
-		
-		$weapon_display.frame = GlobalScript.weapon_number
+		if MegamanAndItems.weaponNumberEnabled[GlobalScript.weapon_number]:
+			$weapon_display.frame = GlobalScript.weapon_number
 
 		if leave_bool == false and player_ready==true:
 			if GlobalScript.playerhasbeenhit:

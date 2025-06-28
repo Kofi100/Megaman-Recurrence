@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crs7qaf0xtjpj"]
+
+[ext_resource type="Script" uid="uid://bmwgg1qx1b8mm" path="res://resources/adjustable_collision_shape_2d.gd" id="1_pa6kw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8ql2"]
+size = Vector2(16, 16)
+
+[node name="AdjustableCollisionShape2D" type="CollisionShape2D"]
+shape = SubResource("RectangleShape2D_u8ql2")
+script = ExtResource("1_pa6kw")

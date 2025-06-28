@@ -282,6 +282,13 @@ func _process(_delta):
 		else:
 			$pause_screen_setup/buttons/quitStageBtn.play("notSelected")
 	#print($pause_screen_setup/ProgressBar.value,previous_value)
+	
+	trackWeaponEnergy($pause_screen_setup/weapons/r_Alarm/ProgressBar,1)
+	trackWeaponEnergy($pause_screen_setup/weapons/o_Stomper/ProgressBar,5)
+	trackWeaponEnergy($pause_screen_setup/weapons/s_Strike/ProgressBar,6)
+	trackWeaponEnergy($pause_screen_setup/weapons/s_Pillow/ProgressBar,7)
+
+
 
 func switchToWeaponNumber(selectionIdx,weaponIdx,sprite:Sprite2D):
 	if selectionIdx==weaponIdx and is_instance_valid(sprite):
@@ -311,6 +318,9 @@ func switchToWeaponNumber(selectionIdx,weaponIdx,sprite:Sprite2D):
 #func showAvailableWeapons():
 	#pass
 
+func trackWeaponEnergy(node:TextureProgressBar,number:int):
+	#if GlobalScript.weapon_number==number:
+	node.value=MegamanAndItems.weaponEnergy[number]
 func tween_finished():
 	GlobalScript.health = GlobalScript.max_health
 	pause_input = false

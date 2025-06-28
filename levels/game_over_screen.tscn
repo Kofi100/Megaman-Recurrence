@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vxgjp04hcsd8"]
+[gd_scene load_steps=9 format=3 uid="uid://vxgjp04hcsd8"]
 
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_at82d"]
 [ext_resource type="Script" uid="uid://cl1so21ki2lc2" path="res://levels/game_over_screen.gd" id="1_ka8nh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="3_cgxtf"]
 [ext_resource type="AudioStream" uid="uid://d3hdcuuwk5quf" path="res://assets/music/Game Over Part 2 Intro Ghost_Entity.ogg" id="4_edrav"]
 [ext_resource type="AudioStream" uid="uid://cqt6b5lytk2j4" path="res://assets/music/Game Over Part 2 Loop Ghost_Entity.ogg" id="5_ei30p"]
+[ext_resource type="Texture2D" uid="uid://cggjn081djs4h" path="res://assets/sprites/miscelleaneous/1KofiMenu_Samuel_X7.png" id="6_cgxtf"]
 
 [node name="gameOverScreen" type="Node2D"]
 process_mode = 3
@@ -14,6 +15,7 @@ script = ExtResource("1_ka8nh")
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ct8bk")
+autoplay = true
 script = ExtResource("3_cgxtf")
 metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
@@ -35,45 +37,71 @@ offset_right = 258.0
 offset_bottom = 228.0
 color = Color(0, 0, 0, 1)
 
+[node name="1KofiMenuSamuelX7" type="Sprite2D" parent="."]
+texture = ExtResource("6_cgxtf")
+centered = false
+
 [node name="selectionRect" type="ColorRect" parent="."]
-offset_left = -73.0
-offset_top = 101.0
-offset_right = -45.0
-offset_bottom = 108.0
+offset_left = 85.0
+offset_top = 33.0
+offset_right = 166.0
+offset_bottom = 43.0
+color = Color(0, 0, 0, 1)
+
+[node name="selectionRect2" type="ColorRect" parent="."]
+offset_left = 91.0
+offset_top = 181.0
+offset_right = 172.0
+offset_bottom = 191.0
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 59.0
-offset_right = 193.0
-offset_bottom = 23.0
+offset_left = 96.0
+offset_top = 33.0
+offset_right = 230.0
+offset_bottom = 56.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("1_at82d")
+text = "GAME OVER"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 96.0
+offset_top = 181.0
+offset_right = 230.0
+offset_bottom = 204.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("1_at82d")
 text = "GAME OVER"
 
 [node name="continue" type="Label" parent="."]
 offset_left = 59.0
-offset_top = 107.0
+offset_top = 72.0
 offset_right = 179.0
-offset_bottom = 126.0
+offset_bottom = 91.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("1_at82d")
 text = "CONTINUE"
 
 [node name="robot_Master" type="Label" parent="."]
 offset_left = 59.0
-offset_top = 134.0
+offset_top = 88.0
 offset_right = 237.0
-offset_bottom = 169.0
+offset_bottom = 104.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("1_at82d")
-text = "ROBOT MASTER
-MENU"
+text = "STAGE SELECT"
 
 [node name="exit" type="Label" parent="."]
 offset_left = 59.0
-offset_top = 179.0
+offset_top = 105.0
 offset_right = 113.0
-offset_bottom = 198.0
+offset_bottom = 124.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("1_at82d")
 text = "EXIT"
 
 [node name="SelectArrow" type="Sprite2D" parent="."]
-position = Vector2(38, 108)
+position = Vector2(52, 76)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_2h8ba")
 centered = false

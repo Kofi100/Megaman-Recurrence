@@ -130,9 +130,13 @@ func playSelectForSingleRM(RM_Index:int,animatedSprite:AnimatedSprite2D):
 
 func changeScene():
 	if robotSelected == 0:
-		get_tree().change_scene_to_file("res://levels/test stages/stage_4.tscn")
+		var stage4=preload("res://levels/test stages/stage_4.tscn").instantiate()
+		GlobalScript.FastSwitchScene(stage4)
+		#get_tree().change_scene_to_file("res://levels/test stages/stage_4.tscn")
 	if robotSelected==1:
-		get_tree().change_scene_to_file("res://levels/8_robot_stages/slumber_man_stage.tscn")
+		var slumberStage=preload("res://levels/8_robot_stages/slumber_man_stage.tscn").instantiate()
+		GlobalScript.FastSwitchScene(slumberStage)
+		#get_tree().change_scene_to_file("res://levels/8_robot_stages/slumber_man_stage.tscn")
 	if robotSelected == 2:
 		get_tree().change_scene_to_file("res://levels/8_robot_stages/shadowman_stage1.tscn")
 	if robotSelected == 6:

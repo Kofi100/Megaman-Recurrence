@@ -21,5 +21,7 @@ func _on_blink_timer_timeout() -> void:
 
 
 func _on_box_art_or_title_animation_finished() -> void:
-	await get_tree().create_timer(1.5).timeout
-	get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")
+	await get_tree().create_timer(.3).timeout
+	var mainMenuNew=preload("res://levels/main_Menu_New.tscn").instantiate()
+	GlobalScript.FastSwitchScene(mainMenuNew)
+	#get_tree().change_scene_to_file("res://levels/main_Menu_New.tscn")

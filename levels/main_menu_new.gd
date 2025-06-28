@@ -26,18 +26,24 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		match MenuOptionNo:
 			0:
-				get_tree().change_scene_to_file("res://levels/other_stages/intro_stage_new.tscn")
+				#get_tree().change_scene_to_file("res://levels/other_stages/intro_stage_new.tscn")
+				var introStage=preload("res://levels/other_stages/intro_stage_new.tscn").instantiate()
+				GlobalScript.FastSwitchScene(introStage)
 			1:
 				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
 				
 			2:
-				get_tree().change_scene_to_file("res://levels/other_stages/tutorial_stage.tscn")
+				var tutorial=preload("res://levels/other_stages/tutorial_stage.tscn").instantiate()
+				GlobalScript.FastSwitchScene(tutorial)
+				#get_tree().change_scene_to_file("res://levels/other_stages/tutorial_stage.tscn")
 			3:get_tree().change_scene_to_file("res://levels/challenges_menu.tscn")
 			4:
 				get_tree().change_scene_to_file("res://levels/credits_screen.tscn")
 				#get_tree().change_scene_to_file("res://levels/input_rebind_menu.tscn")
 			5:
-				get_tree().change_scene_to_file("res://levels/main_menu.tscn")
+				var debug_previous_main_menu=preload("res://levels/main_menu.tscn").instantiate()
+				GlobalScript.FastSwitchScene(debug_previous_main_menu)
+				#get_tree().change_scene_to_file("res://levels/main_menu.tscn")
 				pass
 			6:
 				#dont declare options here

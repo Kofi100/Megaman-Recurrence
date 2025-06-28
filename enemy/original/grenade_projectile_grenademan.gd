@@ -75,16 +75,16 @@ func _throwtoPlayer(targetPos: Vector2, height: float):
 
 	#var tween=create_tween()
 	#tween.tween_property(self,"velocity",Vector2(velocityX,velocityY),.2)
-	print("+++++++++++++++++++++++++++++++++++++++++++++")
-	print("Height:", height)
-	print("Airtime:", airtime)
-	print("airtimeUp:", airtimeUp)
-	print("airtimeDown:", airtimeDown)
-	print("displacementY:", displacementY)
-	print("displacementX:", displacementX)
-	print("velocityY:", velocityY)
-	print("velocityX:", velocityX)
-	print("+++++++++++++++++++++++++++++++++++++++++++++")
+	#print("+++++++++++++++++++++++++++++++++++++++++++++")
+	#print("Height:", height)
+	#print("Airtime:", airtime)
+	#print("airtimeUp:", airtimeUp)
+	#print("airtimeDown:", airtimeDown)
+	#print("displacementY:", displacementY)
+	#print("displacementX:", displacementX)
+	#print("velocityY:", velocityY)
+	#print("velocityX:", velocityX)
+	#print("+++++++++++++++++++++++++++++++++++++++++++++")
 
 
 var throw_direction: Vector2

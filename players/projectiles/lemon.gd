@@ -11,11 +11,11 @@ extends Player_Projectile
 
 func _ready():
 	GlobalScript.lemons_on_screen_no += 1
-	#match direction:
-		#"left":
-			#pass
-		#"right":
-			#scale.x = -1
+	match direction:
+		"left":
+			$anim.flip_h=false
+		"right":
+			$anim.flip_h=true
 
 
 func _physics_process(delta):

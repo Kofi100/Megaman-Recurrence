@@ -73,7 +73,7 @@ func shootAtEnemy():
 		get_tree().current_scene.add_child(projectile)
 		projectile.global_position = global_position
 		projectile.set_target(closest_enemy)  # Pass the enemy reference instead of coordinates
-		MegamanAndItems.weaponEnergy[6]-=4
+		MegamanAndItems.weaponEnergy[6]-=2
 func _on_shoot_timer_timeout() -> void:
 	if is_instance_valid(closest_enemy) and closest_enemy.is_inside_tree() and global_position.distance_to(closest_enemy.global_position)<250:
 		shootAtEnemy()

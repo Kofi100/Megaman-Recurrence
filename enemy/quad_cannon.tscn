@@ -1,0 +1,153 @@
+[gd_scene load_steps=15 format=3 uid="uid://des6u76xiy0lq"]
+
+[ext_resource type="Script" uid="uid://b0qbae8g762i7" path="res://enemy/quad_cannon.gd" id="1_5vsuj"]
+[ext_resource type="Texture2D" uid="uid://bow88joe38nsk" path="res://assets/sprites/enemies/1Quad-Cannon-OmegaPrime.png" id="2_dq25x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtfmy"]
+atlas = ExtResource("2_dq25x")
+region = Rect2(144, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1ipn"]
+atlas = ExtResource("2_dq25x")
+region = Rect2(192, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utj36"]
+atlas = ExtResource("2_dq25x")
+region = Rect2(240, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2b18"]
+atlas = ExtResource("2_dq25x")
+region = Rect2(96, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvn0a"]
+atlas = ExtResource("2_dq25x")
+region = Rect2(0, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a0c2"]
+atlas = ExtResource("2_dq25x")
+region = Rect2(48, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vsuj"]
+atlas = ExtResource("2_dq25x")
+region = Rect2(480, 0, 48, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h4y3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtfmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1ipn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utj36")
+}],
+"loop": false,
+"name": &"defend",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2b18")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utj36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1ipn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtfmy")
+}],
+"loop": false,
+"name": &"remove_defend",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvn0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a0c2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vsuj")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_i2b18")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vsuj"]
+size = Vector2(35, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq25x"]
+size = Vector2(23, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtfmy"]
+size = Vector2(13, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1ipn"]
+size = Vector2(13, 14)
+
+[node name="quadCannon" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_5vsuj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1, 1.00001)
+scale = Vector2(10.1, 6.6)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h4y3j")
+animation = &"shoot"
+
+[node name="shoot_Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="defend_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 8)
+shape = SubResource("RectangleShape2D_5vsuj")
+
+[node name="Marker2DL" type="Marker2D" parent="."]
+position = Vector2(-12.0355, 6.89815)
+
+[node name="Marker2DR" type="Marker2D" parent="."]
+position = Vector2(12, 7)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" groups=["enemy"]]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_dq25x")
+
+[node name="shieldHitbox" type="Area2D" parent="." groups=["blockables"]]
+
+[node name="L" type="CollisionShape2D" parent="shieldHitbox"]
+position = Vector2(-13.5, 7)
+shape = SubResource("RectangleShape2D_vtfmy")
+
+[node name="R" type="CollisionShape2D" parent="shieldHitbox"]
+position = Vector2(13, 7)
+shape = SubResource("RectangleShape2D_j1ipn")
+disabled = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="shoot_Timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="defend_Timer" to="." method="_on_defend_timer_timeout"]

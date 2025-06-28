@@ -83,10 +83,11 @@ func _process(delta):
 	$all_text5/text_switch_weapons.text=str("\nuse Key:> ",str(array_of_inputs_keys[7])," <to switch \nto the last weapon used \n and use Key:> ",str(array_of_inputs_keys[8])," < to the \n next weapon used by Megaman.\n Try it out!")
 func pick_up_current_key_binding(action:String,keys_to_checked:InputEventAction,array_position:int):
 	for keys in InputMap.action_get_events(action):
-		if keys.get_physical_keycode()!=0:
-			array_of_inputs_keys[array_position]=OS.get_keycode_string(keys.get_physical_keycode())
-		else:
-			array_of_inputs_keys[array_position]=OS.get_keycode_string(keys.get_keycode())
+		if keys is InputEventAction or keys is InputEventKey:
+			if keys.get_physical_keycode()!=0:
+				array_of_inputs_keys[array_position]=OS.get_keycode_string(keys.get_physical_keycode())
+			else:
+				array_of_inputs_keys[array_position]=OS.get_keycode_string(keys.get_keycode())
 
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
