@@ -119,3 +119,7 @@ func _on_timer_timeout() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
 		stopMoving = true
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

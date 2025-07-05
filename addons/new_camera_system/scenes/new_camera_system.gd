@@ -23,6 +23,8 @@ var limit_r=0;
 var limit_u=0;
 ##Camera Limit on the bottom set by the CollisionShape2D.
 var limit_d=0;
+@export var noBackTrackArea:StaticBody2D;
+@export var noBackTracking:bool=false;
 # Called when the node enters the scene tree for the first time.
 ## A custom made Area2D node that handles camera movement and limits using a Camera2D node and a CollisionShape2D node. Requires a GlobalTransitionTimer to work.
 
@@ -65,7 +67,7 @@ func _process(delta):
 		if zone_camera_2d==null:
 			var camera=Camera2D.new()
 			add_child(camera)
-			camera.position=position
+			camera.global_position=global_position
 			zone_camera_2d=camera
 	if collision_limits_camera==null:
 		collision_limits_camera=get_node_or_null("CollisionShape2D")
@@ -88,13 +90,13 @@ func _process(delta):
 		#print(name)
 		#print("iiiiiii")
 		#print(int(time_offset))
-		if fmod(time_offset,2)>0 and fmod(time_offset,2)<0.1:# int(time_offset)%2==1:#fmod(time_offset,1)==1:
-			#push_warning("new camera system node: time_offset in operation")
-			
-			notify_property_list_changed() #updates inspector and editor
-			if zone_camera_2d!=null:
-				#print("i have a zone camera")
-				zone_camera_2d.notify_property_list_changed()
+		#if fmod(time_offset,2)>0 and fmod(time_offset,2)<0.1:# int(time_offset)%2==1:#fmod(time_offset,1)==1:
+			##push_warning("new camera system node: time_offset in operation")
+			#
+			#notify_property_list_changed() #updates inspector and editor
+		if zone_camera_2d!=null:
+			#print("i have a zone camera")
+			zone_camera_2d.notify_property_list_changed()
 			
 	#property_list_changed.emit()
 	if collision_limits_camera!=null:
@@ -113,7 +115,43 @@ func _process(delta):
 
 				zone_camera_2d.limit_top=limit_u
 				zone_camera_2d.limit_bottom=limit_d
-
+	
+	if noBackTrackArea==null:
+		noBackTrackArea=get_node_or_null("StaticBody2D")
+	
+	if noBackTrackArea:
+		if not Engine.is_editor_hint():
+			if noBackTracking==true:
+				if GlobalScript.playerposx>zone_camera_2d.limit_right:
+					if GlobalScreenTransitionTimer.is_stopped():
+						noBackTrackArea.set_collision_layer_value(1,true)
+				else:
+					noBackTrackArea.set_collision_layer_value(1,false)
+			else:
+				noBackTrackArea.set_collision_layer_value(1,false)
+	#if noBackTrackArea:
+		#noBackTrackArea.
+	
+	#if not Engine.is_editor_hint():
+		#if zone_camera_2d!=null:
+			#if GlobalScript.playerposx>zone_camera_2d.limit_right:
+				#if not noBackTrackArea:
+					##CharacterBody2D.new()
+					#noBackTrackArea.set_collision_layer_value(1,true)
+					#add_child(noBackTrackArea)
+					#noBackTrackArea.global_position=global_position
+					#
+					##var solidCollision:CollisionShape2D=CollisionShape2D.new()
+					##solidCollision.shape=RectangleShape2D.new()
+					##solidCollision.shape.size=collision_limits_camera.shape.size
+					###solidCollision.shape.size.x=solidCollision.shape.size.x+(16+8)
+					##noBackTrackArea.add_child(solidCollision)
+					##solidCollision.global_position=collision_limits_camera.global_position
+					##solidCollision.debug_color=Color.RED
+					###print(solidCollision.shape.size,collision_limits_camera.shape.size)
+					##print(global_position,noBackTrackArea.global_position)
+				#if noBackTrackArea:
+					#pass
 func _on_area_entered(area):
 	if area.is_in_group('player_constants_checker_area2d') :#and area.get_parent().player_ready==true
 		player_camera=area.get_parent().get_node('player_camera')

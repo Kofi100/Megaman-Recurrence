@@ -155,6 +155,7 @@ script = ExtResource("4_0e3aj")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 timer_exists = true
+noBackTracking = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Camera_System"]
 position = Vector2(512.5, 119.5)
@@ -173,6 +174,7 @@ script = ExtResource("4_0e3aj")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 timer_exists = true
+noBackTracking = null
 
 [node name="Camera2D" type="Camera2D" parent="Node2D/Camera_System2"]
 limit_left = 767
@@ -191,6 +193,7 @@ script = ExtResource("4_0e3aj")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 timer_exists = true
+noBackTracking = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Camera_System3"]
 position = Vector2(44.792, 20.842)
@@ -209,6 +212,7 @@ script = ExtResource("4_0e3aj")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 timer_exists = true
+noBackTracking = null
 
 [node name="Camera2D" type="Camera2D" parent="Node2D/New Camera System Addon"]
 position = Vector2(38.1096, 32.1086)
@@ -223,11 +227,13 @@ shape = SubResource("RectangleShape2D_7npd6")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
 [node name="New Camera System Addon2" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+visible = false
 position = Vector2(831.068, 1019.72)
 script = ExtResource("4_0e3aj")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 timer_exists = true
+noBackTracking = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/New Camera System Addon2"]
 position = Vector2(334.932, 59.2766)

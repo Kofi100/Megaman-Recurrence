@@ -7,8 +7,10 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	match initialDirection:
-		"Left":
-			constant_linear_velocity.x=-speedInPixels
-		"Right":
-			constant_linear_velocity.x=speedInPixels
+	if GlobalScreenTransitionTimer.is_stopped():
+		match initialDirection:
+			"Left":
+				constant_linear_velocity.x=-speedInPixels
+			"Right":
+				constant_linear_velocity.x=speedInPixels
+	else:constant_linear_velocity.x=0

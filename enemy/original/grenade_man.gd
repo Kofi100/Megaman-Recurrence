@@ -20,8 +20,15 @@ func _physics_process(delta: float) -> void:
 	#
 	#elif $coolDown.is_stopped()==true:
 	#$detectPlayer/CollisionShape2D.disabled=false
-	if stopAllanimations == true and $AnimatedSprite2D.animation == "throw" and $AnimatedSprite2D.frame != 0:
+	if abs(distance_x)<=16*7 and abs(distance_y)<=74:
+		stopAllanimations=false
+		$AnimatedSprite2D.play("throw")
+	else:
+		stopAllanimations=true
+		$AnimatedSprite2D.play("standby")
+	if stopAllanimations == true and $AnimatedSprite2D.animation == "throw": #and $AnimatedSprite2D.frame != 0:
 		$AnimatedSprite2D.stop()
+		
 	if distance_x > 0:
 		$AnimatedSprite2D.flip_h = true
 		if $AnimatedSprite2D.animation == "throw":
@@ -31,6 +38,10 @@ func _physics_process(delta: float) -> void:
 			elif $AnimatedSprite2D.frame != 0:
 				$hitbox_Shield/L.disabled = true
 				$hitbox_Shield/R.disabled = true
+		else:
+				$hitbox_Shield/L.disabled = true
+				$hitbox_Shield/R.disabled = false
+			
 	if distance_x < 0:
 		$AnimatedSprite2D.flip_h = false
 		if $AnimatedSprite2D.animation == "throw":
@@ -40,6 +51,9 @@ func _physics_process(delta: float) -> void:
 			elif $AnimatedSprite2D.frame != 0:
 				$hitbox_Shield/L.disabled = true
 				$hitbox_Shield/R.disabled = true
+		else:
+			$hitbox_Shield/L.disabled = false
+			$hitbox_Shield/R.disabled = true
 	if GlobalScript.health <= 0:
 		$AnimatedSprite2D.stop()
 
@@ -90,18 +104,19 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 func _on_detect_player_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
 		#if health>0:
-		$AnimatedSprite2D.play("throw")
-		stopAllanimations = false
+		#$AnimatedSprite2D.play("throw")
+		#stopAllanimations = false
 		#$coolDown.start()
+		pass
 
 
-var stopAllanimations = false
+var stopAllanimations = true
 
 
 func _on_detect_player_area_exited(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d") and $AnimatedSprite2D.animation == "throw" and $AnimatedSprite2D.frame == 0:
-		$AnimatedSprite2D.stop()
-		stopAllanimations = true
+		#$AnimatedSprite2D.stop()
+		#stopAllanimations = true
 		#$coolDown.stop()
 		pass
 	pass

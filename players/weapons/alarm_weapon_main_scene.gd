@@ -25,11 +25,17 @@ func _physics_process(_delta: float) -> void:
 	if changeState == true:
 		# Check if rings are still children before reparenting
 		if is_instance_valid($alarm_Man_weapon_Ring5) and $alarm_Man_weapon_Ring5.get_parent() == self:
+			rings.erase($alarm_Man_weapon_Ring5)
 			$alarm_Man_weapon_Ring5.reparent(get_tree().current_scene)
+			
 		if is_instance_valid($alarm_Man_weapon_Ring6) and $alarm_Man_weapon_Ring6.get_parent() == self:
+			rings.erase($alarm_Man_weapon_Ring6)
 			$alarm_Man_weapon_Ring6.reparent(get_tree().current_scene)
+			
 		#print(rings[4])
-	if rings[4]==null and rings[5]==null:#for ring in rings:
+		
+	#if rings[4]==null and rings[5]==null:#for ring in rings:
+	if rings.find($alarm_Man_weapon_Ring5)==-1 and rings.find($alarm_Man_weapon_Ring6)==-1:
 		#chekcings rings4 and 5(L and R rings) since they'll be freed after leavign the screen
 		queue_free()
 

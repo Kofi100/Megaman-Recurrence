@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	playerdamagevalue=5
-	health=7
+	health=5
 
 func _physics_process(delta):
 	$AnimatedSprite2D.play("homer")

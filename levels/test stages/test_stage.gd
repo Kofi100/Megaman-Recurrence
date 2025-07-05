@@ -1,5 +1,5 @@
 extends Node2D
-@onready var stage_camera = $all_camera/stage_camera
+#@onready var stage_camera = $all_camera/stage_camera
 @onready var player_camera= $megaman/player_camera
 
 # Called when the node enters the scene tree for the first time.
@@ -16,7 +16,7 @@ func _process(_delta):
 	pass
 	
 	#print("Value of EngScaleV.Slider:"+$Node2D2/HUD_Debug/EngScaleVSlider.value)
-	StageFunctions.switch_camera(player_camera,stage_camera)
+	#StageFunctions.switch_camera(player_camera,stage_camera)
 	#StageFunctions.loop_music($bgm,0,354.48)
 	#StageFunctions.loop_music($bgm,0,273)
 	#print($bgm.get)
@@ -26,8 +26,9 @@ func _physics_process(_delta):
 
 func _on_enter_player_body_entered(body):
 	if body.is_in_group("player"):
+		pass
 		#print("done")
-		StageFunctions.switch_camera(player_camera,stage_camera)
+		#StageFunctions.switch_camera(player_camera,stage_camera)
 
 
 func _on_tree_exiting():

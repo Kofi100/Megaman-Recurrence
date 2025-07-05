@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://des6u76xiy0lq"]
+[gd_scene load_steps=17 format=3 uid="uid://des6u76xiy0lq"]
 
 [ext_resource type="Script" uid="uid://b0qbae8g762i7" path="res://enemy/quad_cannon.gd" id="1_5vsuj"]
 [ext_resource type="Texture2D" uid="uid://bow88joe38nsk" path="res://assets/sprites/enemies/1Quad-Cannon-OmegaPrime.png" id="2_dq25x"]
+[ext_resource type="Script" uid="uid://bmwgg1qx1b8mm" path="res://resources/adjustable_collision_shape_2d.gd" id="3_dq25x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vtfmy"]
 atlas = ExtResource("2_dq25x")
@@ -99,6 +100,9 @@ size = Vector2(13, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1ipn"]
 size = Vector2(13, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utj36"]
+size = Vector2(136, 160)
+
 [node name="quadCannon" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_5vsuj")
@@ -109,7 +113,7 @@ scale = Vector2(10.1, 6.6)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h4y3j")
-animation = &"shoot"
+animation = &"idle"
 
 [node name="shoot_Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -147,7 +151,19 @@ position = Vector2(13, 7)
 shape = SubResource("RectangleShape2D_j1ipn")
 disabled = true
 
+[node name="detectionArea_Rep" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="AdjustableCollisionShape2D" type="CollisionShape2D" parent="detectionArea_Rep"]
+shape = SubResource("RectangleShape2D_utj36")
+script = ExtResource("3_dq25x")
+sizeBy16px_Width = 8.5
+sizeBy16px_Height = 10.0
+metadata/_custom_type_script = "uid://bmwgg1qx1b8mm"
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="shoot_Timer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="defend_Timer" to="." method="_on_defend_timer_timeout"]
+[connection signal="area_entered" from="detectionArea_Rep" to="." method="_on_detection_area_area_entered"]

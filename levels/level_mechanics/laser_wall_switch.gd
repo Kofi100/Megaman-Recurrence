@@ -11,8 +11,9 @@ func _physics_process(delta: float) -> void:
 	$switchOnTimer.wait_time=3
 	#if isOn:
 	for everyLaser in arrayOfLasers:
-		everyLaser.isOn=isOn
-		$ColorRect.color=Color.GREEN if isOn else Color.RED
+		if everyLaser!=null:
+			everyLaser.isOn=isOn
+			$ColorRect.color=Color.GREEN if isOn else Color.RED
 		
 
 	move_and_slide()

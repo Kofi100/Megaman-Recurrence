@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm4nwo4cvn7fs"]
+
+[ext_resource type="Script" uid="uid://j1mg1jnbw6b5" path="res://levels/level_mechanics/power_switch_or_node.gd" id="1_pldjy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pldjy"]
+size = Vector2(16, 17)
+
+[node name="powerSwitchOrNode" type="CharacterBody2D" node_paths=PackedStringArray("objectToAffect")]
+position = Vector2(109.847, 92.474)
+script = ExtResource("1_pldjy")
+isOn = true
+objectToAffect = [null]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 9.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_pldjy")
+
+[node name="coolDown_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
