@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	playerdamagevalue=5
 	if health<=0:
 		$hitBox/CollisionShape2D.disabled=true
+		spawn_collectables()
 	if $invTimer.is_stopped()==false:
 		$hitBox/CollisionShape2D.disabled=true
 	elif $invTimer.is_stopped()==true:

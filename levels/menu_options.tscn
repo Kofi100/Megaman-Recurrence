@@ -1,17 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://hvubi4sflrhv"]
+[gd_scene load_steps=6 format=3 uid="uid://hvubi4sflrhv"]
 
 [ext_resource type="Script" uid="uid://lbdch1eb0g0j" path="res://levels/menu_options.gd" id="1_b2uew"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="2_8bsxl"]
 [ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="3_rm025"]
+[ext_resource type="Texture2D" uid="uid://cn3yoiba62vph" path="res://assets/sprites/miscelleaneous/1KofiMenu_Settings_Samuel_X7_KofiK.png" id="4_fmp7n"]
+[ext_resource type="Texture2D" uid="uid://bm0hnklrat8ua" path="res://assets/sprites/miscelleaneous/volume_bar_progressbar.png" id="5_c145a"]
 
 [node name="menuOptions" type="CanvasLayer"]
 process_mode = 3
 layer = 3
 script = ExtResource("1_b2uew")
 
+[node name="1KofiMenuSettingsSamuelX7KofiK" type="Sprite2D" parent="."]
+texture = ExtResource("4_fmp7n")
+centered = false
+
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 258.0
-offset_bottom = 226.0
+offset_left = 61.0
+offset_top = 73.0
+offset_right = 106.0
+offset_bottom = 83.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 146.0
+offset_top = 73.0
+offset_right = 191.0
+offset_bottom = 83.0
 color = Color(0, 0, 0, 1)
 
 [node name="BGMSlider" type="HSlider" parent="."]
@@ -31,6 +46,7 @@ min_value = -60.0
 max_value = 0.0
 
 [node name="Exit" type="Button" parent="."]
+visible = false
 offset_left = 187.0
 offset_top = 189.0
 offset_right = 249.0
@@ -39,6 +55,7 @@ theme = ExtResource("2_8bsxl")
 text = "Exit"
 
 [node name="Title" type="Label" parent="."]
+visible = false
 offset_left = 71.0
 offset_top = 10.0
 offset_right = 175.0
@@ -48,6 +65,7 @@ text = "OPTIONS"
 vertical_alignment = 1
 
 [node name="volume_Text" type="Label" parent="."]
+visible = false
 offset_left = 71.0
 offset_top = 56.0
 offset_right = 167.0
@@ -72,11 +90,12 @@ theme = ExtResource("2_8bsxl")
 text = "SFX:"
 
 [node name="SelectArrow" type="Sprite2D" parent="."]
-position = Vector2(51, 73)
+position = Vector2(22, 73)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_rm025")
-centered = false
 
 [node name="values" type="Node2D" parent="."]
+visible = false
 
 [node name="BGM" type="Label" parent="values"]
 offset_left = 131.0
@@ -97,10 +116,60 @@ text = "-20"
 horizontal_alignment = 2
 
 [node name="input_Rebind" type="Label" parent="."]
-offset_left = 71.0
-offset_top = 121.0
-offset_right = 197.0
-offset_bottom = 155.0
+offset_left = 35.0
+offset_top = 85.0
+offset_right = 161.0
+offset_bottom = 119.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("2_8bsxl")
 text = "CHANGE 
 CONTROLS"
+
+[node name="exit" type="Label" parent="."]
+offset_left = 191.0
+offset_top = 166.0
+offset_right = 245.0
+offset_bottom = 182.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("2_8bsxl")
+text = "exit"
+
+[node name="allMarkers2D" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="allMarkers2D"]
+position = Vector2(28, 77)
+
+[node name="Marker2D2" type="Marker2D" parent="allMarkers2D"]
+position = Vector2(117, 77)
+
+[node name="Marker2D3" type="Marker2D" parent="allMarkers2D"]
+position = Vector2(28, 94)
+
+[node name="Marker2D4" type="Marker2D" parent="allMarkers2D"]
+position = Vector2(186, 171)
+
+[node name="volumeBGM" type="TextureProgressBar" parent="."]
+offset_left = 61.0
+offset_top = 74.0
+offset_right = 102.0
+offset_bottom = 81.0
+min_value = -60.0
+max_value = 0.0
+step = -1.0
+texture_progress = ExtResource("5_c145a")
+
+[node name="volumeSFX" type="TextureProgressBar" parent="."]
+offset_left = 146.0
+offset_top = 74.0
+offset_right = 187.0
+offset_bottom = 81.0
+min_value = -60.0
+max_value = 0.0
+step = -1.0
+texture_progress = ExtResource("5_c145a")
+
+[node name="arrowBlinkTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="arrowBlinkTimer" to="." method="_on_arrow_blink_timer_timeout"]

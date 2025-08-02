@@ -31,7 +31,7 @@ sprite_frames = SubResource("SpriteFrames_k53fh")
 shape = SubResource("RectangleShape2D_x5b3s")
 debug_color = Color(0.851223, 0.367976, 0.14047, 0.42)
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 2
 collision_mask = 3
 

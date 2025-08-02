@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqa7drqgttu7p"]
+[gd_scene load_steps=9 format=3 uid="uid://bqa7drqgttu7p"]
 
 [ext_resource type="Script" uid="uid://b78puilvqf8wv" path="res://miscellenaous/small_weapon_capsule.gd" id="1_frawo"]
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="1_vsryd"]
+[ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="3_q2n10"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_6dq7c"]
 
 [sub_resource type="Animation" id="Animation_5xbk3"]
 resource_name = "active"
@@ -42,7 +44,7 @@ frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_op4l5")
+&"": SubResource("AnimationLibrary_op4l5")
 }
 autoplay = "active"
 
@@ -59,6 +61,11 @@ shape = SubResource("RectangleShape2D_sq1rd")
 [node name="delete_spawnable_timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="weapon_up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q2n10")
+script = ExtResource("4_6dq7c")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

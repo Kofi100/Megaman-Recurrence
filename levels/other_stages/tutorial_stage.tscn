@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b1b7b1r0diol4"]
+[gd_scene load_steps=40 format=3 uid="uid://b1b7b1r0diol4"]
 
 [ext_resource type="Texture2D" uid="uid://b6ottyj6jtygc" path="res://assets/sprites/tilesets/debug_tileset_basic.png" id="1_pejg5"]
 [ext_resource type="Script" uid="uid://ckk56fj5k81dj" path="res://levels/other_stages/tutorial_stage.gd" id="1_wdx3c"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bqa7drqgttu7p" path="res://miscellenaous/small_weapon_capsule.tscn" id="18_lwrox"]
 [ext_resource type="PackedScene" uid="uid://c6awy4iormkf3" path="res://levels/level_mechanics/spikezones.tscn" id="19_qvu2n"]
 [ext_resource type="PackedScene" uid="uid://dldagdo181qeh" path="res://levels/level_mechanics/leave_level_node.tscn" id="20_avnks"]
+[ext_resource type="PackedScene" uid="uid://dp35tagyonchs" path="res://miscellenaous/large_weapon_capsule.tscn" id="21_2eqdi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ewpd"]
 texture = ExtResource("1_pejg5")
@@ -228,11 +229,11 @@ position = Vector2(1949, 193)
 position = Vector2(48, 224)
 
 [node name="all_camera_systems_nodes" type="Node2D" parent="."]
-visible = false
 
-[node name="new_camera_system2" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system2" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 position = Vector2(384, 122)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system2" index="0"]
@@ -246,10 +247,11 @@ position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_sovb2")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 visible = false
 position = Vector2(127, 120)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system" index="0"]
@@ -263,9 +265,10 @@ position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_bmjvm")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system3" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system3" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 position = Vector2(640.043, 128.015)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system3" index="0"]
@@ -279,9 +282,10 @@ position = Vector2(-2.0434, -8.01537)
 shape = SubResource("RectangleShape2D_32y4n")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system5" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system5" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 position = Vector2(1125.93, 125.352)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system5" index="0"]
@@ -295,9 +299,10 @@ position = Vector2(22.5664, -5.85181)
 shape = SubResource("RectangleShape2D_htw0w")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system4" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system4" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 position = Vector2(893, 122)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system4" index="0"]
@@ -311,9 +316,10 @@ position = Vector2(-1, -1.5)
 shape = SubResource("RectangleShape2D_qrntm")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system6" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system6" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 position = Vector2(1403, 122)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system6" index="0"]
@@ -327,9 +333,10 @@ position = Vector2(1.5, -1.5)
 shape = SubResource("RectangleShape2D_trnb2")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system7" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system7" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 position = Vector2(1666, 124)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system7" index="0"]
@@ -343,9 +350,10 @@ position = Vector2(-2.5, -3.5)
 shape = SubResource("RectangleShape2D_q3jn2")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system8" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system8" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 position = Vector2(1921, 121)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system8" index="0"]
@@ -359,9 +367,10 @@ position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_lva3a")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system9" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("7_w1i48")]
+[node name="new_camera_system9" parent="all_camera_systems_nodes" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("7_w1i48")]
 position = Vector2(2177, 123)
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems_nodes/new_camera_system9" index="0"]
@@ -416,9 +425,10 @@ text = "instructions
 "
 autowrap_mode = 1
 
-[node name="enemy_spawner" parent="." instance=ExtResource("14_j1eu4")]
+[node name="enemy_spawner" parent="." node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("14_j1eu4")]
 position = Vector2(894, 130)
 enemy_to_spawn = "peterchy"
+enemy_Preview = NodePath("peterchy")
 
 [node name="all_text5" type="Node2D" parent="."]
 position = Vector2(1032, 23)
@@ -446,13 +456,13 @@ text = "try using the "
 [node name="all_collectables" type="Node2D" parent="."]
 
 [node name="small_health_capsule" parent="all_collectables" instance=ExtResource("16_q57en")]
-position = Vector2(1344, 203)
+position = Vector2(1333, 203)
 
 [node name="large_health_capsule" parent="all_collectables" instance=ExtResource("17_pos5t")]
-position = Vector2(1403, 198)
+position = Vector2(1376, 200)
 
 [node name="small_weapon_capsule" parent="all_collectables" instance=ExtResource("18_lwrox")]
-position = Vector2(1464, 203)
+position = Vector2(1440, 203)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 1335.34
@@ -468,10 +478,10 @@ properties:"
 
 [node name="Label" type="Label" parent="Label"]
 layout_mode = 0
-offset_left = -30.6821
-offset_top = 136.617
-offset_right = 155.318
-offset_bottom = 190.617
+offset_left = -46.6799
+offset_top = 136.618
+offset_right = 139.32
+offset_bottom = 190.618
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_r3kqf")
 text = "SMAll health
@@ -480,10 +490,10 @@ adds 2 health"
 
 [node name="Label2" type="Label" parent="Label"]
 layout_mode = 0
-offset_left = 85.3179
-offset_top = 136.617
-offset_right = 283.318
-offset_bottom = 190.617
+offset_left = 57.3201
+offset_top = 138.618
+offset_right = 255.32
+offset_bottom = 192.618
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_r3kqf")
 text = "large health
@@ -501,15 +511,28 @@ text = "sm"
 
 [node name="Label4" type="Label" parent="Label"]
 layout_mode = 0
-offset_left = 207.318
-offset_top = 132.617
-offset_right = 429.318
-offset_bottom = 205.617
+offset_left = 161.32
+offset_top = 136.618
+offset_right = 383.32
+offset_bottom = 209.618
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_r3kqf")
 text = "small weapon
 capsule:
 adds 2 energy to
+weapons"
+
+[node name="Label5" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 273.32
+offset_top = 136.618
+offset_right = 495.32
+offset_bottom = 209.618
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_r3kqf")
+text = "large weapon
+capsule:
+adds 10 energy to
 weapons"
 
 [node name="spikezones" parent="." instance=ExtResource("19_qvu2n")]
@@ -556,6 +579,9 @@ theme = ExtResource("4_r3kqf")
 text = "THIS IS A SAVEpoint.
 pass by it to save 
 your progress"
+
+[node name="large_weapon_capsule" parent="." instance=ExtResource("21_2eqdi")]
+position = Vector2(1488, 202)
 
 [connection signal="body_entered" from="leave_level_node/detect_player" to="." method="_on_detect_player_body_entered"]
 

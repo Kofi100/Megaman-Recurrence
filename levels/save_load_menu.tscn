@@ -1,0 +1,128 @@
+[gd_scene load_steps=4 format=3 uid="uid://nnieex6nqieu"]
+
+[ext_resource type="Texture2D" uid="uid://1po1uqg1g6am" path="res://assets/sprites/miscelleaneous/1KofiMenu_Save_Load_Menu.png" id="1_8ayqx"]
+[ext_resource type="Script" uid="uid://cgcwum5wxrspf" path="res://levels/save_load_menu.gd" id="1_38jbt"]
+[ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="2_57e3f"]
+
+[node name="save_load_menu" type="Node2D"]
+script = ExtResource("1_38jbt")
+
+[node name="1KofiMenuSaveLoadMenu" type="Sprite2D" parent="."]
+texture = ExtResource("1_8ayqx")
+centered = false
+
+[node name="abilities_grid" type="GridContainer" parent="."]
+offset_left = 134.0
+offset_top = 63.0
+offset_right = 230.0
+offset_bottom = 120.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 5
+
+[node name="power1" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power1"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+
+[node name="power2" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power2"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 1
+
+[node name="power3" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power3"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 2
+
+[node name="power4" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power4"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 3
+
+[node name="power5" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power5"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 4
+
+[node name="power6" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power6"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 5
+
+[node name="power7" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power7"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 6
+
+[node name="power8" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power8"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 7
+
+[node name="power9" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power9"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 8
+
+[node name="power10" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power10"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 9
+
+[node name="power11" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power11"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 10
+
+[node name="power12" type="Control" parent="abilities_grid"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power12"]
+position = Vector2(8, 8)
+texture = ExtResource("2_57e3f")
+vframes = 12
+frame = 11

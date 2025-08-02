@@ -17,3 +17,7 @@ func _on_timer_timeout() -> void:
 	proj.position=position-Vector2(0,10);proj2.position=position-Vector2(0,10)
 	get_tree().current_scene.add_child(proj)
 	get_tree().current_scene.add_child(proj2)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

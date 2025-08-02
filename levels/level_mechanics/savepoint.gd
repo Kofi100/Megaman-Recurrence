@@ -19,7 +19,7 @@ func _process(_delta):
 		var body=detect_player_shape_cast_2d.get_collider() #get_collider(1)
 		if body!=null and body.is_in_group('player') and saved_player_position==false:
 			GlobalScript.playerposx=global_position.x
-			GlobalScript.playerposy=global_position.y-10
+			GlobalScript.playerposy=global_position.y-16
 			GlobalScript.save_savepoint_data()
 			saved_player_position=true
 			body=null

@@ -69,6 +69,7 @@ enemy_Projectile="All Enemy Projectiles"
 waterTiles=""
 player_projectiles_Main=""
 FallingBridgeTile=""
+fire_projectile=""
 
 [input]
 

@@ -1,0 +1,132 @@
+[gd_scene load_steps=13 format=3 uid="uid://w03b8l7yq5t4"]
+
+[ext_resource type="Script" uid="uid://b4bw31mu103g7" path="res://enemy/cribler.gd" id="1_lidvq"]
+[ext_resource type="Texture2D" uid="uid://crywbff10m4rv" path="res://assets/sprites/enemies/1Cribler.png" id="1_muo6c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxirq"]
+atlas = ExtResource("1_muo6c")
+region = Rect2(300, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lidvq"]
+atlas = ExtResource("1_muo6c")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cgcf"]
+atlas = ExtResource("1_muo6c")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djqa6"]
+atlas = ExtResource("1_muo6c")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka68x"]
+atlas = ExtResource("1_muo6c")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8vdo"]
+atlas = ExtResource("1_muo6c")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jliqs"]
+atlas = ExtResource("1_muo6c")
+region = Rect2(250, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jliqs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxirq")
+}],
+"loop": true,
+"name": &"regenerate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lidvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cgcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djqa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cgcf")
+}],
+"loop": true,
+"name": &"swing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka68x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8vdo")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_jliqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxirq")
+}],
+"loop": false,
+"name": &"tear",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lidvq"]
+size = Vector2(11, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cgcf"]
+size = Vector2(23, 23)
+
+[node name="cribler" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_lidvq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -59.0
+offset_top = -70.0
+offset_right = 40.0
+offset_bottom = 65.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 25)
+sprite_frames = SubResource("SpriteFrames_jliqs")
+animation = &"tear"
+
+[node name="allPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="allPositions"]
+position = Vector2(-11, 31)
+
+[node name="Marker2D2" type="Marker2D" parent="allPositions"]
+position = Vector2(-6, 43)
+
+[node name="Marker2D3" type="Marker2D" parent="allPositions"]
+position = Vector2(1, 34)
+
+[node name="Marker2D4" type="Marker2D" parent="allPositions"]
+position = Vector2(9, 36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 12.5)
+shape = SubResource("RectangleShape2D_lidvq")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.52588e-05, 19)
+scale = Vector2(13.9, 11.6)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 11.5)
+shape = SubResource("RectangleShape2D_4cgcf")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

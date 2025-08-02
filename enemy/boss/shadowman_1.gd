@@ -1,4 +1,4 @@
-extends enemy
+extends Boss
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -9,19 +9,21 @@ var firstPhaseAttackNo = 0
 
 
 func _ready():
+	
 	is_boss = true
 	health = 27
 	GlobalScript.trigger_boss = false
 
 
 func _physics_process(delta):
+	#print($HUD_BossBar/ProgressBar.value)
 	is_boss = true
 	BossDefenseShot1 = 2
 	BossDefenseShot2 = 4
 	playerdamagevalue = 5
 	move_and_slide()
 	calculate_player_distance()
-
+	spawn_collectables()
 	var distance = GlobalScript.playerposx - global_position.x
 	if distance <= 0:
 		#self.scale.x=1
@@ -44,7 +46,7 @@ func _physics_process(delta):
 			$hitBox/CollisionShape2D.disabled = false
 	if health <= 0:
 		visible = false
-
+		$BGM.stop()
 		$"State Engine".set_physics_process(false)
 		$hitBox/CollisionShape2D.disabled = true
 		for i in $Timers.get_children():

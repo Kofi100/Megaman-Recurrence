@@ -1,0 +1,42 @@
+extends RigidBody2D
+@onready var delete_spawnable_timer = $delete_spawnable_timer
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+@export var energy_added=10
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var blink_timer:float=0
+func _physics_process(delta):
+	pass
+	if delete_spawnable_timer.time_left<delete_spawnable_timer.wait_time/2 and delete_spawnable_timer.time_left>0 :
+		blink_timer+=1*delta
+		if fmod(blink_timer,0.2)>0.1:
+			$Sprite2D.visible=true
+		elif fmod(blink_timer,0.2)<0.1:
+			$Sprite2D.visible=false
+
+func _on_hitbox_body_entered(body):
+	if body.is_in_group('player'):
+		pass
+
+
+func _on_delete_spawnable_timer_timeout():
+	pass # Replace with function body.
+	queue_free()
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_constants_checker_area2d"):
+		MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]+=energy_added
+		$weapon_up.play()
+		await $weapon_up.finished
+		queue_free()
+		#match GlobalScript.weapon_number:
+			#1:
+				#MegamanAndItems.weapon1energy+=energy_added
+			#2:
+				#MegamanAndItems.weapon2energy+=energy_added
+		

@@ -3,6 +3,7 @@ extends Player_Projectile
 #@export var SPEED = 50000.0
 #@export var direction="left"
 #var damagevalue=5
+#var health=5
 func _ready():
 	#offset for previous Animatiosn before MM6 version
 	#match direction:
@@ -23,6 +24,7 @@ func _ready():
 
 func _physics_process(delta):
 	SPEED=15000
+
 	match state:
 		"active":
 			match direction:
@@ -46,6 +48,8 @@ func _physics_process(delta):
 			velocity.x=0
 			$collision_monitor/CollisionShape2D.disabled=true
 			$anim.visible=false
+	if state!='stopped' and health<=0:
+		state='stopped'
 	move_and_slide()
 
 
@@ -55,11 +59,15 @@ func _on_collision_monitor_area_entered(area):
 		var body=area.get_parent()
 		if state=="active" or state=='blocked':
 			if body.is_boss==false:
+				print("health: before:",health)
+				health-=area.get_parent().health
+				print("health: after:",health)
 				area.get_parent().health-=damagevalue
+				
 				area.get_parent().hasBeenHurt=true
 			elif body.is_boss==true:body.health-=(damagevalue-body.BossDefenseShot2)
 			GlobalScript.score+=50
-			state='stopped'
+			#state='stopped'
 			$hurt_enemy_effect.play()
 			#queue_free()
 	if area.is_in_group("blockables"):

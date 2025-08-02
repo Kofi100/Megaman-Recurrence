@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://d4frnpopmr4ed"]
+[gd_scene load_steps=14 format=3 uid="uid://d4frnpopmr4ed"]
 
 [ext_resource type="Script" uid="uid://d078gu280nkjd" path="res://enemy/boss/mm3_to_10_explosion_radius.gd" id="1_aak1q"]
 [ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="2_vqxsu"]
-[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="3_ed088"]
 [ext_resource type="AudioStream" uid="uid://cscjl67ym8o6x" path="res://assets/sounds/explosion_effect(mm5).mp3" id="3_r67tf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tgra"]
@@ -88,8 +87,8 @@ sprite_frames = SubResource("SpriteFrames_jcbdb")
 frame = 7
 frame_progress = 1.0
 
-[node name="explosion" type="AudioStreamPlayer" parent="."]
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_r67tf")
-script = ExtResource("3_ed088")
+attenuation = 2.82843
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

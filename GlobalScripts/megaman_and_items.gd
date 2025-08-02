@@ -15,7 +15,7 @@ var charge_timer = 0
 	6:true,
 	7:true,
 	8:false,
-	9:false,
+	9:true,
 	10:true,
 	11:false
 }
@@ -67,9 +67,9 @@ var charge_timer = 0
 	#"LIGHTER_DEEP_RED":Vector4(248.0,88.0,152.0,255.0),
 	#
 #}
-var weapon1energy = 27
-var weapon2energy = 27
-var weapon3energy = 27
+#var weapon1energy = 27
+#var weapon2energy = 27
+#var weapon3energy = 27
 var charge_buster_times = [0, 30, 105]
 var Vector4255:Vector4i=Vector4i(255.0,255.0,255.0,255.0)
 
@@ -82,8 +82,27 @@ func _init() -> void:
 	pass
 	#cant place loaddate() since it might lead to errors during intialization
 
+func check_whyyyyyyy_game_lags_when_left_for_sometime():
+	#print(weaponNumberEnabled)
+	var last_added_child
+	if get_tree().current_scene:
+		last_added_child=get_tree().current_scene.get_child(get_tree().current_scene.get_child_count()-1)
+	var child_parent=last_added_child.get_parent()
+	#print(get_tree().get_node_count())
+	print([last_added_child,child_parent,get_tree().get_node_count()])
+	var timer_count = count_nodes_of_type(get_tree().get_root(), "Timer")
+	#print("Timers in scene:", timer_count)
+	
+	#print_debug([last_added_child,child_parent,get_tree().get_node_count()])
+	#print(timer_count)
+	#print_debug(timer_count)
+	print(get_tree().get_node_count())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
+
+	
+	
 	if resetColors==true:
 		#colors=colors
 		if Engine.is_editor_hint():
@@ -105,12 +124,12 @@ func reload_palette():
 func charge_effect(animated_sprite: AnimatedSprite2D):
 	#ColorPaletteGlobal.colorDictionary.
 	#colorPalette.
-	if charge_timer == 0:
+	if charge_timer == charge_buster_times[0]:
 		charge_confirm = false
 		animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.BLACK / 255)
 		animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.LIGHT_BLUE / 255)
 		animated_sprite.material.set_shader_parameter("bodycolorii", colorPalette.DEEP_BLUE / 255)
-	elif charge_timer >= 30 and charge_timer < 75 + 30:  #30
+	elif charge_timer >= charge_buster_times[1] and charge_timer < charge_buster_times[2]:  #30
 		if not charge_confirm:
 			charge_confirm = true
 			print("Charge visuals initiated")
@@ -121,7 +140,7 @@ func charge_effect(animated_sprite: AnimatedSprite2D):
 		elif charge_timer%14==9:
 			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.LIGHTER_DEEP_RED) / 255.0)
 			#print((colors.DEEP_RED) / Vector4i(Vector4255))
-	elif charge_timer >= 75 + 30:
+	elif charge_timer >= charge_buster_times[2]:
 		#animated_spriteated_sprite2d.material.set_shader_parameter("bodyoutlcharge",(Vector4(0.0,0.0,0.0,255.0))/255)
 		if charge_timer % 14 == 1:
 			animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.DEEP_BLUE / 255)
@@ -198,3 +217,15 @@ func loadData():
 		push_warning(name,":Successfully loaded data")
 		print(name,":Successfully loaded data\n")
 		print(introStageComplete,"\n",weaponNumberEnabled)
+
+
+
+func count_nodes_of_type(node: Node, type_name: String) -> int:
+	var count = 0
+	if node.get_class() == type_name:
+		count += 1
+
+	for child in node.get_children():
+		count += count_nodes_of_type(child, type_name)
+	
+	return count

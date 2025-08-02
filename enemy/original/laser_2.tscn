@@ -47,8 +47,8 @@ default_color = Color(0.67451, 0.196078, 0.196078, 1)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ahyqr")
 texture = ExtResource("1_e0vnt")
+process_material = SubResource("ParticleProcessMaterial_ahyqr")
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(-0.25, 0)

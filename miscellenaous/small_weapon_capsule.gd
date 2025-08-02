@@ -30,9 +30,13 @@ func _on_delete_spawnable_timer_timeout():
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
-		match GlobalScript.weapon_number:
-			1:
-				MegamanAndItems.weapon1energy+=energy_added
-			2:
-				MegamanAndItems.weapon2energy+=energy_added
+		MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]+=energy_added
+		$weapon_up.play()
+		await $weapon_up.finished
 		queue_free()
+		#match GlobalScript.weapon_number:
+			#1:
+				#MegamanAndItems.weapon1energy+=energy_added
+			#2:
+				#MegamanAndItems.weapon2energy+=energy_added
+		

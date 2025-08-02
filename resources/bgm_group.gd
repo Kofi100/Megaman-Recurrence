@@ -5,7 +5,16 @@ class_name  BGM
 func _ready():
 	#code written here to prevent large bursts of sound
 	#when it starts playing before adjusting
+	volume_db=-60
+	if playing:
+		volume_db=-60
+		stop()
+		#await get_tree().create_timer(.2).timeout
+		volume_db=OptionsSet.data["volumeSound"]["BGM"]
+		play()
+		return
 	volume_db=OptionsSet.data["volumeSound"]["BGM"]
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

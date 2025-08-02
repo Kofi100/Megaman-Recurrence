@@ -41,6 +41,12 @@ func _process(_delta: float) -> void:
 				get_tree().set_pause(false)
 				get_tree().change_scene_to_file("res://levels/main_menu.tscn")
 			1:
+				#await get_tree().process_frame
+				for i in get_tree().current_scene.get_children(true):
+					if i is BGM:
+						i.stop()
+				#await get_tree().create_timer(.5).timeout
+				#await get_tree().process_frame
 				get_tree().set_pause(false)
 				get_tree().reload_current_scene()
 				#MegamanAndItems.reload_palette()

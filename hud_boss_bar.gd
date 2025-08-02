@@ -11,7 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Boss.bossCharacter and foundBoss==false:
+	if Boss.bossCharacter!=null and foundBoss==false:
 		match usingBossTextBar:
 			false:
 				$ProgressBar.max_value=Boss.bossCharacter.health#GlobalScript.boss.health

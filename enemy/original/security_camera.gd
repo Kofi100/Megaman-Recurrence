@@ -30,7 +30,7 @@ func _on_detect_player_line_area_entered(area):
 			$allTimers/repeatDetectionTimer.stop()
 			$AnimatedSprite2D.play("Detect")
 			#$detectPlayerLine.set_monitoring(false)
-			$detectPlayerLine/CollisionShape2D.disabled=true
+			$detectPlayerLine/CollisionShape2D.set_deferred("disabled",true)
 
 
 func _on_detect_timer_timeout():

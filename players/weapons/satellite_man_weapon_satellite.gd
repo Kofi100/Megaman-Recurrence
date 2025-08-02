@@ -9,6 +9,7 @@ func _ready() -> void:
 	$timer/upDownTimer.start()
 func _physics_process(delta: float) -> void:
 	# Movement code remains the same...
+	$timer/shootTimer.wait_time=.5
 	if upDownDirection:
 		velocity.y = -1000 * delta
 	else:

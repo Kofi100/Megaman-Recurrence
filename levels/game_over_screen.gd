@@ -34,7 +34,9 @@ func _process(delta: float) -> void:
 		match menuOption:
 			0:
 				if GlobalScript.lastStageEntered!=null and GlobalScript.lastStageEntered!="":
+					GlobalScript.restarted_level=false
 					get_tree().change_scene_to_file(GlobalScript.lastStageEntered)
+					
 			1:
 				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
 			2:

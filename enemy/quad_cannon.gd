@@ -64,7 +64,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		"remove_defend":
 			$AnimatedSprite2D.play("idle")
 			#$shoot_Timer.start()
-			$detectionArea/AdjustableCollisionShape2D.disabled=false
+			$detectionArea_Rep/AdjustableCollisionShape2D.disabled=false
 
 
 func _on_defend_timer_timeout() -> void:

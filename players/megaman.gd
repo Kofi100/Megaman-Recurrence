@@ -33,6 +33,7 @@ var trans_left = false
 var trans_right = false
 var trans_up = false
 var trans_down = false
+
 var lemon = preload("res://players/projectiles/lemon.tscn")
 var lemon_ins
 var chargeshot_lv1 = preload("res://players/projectiles/chargeshot_lv_1.tscn")
@@ -40,6 +41,7 @@ var chargeshot_lv1_ins
 var chargeshot_lv2 = preload("res://players/projectiles/chargeshot_lv_2.tscn")
 var chargeshot_lv2_ins
 var rush_coil = preload("res://players/weapons/rush_coil.tscn")
+
 var rush_coil_instance
 var direction: float = 0
 var lastDirectionCase: float = 0
@@ -68,6 +70,7 @@ var justLeftIce: bool = false
 var deltaAlt
 var hasStunEffectApplied:bool=false
 var playLeaveBGM:bool=true
+
 func _ready():
 	
 	playerCharacter = self
@@ -179,6 +182,10 @@ func checkWeaponAvalability():
 	#print(GlobalScript.weapon_number)
 	#print(MegamanAndItems.weaponNumberEnabled)
 var enabledLeavingCode:bool=false
+func checkIfStuck():
+	if $checkIfStuckNodes/RayCast2D.is_colliding() or $checkIfStuckNodes/RayCast2D2.is_colliding():
+		GlobalScript.health=0
+		
 func _physics_process(delta):
 #region reverse Gravity
 	#code for reverse gravity
@@ -372,6 +379,7 @@ func _physics_process(delta):
 		elif GlobalScript.playerhitcooldowntimer % 5 == 3:
 			anim.visible = true
 		if player_ready and stop == false:
+			checkIfStuck()
 			#if jumpBufferTime:
 			#
 			#print("timer creating...")
@@ -657,15 +665,15 @@ func shoot_and_charge():
 
 	elif Input.is_action_just_released("shoot"):
 		$all_sounds/charge.stop()
-		if MegamanAndItems.charge_timer < 30:  #30
+		if MegamanAndItems.charge_timer < MegamanAndItems.charge_buster_times[1]:  #30
 			projectile = lemon.instantiate()
 			$all_sounds/shoot.play()
-		elif MegamanAndItems.charge_timer >= 30 and MegamanAndItems.charge_timer < 75 + 30:
+		elif MegamanAndItems.charge_timer >= MegamanAndItems.charge_buster_times[1] and MegamanAndItems.charge_timer < MegamanAndItems.charge_buster_times[2]:
 			projectile = chargeshot_lv1.instantiate()
 			#coolDownTrigger=true
 			#$buster_cooldown_timer.start()  #start general cooldown on buster
 			$all_sounds/halfcharge.play()
-		elif MegamanAndItems.charge_timer >= 75 + 30:
+		elif MegamanAndItems.charge_timer >= MegamanAndItems.charge_buster_times[2]:
 			projectile = chargeshot_lv2.instantiate()
 			#coolDownTrigger=true
 			#$buster_cooldown_timer.start()  #start general cooldown on buster

@@ -72,12 +72,12 @@ color = Color(1, 0, 0, 1)
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_1y5rm")
 
-[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.333332, 85)
+position = Vector2(0.333332, 58)
 shape = SubResource("RectangleShape2D_rooxg")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -92,8 +92,6 @@ position = Vector2(0, -30)
 texture = ExtResource("2_v3t1e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -30)
+position = Vector2(0, -57)
 sprite_frames = SubResource("SpriteFrames_muhj5")
 animation = &"active"
-frame = 3
-frame_progress = 0.880576

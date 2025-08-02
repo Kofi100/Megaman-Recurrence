@@ -6,7 +6,7 @@ var WentThruLeftDoor:bool=false
 
 @export var spriteframes:SpriteFrames
 @export var whiteReplacement:Color
-
+@export var bossToWaitFor:CharacterBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -47,6 +47,12 @@ func _process(_delta):
 			if not exited_door:
 				animated_sprite_2d.frame=0
 				animated_sprite_2d_2.frame=0
+		if bossToWaitFor!=null:
+			if "health" in bossToWaitFor:
+				if bossToWaitFor.health>0:
+					$detect_left/CollisionShape2D.disabled=true
+				else:
+					$detect_left/CollisionShape2D.disabled=false
 	
 
 

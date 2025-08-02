@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dxt1j8tafantj"]
+[gd_scene load_steps=34 format=3 uid="uid://dxt1j8tafantj"]
 
 [ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="1_m3kyb"]
 [ext_resource type="Script" uid="uid://fqsp5gec4cn8" path="res://enemy/boss/shadowman_1.gd" id="1_rgkba"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://nnbwqgea8iwq" path="res://assets/sprites/miscelleaneous/target_player.png" id="8_n3rex"]
 [ext_resource type="Script" uid="uid://ddgr4r70p6med" path="res://enemy/boss/ShadowJumpWall.gd" id="8_qi3fe"]
 [ext_resource type="Script" uid="uid://i82kwu3xl4hl" path="res://enemy/boss/ShadowJumpOnFloor.gd" id="9_gmen1"]
+[ext_resource type="PackedScene" uid="uid://c86rlo00ectxx" path="res://hud_boss_bar.tscn" id="12_fp6ys"]
+[ext_resource type="AudioStream" uid="uid://qlcuslofwceu" path="res://assets/music/Megaman 10 OST_ Boss Battle _Loop.mp3" id="13_0jb0c"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="14_45lak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lw33c"]
 atlas = ExtResource("5_h0056")
@@ -96,7 +99,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h5hwp")
 }, {
-"duration": 30.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wfvfa")
 }],
 "loop": false,
@@ -220,11 +223,12 @@ linetouse = NodePath("../../Line2D")
 markerLineTop = NodePath("../../top")
 markOnPlayer = NodePath("../../targetPlayer")
 
-[node name="ShadowIntro" type="Node" parent="State Engine" node_paths=PackedStringArray("animatedSprite", "introTimer", "stateEngStopTimer")]
+[node name="ShadowIntro" type="Node" parent="State Engine" node_paths=PackedStringArray("animatedSprite", "introTimer", "stateEngStopTimer", "bossMusic")]
 script = ExtResource("7_gbsl2")
 animatedSprite = NodePath("../../AnimatedSprite2D")
 introTimer = NodePath("../../Timers/introTimer")
 stateEngStopTimer = NodePath("../../Timers/stateEngineStop")
+bossMusic = NodePath("../../BGM")
 
 [node name="ShadowJumpWall" type="Node" parent="State Engine" node_paths=PackedStringArray("shadowman", "animatedSprite2D")]
 script = ExtResource("8_qi3fe")
@@ -280,11 +284,24 @@ position = Vector2(-13, -19)
 visible = false
 position = Vector2(-41, 5)
 texture = ExtResource("8_n3rex")
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "",
+"source": ""
+}
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -24)
 sprite_frames = SubResource("SpriteFrames_sgw1d")
 animation = &"Intro"
+frame = 3
+frame_progress = 1.0
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -303,6 +320,15 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
 position = Vector2(-11, 15.5)
 shape = SubResource("RectangleShape2D_1wsg5")
+
+[node name="HUD_BossBar" parent="." instance=ExtResource("12_fp6ys")]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("13_0jb0c")
+parameters/looping = true
+script = ExtResource("14_45lak")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
 [connection signal="timeout" from="Timers/stateEngineStop" to="." method="_on_state_engine_stop_timeout"]
 [connection signal="timeout" from="Timers/throwAttackOneTimer" to="State Engine/ShadowAttackOne" method="_on_throw_attack_one_timer_timeout"]

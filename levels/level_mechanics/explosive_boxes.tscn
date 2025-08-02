@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ywoqt1fipid"]
+
+[ext_resource type="Script" uid="uid://bhk6q7srf2oou" path="res://levels/level_mechanics/explosive_boxes.gd" id="1_x4gkt"]
+[ext_resource type="Texture2D" uid="uid://bh8w8kvoofenm" path="res://assets/sprites/miscelleaneous/shadowman_stage_box.png" id="2_dx2y2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4gkt"]
+size = Vector2(32, 32)
+
+[node name="explosiveBoxes" type="CharacterBody2D"]
+position = Vector2(28, 22)
+script = ExtResource("1_x4gkt")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-11.5, -18.5)
+scale = Vector2(36.35, 35.65)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="ShadowmanStageBox" type="Sprite2D" parent="."]
+texture = ExtResource("2_dx2y2")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_left = -12.0
+offset_top = 11.0
+offset_right = 13.0
+offset_bottom = 20.0
+color = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x4gkt")
+
+[node name="explosion_timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="explosion_timer" to="." method="_on_explosion_timer_timeout"]

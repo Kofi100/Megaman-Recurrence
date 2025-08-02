@@ -11,19 +11,24 @@ func _ready():
 	#GlobalScript.boss = null
 	GlobalScript.reset_boss_before_starting_stage()
 	GlobalScript.player = $megaman
-	GlobalScript.boss = $Shadowman_1
+	#GlobalScript.boss = $Shadowman_1
 	GlobalScript.trigger_boss = false
-	GlobalScript.boss.set_physics_process(false)
+	Boss.bossCharacter=null
+	$Shadowman_1/HUD_BossBar.visible=false
+	#GlobalScript.boss.set_physics_process(false)
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if GlobalScript.boss.health <= 0 and signalReceived == false:
-		GlobalScript.boss.set_physics_process(false)
-		BossDefeated.emit()
-		signalReceived = true
-		$boss_theme_test.stop()
-		#$megaman/all_sounds/level_cleared.play()
+	
+	if Boss.bossCharacter:
+		if Boss.bossCharacter.health <= 0 and signalReceived == false:
+			Boss.bossCharacter.set_physics_process(false)
+			BossDefeated.emit()
+			signalReceived = true
+			$boss_theme_test.stop()
+			#$megaman/all_sounds/level_cleared.play()
 		#if GlobalScript.trigger_boss == true and hasPlayed == false:
 		#$boss_theme_test.play()
 		#$BGM_ShadowMan.stop()
@@ -50,7 +55,14 @@ var playerEntered = false
 func _on_detect_player_enter_boss_room_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d") and playerEntered == false:
 		$Shadowman_1/Timers/introTimer.start()
+		
+		$Shadowman_1/HUD_BossBar.visible
 		$Timer.start()
+		
+		Boss.bossCharacter=$Shadowman_1
+		Boss.bossCharacter.set_physics_process(true)
+		$Shadowman_1/HUD_BossBar.FillBarUp.emit()
+		print(Boss.bossCharacter.health)
 		playerEntered = true
 		print("Player has entered the boss room:ShadowMan")
 

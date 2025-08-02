@@ -13,4 +13,5 @@ func _physics_process(delta: float) -> void:
 				constant_linear_velocity.x=-speedInPixels
 			"Right":
 				constant_linear_velocity.x=speedInPixels
-	else:constant_linear_velocity.x=0
+	elif not GlobalScreenTransitionTimer.is_stopped():
+		constant_linear_velocity.x=0

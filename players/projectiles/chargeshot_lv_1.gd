@@ -36,6 +36,8 @@ func _physics_process(delta):
 			velocity.x=0
 			$collision_monitor/CollisionShape2D.disabled=true
 			$anim.visible=false
+	if state!='stopped' and health<=0:
+		state='stopped'
 	move_and_slide()
 
 
@@ -53,12 +55,15 @@ func _on_collision_monitor_area_entered(area):
 		var body=area.get_parent()
 		if state=="active" or state=='blocked':
 			if body.is_boss==false:
+				print("health: before:",health)
+				health-=area.get_parent().health
+				print("health: after:",health)
 				area.get_parent().health-=damagevalue
 				area.get_parent().hasBeenHurt=true
 			elif body.is_boss==true:
 				body.health-=(damagevalue-body.BossDefenseShot1)
 			GlobalScript.score+=30
-			state='stopped'
+			#state='stopped'
 			$hurt_enemy_effect.play()
 			
 			#queue_free()

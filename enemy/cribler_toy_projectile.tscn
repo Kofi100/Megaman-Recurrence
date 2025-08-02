@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlvxy76ajg80s"]
+
+[ext_resource type="Script" uid="uid://bkxeho6eg7s8f" path="res://enemy/cribler_toy_projectile.gd" id="1_1o3kr"]
+[ext_resource type="Texture2D" uid="uid://crywbff10m4rv" path="res://assets/sprites/enemies/1Cribler.png" id="1_qufi5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o3kr"]
+atlas = ExtResource("1_qufi5")
+region = Rect2(350, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlb6n"]
+atlas = ExtResource("1_qufi5")
+region = Rect2(400, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glekl"]
+atlas = ExtResource("1_qufi5")
+region = Rect2(450, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcdsx"]
+atlas = ExtResource("1_qufi5")
+region = Rect2(500, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_414x4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o3kr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlb6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glekl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcdsx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1o3kr"]
+radius = 2.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vlb6n"]
+radius = 2.5
+
+[node name="cribler_toy_projectile" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_1o3kr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_qufi5")
+hframes = 12
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_414x4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_1o3kr")
+disabled = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, 0)
+scale = Vector2(0.25, 0.3)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_vlb6n")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

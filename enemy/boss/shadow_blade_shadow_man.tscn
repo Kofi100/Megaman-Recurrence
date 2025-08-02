@@ -51,7 +51,7 @@ sprite_frames = SubResource("SpriteFrames_tplfi")
 autoplay = "default"
 frame_progress = 0.0666092
 
-[node name="hitBox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitBox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
 collision_layer = 2
 collision_mask = 2
 

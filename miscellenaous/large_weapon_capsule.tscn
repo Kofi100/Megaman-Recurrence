@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://dp35tagyonchs"]
+
+[ext_resource type="Script" uid="uid://b44vby7n4dby2" path="res://miscellenaous/large_weapon_capsule.gd" id="1_jm0c1"]
+[ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="2_tlyp4"]
+[ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="3_6qe22"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_2oa3s"]
+
+[sub_resource type="Animation" id="Animation_5xbk3"]
+resource_name = "active"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_op4l5"]
+_data = {
+&"active": SubResource("Animation_5xbk3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffucx"]
+size = Vector2(14, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sq1rd"]
+size = Vector2(16, 10)
+
+[node name="large_weapon_capsule" type="RigidBody2D"]
+collision_layer = 0
+script = ExtResource("1_jm0c1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tlyp4")
+hframes = 14
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_op4l5")
+}
+autoplay = "active"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ffucx")
+
+[node name="hitbox" type="Area2D" parent="." groups=["capsules"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_sq1rd")
+
+[node name="delete_spawnable_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="weapon_up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6qe22")
+script = ExtResource("4_2oa3s")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="delete_spawnable_timer" to="." method="_on_delete_spawnable_timer_timeout"]

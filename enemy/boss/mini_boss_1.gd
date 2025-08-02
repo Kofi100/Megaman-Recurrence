@@ -11,6 +11,7 @@ var patternNo = 1
 var setdeadly1 = -1
 var setdeadly2 = -1
 var setdeadly3 = -1
+@onready var main_body: CharacterBody2D = $mainBody
 
 
 func _physics_process(delta: float) -> void:
@@ -20,7 +21,10 @@ func _physics_process(delta: float) -> void:
 	upwardGravity($ceilingLaser4, delta)
 	sideRGravity($mainBody, delta)
 	#sideRGravity($deadlyBody1,delta)
-	health = $mainBody.health
+	if main_body:
+		health = main_body.health
+	else:
+		health=0
 	if playerEnterForFirstTime == true and health > 0:
 		if startTimer == false:
 			$attack1Timer.start()
@@ -30,24 +34,6 @@ func _physics_process(delta: float) -> void:
 			#$bodyRestricter/CollisionShape2D.disabled=false
 
 	#code for making mainBody of miniBoss move on wall
-	#if $mainBody.health>0:
-	#if $mainBody.global_position.y<$endMainBodyUp.global_position.y:
-	#$mainBody.velocity.y=3000*delta
-	#elif $mainBody.global_position.y>$endMainBodyDown.global_position.y:
-	#$mainBody.velocity.y=-3000*delta
-	#$mainBody.move_and_slide()
-
-	#if $deadlyBody1/RayCast2D.is_colliding() and $deadlyBody1/RayCast2D.get_collider() is TileMap and $deadlyBody1.velocity.y>0:
-	##$deadlyBody1.velocity.y=-3000*delta
-	#pass
-	#if $deadlyBody1.is_on_ceiling() and $deadlyBody1.velocity.y<0:
-	#$deadlyBody1.velocity.y=0
-	#
-	#if deadlyBody1==true:
-	#$deadlyBody1.velocity.y=3000*delta
-	#deadlyBody1=false
-	#$deadlyBody1.move_and_slide()
-	#if deadlyBody1==true:
 	match setdeadly1:
 		-1:
 			$deadlyBody1.velocity.y = 0
@@ -63,10 +49,6 @@ func _physics_process(delta: float) -> void:
 		$mainBody/AnimatedSprite2D.play("active")
 	elif $mainBodyanimationTimer.is_stopped() == true:
 		$mainBody/AnimatedSprite2D.play("notActive")
-	#setMovementUp($deadlyBody2,setdeadly2,$deadly1_BeginningUp,$deadly1_BeginningDown,delta)
-	#setMovementUp($deadlyBody3,setdeadly3,$deadly1_BeginningUp,$deadly1_BeginningDown,delta)
-	#setMovementUp($deadlyBody2,setdeadly2,$deadly1_BeginningUp2,$deadly1_BeginningDown2,delta)
-	#setMovementUp($deadlyBody2,setdeadly2,$deadly1_BeginningUp2,$deadly1_BeginningDown2,delta)
 
 	match setdeadly2:
 		-1:

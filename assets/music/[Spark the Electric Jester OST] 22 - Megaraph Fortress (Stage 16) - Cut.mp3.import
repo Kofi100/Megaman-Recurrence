@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6leengcf1xyq"
+path="res://.godot/imported/[Spark the Electric Jester OST] 22 - Megaraph Fortress (Stage 16) - Cut.mp3-08f295ef9ded1cc4ffd24b7d8040069b.mp3str"
+
+[deps]
+
+source_file="res://assets/music/[Spark the Electric Jester OST] 22 - Megaraph Fortress (Stage 16) - Cut.mp3"
+dest_files=["res://.godot/imported/[Spark the Electric Jester OST] 22 - Megaraph Fortress (Stage 16) - Cut.mp3-08f295ef9ded1cc4ffd24b7d8040069b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

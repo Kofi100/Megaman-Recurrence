@@ -18,7 +18,7 @@ var collectables_list = {
 	1: preload("res://miscellenaous/small_health_capsule.tscn"),
 	2: preload("res://miscellenaous/large_health_capsule.tscn"),
 	3: preload("res://miscellenaous/small_weapon_capsule.tscn"),
-	4: preload("res://miscellenaous/large_health_capsule.tscn"),
+	4: preload("res://miscellenaous/large_weapon_capsule.tscn"),
 	5: preload("res://miscellenaous/life_up.tscn")
 }
 

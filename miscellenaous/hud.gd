@@ -125,15 +125,17 @@ func _process(_delta):
 				GlobalScript.player.set_physics_process(false)
 			if $boss_healthbar/timer.time_left < 1.5 and $boss_healthbar/timer.time_left < 1.55:
 				$boss_healthbar/AnimationPlayer.play("boss_level_up")
-		if GlobalScript.boss.health <= 0:
-			GlobalScript.boss.health = 0
-			if music_node != null:
-				music_node.stop()
+		if GlobalScript.boss:
+			if GlobalScript.boss.health <= 0:
+				GlobalScript.boss.health = 0
+				if music_node != null:
+					music_node.stop()
 	else:
 		$boss_healthbar.visible = false
 	if update_boss_health == true:
-		$boss_healthbar.value = GlobalScript.boss.health
-		$boss_healthbar/text_health_display.text = str(GlobalScript.boss.health)
+		if GlobalScript.boss:
+			$boss_healthbar.value = GlobalScript.boss.health
+			$boss_healthbar/text_health_display.text = str(GlobalScript.boss.health)
 	#print(GlobalScript.boss.health)
 	if GlobalScript.health <= 0:
 		for i in get_tree().current_scene.get_children():
@@ -287,6 +289,8 @@ func _process(_delta):
 	trackWeaponEnergy($pause_screen_setup/weapons/o_Stomper/ProgressBar,5)
 	trackWeaponEnergy($pause_screen_setup/weapons/s_Strike/ProgressBar,6)
 	trackWeaponEnergy($pause_screen_setup/weapons/s_Pillow/ProgressBar,7)
+	trackWeaponEnergy($pause_screen_setup/weapons/rush_coil/ProgressBar,9)
+	trackWeaponEnergy($pause_screen_setup/weapons/rush_jet/ProgressBar,10)
 
 
 
@@ -352,7 +356,7 @@ func weapon_energy_update():
 		$weapon_energy.value=MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]
 		$weapon_energy/text_weapon_energy.text=str(int(MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]))
 		MegamanAndItems.change_palette($weapon_energy)
-	update_energy_pause_menu()
+	#update_energy_pause_menu()
 
 
 func update_energy_pause_menu():
@@ -400,7 +404,8 @@ func _on_restart_level_btn_pressed():
 
 func _on_timer_timeout():
 	print(name, "::timer:turning player,boss Mobile again")
-	GlobalScript.boss.set_physics_process(true)
+	if GlobalScript.boss:
+		GlobalScript.boss.set_physics_process(true)
 	GlobalScript.player.set_physics_process(true)
 
 

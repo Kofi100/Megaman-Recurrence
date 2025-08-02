@@ -5,4 +5,5 @@ class_name Player_Projectile
 @export var direction:String = "left"
 @export var state:String = "active"
 @export var damagevalue:float = 1
+@export var health=1
 @export var shouldBeDestroyedByLaserSwitch:bool=true
