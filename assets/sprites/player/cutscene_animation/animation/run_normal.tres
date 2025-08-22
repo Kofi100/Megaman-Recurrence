@@ -1,0 +1,15 @@
+[gd_resource type="AnimationNodeBlendSpace1D" load_steps=3 format=3 uid="uid://dx4421f5apcrw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3hasx"]
+animation = &"run_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hhc50"]
+animation = &"run_right"
+
+[resource]
+blend_point_0/node = SubResource("AnimationNodeAnimation_3hasx")
+blend_point_0/pos = -0.3
+blend_point_1/node = SubResource("AnimationNodeAnimation_hhc50")
+blend_point_1/pos = 0.3
+blend_mode = 1
+sync = true

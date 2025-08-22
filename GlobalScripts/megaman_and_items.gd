@@ -19,9 +19,24 @@ var charge_timer = 0
 	10:true,
 	11:false
 }
+@export var weaponNumberEnabled_Template={
+	0:false,
+	1:false,
+	2:false,
+	3:false,
+	4:false,
+	5:false,
+	6:false,
+	7:false,
+	8:false,
+	9:false,
+	10:false,
+	11:false
+}
+var file_exists:bool=false
 #intro Stage completed
 @export var introStageComplete:bool=false
-
+@export var introStageComplete_Template:bool=false
 
 
 @export var weaponEnergy={
@@ -76,7 +91,7 @@ var Vector4255:Vector4i=Vector4i(255.0,255.0,255.0,255.0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass  # Replace with function body.
-	loadData()
+	loadData(GlobalScript.SAVEFILE_PATHS[0])
 
 func _init() -> void:
 	pass
@@ -190,34 +205,58 @@ func set_Individual_Colors(node,InnerBodyColor:Color,OuterBodyColor:Color):
 func saveWeaponState():
 	pass
 
-func saveData():
-	pass
-	var file=FileAccess.open("res://savefile1.txt",FileAccess.WRITE)
-	if file:
-		file.store_var(introStageComplete)
-		#file.store_string("\n")
-		file.store_var(weaponNumberEnabled)
-		file.close()
-		push_warning(name,":Save Data complete!")
-		print(name,":Save Data complete!\n")
-		print(introStageComplete,"\n",weaponNumberEnabled)
-func loadData():
-	if not FileAccess.file_exists("res://savefile1.txt"):
-		push_warning(name,":File does not exist..creating new entry")
-		print(name,":File does not exist..creating new entry\n")
-		saveData()
-		return
-	var file=FileAccess.open("res://savefile1.txt",FileAccess.READ)
-	#get_tree().create_timer(1).timeout
-	if file:
-		var introSavedState=file.get_var()
-		introStageComplete=introSavedState
-		var weaponEnabledSaveState=file.get_var()
-		weaponNumberEnabled=weaponEnabledSaveState
-		push_warning(name,":Successfully loaded data")
-		print(name,":Successfully loaded data\n")
-		print(introStageComplete,"\n",weaponNumberEnabled)
+func saveData(file_path: String) -> bool:
+	# Create directory if it doesn't exist
+	var dir_path = file_path.get_base_dir()
+	if not DirAccess.dir_exists_absolute(dir_path):
+		DirAccess.make_dir_recursive_absolute(dir_path)
+	
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
+	if file == null:
+		push_error("Failed to open file for writing: %s. Error: %s" % [file_path, FileAccess.get_open_error()])
+		return false
+	
+	# Create a versioned save dictionary
+	var save_data = {
+		"version": 1,
+		"intro_stage_complete": introStageComplete, #if file_exists else introStageComplete_Template,
+		"weapons_enabled": weaponNumberEnabled, #if file_exists else weaponNumberEnabled_Template,#weaponNumberEnabled
+		#"weapon_energy": weaponEnergy,
+		"timestamp": Time.get_datetime_string_from_system()
+	}
+	
+	file.store_var(save_data)
+	file.close()
+	
+	print("Successfully saved data to: ", file_path)
+	return true
 
+func loadData(file_path: String) -> bool:
+	if not FileAccess.file_exists(file_path):
+		print("Save file doesn't exist, creating new: ", file_path)
+		file_exists = false
+		return saveData(file_path)  # Create new save file
+	
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	if file == null:
+		push_error("Failed to open file for reading: %s. Error: %s" % [file_path, FileAccess.get_open_error()])
+		return false
+	
+	var save_data = file.get_var()
+	file.close()
+	
+	if not save_data is Dictionary:
+		push_error("Invalid save data format in file: ", file_path)
+		return false
+	
+	# Validate and load data with fallbacks
+	introStageComplete = save_data.get("intro_stage_complete", introStageComplete_Template)
+	weaponNumberEnabled = save_data.get("weapons_enabled", weaponNumberEnabled_Template)#weaponNumberEnabled
+	#weaponEnergy = save_data.get("weapon_energy", weaponEnergy.duplicate())  # Keep current if not found
+	
+	file_exists = true
+	print("Successfully loaded data from: ", file_path)
+	return true
 
 
 func count_nodes_of_type(node: Node, type_name: String) -> int:

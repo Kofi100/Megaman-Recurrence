@@ -21,6 +21,10 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
 config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png"
 
+[aseprite_importers]
+
+aseprite_executable_path="C:/Users/Dr. Dominic Otchere/Desktop/Media/Programs/Aseprite.v1.3.7/Aseprite.v1.3.7/Aseprite.v1.3.7/Aseprite.exe"
+
 [autoload]
 
 ScenesDictionary="*res://GlobalScripts/ScenesDictionary.gd"

@@ -13,7 +13,7 @@ func _ready():
 	
 var timer:int
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#GlobalScript.stage_name="PIPELINE FACTORY"
 	timer+=1#*delta
 	#print(name,"::fireman_Active::",GlobalScript.boss.is_physics_processing())

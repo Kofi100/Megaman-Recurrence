@@ -25,9 +25,40 @@
 @tool
 extends EditorPlugin
 
-const _GDScriptFormatterPreference = preload("scripts/preference.gd")
+## How many characters per line to allow.
+## 每行允许的最大字符数量。
+const SETTING_LINE_LENGTH = "GDScript_Formatter/line_length"
+const DEFAULT_LINE_LENGTH = 175
 
-var _preference
+## If true, will format on save.
+## 如果开启，将在脚本保存时进行格式化。
+const SETTING_FORMAT_ON_SAVE = "GDScript_Formatter/format_on_save"
+const DEFAULT_FORMAT_ON_SAVE = false
+
+## The shortcut for formatting script.
+## Default is "Shift+Alt+F"。
+## 格式化脚本所使用的快捷键。
+## 默认为"Shift+Alt+F"。
+const SETTING_SHORTCUT = "GDScript_Formatter/shortcut"
+
+## If true, will skip safety checks.
+## 如果开启，则跳过安全检查。
+const SETTING_FAST_BUT_UNSAFE = "GDScript_Formatter/fast_but_unsafe"
+const DEFAULT_FAST_BUT_UNSAFE = false
+
+## The gdformat command to use on the command line, you might need to modify this option if the "gdformat" is not installed for all users.
+## 用于格式化的gdformat命令，如果你的gdformat不是为所有用户安装时可能需要修改该选项。
+const SETTING_GDFORMAT_COMMAND = "GDScript_Formatter/gdformat_command"
+const DEFAULT_GDFORMAT_COMMAND = "gdformat"
+
+## The pip command to use on the command line, you might need to modify this option if the "python/pip" is not installed for all users.
+## 用于安装/更新gdformat而使用的pip命令，如果你的python/pip不是为所有用户安装时可能需要修改该选项。
+const SETTING_PIP_COMMAND = "GDScript_Formatter/pip_command"
+const DEFAULT_PIP_COMMAND = "pip"
+
+const _SETTING_CUSTOM_SETTINGS_ENABLED = "GDScript_Formatter/custom_settings_enabled"
+const _PROJECT_SPECIFIC_SETTINGS = ".preference"
+
 var _has_format_tool_item: bool = false
 var _has_install_update_tool_item: bool = false
 var _install_task_id: int = -1
@@ -35,33 +66,46 @@ var _connection_list: Array[Resource] = []
 
 
 func _init() -> void:
-	var preference_res_file = (get_script() as Resource).resource_path.get_base_dir().path_join("format_preference.tres")
-	if not FileAccess.file_exists(preference_res_file):
-		_preference = _GDScriptFormatterPreference.new()
-		ResourceSaver.save(_preference, preference_res_file)
+	var editor_settings := _get_editor_interface().get_editor_settings()
+	if not editor_settings.has_setting(SETTING_LINE_LENGTH):
+		editor_settings.set_setting(SETTING_LINE_LENGTH, DEFAULT_LINE_LENGTH)
+	if not editor_settings.has_setting(SETTING_FORMAT_ON_SAVE):
+		editor_settings.set_setting(SETTING_FORMAT_ON_SAVE, DEFAULT_FORMAT_ON_SAVE)
+	if not editor_settings.has_setting(SETTING_SHORTCUT):
+		editor_settings.set_setting(SETTING_SHORTCUT, _create_default_shortcut())
+	if not editor_settings.has_setting(SETTING_FAST_BUT_UNSAFE):
+		editor_settings.set_setting(SETTING_FAST_BUT_UNSAFE, DEFAULT_FAST_BUT_UNSAFE)
+	if not editor_settings.has_setting(SETTING_GDFORMAT_COMMAND):
+		editor_settings.set_setting(SETTING_GDFORMAT_COMMAND, DEFAULT_GDFORMAT_COMMAND)
+	if not editor_settings.has_setting(SETTING_PIP_COMMAND):
+		editor_settings.set_setting(SETTING_PIP_COMMAND, DEFAULT_PIP_COMMAND)
 
-	_preference = ResourceLoader.load(preference_res_file, "", ResourceLoader.CACHE_MODE_IGNORE)
+	# For compatibility, load preference from "format_preference.tres".
+	var preference_res_file := (get_script() as Resource).resource_path.get_base_dir().path_join("format_preference.tres")
+	if ResourceLoader.exists(preference_res_file):
+		var old_preference := ResourceLoader.load(preference_res_file, "", ResourceLoader.CACHE_MODE_IGNORE)
+		if "line_length" in old_preference:
+			editor_settings.set_setting(SETTING_LINE_LENGTH, old_preference.get("line_length"))
+		if "format_on_save" in old_preference:
+			editor_settings.set_setting(SETTING_FORMAT_ON_SAVE, old_preference.get("format_on_save"))
+		if "shortcut" in old_preference:
+			editor_settings.set_setting(SETTING_SHORTCUT, old_preference.get("shortcut"))
+		if "fast_but_unsafe" in old_preference:
+			editor_settings.set_setting(SETTING_FAST_BUT_UNSAFE, old_preference.get("fast_but_unsafe"))
+		if "gdformat_command" in old_preference:
+			editor_settings.set_setting(SETTING_GDFORMAT_COMMAND, old_preference.get("gdformat_command"))
+		if "pip_command" in old_preference:
+			editor_settings.set_setting(SETTING_PIP_COMMAND, old_preference.get("pip_command"))
+		old_preference.unreference()
 
-	# Update script for plugin updating, then reload it.
-	if _preference.script.resource_path != (_GDScriptFormatterPreference as Script).resource_path:
-		# Get old properies
-		var props = (_preference.get_script() as Script).get_script_property_list().filter(func(p): return p["usage"] & PROPERTY_USAGE_STORAGE != 0)
-		props = props.map(func(p): return {"name": p["name"], "value": _preference.get(p["name"])})
-		# Apply old properties
-		_preference = _GDScriptFormatterPreference.new()
-		for prop in props:
-			if prop["name"] in _preference:
-				_preference.set(prop["name"], prop["value"])
-		# Apply old shortcut if valid
-		var old_shortcut_file := (get_script() as Resource).resource_path.get_base_dir().path_join("format_shortcut.tres")
-		if FileAccess.file_exists(old_shortcut_file):
-			_preference.shortcut = load(old_shortcut_file).duplicate(true)
-			DirAccess.remove_absolute(old_shortcut_file)
-		# Save and reload.
-		ResourceSaver.save(_preference, preference_res_file)
-		_preference = load(preference_res_file)
-
-	resource_saved.connect(_on_resource_saved)
+		# Remove old files.
+		DirAccess.remove_absolute(preference_res_file)
+		var scripts_dir := (get_script() as Resource).resource_path.get_base_dir().path_join("scripts")
+		if DirAccess.dir_exists_absolute(scripts_dir):
+			var old_preference_script := scripts_dir.path_join("preference.gd")
+			if FileAccess.file_exists(old_preference_script):
+				DirAccess.remove_absolute(old_preference_script)
+			DirAccess.remove_absolute(scripts_dir)
 
 
 func _enter_tree() -> void:
@@ -76,17 +120,64 @@ func _enter_tree() -> void:
 
 	update_shortcut()
 
+	# Add settings for project specific.
+	var settings := _get_project_specific_settings()
+	if not ProjectSettings.has_setting(_SETTING_CUSTOM_SETTINGS_ENABLED):
+		ProjectSettings.set_setting(_SETTING_CUSTOM_SETTINGS_ENABLED, settings.get(_SETTING_CUSTOM_SETTINGS_ENABLED))
+		ProjectSettings.set_initial_value(_SETTING_CUSTOM_SETTINGS_ENABLED, false)
+
+	if not ProjectSettings.has_setting(SETTING_LINE_LENGTH):
+		ProjectSettings.set_setting(SETTING_LINE_LENGTH, settings.get(SETTING_LINE_LENGTH))
+		ProjectSettings.set_initial_value(SETTING_LINE_LENGTH, DEFAULT_LINE_LENGTH)
+	if not ProjectSettings.has_setting(SETTING_FORMAT_ON_SAVE):
+		ProjectSettings.set_setting(SETTING_FORMAT_ON_SAVE, settings.get(SETTING_FORMAT_ON_SAVE))
+		ProjectSettings.set_initial_value(SETTING_FORMAT_ON_SAVE, DEFAULT_FORMAT_ON_SAVE)
+	if not ProjectSettings.has_setting(SETTING_FAST_BUT_UNSAFE):
+		ProjectSettings.set_setting(SETTING_FAST_BUT_UNSAFE, settings.get(SETTING_FAST_BUT_UNSAFE))
+		ProjectSettings.set_initial_value(SETTING_FAST_BUT_UNSAFE, DEFAULT_FAST_BUT_UNSAFE)
+
+	project_settings_changed.connect(_on_project_settings_changed)
+	resource_saved.connect(_on_resource_saved)
+
 
 func _exit_tree() -> void:
+	resource_saved.disconnect(_on_resource_saved)
+
 	_remove_format_tool_item_and_command()
 	if _has_install_update_tool_item:
 		remove_tool_menu_item("GDScriptFormatter: Install/Update gdtoolkit")
+
+	project_settings_changed.disconnect(_on_project_settings_changed)
+
+	# Remove settings for project specific.
+	if ProjectSettings.has_setting(_SETTING_CUSTOM_SETTINGS_ENABLED):
+		ProjectSettings.set_setting(_SETTING_CUSTOM_SETTINGS_ENABLED, null)
+	if ProjectSettings.has_setting(SETTING_LINE_LENGTH):
+		ProjectSettings.set_setting(SETTING_LINE_LENGTH, null)
+	if ProjectSettings.has_setting(SETTING_FORMAT_ON_SAVE):
+		ProjectSettings.set_setting(SETTING_FORMAT_ON_SAVE, null)
+	if ProjectSettings.has_setting(SETTING_FAST_BUT_UNSAFE):
+		ProjectSettings.set_setting(SETTING_FAST_BUT_UNSAFE, null)
+
+
+func _create_default_shortcut() -> Shortcut:
+	var default_shortcut := InputEventKey.new()
+	default_shortcut.echo = false
+	default_shortcut.pressed = true
+	default_shortcut.keycode = KEY_F
+	default_shortcut.shift_pressed = true
+	default_shortcut.alt_pressed = true
+
+	var shortcut := Shortcut.new()
+	shortcut.events.push_back(default_shortcut)
+
+	return shortcut
 
 
 func _shortcut_input(event: InputEvent) -> void:
 	if not _has_format_tool_item:
 		return
-	var shortcut = _get_shortcut()
+	var shortcut := _get_shortcut()
 	if not is_instance_valid(shortcut):
 		return
 	if shortcut.matches_event(event) and event.is_pressed() and not event.is_echo():
@@ -95,12 +186,12 @@ func _shortcut_input(event: InputEvent) -> void:
 
 
 func format_script() -> bool:
-	if not EditorInterface.get_script_editor().is_visible_in_tree():
+	if not _get_editor_interface().get_script_editor().is_visible_in_tree():
 		return false
-	var current_script = EditorInterface.get_script_editor().get_current_script()
+	var current_script := _get_editor_interface().get_script_editor().get_current_script()
 	if not is_instance_valid(current_script) or not current_script is GDScript:
 		return false
-	var code_edit: CodeEdit = EditorInterface.get_script_editor().get_current_editor().get_base_editor()
+	var code_edit: CodeEdit = _get_editor_interface().get_script_editor().get_current_editor().get_base_editor()
 
 	var formatted := []
 	if not _format_code(current_script.resource_path, code_edit.text, formatted):
@@ -131,7 +222,7 @@ func update_shortcut() -> void:
 
 	_connection_list.clear()
 
-	var shortcut = _get_shortcut()
+	var shortcut := _get_shortcut()
 	if is_instance_valid(shortcut):
 		for event in shortcut.events:
 			event = event as InputEvent
@@ -143,15 +234,70 @@ func update_shortcut() -> void:
 	_add_format_tool_item_and_command()
 
 
-func _on_resource_saved(resource: Resource) -> void:
-	# Preference
-	var preference_path = (get_script() as Resource).resource_path.get_base_dir().path_join("format_preference.tres")
-	if resource.resource_path == preference_path:
-		_preference = load(preference_path)
+func _on_project_settings_changed() -> void:
+	var prev := _get_project_specific_settings().get(_SETTING_CUSTOM_SETTINGS_ENABLED, false) as bool
+	var curr := ProjectSettings.get_setting(_SETTING_CUSTOM_SETTINGS_ENABLED) if ProjectSettings.has_setting(_SETTING_CUSTOM_SETTINGS_ENABLED) else false
+
+	var settings := _get_project_specific_settings()
+	# Update settings backup.
+	if prev != curr:
+		_update_project_specific_settings()
+	else:
+		var need_update := false
+		for setting in [SETTING_LINE_LENGTH, SETTING_FORMAT_ON_SAVE, SETTING_FAST_BUT_UNSAFE]:
+			if ProjectSettings.has_setting(setting):
+				var backup_value := settings.get(setting, null)
+				if backup_value == null or ProjectSettings.get_setting(setting) != backup_value:
+					_update_project_specific_settings()
 		return
 
+	if curr:
+		for setting_key in PackedStringArray(["SETTING_LINE_LENGTH", "SETTING_FORMAT_ON_SAVE", "SETTING_FAST_BUT_UNSAFE"]):
+			var setting := get(setting_key) as String
+			if not ProjectSettings.has_setting(setting):
+				var default_value := get("DEFAULT" + setting_key.trim_prefix("SETTING"))
+				ProjectSettings.set_setting(setting, settings.get(setting, default_value))
+				ProjectSettings.set_initial_value(setting, default_value)
+
+
+func _get_project_specific_settings() -> Dictionary:
+	var cfg := ConfigFile.new()
+
+	var cfg_file_path := (get_script() as Resource).resource_path.get_base_dir().path_join(_PROJECT_SPECIFIC_SETTINGS)
+	if FileAccess.file_exists(cfg_file_path):
+		cfg.load(cfg_file_path)
+
+	var ret := {}
+	ret[_SETTING_CUSTOM_SETTINGS_ENABLED] = cfg.get_value("", _SETTING_CUSTOM_SETTINGS_ENABLED, false)
+	ret[SETTING_LINE_LENGTH] = cfg.get_value("", SETTING_LINE_LENGTH, DEFAULT_LINE_LENGTH)
+	ret[SETTING_FORMAT_ON_SAVE] = cfg.get_value("", SETTING_FORMAT_ON_SAVE, DEFAULT_FORMAT_ON_SAVE)
+	ret[SETTING_FAST_BUT_UNSAFE] = cfg.get_value("", SETTING_FAST_BUT_UNSAFE, DEFAULT_FAST_BUT_UNSAFE)
+	return ret
+
+
+func _update_project_specific_settings() -> void:
+	var cfg := ConfigFile.new()
+
+	var cfg_file_path := (get_script() as Resource).resource_path.get_base_dir().path_join(_PROJECT_SPECIFIC_SETTINGS)
+	if FileAccess.file_exists(cfg_file_path):
+		cfg.load(cfg_file_path)
+
+	if ProjectSettings.has_setting(_SETTING_CUSTOM_SETTINGS_ENABLED):
+		cfg.set_value("", _SETTING_CUSTOM_SETTINGS_ENABLED, ProjectSettings.get_setting(_SETTING_CUSTOM_SETTINGS_ENABLED))
+
+	if ProjectSettings.has_setting(SETTING_LINE_LENGTH):
+		cfg.set_value("", SETTING_LINE_LENGTH, ProjectSettings.get_setting(SETTING_LINE_LENGTH))
+	if ProjectSettings.has_setting(SETTING_FORMAT_ON_SAVE):
+		cfg.set_value("", SETTING_FORMAT_ON_SAVE, ProjectSettings.get_setting(SETTING_FORMAT_ON_SAVE))
+	if ProjectSettings.has_setting(SETTING_FAST_BUT_UNSAFE):
+		cfg.set_value("", SETTING_FAST_BUT_UNSAFE, ProjectSettings.get_setting(SETTING_FAST_BUT_UNSAFE))
+
+	cfg.save(cfg_file_path)
+
+
+func _on_resource_saved(resource: Resource) -> void:
 	# Format on save
-	if not _preference.format_on_save:
+	if not _get_setting(SETTING_FORMAT_ON_SAVE, DEFAULT_FORMAT_ON_SAVE):
 		return
 
 	var gds := resource as GDScript
@@ -169,7 +315,7 @@ func _on_resource_saved(resource: Resource) -> void:
 	ResourceSaver.save(gds)
 	gds.reload()
 
-	var script_editor := get_editor_interface().get_script_editor()
+	var script_editor := _get_editor_interface().get_script_editor()
 	var open_script_editors := script_editor.get_open_script_editors()
 	var open_scripts := script_editor.get_open_scripts()
 
@@ -188,7 +334,7 @@ func _on_resource_saved(resource: Resource) -> void:
 
 
 func _install_or_update_gdtoolkit():
-	var has_gdformat = _has_command(_get_gdformat_command())
+	var has_gdformat := _has_command(_get_gdformat_command())
 	if has_gdformat:
 		print("-- Beginning gdtoolkit update.")
 	else:
@@ -217,11 +363,11 @@ func _add_format_tool_item_and_command() -> void:
 	if not _has_command(_get_gdformat_command()):
 		_print_warning('GDScript Formatter: The command "%s" can\'t be found in your environment.' % _get_gdformat_command())
 		_print_warning('\tIf you have not installed "gdtoolkit", install it first.')
-		_print_warning('\tIf you have installed "gdtoolkit", change "gdformat_command" to a valid command in "%s", and save this resource.' % _preference.resource_path)
+		_print_warning('\tIf you have installed "gdtoolkit", change "gdformat_command" to a valid command in the "GDScript Formatter" section in Editor Settings.')
 		return
 	add_tool_menu_item("GDScriptFormatter: Format script", format_script)
-	var shortcut = _get_shortcut()
-	EditorInterface.get_command_palette().add_command(
+	var shortcut := _get_shortcut()
+	_get_editor_interface().get_command_palette().add_command(
 		"Format GDScript", "GDScript Formatter/Format GDScript", format_script, shortcut.get_as_text() if is_instance_valid(shortcut) else "None"
 	)
 	_has_format_tool_item = true
@@ -231,7 +377,7 @@ func _remove_format_tool_item_and_command() -> void:
 	if not _has_format_tool_item:
 		return
 	_has_format_tool_item = false
-	EditorInterface.get_command_palette().remove_command("GDScript Formatter/Format GDScript")
+	_get_editor_interface().get_command_palette().remove_command("GDScript Formatter/Format GDScript")
 	remove_tool_menu_item("GDScriptFormatter: Format script")
 
 
@@ -308,9 +454,19 @@ func _restore_code_edit_info(prev_data: Dictionary, func_get_line: Callable, fun
 			down_line += 1
 
 
-func _format_code(script_path: String, code: String, formated: Array) -> bool:
-	const tmp_file = "res://addons/gdscript_formatter/.tmp.gd"
-	var f = FileAccess.open(tmp_file, FileAccess.WRITE)
+func _get_setting(key: String, default: Variant) -> Variant:
+	var settings := _get_project_specific_settings()
+	if settings.get(_SETTING_CUSTOM_SETTINGS_ENABLED):
+		return settings.get(key)
+	var editor_settings := _get_editor_interface().get_editor_settings()
+	if editor_settings.has_setting(key):
+		return editor_settings.get_setting(key)
+	return default
+
+
+func _format_code(script_path: String, code: String, formatted: Array) -> bool:
+	const tmp_file := "res://addons/gdscript_formatter/.tmp.gd"
+	var f := FileAccess.open(tmp_file, FileAccess.WRITE)
 	if not is_instance_valid(f):
 		printerr("GDScript Formatter Error: Can't create tmp file.")
 		return false
@@ -318,13 +474,13 @@ func _format_code(script_path: String, code: String, formated: Array) -> bool:
 	f.close()
 
 	var output := []
-	var args := [ProjectSettings.globalize_path(tmp_file), "--line-length=%d" % _preference.line_length]
-	if _preference.fast_but_unsafe:
+	var args := [ProjectSettings.globalize_path(tmp_file), "--line-length=%d" % _get_setting(SETTING_LINE_LENGTH, DEFAULT_LINE_LENGTH)]
+	if _get_setting(SETTING_FAST_BUT_UNSAFE, DEFAULT_FAST_BUT_UNSAFE):
 		args.push_back("--fast")
-	var err = OS.execute(_get_gdformat_command(), args, output)
+	var err := OS.execute(_get_gdformat_command(), args, output)
 	if err == OK:
 		f = FileAccess.open(tmp_file, FileAccess.READ)
-		formated.push_back(f.get_as_text())
+		formatted.push_back(f.get_as_text())
 		f.close()
 	else:
 		printerr("Format GDScript failed: ", script_path)
@@ -336,16 +492,21 @@ func _format_code(script_path: String, code: String, formated: Array) -> bool:
 
 
 func _get_gdformat_command() -> String:
-	return _preference.gdformat_command
+	return _get_editor_interface().get_editor_settings().get_setting(SETTING_GDFORMAT_COMMAND)
 
 
 func _get_pip_command() -> String:
-	return _preference.pip_command
+	return _get_editor_interface().get_editor_settings().get_setting(SETTING_PIP_COMMAND)
 
 
 func _get_shortcut() -> Shortcut:
-	return _preference.shortcut
+	return _get_editor_interface().get_editor_settings().get_setting(SETTING_SHORTCUT)
 
 
 func _print_warning(str: String) -> void:
 	print_rich("[color=orange]%s[/color]" % str)
+
+
+func _get_editor_interface() -> EditorInterface:
+	@warning_ignore("static_called_on_instance")  # 4.1 Compatible.
+	return get_editor_interface()

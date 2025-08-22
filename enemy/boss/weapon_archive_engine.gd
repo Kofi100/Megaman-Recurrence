@@ -13,7 +13,7 @@ var pick_cooldown_up=true
 var picked_capsule=false;var picked_node_capsule;var not_picked_weapons
 @export var engine_start:bool=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#print(randomize_boss_picker,'   ',$all_timers/active_timer.time_left)#picked_node_capsule.active
 	if engine_start==true:
 		if health_tween_create==false:

@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://eg51kkfoxodc"]
+
+[ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_yjebs"]
+[ext_resource type="Texture2D" uid="uid://be65q6xl0tnnw" path="res://assets/sprites/player/megaman-normal-map-lighting.png" id="2_546ei"]
+
+[resource]
+diffuse_texture = ExtResource("1_yjebs")
+normal_texture = ExtResource("2_546ei")

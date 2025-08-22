@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://nnieex6nqieu"]
+[gd_scene load_steps=11 format=3 uid="uid://nnieex6nqieu"]
 
 [ext_resource type="Texture2D" uid="uid://1po1uqg1g6am" path="res://assets/sprites/miscelleaneous/1KofiMenu_Save_Load_Menu.png" id="1_8ayqx"]
 [ext_resource type="Script" uid="uid://cgcwum5wxrspf" path="res://levels/save_load_menu.gd" id="1_38jbt"]
 [ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="2_57e3f"]
+[ext_resource type="Texture2D" uid="uid://dtkngsw1s30vm" path="res://assets/sprites/miscelleaneous/menus/select_Arrow.png" id="3_bew58"]
+[ext_resource type="Texture2D" uid="uid://o1nyc7ijj4vy" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/megaBuster.png" id="3_msfbp"]
+[ext_resource type="Texture2D" uid="uid://ci4c3opwa4iga" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/ringAlarm.png" id="4_pacdd"]
+[ext_resource type="Texture2D" uid="uid://bhremofn54vty" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/ollieStomper.png" id="6_pacdd"]
+[ext_resource type="Texture2D" uid="uid://b62glp3nbtju3" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/satelliteStrike.png" id="7_veoq2"]
+[ext_resource type="Texture2D" uid="uid://xcbpmjf38vc4" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/slumberPillow.png" id="8_4qfsl"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="10_4knt1"]
 
 [node name="save_load_menu" type="Node2D"]
 script = ExtResource("1_38jbt")
@@ -10,6 +17,11 @@ script = ExtResource("1_38jbt")
 [node name="1KofiMenuSaveLoadMenu" type="Sprite2D" parent="."]
 texture = ExtResource("1_8ayqx")
 centered = false
+
+[node name="SelectArrow" type="Sprite2D" parent="."]
+position = Vector2(28, 71)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_bew58")
 
 [node name="abilities_grid" type="GridContainer" parent="."]
 offset_left = 134.0
@@ -25,17 +37,16 @@ layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power1"]
 position = Vector2(8, 8)
-texture = ExtResource("2_57e3f")
-vframes = 12
+texture = ExtResource("3_msfbp")
+hframes = 2
 
 [node name="power2" type="Control" parent="abilities_grid"]
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power2"]
 position = Vector2(8, 8)
-texture = ExtResource("2_57e3f")
-vframes = 12
-frame = 1
+texture = ExtResource("4_pacdd")
+hframes = 2
 
 [node name="power3" type="Control" parent="abilities_grid"]
 layout_mode = 2
@@ -52,8 +63,7 @@ layout_mode = 2
 [node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power4"]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
-vframes = 12
-frame = 3
+hframes = 2
 
 [node name="power5" type="Control" parent="abilities_grid"]
 layout_mode = 2
@@ -69,27 +79,24 @@ layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power6"]
 position = Vector2(8, 8)
-texture = ExtResource("2_57e3f")
-vframes = 12
-frame = 5
+texture = ExtResource("6_pacdd")
+hframes = 2
 
 [node name="power7" type="Control" parent="abilities_grid"]
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power7"]
 position = Vector2(8, 8)
-texture = ExtResource("2_57e3f")
-vframes = 12
-frame = 6
+texture = ExtResource("7_veoq2")
+hframes = 2
 
 [node name="power8" type="Control" parent="abilities_grid"]
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power8"]
 position = Vector2(8, 8)
-texture = ExtResource("2_57e3f")
-vframes = 12
-frame = 7
+texture = ExtResource("8_4qfsl")
+hframes = 2
 
 [node name="power9" type="Control" parent="abilities_grid"]
 layout_mode = 2
@@ -126,3 +133,111 @@ position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
 vframes = 12
 frame = 11
+
+[node name="allMarker2Ds" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(28, 71)
+
+[node name="Marker2D2" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(28, 83)
+
+[node name="Marker2D3" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(28, 95)
+
+[node name="Marker2D4" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(28, 108)
+
+[node name="Marker2D5" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(28, 121)
+
+[node name="Marker2D6" type="Marker2D" parent="allMarker2Ds"]
+position = Vector2(28, 172)
+
+[node name="confirmBox" type="ColorRect" parent="."]
+visible = false
+offset_left = 18.0
+offset_top = 65.0
+offset_right = 237.0
+offset_bottom = 140.0
+color = Color(0.203922, 0.529412, 0.976471, 1)
+
+[node name="title" type="Label" parent="confirmBox"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 14.0
+offset_right = 426.0
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("10_4knt1")
+text = "ARE YOU SURE YOU WANT TO SAVE?"
+autowrap_mode = 1
+
+[node name="yes" type="Label" parent="confirmBox"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 43.0
+offset_right = 105.0
+offset_bottom = 61.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("10_4knt1")
+text = "yes"
+autowrap_mode = 1
+
+[node name="no" type="Label" parent="confirmBox"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 43.0
+offset_right = 170.0
+offset_bottom = 61.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("10_4knt1")
+text = "no"
+autowrap_mode = 1
+
+[node name="confirm_select_arrow" type="Sprite2D" parent="confirmBox"]
+position = Vector2(50, 48)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_bew58")
+
+[node name="Marker2D" type="Marker2D" parent="confirmBox"]
+position = Vector2(50, 48)
+
+[node name="Marker2D2" type="Marker2D" parent="confirmBox"]
+position = Vector2(129, 48)
+
+[node name="input_cooldown_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="input_switch_w_left" type="Label" parent="."]
+offset_left = 56.0
+offset_top = 48.0
+offset_right = 84.0
+offset_bottom = 66.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("10_4knt1")
+text = "A:"
+
+[node name="input_switch_w_right" type="Label" parent="."]
+offset_left = 182.0
+offset_top = 48.0
+offset_right = 210.0
+offset_bottom = 66.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("10_4knt1")
+text = ":A"
+
+[node name="input_switch_w_right2" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 167.0
+offset_right = 60.0
+offset_bottom = 185.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("10_4knt1")
+text = "EXIT"
+
+[node name="arrow_blink_timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="arrow_blink_timer" to="." method="_on_arrow_blink_timer_timeout"]

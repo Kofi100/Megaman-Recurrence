@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://crrx4vith36r4"]
+
+[ext_resource type="Texture2D" uid="uid://cufofk3sbhjya" path="res://assets/sprites/miscelleaneous/you'retakingtoolong.png" id="1_gqc23"]
+[ext_resource type="Script" uid="uid://d24b3iy30kgug" path="res://miscellenaous/jackenstein_pumpkin.gd" id="1_x417v"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_8kgoj"]
+[ext_resource type="AudioStream" uid="uid://b31fc0jx7k0y8" path="res://assets/sounds/youre-taking-too-long.mp3" id="4_8kgoj"]
+[ext_resource type="AudioStream" uid="uid://dspdnbbloq7l4" path="res://assets/sounds/snd_jackolantern_laugh.wav" id="5_yk15r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohyby"]
+atlas = ExtResource("1_gqc23")
+region = Rect2(0, 0, 105, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x417v"]
+atlas = ExtResource("1_gqc23")
+region = Rect2(105, 0, 105, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8kgoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohyby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x417v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x417v"]
+size = Vector2(103, 84)
+
+[node name="jackenstein_pumpkin" type="CharacterBody2D"]
+position = Vector2(87, 81)
+script = ExtResource("1_x417v")
+dialogue = Array[String](["You're in the Dark Zone...", "You have to leave ", "Or else...", "...", "..", ".", "OK..", "YOU'RE TAKING TOO LONG"])
+triggered = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8kgoj")
+frame_progress = 0.998996
+
+[node name="Label" type="Label" parent="."]
+offset_left = -53.0
+offset_top = -81.0
+offset_right = 327.0
+offset_bottom = -43.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_8kgoj")
+text = "leave"
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+visible = false
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_x417v")
+
+[node name="yOU\'re taking too long" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_8kgoj")
+volume_db = 5.0
+
+[node name="lAUGH" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yk15r")

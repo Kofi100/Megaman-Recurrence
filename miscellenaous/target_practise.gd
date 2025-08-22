@@ -7,7 +7,7 @@ func _ready():
 
 var damagereceived:float
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$damage_of_shot.text=str(int(damagereceived)).pad_zeros(2)
 	if damagereceived!=0:
 		$damage_of_shot.visible=true

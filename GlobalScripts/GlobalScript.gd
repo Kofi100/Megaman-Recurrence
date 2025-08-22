@@ -61,12 +61,14 @@ var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "
 	"switch_weapon_right": 0,
 }
 
+var SAVEFILE_PATHS:Array[String] = ["res://savefile1.txt", "res://savefile2.txt", "res://savefile3.txt", "res://savefile4.txt", "res://savefile5.txt"]
+
 
 func _ready():
 	##multiples window screen size
 	##could be useful to increase screen sizes manually
 	DisplayServer.window_set_size(DisplayServer.window_get_size() * 3)
-	DisplayServer.window_set_position(Vector2(400,100))
+	DisplayServer.window_set_position(Vector2(400, 100))
 	##
 	#set_keys_to_players()
 	load_bindings()
@@ -201,10 +203,11 @@ func customSwitchScene(nextScenePath: String):
 	#const nextPath=nextScenePath
 	get_tree().change_scene_to_file(nextScenePath)
 
+
 ##Function to quickly switch scenes. Requires a Node variable instantiated to work.
 func FastSwitchScene(nextScene: Node):
 	var currentScenePath = get_tree().current_scene.get_scene_file_path()
-	var nextScenePath=nextScene.get_scene_file_path()
+	var nextScenePath = nextScene.get_scene_file_path()
 	if currentScenePath != nextScenePath:
 		restarted_level = false
 	elif currentScenePath == nextScenePath:
@@ -213,7 +216,7 @@ func FastSwitchScene(nextScene: Node):
 	#and sets current scene to new scene
 	get_tree().get_root().add_child(nextScene)
 	get_tree().current_scene.queue_free()
-	get_tree().current_scene=nextScene
+	get_tree().current_scene = nextScene
 	#var nextScene:PackedScene=preload(ScenesDictionary.INTRO_STAGE)
 
 
@@ -222,7 +225,7 @@ func load_bindings():
 	load_gamepad_bindings()
 
 
-func clear_action_events(action: String, event_type:String):
+func clear_action_events(action: String, event_type: String):
 	for e in InputMap.action_get_events(action):
 		match event_type:
 			"InputEventJoypadButton":

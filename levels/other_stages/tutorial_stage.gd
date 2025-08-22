@@ -11,7 +11,7 @@ func _ready():
 var array_of_inputs_keys:Array
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	StageFunctions.loop_music($bgm,0,251)
 	#print(InputMap.action_get_events("move_left"))
 	for i in InputMap.action_get_events("move_left"):

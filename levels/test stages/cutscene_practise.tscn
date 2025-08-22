@@ -1,10 +1,11 @@
-[gd_scene load_steps=40 format=4 uid="uid://bk8bfsiotiocy"]
+[gd_scene load_steps=42 format=4 uid="uid://bk8bfsiotiocy"]
 
 [ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="1_50d1p"]
 [ext_resource type="Script" uid="uid://b0akq1ai6ras7" path="res://levels/test stages/cutscene_practise.gd" id="1_mnlmr"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="2_mnlmr"]
 [ext_resource type="Texture2D" uid="uid://befsqfnmmjgp3" path="res://assets/sprites/tilesets/8_stages/1BridgeTiles_IntroStage_Samuel_X7.png" id="4_llag6"]
 [ext_resource type="Texture2D" uid="uid://cravk65d6m07q" path="res://assets/sprites/player/weapons/megaman/rush_coil.png" id="5_y2kxc"]
+[ext_resource type="PackedScene" uid="uid://c5ha3w60gousf" path="res://players/megaman_cutscene.tscn" id="6_nk536"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_llag6"]
 shader = ExtResource("1_50d1p")
@@ -573,10 +574,28 @@ tracks/8/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_2lv0y"]
+resource_name = "cutscene_2"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("megaman_Cutscene")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [128.0, 100.0],
+"method": &"cutscene_move_to"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2lv0y"]
 _data = {
 &"RESET": SubResource("Animation_50d1p"),
-&"cutscene_1": SubResource("Animation_nk536")
+&"cutscene_1": SubResource("Animation_nk536"),
+&"cutscene_2": SubResource("Animation_2lv0y")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y2kxc"]
@@ -609,7 +628,6 @@ tile_set = SubResource("TileSet_nk536")
 libraries = {
 &"": SubResource("AnimationLibrary_2lv0y")
 }
-autoplay = "cutscene_1"
 
 [node name="Megaman_New" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_y2kxc")
@@ -625,3 +643,16 @@ position = Vector2(129, 204)
 position = Vector2(-34, -4)
 texture = ExtResource("5_y2kxc")
 hframes = 7
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="megaman_Cutscene" parent="." instance=ExtResource("6_nk536")]
+position = Vector2(2, 177)
+
+[node name="Sprite2D" parent="megaman_Cutscene" index="1"]
+frame = 31
+
+[node name="AnimationTree" parent="megaman_Cutscene" index="2"]
+parameters/jump_normal/blend_position = 0
+
+[editable path="megaman_Cutscene"]

@@ -30,7 +30,17 @@ func _process(delta: float) -> void:
 				var introStage=preload("res://levels/other_stages/intro_stage_new.tscn").instantiate()
 				GlobalScript.FastSwitchScene(introStage)
 			1:
-				get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
+				if menuPoppedUp==false:
+					options=preload("res://levels/save_load_menu.tscn").instantiate()
+					get_parent().add_child(options)
+					menuPoppedUp=true
+				#elif menuPoppedUp==true:
+					#if options!=null:
+						#options.queue_free()
+						#menuPoppedUp=false
+				if options==null or not is_instance_valid(options):
+						menuPoppedUp=false
+				#get_tree().change_scene_to_file("res://levels/robot_master_menu.tscn")
 				
 			2:
 				var tutorial=preload("res://levels/other_stages/tutorial_stage.tscn").instantiate()

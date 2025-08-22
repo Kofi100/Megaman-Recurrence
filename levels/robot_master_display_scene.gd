@@ -20,7 +20,7 @@ func _ready():
 		tween.connect("finished",triggerNameEffect)
 		$stuffToMakeDisappear/nameOfRobotMaster.text="SHADOWMAN"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	match robotMaster:
 		1:
 			pass

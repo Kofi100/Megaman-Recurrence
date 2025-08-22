@@ -12,7 +12,7 @@ func _ready():
 	$start_boss_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var signal_boss:Signal 
 	
 	if $fireman_boss !=null:

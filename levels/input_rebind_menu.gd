@@ -50,7 +50,7 @@ func _ready():
 	$selectArrow.position = ui_elements[0].position - Vector2(10, 0)
 
 
-func _process(delta):
+func _process(_delta):
 	if is_waiting_for_input:
 		return
 	$mega_spin.play("spinnnn")
