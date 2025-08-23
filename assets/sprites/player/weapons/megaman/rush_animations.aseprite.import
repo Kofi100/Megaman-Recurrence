@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://br30v70ic4eda"
+path="res://.godot/imported/rush_animations.aseprite-1e8312e9420c3348ee50ec77612783a3.res"
+
+[deps]
+
+source_file="res://assets/sprites/player/weapons/megaman/rush_animations.aseprite"
+dest_files=["res://.godot/imported/rush_animations.aseprite-1e8312e9420c3348ee50ec77612783a3.res"]
+
+[params]
+

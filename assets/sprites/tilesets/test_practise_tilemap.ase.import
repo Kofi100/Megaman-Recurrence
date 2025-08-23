@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bqlmxf17l4ekq"
+path="res://.godot/imported/test_practise_tilemap.ase-4d7a00cd8d837fa639d454aad2625b02.res"
+
+[deps]
+
+source_file="res://assets/sprites/tilesets/test_practise_tilemap.ase"
+dest_files=["res://.godot/imported/test_practise_tilemap.ase-4d7a00cd8d837fa639d454aad2625b02.res"]
+
+[params]
+
