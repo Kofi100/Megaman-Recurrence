@@ -738,6 +738,10 @@ position = Vector2(-4, 4)
 rotation = -1.57079
 target_position = Vector2(1.57356e-05, 7)
 
+[node name="stun_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="animation_finished" from="anim2" to="." method="_on_anim_animation_finished"]
@@ -763,5 +767,6 @@ target_position = Vector2(1.57356e-05, 7)
 [connection signal="timeout" from="whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
 [connection signal="body_entered" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_entered"]
 [connection signal="body_exited" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_exited"]
+[connection signal="timeout" from="stun_timer" to="." method="_on_stun_timer_timeout"]
 
 [editable path="dash"]

@@ -366,14 +366,12 @@ func _physics_process(delta):
 		checkWeaponAvalability()
 		#placing it here to work even in Screen Transitions and Flinches
 		activeUseOfWeapons()
-		#print(GlobalScript.weapon_number)
-		#if $RayCastLeft.get_collider() != null and $RayCastLeft.get_collider().is_in_group("iceTiles"):
-		#onIce = true
-		#elif $RayCastLeft.get_collider() == null or not $RayCastLeft.get_collider().is_in_group("iceTiles"):
-		#onIce = false
-		#if is_on_floor() and
 
-		stun(delta)
+		#stun(delta)
+		if is_stunned:
+			stun(delta)
+		else:
+			apply_movement_x(delta)
 		#plays stun blink effect
 		if GlobalScript.playerhitcooldowntimer % 5 == 1:
 			anim.visible = false
@@ -438,11 +436,11 @@ func _physics_process(delta):
 					else:
 						gravity=900
 						anim.speed_scale=1.0
-					apply_movement_x(delta)
+
 					# Apply knockback movement
 					if knockback_velocity != Vector2.ZERO:
 						
-						stun(delta)
+						#stun(delta)
 						velocity += knockback_velocity * delta
 						knockback_decay(delta)
 					play_animations()
@@ -590,20 +588,15 @@ func offsetAnimationFunction():
 
 
 func stun(delta):
-	if anim.animation == "stun_air" and GlobalScript.health > 0:
-		disable_input = true
-		is_stunned = true
+	if is_stunned and GlobalScript.health > 0:
 		stop = true
-		#if anim.flip_h == false:
-			#velocity = Vector2(stun_speed, 0) * delta
-		#elif anim.flip_h == true:
-			#velocity = Vector2(-stun_speed, 0) * delta
-		velocity.x = knockback_velocity.x +(stun_speed if anim.flip_h==false else -stun_speed)
-		#velocity.x = knockback_velocity.x + (is_stunned ? stun_speed * (anim.flip_h ? -1 : 1) : 0)
-		velocity.y = knockback_velocity.y + (80 if !is_on_floor() else 0)
-
-		#if not is_on_floor():
-			#velocity.y=80#*delta#WIP 
+		# apply knockback directly here
+		velocity.x = knockback_velocity.x
+		if not is_on_floor():
+			velocity.y = knockback_velocity.y + 80
+		else:
+			velocity.y = knockback_velocity.y
+		knockback_decay(delta)
 		move_and_slide()
 	elif GlobalScript.health <= 0:
 		stop = false
@@ -615,10 +608,14 @@ var knockback_friction = 300
 var stun_duration = 0.5
 
 func apply_knockback(direction: int, force: float, vertical_force: float = 0):
-	# direction: -1 for left, 1 for right
 	knockback_velocity.x = force * direction
 	knockback_velocity.y = vertical_force
-	print(name,": apply_knockback active")
+	is_stunned = true
+	disable_input = true
+	stop=true
+	anim.play("stun_air")
+	print(name, ": apply_knockback active")
+	$stun_timer.start()
 
 
 func _on_knockback_signal(direction, force, vertical_force):
@@ -1243,3 +1240,9 @@ func _on_player_constants_checker_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_level_cleared_finished() -> void:
 	enabledLeavingCode=true
+
+
+func _on_stun_timer_timeout() -> void:
+	is_stunned=false
+	disable_input=false
+	stop=false
