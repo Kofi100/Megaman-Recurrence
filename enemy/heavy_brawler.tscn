@@ -64,9 +64,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c2xml")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aflbh")
 }],
 "loop": true,
 "name": &"idle",
@@ -129,7 +126,7 @@ script = ExtResource("1_jlyui")
 texture_filter = 1
 position = Vector2(-2, -6)
 sprite_frames = SubResource("SpriteFrames_15yex")
-animation = &"attack"
+animation = &"idle"
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",

@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 				else:
 					# Reset after finishing 2 jumps
 					jump_times = 0
-					$idle_timer.wait_time=.5
+					$idle_timer.wait_time=.2
 					state = "idle"
 					velocity.x = 0
 					animated_sprite_2d.play("idle")
@@ -93,11 +93,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		"punch2":#punch_loop
 			#animated_sprite_2d.play("punch_end")#punch_end
 			animated_sprite_2d.play("idle")
-			$idle_timer.wait_time=1.5
+			$idle_timer.wait_time=.2
 			state="idle"
 		"attack":#punch_end
 			animated_sprite_2d.play("idle")#idle
-			$idle_timer.wait_time=1.5
+			$idle_timer.wait_time=.2
 			state="idle"
 			
 
@@ -131,4 +131,4 @@ func _on_knockback_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
 		print(name,": player in range")
 		var directional_force=1 if animated_sprite_2d.flip_h==false else -1
-		GlobalScript.emit_signal("player_knockback",directional_force,50,-70)
+		#GlobalScript.emit_signal("player_knockback",directional_force,50,-150)
