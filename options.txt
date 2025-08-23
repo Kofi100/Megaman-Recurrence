@@ -1,1 +1,1 @@
-{"volumeSound":{"BGM":-62,"SFX":-4.0}}
+{"volumeSound":{"BGM":-22,"SFX":-4.0}}

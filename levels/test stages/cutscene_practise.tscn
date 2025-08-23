@@ -1,9 +1,10 @@
-[gd_scene load_steps=43 format=4 uid="uid://bk8bfsiotiocy"]
+[gd_scene load_steps=48 format=4 uid="uid://bk8bfsiotiocy"]
 
 [ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="1_50d1p"]
 [ext_resource type="Script" uid="uid://b0akq1ai6ras7" path="res://levels/test stages/cutscene_practise.gd" id="1_mnlmr"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="2_mnlmr"]
 [ext_resource type="Texture2D" uid="uid://befsqfnmmjgp3" path="res://assets/sprites/tilesets/8_stages/1BridgeTiles_IntroStage_Samuel_X7.png" id="4_llag6"]
+[ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="5_eb78n"]
 [ext_resource type="Texture2D" uid="uid://cravk65d6m07q" path="res://assets/sprites/player/weapons/megaman/rush_coil.png" id="5_y2kxc"]
 [ext_resource type="PackedScene" uid="uid://c5ha3w60gousf" path="res://players/megaman_cutscene.tscn" id="6_nk536"]
 [ext_resource type="PackedScene" uid="uid://dkxf1u0aui7rs" path="res://miscellenaous/cutscene_material/rush_cutscene.tscn" id="7_2lv0y"]
@@ -298,6 +299,98 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2f7gu"]
+texture = ExtResource("4_llag6")
+0:10/0 = 0
+0:11/0 = 0
+0:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:12/0 = 0
+0:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:13/0 = 0
+0:14/0 = 0
+1:13/0 = 0
+1:12/0 = 0
+1:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:11/0 = 0
+1:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:10/0 = 0
+2:10/0 = 0
+2:11/0 = 0
+2:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:12/0 = 0
+2:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:9/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+1:9/0 = 0
+2:8/0 = 0
+1:7/0 = 0
+3:9/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+4:9/0 = 0
+2:14/0 = 0
+2:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:15/0 = 0
+2:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:15/0 = 0
+3:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:14/0 = 0
+3:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:13/0 = 0
+4:13/0 = 0
+4:14/0 = 0
+4:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:15/0 = 0
+4:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:15/0 = 0
+5:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:14/0 = 0
+5:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:13/0 = 0
+7:10/0 = 0
+7:11/0 = 0
+7:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:12/0 = 0
+7:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:13/0 = 0
+7:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:14/0 = 0
+7:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:14/0 = 0
+8:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:13/0 = 0
+8:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:12/0 = 0
+8:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:11/0 = 0
+8:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:11/0 = 0
+9:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:10/0 = 0
+8:10/0 = 0
+9:12/0 = 0
+9:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:13/0 = 0
+9:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:14/0 = 0
+9:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l61ur"]
+texture = ExtResource("5_eb78n")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5tlhk"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_2f7gu")
+sources/1 = SubResource("TileSetAtlasSource_l61ur")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2kxc"]
 texture = ExtResource("4_llag6")
 0:10/0 = 0
@@ -375,9 +468,20 @@ texture = ExtResource("4_llag6")
 9:14/0 = 0
 9:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s3331"]
+texture = ExtResource("5_eb78n")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_nk536"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_y2kxc")
+sources/1 = SubResource("TileSetAtlasSource_s3331")
 
 [sub_resource type="Animation" id="Animation_50d1p"]
 length = 0.001
@@ -775,6 +879,20 @@ tracks/7/keys = {
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 1000), Vector2(0, 0)]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = false
+tracks/8/path = NodePath("megaman_Cutscene")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.56667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_sound_once"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2lv0y"]
 _data = {
@@ -805,6 +923,10 @@ sprite_frames = SubResource("SpriteFrames_y2kxc")
 animation = &"run"
 flip_h = true
 
+[node name="bg" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQADAAAAAAAAAAEAAQADAAAAAAAAAAIAAQADAAAAAAAAAAMAAQADAAAAAAAAAAQAAQADAAAAAAAAAAUAAQADAAAAAAAAAAYAAQADAAAAAAAAAAcAAQADAAAAAAAAAAgAAQADAAAAAAAAAAkAAQADAAAAAAAAAAoAAQADAAAAAAAAAAsAAQADAAAAAAAAAAwAAQADAAAAAAAAAA0AAQADAAAAAAABAAAAAQADAAAAAAABAAEAAQADAAAAAAABAAIAAQADAAAAAAABAAMAAQADAAAAAAABAAQAAQADAAAAAAABAAUAAQADAAAAAAABAAYAAQADAAAAAAABAAcAAQADAAAAAAABAAgAAQADAAAAAAABAAkAAQADAAAAAAABAAoAAQADAAAAAAABAAsAAQADAAAAAAABAAwAAQADAAAAAAABAA0AAQADAAAAAAACAAAAAQADAAAAAAACAAEAAQADAAAAAAACAAIAAQADAAAAAAACAAMAAQADAAAAAAACAAQAAQADAAAAAAACAAUAAQADAAAAAAACAAYAAQADAAAAAAACAAcAAQADAAAAAAACAAgAAQADAAAAAAACAAkAAQADAAAAAAACAAoAAQADAAAAAAACAAsAAQADAAAAAAACAAwAAQADAAAAAAACAA0AAQADAAAAAAADAAAAAQADAAAAAAADAAEAAQADAAAAAAADAAIAAQADAAAAAAADAAMAAQADAAAAAAADAAQAAQADAAAAAAADAAUAAQADAAAAAAADAAYAAQADAAAAAAADAAcAAQADAAAAAAADAAgAAQADAAAAAAADAAkAAQADAAAAAAADAAoAAQADAAAAAAADAAsAAQADAAAAAAADAAwAAQADAAAAAAADAA0AAQADAAAAAAAEAAAAAQADAAAAAAAEAAEAAQADAAAAAAAEAAIAAQADAAAAAAAEAAMAAQADAAAAAAAEAAQAAQADAAAAAAAEAAUAAQADAAAAAAAEAAYAAQADAAAAAAAEAAcAAQADAAAAAAAEAAgAAQADAAAAAAAEAAkAAQADAAAAAAAEAAoAAQADAAAAAAAEAAsAAQADAAAAAAAEAAwAAQADAAAAAAAEAA0AAQADAAAAAAAFAAAAAQADAAAAAAAFAAEAAQADAAAAAAAFAAIAAQADAAAAAAAFAAMAAQADAAAAAAAFAAQAAQADAAAAAAAFAAUAAQADAAAAAAAFAAYAAQADAAAAAAAFAAcAAQADAAAAAAAFAAgAAQADAAAAAAAFAAkAAQADAAAAAAAFAAoAAQADAAAAAAAFAAsAAQADAAAAAAAFAAwAAQADAAAAAAAFAA0AAQADAAAAAAAGAAAAAQADAAAAAAAGAAEAAQADAAAAAAAGAAIAAQADAAAAAAAGAAMAAQADAAAAAAAGAAQAAQADAAAAAAAGAAUAAQADAAAAAAAGAAYAAQADAAAAAAAGAAcAAQADAAAAAAAGAAgAAQADAAAAAAAGAAkAAQADAAAAAAAGAAoAAQADAAAAAAAGAAsAAQADAAAAAAAGAAwAAQADAAAAAAAGAA0AAQADAAAAAAAHAAAAAQADAAAAAAAHAAEAAQADAAAAAAAHAAIAAQADAAAAAAAHAAMAAQADAAAAAAAHAAQAAQADAAAAAAAHAAUAAQADAAAAAAAHAAYAAQADAAAAAAAHAAcAAQADAAAAAAAHAAgAAQADAAAAAAAHAAkAAQADAAAAAAAHAAoAAQADAAAAAAAHAAsAAQADAAAAAAAHAAwAAQADAAAAAAAHAA0AAQADAAAAAAAIAAAAAQADAAAAAAAIAAEAAQADAAAAAAAIAAIAAQADAAAAAAAIAAMAAQADAAAAAAAIAAQAAQADAAAAAAAIAAUAAQADAAAAAAAIAAYAAQADAAAAAAAIAAcAAQADAAAAAAAIAAgAAQADAAAAAAAIAAkAAQADAAAAAAAIAAoAAQADAAAAAAAIAAsAAQADAAAAAAAIAAwAAQADAAAAAAAIAA0AAQADAAAAAAAJAAAAAQADAAAAAAAJAAEAAQADAAAAAAAJAAIAAQADAAAAAAAJAAMAAQADAAAAAAAJAAQAAQADAAAAAAAJAAUAAQADAAAAAAAJAAYAAQADAAAAAAAJAAcAAQADAAAAAAAJAAgAAQADAAAAAAAJAAkAAQADAAAAAAAJAAoAAQADAAAAAAAJAAsAAQADAAAAAAAJAAwAAQADAAAAAAAJAA0AAQADAAAAAAAKAAAAAQADAAAAAAAKAAEAAQADAAAAAAAKAAIAAQADAAAAAAAKAAMAAQADAAAAAAAKAAQAAQADAAAAAAAKAAUAAQADAAAAAAAKAAYAAQADAAAAAAAKAAcAAQADAAAAAAAKAAgAAQADAAAAAAAKAAkAAQADAAAAAAAKAAoAAQADAAAAAAAKAAsAAQADAAAAAAAKAAwAAQADAAAAAAAKAA0AAQADAAAAAAALAAAAAQADAAAAAAALAAEAAQADAAAAAAALAAIAAQADAAAAAAALAAMAAQADAAAAAAALAAQAAQADAAAAAAALAAUAAQADAAAAAAALAAYAAQADAAAAAAALAAcAAQADAAAAAAALAAgAAQADAAAAAAALAAkAAQADAAAAAAALAAoAAQADAAAAAAALAAsAAQADAAAAAAALAAwAAQADAAAAAAALAA0AAQADAAAAAAAMAAAAAQADAAAAAAAMAAEAAQADAAAAAAAMAAIAAQADAAAAAAAMAAMAAQADAAAAAAAMAAQAAQADAAAAAAAMAAUAAQADAAAAAAAMAAYAAQADAAAAAAAMAAcAAQADAAAAAAAMAAgAAQADAAAAAAAMAAkAAQADAAAAAAAMAAoAAQADAAAAAAAMAAsAAQADAAAAAAAMAAwAAQADAAAAAAAMAA0AAQADAAAAAAANAAAAAQADAAAAAAANAAEAAQADAAAAAAANAAIAAQADAAAAAAANAAMAAQADAAAAAAANAAQAAQADAAAAAAANAAUAAQADAAAAAAANAAYAAQADAAAAAAANAAcAAQADAAAAAAANAAgAAQADAAAAAAANAAkAAQADAAAAAAANAAoAAQADAAAAAAANAAsAAQADAAAAAAANAAwAAQADAAAAAAANAA0AAQADAAAAAAAOAAAAAQADAAAAAAAOAAEAAQADAAAAAAAOAAIAAQADAAAAAAAOAAMAAQADAAAAAAAOAAQAAQADAAAAAAAOAAUAAQADAAAAAAAOAAYAAQADAAAAAAAOAAcAAQADAAAAAAAOAAgAAQADAAAAAAAOAAkAAQADAAAAAAAOAAoAAQADAAAAAAAOAAsAAQADAAAAAAAOAAwAAQADAAAAAAAOAA0AAQADAAAAAAAPAAAAAQADAAAAAAAPAAEAAQADAAAAAAAPAAIAAQADAAAAAAAPAAMAAQADAAAAAAAPAAQAAQADAAAAAAAPAAUAAQADAAAAAAAPAAYAAQADAAAAAAAPAAcAAQADAAAAAAAPAAgAAQADAAAAAAAPAAkAAQADAAAAAAAPAAoAAQADAAAAAAAPAAsAAQADAAAAAAAPAAwAAQADAAAAAAAPAA0AAQADAAAAAAA=")
+tile_set = SubResource("TileSet_5tlhk")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAsAAAABAAoAAAAAAAwAAAABAAsAAAAAAA0AAAABAAwAAAABAAsAAAACAAoAAAABAAwAAAACAAsAAAABAA0AAAACAAwAAAACAAsAAAABAAoAAAACAAwAAAABAAsAAAACAA0AAAABAAwAAAADAAsAAAACAAoAAAADAAwAAAACAAsAAAADAA0AAAACAAwAAAAEAAsAAAABAAoAAAAEAAwAAAABAAsAAAAEAA0AAAABAAwAAAAFAAsAAAACAAoAAAAFAAwAAAACAAsAAAAFAA0AAAACAAwAAAAGAAsAAAABAAoAAAAGAAwAAAABAAsAAAAGAA0AAAABAAwAAAAHAAsAAAACAAoAAAAHAAwAAAACAAsAAAAHAA0AAAACAAwAAAAIAAsAAAABAAoAAAAIAAwAAAABAAsAAAAIAA0AAAABAAwAAAAJAAsAAAACAAoAAAAJAAwAAAACAAsAAAAJAA0AAAACAAwAAAAKAAsAAAABAAoAAAAKAAwAAAABAAsAAAAKAA0AAAABAAwAAAALAAsAAAACAAoAAAALAAwAAAACAAsAAAALAA0AAAACAAwAAAAMAAsAAAABAAoAAAAMAAwAAAABAAsAAAAMAA0AAAABAAwAAAANAAsAAAACAAoAAAANAAwAAAACAAsAAAANAA0AAAACAAwAAAAOAAsAAAABAAoAAAAOAAwAAAABAAsAAAAOAA0AAAABAAwAAAAPAAsAAAACAAoAAAAPAAwAAAACAAsAAAAPAA0AAAACAAwAAAA=")
 tile_set = SubResource("TileSet_nk536")
@@ -834,9 +956,6 @@ hframes = 7
 
 [node name="megaman_Cutscene" parent="." instance=ExtResource("6_nk536")]
 position = Vector2(2, 177)
-
-[node name="Sprite2D" parent="megaman_Cutscene" index="1"]
-frame = 30
 
 [node name="AnimationTree" parent="megaman_Cutscene" index="2"]
 parameters/jump_normal/blend_position = 0

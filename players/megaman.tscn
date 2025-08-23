@@ -445,6 +445,7 @@ collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_acsaa")
 JUMP_VELOCITY = -18000
+stun_speed = 25
 
 [node name="dash" parent="." instance=ExtResource("2_oa303")]
 

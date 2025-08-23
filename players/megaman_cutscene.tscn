@@ -1,8 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://c5ha3w60gousf"]
+[gd_scene load_steps=38 format=3 uid="uid://c5ha3w60gousf"]
 
 [ext_resource type="Texture2D" uid="uid://d4e0kdtk50fb0" path="res://players/megaman_cutscene.png" id="1_aiglj"]
 [ext_resource type="Script" uid="uid://bvkurgj1ly1no" path="res://players/megaman_cutscene.gd" id="1_xp73t"]
 [ext_resource type="AnimationNodeBlendSpace1D" uid="uid://dx4421f5apcrw" path="res://assets/sprites/player/cutscene_animation/animation/run_normal.tres" id="2_ukojf"]
+[ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="3_e8u6l"]
+[ext_resource type="AudioStream" uid="uid://de1fpvmyt0f4l" path="res://assets/sounds/SFX 098_MM10Land.mp3" id="5_saqhb"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="6_vl1uw"]
 
 [sub_resource type="Animation" id="Animation_aiglj"]
 length = 0.001
@@ -944,6 +947,17 @@ _data = {
 &"stun_ground": SubResource("Animation_vl1uw")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_be4py"]
+shader = ExtResource("3_e8u6l")
+shader_parameter/outline_color_original = Color(0, 0, 0, 1)
+shader_parameter/bodycolororiginal1 = Color(1, 0, 0, 1)
+shader_parameter/bodycolororiginal2 = Color(0, 0, 1, 1)
+shader_parameter/colorEyesOriginal = Color(0.470588, 0.501961, 0.501961, 1)
+shader_parameter/outlinecolor = Color(0, 0, 0, 1)
+shader_parameter/bodycolori = Color(0, 1, 1, 1)
+shader_parameter/bodycolorii = Color(0.625641, 0.184661, 0.95376, 1)
+shader_parameter/colorEyesEdit = Color(0, 0, 0, 1)
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ukojf"]
 animation = &"idle_left"
 
@@ -1017,6 +1031,7 @@ autoplay = "idle_left"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_be4py")
 texture = ExtResource("1_aiglj")
 hframes = 7
 vframes = 6
@@ -1042,5 +1057,22 @@ parameters/jump_normal/blend_position = 0.251232
 parameters/run_normal/blend_position = -0.00886697
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 3.5)
 shape = SubResource("RectangleShape2D_xp73t")
+
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="land" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("5_saqhb")
+script = ExtResource("6_vl1uw")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
+
+[node name="SFXBase" type="AudioStreamPlayer" parent="sounds"]
+script = ExtResource("6_vl1uw")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
+
+[node name="ignore_land_timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true

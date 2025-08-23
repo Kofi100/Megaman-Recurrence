@@ -62,7 +62,7 @@ var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "
 }
 
 var SAVEFILE_PATHS:Array[String] = ["res://savefile1.txt", "res://savefile2.txt", "res://savefile3.txt", "res://savefile4.txt", "res://savefile5.txt"]
-
+signal player_knockback(direction, force, vertical_force)
 
 func _ready():
 	##multiples window screen size

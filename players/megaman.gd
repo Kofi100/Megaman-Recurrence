@@ -28,7 +28,7 @@ var jump_play_effect_timer = 0
 var is_dead: bool = false
 ##This boolean checks if a player has been stunned or not
 ##and triggers the stun effect
-var stun_effect: bool = false
+var is_stunned: bool = false#stun_effect :old name 
 var trans_left = false
 var trans_right = false
 var trans_up = false
@@ -74,6 +74,7 @@ var playLeaveBGM:bool=true
 func _ready():
 	
 	playerCharacter = self
+	GlobalScript.connect("player_knockback", _on_knockback_signal)
 	#health
 	#key_dictionary.resize(9)
 	GlobalScript.lemons_on_screen_no = 0
@@ -437,44 +438,13 @@ func _physics_process(delta):
 					else:
 						gravity=900
 						anim.speed_scale=1.0
-					direction = Input.get_axis("move_left", "move_right")
-					if direction != 0:
-						lastDirectionCase = direction
-					if direction and not disable_input:
-						move_an_inch_checker += 1
-						if not is_on_floor():
-							velocity.x = direction * SPEED * delta
-						else:
-							if move_an_inch_checker < 10:
-								velocity.x = direction * move_an_inch_speed * delta  #1000 *delta
-							elif on_conveyor:
-								velocity.x = direction * (SPEED + conveyor_push) * delta
-							elif onIce:
-								if direction == -1:
-									velocity.x = direction * (SPEED + 500) * delta
-									
-								elif direction == 1:
-									velocity.x = direction * (SPEED + 500) * delta
-							else:
-								velocity.x = direction * (SPEED) * delta
-
-					else:
-						move_an_inch_checker = 0
-
-						if on_conveyor:
-							
-							velocity.x = conveyor_push * delta
-						elif onIce:
-							if lastDirectionCase < 0:
-								velocity.x = -abs(velocity.x) + 200 * delta
-								if velocity.x >= 0:
-									velocity.x = 0
-							elif lastDirectionCase > 0:
-								velocity.x = abs(velocity.x) - 200 * delta
-								if velocity.x <= 0:
-									velocity.x = 0
-						else: 
-							velocity.x = move_toward(velocity.x, 0, SPEED)
+					apply_movement_x(delta)
+					# Apply knockback movement
+					if knockback_velocity != Vector2.ZERO:
+						
+						stun(delta)
+						velocity += knockback_velocity * delta
+						knockback_decay(delta)
 					play_animations()
 					offsetAnimationFunction()
 
@@ -551,6 +521,41 @@ var dead_effect_timer = 0
 var stun_timer = 0
 @export var stun_speed = 1200
 
+func apply_movement_x(delta):
+	direction = Input.get_axis("move_left", "move_right")
+	if direction != 0:
+		lastDirectionCase = direction
+	if direction and not disable_input:
+		move_an_inch_checker += 1
+		if not is_on_floor():
+			velocity.x = direction * SPEED * delta
+		else:
+			if move_an_inch_checker < 10:
+				velocity.x = direction * move_an_inch_speed * delta  #1000 *delta
+			#elif on_conveyor:
+				#velocity.x = direction * (SPEED + conveyor_push) * delta
+			elif onIce:
+				if direction == -1:
+					velocity.x = direction * (SPEED + 500) * delta
+					
+				elif direction == 1:
+					velocity.x = direction * (SPEED + 500) * delta
+			else:
+				velocity.x = direction * (SPEED) * delta
+
+	else:
+		move_an_inch_checker = 0
+		if onIce:
+			if lastDirectionCase < 0:
+				velocity.x = -abs(velocity.x) + 200 * delta
+				if velocity.x >= 0:
+					velocity.x = 0
+			elif lastDirectionCase > 0:
+				velocity.x = abs(velocity.x) - 200 * delta
+				if velocity.x <= 0:
+					velocity.x = 0
+		else: 
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func offsetAnimationFunction():
 	if (
@@ -587,21 +592,52 @@ func offsetAnimationFunction():
 func stun(delta):
 	if anim.animation == "stun_air" and GlobalScript.health > 0:
 		disable_input = true
-		stun_effect = true
+		is_stunned = true
 		stop = true
-		if anim.flip_h == false:
-			velocity = Vector2(stun_speed, 0) * delta
-		elif anim.flip_h == true:
-			velocity = Vector2(-stun_speed, 0) * delta
-		if not is_on_floor():
-			velocity.y=8000*delta#WIP 
+		#if anim.flip_h == false:
+			#velocity = Vector2(stun_speed, 0) * delta
+		#elif anim.flip_h == true:
+			#velocity = Vector2(-stun_speed, 0) * delta
+		velocity.x = knockback_velocity.x +(stun_speed if anim.flip_h==false else -stun_speed)
+		#velocity.x = knockback_velocity.x + (is_stunned ? stun_speed * (anim.flip_h ? -1 : 1) : 0)
+		velocity.y = knockback_velocity.y + (80 if !is_on_floor() else 0)
+
+		#if not is_on_floor():
+			#velocity.y=80#*delta#WIP 
 		move_and_slide()
 	elif GlobalScript.health <= 0:
 		stop = false
 
 
-var frameNo = 0
+var knockback_velocity = Vector2.ZERO
+var knockback_friction = 300
+#var is_stunned = false
+var stun_duration = 0.5
 
+func apply_knockback(direction: int, force: float, vertical_force: float = 0):
+	# direction: -1 for left, 1 for right
+	knockback_velocity.x = force * direction
+	knockback_velocity.y = vertical_force
+	print(name,": apply_knockback active")
+
+
+func _on_knockback_signal(direction, force, vertical_force):
+	apply_knockback(direction, force, vertical_force)
+	anim.play("stun_air")
+
+
+var frameNo = 0
+func knockback_decay(delta):
+	# Knockback friction
+	if knockback_velocity.x != 0:
+		var friction = knockback_friction * delta
+		if abs(knockback_velocity.x) <= friction:
+			knockback_velocity.x = 0
+		else:
+			knockback_velocity.x -= sign(knockback_velocity.x) * friction
+	if knockback_velocity.y != 0:
+		# Optional: reduce vertical knockback gradually
+		knockback_velocity.y = move_toward(knockback_velocity.y, 0, knockback_friction * delta)
 
 func play_animations():
 	if direction == -1:
@@ -989,7 +1025,7 @@ func _on_anim_animation_finished():
 			$hitbox/CollisionShape2D.disabled = false
 		"stun_air":
 			disable_input = false
-			stun_effect = false
+			is_stunned = false
 			stop = false
 			if is_on_floor():
 				anim.play("idle")

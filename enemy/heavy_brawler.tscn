@@ -1,0 +1,165 @@
+[gd_scene load_steps=15 format=3 uid="uid://bpp2st5aqvy5g"]
+
+[ext_resource type="Script" uid="uid://cffx0fktv7rn" path="res://enemy/heavy_brawler.gd" id="1_jlyui"]
+[ext_resource type="Texture2D" uid="uid://t1q57nnxxvl7" path="res://enemy/1Heavy_Brawler.png" id="2_jlyui"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2xml"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(0, 0, 68, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aflbh"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(68, 65, 68, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cgne"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(136, 65, 68, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jm8x"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(0, 130, 68, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rk4m"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(68, 130, 68, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx6s5"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(136, 130, 68, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72jgt"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(68, 0, 68, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi7j3"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(136, 0, 68, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v31h8"]
+atlas = ExtResource("2_jlyui")
+region = Rect2(0, 65, 68, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15yex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2xml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aflbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cgne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jm8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rk4m")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2xml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aflbh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2xml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aflbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cgne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx6s5")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72jgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi7j3")
+}],
+"loop": false,
+"name": &"punch1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2xml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72jgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v31h8")
+}],
+"loop": false,
+"name": &"punch2",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2xml"]
+size = Vector2(24, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlyui"]
+size = Vector2(72, 70)
+
+[node name="heavy_brawler" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_jlyui")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2, -6)
+sprite_frames = SubResource("SpriteFrames_15yex")
+animation = &"attack"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"op_exp": false,
+"source": "res://assets/sprites/enemies/1Heavy_Brawler.aseprite"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2.5)
+shape = SubResource("RectangleShape2D_c2xml")
+
+[node name="idle_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="jump_cooldown_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="knockback_hitbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="knockback_hitbox"]
+position = Vector2(-2, -14)
+shape = SubResource("RectangleShape2D_jlyui")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="idle_timer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="jump_cooldown_timer" to="." method="_on_jump_cooldown_timer_timeout"]
+[connection signal="area_entered" from="knockback_hitbox" to="." method="_on_knockback_hitbox_area_entered"]
