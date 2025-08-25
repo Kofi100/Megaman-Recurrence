@@ -58,7 +58,9 @@ var in_teleporter = false
 var key_dictionary: Array
 var JBufferActive: bool = false
 var jumpAvble: bool = true
-var jumpBufferTime
+#var jump_buffer_timer
+@onready var jump_buffer_timer: Timer = $jump_buffer_timer
+
 var coyoteJumpTime
 @onready var trigger_leave_timer = $trigger_leave_timer
 #timer deterimining how long stays on screen before despawning
@@ -96,11 +98,11 @@ func _ready():
 #region Timers Section
 	GlobalScreenTransitionTimer.stop()
 
-	jumpBufferTime = Timer.new()
+	#jump_buffer_timer = Timer.new()
 	coyoteJumpTime = Timer.new()
-	jumpBufferTime.wait_time = .1
+	#jump_buffer_timer.wait_time = .1
 	coyoteJumpTime.wait_time = 0.05
-	get_parent().add_child.call_deferred(jumpBufferTime)
+	#get_parent().add_child.call_deferred(jump_buffer_timer)
 	get_parent().add_child.call_deferred(coyoteJumpTime)
 #endregion
 
@@ -186,7 +188,10 @@ var enabledLeavingCode:bool=false
 func checkIfStuck():
 	if $checkIfStuckNodes/RayCast2D.is_colliding() or $checkIfStuckNodes/RayCast2D2.is_colliding():
 		GlobalScript.health=0
-		
+func moveWhenStoppedOnScreenTransition():
+	if not GlobalScreenTransitionTimer.is_stopped():
+		if velocity.x==0:
+			pass
 func _physics_process(delta):
 #region reverse Gravity
 	#code for reverse gravity
@@ -388,18 +393,18 @@ func _physics_process(delta):
 				anim.visible=true
 		if player_ready and stop == false:
 			checkIfStuck()
-			#if jumpBufferTime:
+			#if jump_buffer_timer:
 			#
 			#print("timer creating...")
 			# Handle Jump.
-			#if jumpBufferTime.tree_exiting():
+			#if jump_buffer_timer.tree_exiting():
 			#print("jumpBuffer getting destroyed")
 			#if tree_exiting()
-			if Input.is_action_just_pressed("jump") and jumpBufferTime.time_left <= 0:  # is_on_floor():#and !is_on_floor(): #and is_on_floor():# and is_on_floor():
-				jumpBufferTime.start()
+			if Input.is_action_just_pressed("jump") and jump_buffer_timer.time_left <= 0:  # is_on_floor():#and !is_on_floor(): #and is_on_floor():# and is_on_floor():
+				jump_buffer_timer.start()
 				anim.play("jump")
 				#velocity.y = JUMP_VELOCITY*delta
-			#print(jumpBufferTime.time_left)
+			#print(jump_buffer_timer.time_left)
 
 #region Coyote Jumping(not active)
 			#if is_on_floor():jumpAvble=true
@@ -414,10 +419,10 @@ func _physics_process(delta):
 
 			#print("Mega:velocity.y",velocity.y)
 			#print("Mega:velocity*delta=i think,pixel/frame/second",velocity*Vector2(delta,delta))
-			if jumpBufferTime.time_left > 0 and is_on_floor():
-				#print(name+":"+Jump Buffer Time Left:"+jumpBufferTime.time_left)
+			if jump_buffer_timer.time_left > 0 and is_on_floor():
+				#print(name+":"+Jump Buffer Time Left:"+jump_buffer_timer.time_left)
 				velocity.y = JUMP_VELOCITY * delta
-				jumpBufferTime.stop()
+				jump_buffer_timer.stop()
 
 			if Input.is_action_just_released("jump") and velocity.y < 0:
 				velocity.y = 0
@@ -530,6 +535,7 @@ var stun_timer = 0
 @export var stun_speed = 1200
 
 func apply_movement_x(delta):
+	stun_speed=25
 	direction = Input.get_axis("move_left", "move_right")
 	if direction != 0:
 		lastDirectionCase = direction

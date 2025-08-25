@@ -71,14 +71,7 @@ func _process(delta):
 			zone_camera_2d=camera
 	if collision_limits_camera==null:
 		collision_limits_camera=get_node_or_null("CollisionShape2D")
-		#creates new collsionshape,sets its shape and size and adds it to node
-		#also sets collisionShape2D to collision_limits_camera
-		#if collision_limits_camera==null:
-			#var collisionShape2D=CollisionShape2D.new()
-			#add_child(collisionShape2D)
-			#collisionShape2D.shape=RectangleShape2D.new()
-			#collisionShape2D.shape.size=Vector2(256,240)
-			#collision_limits_camera=collisionShape2D
+
 	if GlobalTimerChecker==null:
 		timer_exists=false
 		GlobalTimerChecker=GlobalScreenTransitionTimer#get_tree().current_scene.get_node_or_null("Transition_Timer")#GlobalScreenTransitionTimer
@@ -95,15 +88,11 @@ func _process(delta):
 			#
 			#notify_property_list_changed() #updates inspector and editor
 		if zone_camera_2d!=null:
-			#print("i have a zone camera")
 			zone_camera_2d.notify_property_list_changed()
 			
-	#property_list_changed.emit()
 	if collision_limits_camera!=null:
-			#player_camera.limit_left=
-			#print(name,":get_rect().position.x->",collision_limits_camera.shape.get_rect().position.x)
-			var pos_x=collision_limits_camera.global_position.x#abs(collision_limits_camera.shape.get_rect().position.x)
-			var pos_y=collision_limits_camera.global_position.y#abs(collision_limits_camera.shape.get_rect().position.y)
+			var pos_x=collision_limits_camera.global_position.x
+			var pos_y=collision_limits_camera.global_position.y
 			var size_l=collision_limits_camera.shape.get_rect().size.x
 			var size_h=collision_limits_camera.shape.get_rect().size.y
 			limit_l=pos_x-(size_l/2); limit_r=pos_x+(size_l/2)
@@ -129,33 +118,11 @@ func _process(delta):
 					noBackTrackArea.set_collision_layer_value(1,false)
 			else:
 				noBackTrackArea.set_collision_layer_value(1,false)
-	#if noBackTrackArea:
-		#noBackTrackArea.
-	
-	#if not Engine.is_editor_hint():
-		#if zone_camera_2d!=null:
-			#if GlobalScript.playerposx>zone_camera_2d.limit_right:
-				#if not noBackTrackArea:
-					##CharacterBody2D.new()
-					#noBackTrackArea.set_collision_layer_value(1,true)
-					#add_child(noBackTrackArea)
-					#noBackTrackArea.global_position=global_position
-					#
-					##var solidCollision:CollisionShape2D=CollisionShape2D.new()
-					##solidCollision.shape=RectangleShape2D.new()
-					##solidCollision.shape.size=collision_limits_camera.shape.size
-					###solidCollision.shape.size.x=solidCollision.shape.size.x+(16+8)
-					##noBackTrackArea.add_child(solidCollision)
-					##solidCollision.global_position=collision_limits_camera.global_position
-					##solidCollision.debug_color=Color.RED
-					###print(solidCollision.shape.size,collision_limits_camera.shape.size)
-					##print(global_position,noBackTrackArea.global_position)
-				#if noBackTrackArea:
-					#pass
 func _on_area_entered(area):
 	if area.is_in_group('player_constants_checker_area2d') :#and area.get_parent().player_ready==true
 		player_camera=area.get_parent().get_node('player_camera')
 		print(name,"Player entered me.")
+		#await get_tree().create_timer(.1).timeout
 		if player_camera!=null:
 			zone_camera_2d.set("zone_camera_2d.limit_right",limit_r)
 			zone_camera_2d.limit_right=limit_r

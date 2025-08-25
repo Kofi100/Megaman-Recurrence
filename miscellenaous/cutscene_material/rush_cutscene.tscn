@@ -817,7 +817,6 @@ texture_filter = 1
 texture = ExtResource("3_xrn2d")
 hframes = 3
 vframes = 3
-frame = 5
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",

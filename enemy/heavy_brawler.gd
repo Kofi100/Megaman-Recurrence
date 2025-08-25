@@ -12,6 +12,7 @@ var spawn_wave_once:bool=false
 var spawn_punch_once:bool=false
 func _ready() -> void:
 	state="idle"
+	$idle_timer.wait_time=.3
 	$idle_timer.start()
 	health=20
 func _physics_process(delta: float) -> void:
