@@ -375,10 +375,17 @@ func _physics_process(delta):
 
 		stun(delta)
 		#plays stun blink effect
-		if GlobalScript.playerhitcooldowntimer % 5 == 1:
-			anim.visible = false
-		elif GlobalScript.playerhitcooldowntimer % 5 == 3:
-			anim.visible = true
+		#if fmod(GlobalScript.playerhitcooldowntimer,) % 5 == 1:
+			#anim.visible = false
+		#elif GlobalScript.playerhitcooldowntimer % 5 == 3:
+			#anim.visible = true
+		if GlobalScript.playerhasbeenhit and !is_dead:
+			if $hit_blink_timer.is_stopped():
+				$hit_blink_timer.start()
+		else:
+			if not $hit_blink_timer.is_stopped():
+				$hit_blink_timer.stop()
+				anim.visible=true
 		if player_ready and stop == false:
 			checkIfStuck()
 			#if jumpBufferTime:
@@ -510,6 +517,7 @@ func _physics_process(delta):
 		#anim.play("stun_air")
 		GlobalScript.restarted_level = true
 		GlobalScript.pause_level_timer()
+		$hit_blink_timer.stop()
 		anim.visible = false
 		$hitbox/CollisionShape2D.disabled = true
 		$CollisionShape2D.disabled = true
@@ -1059,7 +1067,8 @@ func _on_hitbox_area_entered(area):
 		if GlobalScript.playerhasbeenhit == false:
 			GlobalScript.playerhasbeenhit = true
 			GlobalScript.previous_health = GlobalScript.health  #previous health used to check increasign health,collects the health of the player
-			GlobalScript.health -= area.get_parent().playerdamagevalue  #this transfers a value of damage from the enemy to the player  #2,before,the player's health actually gets reduced
+			if not GlobalScript.player_god_mode:
+				GlobalScript.health -= area.get_parent().playerdamagevalue  #this transfers a value of damage from the enemy to the player  #2,before,the player's health actually gets reduced
 			$all_sounds/stun.play()
 			anim.play("stun_air")
 			climb = false
@@ -1243,3 +1252,8 @@ func _on_player_constants_checker_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_level_cleared_finished() -> void:
 	enabledLeavingCode=true
+
+
+func _on_hit_blink_timer_timeout() -> void:
+	#flip b/n visible and not visible to create blink effect
+	anim.visible=!anim.visible

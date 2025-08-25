@@ -5,7 +5,7 @@ var previous_health = 0
 ##This boolean checks if the player has been hit by an enemy's attack or not.
 var playerhasbeenhit: bool = false
 ##This integer indicates how long the cooldown should be.
-var playerhitcooldowntimer: int = 0
+var playerhitcooldowntimer: float = 0
 # Called when the node enters the scene tree for the first time.
 var playerposx = 0
 var playerposy = 0
@@ -39,6 +39,7 @@ var player: Object
 var lastStageEntered: String
 var robotMaster = 0
 var lives = 3
+var player_god_mode:bool=false
 
 const KEYBOARD_BINDS_PATH = "res://keyboard_binds.cfg"
 const GAMEPAD_BINDS_PATH = "res://gamepad_binds.cfg"
@@ -80,13 +81,11 @@ var array = [null, null, null]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print(array)
-	#energy_tank_no=5
-	if playerhasbeenhit:
-		#print('Globalscript:playerhasbeenhit:works')
 
-		playerhitcooldowntimer += 1
-		if playerhitcooldowntimer == 100:
+	#print(playerhitcooldowntimer)
+	if playerhasbeenhit:
+		playerhitcooldowntimer += 1 * delta
+		if playerhitcooldowntimer >= 1:
 			playerhitcooldowntimer = 0
 			playerhasbeenhit = false
 	if health >= max_health:
@@ -94,8 +93,6 @@ func _process(delta):
 	if level_timer_start:
 		second_level += 1 * delta
 		total_time_seconds += 1 * delta
-#		if milliseconds==100:
-#			second_level+=1
 		if second_level >= 60:
 			minute_level += 1
 			second_level = 0

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ds1rdux8oub86"
+path="res://.godot/imported/1Heavy_Brawler_projectile.aseprite-3a5182880485b3a2938b81b35cbe1fea.res"
+
+[deps]
+
+source_file="res://assets/sprites/enemies/1Heavy_Brawler_projectile.aseprite"
+dest_files=["res://.godot/imported/1Heavy_Brawler_projectile.aseprite-3a5182880485b3a2938b81b35cbe1fea.res"]
+
+[params]
+

@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3q1imhhlwg6y"]
+
+[ext_resource type="Script" uid="uid://n5hq361oq2xw" path="res://enemy/heavy_brawler_projectile_wave.gd" id="1_p1gcv"]
+[ext_resource type="Texture2D" uid="uid://pca408kj4h2u" path="res://enemy/1Heavy_Brawler_projectile.png" id="2_sg2y3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wsnc"]
+atlas = ExtResource("2_sg2y3")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uujll"]
+atlas = ExtResource("2_sg2y3")
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpkc6"]
+atlas = ExtResource("2_sg2y3")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcrwb"]
+atlas = ExtResource("2_sg2y3")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3y34"]
+atlas = ExtResource("2_sg2y3")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7k2t5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wsnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uujll")
+}],
+"loop": true,
+"name": &"punch_proj",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpkc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcrwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3y34")
+}],
+"loop": true,
+"name": &"stomp_proj",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg2y3"]
+size = Vector2(24, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1gcv"]
+size = Vector2(24, 38)
+
+[node name="heavy_brawler_projectile_wave" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_p1gcv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -19)
+sprite_frames = SubResource("SpriteFrames_7k2t5")
+animation = &"stomp_proj"
+frame_progress = 0.284211
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"op_exp": false,
+"source": "res://assets/sprites/enemies/1Heavy_Brawler_projectile.aseprite"
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_sg2y3")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_p1gcv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500002, -18.5)
+scale = Vector2(5.95, 6.05)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

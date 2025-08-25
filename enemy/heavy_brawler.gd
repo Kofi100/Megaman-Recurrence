@@ -8,21 +8,27 @@ var jump_times=0
 var has_jumped:bool=false
 var move_to_one_direction:bool=false
 var attack_phases=0
+var spawn_wave_once:bool=false
+var spawn_punch_once:bool=false
 func _ready() -> void:
 	state="idle"
 	$idle_timer.start()
+	health=20
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
+	playerdamagevalue=3
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	calculate_player_distance()
+	spawn_collectables()
 	#print([jump_times,state])
 	#if not is_on_floor() :
 		#animated_sprite_2d.play("jump")
-	if distance_x<=0:
-		animated_sprite_2d.flip_h=true
-	else:
-		animated_sprite_2d.flip_h=false
+	if is_on_floor():
+		if distance_x<=0:
+			animated_sprite_2d.flip_h=true
+		else:
+			animated_sprite_2d.flip_h=false
 	if attack_phases>=3:
 		pass
 		attack_phases=0
@@ -47,6 +53,7 @@ func _physics_process(delta: float) -> void:
 					state = "idle"
 					velocity.x = 0
 					animated_sprite_2d.play("idle")
+					$stomp.play()
 					
 			else:
 				#if animated_sprite_2d.animation != "jump":
@@ -64,14 +71,50 @@ func _physics_process(delta: float) -> void:
 				if animated_sprite_2d.animation=="jump":
 					if animated_sprite_2d.frame==2:
 						velocity.y = JUMP_VELOCITY
-				#if velocity.y>0:
-					#animated_sprite_2d.play("idle")
+				if velocity.y>0:
+					animated_sprite_2d.play("idle")
+					
 		"punch":
 			velocity.x=0
+			if animated_sprite_2d.animation=="punch1":
+				if animated_sprite_2d.frame==1:
+					if spawn_punch_once==false:
+						var punch=preload("res://enemy/heavy_brawler_projectile_punch.tscn").instantiate()
+						punch.direction="right" if $AnimatedSprite2D.flip_h==false else "left"
+						get_tree().current_scene.add_child(punch)
+						punch.global_position=$punch_spawn_marker_R.global_position if $AnimatedSprite2D.flip_h==false else $punch_spawn_marker_L.global_position
+						spawn_punch_once=true
+				else:
+					spawn_punch_once=false
+			if animated_sprite_2d.animation=="punch2":
+				if animated_sprite_2d.frame==2:
+					if spawn_punch_once==false:
+						var punch=preload("res://enemy/heavy_brawler_projectile_punch.tscn").instantiate()
+						punch.direction="right" if $AnimatedSprite2D.flip_h==false else "left"
+						get_tree().current_scene.add_child(punch)
+						punch.global_position=$punch_spawn_marker_R.global_position if $AnimatedSprite2D.flip_h==false else $punch_spawn_marker_L.global_position
+						spawn_punch_once=true
+				else:
+					spawn_punch_once=false
 		"attack":
 			velocity.x=0
+			if animated_sprite_2d.frame==2:
+				if spawn_wave_once==false:
+					
+					var wave=preload("res://enemy/heavy_brawler_projectile_wave.tscn").instantiate()
+					#var wave2=preload("res://enemy/heavy_brawler_projectile_wave.tscn").instantiate()
+					
+					#get_tree().current_scene.add_child(wave2)
+					
+					wave.direction="left" if animated_sprite_2d.flip_h==true else "right"
+					get_tree().current_scene.add_child(wave)
+					#;wave2.direction="right"
+					wave.global_position=$wave_spawn_marker_L.global_position if animated_sprite_2d.flip_h==true else $wave_spawn_marker_R.global_position
+					spawn_wave_once=true
 
 		"idle":
+			spawn_wave_once=false
+			spawn_punch_once=false
 			if animated_sprite_2d.animation != "idle":
 				animated_sprite_2d.play("idle")
 			velocity.x = 0
@@ -97,7 +140,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			state="idle"
 		"attack":#punch_end
 			animated_sprite_2d.play("idle")#idle
-			$idle_timer.wait_time=.2
+			$idle_timer.wait_time=.7
 			state="idle"
 			
 
@@ -132,3 +175,7 @@ func _on_knockback_hitbox_area_entered(area: Area2D) -> void:
 		print(name,": player in range")
 		var directional_force=1 if animated_sprite_2d.flip_h==false else -1
 		#GlobalScript.emit_signal("player_knockback",directional_force,50,-150)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

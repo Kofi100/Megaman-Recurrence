@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=62 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" uid="uid://0j8k3bpxe6qj" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://dbylvqio5n61y" path="res://assets/music/Stage_Clear.ogg" id="15_2ctiv"]
 [ext_resource type="AudioStream" uid="uid://de1fpvmyt0f4l" path="res://assets/sounds/SFX 098_MM10Land.mp3" id="16_2ctiv"]
 [ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="16_2l2k5"]
+[ext_resource type="PackedScene" uid="uid://crjvedup64d32" path="res://miscellenaous/hud_debug.tscn" id="19_2t5wp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
 shader = ExtResource("4_rtyrl")
@@ -451,6 +452,9 @@ stun_speed = 25
 
 [node name="HUD" parent="." instance=ExtResource("3_ov4w5")]
 
+[node name="HUD_Debug" parent="." instance=ExtResource("19_2t5wp")]
+layer = 3
+
 [node name="player_camera" type="Camera2D" parent="."]
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -738,6 +742,9 @@ position = Vector2(-4, 4)
 rotation = -1.57079
 target_position = Vector2(1.57356e-05, 7)
 
+[node name="hit_blink_timer" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="animation_finished" from="anim2" to="." method="_on_anim_animation_finished"]
@@ -763,5 +770,6 @@ target_position = Vector2(1.57356e-05, 7)
 [connection signal="timeout" from="whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
 [connection signal="body_entered" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_entered"]
 [connection signal="body_exited" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_exited"]
+[connection signal="timeout" from="hit_blink_timer" to="." method="_on_hit_blink_timer_timeout"]
 
 [editable path="dash"]

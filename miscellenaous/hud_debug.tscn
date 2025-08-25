@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://crjvedup64d32"]
+
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_d44ei"]
+[ext_resource type="Script" uid="uid://dovbg5jv0oi24" path="res://miscellenaous/hud_debug.gd" id="1_r0tjs"]
+[ext_resource type="Script" uid="uid://loc47houlhk5" path="res://miscellenaous/fps_15.gd" id="3_udj6r"]
+
+[node name="HUD_Debug" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_r0tjs")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 162.0
+offset_right = 256.0
+offset_bottom = 15.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 28.0
+
+[node name="debug_menu" type="Button" parent="Panel"]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 95.0
+offset_bottom = 32.0
+scale = Vector2(0.25, 0.25)
+focus_mode = 0
+theme = ExtResource("1_d44ei")
+text = "DEV MODE"
+
+[node name="debug_settings" type="Panel" parent="."]
+offset_left = 162.0
+offset_top = 15.0
+offset_right = 256.0
+offset_bottom = 92.0
+
+[node name="GridContainer" type="GridContainer" parent="debug_settings"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="debug_settings"]
+layout_mode = 0
+offset_right = 376.0
+offset_bottom = 308.0
+scale = Vector2(0.25, 0.25)
+
+[node name="restart_level" type="Button" parent="debug_settings/HFlowContainer"]
+layout_mode = 2
+theme = ExtResource("1_d44ei")
+text = "Restart"
+
+[node name="go_debug_menu" type="Button" parent="debug_settings/HFlowContainer"]
+layout_mode = 2
+theme = ExtResource("1_d44ei")
+text = ">Debug Menu"
+
+[node name="god_mode" type="Button" parent="debug_settings/HFlowContainer"]
+layout_mode = 2
+theme = ExtResource("1_d44ei")
+text = "god mode"
+
+[node name="fps15" type="Button" parent="debug_settings/HFlowContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+theme = ExtResource("1_d44ei")
+size_mode = 2
+text = "fps 15"
+script = ExtResource("3_udj6r")
+
+[node name="fps30" type="Button" parent="debug_settings/HFlowContainer"]
+layout_mode = 2
+theme = ExtResource("1_d44ei")
+text = "fps 30"
+
+[node name="fps60" type="Button" parent="debug_settings/HFlowContainer"]
+layout_mode = 2
+theme = ExtResource("1_d44ei")
+text = "fps 60"
+
+[node name="exit_game" type="Button" parent="debug_settings/HFlowContainer"]
+layout_mode = 2
+theme = ExtResource("1_d44ei")
+text = "Exit GAME"
+
+[connection signal="pressed" from="Panel/debug_menu" to="." method="_on_debug_menu_pressed"]
+[connection signal="pressed" from="debug_settings/HFlowContainer/restart_level" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="debug_settings/HFlowContainer/go_debug_menu" to="." method="_on_go_debug_menu_pressed"]
+[connection signal="pressed" from="debug_settings/HFlowContainer/god_mode" to="." method="_on_god_mode_pressed"]
+[connection signal="pressed" from="debug_settings/HFlowContainer/fps15" to="." method="_on_fps_15_pressed"]
+[connection signal="pressed" from="debug_settings/HFlowContainer/fps30" to="." method="_on_fps_30_pressed"]
+[connection signal="pressed" from="debug_settings/HFlowContainer/fps60" to="." method="_on_fps_60_pressed"]
+[connection signal="pressed" from="debug_settings/HFlowContainer/exit_game" to="." method="_on_exit_game_pressed"]
