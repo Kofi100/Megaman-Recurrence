@@ -202,13 +202,14 @@ func setLives():
 func setWindowSize():
 	if Input.is_action_just_pressed("move_left"):
 		GlobalScript.resolution -= 1
-		OptionsSet.data["resolution"] = GlobalScript.resolution
-		OptionsSet.saveSettings()
+		
+		
 	elif Input.is_action_just_pressed("move_right"):
 		GlobalScript.resolution += 1
-		OptionsSet.data["resolution"] = GlobalScript.resolution
-		OptionsSet.saveSettings()
-	GlobalScript.resolution = wrap(GlobalScript.resolution, 1, 5)
+	
+	GlobalScript.resolution = wrap(GlobalScript.resolution, 2, 5)
+	OptionsSet.data["resolution"] = GlobalScript.resolution
+	OptionsSet.saveSettings()
 	$screen_resolution/resolution_display.set_text(var_to_str(GlobalScript.resolution))
 
 

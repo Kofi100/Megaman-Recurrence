@@ -42,6 +42,7 @@ window/size/viewport_width=256
 window/size/viewport_height=224
 window/size/initial_position_type=0
 window/size/initial_position=Vector2i(400, 100)
+window/size/resizable=false
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 
