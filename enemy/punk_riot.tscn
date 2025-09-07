@@ -89,7 +89,7 @@ size = Vector2(13, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6pnc0"]
 size = Vector2(282, 176)
 
-[node name="punkRiot" type="CharacterBody2D"]
+[node name="punk_riot" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_rprwk")
 

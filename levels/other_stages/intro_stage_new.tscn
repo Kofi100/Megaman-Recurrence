@@ -555,7 +555,7 @@ texture = ExtResource("11_2shln")
 stretch_mode = 1
 
 [node name="megaman" parent="." instance=ExtResource("9_vx7qd")]
-position = Vector2(5809.88, 127.601)
+position = Vector2(90.9161, 116.553)
 
 [node name="allCameras" type="Node2D" parent="."]
 
@@ -741,7 +741,7 @@ shape = SubResource("RectangleShape2D_squ8w")
 [node name="New Camera System Addon11" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(6154, 16)
 script = ExtResource("12_ei8sd")
-zone_camera_2d = NodePath("@Camera2D@34534")
+zone_camera_2d = NodePath("@Camera2D@27134")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -754,7 +754,7 @@ shape = SubResource("RectangleShape2D_bsib1")
 [node name="New Camera System Addon12" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(9481, 17)
 script = ExtResource("12_ei8sd")
-zone_camera_2d = NodePath("@Camera2D@34535")
+zone_camera_2d = NodePath("@Camera2D@27135")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true

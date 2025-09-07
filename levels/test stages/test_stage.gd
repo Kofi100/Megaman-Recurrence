@@ -58,10 +58,12 @@ func _on_area_body_entered(body: Node2D) -> void:
 
 func _on_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		$theDarkZone/jackenstein_pumpkin.triggered=false
-		var tween = create_tween()
-		tween.tween_property($theDarkZone/CanvasModulate, "color", Color.WHITE, 0.5)
-		await tween.finished
-		$theDarkZone/CanvasModulate.color = Color.WHITE
-		OptionsSet.data["volumeSound"]["BGM"]=previous_BGM_Value
+		if $theDarkZone/jackenstein_pumpkin.start_chasing_player==false:
+			$theDarkZone/jackenstein_pumpkin.triggered=false
+			$theDarkZone/jackenstein_pumpkin.dialogue_active=false
+			var tween = create_tween()
+			tween.tween_property($theDarkZone/CanvasModulate, "color", Color.WHITE, 0.5)
+			await tween.finished
+			$theDarkZone/CanvasModulate.color = Color.WHITE
+			OptionsSet.data["volumeSound"]["BGM"]=previous_BGM_Value
 		#$bgm.volume_db=0

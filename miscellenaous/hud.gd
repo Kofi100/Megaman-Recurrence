@@ -49,7 +49,10 @@ var switchedMenus: bool = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	$healthbar/text_health_display.text = str(int(health_bar.value))
-	$healthbar/text_lives.text = str(GlobalScript.lives)
+	if GlobalScript.max_lives<9:
+		$healthbar/text_lives.text = str(int(GlobalScript.lives))
+	else:
+		$healthbar/text_lives.text = ""
 	$score.text = str("SCORE:", GlobalScript.score)
 	$stage_name.text = "STAGE:\n" + GlobalScript.stage_name
 	$fps_Display.text=str(int(Engine.get_frames_per_second()))
@@ -73,13 +76,7 @@ func _process(_delta):
 		get_tree().paused = true
 	if $stage_name/stage_display_timer.time_left <= 0:
 		$stage_name.visible = false
-#	for i in get_tree().current_scene.get_children():
-#		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
-#			if i.is_in_group('bgm'):
-#			i.volume_db=$pause_screen_setup/settings/volume/volume_music.value
-	#print('i.volume_db',i.volume_db,',volume_music_slider_value:',$pause_screen_setup/settings/volume/volume_music.value)
-	#print()
-	#round()
+
 #region Prev Code for Reducing BGM InGame
 
 	#for i in get_tree().current_scene.get_children(true):
@@ -166,7 +163,7 @@ func _process(_delta):
 				$pause_menu_sound.play()
 				var fade_in_tween = create_tween()  #this creates a tween which creates a dim effect for the pause screen
 				fade_in_tween.tween_property($fade_out_rectangle, "color", Color(0, 0, 0, 0), .2)
-			elif justPausedGameManually == true and get_tree().paused == true:
+			elif justPausedGameManually == true and get_tree().paused == true and selection_index<12:
 				get_tree().paused = false
 				justPausedGameManually = false
 	if justPausedGameManually == true:
@@ -237,7 +234,7 @@ func _process(_delta):
 		
 		if selection_index == 12:  #energy tank selected
 			$pause_screen_setup/e_tank.play("selected")
-			if Input.is_action_just_pressed("shoot") and GlobalScript.health < GlobalScript.max_health:  #shoot pressed,health<max_health
+			if Input.is_action_just_pressed("pause") and GlobalScript.health < GlobalScript.max_health:  #shoot pressed,health<max_health
 				if GlobalScript.energy_tank_no > 0:  #if energy tank no>0,
 					GlobalScript.energy_tank_no -= 1  #deduct by 1
 
@@ -257,9 +254,9 @@ func _process(_delta):
 			$pause_screen_setup/w_tank.play("not_selected")
 		if selection_index==14:
 			$pause_screen_setup/buttons/moveNextScreenbtn.play("selected")
-			if Input.is_action_just_pressed("shoot") and switchedMenus==false:
+			if Input.is_action_just_pressed("pause") and switchedMenus==false:
 				if screen2==null:
-					screen2=preload("res://miscellenaous/hud_screen_2.tscn").instantiate()
+					screen2=preload("res://levels/menu_options.tscn").instantiate()
 					add_child(screen2)
 					#$pause_screen_setup.visible=false
 					screen2.connect("tree_exiting", exitMenu)
@@ -278,7 +275,7 @@ func _process(_delta):
 			$pause_screen_setup/buttons/moveNextScreenbtn.play("notSelected")
 		if selection_index==15:
 			$pause_screen_setup/buttons/quitStageBtn.play("selected")
-			if Input.is_action_just_pressed("shoot"):
+			if Input.is_action_just_pressed("pause"):
 				get_tree().paused=false
 				get_tree().change_scene_to_file("res://levels/save_or_continue_screen.tscn")
 		else:

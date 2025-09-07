@@ -20,10 +20,15 @@ func _physics_process(delta: float) -> void:
 	playerdamagevalue = 1000
 	health = INF
 	
-	# Handle dialogue triggering
-	if triggered and not dialogue_active:
-		start_dialogue_sequence()
-	
+	## Handle dialogue triggering
+	#if triggered and not dialogue_active:
+		#start_dialogue_sequence()
+	#print($wait_timer.is_stopped())
+	if triggered:
+		if $wait_timer.is_stopped():
+			$wait_timer.start()
+	else:
+		$wait_timer.stop()
 	# Handle chasing behavior
 	if not start_chasing_player:
 		$Area2D/CollisionShape2D.disabled = true
@@ -31,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		$Area2D/CollisionShape2D.disabled = false
 		if is_instance_valid(Player.playerCharacter) and GlobalScript.health >= 0:
 			var direction = (Player.playerCharacter.global_position - global_position).normalized()
-			velocity = direction * 7000 * delta
+			velocity = direction * 10000 * delta
 	
 	move_and_slide()
 
@@ -43,25 +48,49 @@ func start_dialogue_sequence():
 	await get_tree().create_timer(10.0).timeout
 	
 	# Play dialogue sequence
-	for i in range(dialogue.size()-1):
-		$Label.set_text(dialogue[i])
-		await get_tree().create_timer(dialogue_timings[i]).timeout
-	
-	# Handle post-dialogue effects
-	$Label.set_text(dialogue[7])
-	$AnimatedSprite2D.visible = true
-	
-	# Play sounds if not already playing
-	if not $"yOU're taking too long".playing:
-		$"yOU're taking too long".play()
-	
-	await get_tree().create_timer(3.0).timeout
-	$Label.set_text("")
-	$AnimatedSprite2D.play("default")
-	
-	if not $lAUGH.playing:
-		$lAUGH.play()
-	
-	# Enable chasing
-	start_chasing_player = true
-	dialogue_active = false
+	if not triggered:
+		for i in range(dialogue.size()-1):
+			$Label.set_text(dialogue[i])
+			await get_tree().create_timer(dialogue_timings[i]).timeout
+		
+		# Handle post-dialogue effects
+		$Label.set_text(dialogue[7])
+		$AnimatedSprite2D.visible = true
+		
+		# Play sounds if not already playing
+		if not $"yOU're taking too long".playing:
+			$"yOU're taking too long".play()
+		
+		await get_tree().create_timer(3.0).timeout
+		$Label.set_text("")
+		$AnimatedSprite2D.play("default")
+		
+		if not $lAUGH.playing:
+			$lAUGH.play()
+		
+		# Enable chasing
+		start_chasing_player = true
+		dialogue_active = false
+
+
+func _on_wait_timer_timeout() -> void:
+		# Handle post-dialogue effects
+		$Label.set_text(dialogue[7])
+		$AnimationPlayer.play("pop_in")
+		$AnimatedSprite2D.visible = true
+		
+		# Play sounds if not already playing
+		if not $"yOU're taking too long".playing:
+			$"yOU're taking too long".play()
+		
+		await get_tree().create_timer(3.0).timeout
+		$Label.set_text("")
+		$Label.visible=false
+		$AnimatedSprite2D.play("default")
+		
+		if not $lAUGH.playing:
+			$lAUGH.play()
+		
+		# Enable chasing
+		start_chasing_player = true
+		#dialogue_active = false

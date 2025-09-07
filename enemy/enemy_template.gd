@@ -12,6 +12,7 @@ var distance_x: int = 0
 var distance_y: int = 0
 var timeLeft:float=0
 var hasBeenHurt:bool=false
+var stats:Dictionary={}
 
 var boss_defeated: Signal
 var collectables_list = {
@@ -25,8 +26,14 @@ var collectables_list = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass  # Replace with function body.
+	#print(name)
+	pass
 
+func get_enemy_stats():
+	if name:
+		stats=CsvManager.get_enemy_data(name)
+	if stats.is_empty():
+		push_error("No stats found for enemy_id: %s" % name)
 
 var is_boss = false
 var BossDefenseShot1: int = 0

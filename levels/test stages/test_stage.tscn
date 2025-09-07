@@ -424,7 +424,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_6oq1v"]
 offsets = PackedFloat32Array(0, 0.7875)
-colors = PackedColorArray(0.111785, 0.582603, 0.598931, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i2788"]
 gradient = SubResource("Gradient_6oq1v")
@@ -528,7 +528,7 @@ shape = SubResource("RectangleShape2D_63urt")
 visible = false
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@78342")
+zone_camera_2d = NodePath("@Camera2D@87169")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -542,7 +542,7 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@78343")
+zone_camera_2d = NodePath("@Camera2D@87170")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -888,8 +888,10 @@ position = Vector2(156.192, -132.492)
 triggered = false
 
 [node name="PointLight2D" type="PointLight2D" parent="theDarkZone/jackenstein_pumpkin/AnimatedSprite2D" index="0"]
-position = Vector2(1.29972, 2.00002)
-scale = Vector2(2.70312, 2.60938)
+z_index = -1
+position = Vector2(2.31882, 7.85715)
+scale = Vector2(1.90319, 1.92746)
+color = Color(0.845901, 0.225475, 5.77569e-07, 1)
 texture = SubResource("GradientTexture2D_i2788")
 
 [node name="Label" parent="theDarkZone/jackenstein_pumpkin" index="1"]
@@ -901,9 +903,11 @@ offset_bottom = 82.0
 [node name="PointLight2D" type="PointLight2D" parent="theDarkZone/jackenstein_pumpkin/Label" index="0"]
 position = Vector2(168.75, 9)
 scale = Vector2(6.72656, 0.71875)
+color = Color(0.879409, 0.337398, 0, 1)
 texture = SubResource("GradientTexture2D_i2788")
 
 [node name="area" type="Area2D" parent="theDarkZone"]
+visible = false
 collision_layer = 3
 collision_mask = 3
 

@@ -320,7 +320,7 @@ volume_db = -10.0
 script = ExtResource("12_ygi3p")
 
 [node name="megaman" parent="." instance=ExtResource("4_sl4vc")]
-position = Vector2(5849.28, -1023.13)
+position = Vector2(75.1709, 179.542)
 
 [node name="ladder" parent="." instance=ExtResource("11_y5hwf")]
 

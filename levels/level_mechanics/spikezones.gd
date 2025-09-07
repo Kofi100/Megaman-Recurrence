@@ -4,5 +4,5 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 #node for spike pits
-func _physics_process(delta):
+func _physics_process(_delta):
 	playerdamagevalue = 8

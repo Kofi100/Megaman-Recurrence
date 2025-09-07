@@ -12,7 +12,7 @@ func _ready() -> void:
 	$arrowBlinkTimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	match MenuOptionNo:
 		0:$SelectArrow.global_position=$"allMarker2Ds/0".global_position
 		1:$SelectArrow.global_position=$"allMarker2Ds/1".global_position
@@ -105,7 +105,7 @@ func _input(event: InputEvent) -> void:
 			elif event.is_action_pressed("move_down"):
 				MenuOptionNo+=1
 				$change_Option_SFX.play()
-		MenuOptionNo=clampi(MenuOptionNo,0,7)
+		MenuOptionNo=wrapi(MenuOptionNo,0,8)
 	pass
 
 

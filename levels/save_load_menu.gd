@@ -72,10 +72,10 @@ func _process(delta: float) -> void:
 					var result: bool
 
 					if isSaving:
-						result = await MegamanAndItems.saveData(GlobalScript.SAVEFILE_PATHS[file_option])
+						result = MegamanAndItems.saveData(GlobalScript.SAVEFILE_PATHS[file_option])
 						$confirmBox/title.text = "Saved!" if result else "Save Failed!"
 					else:
-						result = await MegamanAndItems.loadData(GlobalScript.SAVEFILE_PATHS[file_option])
+						result = MegamanAndItems.loadData(GlobalScript.SAVEFILE_PATHS[file_option])
 						$confirmBox/title.text = "Loaded!" if result else "Load Failed!"
 
 					await get_tree().create_timer(1.0).timeout

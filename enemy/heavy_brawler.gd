@@ -173,8 +173,9 @@ func _on_jump_cooldown_timer_timeout() -> void:
 
 func _on_knockback_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
-		print(name,": player in range")
-		var directional_force=1 if animated_sprite_2d.flip_h==false else -1
+		pass
+		#print(name,": player in range")
+		#var directional_force=1 if animated_sprite_2d.flip_h==false else -1
 		#GlobalScript.emit_signal("player_knockback",directional_force,50,-150)
 
 

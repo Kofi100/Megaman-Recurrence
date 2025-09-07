@@ -5,7 +5,7 @@ var playerAround:bool=false
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 func _ready() -> void:
-	health=12
+	health=7
 
 func _physics_process(delta: float) -> void:
 	$repeatShootTimer/durationShootTimer.wait_time=.7

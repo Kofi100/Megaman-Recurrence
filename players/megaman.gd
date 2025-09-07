@@ -244,8 +244,11 @@ func _physics_process(delta):
 
 	if not player_ready:
 		GlobalScreenTransitionTimer.stop()
+	#if not GlobalScript.buster_rapid_shot:
 	if GlobalScript.lemons_on_screen_no >= 3 and $buster_cooldown_timer.time_left <= 0:
 		$buster_cooldown_timer.start()
+	#else:
+		#GlobalScript.lemons_on_screen_no=0
 	#conveyor_push=30000
 	if door_transition:
 		velocity.x = 4950 * delta
@@ -480,7 +483,9 @@ func _physics_process(delta):
 				if GlobalScript.health <= 0:
 					$restart_timer.start(3.5)
 					is_dead = true
-					GlobalScript.lives = GlobalScript.lives - 1
+					#max_lives=9 stands for infinite lives
+					if GlobalScript.max_lives<9:
+						GlobalScript.lives = GlobalScript.lives - 1
 					var explosion_scene = preload("res://miscellenaous/effects/explosion_scene.tscn")
 					var explosion_scene_instance_or_node = explosion_scene.instantiate()
 					get_parent().add_child(explosion_scene_instance_or_node)
@@ -1114,8 +1119,9 @@ func _on_restart_timer_timeout():
 		get_tree().reload_current_scene()
 		#MegamanAndItems.reload_palette()
 	elif GlobalScript.lives <= 0:
+		get_tree().paused=false
 		GlobalScript.lastStageEntered = get_tree().current_scene.scene_file_path
-		GlobalScript.lives = 3
+		GlobalScript.lives = GlobalScript.max_lives
 		get_tree().change_scene_to_file("res://levels/game_over_screen.tscn")
 		
 		#GlobalScript.lives = 3

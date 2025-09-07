@@ -212,28 +212,28 @@ quit
 position = Vector2(79, 99)
 
 [node name="0" type="Marker2D" parent="allMarker2Ds"]
-position = Vector2(6, -38)
+position = Vector2(10, -41)
 
 [node name="1" type="Marker2D" parent="allMarker2Ds"]
-position = Vector2(8, -23)
+position = Vector2(12, -26)
 
 [node name="2" type="Marker2D" parent="allMarker2Ds"]
-position = Vector2(14, -9)
+position = Vector2(14, -12)
 
 [node name="3" type="Marker2D" parent="allMarker2Ds"]
-position = Vector2(7, 5)
+position = Vector2(7, 3)
 
 [node name="4" type="Marker2D" parent="allMarker2Ds"]
-position = Vector2(21, 20)
+position = Vector2(21, 17)
 
 [node name="5" type="Marker2D" parent="allMarker2Ds"]
-position = Vector2(24, 34)
+position = Vector2(24, 32)
 
 [node name="6" type="Marker2D" parent="allMarker2Ds"]
-position = Vector2(20, 49)
+position = Vector2(20, 46)
 
 [node name="7" type="Marker2D" parent="allMarker2Ds"]
-position = Vector2(29, 63)
+position = Vector2(29, 60)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 visible = false

@@ -14,7 +14,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	playerdamagevalue = 2
+	#var proj_data=float(CsvManager.get_data("punk_riot_projectile","playerdamagevalue",CsvManager.ENEMY_PROJECTILE_DATA_PATH))
+	playerdamagevalue = 3#proj_data
 	
 	# Apply gravity
 	#velocity.y += gravity * delta

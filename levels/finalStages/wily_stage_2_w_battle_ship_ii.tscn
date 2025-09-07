@@ -164,10 +164,11 @@ text = "TBC..."
 
 [node name="allCameras" type="Node2D" parent="."]
 
-[node name="New Camera System Addon" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon"]
@@ -180,11 +181,12 @@ limit_bottom = 223
 position = Vector2(1280, 111.5)
 shape = SubResource("RectangleShape2D_yhpi0")
 
-[node name="New Camera System Addon2" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon2" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2561, 0)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon2"]
@@ -197,11 +199,12 @@ limit_bottom = 223
 position = Vector2(127, 112)
 shape = SubResource("RectangleShape2D_2cfac")
 
-[node name="New Camera System Addon3" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon3" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2817, 0)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon3"]
@@ -214,11 +217,12 @@ limit_bottom = 223
 position = Vector2(127, 112)
 shape = SubResource("RectangleShape2D_prt11")
 
-[node name="New Camera System Addon4" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon4" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2817, 223)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon4"]
@@ -231,11 +235,12 @@ limit_bottom = 446
 position = Vector2(127, 112)
 shape = SubResource("RectangleShape2D_prt11")
 
-[node name="New Camera System Addon5" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon5" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2817, 223)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon5"]
@@ -248,11 +253,12 @@ limit_bottom = 670
 position = Vector2(127, 336)
 shape = SubResource("RectangleShape2D_yv5jj")
 
-[node name="New Camera System Addon6" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon6" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2817, 223)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon6"]
@@ -265,11 +271,12 @@ limit_bottom = 672
 position = Vector2(615, 337)
 shape = SubResource("RectangleShape2D_6508b")
 
-[node name="New Camera System Addon7" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon7" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(3792, 448)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon7"]
@@ -282,11 +289,12 @@ limit_bottom = 672
 position = Vector2(128, 112)
 shape = SubResource("RectangleShape2D_mjpfd")
 
-[node name="New Camera System Addon8" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon8" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4048, 448)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon8"]
@@ -299,11 +307,12 @@ limit_bottom = 672
 position = Vector2(128, 112)
 shape = SubResource("RectangleShape2D_l53id")
 
-[node name="New Camera System Addon9" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon9" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4304, 448)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon9"]
@@ -316,11 +325,12 @@ limit_bottom = 672
 position = Vector2(280, 112)
 shape = SubResource("RectangleShape2D_hp6n1")
 
-[node name="New Camera System Addon10" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="New Camera System Addon10" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4864, 448)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon10"]
@@ -335,137 +345,170 @@ shape = SubResource("RectangleShape2D_br1tr")
 
 [node name="allEnemies" type="Node2D" parent="."]
 
-[node name="enemy_spawner" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(416, 117)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner2" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner2" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(551, 149)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner4" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner4" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(736, 134)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner5" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner5" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(785, 98)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner3" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner3" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(672, 104)
 enemy_to_spawn = "ceiling_shooter"
+enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner6" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner6" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(838, 168)
 enemy_to_spawn = "spikyoall"
+enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner7" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner7" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1059, 150)
 enemy_to_spawn = "spikyoall"
+enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner8" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner8" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1108, 117)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner9" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner9" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1297, 120)
 enemy_to_spawn = "spikyoall"
+enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner10" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner10" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1345, 56)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner11" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner11" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1378, 197)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner12" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner12" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1713, 197)
 enemy_to_spawn = "spikyoall"
+enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner13" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner13" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1872, 120)
 enemy_to_spawn = "ceiling_shooter"
+enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner14" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner14" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1600, 168)
 enemy_to_spawn = "ceiling_shooter"
+enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner15" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner15" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(1633, 100)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner16" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner16" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2010, 120)
 enemy_to_spawn = "ceiling_shooter"
+enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner17" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner17" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2160, 151)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner18" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner18" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2272, 120)
 enemy_to_spawn = "ceiling_shooter"
+enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner20" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner20" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2392, 197)
 enemy_to_spawn = "spikyoall"
+enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner21" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner21" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2992, 614)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner22" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner22" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2935, 294)
 enemy_to_spawn = "spikyoall"
+enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner23" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner23" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2935, 392)
 enemy_to_spawn = "ceiling_shooter"
+enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner24" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner24" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2945, 518)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner25" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner25" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(3280, 646)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner26" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner26" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(3424, 646)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner27" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner27" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(3552, 646)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner28" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner28" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(3728, 615)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner30" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner30" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(4720, 599)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner32" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner32" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(4449, 568)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner33" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner33" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(4519, 536)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner31" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner31" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(5072, 614)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner29" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner29" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2912, 102)
 enemy_to_spawn = "returningmachine_joe"
+enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner19" parent="allEnemies" instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner19" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
 position = Vector2(2240, 197)
 enemy_to_spawn = "spikyoall"
+enemy_Preview = NodePath("spikyoall")
 
 [node name="landMine" parent="allEnemies" instance=ExtResource("5_3iu8o")]
 position = Vector2(944, 197)

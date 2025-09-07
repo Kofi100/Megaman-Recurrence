@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://crrx4vith36r4"]
+[gd_scene load_steps=13 format=3 uid="uid://crrx4vith36r4"]
 
 [ext_resource type="Texture2D" uid="uid://cufofk3sbhjya" path="res://assets/sprites/miscelleaneous/you'retakingtoolong.png" id="1_gqc23"]
 [ext_resource type="Script" uid="uid://d24b3iy30kgug" path="res://miscellenaous/jackenstein_pumpkin.gd" id="1_x417v"]
@@ -25,11 +25,48 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x417v"]
-size = Vector2(103, 84)
+size = Vector2(63, 31)
+
+[sub_resource type="Animation" id="Animation_yk15r"]
+resource_name = "pop_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.4, 1.4), Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="Animation" id="Animation_646p7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxrtd"]
+_data = {
+&"RESET": SubResource("Animation_646p7"),
+&"pop_in": SubResource("Animation_yk15r")
+}
 
 [node name="jackenstein_pumpkin" type="CharacterBody2D"]
 position = Vector2(87, 81)
@@ -38,8 +75,10 @@ dialogue = Array[String](["You're in the Dark Zone...", "You have to leave ", "O
 triggered = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-30.625, -24.5)
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_8kgoj")
-frame_progress = 0.998996
+frame_progress = 0.416795
 
 [node name="Label" type="Label" parent="."]
 offset_left = -53.0
@@ -51,12 +90,11 @@ theme = ExtResource("3_8kgoj")
 text = "leave"
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
-visible = false
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.5, 0)
+position = Vector2(-29.5, -16.5)
 shape = SubResource("RectangleShape2D_x417v")
 
 [node name="yOU\'re taking too long" type="AudioStreamPlayer" parent="."]
@@ -65,3 +103,14 @@ volume_db = 5.0
 
 [node name="lAUGH" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_yk15r")
+
+[node name="wait_timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hxrtd")
+}
+
+[connection signal="timeout" from="wait_timer" to="." method="_on_wait_timer_timeout"]

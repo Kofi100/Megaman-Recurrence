@@ -1,9 +1,13 @@
 extends enemy
 var playerAround=false
 func _ready() -> void:
+	get_enemy_stats()
 	$AnimatedSprite2D.play("idle")
-	health=3
-	playerdamagevalue=3
+	#var temp_health=float(CsvManager.get_data("punk_riot","health",CsvManager.ENEMY_DATA_PATH))
+	health=2#float(stats["health"])#CsvManager.get_data("punk_riot","health",CsvManager.ENEMY_DATA_PATH)
+	#var temp_damage=float(CsvManager.get_data("punk_riot","playerdamagevalue",CsvManager.ENEMY_DATA_PATH))
+	playerdamagevalue=2#float(stats["playerdamagevalue"])#CsvManager.get_data("punk_riot","playerdamagevalue",CsvManager.ENEMY_DATA_PATH)
+	#print([health,playerdamagevalue])
 var proj:enemy
 var shootOnce:bool=false
 var shootRandomizer:int=0

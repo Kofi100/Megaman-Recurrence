@@ -39,8 +39,11 @@ var player: Object
 var lastStageEntered: String
 var robotMaster = 0
 var lives = 3
+var max_lives = 3
 var player_god_mode:bool=false
-
+var resolution:int=3
+var buster_rapid_shot:bool=false
+var fullscreen:bool=false
 const KEYBOARD_BINDS_PATH = "res://keyboard_binds.cfg"
 const GAMEPAD_BINDS_PATH = "res://gamepad_binds.cfg"
 
@@ -66,22 +69,34 @@ var SAVEFILE_PATHS:Array[String] = ["res://savefile1.txt", "res://savefile2.txt"
 signal player_knockback(direction, force, vertical_force)
 
 func _ready():
+	process_mode=Node.PROCESS_MODE_ALWAYS
 	##multiples window screen size
 	##could be useful to increase screen sizes manually
-	DisplayServer.window_set_size(DisplayServer.window_get_size() * 3)
+	DisplayServer.window_set_size(DisplayServer.window_get_size() * OptionsSet.default_data["resolution"])
 	DisplayServer.window_set_position(Vector2(400, 100))
 	##
+	max_lives=OptionsSet.data["max_lives"]
+	buster_rapid_shot=OptionsSet.data["buster_rapid_shot"]
+	fullscreen=OptionsSet.data["fullscreen"]
+	resolution=OptionsSet.data["resolution"]
 	#set_keys_to_players()
 	load_bindings()
-	pass
-
+	
+	
+	#if fullscreen:
+		#if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_WINDOWED:
+			#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#el:
+		#if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN:
+			#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	DisplayServer.window_set_size(Vector2(256,224) * resolution)
 
 var array = [null, null, null]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
+	#print(GlobalScript.max_lives)
 	#print(playerhitcooldowntimer)
 	if playerhasbeenhit:
 		playerhitcooldowntimer += 1 * delta
@@ -96,6 +111,15 @@ func _process(delta):
 		if second_level >= 60:
 			minute_level += 1
 			second_level = 0
+	
+	DisplayServer.window_set_size(Vector2(256,224) * resolution)
+	#added if cdns because of hicon error
+	if fullscreen:
+		if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
 func start_level_timer():

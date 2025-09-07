@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5oa7nsokiiug"]
+
+[ext_resource type="Script" uid="uid://dd6weeiyyrqir" path="res://GlobalScripts/csv_manager.gd" id="1_71wa8"]
+
+[node name="CSVManager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_71wa8")
