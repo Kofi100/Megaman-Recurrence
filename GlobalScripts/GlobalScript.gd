@@ -100,7 +100,7 @@ func _process(delta):
 	#print(playerhitcooldowntimer)
 	if playerhasbeenhit:
 		playerhitcooldowntimer += 1 * delta
-		if playerhitcooldowntimer >= 1:
+		if playerhitcooldowntimer >= 1.5:
 			playerhitcooldowntimer = 0
 			playerhasbeenhit = false
 	if health >= max_health:
