@@ -1,8 +1,8 @@
 extends Node2D
 
 # File paths
-const KEYBOARD_BINDS_PATH = "res://keyboard_binds.cfg"
-const GAMEPAD_BINDS_PATH = "res://gamepad_binds.cfg"
+const KEYBOARD_BINDS_PATH = "user://keyboard_binds.cfg"
+const GAMEPAD_BINDS_PATH = "user://gamepad_binds.cfg"
 
 # Input actions
 enum InputActions { MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, JUMP, DASH, SHOOT, PAUSE, SWITCH_WEAPON_LEFT, SWITCH_WEAPON_RIGHT }

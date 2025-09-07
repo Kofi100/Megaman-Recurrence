@@ -44,8 +44,8 @@ var player_god_mode:bool=false
 var resolution:int=3
 var buster_rapid_shot:bool=false
 var fullscreen:bool=false
-const KEYBOARD_BINDS_PATH = "res://keyboard_binds.cfg"
-const GAMEPAD_BINDS_PATH = "res://gamepad_binds.cfg"
+const KEYBOARD_BINDS_PATH = "user://keyboard_binds.cfg"
+const GAMEPAD_BINDS_PATH = "user://gamepad_binds.cfg"
 
 var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "dash", "shoot", "pause", "switch_weapon_left", "switch_weapon_right"]
 #var volumeSound:Dictionary={
@@ -65,7 +65,7 @@ var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "
 	"switch_weapon_right": 0,
 }
 
-var SAVEFILE_PATHS:Array[String] = ["res://savefile1.txt", "res://savefile2.txt", "res://savefile3.txt", "res://savefile4.txt", "res://savefile5.txt"]
+var SAVEFILE_PATHS:Array[String] = ["user://savefile1.txt", "user://savefile2.txt", "user://savefile3.txt", "user://savefile4.txt", "user://savefile5.txt"]
 signal player_knockback(direction, force, vertical_force)
 
 func _ready():
