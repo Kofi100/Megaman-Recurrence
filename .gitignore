@@ -1,2 +1,20 @@
 # Godot 4+ specific ignores
 .godot/
+.vscode/
+
+savepoint.txt
+savefile1.txt
+savefile1.2.txt
+savefile2.txt
+savefile3.txt
+savefile4.txt
+savefile5.txt
+
+options.txt
+
+gamepad_binds.cfg
+gamepad_binds_Default.cfg
+
+keybinds.txt
+keybinds-UDLR.txt
+keyboard_binds.cfg

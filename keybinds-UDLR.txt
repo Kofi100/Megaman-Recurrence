@@ -1,1 +1,0 @@
-{ "move_up": 4194320, "move_down": 4194322, "move_left": 4194319, "move_right": 4194321, "jump": 90, "dash": 67, "shoot": 88, "pause": 0, "switch_weapon_left": 0, "switch_weapon_right": 0 }
