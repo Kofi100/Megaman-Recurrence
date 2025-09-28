@@ -237,8 +237,8 @@ func _physics_process(delta):
 	##
 #endregion
 	#Limit gravity
-	velocity.y = clampf(velocity.y, -25200 * delta, 25200 * delta)  #since velocity is actually a value *delta
-
+	velocity.y = clampf(velocity.y, -420, 420)  #since velocity is actually a value *delta
+	#velocity.y = clampf(velocity.y, -25200 * delta, 25200 * delta) 
 	#if velocity.y>25200*delta:
 	#velocity.y=25200*delta
 
@@ -400,7 +400,7 @@ func _physics_process(delta):
 			#print("Mega:velocity*delta=i think,pixel/frame/second",velocity*Vector2(delta,delta))
 			if jump_buffer_timer.time_left > 0 and is_on_floor():
 				#print(name+":"+Jump Buffer Time Left:"+jump_buffer_timer.time_left)
-				velocity.y = JUMP_VELOCITY * delta
+				velocity.y = JUMP_VELOCITY #* delta
 				jump_buffer_timer.stop()
 
 			if Input.is_action_just_released("jump") and velocity.y < 0:

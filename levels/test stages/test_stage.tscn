@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bkflp1spldgrk" path="res://resources/screen_grid.tscn" id="2_sjel7"]
 [ext_resource type="Texture2D" uid="uid://216iv7hlb4l2" path="res://assets/sprites/tilesets/test_stages/grass_tileset.png" id="3_8fkwm"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="4_p7my6"]
-[ext_resource type="AudioStream" uid="uid://cplm8sxblh7rg" path="res://assets/music/Tee Lopes - Frost Song (Frozen Temple Zone 2).mp3" id="5_nyt85"]
 [ext_resource type="PackedScene" uid="uid://bys3l8gptyomn" path="res://enemy/returning_machine_joe.tscn" id="5_vbc4i"]
 [ext_resource type="Texture2D" uid="uid://dsjojjibskmxl" path="res://assets/sprites/tilesets/test_stages/debug_tileset_basic2.2.png" id="5_wn5xw"]
 [ext_resource type="Texture2D" uid="uid://bkj8wgmmraq63" path="res://assets/sprites/tilesets/test_stages/megaman2_bubbleman.png" id="6_7gdq8"]
@@ -18,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b64mf8xlqq2oc" path="res://levels/level_mechanics/conveyor_belt_body.tscn" id="9_ctirt"]
 [ext_resource type="PackedScene" uid="uid://cjqb26cj5laga" path="res://miscellenaous/energy_tank.tscn" id="10_j6rho"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="11_06gft"]
+[ext_resource type="AudioStream" uid="uid://bgtv3v8b4v21m" path="res://assets/music/Dominic Ninmark - Gravity Circuit Original Soundtrack - 34 Destiny - Ark Stage 1.mp3" id="11_b1mqt"]
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="12_2bvdr"]
 [ext_resource type="Texture2D" uid="uid://bnm45vf1cmict" path="res://assets/sprites/enemies/bosses/robot masters concept art-by His Grace.png" id="12_5xn54"]
 [ext_resource type="Texture2D" uid="uid://vxk7p03b556m" path="res://assets/sprites/enemies/bosses/shadow man test display.png" id="13_dco8f"]
@@ -503,7 +503,7 @@ shape = SubResource("RectangleShape2D_1e4c0")
 
 [node name="bgm" type="AudioStreamPlayer" parent="." groups=["bgm"]]
 process_mode = 3
-stream = ExtResource("5_nyt85")
+stream = ExtResource("11_b1mqt")
 volume_db = -5.0
 autoplay = true
 script = ExtResource("7_4xtf2")
@@ -528,7 +528,7 @@ shape = SubResource("RectangleShape2D_63urt")
 visible = false
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@21845")
+zone_camera_2d = NodePath("@Camera2D@51965")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -542,7 +542,7 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@21846")
+zone_camera_2d = NodePath("@Camera2D@51966")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true

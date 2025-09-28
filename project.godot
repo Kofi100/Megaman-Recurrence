@@ -20,7 +20,7 @@ run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
 config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png"
-config/git_describe="7f3d353"
+config/git_describe="adf3501"
 
 [aseprite_importers]
 

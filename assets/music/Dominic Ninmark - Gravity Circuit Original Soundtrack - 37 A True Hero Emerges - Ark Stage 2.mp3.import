@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xsktqaiv31rt"
+path="res://.godot/imported/Dominic Ninmark - Gravity Circuit Original Soundtrack - 37 A True Hero Emerges - Ark Stage 2.mp3-4ba1aee91623c704ab431ef5a780b7ba.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Dominic Ninmark - Gravity Circuit Original Soundtrack - 37 A True Hero Emerges - Ark Stage 2.mp3"
+dest_files=["res://.godot/imported/Dominic Ninmark - Gravity Circuit Original Soundtrack - 37 A True Hero Emerges - Ark Stage 2.mp3-4ba1aee91623c704ab431ef5a780b7ba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

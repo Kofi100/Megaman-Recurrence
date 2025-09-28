@@ -446,7 +446,7 @@ z_index = 1
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_acsaa")
-JUMP_VELOCITY = -18000
+JUMP_VELOCITY = -300
 stun_speed = 25
 
 [node name="dash" parent="." instance=ExtResource("2_oa303")]
@@ -754,7 +754,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="check_dash_released_timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [node name="PlayerEffectsAllTime" parent="." instance=ExtResource("20_sprfd")]

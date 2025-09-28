@@ -9,7 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Player.playerCharacter:
-		$player_animation_display.set_text(Player.playerCharacter.anim.animation)
+		$player_animation_display.set_text("Animation:\n"+Player.playerCharacter.anim.animation)
 
 
 func _on_fps_15_pressed() -> void:
