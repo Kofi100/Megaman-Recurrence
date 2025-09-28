@@ -87,6 +87,15 @@ layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = "Exit GAME"
 
+[node name="player_animation_display" type="Label" parent="."]
+offset_left = 163.0
+offset_top = 16.0
+offset_right = 293.0
+offset_bottom = 39.0
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("1_d44ei")
+text = "Animation"
+
 [connection signal="pressed" from="Panel/HBoxContainer/debug_menu" to="." method="_on_debug_menu_pressed"]
 [connection signal="pressed" from="debug_settings/HFlowContainer/restart_level" to="." method="_on_restart_level_pressed"]
 [connection signal="pressed" from="debug_settings/HFlowContainer/go_debug_menu" to="." method="_on_go_debug_menu_pressed"]

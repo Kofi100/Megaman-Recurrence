@@ -285,7 +285,7 @@ func _physics_process(delta):
 	GlobalScript.playerposx = global_position.x
 	GlobalScript.playerposy = global_position.y
 
-	if dash.is_dashing():
+	if dash.is_dashing() and is_on_floor():
 		SPEED = dashspeed
 	else:
 		SPEED = normalspeed
@@ -303,28 +303,9 @@ func _physics_process(delta):
 		jump_play_effect_timer = 0
 	#var tween=create_tween()
 	if trans_right:
-		#timer+=1
-#		switch_state=0
-#		stop=true
 		velocity = Vector2(1000, 0) * delta
-		#tween.tween_property(self,"velocity",Vector2(400,0),1)
-#		if tween.finished:print('dig')
-#		if !tween.is_running():
-#			print('tween_finished')
-#			trans_right=false
-#			stop=false
-		#print(velocity)
-
 		move_and_slide()
-#		if timer==150:
-#			timer=0
-#			trans_right=false
-#			stop=false
-#	elif trans_right==false:
-#		switch_state+=1
-#		#print('trans_right state:off')
-#		if switch_state==1:
-#			stop=false
+
 	if trans_down:
 		velocity = Vector2(0, 1000) * delta
 		move_and_slide()
@@ -345,6 +326,12 @@ func _physics_process(delta):
 	#print(move_an_inch_checker)
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
+	
+	if GlobalScript.weapon_number!=0:
+		MegamanAndItems.change_palette($anim)
+	else:
+		MegamanAndItems.charge_effect(anim)
+	
 	if !is_dead:
 		
 		#if $all_sounds/charge.get_playback_position()>2.04:
@@ -374,19 +361,8 @@ func _physics_process(delta):
 		checkWeaponAvalability()
 		#placing it here to work even in Screen Transitions and Flinches
 		activeUseOfWeapons()
-		#print(GlobalScript.weapon_number)
-		#if $RayCastLeft.get_collider() != null and $RayCastLeft.get_collider().is_in_group("iceTiles"):
-		#onIce = true
-		#elif $RayCastLeft.get_collider() == null or not $RayCastLeft.get_collider().is_in_group("iceTiles"):
-		#onIce = false
-		#if is_on_floor() and
-
 		stun(delta)
-		#plays stun blink effect
-		#if fmod(GlobalScript.playerhitcooldowntimer,) % 5 == 1:
-			#anim.visible = false
-		#elif GlobalScript.playerhitcooldowntimer % 5 == 3:
-			#anim.visible = true
+	
 		if GlobalScript.playerhasbeenhit and !is_dead:
 			if $hit_blink_timer.is_stopped():
 				$hit_blink_timer.start()
@@ -435,9 +411,9 @@ func _physics_process(delta):
 				if GlobalScript.weapon_number == 0:
 					if $buster_cooldown_timer.time_left <= 0:
 						shoot_and_charge()
-						MegamanAndItems.charge_effect(anim)
+						
 				else:
-					MegamanAndItems.change_palette($anim)
+					#MegamanAndItems.change_palette($anim)
 					create_weapons()
 				
 				if climb == false:
@@ -462,7 +438,6 @@ func _physics_process(delta):
 						knockback_decay(delta)
 					play_animations()
 					offsetAnimationFunction()
-
 					dash_function(delta)
 
 				elif climb == true:
@@ -590,7 +565,7 @@ func offsetAnimationFunction():
 	else:
 		match anim.animation:
 			"dash":
-				$anim.offset.y = 7
+				$anim.offset.y = 3
 			"jump":
 				if $anim.flip_h == false:
 					$anim.offset.x = -1
@@ -606,6 +581,7 @@ func offsetAnimationFunction():
 	#else:
 	#$anim.offset.x = 0
 	#$anim.offset.y = 0
+	#print(anim.offset.y)
 
 
 func stun(delta):
@@ -666,13 +642,20 @@ func play_animations():
 	if $anim.animation == "run":
 		frameNo = $anim.frame
 	#print("FrameNo:", frameNo)
-
+	
 	if is_on_floor():
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 			if anim.animation != "stun_air":
 				if move_an_inch_checker >= 10:
-					if anim.animation != "shoot_run":
-						anim.play("run")
+					if not is_dashing and $check_dash_released_timer.is_stopped():
+						if anim.animation != "shoot_run" :
+							anim.play("run")
+						#prevents dash from playing when run is supposed to 
+						#after the dash timer runs out
+						elif  $dash/Timer.is_stopped() and anim.animation == "dash":
+							if $check_dash_released_timer.is_stopped():
+								anim.play("run")
+				
 				elif move_an_inch_checker < 10:
 					#make sure that shoot_idle animation plays when player
 					#releases shoot button while moving an inch
@@ -803,11 +786,15 @@ func play_animation_ladder():
 			elif Input.is_action_pressed("move_right"):
 				anim.flip_h = true
 
-
+var is_dashing:bool=false
 func dash_function(delta):
+	#if anim.animation=="dash":
+		#anim.offset.y=3
 	if is_on_floor():
 		if Input.is_action_just_pressed("dash") and $dash/Timer.time_left <= 0:
-			dash.start_dash(dashduration)
+			dash.start_dash(.5)
+			anim.offset.y=3
+			is_dashing=true
 			var dash_effect = preload("res://players/effects/dash_effect.tscn")
 			var dash_effect_instance = dash_effect.instantiate()
 			if anim.flip_h == false:
@@ -824,15 +811,29 @@ func dash_function(delta):
 		#if :
 		if Input.is_action_pressed("dash") and $dash/Timer.time_left > 0:
 			anim.play("dash")
+			#anim.frame=
 			if anim.flip_h==false:
 				velocity.x=-dashspeed*delta
 			elif anim.flip_h==true:
 				velocity.x=dashspeed*delta
 			#Offset for Dash animation lies here.
-			anim.offset.y=3
+			
 			#elif $dash/Timer.time_left<=0:
 			#velocity.x=0
 			#anim.play("idle")
+	if Input.is_action_just_released("dash"):
+		#if $check_dash_released_timer.is_stopped(): 
+		$check_dash_released_timer.start()
+		$dash/Timer.stop()
+		
+	#if not is_on_floor() and not $dash/Timer.is_stopped():
+		#$check_dash_released_timer.start()
+		#$dash/Timer.stop()
+
+	if $dash/Timer.is_stopped():
+		is_dashing=false
+		
+	#$dash/Timer.wait_time=3
 
 
 func chargeeffect():
@@ -1269,3 +1270,9 @@ func _on_level_cleared_finished() -> void:
 func _on_hit_blink_timer_timeout() -> void:
 	#flip b/n visible and not visible to create blink effect
 	anim.visible=!anim.visible
+
+
+func _on_check_dash_released_timer_timeout() -> void:
+	#if not Input.is_action_pressed("dash"):
+		#$dash/Timer.stop()
+	pass

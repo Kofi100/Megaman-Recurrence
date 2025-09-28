@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2f76ripo2nyb"]
+
+[ext_resource type="Script" uid="uid://b8b7su1a674d4" path="res://players/player_effects_all_time.gd" id="1_x0ibh"]
+
+[node name="PlayerEffectsAllTime" type="Node2D"]
+script = ExtResource("1_x0ibh")
