@@ -1,7 +1,7 @@
-extends RigidBody2D
+extends CharacterBody2D
 @onready var delete_spawnable_timer = $delete_spawnable_timer
-
-
+var player_is_around:bool=false
+var player_collected_capsule:bool=false
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var energy_added=2
@@ -10,13 +10,27 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var blink_timer:float=0
 func _physics_process(delta):
-	pass
+	if not is_on_floor():
+		velocity+=get_gravity()*delta
+		
 	if delete_spawnable_timer.time_left<delete_spawnable_timer.wait_time/2 and delete_spawnable_timer.time_left>0 :
 		blink_timer+=1*delta
 		if fmod(blink_timer,0.2)>0.1:
 			$Sprite2D.visible=true
 		elif fmod(blink_timer,0.2)<0.1:
 			$Sprite2D.visible=false
+	if player_is_around and not player_collected_capsule:
+		if GlobalScript.weapon_number>=0:
+			if MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]<27:
+				player_collected_capsule=true
+				MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]+=energy_added
+				if MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]>27:
+					MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]=27
+				$Sprite2D.visible=false
+				$weapon_up.play()
+				await $weapon_up.finished
+				queue_free()
+	move_and_slide()
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group('player'):
@@ -30,13 +44,16 @@ func _on_delete_spawnable_timer_timeout():
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
-		MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]+=energy_added
-		$weapon_up.play()
-		await $weapon_up.finished
-		queue_free()
+		player_is_around=true
+
 		#match GlobalScript.weapon_number:
 			#1:
 				#MegamanAndItems.weapon1energy+=energy_added
 			#2:
 				#MegamanAndItems.weapon2energy+=energy_added
 		
+
+
+func _on_hitbox_area_exited(area: Area2D) -> void:
+	if area.is_in_group("player_constants_checker_area2d"):
+		player_is_around=false

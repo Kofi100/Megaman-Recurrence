@@ -33,7 +33,7 @@ size = Vector2(14, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq1rd"]
 size = Vector2(16, 10)
 
-[node name="large_weapon_capsule" type="RigidBody2D"]
+[node name="large_weapon_capsule" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_jm0c1")
 
@@ -68,5 +68,6 @@ script = ExtResource("4_2oa3s")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="delete_spawnable_timer" to="." method="_on_delete_spawnable_timer_timeout"]

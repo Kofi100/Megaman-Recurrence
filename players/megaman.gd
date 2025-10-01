@@ -72,9 +72,14 @@ var justLeftIce: bool = false
 var deltaAlt
 var hasStunEffectApplied:bool=false
 var playLeaveBGM:bool=true
+var player_transition_direction_x:String
+var player_transition_direction_y:String
+@export var allowed_transition_movement:Dictionary={
+	"left":true,"right":true,"up":true,"down":true
+}
+var transition_velocity:Vector2
 
 func _ready():
-	
 	playerCharacter = self
 	GlobalScript.connect("player_knockback", _on_knockback_signal)
 	#health
@@ -259,14 +264,61 @@ func _physics_process(delta):
 		$player_camera.position_smoothing_enabled = true
 		stop = true
 		screen_transition_finished = false
-		if velocity.y > 0:
-			trans_down = true
-		elif velocity.y < 0:
-			trans_up = true
-		if velocity.x > 0:
-			trans_right = true
-		elif velocity.x < 0:
-			trans_left = true
+		#match camera_transition_direction:
+			#"HORIZONTAL":
+				#if velocity.y>0:
+					#
+		#match player_transition_direction_x:
+			#"NONE":
+				#pass
+			#"LEFT":
+				#trans_left = true
+			#"RIGHT":
+				#trans_right=true
+		#match player_transition_direction_y:
+			#"NONE":
+				#pass
+			#"UP":
+				#trans_up = true
+			#"DOWN":
+				#trans_down=true
+	##on-standby code
+		#transitions up and down only happen when on a ladder
+		#if player_transition_direction_y=="NONE" or player_transition_direction_y=="":
+			#if velocity.y > 0 and climb:
+				#trans_down = true
+			#if velocity.y < 0 and climb:
+				#trans_up = true
+		#else:
+			#match player_transition_direction_y:
+				#"UP":
+					#trans_up = true
+				#"DOWN":
+					#trans_down=true
+		#if player_transition_direction_y=="NONE" or player_transition_direction_y=="":
+			#if velocity.x > 0:
+				#trans_right = true
+			#if velocity.x < 0:
+				#trans_left = true
+	##
+		#print(name,":",[trans_left,trans_right])
+		if velocity.x<0:
+			if allowed_transition_movement.left:
+				#if velocity.x<=0:
+					trans_left=true
+				
+		if velocity.x>=0:
+			if allowed_transition_movement.right:
+				#if velocity.x>=0:
+					trans_right=true
+		if velocity.y<0:
+			if allowed_transition_movement.up==true or climb:
+				trans_up=true
+		if velocity.y>=0:
+			if allowed_transition_movement.down==true or climb:
+				trans_down=true
+			
+
 
 	elif GlobalScreenTransitionTimer.time_left <= 0:
 		if not screen_transition_finished:
@@ -276,6 +328,7 @@ func _physics_process(delta):
 			trans_up = false
 			trans_left = false
 			trans_right = false
+			transition_velocity=Vector2.ZERO
 
 			screen_transition_finished = true
 
@@ -302,19 +355,27 @@ func _physics_process(delta):
 	elif not is_on_floor():
 		jump_play_effect_timer = 0
 	#var tween=create_tween()
+	
 	if trans_right:
-		velocity = Vector2(1000, 0) * delta
-		move_and_slide()
+		transition_velocity.x = 1000
+		#position.x+=10*delta
+		#move_and_slide()
 
 	if trans_down:
-		velocity = Vector2(0, 1000) * delta
-		move_and_slide()
+		transition_velocity.y = 1000
+		#move_and_slide()
 		#tween.stop()
 	if trans_up:
-		velocity = Vector2(0, -1000) * delta
-		move_and_slide()
+		transition_velocity.y = -1000
+		#velocity = Vector2(0, -1000) * delta
+		#move_and_slide()
 	if trans_left:
-		velocity = Vector2(-1000, 0) * delta
+		transition_velocity.x=-1000
+		#velocity = Vector2(-1000, 0) * delta
+		#move_and_slide()
+	
+	if transition_velocity!=Vector2.ZERO:
+		velocity=transition_velocity*delta
 		move_and_slide()
 
 	if GlobalScript.weapon_number < 0:
@@ -331,6 +392,12 @@ func _physics_process(delta):
 		MegamanAndItems.change_palette($anim)
 	else:
 		MegamanAndItems.charge_effect(anim)
+	if Input.is_action_just_released("shoot"):
+		if (GlobalScript.playerhasbeenhit==true or GlobalScreenTransitionTimer.is_stopped()==false):
+			MegamanAndItems.charge_timer=0
+	if MegamanAndItems.charge_timer==0:
+		if $all_sounds/charge.playing:
+			$all_sounds/charge.stop()
 	
 	if !is_dead:
 		
@@ -1090,8 +1157,8 @@ func _on_hitbox_area_entered(area):
 		onrush = true
 	if area.is_in_group("deathzone"):
 		GlobalScript.health = 0
-	if area.is_in_group("capsules"):
-		$all_sounds/energyup.play()
+	#if area.is_in_group("capsules"):
+		#$all_sounds/energyup.play()
 		pass
 
 

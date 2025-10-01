@@ -528,10 +528,14 @@ shape = SubResource("RectangleShape2D_63urt")
 visible = false
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@51965")
+zone_camera_2d = NodePath("@Camera2D@27128")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
+no_back_tracking = null
+player_transition_direction_x = null
+player_transition_direction_y = null
+allowed_transition_movement = null
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon"]
@@ -542,10 +546,14 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@51966")
+zone_camera_2d = NodePath("@Camera2D@27129")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
+no_back_tracking = null
+player_transition_direction_x = null
+player_transition_direction_y = null
+allowed_transition_movement = null
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon2"]

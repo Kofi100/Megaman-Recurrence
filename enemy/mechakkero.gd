@@ -15,7 +15,7 @@ func _ready():
 	health=7
 
 func _physics_process(delta):
-	$state.text=state
+	#$state.text=state
 	
 	#state='jump'
 	if not is_on_floor():
