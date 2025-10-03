@@ -18,8 +18,9 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	velocity.x=SPEED*delta
-	
-	var distance=GlobalScript.playerposx-global_position.x
+	#early attempt of calculating player position automatically
+	#by enemies
+	#var distance=GlobalScript.playerposx-global_position.x
 	animated_sprite_2d.play("default")
 #	if distance<0:
 	animated_sprite_2d.flip_h=false;position.x-=10*delta

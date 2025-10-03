@@ -53,11 +53,7 @@ func _physics_process(delta):
 		"right":
 			velocity.x = SPEED * delta
 			$AnimatedSprite2D.frame = 1
-	var distance_x = GlobalScript.playerposx - global_position.x
-	#if distance_x<0:
-	#$AnimatedSprite2D.frame=0
-	#elif distance_x>=0:
-	#$AnimatedSprite2D.frame=1
+
 	var new_rotation = $Node2D.rotation_degrees + rotation_speed * delta
 	$Node2D.rotation_degrees = fmod(new_rotation, 360)
 

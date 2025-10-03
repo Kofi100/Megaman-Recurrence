@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 
 
 #var time
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_on_floor() and stopMoving == false:
 		stopMoving = true
 	if stopMoving == true and happenOnce == false:

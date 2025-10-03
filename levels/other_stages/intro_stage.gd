@@ -27,7 +27,7 @@ func _ready() -> void:
 	#print("_ready:after:MaI.wNE:",MegamanAndItems.weaponNumberEnabled)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	$GPUParticles2D.global_position.x = $megaman/player_camera.global_position.x + 250  #Vector2(250,0)
 	#$Parallax2D4.autoscroll.x = -48
 

@@ -651,7 +651,7 @@ func offsetAnimationFunction():
 	#print(anim.offset.y)
 
 
-func stun(delta):
+func stun(_delta):
 	if anim.animation == "stun_air" and GlobalScript.health > 0:
 		disable_input = true
 		is_stunned = true

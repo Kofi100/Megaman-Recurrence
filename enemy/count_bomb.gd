@@ -24,10 +24,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			$AnimatedSprite2D.play("explode")
 		"explode":
 			#$AnimatedSprite2D.visible = false
-			var exp = preload("res://enemy/boss/mm3_to_10_explosion_radius.tscn").instantiate()
-			add_child(exp)
-			exp.global_position = global_position
-			exp.parent = self
+			var explosion = preload("res://enemy/boss/mm3_to_10_explosion_radius.tscn").instantiate()
+			add_child(explosion)
+			explosion.global_position = global_position
+			explosion.parent = self
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

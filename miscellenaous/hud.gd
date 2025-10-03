@@ -177,7 +177,6 @@ func _process(_delta):
 		$timer/InGame.visible=true
 	if justPausedGameManually == true and switchedMenus == false:
 		if Input.is_action_just_pressed("move_up"):
-			var originalIndex=selection_index
 			selection_index -= 1
 			if MegamanAndItems.weaponNumberEnabled.has(selection_index):
 				while selection_index>=0 and (selection_index<13 and not MegamanAndItems.weaponNumberEnabled[selection_index]):
@@ -191,7 +190,6 @@ func _process(_delta):
 					#selection_index-=1
 					#GlobalScript.weapon_number-=1
 		elif Input.is_action_just_pressed("move_down"):
-			var originalIndex=selection_index
 			selection_index += 1
 			#if MegamanAndItems.weaponNumberEnabled.has(selection_index)
 			if MegamanAndItems.weaponNumberEnabled.has(selection_index):  #and selection_index!=12:
@@ -329,7 +327,7 @@ func tween_finished():
 
 
 #var previous_value=0
-func _on_progress_bar_value_changed(value):  #if the value of the bar changes
+func _on_progress_bar_value_changed(_value):  #if the value of the bar changes
 	#previous_value=value
 #	if value<GlobalScript.previous_health:
 	#this was intended to play a sound if Mega gains health

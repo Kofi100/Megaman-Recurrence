@@ -506,6 +506,7 @@ process_mode = 3
 stream = ExtResource("11_b1mqt")
 volume_db = -5.0
 autoplay = true
+parameters/looping = true
 script = ExtResource("7_4xtf2")
 
 [node name="sniper_joe" parent="." instance=ExtResource("8_60iu1")]
@@ -528,14 +529,10 @@ shape = SubResource("RectangleShape2D_63urt")
 visible = false
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@27128")
+zone_camera_2d = NodePath("@Camera2D@28416")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
-no_back_tracking = null
-player_transition_direction_x = null
-player_transition_direction_y = null
-allowed_transition_movement = null
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon"]
@@ -546,14 +543,10 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@27129")
+zone_camera_2d = NodePath("@Camera2D@28417")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
-no_back_tracking = null
-player_transition_direction_x = null
-player_transition_direction_y = null
-allowed_transition_movement = null
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon2"]
@@ -738,7 +731,7 @@ position = Vector2(1196, 154)
 position = Vector2(-16.5, 3)
 
 [node name="key2" parent="keys" instance=ExtResource("18_37g2q")]
-position = Vector2(1, -16)
+position = Vector2(112, -8)
 
 [node name="key" parent="keys" instance=ExtResource("18_37g2q")]
 position = Vector2(-17, -24)

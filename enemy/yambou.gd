@@ -16,7 +16,7 @@ func _ready():
 
 func _physics_process(delta):
 	# Add the gravity.
-	var distance_x=GlobalScript.playerposx-global_position.x
+	#var distance_x=GlobalScript.playerposx-global_position.x
 	match state:
 		'drop_down':
 			velocity.y=gravity*delta

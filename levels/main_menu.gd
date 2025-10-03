@@ -16,7 +16,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var time = Time.get_datetime_dict_from_system()
-	var temp_hour = str(time.hour % 12).pad_zeros(2)
+	#var temp_hour = str(time.hour % 12).pad_zeros(2)
 	var temp_am_pm
 	if time.hour < 12:
 		temp_am_pm = "AM"

@@ -74,7 +74,7 @@ func offset():
 		animated_sprite_2d.offset=Vector2.ZERO
 func _on_jump_zone_body_entered(body):
 	if body.is_in_group("player"):
-		body.velocity.y=(-1200/3)
+		body.velocity.y=-400#(-1200/3)
 		animated_sprite_2d.play("spring")
 		$move_back_timer.start()
 
