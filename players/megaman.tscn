@@ -1,10 +1,11 @@
-[gd_scene load_steps=63 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=64 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" uid="uid://0j8k3bpxe6qj" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
 [ext_resource type="PackedScene" uid="uid://ckktibuy8fwfs" path="res://players/dash.tscn" id="2_oa303"]
 [ext_resource type="PackedScene" uid="uid://6tusihkhmm8e" path="res://miscellenaous/hud.tscn" id="3_ov4w5"]
 [ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="4_rtyrl"]
+[ext_resource type="Script" uid="uid://58nrl3igl7aq" path="res://players/player_camera_script.gd" id="5_gw1ah"]
 [ext_resource type="Texture2D" uid="uid://eg51kkfoxodc" path="res://players/megaman_sprites_with_normal_map_quotelighting.tres" id="6_6oq1v"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="6_hjfwy"]
 [ext_resource type="AudioStream" uid="uid://crijrqyswqhij" path="res://assets/sounds/hurt.wav" id="6_n1lyq"]
@@ -120,9 +121,9 @@ region = Rect2(39, 60, 39, 30)
 atlas = ExtResource("1_si1fv")
 region = Rect2(78, 60, 39, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xewbd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrkdv"]
 atlas = ExtResource("1_si1fv")
-region = Rect2(0, 30, 39, 30)
+region = Rect2(39, 30, 39, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tg3s7"]
 atlas = ExtResource("1_si1fv")
@@ -280,7 +281,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 5.0,
-"texture": SubResource("AtlasTexture_xewbd")
+"texture": SubResource("AtlasTexture_wrkdv")
 }],
 "loop": true,
 "name": &"stun",
@@ -464,12 +465,14 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 editor_draw_limits = true
+script = ExtResource("5_gw1ah")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"dash"
+animation = &"stun"
+offset = Vector2(0, 1)
 flip_h = true
 
 [node name="anim2" type="AnimatedSprite2D" parent="."]

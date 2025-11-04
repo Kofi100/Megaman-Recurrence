@@ -14,13 +14,13 @@ config/name="Megaman Recurrence"
 config/description="A WIP 
 "
 config/tags=PackedStringArray("megaman")
-run/main_scene="uid://b7qvqf2las08t"
+run/main_scene="uid://cju6hrw6xsta7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
 config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png"
-config/git_describe="5eec1c5"
+config/git_describe="6f745b8"
 
 [aseprite_importers]
 
@@ -164,4 +164,3 @@ refresh_csv_cache={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)

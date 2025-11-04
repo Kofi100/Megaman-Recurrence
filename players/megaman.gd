@@ -626,6 +626,7 @@ func offsetAnimationFunction():
 		and anim.animation != "jump"
 		and anim.animation != "shoot_in_air"
 		and anim.animation != "run"
+		and anim.animation != "stun"
 	):
 		$anim.offset.x = 0
 		$anim.offset.y = 0
@@ -645,6 +646,8 @@ func offsetAnimationFunction():
 					$anim.offset.x = 3
 			"run":
 				$anim.offset.y = 0
+			#"stun":
+				#$anim.offset.y=3
 	#else:
 	#$anim.offset.x = 0
 	#$anim.offset.y = 0
@@ -687,7 +690,17 @@ func _on_knockback_signal(direction, force, vertical_force):
 	apply_knockback(direction, force, vertical_force)
 	anim.play("stun_air")
 
-
+func stun_temporarily(ground_stun_time:float=0.5):
+	stop=true
+	disable_input=true
+	anim.play("stun")
+	$anim.offset.y=2
+	await get_tree().create_timer(ground_stun_time).timeout
+	$anim.offset.y=0
+	stop=false
+	disable_input=false
+	#anim.play("stun")
+	
 var frameNo = 0
 func knockback_decay(delta):
 	# Knockback friction

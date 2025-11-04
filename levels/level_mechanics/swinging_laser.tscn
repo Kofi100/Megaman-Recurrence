@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cco2jnvhb1q3f"]
+
+[ext_resource type="Script" uid="uid://cd7pje1spmdud" path="res://levels/level_mechanics/swinging_laser.gd" id="1_48n5l"]
+
+[node name="swinging_laser" type="CharacterBody2D"]
+position = Vector2(94.9682, 19.276)
+rotation = 0.192745
+scale = Vector2(0.999971, 0.999971)
+script = ExtResource("1_48n5l")
+max_angle = 50.0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 256)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 224)
+collision_mask = 7

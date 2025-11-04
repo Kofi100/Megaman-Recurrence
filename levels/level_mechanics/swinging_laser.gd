@@ -1,17 +1,15 @@
 @tool
-extends CharacterBody2D
-class_name LaserWallMechanic
+extends LaserWallMechanic
 
-const JUMP_VELOCITY = -400.0
-@export var isOn: bool = true
-var happenOnce: bool = false
+@export var swing_speed: float = 2.0
+@export var max_angle: float = 30.0
+var time_passed: float = 0.0
 
-
-func _physics_process(_delta: float) -> void:
-	# Add the gravity.
-	#if not is_on_floor():
-	#velocity += get_gravity() * delta
+func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
+		time_passed += delta * swing_speed
+		rotation_degrees = sin(time_passed) * max_angle
+	
 		if isOn:
 			if $RayCast2D.is_colliding():
 				var local_hit_position = to_local($RayCast2D.get_collision_point())  #sets CollisionPoint to
@@ -27,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 
 				if GlobalScript.playerhasbeenhit == false:
 					GlobalScript.playerhasbeenhit = true
-					GlobalScript.health -= 5
+					GlobalScript.health -= 4
 					player.anim.play("stun_air")
 					if player.stunSound:
 						player.stunSound.play()

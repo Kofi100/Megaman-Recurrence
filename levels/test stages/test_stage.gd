@@ -40,6 +40,8 @@ func _on_enter_player_body_entered(body):
 func _on_tree_exiting():
 	pass  # Replace with function body.
 	Engine.time_scale = 1
+	if previous_BGM_Value!=null:
+		OptionsSet.data["volumeSound"]["BGM"]=previous_BGM_Value 
 
 var previous_BGM_Value
 func _on_area_body_entered(body: Node2D) -> void:
@@ -52,7 +54,7 @@ func _on_area_body_entered(body: Node2D) -> void:
 		previous_BGM_Value=OptionsSet.data["volumeSound"]["BGM"]
 		OptionsSet.data["volumeSound"]["BGM"]=-20
 		#$bgm.volume_db=0
-		print("area entered")
+		#print("area entered")
 	
 
 

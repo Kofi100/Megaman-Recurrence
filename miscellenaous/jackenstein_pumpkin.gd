@@ -19,7 +19,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	playerdamagevalue = 1000
 	health = INF
-	
+	if $Label.text=="" or $Label.text==null:
+		$Label.visible=false
+	else:
+		$Label.visible=true
 	## Handle dialogue triggering
 	#if triggered and not dialogue_active:
 		#start_dialogue_sequence()
