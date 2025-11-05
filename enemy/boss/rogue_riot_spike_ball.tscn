@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://rwq2bktf4ae8"]
+[gd_scene load_steps=10 format=3 uid="uid://rwq2bktf4ae8"]
 
 [ext_resource type="Script" uid="uid://cauib0cxyb8e" path="res://enemy/boss/rogue_riot_spike_ball.gd" id="1_64vmi"]
 [ext_resource type="Texture2D" uid="uid://s8q5ldgbyed6" path="res://assets/sprites/enemies/bosses/1RogueRiot_SpikyBalls.png" id="1_q1cru"]
@@ -41,18 +41,31 @@ animations = [{
 }],
 "loop": false,
 "name": &"spawn",
-"speed": 3.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1cru"]
 size = Vector2(16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64vmi"]
+size = Vector2(16, 16)
+
 [node name="rogue_riot_spike_ball" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_64vmi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1te2e")
-animation = &"bounce"
+animation = &"spawn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q1cru")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_64vmi")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

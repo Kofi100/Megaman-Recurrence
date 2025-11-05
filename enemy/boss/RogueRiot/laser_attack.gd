@@ -3,6 +3,7 @@ extends State
 @onready var laser_attack_raycast_2d: RayCast2D = $"../../laser_attack_raycast2d"
 @onready var main_animation_player: AnimationPlayer = $"../../main_animation_player"
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+@onready var rogue_riot: CharacterBody2D = $"../.."
 
 var laser_affect_player:bool=false
 # Called when the node enters the scene tree for the first time.
@@ -59,11 +60,15 @@ func Physics_Update(delta:float):
 					player.stunSound.play()
 
 func animation_finished_function(animation_finished:String):
-	if animation_finished=="laser_sweep":
+	if animation_finished=="laser_sweep" or animation_finished=="laser_sweep_right":
 		transition.emit(self,"idle")
 func rogue_animation_finished():
 	if animated_sprite_2d.animation=="laser":
-		main_animation_player.play("laser_sweep")
+		var distance=rogue_riot.distance_x
+		if distance<=0:
+			main_animation_player.play("laser_sweep")
+		elif distance>0:
+			main_animation_player.play("laser_sweep_right")
 		await get_tree().create_timer(.2).timeout
 		laser_attack_visual.visible=true
 		#laser_attack_visual.visible=true

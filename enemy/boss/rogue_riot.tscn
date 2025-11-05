@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dlxfmi6i1icxx"]
+[gd_scene load_steps=33 format=3 uid="uid://dlxfmi6i1icxx"]
 
 [ext_resource type="Script" uid="uid://c122wnwyfy3go" path="res://rogue_riot.gd" id="1_15n20"]
 [ext_resource type="Texture2D" uid="uid://dkudsw56vb4jr" path="res://assets/sprites/enemies/bosses/1RogueRiot.png" id="2_nv4jw"]
@@ -142,7 +142,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"laser",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -157,7 +157,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r0awv")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_g41db")
 }, {
 "duration": 1.0,
@@ -174,7 +174,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"spike_ball_release",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -197,34 +197,6 @@ size = Vector2(28, 42)
 [sub_resource type="Curve" id="Curve_dls4r"]
 _data = [Vector2(0.512077, 0.280899), 0.0, 0.0, 0, 0, Vector2(0.705314, 0.719101), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Animation" id="Animation_2erqm"]
-resource_name = "laser_sweep"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("laser_attack_raycast2d:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.8326, 1.8326, 0.610865]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("laser_attack_visual:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.605629, -0.0820305]
-}
 
 [sub_resource type="Animation" id="Animation_dls4r"]
 length = 0.1
@@ -252,11 +224,104 @@ tracks/1/keys = {
 "update": 0,
 "values": [-1.04731]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("laser_attack_raycast2d:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13.5363, -26.2172)]
+}
+
+[sub_resource type="Animation" id="Animation_2erqm"]
+resource_name = "laser_sweep"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("laser_attack_raycast2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.8326, 1.8326, 0.698132]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("laser_attack_visual:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.605629, -0.0820305]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("laser_attack_raycast2d:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13.5363, -26.2172)]
+}
+
+[sub_resource type="Animation" id="Animation_fh34c"]
+resource_name = "laser_sweep_right"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("laser_attack_raycast2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [3.57792, 3.57792, 4.71239]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("laser_attack_visual:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.605629, -0.0820305]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("laser_attack_raycast2d:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13.464, -26.217)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fh34c"]
 _data = {
 &"RESET": SubResource("Animation_dls4r"),
-&"laser_sweep": SubResource("Animation_2erqm")
+&"laser_sweep": SubResource("Animation_2erqm"),
+&"laser_sweep_right": SubResource("Animation_fh34c")
 }
 
 [node name="rogue_riot" type="CharacterBody2D"]
@@ -268,9 +333,8 @@ metadata/_custom_type_script = "uid://blqd77u3c7yor"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 0.00308247
 sprite_frames = SubResource("SpriteFrames_pmkgq")
-animation = &"spike_ball_release"
-frame = 8
-frame_progress = 1.0
+animation = &"fall_down"
+flip_h = true
 
 [node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_n4umb")]
 initial_state = NodePath("idle")
@@ -312,12 +376,26 @@ points = PackedVector2Array(0, 0, -103, 60)
 width = 2.0
 width_curve = SubResource("Curve_dls4r")
 
+[node name="guideline_laser_attack" type="Line2D" parent="."]
+position = Vector2(-200, -183)
+points = PackedVector2Array(-2, 1, 373, 1)
+
+[node name="guideline_laser_attack2" type="Line2D" parent="."]
+position = Vector2(-226, 94)
+points = PackedVector2Array(-60, 1, 459, 1)
+
+[node name="guideline_laser_attack3" type="Line2D" parent="."]
+position = Vector2(-216.727, 75)
+scale = Vector2(1.1039, 1)
+points = PackedVector2Array(-60, 1, 459, 1)
+
 [node name="laser_attack_visual" type="Line2D" parent="."]
 position = Vector2(-13.5363, -26.2172)
 rotation = -0.605629
 points = PackedVector2Array(0, 0, -103, 60)
 width = 2.0
 width_curve = SubResource("Curve_dls4r")
+default_color = Color(0.894118, 0.188235, 0.027451, 1)
 
 [node name="laser_attack_raycast2d" type="RayCast2D" parent="."]
 position = Vector2(-13.5363, -26.2172)
@@ -329,3 +407,6 @@ collision_mask = 6
 libraries = {
 &"": SubResource("AnimationLibrary_fh34c")
 }
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-200, -183)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=80 format=4 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Script" uid="uid://dlehv47nswkvi" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="2_7t3qb"]
@@ -46,7 +46,6 @@
 [ext_resource type="PackedScene" uid="uid://crrx4vith36r4" path="res://miscellenaous/jackenstein_pumpkin.tscn" id="45_b1mqt"]
 [ext_resource type="PackedScene" uid="uid://cco2jnvhb1q3f" path="res://levels/level_mechanics/swinging_laser.tscn" id="46_i2788"]
 [ext_resource type="PackedScene" uid="uid://dlxfmi6i1icxx" path="res://enemy/boss/rogue_riot.tscn" id="46_qo5kr"]
-[ext_resource type="PackedScene" uid="uid://rwq2bktf4ae8" path="res://enemy/boss/rogue_riot_spike_ball.tscn" id="46_wao4h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1mqt"]
 resource_name = "debug_tileset"
@@ -531,7 +530,7 @@ shape = SubResource("RectangleShape2D_63urt")
 visible = false
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@120502")
+zone_camera_2d = NodePath("@Camera2D@43348")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -545,7 +544,7 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@120503")
+zone_camera_2d = NodePath("@Camera2D@43349")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -971,9 +970,6 @@ next_portal = NodePath("../portal4")
 
 [node name="swinging_laser" parent="." instance=ExtResource("46_i2788")]
 position = Vector2(3080.07, 113.946)
-
-[node name="rogue_riot_spike_ball" parent="." instance=ExtResource("46_wao4h")]
-position = Vector2(858.822, -283.639)
 
 [node name="rogue_riot" parent="." instance=ExtResource("46_qo5kr")]
 position = Vector2(941, -274)

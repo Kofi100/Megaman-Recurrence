@@ -59,12 +59,19 @@ func Physics_Update(delta):
 func end_attack():
 	#print("yh,rogue riot is ending its attack")
 	#var distance:float=rogue_riot.calculate_player_distance()
-	print(rogue_riot.distance_x)
+	print("rogue_riot.distance_x: ",rogue_riot.distance_x)
 	if abs(rogue_riot.distance_x)<=95:
-		
-		transition.emit(self,"ground_stomp")
+		var chance=randi_range(1,100)
+		if chance>75:#25% chance
+			transition.emit(self,"ground_stomp")
+		if chance<=75:
+			transition.emit(self,"spiky_ball")
 	if abs(rogue_riot.distance_x)>95:
-		transition.emit(self,"laser_attack")
+		var chance=randi_range(1,100)
+		if chance>75:
+			transition.emit(self,"laser_attack")
+		elif chance<=75:
+			transition.emit(self,"jump")
 	#if current_attack==0:
 		#transition.emit(self,"ground_stomp")
 	#elif current_attack==1:
