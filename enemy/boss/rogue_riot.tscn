@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dlxfmi6i1icxx"]
+[gd_scene load_steps=32 format=3 uid="uid://dlxfmi6i1icxx"]
 
 [ext_resource type="Script" uid="uid://c122wnwyfy3go" path="res://rogue_riot.gd" id="1_15n20"]
 [ext_resource type="Texture2D" uid="uid://dkudsw56vb4jr" path="res://assets/sprites/enemies/bosses/1RogueRiot.png" id="2_nv4jw"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://dlcuoctil4547" path="res://enemy/boss/RogueRiot/idle.gd" id="4_1vm1i"]
 [ext_resource type="Script" uid="uid://d33g0pxaavf7g" path="res://enemy/boss/RogueRiot/ground_stomp.gd" id="5_83g40"]
 [ext_resource type="Script" uid="uid://jxlgcolejf5s" path="res://enemy/boss/RogueRiot/jump.gd" id="6_5qp2x"]
+[ext_resource type="Script" uid="uid://clj6b0nfthl5f" path="res://enemy/boss/RogueRiot/laser_attack.gd" id="7_2erqm"]
+[ext_resource type="Script" uid="uid://dlf85wno77cuj" path="res://enemy/boss/RogueRiot/spiky_ball.gd" id="8_dls4r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nv4jw"]
 atlas = ExtResource("2_nv4jw")
@@ -138,9 +140,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5qp2x")
 }],
-"loop": true,
+"loop": false,
 "name": &"laser",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -157,10 +159,22 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g41db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0awv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh34c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dls4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2erqm")
 }],
-"loop": true,
+"loop": false,
 "name": &"spike_ball_release",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -178,7 +192,72 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qp2x"]
-size = Vector2(46, 58)
+size = Vector2(28, 42)
+
+[sub_resource type="Curve" id="Curve_dls4r"]
+_data = [Vector2(0.512077, 0.280899), 0.0, 0.0, 0, 0, Vector2(0.705314, 0.719101), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_2erqm"]
+resource_name = "laser_sweep"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("laser_attack_raycast2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.8326, 1.8326, 0.610865]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("laser_attack_visual:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.605629, -0.0820305]
+}
+
+[sub_resource type="Animation" id="Animation_dls4r"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("laser_attack_raycast2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.8326]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("laser_attack_visual:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.04731]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fh34c"]
+_data = {
+&"RESET": SubResource("Animation_dls4r"),
+&"laser_sweep": SubResource("Animation_2erqm")
+}
 
 [node name="rogue_riot" type="CharacterBody2D"]
 position = Vector2(66, 44)
@@ -187,8 +266,11 @@ script = ExtResource("1_15n20")
 metadata/_custom_type_script = "uid://blqd77u3c7yor"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 0.00308247
 sprite_frames = SubResource("SpriteFrames_pmkgq")
-animation = &"idle"
+animation = &"spike_ball_release"
+frame = 8
+frame_progress = 1.0
 
 [node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_n4umb")]
 initial_state = NodePath("idle")
@@ -205,8 +287,16 @@ script = ExtResource("5_83g40")
 script = ExtResource("6_5qp2x")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
+[node name="laser_attack" type="Node" parent="State Engine"]
+script = ExtResource("7_2erqm")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
+[node name="spiky_ball" type="Node" parent="State Engine"]
+script = ExtResource("8_dls4r")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
+position = Vector2(-1, 11)
 shape = SubResource("RectangleShape2D_5qp2x")
 
 [node name="Timers" type="Node2D" parent="."]
@@ -214,3 +304,28 @@ shape = SubResource("RectangleShape2D_5qp2x")
 [node name="attack_timer" type="Timer" parent="Timers"]
 wait_time = 1.5
 one_shot = true
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+position = Vector2(-10, -26)
+points = PackedVector2Array(0, 0, -103, 60)
+width = 2.0
+width_curve = SubResource("Curve_dls4r")
+
+[node name="laser_attack_visual" type="Line2D" parent="."]
+position = Vector2(-13.5363, -26.2172)
+rotation = -0.605629
+points = PackedVector2Array(0, 0, -103, 60)
+width = 2.0
+width_curve = SubResource("Curve_dls4r")
+
+[node name="laser_attack_raycast2d" type="RayCast2D" parent="."]
+position = Vector2(-13.5363, -26.2172)
+rotation = 1.8326
+target_position = Vector2(-103, 220)
+collision_mask = 6
+
+[node name="main_animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fh34c")
+}

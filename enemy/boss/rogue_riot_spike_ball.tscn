@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://rwq2bktf4ae8"]
+
+[ext_resource type="Script" uid="uid://cauib0cxyb8e" path="res://enemy/boss/rogue_riot_spike_ball.gd" id="1_64vmi"]
+[ext_resource type="Texture2D" uid="uid://s8q5ldgbyed6" path="res://assets/sprites/enemies/bosses/1RogueRiot_SpikyBalls.png" id="1_q1cru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64vmi"]
+atlas = ExtResource("1_q1cru")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk6vm"]
+atlas = ExtResource("1_q1cru")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh2kv"]
+atlas = ExtResource("1_q1cru")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sp0s"]
+atlas = ExtResource("1_q1cru")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1te2e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64vmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk6vm")
+}],
+"loop": true,
+"name": &"bounce",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh2kv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sp0s")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1cru"]
+size = Vector2(16, 16)
+
+[node name="rogue_riot_spike_ball" type="CharacterBody2D"]
+script = ExtResource("1_64vmi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1te2e")
+animation = &"bounce"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q1cru")

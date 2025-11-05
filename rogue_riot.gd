@@ -12,3 +12,6 @@ func _physics_process(delta: float) -> void:
 	elif distance_x>=0:
 		$AnimatedSprite2D.flip_h=true
 	move_and_slide()
+#close_distance:40
+#middle:95px
+#far:>95px
