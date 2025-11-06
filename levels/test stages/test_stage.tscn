@@ -530,7 +530,7 @@ shape = SubResource("RectangleShape2D_63urt")
 visible = false
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@43348")
+zone_camera_2d = NodePath("@Camera2D@49415")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -544,7 +544,7 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@43349")
+zone_camera_2d = NodePath("@Camera2D@49416")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -971,7 +971,7 @@ next_portal = NodePath("../portal4")
 [node name="swinging_laser" parent="." instance=ExtResource("46_i2788")]
 position = Vector2(3080.07, 113.946)
 
-[node name="rogue_riot" parent="." instance=ExtResource("46_qo5kr")]
+[node name="rogue_riot2" parent="." instance=ExtResource("46_qo5kr")]
 position = Vector2(941, -274)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

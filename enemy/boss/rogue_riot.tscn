@@ -1,6 +1,6 @@
-[gd_scene load_steps=33 format=3 uid="uid://dlxfmi6i1icxx"]
+[gd_scene load_steps=42 format=3 uid="uid://dlxfmi6i1icxx"]
 
-[ext_resource type="Script" uid="uid://c122wnwyfy3go" path="res://rogue_riot.gd" id="1_15n20"]
+[ext_resource type="Script" uid="uid://bvrhiunsxie7n" path="res://enemy/boss/rogue_riot.gd" id="1_15n20"]
 [ext_resource type="Texture2D" uid="uid://dkudsw56vb4jr" path="res://assets/sprites/enemies/bosses/1RogueRiot.png" id="2_nv4jw"]
 [ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="3_n4umb"]
 [ext_resource type="Script" uid="uid://dlcuoctil4547" path="res://enemy/boss/RogueRiot/idle.gd" id="4_1vm1i"]
@@ -8,6 +8,11 @@
 [ext_resource type="Script" uid="uid://jxlgcolejf5s" path="res://enemy/boss/RogueRiot/jump.gd" id="6_5qp2x"]
 [ext_resource type="Script" uid="uid://clj6b0nfthl5f" path="res://enemy/boss/RogueRiot/laser_attack.gd" id="7_2erqm"]
 [ext_resource type="Script" uid="uid://dlf85wno77cuj" path="res://enemy/boss/RogueRiot/spiky_ball.gd" id="8_dls4r"]
+[ext_resource type="PackedScene" uid="uid://c86rlo00ectxx" path="res://hud_boss_bar.tscn" id="9_fh34c"]
+[ext_resource type="Script" uid="uid://dxg5dkdjoi3hs" path="res://enemy/boss/RogueRiot/intro.gd" id="9_r0awv"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="11_40tfw"]
+[ext_resource type="Texture2D" uid="uid://bko24mknbj21s" path="res://assets/sprites/miscelleaneous/health_megaman_bg.png" id="12_ro4s4"]
+[ext_resource type="Texture2D" uid="uid://0x2sqe62giq7" path="res://assets/sprites/miscelleaneous/health_megaman.png" id="13_pmkgq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nv4jw"]
 atlas = ExtResource("2_nv4jw")
@@ -180,7 +185,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2usdr")
 }, {
-"duration": 7.0,
+"duration": 3.5,
 "texture": SubResource("AtlasTexture_40tfw")
 }, {
 "duration": 1.0,
@@ -190,6 +195,12 @@ animations = [{
 "name": &"stomp",
 "speed": 7.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dls4r"]
+size = Vector2(40, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0awv"]
+size = Vector2(40, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qp2x"]
 size = Vector2(28, 42)
@@ -324,23 +335,68 @@ _data = {
 &"laser_sweep_right": SubResource("Animation_fh34c")
 }
 
+[sub_resource type="Animation" id="Animation_f5x0v"]
+resource_name = "boss_level_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 27.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_460xm"]
+_data = {
+&"boss_level_up": SubResource("Animation_f5x0v")
+}
+
 [node name="rogue_riot" type="CharacterBody2D"]
 position = Vector2(66, 44)
 collision_layer = 0
 script = ExtResource("1_15n20")
+leaveUponDefeatingBoss = true
+is_boss = true
+delete_boss_upon_defeat = true
+BossDefenseShot1 = 1
+BossDefenseShot2 = 3
 metadata/_custom_type_script = "uid://blqd77u3c7yor"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 0.00308247
 sprite_frames = SubResource("SpriteFrames_pmkgq")
-animation = &"fall_down"
+animation = &"stomp"
+frame = 2
+frame_progress = 1.0
 flip_h = true
 
-[node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_n4umb")]
-initial_state = NodePath("idle")
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 3
+collision_mask = 3
 
-[node name="idle" type="Node" parent="State Engine" node_paths=PackedStringArray("timer")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(2, 8.5)
+shape = SubResource("RectangleShape2D_dls4r")
+
+[node name="hitbox_hurt" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_hurt"]
+position = Vector2(2, 8.5)
+shape = SubResource("RectangleShape2D_r0awv")
+
+[node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_n4umb")]
+initial_state = NodePath("intro")
+
+[node name="idle" type="Node" parent="State Engine" node_paths=PackedStringArray("rogue_riot", "timer")]
 script = ExtResource("4_1vm1i")
+rogue_riot = NodePath("../..")
 timer = NodePath("../../Timers/attack_timer")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
@@ -359,6 +415,10 @@ metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 script = ExtResource("8_dls4r")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
+[node name="intro" type="Node" parent="State Engine"]
+script = ExtResource("9_r0awv")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 11)
 shape = SubResource("RectangleShape2D_5qp2x")
@@ -367,6 +427,14 @@ shape = SubResource("RectangleShape2D_5qp2x")
 
 [node name="attack_timer" type="Timer" parent="Timers"]
 wait_time = 1.5
+one_shot = true
+
+[node name="hit_cooldown_timer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="intro_timer" type="Timer" parent="Timers"]
+wait_time = 3.0
 one_shot = true
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -410,3 +478,40 @@ libraries = {
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-200, -183)
+
+[node name="HUD_BossBar" parent="." node_paths=PackedStringArray("BosstextureProgressBar", "boss_health_label") instance=ExtResource("9_fh34c")]
+BosstextureProgressBar = NodePath("boss_healthbar")
+boss_health_label = NodePath("boss_healthbar/text_health_display")
+usingBossTextBar = true
+
+[node name="boss_healthbar" type="TextureProgressBar" parent="HUD_BossBar"]
+offset_left = 234.0
+offset_top = 16.0
+offset_right = 242.0
+offset_bottom = 73.0
+theme = ExtResource("11_40tfw")
+max_value = 27.0
+fill_mode = 3
+texture_under = ExtResource("12_ro4s4")
+texture_progress = ExtResource("13_pmkgq")
+
+[node name="text_health_display" type="Label" parent="HUD_BossBar/boss_healthbar"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 32.0
+offset_bottom = 77.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("11_40tfw")
+text = "00"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD_BossBar/boss_healthbar"]
+libraries = {
+&"": SubResource("AnimationLibrary_460xm")
+}
+
+[node name="timer" type="Timer" parent="HUD_BossBar/boss_healthbar"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="hitbox_hurt" to="." method="_on_hitbox_area_entered"]

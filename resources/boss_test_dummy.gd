@@ -2,7 +2,7 @@ extends enemy
 class_name Boss
 static var bossCharacter:Boss
 var activateBoss=false
-var leaveUponDefeatingBoss:bool=false
+@export var leaveUponDefeatingBoss:bool=false
 func _ready() -> void:
 	health=7
 	bossCharacter=self

@@ -20,7 +20,7 @@ run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
 config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png"
-config/git_describe="ed5b53f"
+config/git_describe="8167d1e"
 
 [aseprite_importers]
 
@@ -30,6 +30,7 @@ aseprite_executable_path="C:/Users/Dr. Dominic Otchere/Desktop/Media/Programs/As
 
 ScenesDictionary="*res://GlobalScripts/ScenesDictionary.gd"
 OptionsSet="*res://resources/optionMenu_Settings.gd"
+GlobalSignalBus="*res://GlobalScripts/global_signal_bus.tscn"
 GlobalScript="*res://GlobalScripts/GlobalScript.gd"
 StageFunctions="*res://GlobalScripts/StageFunctions.gd"
 MegamanAndItems="*res://GlobalScripts/megaman_and_items.tscn"

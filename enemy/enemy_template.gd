@@ -14,7 +14,13 @@ var timeLeft:float=0
 var hasBeenHurt:bool=false
 var stats:Dictionary={}
 
-var boss_defeated: Signal
+#var boss_defeated: Signal
+@export_category("Boss Stats") 
+@export var is_boss = false
+@export var delete_boss_upon_defeat:bool=false
+@export var BossDefenseShot1: int = 0
+@export var BossDefenseShot2: int = 0
+
 var collectables_list = {
 	1: preload("res://miscellenaous/small_health_capsule.tscn"),
 	2: preload("res://miscellenaous/large_health_capsule.tscn"),
@@ -35,9 +41,7 @@ func get_enemy_stats():
 	if stats.is_empty():
 		push_error("No stats found for enemy_id: %s" % name)
 
-var is_boss = false
-var BossDefenseShot1: int = 0
-var BossDefenseShot2: int = 0
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -78,17 +82,25 @@ func spawn_collectables():
 				#print("spawn_collectable_no:", GlobalScript.spawn_collectable_no)
 			queue_free()
 		if is_boss == true:
-			boss_defeated.emit()
+			#boss_defeated.emit()
+			GlobalSignalBus.boss_has_been_defeated.emit()
 			self.set_physics_process(false)
 			self.visible = false
+			if delete_boss_upon_defeat:
+				queue_free()
+			#for node in get_children(true):
+				#if node is CollisionShape2D or node is CollisionPolygon2D:
+					#node.disabled=true
 			var explosionSpread=preload("res://miscellenaous/effects/explosion_scene.tscn").instantiate()
 			get_parent().add_child(explosionSpread)
 			explosionSpread.global_position=global_position
+			
 			#self.global_position = Vector2(-500, 500)
 		var explosion = preload("res://enemy/effects/explosion_enemy.tscn")
 		var explsion_new = explosion.instantiate()
 		get_parent().add_child.call_deferred(explsion_new)
 		explsion_new.position = position
+#func 
 var hurtEffectNo=2
 func hurtFlash(enemySprite):
 	if enemySprite!=null and enemySprite is AnimatedSprite2D or enemySprite is Sprite2D:

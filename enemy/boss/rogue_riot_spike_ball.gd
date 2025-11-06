@@ -32,6 +32,8 @@ func _physics_process(delta: float) -> void:
 			if abs(global_position.distance_to(main_body_to_go_towards.global_position))<5:#global_position==main_body_to_go_towards.global_position:
 				has_returned.emit()
 				queue_free()
+		else:
+			queue_free()
 	#move_and_slide()
 
 
@@ -47,5 +49,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 					velocity.x=100
 			else:
 				velocity.x=-100
-			velocity.y=-50
+			velocity.y=-200
 			
