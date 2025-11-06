@@ -3,7 +3,7 @@ var grabFlip_HOfParent:bool=false
 func _ready() -> void:
 	health=5
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	hurtFlash($AnimatedSprite2D)
 	if get_parent()!=null:
 		grabFlip_HOfParent=get_parent().animated_sprite_2d.flip_h
@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_projectiles_Main"):
-		var damage=area.get_parent().damagevalue
+		#var damage=area.get_parent().damagevalue
 		#if damage<=1:
 			#
 			#area.get_parent().state="blocked"

@@ -10,7 +10,7 @@ func _ready() -> void:
 	$explosion.play()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	playerdamagevalue = 5
 	#enables the hitbox on frames 8-10 and disables it on other frames
 	if $AnimatedSprite2D.frame >= 8 and $AnimatedSprite2D.frame <= 10:

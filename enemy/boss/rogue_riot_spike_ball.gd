@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 			velocity=bounce_velocity#*0.9
 			bounce_count-=1
 	
-	if bounce_count==0:
+	if bounce_count==0 or is_on_wall():
 		#
 		gravity_active=false
 		if main_body_to_go_towards:

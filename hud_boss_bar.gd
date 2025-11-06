@@ -38,35 +38,15 @@ func _process(_delta):
 	if boss_health_label:
 		#if usingBossTextBar:
 			boss_health_label.text=str(int(Boss.bossCharacter.health))
-		#if Boss.bossCharacter.health<=0:
-			#Boss.bossCharacter.set_physics_process(false)
-			#visible=false
-			#foundBoss=false
-			##Boss.bossCharacter.queue_free() #test feature for intiating boss defeat
-#
-			#for node in Boss.bossCharacter.get_children():
-				#if node is Timer:
-					##print(i)
-					#node.stop()
-			##print(signalReceived)
-			#if signalReceived==false:
-				#if Player.playerCharacter:
-					#if Boss.bossCharacter.leaveUponDefeatingBoss==true:
-						##if $timeDelayPlayerClearSound.is_stopped():
-						#for node in get_tree().current_scene.get_children():
-							#if node is BGM:
-								#node.stop()
-							#$timeDelayPlayerClearSound.start()
-							#print("timeDelayPlayerClearSound:active")
-							#
-							#signalReceived=true
-						##Player.playerCharacter.leave_bool=true
-						##Player.playerCharacter.leave_timer.start()
-						##signalReceived=true
-
+var previous_BGM
 func BossReady():
 	if get_parent():
 		#get_parent().set_physics_process(false)
+		for node in get_tree().current_scene.get_children():
+			if node is BGM and node.is_playing():
+				previous_BGM=node
+				node.stop()
+		$BGM_Boss_Battle.play()
 		get_tree().set_pause(true)
 		print(name,":Froze Physics of Scene")
 		var tween=create_tween()
@@ -85,11 +65,14 @@ func BossDefeated_Function():
 			visible=false
 			foundBoss=false
 			#Boss.bossCharacter.queue_free() #test feature for intiating boss defeat
-
+			
 			for node in Boss.bossCharacter.get_children():
 				if node is Timer:
 					#print(i)
 					node.stop()
+			if not Boss.bossCharacter.leaveUponDefeatingBoss:
+				if is_instance_valid(previous_BGM):
+					previous_BGM.play()
 			#print(signalReceived)
 			#if signalReceived==false:
 			if Player.playerCharacter:
@@ -100,10 +83,10 @@ func BossDefeated_Function():
 							node.stop()
 						$timeDelayPlayerClearSound.start()
 						print(name,":timeDelayPlayerClearSound:active")
-						
+						Player.playerCharacter.leave_bool=true
+						Player.playerCharacter.leave_timer.start()
 						#signalReceived=true
-						#Player.playerCharacter.leave_bool=true
-						#Player.playerCharacter.leave_timer.start()
+
 						#signalReceived=true
 
 
@@ -119,3 +102,9 @@ func _on_time_delay_player_clear_sound_timeout() -> void:
 	Player.playerCharacter.leave_timer.start()
 	Player.playerCharacter.disable_input=true
 	
+
+
+func _on_bgm_boss_battle_finished() -> void:
+	$BGM_Boss_Battle.stream=preload("res://assets/music/Boss Battle Loop_Ghost_Entity.ogg")
+	$BGM_Boss_Battle.set("parameters/looping",true)#looping=true
+	$BGM_Boss_Battle.play()

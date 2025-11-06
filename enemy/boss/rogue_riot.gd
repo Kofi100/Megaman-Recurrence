@@ -9,6 +9,7 @@ func _physics_process(delta: float) -> void:
 	spawn_collectables()
 	hurtFlash($AnimatedSprite2D)
 	playerdamagevalue=5
+	#print($Timers/hit_cooldown_timer.time_left)
 	#hitbox is enabled if timer is off and vice versa
 	#$hitbox.monitoring
 	$hitbox_hurt/CollisionShape2D.set_deferred("disabled",!$Timers/hit_cooldown_timer.is_stopped())#= 

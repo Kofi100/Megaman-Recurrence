@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="1_ff2fk"]
 
 [node name="BGMGroup" type="AudioStreamPlayer"]
+bus = &"BGM"
 script = ExtResource("1_ff2fk")

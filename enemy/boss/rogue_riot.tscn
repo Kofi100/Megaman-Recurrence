@@ -360,7 +360,6 @@ _data = {
 position = Vector2(66, 44)
 collision_layer = 0
 script = ExtResource("1_15n20")
-leaveUponDefeatingBoss = true
 is_boss = true
 delete_boss_upon_defeat = true
 BossDefenseShot1 = 1
@@ -376,16 +375,16 @@ frame_progress = 1.0
 flip_h = true
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(2, 8.5)
 shape = SubResource("RectangleShape2D_dls4r")
 
 [node name="hitbox_hurt" type="Area2D" parent="." groups=["enemy"]]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 6
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_hurt"]
 position = Vector2(2, 8.5)
@@ -513,5 +512,4 @@ libraries = {
 wait_time = 3.0
 one_shot = true
 
-[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="hitbox_hurt" to="." method="_on_hitbox_area_entered"]

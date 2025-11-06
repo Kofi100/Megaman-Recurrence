@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dxanefipxopkw"
+path="res://.godot/imported/Boss Battle Intro_Ghost_Entity.ogg-5996d8a6730e3d50bbdd83150b830e9b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Boss Battle Intro_Ghost_Entity.ogg"
+dest_files=["res://.godot/imported/Boss Battle Intro_Ghost_Entity.ogg-5996d8a6730e3d50bbdd83150b830e9b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

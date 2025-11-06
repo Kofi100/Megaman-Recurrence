@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c86rlo00ectxx"]
+[gd_scene load_steps=4 format=3 uid="uid://c86rlo00ectxx"]
 
 [ext_resource type="Script" uid="uid://dy8xw43wvr4ns" path="res://hud_boss_bar.gd" id="1_odj72"]
+[ext_resource type="AudioStream" uid="uid://dxanefipxopkw" path="res://assets/music/Boss Battle Intro_Ghost_Entity.ogg" id="2_77pxs"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="3_e2im8"]
 
 [node name="HUD_BossBar" type="CanvasLayer"]
 process_mode = 3
@@ -19,4 +21,10 @@ fill_mode = 3
 wait_time = 3.0
 one_shot = true
 
+[node name="BGM_Boss_Battle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_77pxs")
+script = ExtResource("3_e2im8")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
+
 [connection signal="timeout" from="timeDelayPlayerClearSound" to="." method="_on_time_delay_player_clear_sound_timeout"]
+[connection signal="finished" from="BGM_Boss_Battle" to="." method="_on_bgm_boss_battle_finished"]

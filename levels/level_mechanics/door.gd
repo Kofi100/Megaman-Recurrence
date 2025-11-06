@@ -47,12 +47,14 @@ func _process(_delta):
 			if not exited_door:
 				animated_sprite_2d.frame=0
 				animated_sprite_2d_2.frame=0
-		if bossToWaitFor!=null:
+		if is_instance_valid(bossToWaitFor):#!=null :
 			if "health" in bossToWaitFor:
 				if bossToWaitFor.health>0:
 					$detect_left/CollisionShape2D.disabled=true
 				else:
 					$detect_left/CollisionShape2D.disabled=false
+		else:
+			$detect_left/CollisionShape2D.disabled=false
 	
 
 
