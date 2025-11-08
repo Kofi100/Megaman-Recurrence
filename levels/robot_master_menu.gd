@@ -88,7 +88,7 @@ func _process(_delta):
 	playSelectForSingleRM(7,$Node2D/robotMaster7)
 	playSelectForSingleRM(8,$Node2D/robotMaster8)
 	if robotSelected==9:
-		$SelectArrow.global_position = $Node2D/exit.global_position-Vector2(20,3)
+		$SelectArrow.global_position = $Node2D/exit.global_position-Vector2(10,0)#(20,3)
 	if robotSelected<=8 and robotSelected!=4:
 		$Node2D/MegamanCursor.frame=robotSelected
 	else:

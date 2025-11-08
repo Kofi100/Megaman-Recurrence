@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dlxfmi6i1icxx"]
+[gd_scene load_steps=44 format=3 uid="uid://dlxfmi6i1icxx"]
 
 [ext_resource type="Script" uid="uid://bvrhiunsxie7n" path="res://enemy/boss/rogue_riot.gd" id="1_15n20"]
 [ext_resource type="Texture2D" uid="uid://dkudsw56vb4jr" path="res://assets/sprites/enemies/bosses/1RogueRiot.png" id="2_nv4jw"]
@@ -13,6 +13,8 @@
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="11_40tfw"]
 [ext_resource type="Texture2D" uid="uid://bko24mknbj21s" path="res://assets/sprites/miscelleaneous/health_megaman_bg.png" id="12_ro4s4"]
 [ext_resource type="Texture2D" uid="uid://0x2sqe62giq7" path="res://assets/sprites/miscelleaneous/health_megaman.png" id="13_pmkgq"]
+[ext_resource type="AudioStream" uid="uid://c3fxykrbfu0ip" path="res://assets/sounds/heavy_stomp_mm1.mp3" id="14_pmkgq"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="15_c5ck5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nv4jw"]
 atlas = ExtResource("2_nv4jw")
@@ -357,13 +359,12 @@ _data = {
 }
 
 [node name="rogue_riot" type="CharacterBody2D"]
-position = Vector2(66, 44)
 collision_layer = 0
 script = ExtResource("1_15n20")
 is_boss = true
 delete_boss_upon_defeat = true
 BossDefenseShot1 = 1
-BossDefenseShot2 = 3
+BossDefenseShot2 = 2
 metadata/_custom_type_script = "uid://blqd77u3c7yor"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -372,7 +373,6 @@ sprite_frames = SubResource("SpriteFrames_pmkgq")
 animation = &"stomp"
 frame = 2
 frame_progress = 1.0
-flip_h = true
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
@@ -429,7 +429,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="hit_cooldown_timer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 0.75
 one_shot = true
 
 [node name="intro_timer" type="Timer" parent="Timers"]
@@ -444,17 +444,40 @@ width = 2.0
 width_curve = SubResource("Curve_dls4r")
 
 [node name="guideline_laser_attack" type="Line2D" parent="."]
+visible = false
 position = Vector2(-200, -183)
 points = PackedVector2Array(-2, 1, 373, 1)
 
 [node name="guideline_laser_attack2" type="Line2D" parent="."]
+visible = false
 position = Vector2(-226, 94)
 points = PackedVector2Array(-60, 1, 459, 1)
 
 [node name="guideline_laser_attack3" type="Line2D" parent="."]
+visible = false
 position = Vector2(-216.727, 75)
 scale = Vector2(1.1039, 1)
 points = PackedVector2Array(-60, 1, 459, 1)
+
+[node name="guidelines_attack_distance" type="Line2D" parent="."]
+visible = false
+position = Vector2(0, 75)
+points = PackedVector2Array(0, -43, 256, -43)
+default_color = Color(0.0352941, 0.337255, 0.545098, 1)
+
+[node name="guidelines_attack_distance2" type="Line2D" parent="."]
+visible = false
+position = Vector2(0, 86)
+scale = Vector2(1.1039, 1)
+points = PackedVector2Array(0, -43, 70, -43)
+default_color = Color(0.483411, 0.256122, 0.0210304, 1)
+
+[node name="guidelines_attack_distance3" type="Line2D" parent="."]
+visible = false
+position = Vector2(0, 100)
+scale = Vector2(1.1039, 1)
+points = PackedVector2Array(0, -43, 140, -43)
+default_color = Color(0.637156, 0.600871, 0.0522335, 1)
 
 [node name="laser_attack_visual" type="Line2D" parent="."]
 position = Vector2(-13.5363, -26.2172)
@@ -511,5 +534,18 @@ libraries = {
 [node name="timer" type="Timer" parent="HUD_BossBar/boss_healthbar"]
 wait_time = 3.0
 one_shot = true
+
+[node name="ground_wave_spawn_position_right" type="Marker2D" parent="."]
+position = Vector2(24, 30)
+
+[node name="ground_wave_spawn_position_left" type="Marker2D" parent="."]
+position = Vector2(-22, 30)
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="stomp" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_pmkgq")
+script = ExtResource("15_c5ck5")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
 [connection signal="area_entered" from="hitbox_hurt" to="." method="_on_hitbox_area_entered"]

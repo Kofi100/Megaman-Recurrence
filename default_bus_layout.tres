@@ -1,4 +1,10 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://c6rbelc6navg2"]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://c6rbelc6navg2"]
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_g28q7"]
+resource_name = "Limiter"
+ceiling_db = -1.0
+threshold_db = -4.0
+soft_clip_db = 0.2
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
@@ -9,8 +15,18 @@ resource_name = "Reverb"
 room_size = 0.5
 spread = 0.7
 
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
+resource_name = "Limiter"
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -5.0
+ratio = 2.0
+
 [resource]
 bus/0/volume_db = -3.54298
+bus/0/effect/0/effect = SubResource("AudioEffectLimiter_g28q7")
+bus/0/effect/0/enabled = true
 bus/1/name = &"BGM"
 bus/1/solo = false
 bus/1/mute = false
@@ -21,3 +37,7 @@ bus/1/effect/0/effect = SubResource("AudioEffectAmplify_j3pel")
 bus/1/effect/0/enabled = true
 bus/1/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
 bus/1/effect/1/enabled = false
+bus/1/effect/2/effect = SubResource("AudioEffectLimiter_j3pel")
+bus/1/effect/2/enabled = false
+bus/1/effect/3/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/1/effect/3/enabled = true

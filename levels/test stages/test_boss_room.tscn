@@ -764,8 +764,8 @@ position = Vector2(-165, 210)
 
 [node name="background_boss_music" type="AudioStreamPlayer" parent="." groups=["bgm"]]
 process_mode = 3
-volume_db = -5.0
 script = ExtResource("8_bfkxj")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
 [node name="camera_detection_areas" type="Area2D" parent="."]
 visible = false
@@ -921,7 +921,6 @@ frame_progress = 0.464464
 [node name="bgmusib4bossfight" type="AudioStreamPlayer" parent="." groups=["bgm"]]
 process_mode = 3
 stream = ExtResource("13_f4hip")
-volume_db = -7.0
 script = ExtResource("8_bfkxj")
 
 [node name="savepoint" parent="." instance=ExtResource("14_yr53m")]

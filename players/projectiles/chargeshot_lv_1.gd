@@ -62,6 +62,7 @@ func _on_collision_monitor_area_entered(area):
 				area.get_parent().hasBeenHurt=true
 			elif body.is_boss==true:
 				body.health-=(damagevalue-body.BossDefenseShot1)
+			body.hasBeenHurt=true
 			GlobalScript.score+=30
 			#state='stopped'
 			$hurt_enemy_effect.play()

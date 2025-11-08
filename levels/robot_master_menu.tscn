@@ -483,6 +483,7 @@ vertical_alignment = 1
 
 [node name="SelectArrow" type="Sprite2D" parent="."]
 position = Vector2(-28, 161)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_qvmrj")
 centered = false
 

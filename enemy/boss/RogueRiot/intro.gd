@@ -6,9 +6,10 @@ extends State
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	intro_timer.connect("timeout",IntroDone)
+	GlobalSignalBus.boss_trigger.connect(start_boss_intro_or_wait_timer)
 func Enter():
 	animated_sprite_2d.play("idle")
-	intro_timer.start()
+	#intro_timer.start()
 
 func Exit():
 	pass
@@ -19,6 +20,10 @@ func Update(delta:float):
 func Physics_Update(delta:float):
 	pass
 
+func start_boss_intro_or_wait_timer():
+	intro_timer.start()
+
 func IntroDone():
 	hud_boss_bar.FillBarUp.emit()
+	
 	transition.emit(self,"idle")

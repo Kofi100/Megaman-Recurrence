@@ -22,7 +22,7 @@ func _process(delta):
 			$Sprite2D.visible=false
 	
 	if player_is_around and not player_collected_capsule:
-		if GlobalScript.health<GlobalScript.max_health:
+		#if GlobalScript.health<GlobalScript.max_health:
 			player_collected_capsule=true
 			GlobalScript.health+=2
 			$Sprite2D.visible=false

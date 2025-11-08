@@ -14,6 +14,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	spawn_collectables()
 	calculate_player_distance()
+	hurtFlash($AnimatedSprite2D)
 	#print(distance_x,direction)
 	if foundPlayer==false:
 		if distance_x<0:

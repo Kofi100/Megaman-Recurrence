@@ -52,9 +52,9 @@ func _ready():
 func _process(_delta):
 	#show values
 	#$values/BGM.text= str(int(OptionsSet.data["volumeSound"]["BGM"]))
-	$volumeBGM.value = int(OptionsSet.data["volumeSound"]["BGM"])
+	$volumeBGM.value = float(OptionsSet.data["volumeSound"]["BGM"])#int
 	#$values/SFX.text = str(int(OptionsSet.data["volumeSound"]["SFX"]))
-	$volumeSFX.value = int(OptionsSet.data["volumeSound"]["SFX"])
+	$volumeSFX.value = float(OptionsSet.data["volumeSound"]["SFX"])
 
 	if lives_option == 0:
 		GlobalScript.max_lives = 3
@@ -71,8 +71,8 @@ func _process(_delta):
 	else:
 		$fullscreen/display.text = "FULLSCREEN"
 
-	BGMValue = clampi(BGMValue, -59, -1)
-	SFXValue = clampi(SFXValue, -59, -1)
+	BGMValue = clampf(BGMValue, 0, 1.1)#clampi(BGMValue, -59, -1)
+	SFXValue = clampf(SFXValue, 0, 1.1)
 
 	useUpDownKeys = true
 	if useUpDownKeys == true:
@@ -147,22 +147,22 @@ func changeSFXVolume(value_changed: bool):
 
 func setBGMVolume():
 	if Input.is_action_just_pressed("move_left"):
-		BGMValue -= 3
+		BGMValue -= .1#3
 		OptionsSet.data["volumeSound"]["BGM"] = BGMValue
 		OptionsSet.saveSettings()
 	elif Input.is_action_just_pressed("move_right"):
-		BGMValue += 3
+		BGMValue += .1#3
 		OptionsSet.data["volumeSound"]["BGM"] = BGMValue
 		OptionsSet.saveSettings()
 
 
 func setSFXVolume():
 	if Input.is_action_just_pressed("move_left"):
-		SFXValue -= 3
+		SFXValue -= .1#3
 		OptionsSet.data["volumeSound"]["SFX"] = SFXValue
 		OptionsSet.saveSettings()
 	elif Input.is_action_just_pressed("move_right"):
-		SFXValue += 3
+		SFXValue += .1#3
 		OptionsSet.data["volumeSound"]["SFX"] = SFXValue
 		OptionsSet.saveSettings()
 

@@ -11,7 +11,10 @@ var index: int
 var distance_x: int = 0
 var distance_y: int = 0
 var timeLeft:float=0
+
+@onready var flash_material=preload("res://resources/enemyFlash_EffectShader.gdshader")
 var hasBeenHurt:bool=false
+
 var stats:Dictionary={}
 
 #var boss_defeated: Signal
@@ -20,6 +23,7 @@ var stats:Dictionary={}
 @export var delete_boss_upon_defeat:bool=false
 @export var BossDefenseShot1: int = 0
 @export var BossDefenseShot2: int = 0
+
 
 var collectables_list = {
 	1: preload("res://miscellenaous/small_health_capsule.tscn"),
@@ -102,35 +106,30 @@ func spawn_collectables():
 		explsion_new.position = position
 #func 
 var hurtEffectNo=2
+var has_found_sprite:bool=false
+var is_flashing := false
+var hurtflash_cooldown_time:float=0.1
+
 func hurtFlash(enemySprite):
-	if enemySprite!=null and enemySprite is AnimatedSprite2D or enemySprite is Sprite2D:
-		match hurtEffectNo:
-			1:#changes visibility
-				if hasBeenHurt==true:
-					#var previous_Color=enemySprite.get_modulate()
-					enemySprite.visible=false
-					
-					#enemySprite.set_modulate(Color.BLACK)
-					#set_modulate()
-					await get_tree().create_timer(.1).timeout
-					enemySprite.visible=true
-					#enemySprite.set_modulate(previous_Color)
-					hasBeenHurt=false
-			2:#uses a shader to change the visible part of the sprite to flash white for a while
-				var shader=load("res://resources/enemyFlash_EffectShader.gdshader")
-				if shader:
-					var materialCustom=ShaderMaterial.new()
-					materialCustom.shader=shader
-					enemySprite.material=materialCustom
-				if hasBeenHurt==true:
-					#var previous_Color=enemySprite.get_modulate()
-					enemySprite.material.set_shader_parameter("isActive",true)
-					#enemySprite.visible=false
-					
-					#enemySprite.set_modulate(Color.BLACK)
-					#set_modulate()
-					await get_tree().create_timer(.1).timeout
-					#enemySprite.visible=true
-					enemySprite.material.set_shader_parameter("isActive",false)
-					#enemySprite.set_modulate(previous_Color)
-					hasBeenHurt=false
+	if enemySprite == null or !(enemySprite is AnimatedSprite2D or enemySprite is Sprite2D):
+		return
+	if is_flashing or !hasBeenHurt:
+		return
+	
+	hasBeenHurt = false
+	is_flashing = true
+	
+	if hurtEffectNo == 1:
+		enemySprite.visible = false
+		await get_tree().create_timer(hurtflash_cooldown_time).timeout
+		enemySprite.visible = true
+	elif hurtEffectNo == 2:
+		if !enemySprite.material:
+			var mat = ShaderMaterial.new()
+			mat.shader = flash_material
+			enemySprite.material = mat
+		enemySprite.material.set_shader_parameter("isActive", true)
+		await get_tree().create_timer(hurtflash_cooldown_time).timeout
+		enemySprite.material.set_shader_parameter("isActive", false)
+	
+	is_flashing = false

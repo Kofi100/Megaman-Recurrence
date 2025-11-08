@@ -21,7 +21,7 @@ func _process(delta):
 		elif fmod(blink_timer,0.2)<0.1:
 			$Sprite2D.visible=false
 	if player_is_around and not player_collected_capsule:
-		if GlobalScript.health<GlobalScript.max_health:
+		#if GlobalScript.health<GlobalScript.max_health:
 			player_collected_capsule=true
 			GlobalScript.health+=10
 			$Sprite2D.visible=false

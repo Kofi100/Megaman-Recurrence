@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var volumeSound:Dictionary = {
-	"BGM": -10,
+	"BGM": 0,
 	"SFX": 0
 }
 var current_version: float = 1.0
@@ -9,7 +9,7 @@ var current_version: float = 1.0
 # Default settings
 var default_data: Dictionary = {
 	"volumeSound": {
-		"BGM": -10,
+		"BGM": 0,
 		"SFX": 0
 	},
 	"resolution": 3,

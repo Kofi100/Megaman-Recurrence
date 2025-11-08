@@ -27,7 +27,8 @@ func Enter():
 		#timer.start(3)
 		#just_entered_scene=false
 	#else:
-	timer.start(1.5)
+	timer.start(1)#.5
+	rogue_riot.activated=true
 	#this resets current_Attack before the attack completes
 	#if current_attack==1:
 		#current_attack=0
@@ -41,6 +42,9 @@ func Exit():
 	
 	pass
 
+var allowed_attack_no=[]
+var allowed_ground_stomp:int=0
+var allowed_spiky_ball:int=0
 
 
 func Physics_Update(delta):
@@ -54,8 +58,10 @@ func Physics_Update(delta):
 	#await animated_sprite_2d.animation_finished
 	#transition.emit(self,"ground_stomp")
 
-
-
+#attack position guide
+#close_distance:40
+#middle:95px
+#far:>95px
 func end_attack():
 	#print("yh,rogue riot is ending its attack")
 	#var distance:float=rogue_riot.calculate_player_distance()
@@ -65,17 +71,49 @@ func end_attack():
 	#lil code here to check if player is dead before rogue attacks
 	#for a real robot sake
 	if GlobalScript.health>0:
-		if abs(rogue_riot.distance_x)<=95:
+		var player_distance=abs(rogue_riot.distance_x)
+		if player_distance<=70:
+			var chance=randi_range(1,100)
+			if chance<=75:#25% chance
+				allowed_ground_stomp+=1
+				if allowed_ground_stomp>2:
+					allowed_ground_stomp=0
+					transition.emit(self,"spiky_ball")
+					return
+				
+				transition.emit(self,"ground_stomp")
+			if chance>75:
+				allowed_spiky_ball+=1
+				if allowed_spiky_ball>2:
+					allowed_spiky_ball=0
+					transition.emit(self,"ground_stomp")
+					return
+				
+				transition.emit(self,"spiky_ball")
+				
+		elif player_distance<=140 and player_distance>70:
 			var chance=randi_range(1,100)
 			if chance>75:#25% chance
+				allowed_ground_stomp+=1
+				if allowed_ground_stomp>2:
+					allowed_ground_stomp=0
+					transition.emit(self,"spiky_ball")
+					return
+				
 				transition.emit(self,"ground_stomp")
 			if chance<=75:
+				allowed_spiky_ball+=1
+				if allowed_spiky_ball>2:
+					allowed_spiky_ball=0
+					transition.emit(self,"ground_stomp")
+					return
+				
 				transition.emit(self,"spiky_ball")
-		if abs(rogue_riot.distance_x)>95:
+		elif player_distance>140:
 			var chance=randi_range(1,100)
-			if chance>75:
+			if chance<=75:
 				transition.emit(self,"laser_attack")
-			elif chance<=75:
+			elif chance>75:
 				transition.emit(self,"jump")
 	pass
 	#if current_attack==0:

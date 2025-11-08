@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bao47g1gead57"]
+[gd_scene load_steps=16 format=3 uid="uid://bao47g1gead57"]
 
 [ext_resource type="Script" uid="uid://cp2qu3lbqhshr" path="res://levels/robot_master_display_scene.gd" id="1_g526k"]
 [ext_resource type="Texture2D" uid="uid://daj2m2ofp0qtq" path="res://assets/sprites/miscelleaneous/1KofiStageStart_Samuel_X7.png" id="2_rfmjh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_fgrhp"]
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="8_q66bg"]
 [ext_resource type="AudioStream" uid="uid://dl0o128um1fw2" path="res://assets/music/Stage_Start.ogg" id="8_rfmjh"]
+[ext_resource type="PackedScene" uid="uid://bp3eh441rar14" path="res://miscellenaous/cutscene_material/slumberman_intro_animation.tscn" id="10_opt6r"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4gw3"]
 particle_flag_disable_z = true
@@ -131,6 +132,11 @@ position = Vector2(127, 102)
 texture = ExtResource("5_cpjfu")
 hframes = 12
 
+[node name="slumberman_intro_animation" parent="stuffToMakeDisappear" node_paths=PackedStringArray("target_position") instance=ExtResource("10_opt6r")]
+position = Vector2(315, 126)
+float_speed = 5.0
+target_position = NodePath("../../slumberman_end_position")
+
 [node name="nameOfRobotMaster" type="Label" parent="stuffToMakeDisappear"]
 offset_left = 110.0
 offset_top = 145.0
@@ -150,6 +156,9 @@ libraries = {
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_rfmjh")
 script = ExtResource("8_q66bg")
+
+[node name="slumberman_end_position" type="Marker2D" parent="."]
+position = Vector2(125, 112)
 
 [connection signal="timeout" from="lifeTimer" to="." method="_on_life_timer_timeout"]
 [connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]

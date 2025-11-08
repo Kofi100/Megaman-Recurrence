@@ -1,6 +1,8 @@
 extends State
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var rogue_riot: CharacterBody2D = $"../.."
+@onready var stomp_sound: SFX = $"../../SFX/stomp"
+
 var jump_velocity:float=-300
 var has_jumped:bool=false
 var is_about_to_land:bool=false
@@ -43,6 +45,7 @@ func Physics_Update(delta:float):
 		animated_sprite_2d.frame=1
 		animated_sprite_2d.offset.y=1
 		GlobalScript.emit_signal("trigger_camera_shake",8,.1)
+		stomp_sound.play()
 		if Player.playerCharacter.is_on_floor():
 			Player.playerCharacter.stun_temporarily(.5)
 

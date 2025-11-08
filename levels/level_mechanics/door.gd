@@ -7,6 +7,7 @@ var WentThruLeftDoor:bool=false
 @export var spriteframes:SpriteFrames
 @export var whiteReplacement:Color
 @export var bossToWaitFor:CharacterBody2D
+@export var is_boss_door:bool=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -83,6 +84,8 @@ func _on_detect_right_body_exited(body):
 		body.door_transition=false
 		$detect_right.set_collision_mask_value(2,false)
 		body.velocity.x=0
+		if is_boss_door:
+			GlobalSignalBus.boss_trigger.emit()
 		#$detect_right/CollisionShape2D2.disabled=true
 #		$detect_right/CollisionShape2D2.call_deferred('is_disabled',true)#'is_disabled',true)
 		#$detect_right/CollisionShape2D2.disabled=true

@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://bp3eh441rar14"]
+
+[ext_resource type="Script" uid="uid://du2kccp2pwijt" path="res://miscellenaous/cutscene_material/slumberman_intro_animation.gd" id="1_l0ve8"]
+[ext_resource type="Texture2D" uid="uid://c0sloqix01sal" path="res://assets/sprites/enemies/bosses/1SlumberMan.png" id="1_m1gs1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl2oa"]
+atlas = ExtResource("1_m1gs1")
+region = Rect2(32, 54, 32, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wbv3"]
+atlas = ExtResource("1_m1gs1")
+region = Rect2(64, 0, 32, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12w86"]
+atlas = ExtResource("1_m1gs1")
+region = Rect2(32, 0, 32, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5hpx"]
+atlas = ExtResource("1_m1gs1")
+region = Rect2(0, 0, 32, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0ve8"]
+atlas = ExtResource("1_m1gs1")
+region = Rect2(64, 54, 32, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvq6c"]
+atlas = ExtResource("1_m1gs1")
+region = Rect2(96, 54, 32, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs26c"]
+atlas = ExtResource("1_m1gs1")
+region = Rect2(128, 54, 32, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o78tc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl2oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wbv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12w86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5hpx")
+}],
+"loop": false,
+"name": &"intro",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0ve8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvq6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs26c")
+}],
+"loop": true,
+"name": &"silly_bed_entrance",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0ve8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvq6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs26c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl2oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wbv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12w86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5hpx")
+}],
+"loop": false,
+"name": &"silly_entrance",
+"speed": 10.0
+}]
+
+[node name="slumberman_intro_animation" type="Node2D"]
+script = ExtResource("1_l0ve8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_o78tc")
+animation = &"silly_bed_entrance"
