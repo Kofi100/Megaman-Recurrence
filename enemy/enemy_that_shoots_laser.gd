@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		elif setDirection == 2:
 			velocity.x = -3000 * delta
 			$AnimatedSprite2D.flip_h = true
-	var distanceXForLaser = $laserBody/RayCast2D.get_collision_point().x - $laserBody/RayCast2D.global_position.x
+	var _distanceXForLaser = $laserBody/RayCast2D.get_collision_point().x - $laserBody/RayCast2D.global_position.x
 	#if countdown_Indicator == 4:
 	#$emissionTimer.start()
 	#if $emissionTimer.is_stopped() == false:

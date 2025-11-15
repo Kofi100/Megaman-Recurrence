@@ -55,9 +55,9 @@ func _on_collision_monitor_area_entered(area):
 		var body=area.get_parent()
 		if state=="active" or state=='blocked':
 			if body.is_boss==false:
-				print("health: before:",health)
+				#print("health: before:",health)
 				health-=area.get_parent().health
-				print("health: after:",health)
+				#print("health: after:",health)
 				area.get_parent().health-=damagevalue
 				area.get_parent().hasBeenHurt=true
 			elif body.is_boss==true:

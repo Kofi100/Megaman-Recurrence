@@ -8,7 +8,7 @@ func _ready() -> void:
 	bossCharacter=self
 	leaveUponDefeatingBoss=true
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	is_boss=true
 	spawn_collectables()
 	disableAllCollisionShapes()

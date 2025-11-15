@@ -56,7 +56,7 @@ func _physics_process(delta):
 			animated_sprite_2d.offset.x = -8
 			$shield_hitbox/left.disabled = true
 			$shield_hitbox/right.disabled = false
-	var jump_cooldown = false
+	var _jump_cooldown = false
 	animated_sprite_2d.play(state)
 	match state:
 		"defend":
@@ -66,7 +66,7 @@ func _physics_process(delta):
 			shield_hitbox.set_collision_layer_value(1, true)
 			$detect_player/CollisionShape2D.disabled = false
 		"shoot":
-			jump_cooldown = false
+			_jump_cooldown = false
 			animated_sprite_2d.play("shoot")
 			shield_hitbox.set_collision_layer_value(1, false)
 			$detect_player/CollisionShape2D.disabled = true

@@ -13,7 +13,7 @@ func _ready() -> void:
 		"right":
 			velocity.x=SPEED
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	$AnimatedSprite2D.flip_h=false if direction=="right" else true
 
 	move_and_slide()

@@ -7,6 +7,7 @@ var base_y: float
 var time_passed: float = 0.0
 var has_played_intro:bool=false
 @export var target_position:Marker2D
+@export var start_animation:bool=false
 signal silly_bed_intro_complete
 
 @export var preview_points: int = 30  # number of dots to preview
@@ -30,8 +31,8 @@ func _draw():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not Engine.is_editor_hint():
-		float_speed=5
+	if not Engine.is_editor_hint() and start_animation:
+		#float_speed=5
 		time_passed += delta * float_speed
 		
 		match $AnimatedSprite2D.animation:

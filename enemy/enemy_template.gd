@@ -53,6 +53,7 @@ func _process(_delta):
 	if is_boss == false:
 		if GlobalScreenTransitionTimer.time_left > 0:
 			set_physics_process(false)
+			#queue_free()
 		elif GlobalScreenTransitionTimer.time_left <= 0:
 			set_physics_process(true)
 

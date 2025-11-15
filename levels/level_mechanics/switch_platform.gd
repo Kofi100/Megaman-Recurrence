@@ -4,7 +4,7 @@ var isOn=false
 func _ready() -> void:
 	pass
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	$CollisionShape2D.disabled=!isOn
 	if isOn:
 		$ColorRect.color=Color(color,1.0)

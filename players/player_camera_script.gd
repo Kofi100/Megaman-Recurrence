@@ -9,7 +9,8 @@ var original_offset: Vector2
 
 func _ready():
 	original_offset = offset
-	GlobalScript.trigger_camera_shake.connect(start_shake)
+	GlobalSignalBus.trigger_camera_shake.connect(start_shake)
+	
 
 func start_shake(intensity := shake_intensity, duration := shake_duration):
 	shake_intensity = intensity

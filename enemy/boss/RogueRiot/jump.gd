@@ -21,10 +21,10 @@ func Exit():
 	animated_sprite_2d.offset.y=0
 	jump_times=0
 
-func Update(delta:float):
+func Update(_delta:float):
 	pass
 
-func Physics_Update(delta:float):
+func Physics_Update(_delta:float):
 	if rogue_riot.is_on_floor():
 		if animated_sprite_2d.frame==1 and animated_sprite_2d.animation=="jump_up":
 			rogue_riot.velocity.y=jump_velocity
@@ -44,7 +44,7 @@ func Physics_Update(delta:float):
 		rogue_riot.velocity.x=0
 		animated_sprite_2d.frame=1
 		animated_sprite_2d.offset.y=1
-		GlobalScript.emit_signal("trigger_camera_shake",8,.1)
+		GlobalSignalBus.emit_signal("trigger_camera_shake",8,.1)
 		stomp_sound.play()
 		if Player.playerCharacter.is_on_floor():
 			Player.playerCharacter.stun_temporarily(.5)

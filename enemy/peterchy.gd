@@ -31,16 +31,8 @@ func _physics_process(delta):
 				animated_sprite_2d.play("moving")
 				if distance<0:velocity.x=-SPEED*delta
 				elif distance>=0:velocity.x=SPEED*delta
-#				if animated_sprite_2d.frame!=0 and animated_sprite_2d.frame!=1 and animated_sprite_2d.frame!=5:
-				
-				#if not $check_right_has_ground.is_colliding():#distance<=0:
-					#velocity.x=-SPEED*delta
-				#elif not $check_left_has_ground.is_colliding():
-					#velocity.x=SPEED*delta
-#				else:
-#					velocity.x=0
-			'move_away_left':
-				velocity
+			#'move_away_left':
+				#velocity
 	spawn_collectables()
 	move_and_slide()
 

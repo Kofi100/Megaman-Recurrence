@@ -7,6 +7,7 @@ func _ready() -> void:
 	playerdamagevalue=1
 	originalPos=Vector2(global_position.x,global_position.y)#Player.playerCharacter.global_position.y)
 	calculate_player_distance()
+	
 	if distance_x<0:
 		$AnimatedSprite2D.flip_h=false
 		$AnimatedSprite2D.set_offset(Vector2(0,0))
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 	#if not is_on_floor():
 		#velocity+=get_gravity()*delta
 	calculate_player_distance()
+	hurtFlash($AnimatedSprite2D)
 	spawn_collectables()
 	if (global_position==originalPos):
 		$AnimatedSprite2D.play("playing")

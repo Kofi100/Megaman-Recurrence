@@ -438,7 +438,7 @@ shape = SubResource("RectangleShape2D_qgdqx")
 [node name="New Camera System Addon11" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(8713.35, 16.6116)
 script = ExtResource("3_35qat")
-zone_camera_2d = NodePath("@Camera2D@33868")
+zone_camera_2d = NodePath("@Camera2D@24330")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -451,7 +451,7 @@ shape = SubResource("RectangleShape2D_ea108")
 [node name="New Camera System Addon12" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(9481, 17)
 script = ExtResource("3_35qat")
-zone_camera_2d = NodePath("@Camera2D@33869")
+zone_camera_2d = NodePath("@Camera2D@24331")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 timer_exists = true
@@ -466,12 +466,12 @@ shape = SubResource("RectangleShape2D_u3b3q")
 [node name="enemy_spawner" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(623, 145)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner2" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1292, 112)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner3" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(955, 317)
@@ -481,32 +481,32 @@ enemy_Preview = NodePath("mechakkero")
 [node name="enemy_spawner4" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1548, 152)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner6" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1819, 171)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner7" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2177, 145)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner18" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2498, 142)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner8" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(3258, 129)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner9" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(3781, 129)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner10" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(2726, 11)
@@ -538,7 +538,7 @@ enemy_Preview = NodePath("batallion_Balloon")
 [node name="enemy_spawner11" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4302, 161)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner15" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(5331, 3)
@@ -568,18 +568,18 @@ enemy_Preview = NodePath("batallion_Balloon_Delivery")
 position = Vector2(6245, 129)
 enemy_to_spawn = "punk_riot"
 riotToDeliver = "shield_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner30" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(6471, 129)
 enemy_to_spawn = "punk_riot"
 riotToDeliver = "shield_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner14" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(4745, 151)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner5" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(1878, -42)
@@ -618,13 +618,13 @@ enemy_Preview = NodePath("batallion_Balloon_Delivery")
 position = Vector2(8464, 113)
 enemy_to_spawn = "punk_riot"
 riotToDeliver = "shield_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner24" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(8003, 129)
 enemy_to_spawn = "punk_riot"
 riotToDeliver = "shield_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner25" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(7830, 36)
@@ -666,12 +666,12 @@ enemy_Preview = NodePath("koptar")
 [node name="enemy_spawner36" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(9697, 129)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="enemy_spawner37" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("5_qbex0")]
 position = Vector2(10061, 161)
 enemy_to_spawn = "punk_riot"
-enemy_Preview = NodePath("punkRiot")
+enemy_Preview = NodePath("punk_riot")
 
 [node name="deathzones" parent="." instance=ExtResource("10_r43wy")]
 

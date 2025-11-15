@@ -471,7 +471,7 @@ script = ExtResource("5_gw1ah")
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"stun"
+animation = &"dash"
 offset = Vector2(0, 1)
 flip_h = true
 
@@ -572,7 +572,6 @@ script = ExtResource("8_d6231")
 
 [node name="shoot" type="AudioStreamPlayer" parent="all_sounds"]
 stream = ExtResource("7_im07x")
-volume_db = -10.0
 script = ExtResource("8_d6231")
 
 [node name="charge" type="AudioStreamPlayer" parent="all_sounds"]
@@ -585,12 +584,10 @@ script = ExtResource("8_d6231")
 
 [node name="halfcharge" type="AudioStreamPlayer" parent="all_sounds"]
 stream = ExtResource("12_8ofs0")
-volume_db = -10.0
 script = ExtResource("8_d6231")
 
 [node name="fullcharge" type="AudioStreamPlayer" parent="all_sounds"]
 stream = ExtResource("13_ljqus")
-volume_db = -10.0
 script = ExtResource("8_d6231")
 
 [node name="energyup" type="AudioStreamPlayer" parent="all_sounds"]

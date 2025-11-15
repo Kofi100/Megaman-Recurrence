@@ -5,7 +5,7 @@ func _ready() -> void:
 	playerdamagevalue=3
 	health=3
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	$Timer.wait_time=2
 	spawn_collectables()
 	calculate_player_distance()

@@ -9,7 +9,7 @@ func _ready() -> void:
 	$ColorRect.color=option
 	
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	$coolDown_timer.wait_time=.5
 	if isOn:
 		$ColorRect.color=Color(option,1.0)

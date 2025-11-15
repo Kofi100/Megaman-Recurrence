@@ -69,6 +69,7 @@ func _process(_delta):
 			$Timers/screenTransTimer.start()
 			$Sounds/selectRM.play()
 			startBlinking()
+			$Node2D/Layout.stop()
 			$aniPlayer/AnimationPlayer.stop()
 			
 			$BGM/intro.stop()

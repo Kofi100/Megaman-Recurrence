@@ -16,6 +16,7 @@ func _ready():
 			tween.connect("finished",triggerNameEffect)
 			$stuffToMakeDisappear/nameOfRobotMaster.text="FIREMAN"
 		1:
+			$stuffToMakeDisappear/slumberman_intro_animation.start_animation=true
 			$stuffToMakeDisappear/slumberman_intro_animation.silly_bed_intro_complete.connect(triggerNameEffect)
 			$stuffToMakeDisappear/nameOfRobotMaster.text="SLUMBERMAN"
 		2:
@@ -47,6 +48,8 @@ func triggerNameEffect():
 
 func _on_bgm_finished() -> void:
 	#$lifeTimer.start()
+	if robotMaster==1:
+		await get_tree().create_timer(.5).timeout
 	var tween=create_tween()
 	tween.tween_property($stuffToMakeDisappear,"modulate",Color(0,0,0,0),1)
 	tween.connect("finished",emitScreenEnded)

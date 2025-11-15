@@ -13,16 +13,26 @@ var new_node
 	#detect changes in enemy_to_spawn
 	#to prevent overlapping old and new enemies
 	set(value):
+		value=value.to_lower()
 		if enemy_to_spawn!=value:
 			enemy_to_spawn=""
 			enemy_to_spawn=value
+			_on_enemy_changed()
 #@export var spawn_index:int
 #var new_shotman=preload("")
 #var peterchy=preload("res://enemy/peterchy.tscn")
 #var mechakkero=preload()
 #var walking_bomb=preload('res://enemy/walking_bomb.tscn')
 var new_enemy
-@export var visibility = true
+@export var visibility = true:
+	set(new_value):
+		if Engine.is_editor_hint():
+			visibility=new_value
+			_update_disappear_nodes()
+		else:
+			visibility=false
+			_update_disappear_nodes()
+	
 @export var visibility_enemy_display = false
 #@export
 var enemy_dictionary: Dictionary = {
@@ -99,46 +109,14 @@ func _enter_tree():
 	#notify_property_list_changed()
 
 @export var enemy_Preview:CharacterBody2D
-func setEnemyName(value):
-	if enemy_to_spawn!=value:
-		enemy_to_spawn=""
-		enemy_to_spawn=value
+#func setEnemyName(value):
+	#if enemy_to_spawn!=value:
+		#enemy_to_spawn=""
+		#enemy_to_spawn=value
+#func _update_editor_preview():
+	#pass
 func _process(_delta):
-	enemy_to_spawn=enemy_to_spawn.to_lower() #turns enemy to spawn to lower case for easier naming and tracking
-	if visibility == true:
-		for i in disappear_nodes:
-			if disappear_nodes.has(i) and i <= 4:
-				var node = get_node(disappear_nodes[i])
-				node.visible = true  #print(i)
-
-#			if i==5:
-#				i=1
-	elif not visibility:
-		for i in disappear_nodes:
-			if disappear_nodes.has(i):
-				var node = get_node(disappear_nodes[i])
-				node.visible = false  #print(i)
-			if i == 5:
-				i = 1
-	
-	
-	
-	
-	if Engine.is_editor_hint():
-		visibility=true
-		if enemy_dictionary.has(enemy_to_spawn) and enemy_Preview==null:
-			enemy_Preview=enemy_dictionary[enemy_to_spawn].instantiate()
-			add_child(enemy_Preview)
-		elif !enemy_dictionary.has(enemy_to_spawn):
-			if enemy_Preview!=null:
-				enemy_Preview.queue_free()
-		if enemy_Preview!=null:
-			enemy_Preview.global_position=global_position
-			if enemy_to_spawn=="batallion_balloon_delivery":
-				enemy_Preview.riotToDeliver=riotToDeliver
-		
-
-	else:
+	if not Engine.is_editor_hint():
 		visibility=false
 		#print(GlobalScreenTransitionTimer.time_left)
 		display_node = get_node_or_null("enemy_display_sprite")
@@ -237,23 +215,30 @@ func _process(_delta):
 		#if enemy_to_spawn=='homer':
 		#$spawn_homer_timer.start()
 	#endregion
-		if display_node != null:
-			display_node.visible = visibility_enemy_display
-			display_enemy("new_shotman", 0)
-			display_enemy("mechakkero", 1)
-			display_enemy("peterchy", 2)
-			display_enemy("walking_bomb", 3)
-			display_enemy("met", 4)
-			display_enemy("sniper_joe", 5)
-			display_enemy("octopus_battery", 6)
-			display_enemy("homer", 8)
-			display_enemy("paraysu", 9)
-			display_enemy("pickelman_bull", 10)
-			display_enemy("yambou", 11)
-			display_enemy("spikyoall", 12)
-			display_enemy("ceiling_shooter", 13)
 
-func _physics_process(delta: float) -> void:
+func _on_enemy_changed():
+	if Engine.is_editor_hint():
+		visibility=true
+		
+		if enemy_dictionary.has(enemy_to_spawn) and enemy_Preview==null:
+			enemy_Preview=enemy_dictionary[enemy_to_spawn].instantiate()
+			add_child(enemy_Preview)
+		elif !enemy_dictionary.has(enemy_to_spawn):
+			if enemy_Preview!=null:
+				enemy_Preview.queue_free()
+		
+		if enemy_Preview!=null:
+			enemy_Preview.global_position=global_position
+			if enemy_to_spawn=="batallion_balloon_delivery":
+				enemy_Preview.riotToDeliver=riotToDeliver
+
+func _update_disappear_nodes():
+	for i in disappear_nodes:
+		var node=get_node_or_null(disappear_nodes[i])
+		if node:
+			node.visible=visibility
+			
+func _physics_process(_delta: float) -> void:
 	#code to delete spawned enemies
 	#used to be at _process() fxn but now here cause it works here.
 	#i think it works cause all instances of enemy movements and codes

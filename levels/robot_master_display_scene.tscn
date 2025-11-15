@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bao47g1gead57"]
+[gd_scene load_steps=17 format=3 uid="uid://bao47g1gead57"]
 
 [ext_resource type="Script" uid="uid://cp2qu3lbqhshr" path="res://levels/robot_master_display_scene.gd" id="1_g526k"]
 [ext_resource type="Texture2D" uid="uid://daj2m2ofp0qtq" path="res://assets/sprites/miscelleaneous/1KofiStageStart_Samuel_X7.png" id="2_rfmjh"]
@@ -36,6 +36,12 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="Curve2D" id="Curve2D_opt6r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, 0, 43.5895, 53.4402, -43.5895, -53.4402, -75, -45, 32.3512, -6.51911, -32.3512, 6.51911, -185.071, -0.768967, 43.59, 53.44, -43.59, -53.44, -268.717, -46.423, 0, 0, 0, 0, -381.384, 0.921921)
+}
+point_count = 5
 
 [sub_resource type="Animation" id="Animation_pyjch"]
 length = 0.001
@@ -133,18 +139,23 @@ texture = ExtResource("5_cpjfu")
 hframes = 12
 
 [node name="slumberman_intro_animation" parent="stuffToMakeDisappear" node_paths=PackedStringArray("target_position") instance=ExtResource("10_opt6r")]
-position = Vector2(315, 126)
-float_speed = 5.0
+position = Vector2(305, 121)
+float_speed = 7.0
 target_position = NodePath("../../slumberman_end_position")
 
+[node name="Path2D" type="Path2D" parent="stuffToMakeDisappear/slumberman_intro_animation"]
+position = Vector2(0.414207, 7.45477)
+scale = Vector2(0.585799, 0.591404)
+curve = SubResource("Curve2D_opt6r")
+
 [node name="nameOfRobotMaster" type="Label" parent="stuffToMakeDisappear"]
-offset_left = 110.0
+offset_left = 76.0
 offset_top = 145.0
-offset_right = 216.0
+offset_right = 406.0
 offset_bottom = 168.0
 scale = Vector2(0.3, 0.3)
 theme = ExtResource("6_fgrhp")
-text = "fireman"
+text = "BOSS NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 

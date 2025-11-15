@@ -32,7 +32,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yaxfl"]
 size = Vector2(16, 16)
 
-[node name="energy_tank" type="RigidBody2D"]
+[node name="energy_tank" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_c4k0e")
 

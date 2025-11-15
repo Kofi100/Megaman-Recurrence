@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpnfc3c4snner"]
+
+[ext_resource type="PackedScene" uid="uid://cocfx6hh6qg0b" path="res://levels/ldtk_experimental_levels/test_ldtk_1.ldtk" id="1_08hji"]
+
+[node name="test_ldtk_1" instance=ExtResource("1_08hji")]

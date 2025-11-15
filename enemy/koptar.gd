@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				$AnimatedSprite2D.play("triggered_Still")
 				#velocity.x=0
-			var direction: Vector2 = (Vector2(distance_x,distance_y) - global_position).normalized()
+			#var direction: Vector2 = (Vector2(distance_x,distance_y) - global_position).normalized()
 			if hitPlayer==false and $retreatTimer.is_stopped():
 				#var speedX=move_toward(global_position.x,Player.playerCharacter.global_position.x,100*delta)
 				#var speedY=move_toward(global_position.y,Player.playerCharacter.global_position.y,100*delta)

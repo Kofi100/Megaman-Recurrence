@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bejdk06qj8ak5"]
+
+[ext_resource type="PackedScene" uid="uid://cpnfc3c4snner" path="res://levels/ldtk_experimental_levels/test_ldtk_1.tscn" id="1_b7e0s"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_kqq4b"]
+[ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="3_b7e0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmmgr"]
+size = Vector2(481, 225)
+
+[node name="test_level_with_megaman" type="Node2D"]
+
+[node name="test_ldtk_1" parent="." instance=ExtResource("1_b7e0s")]
+
+[node name="enemy_spawner" parent="test_ldtk_1/Level_0/Entities" index="0" node_paths=PackedStringArray("enemy_Preview")]
+enemy_to_spawn = "peterchy"
+enemy_Preview = NodePath("peterchy")
+
+[node name="@Node2D@86595" parent="test_ldtk_1/Level_0/Entities" index="1" node_paths=PackedStringArray("enemy_Preview")]
+enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
+
+[node name="@Node2D@86596" parent="test_ldtk_1/Level_0/Entities" index="2" node_paths=PackedStringArray("enemy_Preview")]
+enemy_to_spawn = "peterchy"
+enemy_Preview = NodePath("peterchy")
+
+[node name="@Node2D@86597" parent="test_ldtk_1/Level_0/Entities" index="3" node_paths=PackedStringArray("enemy_Preview")]
+enemy_to_spawn = "peterchy"
+enemy_Preview = NodePath("peterchy")
+
+[node name="megaman" parent="." instance=ExtResource("2_kqq4b")]
+position = Vector2(18, 160)
+
+[node name="allCameras" type="Node2D" parent="."]
+visible = false
+
+[node name="New Camera System Addon" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("3_b7e0s")
+zone_camera_2d = NodePath("@Camera2D@28371")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon"]
+position = Vector2(240.5, 112.5)
+shape = SubResource("RectangleShape2D_mmmgr")
+
+[editable path="test_ldtk_1"]
+[editable path="test_ldtk_1/Level_0"]

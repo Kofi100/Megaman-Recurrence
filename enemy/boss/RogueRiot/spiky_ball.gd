@@ -12,10 +12,10 @@ func Enter():
 func Exit():
 	release_spike_ball=false
 
-func Update(delta:float):
+func Update(_delta:float):
 	pass
 var release_spike_ball:bool=false
-func Physics_Update(delta:float):
+func Physics_Update(_delta:float):
 	#var spike_ball=preload("res://enemy/boss/rogue_riot_spike_ball.tscn")
 	if animated_sprite_2d.frame==4 and release_spike_ball==false:
 		var spike_ball=preload("res://enemy/boss/rogue_riot_spike_ball.tscn").instantiate()	

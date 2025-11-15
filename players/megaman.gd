@@ -81,7 +81,7 @@ var transition_velocity:Vector2
 
 func _ready():
 	playerCharacter = self
-	GlobalScript.connect("player_knockback", _on_knockback_signal)
+	GlobalSignalBus.connect("player_knockback", _on_knockback_signal)
 	#health
 	#key_dictionary.resize(9)
 	GlobalScript.lemons_on_screen_no = 0
@@ -393,8 +393,11 @@ func _physics_process(delta):
 	else:
 		MegamanAndItems.charge_effect(anim)
 	if Input.is_action_just_released("shoot"):
-		if (GlobalScript.playerhasbeenhit==true or GlobalScreenTransitionTimer.is_stopped()==false):
+		#GlobalScript.playerhasbeenhit
+		if (anim.animation=="stun_air" or GlobalScreenTransitionTimer.is_stopped()==false):
 			MegamanAndItems.charge_timer=0
+			print("Release buster while stunned or transitioning :on")
+	#if 
 	if MegamanAndItems.charge_timer==0:
 		if $all_sounds/charge.playing:
 			$all_sounds/charge.stop()
@@ -472,7 +475,8 @@ func _physics_process(delta):
 
 			if Input.is_action_just_released("jump") and velocity.y < 0:
 				velocity.y = 0
-
+			#if Input.is_action_pressed("dash") and is_on_floor():#anim.animation=="dash":
+				#anim.offset.y=3
 			if onrush == false:
 				
 				if GlobalScript.weapon_number == 0:
@@ -679,15 +683,15 @@ var knockback_friction = 300
 #var is_stunned = false
 var stun_duration = 0.5
 
-func apply_knockback(direction: int, force: float, vertical_force: float = 0):
+func apply_knockback(direction_apply: int, force: float, vertical_force: float = 0):
 	# direction: -1 for left, 1 for right
-	knockback_velocity.x = force * direction
+	knockback_velocity.x = force * direction_apply
 	knockback_velocity.y = vertical_force
 	print(name,": apply_knockback active")
 
 
-func _on_knockback_signal(direction, force, vertical_force):
-	apply_knockback(direction, force, vertical_force)
+func _on_knockback_signal(direction_apply, force, vertical_force):
+	apply_knockback(direction_apply, force, vertical_force)
 	anim.play("stun_air")
 
 func stun_temporarily(ground_stun_time:float=0.5):

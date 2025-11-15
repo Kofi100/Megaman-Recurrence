@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 	calculate_player_distance()
 	spawn_collectables()
 	hurtFlash($AnimatedSprite2D)
-	playerdamagevalue=3
+	playerdamagevalue=5
 	#print($Timers/hit_cooldown_timer.time_left)
 	#hitbox is enabled if timer is off and vice versa
 	#$hitbox.monitoring
@@ -18,10 +18,11 @@ func _physics_process(delta: float) -> void:
 	#print($AnimatedSprite2D.animation)
 	if not is_on_floor():
 		velocity.y+=get_gravity().y*delta
-	if distance_x<0:
-		$AnimatedSprite2D.flip_h=false
-	elif distance_x>=0:
-		$AnimatedSprite2D.flip_h=true
+	if is_on_floor():
+		if distance_x<0:
+			$AnimatedSprite2D.flip_h=false
+		elif distance_x>=0:
+			$AnimatedSprite2D.flip_h=true
 	move_and_slide()
 	#was meant to code for a longer-lasting flashing invincibility effect
 	#if hasBeenHurt:

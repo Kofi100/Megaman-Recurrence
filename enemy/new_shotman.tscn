@@ -77,6 +77,7 @@ position = Vector2(-0.333332, 0.333334)
 scale = Vector2(9.55, 7.38333)
 
 [node name="index" type="Label" parent="."]
+visible = false
 offset_left = -19.0
 offset_top = -23.6667
 offset_right = 53.0
@@ -84,5 +85,6 @@ offset_bottom = -0.666668
 scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("3_n6xx4")
 text = "index"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

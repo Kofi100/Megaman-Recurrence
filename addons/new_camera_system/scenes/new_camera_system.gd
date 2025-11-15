@@ -30,6 +30,9 @@ var limit_d = 0
 @export var allowed_transition_movement:Dictionary={
 	"left":true,"right":true,"up":true,"down":true
 }
+var camera
+var cached_last_shape: Shape2D #For lightweight 
+
 # Called when the node enters the scene tree for the first time.
 ## A custom made Area2D node that handles camera movement and limits using a Camera2D node and a CollisionShape2D node. Requires a GlobalTransitionTimer to work.
 
@@ -37,81 +40,55 @@ var limit_d = 0
 func _ready():
 	pass  # Replace with function body.
 	collision_limits_camera = get_node_or_null("CollisionShape2D")
-	zone_camera_2d = get_node_or_null("Camera2D")  #%Camera2D
-	#if zone_camera_2d==null:
-	#var new_camera=Camera2D.new()
-	#new_camera.name="New_camera"
-	#set_editable_instance(new_camera,true)
-	#add_child(new_camera)
-	#zone_camera_2d=get_node_or_null(new_camera)
-	#if collision_limits_camera==null:
-	#var new_collision_Shape_2d=CollisionShape2D.new()
-	#new_collision_Shape_2d.name="new_collision_Shape_2D_name"
-	#add_child(new_collision_Shape_2d)
-	#collision_limits_camera.get_node_or_null(new_collision_Shape_2d)
-	#print(name,"(custom camera node)-->zone_camera_2d:::",zone_camera_2d)
-
+	#zone_camera_2d = get_node_or_null("Camera2D")  #%Camera2D
+	
+	camera = Camera2D.new()
+	add_child(camera)
+	zone_camera_2d = camera
+	
+	if not area_entered.is_connected(_on_area_entered):
+		connect("area_entered", _on_area_entered)
+	
+	if collision_limits_camera and collision_limits_camera.shape:#.get_rect().size!=Vector2.ZERO:
+		#if not collision_limits_camera.shape.changed.is_connected(update_camera_limits):
+		collision_limits_camera.shape.changed.connect(update_camera_limits)
+		update_camera_limits()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 
-#func _enter_tree():
-#pass
-#
-#func _exit_tree():
-#pass
-#@export var timer_exists:bool
-func _process(delta):
-#	set_editor_description("")
-
-	#print(get_class())
-	if not area_entered.is_connected(_on_area_entered):
-		connect("area_entered", _on_area_entered)
-	if zone_camera_2d == null:
-		zone_camera_2d = get_node_or_null("Camera2D")
-		#if no camera has been assigned yet,create a new local one
-		#and add it to this node
-		#also make zone_Camera_2d be this new camera2D node
-		if zone_camera_2d == null:
-			var camera = Camera2D.new()
-			add_child(camera)
-			camera.global_position = global_position
-			zone_camera_2d = camera
-	if collision_limits_camera == null:
-		collision_limits_camera = get_node_or_null("CollisionShape2D")
-
+func _enter_tree():
+	pass
 	if GlobalTimerChecker == null:
 		timer_exists = false
 		GlobalTimerChecker = GlobalScreenTransitionTimer  #get_tree().current_scene.get_node_or_null("Transition_Timer")#GlobalScreenTransitionTimer
 	else:
 		timer_exists = true
-	if is_inside_tree():
-		#set_editable_instance(self,true)
-		time_offset += 1 * delta
-		#print(int(time_offset))
-		#if fmod(time_offset,2)>0 and fmod(time_offset,2)<0.1:# int(time_offset)%2==1:#fmod(time_offset,1)==1:
-		##push_warning("new camera system node: time_offset in operation")
-		#
-		#notify_property_list_changed() #updates inspector and editor
-		if zone_camera_2d != null:
-			zone_camera_2d.notify_property_list_changed()
 
-	if collision_limits_camera != null:
-		var pos_x = collision_limits_camera.global_position.x
-		var pos_y = collision_limits_camera.global_position.y
-		var size_l = collision_limits_camera.shape.get_rect().size.x
-		var size_h = collision_limits_camera.shape.get_rect().size.y
-		limit_l = pos_x - (size_l / 2)
-		limit_r = pos_x + (size_l / 2)
-		limit_u = pos_y - (size_h / 2)
-		limit_d = pos_y + (size_h / 2)
-		#zone_camera_2d.limit_left=limit_l
-		if zone_camera_2d != null:
-			zone_camera_2d.set("limit_left", limit_l)
-			zone_camera_2d.set("limit_right", limit_r)
 
-			zone_camera_2d.limit_top = limit_u
-			zone_camera_2d.limit_bottom = limit_d
+func _process(delta):
+	if collision_limits_camera == null:
+		collision_limits_camera = get_node_or_null("CollisionShape2D")
+		return
+	
+	#if collision_limits_camera and collision_limits_camera.shape:
+		#if not collision_limits_camera.shape.changed.is_connected(update_camera_limits):
+			#collision_limits_camera.shape.changed.connect(update_camera_limits)
+			#
+	var shape = collision_limits_camera.shape
+	# Shape was added OR changed OR replaced
+	if shape != cached_last_shape:
+		# disconnect previous shape
+		if cached_last_shape and cached_last_shape.changed.is_connected(update_camera_limits):
+			cached_last_shape.changed.disconnect(update_camera_limits)
+
+		# connect new shape
+		if shape and not shape.changed.is_connected(update_camera_limits):
+			shape.changed.connect(update_camera_limits)
+
+		cached_last_shape = shape
+	#if collision_limits_camera != null:
+		
 
 	if no_back_track_area == null:
 		no_back_track_area = get_node_or_null("StaticBody2D")
@@ -127,6 +104,32 @@ func _process(delta):
 			else:
 				no_back_track_area.set_collision_layer_value(1, false)
 
+func update_camera_limits():
+	if collision_limits_camera.shape.get_rect().size==Vector2.ZERO:
+		return
+	#print("Update camera limits:Active")
+	var pos_x = collision_limits_camera.global_position.x
+	var pos_y = collision_limits_camera.global_position.y
+	var size_l = collision_limits_camera.shape.get_rect().size.x
+	var size_h = collision_limits_camera.shape.get_rect().size.y
+	limit_l = pos_x - (size_l / 2)
+	limit_r = pos_x + (size_l / 2)
+	limit_u = pos_y - (size_h / 2)
+	limit_d = pos_y + (size_h / 2)
+	#zone_camera_2d.limit_left=limit_l
+	if zone_camera_2d != null:
+		
+		#zone_camera_2d.set("limit_left", limit_l)#slower than setting the limits directly.
+		#zone_camera_2d.set("limit_right", limit_r)
+		zone_camera_2d.limit_left=limit_l
+		zone_camera_2d.limit_right=limit_r
+		zone_camera_2d.limit_top = limit_u
+		zone_camera_2d.limit_bottom = limit_d
+	
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		print("cchnaged")
 
 func _on_area_entered(area):
 	if area.is_in_group("player_constants_checker_area2d"):  #and area.get_parent().player_ready==true
@@ -140,7 +143,7 @@ func _on_area_entered(area):
 			player.allowed_transition_movement=allowed_transition_movement
 			#print([player.allowed_transition_movement==allowed_transition_movement])
 			#print(pl)
-		print(name, ": Player entered me.")
+		#print(name, ": Player entered me.")
 		#await get_tree().create_timer(.1).timeout
 		if player_camera != null:
 			zone_camera_2d.set("zone_camera_2d.limit_right", limit_r)
@@ -174,7 +177,7 @@ func _on_area_entered(area):
 
 
 func switch_camera(main_camera: Camera2D, camera_to_switch: Camera2D):
-	print("New Camera System: Switching cam to :", name)
+	#print("New Camera System: Switching cam to :", name)
 	main_camera.limit_left = camera_to_switch.limit_left
 	main_camera.limit_right = camera_to_switch.limit_right
 	main_camera.limit_top = camera_to_switch.limit_top

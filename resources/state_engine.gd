@@ -1,5 +1,6 @@
 extends Node
 @export var initial_state: State
+@export var show_debugging_info:bool=false
 var current_state: State
 #var new_incoming_state:State
 var states: Dictionary = {}
@@ -14,7 +15,8 @@ func _ready():
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state
-		print("current state:", current_state)
+		if show_debugging_info:
+			print("current state:", current_state)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,4 +41,5 @@ func transitioning_states(state, new_incoming_state):
 		current_state.Exit()
 	new_state.Enter()
 	current_state = new_state
-	print("current state:", current_state)
+	if show_debugging_info:
+		print("current state:", current_state)

@@ -6,7 +6,7 @@ class_name AdjustableCollisionShape2D
 @export var sizeBy16px_Height: float = 1
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not shape:
 		shape = RectangleShape2D.new()
 	if shape:

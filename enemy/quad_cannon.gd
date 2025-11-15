@@ -75,7 +75,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 #var playerAround
-func _on_detection_area_area_entered(area: Area2D) -> void:
+func _on_detection_area_area_entered(_area: Area2D) -> void:
 	#if area.is_in_group("player_constants_checker_area2d"):
 		#$shoot_Timer.start()
 		#$detectionArea/AdjustableCollisionShape2D.disabled=true

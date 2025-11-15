@@ -4,4 +4,4 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	velocity=Vector2(0,70)
-	var collision=move_and_collide(velocity*delta)
+	var _collision=move_and_collide(velocity*delta)

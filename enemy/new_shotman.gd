@@ -16,7 +16,7 @@ func _ready():
 
 func _physics_process(delta):
 	animated_sprite_2d.play("default")
-	$index.text=str(index)
+	#$index.text=str(index)
 	spawn_collectables()
 	# Add the gravity.
 	if not is_on_floor():

@@ -19,6 +19,10 @@ region = Rect2(32, 0, 32, 27)
 atlas = ExtResource("1_m1gs1")
 region = Rect2(0, 0, 32, 27)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs26c"]
+atlas = ExtResource("1_m1gs1")
+region = Rect2(128, 54, 32, 27)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0ve8"]
 atlas = ExtResource("1_m1gs1")
 region = Rect2(64, 54, 32, 27)
@@ -26,10 +30,6 @@ region = Rect2(64, 54, 32, 27)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvq6c"]
 atlas = ExtResource("1_m1gs1")
 region = Rect2(96, 54, 32, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fs26c"]
-atlas = ExtResource("1_m1gs1")
-region = Rect2(128, 54, 32, 27)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o78tc"]
 animations = [{
@@ -51,12 +51,6 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l0ve8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yvq6c")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fs26c")
 }],
@@ -98,3 +92,4 @@ script = ExtResource("1_l0ve8")
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_o78tc")
 animation = &"silly_bed_entrance"
+frame_progress = 0.939076

@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="1_wufr1"]
 
 [node name="SFXGroup" type="AudioStreamPlayer"]
+bus = &"SFX"
 script = ExtResource("1_wufr1")

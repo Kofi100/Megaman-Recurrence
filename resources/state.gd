@@ -1,5 +1,6 @@
 extends Node
 class_name State
+@warning_ignore("unused_signal")
 signal transition
 
 # Called when the node enters the scene tree for the first time.

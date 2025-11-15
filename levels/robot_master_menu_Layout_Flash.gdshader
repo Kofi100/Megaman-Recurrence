@@ -16,7 +16,7 @@ void fragment() {
 		COLOR=mix(color,vec4(1.0,1.0,1.0,1.0),blink);
 		//COLOR=vec4(1,1,1,1);
 		//|| color==blueColorSample
-		
+
 	}
 	//if(distance(color,blueColorSample)<=0.1 && startBlinking==true){
 		//float blink=(sin(TIME*25.0)+1.0)/2.0;

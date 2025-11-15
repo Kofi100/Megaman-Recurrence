@@ -66,8 +66,6 @@ var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "
 }
 
 var SAVEFILE_PATHS:Array[String] = ["user://savefile1.txt", "user://savefile2.txt", "user://savefile3.txt", "user://savefile4.txt", "user://savefile5.txt"]
-signal player_knockback(direction, force, vertical_force)
-signal trigger_camera_shake(intensity,duration)
 
 func _ready():
 	process_mode=Node.PROCESS_MODE_ALWAYS
