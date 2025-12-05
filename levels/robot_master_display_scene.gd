@@ -25,11 +25,20 @@ func _ready():
 			tween.connect("finished",triggerNameEffect)
 			$stuffToMakeDisappear/nameOfRobotMaster.text="SHADOWMAN"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	match robotMaster:
-		1:
-			pass
-			
+var previous_visible_char_count := -1
+
+func _process(delta):
+	var current_visible = $stuffToMakeDisappear/nameOfRobotMaster.visible_characters
+	
+	if previous_visible_char_count != current_visible:
+		#Logger.debug(name, "Visible chars changed: %s -> %s" % [previous_visible_char_count, current_visible])
+		
+		# Play sound when revealing new characters (not when hiding or resetting)
+		if current_visible > 0 and current_visible > previous_visible_char_count:
+			$SFX.play()
+		
+		previous_visible_char_count = current_visible
+	
 
 
 func _on_life_timer_timeout():

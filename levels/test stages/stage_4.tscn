@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://cqi6bkstebj1g"]
+[gd_scene load_steps=82 format=4 uid="uid://cqi6bkstebj1g"]
 
 [ext_resource type="Script" uid="uid://c5qbux1niteby" path="res://levels/test stages/stage_4.gd" id="1_c7otw"]
 [ext_resource type="Texture2D" uid="uid://dtyasmoomxvhh" path="res://assets/sprites/tilesets/test_stages/pipeline_tilemap.png" id="1_mhear"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cuy283xpiwbka" path="res://assets/sprites/tilesets/test_stages/pipeline_factory_background3.5.png" id="10_31jsr"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="11_y5hwf"]
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="12_ygi3p"]
+[ext_resource type="Script" uid="uid://bmwgg1qx1b8mm" path="res://resources/adjustable_collision_shape_2d.gd" id="15_417rf"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="15_rl4ql"]
 [ext_resource type="Script" uid="uid://b175n3wljl706" path="res://levels/level_mechanics/new_camera_system.gd" id="15_xd2nn"]
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="18_ukv8f"]
@@ -174,6 +175,9 @@ height = 12.0
 radius = 2.58545
 height = 12.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0m3b"]
+size = Vector2(3.2, 3.2)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skten"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxrrg"]
@@ -187,6 +191,9 @@ size = Vector2(20, 8)
 size = Vector2(20, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uek20"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpc8d"]
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpsku"]
 size = Vector2(16, 160)
@@ -205,6 +212,9 @@ size = Vector2(14, 144)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur6y8"]
 size = Vector2(16.0002, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xijb7"]
+size = Vector2(16, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pspai"]
 size = Vector2(2557, 233)
@@ -347,6 +357,14 @@ shape = SubResource("CapsuleShape2D_diwk2")
 position = Vector2(4424, -992)
 shape = SubResource("CapsuleShape2D_ni4fe")
 
+[node name="AdjustableCollisionShape2D" type="CollisionShape2D" parent="ladder/ontop_platforms" index="6"]
+position = Vector2(4280, -352)
+shape = SubResource("RectangleShape2D_u0m3b")
+script = ExtResource("15_417rf")
+sizeBy16px_Width = 0.2
+sizeBy16px_Height = 0.2
+metadata/_custom_type_script = "uid://bmwgg1qx1b8mm"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ladder/top_platforms" index="0"]
 position = Vector2(3000, -22)
 shape = SubResource("RectangleShape2D_skten")
@@ -371,6 +389,12 @@ shape = SubResource("RectangleShape2D_7xxjo")
 position = Vector2(4424, -982)
 shape = SubResource("RectangleShape2D_uek20")
 
+[node name="AdjustableCollisionShape2D" type="CollisionShape2D" parent="ladder/top_platforms" index="6"]
+position = Vector2(4280, -344)
+shape = SubResource("RectangleShape2D_tpc8d")
+script = ExtResource("15_417rf")
+metadata/_custom_type_script = "uid://bmwgg1qx1b8mm"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ladder"]
 position = Vector2(3000, 48)
 shape = SubResource("RectangleShape2D_rpsku")
@@ -394,6 +418,13 @@ shape = SubResource("RectangleShape2D_4p6qq")
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder"]
 position = Vector2(4424, -944)
 shape = SubResource("RectangleShape2D_ur6y8")
+
+[node name="AdjustableCollisionShape2D" type="CollisionShape2D" parent="ladder"]
+position = Vector2(4280, -328)
+shape = SubResource("RectangleShape2D_xijb7")
+script = ExtResource("15_417rf")
+sizeBy16px_Height = 3.0
+metadata/_custom_type_script = "uid://bmwgg1qx1b8mm"
 
 [node name="all_camera_systems" type="Node2D" parent="."]
 visible = false
@@ -711,115 +742,142 @@ limit_bottom = -959
 
 [node name="all_enemies" type="Node2D" parent="."]
 
-[node name="enemy_spawner" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(600, 150)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner2" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner2" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(947, 135)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner3" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner3" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(1144, 32)
 enemy_to_spawn = "homer"
+enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner4" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner4" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(609, 396)
 enemy_to_spawn = "met"
+enemy_Preview = NodePath("met")
 
-[node name="enemy_spawner5" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner5" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(1127, -96)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner6" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner6" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(1463, 150)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner7" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner7" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(1496, 64)
 enemy_to_spawn = "homer"
+enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner8" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner8" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(793, 80)
 enemy_to_spawn = "homer"
+enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner9" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner9" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(2651, 287)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner10" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner10" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(2770, 144)
 enemy_to_spawn = "burner_joe"
+enemy_Preview = NodePath("sniper_joe_variant_fire")
 
-[node name="enemy_spawner11" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner11" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(3000, 150)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner12" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner12" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(3655, -192)
 enemy_to_spawn = "homer"
+enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner27" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner27" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(3279, -25)
 enemy_to_spawn = "spikyoall"
 enemyVariant = "fire"
+enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner13" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner13" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(4238, -362)
 enemy_to_spawn = "spikyoall"
 enemyVariant = "fire"
+enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner14" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner14" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(2668, 170)
 enemy_to_spawn = "burner_joe"
+enemy_Preview = NodePath("sniper_joe_variant_fire")
 
-[node name="enemy_spawner15" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner15" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(4216, -280)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner26" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner26" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(2872.98, 240.307)
 enemy_to_spawn = "upndown"
+enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner16" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner16" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(3999, -158)
 enemy_to_spawn = "homer"
+enemy_Preview = NodePath("homer")
 
-[node name="enemy_spawner17" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner17" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(3744, -57)
 enemy_to_spawn = "burner_joe"
+enemy_Preview = NodePath("sniper_joe_variant_fire")
 
-[node name="enemy_spawner18" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner18" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(1092, 134)
 enemy_to_spawn = "sniper_joe"
+enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner19" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner19" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(1720, 199)
 enemy_to_spawn = "burner_joe"
+enemy_Preview = NodePath("sniper_joe_variant_fire")
 
-[node name="enemy_spawner22" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner22" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(2464, 240)
 enemy_to_spawn = "upndown"
+enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner21" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner21" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(2376, 240)
 enemy_to_spawn = "upndown"
+enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner20" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner20" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(2056, 240.836)
 enemy_to_spawn = "upndown"
+enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner23" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner23" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(4412, -498)
 enemy_to_spawn = "upndown"
+enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner24" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner24" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(4527, -498)
 enemy_to_spawn = "upndown"
+enemy_Preview = NodePath("upndown")
 
-[node name="enemy_spawner25" parent="all_enemies" instance=ExtResource("7_3vmgc")]
+[node name="enemy_spawner25" parent="all_enemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("7_3vmgc")]
 position = Vector2(4480, -498)
 enemy_to_spawn = "upndown"
+enemy_Preview = NodePath("upndown")
 
 [node name="all_deathzones" type="Node2D" parent="."]
 

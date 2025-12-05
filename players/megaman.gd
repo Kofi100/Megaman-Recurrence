@@ -59,12 +59,15 @@ var key_dictionary: Array
 var JBufferActive: bool = false
 var jumpAvble: bool = true
 #var jump_buffer_timer
-@onready var jump_buffer_timer: Timer = $jump_buffer_timer
+@onready var jump_buffer_timer: Timer = $all_timers/jump_buffer_timer
 
 var coyoteJumpTime
-@onready var trigger_leave_timer = $trigger_leave_timer
+@onready var trigger_leave_timer = $all_timers/trigger_leave_timer
 #timer deterimining how long stays on screen before despawning
-@onready var leave_timer = $leave_timer
+@onready var leave_timer = $all_timers/leave_timer
+@onready var buster_cooldown_timer: Timer = $all_timers/buster_cooldown_timer
+@onready var jump_timer: Timer = $all_timers/jump_Timer
+
 var onIce: bool = false
 var inWater:bool=false
 var justLeftIce: bool = false
@@ -102,20 +105,21 @@ func _ready():
 #		restart_scene=false
 #region Timers Section
 	GlobalScreenTransitionTimer.stop()
-
-	#jump_buffer_timer = Timer.new()
-	coyoteJumpTime = Timer.new()
-	#jump_buffer_timer.wait_time = .1
-	coyoteJumpTime.wait_time = 0.05
-	#get_parent().add_child.call_deferred(jump_buffer_timer)
-	get_parent().add_child.call_deferred(coyoteJumpTime)
+#having suspicisions that this coud be the cause of the game's eventual slowdowns 
+#at 20mins+ gameplay time
+	##jump_buffer_timer = Timer.new()
+	#coyoteJumpTime = Timer.new()
+	##jump_buffer_timer.wait_time = .1
+	#coyoteJumpTime.wait_time = 0.05
+	##get_parent().add_child.call_deferred(jump_buffer_timer)
+	#get_parent().add_child.call_deferred(coyoteJumpTime)
 #endregion
 
 	if GlobalScript.restarted_level == false:
 		#GlobalScript.score = 0
 		GlobalScript.reset_level_timer()
 		GlobalScript.start_level_timer()
-		GlobalScript.save_savepoint_data()
+		#GlobalScript.save_savepoint_data()
 	elif GlobalScript.restarted_level == true:
 		GlobalScript.start_level_timer()
 		GlobalScript.load_savepoint_data()
@@ -131,6 +135,7 @@ func _ready():
 	#MegamanAndItems.weaponEnergy.fill()
 	GlobalScript.health = GlobalScript.max_health  #health setting
 	$weapon_display.visible = false
+	$stun_effects.visible=false
 	$player_camera.position_smoothing_enabled = false
 	$hitbox/CollisionShape2D.disabled = true
 	GlobalScript.boss=null
@@ -148,12 +153,12 @@ func debug_print_custom(name_of_node, var_name_to_be_displayed, variable_name):
 
 
 func leaving(delta):
-	if $leave_timer.time_left<$leave_timer.wait_time/2:
+	if leave_timer.time_left<leave_timer.wait_time/2:
 		stop = true
 	#for i in get_tree().current_scene.get_children(true):
 		#if i.is_class("AudioStreamPlayer") or i.is_class("AudioStreamPlayer2D"):
 			#i.stop()
-	if $leave_timer.time_left <= 0:
+	if leave_timer.time_left <= 0:
 		#velocity.y = 0
 		pass
 		if anim.animation != "spawn":
@@ -210,7 +215,7 @@ func _physics_process(delta):
 	GlobalScript.player = self
 	deltaAlt=delta
 	if playLeaveBGM==false:
-			$leave_timer.wait_time=.2
+			leave_timer.wait_time=.2
 	#print($leave_timer.wait_time)
 	if leave_bool == true:
 		if has_played_victory_sound == false and playLeaveBGM==true:
@@ -222,9 +227,9 @@ func _physics_process(delta):
 		if  enabledLeavingCode:
 			leaving(delta)
 			
-	if $reset_cam_entry.time_left > 0:
+	if $all_timers/reset_cam_entry.time_left > 0:
 		$player_constants_checker_area2d/CollisionShape2D.disabled = true
-	elif $reset_cam_entry.time_left <= 0:
+	elif $all_timers/reset_cam_entry.time_left <= 0:
 		$player_constants_checker_area2d/CollisionShape2D.disabled = false
 	#print($player_constants_checker_area2d/CollisionShape2D.disabled)
 #region Debug Zone
@@ -250,8 +255,8 @@ func _physics_process(delta):
 	if not player_ready:
 		GlobalScreenTransitionTimer.stop()
 	#if not GlobalScript.buster_rapid_shot:
-	if GlobalScript.lemons_on_screen_no >= 3 and $buster_cooldown_timer.time_left <= 0:
-		$buster_cooldown_timer.start()
+	if GlobalScript.lemons_on_screen_no >= 3 and buster_cooldown_timer.time_left <= 0:
+		buster_cooldown_timer.start()
 	#else:
 		#GlobalScript.lemons_on_screen_no=0
 	#conveyor_push=30000
@@ -396,7 +401,8 @@ func _physics_process(delta):
 		#GlobalScript.playerhasbeenhit
 		if (anim.animation=="stun_air" or GlobalScreenTransitionTimer.is_stopped()==false):
 			MegamanAndItems.charge_timer=0
-			print("Release buster while stunned or transitioning :on")
+			#print("Release buster while stunned or transitioning :on")
+			Logger.debug(name,"Release buster while stunned or transitioning :on")
 	#if 
 	if MegamanAndItems.charge_timer==0:
 		if $all_sounds/charge.playing:
@@ -434,11 +440,11 @@ func _physics_process(delta):
 		stun(delta)
 	
 		if GlobalScript.playerhasbeenhit and !is_dead:
-			if $hit_blink_timer.is_stopped():
-				$hit_blink_timer.start()
+			if $all_timers/hit_blink_timer.is_stopped():
+				$all_timers/hit_blink_timer.start()
 		else:
-			if not $hit_blink_timer.is_stopped():
-				$hit_blink_timer.stop()
+			if not $all_timers/hit_blink_timer.is_stopped():
+				$all_timers/hit_blink_timer.stop()
 				anim.visible=true
 		if player_ready and stop == false:
 			checkIfStuck()
@@ -480,7 +486,7 @@ func _physics_process(delta):
 			if onrush == false:
 				
 				if GlobalScript.weapon_number == 0:
-					if $buster_cooldown_timer.time_left <= 0:
+					if buster_cooldown_timer.time_left <= 0:
 						shoot_and_charge()
 						
 				else:
@@ -527,7 +533,7 @@ func _physics_process(delta):
 						velocity.y = 0
 				move_and_slide()
 				if GlobalScript.health <= 0:
-					$restart_timer.start(3.5)
+					$all_timers/restart_timer.start(3.5)
 					is_dead = true
 					#max_lives=9 stands for infinite lives
 					if GlobalScript.max_lives<9:
@@ -540,7 +546,7 @@ func _physics_process(delta):
 			elif onrush == true:
 				velocity.x = 0
 				MegamanAndItems.charge_timer = clampi(MegamanAndItems.charge_timer, 0, 5)
-				if $buster_cooldown_timer.time_left <= 0:
+				if buster_cooldown_timer.time_left <= 0:
 					shoot_and_charge()
 				MegamanAndItems.charge_effect(anim)
 				if $anim.animation == "shoot_idle":
@@ -573,7 +579,7 @@ func _physics_process(delta):
 		#anim.play("stun_air")
 		GlobalScript.restarted_level = true
 		GlobalScript.pause_level_timer()
-		$hit_blink_timer.stop()
+		$all_timers/hit_blink_timer.stop()
 		anim.visible = false
 		$hitbox/CollisionShape2D.disabled = true
 		$CollisionShape2D.disabled = true
@@ -652,32 +658,112 @@ func offsetAnimationFunction():
 				$anim.offset.y = 0
 			#"stun":
 				#$anim.offset.y=3
-	#else:
-	#$anim.offset.x = 0
-	#$anim.offset.y = 0
-	#print(anim.offset.y)
+var stun_effect_created:bool=false
+var stun_effect:Node2D
 
+#func stun(_delta):
+	#if anim.animation == "stun_air" and GlobalScript.health > 0:
+		##if not $stun_effects/dusts/dust.is_playing() and stop==false:
+			##$stun_effects/dusts/dust.play("dust")
+			##$stun_effects/dusts/dust2.play("dust")
+			##$stun_effects/dusts/dust3.play("dust")
+		#
+		#if not stun_effect_created:
+			#stun_effect=preload("res://miscellenaous/effects/stun_effect.tscn").instantiate()
+			#get_tree().current_scene.add_child(stun_effect)
+			#stun_effect.z_index=-1
+			#stun_effect.global_position=global_position
+			#
+			#
+			#for dust_position in $stun_effects_positions.get_children():
+				#var dust=preload("res://miscellenaous/effects/stun_dust.tscn").instantiate()
+				#get_tree().current_scene.add_child(dust)
+				#dust.z_index=-1
+				#dust.global_position=dust_position.global_position
+			#
+			#stun_effect_created=true
+		#disable_input = true
+		#is_stunned = true
+		#stop = true
+		##$stun_effects.visible=true#/MegamanStunEffects
+		##$stun_effects/dusts.visible=true
+#
+		##if anim.flip_h == false:
+			##velocity = Vector2(stun_speed, 0) * delta
+		##elif anim.flip_h == true:
+			##velocity = Vector2(-stun_speed, 0) * delta
+		#velocity.x = knockback_velocity.x +(stun_speed if anim.flip_h==false else -stun_speed)
+		##velocity.x = knockback_velocity.x + (is_stunned ? stun_speed * (anim.flip_h ? -1 : 1) : 0)
+		##if velocity.y<0:
+			##velocity.y=0
+		#if not is_on_floor():
+			#velocity.y+=gravity*_delta 
+		#else:
+			#velocity.y=0
+		##velocity.y = knockback_velocity.y + (80 if !is_on_floor() else 0)
+#
+		##if not is_on_floor():
+			##velocity.y=80#*delta#WIP 
+		#move_and_slide()
+	#elif GlobalScript.health <= 0:
+		#stop = false
+	#if anim.animation != "stun_air" or GlobalScript.health <=0:
+		##$stun_effects.visible=false
+		#stun_effect_created=false
+		#if stun_effect:
+			#stun_effect.queue_free()
+		#
 
 func stun(_delta):
 	if anim.animation == "stun_air" and GlobalScript.health > 0:
+		#if not $stun_effects/dusts/dust.is_playing() and stop==false:
+			#$stun_effects/dusts/dust.play("dust")
+			#$stun_effects/dusts/dust2.play("dust")
+			#$stun_effects/dusts/dust3.play("dust")
+		$stun_effects.visible=true
+		if not stun_effect_created:
+			#stun_effect=preload("res://miscellenaous/effects/stun_effect.tscn").instantiate()
+			#get_tree().current_scene.add_child(stun_effect)
+			#stun_effect.z_index=-1
+			#stun_effect.global_position=global_position
+			
+			
+			for dust_position in $stun_effects_positions.get_children():
+				var dust=preload("res://miscellenaous/effects/stun_dust.tscn").instantiate()
+				get_tree().current_scene.add_child(dust)
+				#dust.z_index=-1
+				dust.global_position=dust_position.global_position
+			
+			stun_effect_created=true
 		disable_input = true
 		is_stunned = true
 		stop = true
+		#$stun_effects.visible=true#/MegamanStunEffects
+		#$stun_effects/dusts.visible=true
+
 		#if anim.flip_h == false:
 			#velocity = Vector2(stun_speed, 0) * delta
 		#elif anim.flip_h == true:
 			#velocity = Vector2(-stun_speed, 0) * delta
 		velocity.x = knockback_velocity.x +(stun_speed if anim.flip_h==false else -stun_speed)
 		#velocity.x = knockback_velocity.x + (is_stunned ? stun_speed * (anim.flip_h ? -1 : 1) : 0)
-		velocity.y = knockback_velocity.y + (80 if !is_on_floor() else 0)
+		if velocity.y<0:
+			velocity.y=0
+		if not is_on_floor():
+			velocity.y+=gravity*_delta 
+		#velocity.y = knockback_velocity.y + (80 if !is_on_floor() else 0)
 
 		#if not is_on_floor():
 			#velocity.y=80#*delta#WIP 
 		move_and_slide()
 	elif GlobalScript.health <= 0:
 		stop = false
-
-
+	if anim.animation != "stun_air": #or GlobalScript.health <=0:
+		$stun_effects.visible=false
+		stun_effect_created=false
+		if stun_effect:
+			stun_effect.queue_free()
+		
 var knockback_velocity = Vector2.ZERO
 var knockback_friction = 300
 #var is_stunned = false
@@ -731,13 +817,13 @@ func play_animations():
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 			if anim.animation != "stun_air":
 				if move_an_inch_checker >= 10:
-					if not is_dashing and $check_dash_released_timer.is_stopped():
+					if not is_dashing and $all_timers/check_dash_released_timer.is_stopped():
 						if anim.animation != "shoot_run" :
 							anim.play("run")
 						#prevents dash from playing when run is supposed to 
 						#after the dash timer runs out
 						elif  $dash/Timer.is_stopped() and anim.animation == "dash":
-							if $check_dash_released_timer.is_stopped():
+							if $all_timers/check_dash_released_timer.is_stopped():
 								anim.play("run")
 				
 				elif move_an_inch_checker < 10:
@@ -756,7 +842,7 @@ func play_animations():
 						#$jump_Timer.start()
 						#MegamanAndItems.charge_timer=0
 
-		elif Input.is_action_just_released("shoot") and $buster_cooldown_timer.time_left <= 0:
+		elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0:
 			if anim.animation != "stun_air":
 				if move_an_inch_checker >= 10:
 					if anim.animation != "shoot_run":
@@ -770,7 +856,7 @@ func play_animations():
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 			if $anim.animation != "shoot_in_air" and anim.animation != "stun_air" and anim.animation!="climb_transition":
 				$anim.play("jump")
-		elif Input.is_action_just_released("shoot") and $buster_cooldown_timer.time_left <= 0:
+		elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0:
 			if anim.animation != "shoot_in_air" and anim.animation != "stun_air":
 				$anim.play("shoot_in_air")
 
@@ -907,7 +993,7 @@ func dash_function(delta):
 			#anim.play("idle")
 	if Input.is_action_just_released("dash"):
 		#if $check_dash_released_timer.is_stopped(): 
-		$check_dash_released_timer.start()
+		$all_timers/check_dash_released_timer.start()
 		$dash/Timer.stop()
 		
 	#if not is_on_floor() and not $dash/Timer.is_stopped():
@@ -1256,7 +1342,9 @@ func _on_start_timer_timeout():
 	spawn_in_effect_instance.global_position.x = global_position.x
 	spawn_in_effect_instance.global_position.y = global_position.y - 500
 	get_parent().add_child(spawn_in_effect_instance)
-	if GlobalScript.restarted_level == false:  #if we are entering a new scene,save our starting point
+	#if we are entering a new scene,save our starting point
+	#might activate again if ejterign or restarting levels causes issues.
+	if GlobalScript.restarted_level == false:  
 		GlobalScript.save_savepoint_data()
 
 
@@ -1296,7 +1384,7 @@ func _on_leave_timer_timeout():
 	if $HUD/fade_out_effect/AnimationPlayer.current_animation != "fade_out":
 		#$fade_out_effect.visible=true
 		$HUD/fade_out_effect/AnimationPlayer.play("fade_out")
-		$trigger_leave_timer.start()
+		$all_timers/trigger_leave_timer.start()
 
 
 func _on_whistle_idle_trigger_timer_timeout():

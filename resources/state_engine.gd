@@ -16,7 +16,8 @@ func _ready():
 		initial_state.Enter()
 		current_state = initial_state
 		if show_debugging_info:
-			print("current state:", current_state)
+			#print("current state:", current_state)
+			Logger.debug(name,"current state:%s"  %current_state)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,4 +43,5 @@ func transitioning_states(state, new_incoming_state):
 	new_state.Enter()
 	current_state = new_state
 	if show_debugging_info:
-		print("current state:", current_state)
+		#print("current state:", current_state)
+		Logger.debug(name,"current state:%s"  %current_state)

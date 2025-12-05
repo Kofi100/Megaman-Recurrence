@@ -25,6 +25,7 @@ func Physics_Update(delta):
 	if shadowman and animatedSprite and stopTimer:
 		animatedSprite.play("Stop")
 		shadowman.velocity.x = 0
+		#shadowman.firstPhaseAttackNo
 		distance = GlobalScript.playerposx - shadowman.global_position.x
 		#if attackNo >= 3:
 		#attackNo = 0

@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhvn1ppw6wakq"]
+[gd_scene load_steps=12 format=3 uid="uid://dhvn1ppw6wakq"]
 
 [ext_resource type="Script" uid="uid://xmkv2n32gjv0" path="res://miscellenaous/effects/water_enter_exit_effect.gd" id="1_5uq74"]
 [ext_resource type="Texture2D" uid="uid://blnp6qmecg2kc" path="res://assets/sprites/miscelleaneous/waterSplash_MM6.png" id="1_kypos"]
+[ext_resource type="AudioStream" uid="uid://bkpqy3t6qhu4p" path="res://assets/sounds/Mega Man 6 water effect sound effect sfx(liekly).wav" id="3_idfpg"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="4_77bf1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5uq74"]
 atlas = ExtResource("1_kypos")
@@ -60,5 +62,10 @@ script = ExtResource("1_5uq74")
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_0l2ju")
 autoplay = "default"
+
+[node name="water_splash_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_idfpg")
+script = ExtResource("4_77bf1")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

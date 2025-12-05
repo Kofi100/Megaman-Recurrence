@@ -1,0 +1,149 @@
+[gd_scene load_steps=17 format=3 uid="uid://dypjhqrpp1o3c"]
+
+[ext_resource type="Texture2D" uid="uid://knfrweky2tsa" path="res://enemy/boss/flameman.png" id="1_4eo4n"]
+[ext_resource type="Script" uid="uid://ds0nk6nymxkyr" path="res://enemy/boss/flameman.gd" id="1_454oy"]
+[ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="2_454oy"]
+[ext_resource type="Script" uid="uid://ci8lmp5q6whc4" path="res://resources/state.gd" id="3_arju5"]
+[ext_resource type="Script" uid="uid://b55y3fov7o8y" path="res://enemy/boss/Flameman/intro.gd" id="4_arju5"]
+[ext_resource type="Script" uid="uid://o83ox4sfgta2" path="res://enemy/boss/Flameman/idle.gd" id="5_lys1i"]
+[ext_resource type="Script" uid="uid://cof5tndad78v7" path="res://enemy/boss/Flameman/attack_fire_throw.gd" id="7_ly2nb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly2nb"]
+atlas = ExtResource("1_4eo4n")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqf6k"]
+atlas = ExtResource("1_4eo4n")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e7ba"]
+atlas = ExtResource("1_4eo4n")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk7vv"]
+atlas = ExtResource("1_4eo4n")
+region = Rect2(0, 41, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcakj"]
+atlas = ExtResource("1_4eo4n")
+region = Rect2(40, 41, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyc3y"]
+atlas = ExtResource("1_4eo4n")
+region = Rect2(80, 41, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idjmy"]
+atlas = ExtResource("1_4eo4n")
+region = Rect2(0, 82, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ua0ok"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly2nb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqf6k")
+}],
+"loop": false,
+"name": &"flame_thrower",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly2nb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqf6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly2nb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e7ba")
+}],
+"loop": false,
+"name": &"intro",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk7vv")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcakj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyc3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idjmy")
+}],
+"loop": true,
+"name": &"pillar_attack",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lys1i"]
+size = Vector2(12, 25)
+
+[node name="flameman" type="CharacterBody2D"]
+script = ExtResource("1_454oy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ua0ok")
+animation = &"flame_thrower"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/sprites/enemies/bosses/flameman.ase"
+}
+
+[node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_454oy")]
+initial_state = NodePath("intro")
+
+[node name="intro" type="Node" parent="State Engine"]
+script = ExtResource("4_arju5")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
+[node name="idle" type="Node" parent="State Engine"]
+script = ExtResource("5_lys1i")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
+[node name="jump" type="Node" parent="State Engine"]
+script = ExtResource("3_arju5")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
+[node name="attack_fire_throw" type="Node" parent="State Engine"]
+script = ExtResource("7_ly2nb")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
+[node name="attack_fire_pillar" type="Node" parent="State Engine"]
+script = ExtResource("3_arju5")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
+[node name="timers" type="Node2D" parent="."]
+
+[node name="intro_timer" type="Timer" parent="timers"]
+
+[node name="fire_timing_timer" type="Timer" parent="timers"]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_lys1i")

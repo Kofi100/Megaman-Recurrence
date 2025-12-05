@@ -31,6 +31,7 @@ func Enter():
 	#else:
 	timer.start(1)  #.5
 	rogue_riot.activated = true
+	
 	#this resets current_Attack before the attack completes
 	#if current_attack==1:
 	#current_attack=0

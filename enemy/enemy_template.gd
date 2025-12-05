@@ -11,7 +11,7 @@ var index: int
 var distance_x: int = 0
 var distance_y: int = 0
 var timeLeft:float=0
-
+var was_spawned_from_enemy:bool=false
 @onready var flash_material=preload("res://resources/enemyFlash_EffectShader.gdshader")
 var hasBeenHurt:bool=false
 
@@ -77,7 +77,10 @@ func spawn_collectables():
 			if collectable != null:
 				var new_collectable = collectable.instantiate()
 				new_collectable.position = position
+				if "was_spawned_from_enemy" in new_collectable:
+					new_collectable.was_spawned_from_enemy=true
 				get_tree().current_scene.add_child(new_collectable)#adds collectable to current scene instead of parent of enemy to prevent unwanted spawns
+				
 				if new_collectable.delete_spawnable_timer != null:
 					#print('delete timer triggered')
 					new_collectable.delete_spawnable_timer.start()

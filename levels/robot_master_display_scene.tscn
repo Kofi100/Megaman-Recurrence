@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bao47g1gead57"]
+[gd_scene load_steps=19 format=3 uid="uid://bao47g1gead57"]
 
 [ext_resource type="Script" uid="uid://cp2qu3lbqhshr" path="res://levels/robot_master_display_scene.gd" id="1_g526k"]
 [ext_resource type="Texture2D" uid="uid://daj2m2ofp0qtq" path="res://assets/sprites/miscelleaneous/1KofiStageStart_Samuel_X7.png" id="2_rfmjh"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="8_q66bg"]
 [ext_resource type="AudioStream" uid="uid://dl0o128um1fw2" path="res://assets/music/Stage_Start.ogg" id="8_rfmjh"]
 [ext_resource type="PackedScene" uid="uid://bp3eh441rar14" path="res://miscellenaous/cutscene_material/slumberman_intro_animation.tscn" id="10_opt6r"]
+[ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="11_hb0gj"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="12_nqj2f"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4gw3"]
 particle_flag_disable_z = true
@@ -170,6 +172,11 @@ script = ExtResource("8_q66bg")
 
 [node name="slumberman_end_position" type="Marker2D" parent="."]
 position = Vector2(125, 112)
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_hb0gj")
+script = ExtResource("12_nqj2f")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
 [connection signal="timeout" from="lifeTimer" to="." method="_on_life_timer_timeout"]
 [connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]

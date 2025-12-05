@@ -17,7 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	print($megaman/leave_timer.time_left)
+	#print($megaman/leave_timer.time_left)
 	if GlobalScript.boss.health <= 0 and signalReceived == false:
 		GlobalScript.boss.set_physics_process(false)
 		BossDefeated.emit()

@@ -370,8 +370,8 @@ metadata/_custom_type_script = "uid://blqd77u3c7yor"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 0.00308247
 sprite_frames = SubResource("SpriteFrames_pmkgq")
-animation = &"stomp"
-frame = 2
+animation = &"laser"
+frame = 8
 frame_progress = 1.0
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]

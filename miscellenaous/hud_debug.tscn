@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://crjvedup64d32"]
+[gd_scene load_steps=4 format=3 uid="uid://crjvedup64d32"]
 
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_d44ei"]
 [ext_resource type="Script" uid="uid://dovbg5jv0oi24" path="res://miscellenaous/hud_debug.gd" id="1_r0tjs"]
-[ext_resource type="Script" uid="uid://loc47houlhk5" path="res://miscellenaous/fps_15.gd" id="3_udj6r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0tjs"]
 
@@ -43,12 +42,14 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HFlowContainer" type="HFlowContainer" parent="debug_settings"]
+[node name="HFlowContainer" type="GridContainer" parent="debug_settings"]
 layout_mode = 0
-offset_top = -4.0
-offset_right = 376.0
-offset_bottom = 304.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 444.0
+offset_bottom = 294.0
 scale = Vector2(0.25, 0.25)
+columns = 2
 
 [node name="restart_level" type="Button" parent="debug_settings/HFlowContainer"]
 layout_mode = 2
@@ -70,7 +71,6 @@ custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = "fps 15"
-script = ExtResource("3_udj6r")
 
 [node name="fps30" type="Button" parent="debug_settings/HFlowContainer"]
 layout_mode = 2

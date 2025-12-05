@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=71 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" uid="uid://0j8k3bpxe6qj" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -9,7 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://eg51kkfoxodc" path="res://players/megaman_sprites_with_normal_map_quotelighting.tres" id="6_6oq1v"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="6_hjfwy"]
 [ext_resource type="AudioStream" uid="uid://crijrqyswqhij" path="res://assets/sounds/hurt.wav" id="6_n1lyq"]
+[ext_resource type="PackedScene" uid="uid://conlwmaol28fi" path="res://miscellenaous/effects/stun_effect.tscn" id="6_tckas"]
 [ext_resource type="AudioStream" uid="uid://d1n3khoiibs67" path="res://assets/sounds/shoot.wav" id="7_im07x"]
+[ext_resource type="Texture2D" uid="uid://bsu7yb447082q" path="res://assets/sprites/miscelleaneous/dash_effects.png" id="7_lf778"]
+[ext_resource type="PackedScene" uid="uid://dmg6i2meeiipq" path="res://miscellenaous/effects/stun_dust.tscn" id="7_tckas"]
 [ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="8_d6231"]
 [ext_resource type="AudioStream" uid="uid://dgrixbrecs045" path="res://assets/sounds/chargeeffect2.wav" id="10_2l2k5"]
 [ext_resource type="AudioStream" uid="uid://p80uexe8652b" path="res://assets/sounds/dead.wav" id="10_qghej"]
@@ -21,6 +24,38 @@
 [ext_resource type="Texture2D" uid="uid://b2r14vjnecd0c" path="res://assets/sprites/miscelleaneous/1KofiWeaponIcons_Samuel_X7.png" id="16_2l2k5"]
 [ext_resource type="PackedScene" uid="uid://crjvedup64d32" path="res://miscellenaous/hud_debug.tscn" id="19_2t5wp"]
 [ext_resource type="PackedScene" uid="uid://c2f76ripo2nyb" path="res://players/player_effects_all_time.tscn" id="20_sprfd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tckas"]
+atlas = ExtResource("7_lf778")
+region = Rect2(0, 0, 6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gksnp"]
+atlas = ExtResource("7_lf778")
+region = Rect2(6, 0, 6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyrah"]
+atlas = ExtResource("7_lf778")
+region = Rect2(12, 0, 6, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fedgr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tckas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gksnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyrah")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dust",
+"speed": 15.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
 shader = ExtResource("4_rtyrl")
@@ -467,6 +502,44 @@ position_smoothing_speed = 4.0
 editor_draw_limits = true
 script = ExtResource("5_gw1ah")
 
+[node name="stun_effects" type="Node2D" parent="."]
+
+[node name="MegamanStunEffects" parent="stun_effects" instance=ExtResource("6_tckas")]
+position = Vector2(0, 2)
+
+[node name="dusts" type="Node2D" parent="stun_effects"]
+visible = false
+
+[node name="dust" parent="stun_effects/dusts" instance=ExtResource("7_tckas")]
+visible = false
+position = Vector2(-15, -4)
+
+[node name="dust2" type="AnimatedSprite2D" parent="stun_effects/dusts"]
+visible = false
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_fedgr")
+animation = &"dust"
+
+[node name="dust3" type="AnimatedSprite2D" parent="stun_effects/dusts"]
+visible = false
+position = Vector2(14, -4)
+sprite_frames = SubResource("SpriteFrames_fedgr")
+animation = &"dust"
+
+[node name="stun_effects_positions" type="Node2D" parent="."]
+
+[node name="position1" type="Marker2D" parent="stun_effects_positions"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-16, -3)
+
+[node name="position2" type="Marker2D" parent="stun_effects_positions"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(0, -11)
+
+[node name="position3" type="Marker2D" parent="stun_effects_positions"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(13, -3)
+
 [node name="anim" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
@@ -604,10 +677,50 @@ stream = ExtResource("16_2ctiv")
 script = ExtResource("8_d6231")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
-[node name="restart_timer" type="Timer" parent="."]
+[node name="all_timers" type="Node2D" parent="."]
 
-[node name="buster_cooldown_timer" type="Timer" parent="."]
+[node name="leave_timer" type="Timer" parent="all_timers"]
+wait_time = 8.0
+one_shot = true
+
+[node name="trigger_leave_timer" type="Timer" parent="all_timers"]
+wait_time = 3.5
+one_shot = true
+
+[node name="reset_cam_entry" type="Timer" parent="all_timers"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="whistle_idle_trigger_timer" type="Timer" parent="all_timers"]
+wait_time = 30.0
+one_shot = true
+
+[node name="wasOnIceButOnDiffFloorNowTimer" type="Timer" parent="all_timers"]
+one_shot = true
+
+[node name="hit_blink_timer" type="Timer" parent="all_timers"]
+wait_time = 0.1
+
+[node name="jump_buffer_timer" type="Timer" parent="all_timers"]
+wait_time = 0.1
+one_shot = true
+
+[node name="check_dash_released_timer" type="Timer" parent="all_timers"]
+wait_time = 0.1
+one_shot = true
+
+[node name="restart_timer" type="Timer" parent="all_timers"]
+
+[node name="buster_cooldown_timer" type="Timer" parent="all_timers"]
 wait_time = 0.05
+one_shot = true
+
+[node name="timer_switch_cameras" type="Timer" parent="all_timers"]
+one_shot = true
+
+[node name="jump_Timer" type="Timer" parent="all_timers"]
+wait_time = 0.02
 one_shot = true
 
 [node name="weapon_display" type="Sprite2D" parent="."]
@@ -617,13 +730,6 @@ vframes = 12
 
 [node name="display_timer" type="Timer" parent="weapon_display"]
 wait_time = 0.5
-one_shot = true
-
-[node name="timer_switch_cameras" type="Timer" parent="."]
-one_shot = true
-
-[node name="jump_Timer" type="Timer" parent="."]
-wait_time = 0.02
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -677,23 +783,6 @@ offset_bottom = 24.0
 theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "SPEED Y:"
 
-[node name="leave_timer" type="Timer" parent="."]
-wait_time = 8.0
-one_shot = true
-
-[node name="trigger_leave_timer" type="Timer" parent="."]
-wait_time = 3.5
-one_shot = true
-
-[node name="reset_cam_entry" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-autostart = true
-
-[node name="whistle_idle_trigger_timer" type="Timer" parent="."]
-wait_time = 30.0
-one_shot = true
-
 [node name="detect_water_zones" type="Area2D" parent="."]
 visible = false
 
@@ -715,9 +804,6 @@ hit_from_inside = true
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(10, 0)
 target_position = Vector2(0, 17)
-
-[node name="wasOnIceButOnDiffFloorNowTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="Megaman_RefImage" type="Sprite2D" parent="."]
 visible = false
@@ -746,17 +832,6 @@ position = Vector2(-4, 4)
 rotation = -1.57079
 target_position = Vector2(1.57356e-05, 7)
 
-[node name="hit_blink_timer" type="Timer" parent="."]
-wait_time = 0.1
-
-[node name="jump_buffer_timer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="check_dash_released_timer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
 [node name="PlayerEffectsAllTime" parent="." instance=ExtResource("20_sprfd")]
 
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
@@ -769,22 +844,22 @@ one_shot = true
 [connection signal="area_shape_entered" from="hitbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="finished" from="all_sounds/level_cleared" to="." method="_on_level_cleared_finished"]
-[connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
+[connection signal="timeout" from="all_timers/leave_timer" to="." method="_on_leave_timer_timeout"]
+[connection signal="timeout" from="all_timers/trigger_leave_timer" to="." method="_on_trigger_leave_timer_timeout"]
+[connection signal="timeout" from="all_timers/whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
+[connection signal="timeout" from="all_timers/hit_blink_timer" to="." method="_on_hit_blink_timer_timeout"]
+[connection signal="timeout" from="all_timers/check_dash_released_timer" to="." method="_on_check_dash_released_timer_timeout"]
+[connection signal="timeout" from="all_timers/restart_timer" to="." method="_on_restart_timer_timeout"]
+[connection signal="timeout" from="all_timers/timer_switch_cameras" to="." method="_on_timer_switch_cameras_timeout"]
+[connection signal="timeout" from="all_timers/jump_Timer" to="." method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="weapon_display/display_timer" to="." method="_on_display_timer_timeout"]
-[connection signal="timeout" from="timer_switch_cameras" to="." method="_on_timer_switch_cameras_timeout"]
-[connection signal="timeout" from="jump_Timer" to="." method="_on_jump_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="player_constants_checker_area2d" to="." method="_on_player_constants_checker_area_2d_body_entered"]
 [connection signal="body_exited" from="player_constants_checker_area2d" to="." method="_on_player_constants_checker_area_2d_body_exited"]
 [connection signal="timeout" from="start_timer" to="." method="_on_start_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="timeout" from="leave_timer" to="." method="_on_leave_timer_timeout"]
-[connection signal="timeout" from="trigger_leave_timer" to="." method="_on_trigger_leave_timer_timeout"]
-[connection signal="timeout" from="whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
 [connection signal="body_entered" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_entered"]
 [connection signal="body_exited" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_exited"]
-[connection signal="timeout" from="hit_blink_timer" to="." method="_on_hit_blink_timer_timeout"]
-[connection signal="timeout" from="check_dash_released_timer" to="." method="_on_check_dash_released_timer_timeout"]
 
 [editable path="dash"]

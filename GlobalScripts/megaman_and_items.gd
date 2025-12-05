@@ -147,16 +147,15 @@ func charge_effect(animated_sprite: AnimatedSprite2D):
 	elif charge_timer >= charge_buster_times[1] and charge_timer < charge_buster_times[2]:  #30
 		if not charge_confirm:
 			charge_confirm = true
-			print("Charge visuals initiated")
+			#Logger.info(name,"Charge visuals initiated")
+			#print("Charge visuals initiated")
 		if charge_timer % 14 == 1:
 			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.DEEP_RED) / 255.0)
 		elif charge_timer % 14 == 5:
 			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.SLIGHTLY_DEEP_RED) / 255.0)
 		elif charge_timer%14==9:
 			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.LIGHTER_DEEP_RED) / 255.0)
-			#print((colors.DEEP_RED) / Vector4i(Vector4255))
 	elif charge_timer >= charge_buster_times[2]:
-		#animated_spriteated_sprite2d.material.set_shader_parameter("bodyoutlcharge",(Vector4(0.0,0.0,0.0,255.0))/255)
 		if charge_timer % 14 == 1:
 			animated_sprite.material.set_shader_parameter("outlinecolor", colorPalette.DEEP_BLUE / 255)
 			animated_sprite.material.set_shader_parameter("bodycolori", colorPalette.BLACK / 255)
@@ -174,13 +173,6 @@ func charge_effect(animated_sprite: AnimatedSprite2D):
 
 func change_palette(node):
 	if node is AnimatedSprite2D or node is TextureProgressBar:
-	#print(name,':change_palette_fxn:active')
-		#if bodycolor1dictionary.has(GlobalScript.weapon_number):
-			#node.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
-			#node.material.set_shader_parameter("bodycolori", (bodycolor1dictionary.get(GlobalScript.weapon_number)) / 255)
-			#node.material.set_shader_parameter("bodycolorii", (bodycolor2dictionary.get(GlobalScript.weapon_number)) / 255)
-		#if (bodycolor1dictionary.get(GlobalScript.weapon_number)) is Vector4:
-			#print(bodycolor1dictionary.get(GlobalScript.weapon_number))
 		if weaponNumberEnabled.has(GlobalScript.weapon_number) and weaponNumberEnabled[GlobalScript.weapon_number]==true:
 			match GlobalScript.weapon_number:
 				1:
@@ -195,12 +187,6 @@ func set_Individual_Colors(node,InnerBodyColor:Color,OuterBodyColor:Color):
 	node.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
 	node.material.set_shader_parameter("bodycolori", InnerBodyColor)
 	node.material.set_shader_parameter("bodycolorii", OuterBodyColor)
-#func change_palette(animated_sprite: AnimatedSprite2D):
-	##print(name,':change_palette_fxn:active')
-	#if bodycolor1dictionary.has(GlobalScript.weapon_number):
-		#animated_sprite.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 0.0, 0.0, 255.0)) / 255)
-		#animated_sprite.material.set_shader_parameter("bodycolori", (bodycolor1dictionary.get(GlobalScript.weapon_number)) / 255)
-		#animated_sprite.material.set_shader_parameter("bodycolorii", (bodycolor2dictionary.get(GlobalScript.weapon_number)) / 255)
 
 func saveWeaponState():
 	pass

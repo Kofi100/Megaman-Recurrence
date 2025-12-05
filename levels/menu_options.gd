@@ -170,46 +170,58 @@ func setSFXVolume():
 func setBusterType():
 	if Input.is_action_just_pressed("move_left"):
 		buster_type_option -= 1
+		buster_type_option = wrap(buster_type_option, 0, 2)
+		match buster_type_option:
+			0:
+				$buster_type/buster_type_display.set_text("Charge")
+				OptionsSet.data["buster_rapid_shot"] = false
+			1:
+				$buster_type/buster_type_display.set_text("Rapid Shot")
+				OptionsSet.data["buster_rapid_shot"] = true
+		GlobalScript.buster_rapid_shot = OptionsSet.data["buster_rapid_shot"]
+		OptionsSet.saveSettings()
 	elif Input.is_action_just_pressed("move_right"):
 		buster_type_option += 1
-	buster_type_option = wrap(buster_type_option, 0, 2)
-	match buster_type_option:
-		0:
-			$buster_type/buster_type_display.set_text("Charge")
-			OptionsSet.data["buster_rapid_shot"] = false
-		1:
-			$buster_type/buster_type_display.set_text("Rapid Shot")
-			OptionsSet.data["buster_rapid_shot"] = true
-	GlobalScript.buster_rapid_shot = OptionsSet.data["buster_rapid_shot"]
-	OptionsSet.saveSettings()
+		buster_type_option = wrap(buster_type_option, 0, 2)
+		match buster_type_option:
+			0:
+				$buster_type/buster_type_display.set_text("Charge")
+				OptionsSet.data["buster_rapid_shot"] = false
+			1:
+				$buster_type/buster_type_display.set_text("Rapid Shot")
+				OptionsSet.data["buster_rapid_shot"] = true
+		GlobalScript.buster_rapid_shot = OptionsSet.data["buster_rapid_shot"]
+		OptionsSet.saveSettings()
 
 
 func setLives():
 	if Input.is_action_just_pressed("move_left"):
 		lives_option -= 1
+		lives_option = wrap(lives_option, 0, 3)
+		OptionsSet.data["max_lives"] = GlobalScript.max_lives
+		OptionsSet.saveSettings()
 		#GlobalScript
 		#OptionsSet.data["max_lives"]=lives_option
 		#OptionsSet.saveSettings()
 	elif Input.is_action_just_pressed("move_right"):
 		lives_option += 1
-
-	lives_option = wrap(lives_option, 0, 3)
-
-	OptionsSet.data["max_lives"] = GlobalScript.max_lives
-	OptionsSet.saveSettings()
+		lives_option = wrap(lives_option, 0, 3)
+		OptionsSet.data["max_lives"] = GlobalScript.max_lives
+		OptionsSet.saveSettings()
 
 
 func setWindowSize():
 	if Input.is_action_just_pressed("move_left"):
 		GlobalScript.resolution -= 1
-		
+		GlobalScript.resolution = wrap(GlobalScript.resolution, 2, 5)
+		OptionsSet.data["resolution"] = GlobalScript.resolution
+		OptionsSet.saveSettings()
 		
 	elif Input.is_action_just_pressed("move_right"):
 		GlobalScript.resolution += 1
-	
-	GlobalScript.resolution = wrap(GlobalScript.resolution, 2, 5)
-	OptionsSet.data["resolution"] = GlobalScript.resolution
-	OptionsSet.saveSettings()
+		GlobalScript.resolution = wrap(GlobalScript.resolution, 2, 5)
+		OptionsSet.data["resolution"] = GlobalScript.resolution
+		OptionsSet.saveSettings()
 	$screen_resolution/resolution_display.set_text(var_to_str(GlobalScript.resolution))
 
 

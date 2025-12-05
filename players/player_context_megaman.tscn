@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd4suq5okg6wk"]
+
+[ext_resource type="Script" uid="uid://qfym3ccg4yjg" path="res://players/player_context_megaman.gd" id="1_7r1c4"]
+
+[node name="player_context_megaman" type="Node2D"]
+script = ExtResource("1_7r1c4")

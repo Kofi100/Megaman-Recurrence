@@ -1,11 +1,10 @@
-extends CharacterBody2D
-@onready var delete_spawnable_timer: Timer = $delete_spawnable_timer
-var blink_timer:float=0
+extends Collectable
 var randomChance
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+
 var playerCollectedItem:bool=false
+
 func _ready() -> void:
+	bounce_up_upon_spawning()
 	$delete_spawnable_timer.start()
 	randomChance=randi_range(1,100)
 	if randomChance<=5:

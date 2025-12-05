@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://conlwmaol28fi"]
+
+[ext_resource type="Texture2D" uid="uid://biyycpk2hp6or" path="res://assets/sprites/miscelleaneous/megaman_stun_effects.png" id="1_5krfy"]
+[ext_resource type="Script" uid="uid://dc2s26cn0blsh" path="res://miscellenaous/effects/stun_effect.gd" id="2_4qcbm"]
+
+[node name="MegamanStunEffects" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_5krfy")
+script = ExtResource("2_4qcbm")

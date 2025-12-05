@@ -1,14 +1,21 @@
 extends CharacterBody2D
+class_name Collectable
 @onready var delete_spawnable_timer = $delete_spawnable_timer
 var player_is_around:bool=false
 var player_collected_capsule:bool=false
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-
+var was_spawned_from_enemy:bool=false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var blink_timer:float=0
+func bounce_up_upon_spawning():
+	if was_spawned_from_enemy:
+		velocity.y=-200
+
+func _ready() -> void:
+	bounce_up_upon_spawning()
 func _process(delta):
 	if not is_on_floor():
 		velocity.y+=get_gravity().y*delta
@@ -26,8 +33,8 @@ func _process(delta):
 			player_collected_capsule=true
 			GlobalScript.health+=2
 			$Sprite2D.visible=false
-			$health_up.play()
-			await $health_up.finished
+			#$health_up.play()
+			#await $health_up.finished
 			queue_free()
 			
 	move_and_slide()

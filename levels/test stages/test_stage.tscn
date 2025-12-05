@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=84 format=4 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Script" uid="uid://dlehv47nswkvi" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="2_7t3qb"]
@@ -48,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://dlxfmi6i1icxx" path="res://enemy/boss/rogue_riot.tscn" id="46_qo5kr"]
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="47_qo5kr"]
 [ext_resource type="PackedScene" uid="uid://4rn054oxik8i" path="res://levels/level_mechanics/spring_mechanic.tscn" id="48_wao4h"]
+[ext_resource type="PackedScene" uid="uid://dypjhqrpp1o3c" path="res://enemy/boss/flameman.tscn" id="49_4maf2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1mqt"]
 resource_name = "debug_tileset"
@@ -446,39 +447,40 @@ size = Vector2(384, 223)
 [node name="test_stage" type="Node2D"]
 script = ExtResource("1_vfap4")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_left = 3327.0
-offset_top = -118.0
-offset_right = 4199.0
-offset_bottom = 288.0
-color = Color(0.446777, 0.446777, 0.446777, 1)
-
 [node name="screenGrid" parent="." instance=ExtResource("2_sjel7")]
 visible = false
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.2, 1)
+[node name="Background" type="Node2D" parent="."]
+z_index = -1
+
+[node name="background_color" type="ColorRect" parent="Background"]
+offset_left = -227.0
+offset_top = -551.0
+offset_right = 4957.0
+offset_bottom = 288.0
+color = Color(6.01634e-08, 0, 0.111867, 1)
+
+[node name="background_parallax" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.2, 0.5)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
 
-[node name="background" type="TileMapLayer" parent="Parallax2D"]
-z_index = -1
+[node name="background" type="TileMapLayer" parent="Background/background_parallax"]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAABAAgAAAAEAAIAAAABAAkAAAAEAAMAAAABAAoAAAAEAAMAAAABAAsAAAAEAAMAAAABAAwAAAAEAAMAAAABAA0AAAAEAAMAAAACAAcAAAAFAAIAAAADAAcAAAAGAAIAAAAEAAcAAAAFAAIAAAAFAAcAAAAGAAIAAAAGAAcAAAAFAAIAAAAHAAcAAAAGAAIAAAACAAgAAAAFAAMAAAADAAgAAAAGAAMAAAACAAkAAAAFAAMAAAADAAkAAAAGAAMAAAACAAoAAAAFAAMAAAADAAoAAAAGAAMAAAACAAsAAAAFAAMAAAADAAsAAAAGAAMAAAACAAwAAAAFAAMAAAADAAwAAAAGAAMAAAACAA0AAAAFAAMAAAADAA0AAAAGAAMAAAAEAAgAAAAFAAMAAAAFAAgAAAAGAAMAAAAEAAkAAAAFAAMAAAAFAAkAAAAGAAMAAAAEAAoAAAAFAAMAAAAFAAoAAAAGAAMAAAAEAAsAAAAFAAMAAAAFAAsAAAAGAAMAAAAEAAwAAAAFAAMAAAAFAAwAAAAGAAMAAAAEAA0AAAAFAAMAAAAFAA0AAAAGAAMAAAAGAAgAAAAFAAMAAAAHAAgAAAAGAAMAAAAGAAkAAAAFAAMAAAAHAAkAAAAGAAMAAAAGAAoAAAAFAAMAAAAHAAoAAAAGAAMAAAAGAAsAAAAFAAMAAAAHAAsAAAAGAAMAAAAGAAwAAAAFAAMAAAAHAAwAAAAGAAMAAAAGAA0AAAAFAAMAAAAHAA0AAAAGAAMAAAAJAAgAAAAEAAIAAAAJAAkAAAAEAAMAAAAJAAoAAAAEAAMAAAAJAAsAAAAEAAMAAAAJAAwAAAAEAAMAAAAJAA0AAAAEAAMAAAAKAAgAAAAEAAIAAAAKAAkAAAAEAAMAAAAKAAoAAAAEAAMAAAAKAAsAAAAEAAMAAAAKAAwAAAAEAAMAAAAKAA0AAAAEAAMAAAANAAgAAAAFAAIAAAAOAAgAAAAGAAIAAAAPAAgAAAAFAAIAAAAQAAgAAAAGAAIAAAANAAkAAAAFAAMAAAAOAAkAAAAGAAMAAAANAAoAAAAFAAMAAAAOAAoAAAAGAAMAAAANAAsAAAAFAAMAAAAOAAsAAAAGAAMAAAANAAwAAAAFAAMAAAAOAAwAAAAGAAMAAAANAA0AAAAFAAMAAAAOAA0AAAAGAAMAAAAPAAkAAAAFAAMAAAAQAAkAAAAGAAMAAAAPAAoAAAAFAAMAAAAQAAoAAAAGAAMAAAAPAAsAAAAFAAMAAAAQAAsAAAAGAAMAAAAPAAwAAAAFAAMAAAAQAAwAAAAGAAMAAAAPAA0AAAAFAAMAAAAQAA0AAAAGAAMAAAASAAgAAAAEAAIAAAASAAkAAAAEAAMAAAASAAoAAAAEAAMAAAASAAsAAAAEAAMAAAASAAwAAAAEAAMAAAASAA0AAAAEAAMAAAATAAcAAAAFAAIAAAATAAgAAAAFAAMAAAATAAkAAAAFAAMAAAATAAoAAAAFAAMAAAATAAsAAAAFAAMAAAATAAwAAAAFAAMAAAATAA0AAAAFAAMAAAAUAAcAAAAGAAIAAAAUAAgAAAAGAAMAAAAUAAkAAAAGAAMAAAAUAAoAAAAGAAMAAAAUAAsAAAAGAAMAAAAUAAwAAAAGAAMAAAAUAA0AAAAGAAMAAAAVAAcAAAAFAAIAAAAVAAgAAAAFAAMAAAAVAAkAAAAFAAMAAAAVAAoAAAAFAAMAAAAVAAsAAAAFAAMAAAAVAAwAAAAFAAMAAAAVAA0AAAAFAAMAAAAWAAcAAAAGAAIAAAAWAAgAAAAGAAMAAAAWAAkAAAAGAAMAAAAWAAoAAAAGAAMAAAAWAAsAAAAGAAMAAAAWAAwAAAAGAAMAAAAWAA0AAAAGAAMAAAAXAAcAAAAFAAIAAAAXAAgAAAAFAAMAAAAXAAkAAAAFAAMAAAAXAAoAAAAFAAMAAAAXAAsAAAAFAAMAAAAXAAwAAAAFAAMAAAAXAA0AAAAFAAMAAAAYAAcAAAAGAAIAAAAYAAgAAAAGAAMAAAAYAAkAAAAGAAMAAAAYAAoAAAAGAAMAAAAYAAsAAAAGAAMAAAAYAAwAAAAGAAMAAAAYAA0AAAAGAAMAAAAaAAgAAAAEAAIAAAAaAAkAAAAEAAMAAAAaAAoAAAAEAAMAAAAaAAsAAAAEAAMAAAAaAAwAAAAEAAMAAAAaAA0AAAAEAAMAAAAbAAgAAAAEAAIAAAAbAAkAAAAEAAMAAAAbAAoAAAAEAAMAAAAbAAsAAAAEAAMAAAAbAAwAAAAEAAMAAAAbAA0AAAAEAAMAAAAeAAgAAAAFAAIAAAAeAAkAAAAFAAMAAAAeAAoAAAAFAAMAAAAeAAsAAAAFAAMAAAAeAAwAAAAFAAMAAAAeAA0AAAAFAAMAAAAfAAgAAAAGAAIAAAAfAAkAAAAGAAMAAAAfAAoAAAAGAAMAAAAfAAsAAAAGAAMAAAAfAAwAAAAGAAMAAAAfAA0AAAAGAAMAAAAgAAgAAAAFAAIAAAAgAAkAAAAFAAMAAAAgAAoAAAAFAAMAAAAgAAsAAAAFAAMAAAAgAAwAAAAFAAMAAAAgAA0AAAAFAAMAAAAhAAgAAAAGAAIAAAAhAAkAAAAGAAMAAAAhAAoAAAAGAAMAAAAhAAsAAAAGAAMAAAAhAAwAAAAGAAMAAAAhAA0AAAAGAAMAAAA=")
 tile_set = SubResource("TileSet_wao4h")
 
-[node name="reserve_marker1" type="Marker2D" parent="Parallax2D/background"]
+[node name="reserve_marker1" type="Marker2D" parent="Background/background_parallax/background"]
 position = Vector2(-16, 167)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/background_parallax"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_b1mqt")
 autoplay = "default"
 centered = false
 
 [node name="megaman" parent="." instance=ExtResource("2_mabb1")]
-position = Vector2(3696, 210)
+position = Vector2(471, -254)
 
 [node name="level" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -534,7 +536,7 @@ shape = SubResource("RectangleShape2D_63urt")
 [node name="New Camera System Addon" type="Area2D" parent="all_camera" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@62835")
+zone_camera_2d = NodePath("@Camera2D@21990")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
@@ -547,7 +549,7 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@62836")
+zone_camera_2d = NodePath("@Camera2D@21991")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
@@ -559,7 +561,7 @@ shape = SubResource("RectangleShape2D_bkubj")
 [node name="New Camera System Addon3" type="Area2D" parent="all_camera" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@62837")
+zone_camera_2d = NodePath("@Camera2D@21992")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
@@ -577,7 +579,7 @@ shape = SubResource("RectangleShape2D_i2788")
 [node name="New Camera System Addon4" type="Area2D" parent="all_camera" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@62838")
+zone_camera_2d = NodePath("@Camera2D@21993")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
@@ -867,7 +869,7 @@ position = Vector2(973, 159)
 position = Vector2(1394.8, 159.591)
 
 [node name="instaDeathLaser" parent="." instance=ExtResource("31_6gsmh")]
-position = Vector2(681.674, 255.852)
+position = Vector2(662, 289)
 
 [node name="laserWallMechanic" parent="." instance=ExtResource("32_3ab5o")]
 position = Vector2(1094, -16)
@@ -1017,6 +1019,9 @@ is_boss_door = true
 
 [node name="spring_mechanic" parent="." instance=ExtResource("48_wao4h")]
 position = Vector2(3769, 208)
+
+[node name="flameman" parent="." instance=ExtResource("49_4maf2")]
+position = Vector2(518, -253)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="enter_player" to="." method="_on_enter_player_body_entered"]

@@ -129,7 +129,8 @@ func update_camera_limits():
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		print("cchnaged")
+		#print("cchnaged")
+		pass
 
 func _on_area_entered(area):
 	if area.is_in_group("player_constants_checker_area2d"):  #and area.get_parent().player_ready==true

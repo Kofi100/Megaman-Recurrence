@@ -1,14 +1,11 @@
-extends CharacterBody2D
-@onready var delete_spawnable_timer = $delete_spawnable_timer
+extends Collectable
+#@onready var delete_spawnable_timer = $delete_spawnable_timer
 
 @onready var animation_player = $AnimationPlayer
-var blink_timer:float=0
-const JUMP_VELOCITY = -400.0
-var player_is_around:bool=false
-var player_collected_capsule:bool=false
+
 func _ready():
 	#animation_player.set_autoplay('active')
-	pass
+	bounce_up_upon_spawning()
 	
 func _process(delta):
 	if not is_on_floor():

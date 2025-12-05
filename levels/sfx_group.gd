@@ -12,3 +12,4 @@ func _process(_delta):
 	#volume_db = OptionsSet.data["volumeSound"]["SFX"]
 	var saved_volume_options=OptionsSet.data["volumeSound"]["SFX"]
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),linear_to_db(saved_volume_options) )
+	#print(saved_volume_options)

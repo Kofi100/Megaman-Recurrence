@@ -27,6 +27,7 @@ hframes = 5
 vframes = 5
 
 [node name="index" type="Label" parent="."]
+visible = false
 offset_left = -18.6667
 offset_top = -19.6667
 offset_right = 53.3333
@@ -45,6 +46,7 @@ theme_override_fonts/font = ExtResource("3_rcgh2")
 text = "enemy selected"
 
 [node name="enemy_spawn_list" type="Label" parent="."]
+visible = false
 offset_left = -68.3333
 offset_top = -15.0
 offset_right = 103.667

@@ -1,9 +1,13 @@
 extends Node2D
 var setAlarmWeaponPosToUp:bool=true
 var changeState:bool=false
+var ring_left:Node2D=null
+var ring_right:Node2D=null
 func _ready() -> void:
 	$timer/switchPosTimer.start()
 	$timer/endSessionTimer.start()
+	#Logger.debug(name,"ring_left @ _ready :%s"%ring_left)
+
 func _physics_process(_delta: float) -> void:
 	# Check if all rings exist before modifying them
 	var rings = [
@@ -19,23 +23,34 @@ func _physics_process(_delta: float) -> void:
 		if ring and is_instance_valid(ring):
 			ring.changeState = changeState
 		else:
+			pass
 			# Optional: Print a warning or handle missing rings
-			print("Warning: Tried to access a freed/null ring")
+			Logger.warn(name,"Warning: Tried to access a freed/null ring")
 
 	if changeState == true:
 		# Check if rings are still children before reparenting
 		if is_instance_valid($alarm_Man_weapon_Ring5) and $alarm_Man_weapon_Ring5.get_parent() == self:
-			rings.erase($alarm_Man_weapon_Ring5)
-			$alarm_Man_weapon_Ring5.reparent(get_tree().current_scene)
+			#rings.erase($alarm_Man_weapon_Ring5)
+			#$alarm_Man_weapon_Ring5.reparent(get_tree().current_scene)
+			ring_left=$alarm_Man_weapon_Ring5.duplicate()
+			#Logger.debug(name,"ring_left @ being spawned in :%s"%ring_left)
+			get_tree().current_scene.add_child(ring_left)
+			ring_left.changeState=true
+			ring_left.global_position=$alarm_Man_weapon_Ring5.global_position
 			
 		if is_instance_valid($alarm_Man_weapon_Ring6) and $alarm_Man_weapon_Ring6.get_parent() == self:
-			rings.erase($alarm_Man_weapon_Ring6)
-			$alarm_Man_weapon_Ring6.reparent(get_tree().current_scene)
+			#rings.erase($alarm_Man_weapon_Ring6)
+			#$alarm_Man_weapon_Ring6.reparent(get_tree().current_scene)
+			ring_right=$alarm_Man_weapon_Ring6.duplicate()
+			get_tree().current_scene.add_child(ring_right)
+			ring_right.changeState=true
+			ring_right.global_position=$alarm_Man_weapon_Ring6.global_position
 			
 		#print(rings[4])
 		
 	#if rings[4]==null and rings[5]==null:#for ring in rings:
-	if rings.find($alarm_Man_weapon_Ring5)==-1 and rings.find($alarm_Man_weapon_Ring6)==-1:
+	if ring_left and ring_right:
+	#rings.find($alarm_Man_weapon_Ring5)==-1 and rings.find($alarm_Man_weapon_Ring6)==-1:
 		#chekcings rings4 and 5(L and R rings) since they'll be freed after leavign the screen
 		queue_free()
 

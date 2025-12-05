@@ -29,7 +29,8 @@ func saveSettings() -> void:
 		var json = JSON.stringify(data)
 		file.store_line(json)
 		file.close()
-		print("optionsGlobal: Saved Data..")
+		#print("optionsGlobal: Saved Data..")
+		Logger.info(name,"Saved Data!")
 
 func loadSettings() -> void:
 	if not FileAccess.file_exists(SAVE_SETTING_PATH):
@@ -63,8 +64,10 @@ func loadSettings() -> void:
 		data["version"] = current_version
 		saveSettings()
 	else:
-		print("optionsGlobal: Loaded Data -> ", data)
+		Logger.info(name,"Loaded Data -> %s" %data)
+		#print("optionsGlobal: Loaded Data -> ", data)
 
-func _init():
+func _ready():
+	Logger.info(name,"Initializing.. Loading Data...")
 	loadSettings()
-	print(name, " optionsGlobal: Initializing.. Loading Data...")
+	#print(name, " optionsGlobal: ")

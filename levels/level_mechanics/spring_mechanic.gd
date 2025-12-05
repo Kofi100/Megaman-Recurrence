@@ -13,11 +13,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_spring_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy_Projectile") or area.is_in_group("player_projectiles"):
+	if area.is_in_group("enemy_Projectile") or area.is_in_group("player_projectiles") or area.is_in_group("enemy"):
+		#print("%s : %s entered spring" % [name+"[not needed]",area.get_parent()])
 		return
 	var body=area.get_parent()
-	if body is CharacterBody2D and body!=self:
-		print("%s : %s entered spring" % [name,body])
+	if body is CharacterBody2D and body!=self  and not body is enemy:
+		#print("%s : %s entered spring" % [name,body])
 		body.velocity.y=-500
 
 

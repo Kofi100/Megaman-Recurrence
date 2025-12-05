@@ -90,7 +90,8 @@ func _process(delta: float) -> void:
 			$confirmBox.hide()
 	elif file_option == 5:
 		if Input.is_action_just_pressed("pause"):
-			print(name, ":exiting..")
+			#print(name, ":exiting..")
+			#Logger.info(name,"exiting")
 			queue_free()
 
 

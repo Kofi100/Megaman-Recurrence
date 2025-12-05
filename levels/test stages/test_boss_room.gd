@@ -43,8 +43,8 @@ func boss_defeated():
 		$megaman.leave_bool=true
 		$background_boss_music.stop()
 #region temporal check for leaving screens
-	if $megaman/leave_timer.time_left==0 and left==false:
-		$megaman/leave_timer.start()
+	if $megaman/all_timers/leave_timer.time_left==0 and left==false:
+		$megaman/all_timers/leave_timer.start()
 		left=true
 
 func _on_area_body_entered(body):

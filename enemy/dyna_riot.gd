@@ -63,6 +63,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_timer_timeout() -> void:
 	$CollisionShape2D_Jump.set_deferred("disabled",false)
 
-
-func _on_tree_exiting() -> void:
+func _exit_tree() -> void:
 	spawn_collectables()
+	
+func _on_tree_exiting() -> void:
+	pass

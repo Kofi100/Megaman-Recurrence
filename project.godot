@@ -27,6 +27,7 @@ aseprite_executable_path="C:/Users/Dr. Dominic Otchere/Desktop/Media/Programs/As
 
 [autoload]
 
+Logger="*res://GlobalScripts/logger.gd"
 ScenesDictionary="*res://GlobalScripts/ScenesDictionary.gd"
 OptionsSet="*res://resources/optionMenu_Settings.gd"
 GlobalSignalBus="*res://GlobalScripts/global_signal_bus.tscn"

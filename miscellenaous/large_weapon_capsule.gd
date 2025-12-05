@@ -1,17 +1,11 @@
-extends CharacterBody2D
-@onready var delete_spawnable_timer = $delete_spawnable_timer
-var player_is_around:bool=false
-var player_collected_capsule:bool=false
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+extends Collectable
 @export var energy_added=10
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+func _ready() -> void:
+	bounce_up_upon_spawning()
 
-var blink_timer:float=0
 func _physics_process(delta):
-	if not is_on_floor:
-		velocity+=gravity*delta
+	if not is_on_floor():
+		velocity+=get_gravity()*delta
 	if delete_spawnable_timer.time_left<delete_spawnable_timer.wait_time/2 and delete_spawnable_timer.time_left>0 :
 		blink_timer+=1*delta
 		if fmod(blink_timer,0.2)>0.1:
@@ -29,6 +23,7 @@ func _physics_process(delta):
 				$weapon_up.play()
 				await $weapon_up.finished
 				queue_free()
+	#Logger.debug(name,"gravity:%s"%gravity)
 	move_and_slide()
 
 func _on_hitbox_body_entered(body):
