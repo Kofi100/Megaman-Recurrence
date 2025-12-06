@@ -6,7 +6,7 @@ var ring_right:Node2D=null
 func _ready() -> void:
 	$timer/switchPosTimer.start()
 	$timer/endSessionTimer.start()
-	#Logger.debug(name,"ring_left @ _ready :%s"%ring_left)
+	#GlobalLogger.debug(name,"ring_left @ _ready :%s"%ring_left)
 
 func _physics_process(_delta: float) -> void:
 	# Check if all rings exist before modifying them
@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 		else:
 			pass
 			# Optional: Print a warning or handle missing rings
-			Logger.warn(name,"Warning: Tried to access a freed/null ring")
+			GlobalLogger.warn(name,"Warning: Tried to access a freed/null ring")
 
 	if changeState == true:
 		# Check if rings are still children before reparenting
@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 			#rings.erase($alarm_Man_weapon_Ring5)
 			#$alarm_Man_weapon_Ring5.reparent(get_tree().current_scene)
 			ring_left=$alarm_Man_weapon_Ring5.duplicate()
-			#Logger.debug(name,"ring_left @ being spawned in :%s"%ring_left)
+			#GlobalLogger.debug(name,"ring_left @ being spawned in :%s"%ring_left)
 			get_tree().current_scene.add_child(ring_left)
 			ring_left.changeState=true
 			ring_left.global_position=$alarm_Man_weapon_Ring5.global_position

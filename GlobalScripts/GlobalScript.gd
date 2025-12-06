@@ -176,7 +176,8 @@ func save_savepoint_data():
 	savefile_write.store_var(savepoint_dictionary)
 	#push_warning("File saved sucessfully")
 	#print("savepoint_dict:", savepoint_dictionary)
-	Logger.info("%s :savepoint_dict:" %name,"File saved sucessfully at X,Y:%s" % [savepoint_dictionary])
+	GlobalLogger.info(name, "File saved successfully at X,Y: %s" % [savepoint_dictionary])
+
 	savefile_write.close()
 
 
@@ -190,14 +191,14 @@ func load_savepoint_data():
 				playerposx = saved_array.X
 				playerposy = saved_array.Y
 				print(name, "->[savepos_x,savepos_y]:", [savepos_x, savepos_y])
-				Logger.info("%s :savepoint_dict:" %name,"File loaded sucessfully at X,Y:%s" % [saved_array])
+				GlobalLogger.info("%s :savepoint_dict:" %name,"File loaded sucessfully at X,Y:%s" % [saved_array])
 
 		elif saved_array == null:
 			#push_warning("Savefile doesn't have variables:creating a new savefile")
-			Logger.info(name,"Savefile doesn't have variables:creating a new savefile")
+			GlobalLogger.info(name,"Savefile doesn't have variables:creating a new savefile")
 			save_savepoint_data()
 	elif savefile_load == null:
-		Logger.info(name,"Savefile doesnt exist:creating new savefile")
+		GlobalLogger.info(name,"Savefile doesnt exist:creating new savefile")
 		#push_warning("Savefile doesnt exist:creating new savefile")
 		save_savepoint_data()
 

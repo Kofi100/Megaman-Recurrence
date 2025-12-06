@@ -36,7 +36,7 @@ func _physics_process(_delta: float) -> void:
 
 func _exit_tree() -> void:
 	#print(name, ":about to exit tree")
-	Logger.info(name,"about to exit stage")
+	GlobalLogger.info(name,"about to exit stage")
 	MegamanAndItems.weaponNumberEnabled = originalWeaponEnabledDict
 	#print(originalWeaponEnabledDict)
 	#print(MegamanAndItems.weaponNumberEnabled)
@@ -44,7 +44,7 @@ func _exit_tree() -> void:
 	#logic here is that the original states of all wepaons 
 	#are saved originalWeaponEnabledDict earlier
 	# and are retrieved by MegamanAndItems.weaponNumberEnabled before the level exits.
-	Logger.info(name,"check if all weapons are activated now: %s" % (originalWeaponEnabledDict==MegamanAndItems.weaponNumberEnabled))
+	GlobalLogger.info(name,"check if all weapons are activated now: %s" % (originalWeaponEnabledDict==MegamanAndItems.weaponNumberEnabled))
 
 
 func _on_tree_exiting() -> void:

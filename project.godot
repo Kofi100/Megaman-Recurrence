@@ -15,7 +15,7 @@ config/description="A WIP
 "
 config/tags=PackedStringArray("megaman")
 run/main_scene="uid://cju6hrw6xsta7"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
@@ -27,7 +27,7 @@ aseprite_executable_path="C:/Users/Dr. Dominic Otchere/Desktop/Media/Programs/As
 
 [autoload]
 
-Logger="*res://GlobalScripts/logger.gd"
+GlobalLogger="*res://GlobalScripts/logger.gd"
 ScenesDictionary="*res://GlobalScripts/ScenesDictionary.gd"
 OptionsSet="*res://resources/optionMenu_Settings.gd"
 GlobalSignalBus="*res://GlobalScripts/global_signal_bus.tscn"

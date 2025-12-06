@@ -147,7 +147,7 @@ func charge_effect(animated_sprite: AnimatedSprite2D):
 	elif charge_timer >= charge_buster_times[1] and charge_timer < charge_buster_times[2]:  #30
 		if not charge_confirm:
 			charge_confirm = true
-			#Logger.info(name,"Charge visuals initiated")
+			#GlobalLogger.info(name,"Charge visuals initiated")
 			#print("Charge visuals initiated")
 		if charge_timer % 14 == 1:
 			animated_sprite.material.set_shader_parameter("outlinecolor", (colorPalette.DEEP_RED) / 255.0)

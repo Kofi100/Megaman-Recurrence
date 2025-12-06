@@ -23,7 +23,7 @@ func _physics_process(delta):
 				$weapon_up.play()
 				await $weapon_up.finished
 				queue_free()
-	#Logger.debug(name,"gravity:%s"%gravity)
+	#GlobalLogger.debug(name,"gravity:%s"%gravity)
 	move_and_slide()
 
 func _on_hitbox_body_entered(body):

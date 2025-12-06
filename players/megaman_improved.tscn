@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dcf8w48reta7p"]
+[gd_scene load_steps=41 format=3 uid="uid://dcf8w48reta7p"]
 
 [ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="1_7e26b"]
 [ext_resource type="Script" uid="uid://b2chwqb0yvmvq" path="res://players/megaman_improved.gd" id="1_w5qg3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://tnalngcgnxes" path="res://players/MegamanImproved_States/slide.gd" id="7_3ewpo"]
 [ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="8_673mk"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="9_yttai"]
+[ext_resource type="Script" uid="uid://b526ykwjnnh66" path="res://players/MegamanImproved_States/attack_states/chargeshot.gd" id="11_reahm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_reahm"]
 shader = ExtResource("8_673mk")
@@ -299,8 +300,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yttai"]
 size = Vector2(10, 19)
 
-[node name="megaman_improved" type="CharacterBody2D"]
+[node name="megaman_improved" type="CharacterBody2D" node_paths=PackedStringArray("player_context")]
 script = ExtResource("1_w5qg3")
+player_context = NodePath("player_context_megaman")
 
 [node name="player_context_megaman" parent="." instance=ExtResource("2_yttai")]
 
@@ -308,7 +310,7 @@ script = ExtResource("1_w5qg3")
 material = SubResource("ShaderMaterial_reahm")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_673mk")
-animation = &"move_by_inch"
+animation = &"shoot_run"
 offset = Vector2(0, 1)
 
 [node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_7e26b")]
@@ -335,6 +337,24 @@ metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 script = ExtResource("7_3ewpo")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
+[node name="Attack State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_7e26b")]
+initial_state = NodePath("chargeshot")
+show_debugging_info = true
+
+[node name="chargeshot" type="Node" parent="Attack State Engine"]
+script = ExtResource("11_reahm")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_yttai")
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="dash_timer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 24)
+hit_from_inside = true

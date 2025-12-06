@@ -75,7 +75,7 @@ func _on_area_entered(area):
 		player_camera=area.get_parent().get_node('player_camera')
 		#print("Player entered the zone.")
 		if player_camera!=null:
-			Logger.info(name.to_upper(),"player camera-> %s"%player_camera)
+			GlobalLogger.info(name.to_upper(),"player camera-> %s"%player_camera)
 			switch_camera(player_camera,zone_camera_2d)
 			if GlobalTimerChecker!=null and GlobalTimerChecker is Timer and GlobalTimerChecker.one_shot==true:
 				GlobalTimerChecker.start()

@@ -79,4 +79,4 @@ func _on_shoot_timer_timeout() -> void:
 	if is_instance_valid(closest_enemy) and closest_enemy.is_inside_tree() and global_position.distance_to(closest_enemy.global_position)<250:
 		shootAtEnemy()
 		#print(closest_enemy.get_parent().name)
-		#Logger.debug(name,"closest_enemy name:%s"%closest_enemy.get_parent().name)
+		#GlobalLogger.debug(name,"closest_enemy name:%s"%closest_enemy.get_parent().name)

@@ -402,7 +402,7 @@ func _physics_process(delta):
 		if (anim.animation=="stun_air" or GlobalScreenTransitionTimer.is_stopped()==false):
 			MegamanAndItems.charge_timer=0
 			#print("Release buster while stunned or transitioning :on")
-			Logger.debug(name,"Release buster while stunned or transitioning :on")
+			GlobalLogger.debug(name,"Release buster while stunned or transitioning :on")
 	#if 
 	if MegamanAndItems.charge_timer==0:
 		if $all_sounds/charge.playing:

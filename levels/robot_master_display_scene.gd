@@ -31,7 +31,7 @@ func _process(delta):
 	var current_visible = $stuffToMakeDisappear/nameOfRobotMaster.visible_characters
 	
 	if previous_visible_char_count != current_visible:
-		#Logger.debug(name, "Visible chars changed: %s -> %s" % [previous_visible_char_count, current_visible])
+		#GlobalLogger.debug(name, "Visible chars changed: %s -> %s" % [previous_visible_char_count, current_visible])
 		
 		# Play sound when revealing new characters (not when hiding or resetting)
 		if current_visible > 0 and current_visible > previous_visible_char_count:

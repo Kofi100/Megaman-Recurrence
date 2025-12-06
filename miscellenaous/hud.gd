@@ -20,7 +20,7 @@ func _ready():
 	#$pause_screen_setup/ConfirmationDialog.hide()
 	color = $fade_out_rectangle.color
 	#print(color)
-	#Logger.info(name,"final color of $fade_out_rectangle :%s" %color)
+	#GlobalLogger.info(name,"final color of $fade_out_rectangle :%s" %color)
 	var tween_fadeIn = create_tween()
 	$fade_out_rectangle.visible = true
 	$fadeInRect.visible = true
@@ -34,7 +34,7 @@ var justDied: bool = false
 
 
 func fadeIn_finished():
-	#Logger.info(name,"beginning fade-out finished")
+	#GlobalLogger.info(name,"beginning fade-out finished")
 	$fadeInRect.visible = false
 	#$ready_Text.visible=true
 	
