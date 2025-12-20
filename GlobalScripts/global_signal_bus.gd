@@ -5,7 +5,8 @@ signal boss_has_been_defeated
 signal boss_trigger
 signal trigger_camera_shake(intensity,duration)
 signal player_knockback(direction, force, vertical_force)
- 
+signal effect_fade_in_complete
+signal effect_fade_out_complete
 @warning_ignore_restore("unused_signal")
 
 #

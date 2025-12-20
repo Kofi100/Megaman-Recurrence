@@ -7,7 +7,8 @@ func _ready():
 
 func Enter():
 	megaman_improved.velocity.x=megaman_improved.player_context.last_direction_x*megaman_improved.player_context.move_an_inch_speed
-	megaman_improved.animations.play("move_by_inch")
+	#megaman_improved.animations.play("move_by_inch")
+	megaman_improved.player_context.request_animation("move_by_inch",20)
 	await get_tree().create_timer(.1).timeout
 	transition.emit(self,"run")
 

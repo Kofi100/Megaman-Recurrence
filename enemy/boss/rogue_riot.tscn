@@ -28,6 +28,14 @@ region = Rect2(158, 152, 79, 76)
 atlas = ExtResource("2_nv4jw")
 region = Rect2(0, 0, 79, 76)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_40tfw"]
+atlas = ExtResource("2_nv4jw")
+region = Rect2(79, 0, 79, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro4s4"]
+atlas = ExtResource("2_nv4jw")
+region = Rect2(158, 0, 79, 76)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c5ck5"]
 atlas = ExtResource("2_nv4jw")
 region = Rect2(0, 0, 79, 76)
@@ -76,14 +84,6 @@ region = Rect2(316, 76, 79, 76)
 atlas = ExtResource("2_nv4jw")
 region = Rect2(0, 0, 79, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40tfw"]
-atlas = ExtResource("2_nv4jw")
-region = Rect2(79, 0, 79, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ro4s4"]
-atlas = ExtResource("2_nv4jw")
-region = Rect2(158, 0, 79, 76)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_pmkgq"]
 animations = [{
 "frames": [{
@@ -104,6 +104,32 @@ animations = [{
 "loop": false,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 45.0,
+"texture": SubResource("AtlasTexture_n4umb")
+}, {
+"duration": 3.5,
+"texture": SubResource("AtlasTexture_40tfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro4s4")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_40tfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro4s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40tfw")
+}, {
+"duration": 30.0,
+"texture": SubResource("AtlasTexture_ro4s4")
+}],
+"loop": false,
+"name": &"intro",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -370,9 +396,7 @@ metadata/_custom_type_script = "uid://blqd77u3c7yor"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 0.00308247
 sprite_frames = SubResource("SpriteFrames_pmkgq")
-animation = &"laser"
-frame = 8
-frame_progress = 1.0
+animation = &"fall_down"
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2

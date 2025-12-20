@@ -6,6 +6,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	calculate_player_distance()
 	spawn_collectables()
+	hurtFlash($AnimatedSprite2D)
 	playerdamagevalue=3
 	$bomb_Timer.wait_time=.7
 	if not setDirection:

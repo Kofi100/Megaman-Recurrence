@@ -70,16 +70,21 @@ func spawn_collectables():
 	if health <= 0:
 		#get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
 		if is_boss == false:
-			GlobalScript.spawn_collectable_no = randi_range(1, 100)  #18
+			
+			GlobalScript.spawn_collectable_no =randi_range(1, 100)  ## 1#8
 			if collectables_list.has(GlobalScript.spawn_collectable_no):
 				collectable = collectables_list[GlobalScript.spawn_collectable_no]
-
+			
+			queue_free()
 			if collectable != null:
+				await tree_exiting
+				#await get_tree().process_frame
+				#await get_tree().create_timer(.5).timeout
 				var new_collectable = collectable.instantiate()
 				new_collectable.position = position
 				if "was_spawned_from_enemy" in new_collectable:
 					new_collectable.was_spawned_from_enemy=true
-				get_tree().current_scene.add_child(new_collectable)#adds collectable to current scene instead of parent of enemy to prevent unwanted spawns
+				get_tree().current_scene.add_child.call_deferred(new_collectable)#adds collectable to current scene instead of parent of enemy to prevent unwanted spawns
 				
 				if new_collectable.delete_spawnable_timer != null:
 					#print('delete timer triggered')
@@ -88,7 +93,7 @@ func spawn_collectables():
 				pass
 				#print("its a null case of the collectanles")
 				#print("spawn_collectable_no:", GlobalScript.spawn_collectable_no)
-			queue_free()
+			
 		if is_boss == true:
 			#boss_defeated.emit()
 			GlobalSignalBus.boss_has_been_defeated.emit()

@@ -536,9 +536,10 @@ shape = SubResource("RectangleShape2D_63urt")
 [node name="New Camera System Addon" type="Area2D" parent="all_camera" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@21917")
+zone_camera_2d = NodePath("@Camera2D@63593")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon"]
@@ -549,9 +550,10 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@21918")
+zone_camera_2d = NodePath("@Camera2D@63594")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon2"]
@@ -561,9 +563,10 @@ shape = SubResource("RectangleShape2D_bkubj")
 [node name="New Camera System Addon3" type="Area2D" parent="all_camera" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@21919")
+zone_camera_2d = NodePath("@Camera2D@63595")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="Camera2D" type="Camera2D" parent="all_camera/New Camera System Addon3"]
@@ -579,9 +582,10 @@ shape = SubResource("RectangleShape2D_i2788")
 [node name="New Camera System Addon4" type="Area2D" parent="all_camera" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@21920")
+zone_camera_2d = NodePath("@Camera2D@63596")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="Camera2D" type="Camera2D" parent="all_camera/New Camera System Addon4"]

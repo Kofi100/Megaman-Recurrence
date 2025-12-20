@@ -24,18 +24,12 @@ func Physics_Update(_delta:float):
 	if (not context.is_attacking or (context.is_attacking and animations.animation=="shoot_run")):
 		#get_parent().get_parent().animations.play("jump")
 		megaman_improved.player_context.request_animation("jump",80)
-	if megaman_improved.velocity.y<0:
-		if Input.is_action_just_released("jump"):
-			megaman_improved.velocity.y=0
+	#if megaman_improved.velocity.y<0:
+		#if Input.is_action_just_released("jump"):
+			#megaman_improved.velocity.y=0
+	if megaman_improved.velocity.y>0:
+		transition.emit(self,"fall")
 	
-	if ray_cast_2d.is_colliding() and not megaman_improved.is_on_floor() and megaman_improved.velocity.y>0:
-		if Input.is_action_just_pressed("jump"):
-			megaman_improved.velocity.y= -300
-	if megaman_improved.is_on_floor():
-		if direction==0:
-			transition.emit(self,"idle")
-		else:
-			transition.emit(self,"run")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

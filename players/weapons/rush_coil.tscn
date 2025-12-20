@@ -1,48 +1,56 @@
-[gd_scene load_steps=10 format=3 uid="uid://qe848qfv3emu"]
+[gd_scene load_steps=13 format=3 uid="uid://qe848qfv3emu"]
 
 [ext_resource type="Script" uid="uid://dvjy6mrthpndu" path="res://players/weapons/rush_coil.gd" id="1_edrj1"]
 [ext_resource type="Texture2D" uid="uid://cravk65d6m07q" path="res://assets/sprites/player/weapons/megaman/rush_coil.png" id="1_wo7ha"]
+[ext_resource type="Texture2D" uid="uid://un8jlc2yqw6" path="res://assets/sprites/player/weapons/megaman/rush_coil_jet.png" id="2_u8v80"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sjwi7"]
-atlas = ExtResource("1_wo7ha")
-region = Rect2(0, 0, 35, 30)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qfbf"]
+atlas = ExtResource("2_u8v80")
+region = Rect2(171, 0, 57, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d1lut"]
-atlas = ExtResource("1_wo7ha")
-region = Rect2(70, 0, 35, 30)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynruw"]
+atlas = ExtResource("2_u8v80")
+region = Rect2(228, 0, 57, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xw7od"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8oy7a"]
 atlas = ExtResource("1_wo7ha")
-region = Rect2(105, 0, 35, 30)
+region = Rect2(57, 0, 57, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xfwae"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8v80"]
 atlas = ExtResource("1_wo7ha")
-region = Rect2(35, 0, 35, 30)
+region = Rect2(114, 0, 57, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhdle"]
+atlas = ExtResource("1_wo7ha")
+region = Rect2(228, 0, 57, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_emuap"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sjwi7")
+"texture": SubResource("AtlasTexture_6qfbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynruw")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d1lut")
+"texture": SubResource("AtlasTexture_8oy7a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xw7od")
+"texture": SubResource("AtlasTexture_u8v80")
 }],
 "loop": false,
 "name": &"spawn",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xfwae")
+"texture": SubResource("AtlasTexture_mhdle")
 }],
 "loop": false,
 "name": &"spring",
@@ -50,10 +58,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0i0m0"]
-size = Vector2(20, 5.66667)
+size = Vector2(12.833334, 5.66667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvs0a"]
 size = Vector2(7.66667, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oy7a"]
+size = Vector2(20, 13)
 
 [node name="rush_coil" type="CharacterBody2D" groups=["rush_coil"]]
 collision_layer = 0
@@ -65,12 +76,11 @@ spawn_back_speed = 40000
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -3.66667)
 sprite_frames = SubResource("SpriteFrames_emuap")
-animation = &"idle"
+animation = &"spawn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.666667, 8.5)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_0i0m0")
 
 [node name="jump_zone" type="Area2D" parent="." groups=["spring"]]
@@ -84,9 +94,22 @@ shape = SubResource("RectangleShape2D_rvs0a")
 [node name="move_back_timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
-autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_8oy7a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -9.0
+offset_top = -26.0
+offset_right = 8.0
+offset_bottom = -11.0
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="jump_zone" to="." method="_on_jump_zone_body_entered"]
 [connection signal="timeout" from="move_back_timer" to="." method="_on_move_back_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

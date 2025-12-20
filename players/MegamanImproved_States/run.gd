@@ -27,7 +27,7 @@ func Physics_Update(_delta:float):
 		#direction=0
 	megaman_improved.velocity.x=context.normal_speed * direction *_delta
 	if (not context.is_attacking or 
-	(megaman_improved.animations.animation=="shoot_in_air")):
+	(megaman_improved.animations.animation=="shoot_in_air" or megaman_improved.animations.animation=="move_by_inch")):
 		#megaman_improved.animations.play("run")
 		megaman_improved.player_context.request_animation("run",50)
 	if direction==0:
@@ -38,6 +38,8 @@ func Physics_Update(_delta:float):
 			transition.emit(self,"jump")
 		if Input.is_action_just_pressed("dash"):
 			transition.emit(self,"slide")
+	else:
+		transition.emit(self,"fall")
 	
 	
 

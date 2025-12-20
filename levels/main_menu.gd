@@ -165,3 +165,7 @@ func _on_intro_stage_pressed() -> void:
 
 func _on_slumber_man_stage_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/8_robot_stages/slumber_man_stage.tscn")
+
+
+func _on_graffiti_man_stage_pressed() -> void:
+	get_tree().change_scene_to_file("res://levels/ldtk_experimental_levels/graffiti_man_stage.tscn")

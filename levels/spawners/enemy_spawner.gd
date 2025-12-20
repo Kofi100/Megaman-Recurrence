@@ -81,7 +81,7 @@ var disappear_nodes = {
 	1: "Sprite2D",
 	2: "index",
 	3: "enemy",
-	4: "enemy_spawn_list",
+	#4: "enemy_spawn_list",
 }
 @export_enum("none", "fire", "ice") var enemyVariant: String = "none"
 @export var SetinitialDirection:String

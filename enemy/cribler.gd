@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	calculate_player_distance()
 	spawn_collectables()
+	hurtFlash($AnimatedSprite2D)
 	if not is_on_ceiling():
 		velocity -= get_gravity() * delta
 	if abs(distance_x)<=120:

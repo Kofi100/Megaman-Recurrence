@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cl7ig40fdqhx4"]
+
+[ext_resource type="Script" uid="uid://bloeljfs8qx3l" path="res://levels/level_mechanics/gravity_switch_timer.gd" id="1_2v301"]
+[ext_resource type="Texture2D" uid="uid://bvaf4qv351pm1" path="res://assets/sprites/miscelleaneous/mechanics/gravity_switch_timer.png" id="2_xegp0"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_fmdrr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pen0"]
+atlas = ExtResource("2_xegp0")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhlgs"]
+atlas = ExtResource("2_xegp0")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6mauh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pen0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhlgs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v301"]
+size = Vector2(256, 224)
+
+[node name="gravity_switch_timer" type="Node2D"]
+script = ExtResource("1_2v301")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6mauh")
+
+[node name="countdown_display" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -26.0
+offset_right = 8.0
+offset_bottom = -10.0
+theme = ExtResource("3_fmdrr")
+text = "3"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-16, -24, 32, 48)
+
+[node name="area_of_effect" type="Area2D" parent="."]
+
+[node name="countdown_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2v301")
+
+[connection signal="area_entered" from="area_of_effect" to="." method="_on_area_of_effect_area_entered"]
+[connection signal="area_exited" from="area_of_effect" to="." method="_on_area_of_effect_area_exited"]
+[connection signal="timeout" from="countdown_timer" to="." method="_on_countdown_timer_timeout"]

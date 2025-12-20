@@ -8,14 +8,26 @@ size = Vector2(256, 40)
 
 [node name="test_stage_player" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
 offset_top = 128.0
 offset_right = 256.0
 offset_bottom = 168.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(128, 148)
+shape = SubResource("RectangleShape2D_g4spg")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(93, -33)
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D2"]
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 168.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
 position = Vector2(128, 148)
 shape = SubResource("RectangleShape2D_g4spg")
 

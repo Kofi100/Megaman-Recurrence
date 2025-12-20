@@ -66,14 +66,21 @@ var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "
 }
 
 var SAVEFILE_PATHS:Array[String] = ["user://savefile1.txt", "user://savefile2.txt", "user://savefile3.txt", "user://savefile4.txt", "user://savefile5.txt"]
-
+var previous_current_scene
+var current_scene
 func _ready():
+	#Signal Connections
+	get_tree().scene_changed.connect(log_changed_scenes)
+	
+	#Setting process mode for GlobalScript,to prevent issues while running the game.
 	process_mode=Node.PROCESS_MODE_ALWAYS
 	##multiples window screen size
 	##could be useful to increase screen sizes manually
 	DisplayServer.window_set_size(DisplayServer.window_get_size() * OptionsSet.default_data["resolution"])
 	DisplayServer.window_set_position(Vector2(400, 100))
 	##
+	#we take data from OptionsSet(tings) since it initializes before GlobalScript 
+	#and takes the data we need from our settings files
 	max_lives=OptionsSet.data["max_lives"]
 	buster_rapid_shot=OptionsSet.data["buster_rapid_shot"]
 	fullscreen=OptionsSet.data["fullscreen"]
@@ -95,6 +102,7 @@ var array = [null, null, null]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	previous_current_scene=get_tree().current_scene
 	#print(GlobalScript.max_lives)
 	#print(playerhitcooldowntimer)
 	if playerhasbeenhit:
@@ -119,7 +127,11 @@ func _process(delta):
 	else:
 		if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
+	
+	#print(previous_current_scene==get_tree().current_scene)
+	#if previous_current_scene!=get_tree().current_scene:
+	#await get_tree().scene_changed
+	#GlobalLogger.info(name,"Game moved to: %s" % get_tree().current_scene)
 
 func start_level_timer():
 	level_timer_start = true
@@ -228,9 +240,10 @@ func customSwitchScene(nextScenePath: String):
 		restarted_level = true
 	#const nextPath=nextScenePath
 	get_tree().change_scene_to_file(nextScenePath)
+	get_tree().scene_changed.emit()
 
 
-##Function to quickly switch scenes. Requires a Node variable instantiated to work.
+##Function to quickly switch scenes. Requires a Node variable instantiated/cached to work.
 func FastSwitchScene(nextScene: Node):
 	var currentScenePath = get_tree().current_scene.get_scene_file_path()
 	var nextScenePath = nextScene.get_scene_file_path()
@@ -243,6 +256,7 @@ func FastSwitchScene(nextScene: Node):
 	get_tree().get_root().add_child(nextScene)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = nextScene
+	get_tree().scene_changed.emit()
 	#var nextScene:PackedScene=preload(ScenesDictionary.INTRO_STAGE)
 
 
@@ -321,3 +335,7 @@ func load_gamepad_bindings():
 				clear_action_events(action, "InputEventJoypadButton")
 				clear_action_events(action, "InputEventJoypadMotion")
 				InputMap.action_add_event(action, event)
+
+## Function to log changed scenes for debugging sake,especially in the final versions of the game.
+func log_changed_scenes():
+	GlobalLogger.info(name,"Game moved to: %s" % get_tree().current_scene)

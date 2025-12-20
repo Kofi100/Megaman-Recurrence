@@ -1,36 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpx8ocybd4n57"]
+[gd_scene load_steps=10 format=3 uid="uid://dpx8ocybd4n57"]
 
 [ext_resource type="Texture2D" uid="uid://cravk65d6m07q" path="res://assets/sprites/player/weapons/megaman/rush_coil.png" id="1_0ibvr"]
 [ext_resource type="Script" uid="uid://ctb7ro5mgjol7" path="res://players/weapons/rush_jet.gd" id="1_qavoq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pn0s2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbkp7"]
 atlas = ExtResource("1_0ibvr")
-region = Rect2(0, 30, 35, 30)
+region = Rect2(285, 0, 57, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_opv2j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdk3g"]
 atlas = ExtResource("1_0ibvr")
-region = Rect2(35, 30, 35, 30)
+region = Rect2(342, 0, 57, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ivf44"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0x80"]
 atlas = ExtResource("1_0ibvr")
-region = Rect2(70, 0, 35, 30)
+region = Rect2(0, 0, 57, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2cm6j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1smnv"]
 atlas = ExtResource("1_0ibvr")
-region = Rect2(105, 0, 35, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4mxr"]
-atlas = ExtResource("1_0ibvr")
-region = Rect2(0, 30, 35, 30)
+region = Rect2(285, 0, 57, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i84xr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pn0s2")
+"texture": SubResource("AtlasTexture_bbkp7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_opv2j")
+"texture": SubResource("AtlasTexture_hdk3g")
 }],
 "loop": true,
 "name": &"jet",
@@ -38,10 +34,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ivf44")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2cm6j")
+"texture": SubResource("AtlasTexture_e0x80")
 }],
 "loop": false,
 "name": &"spawn",
@@ -49,7 +42,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y4mxr")
+"texture": SubResource("AtlasTexture_1smnv")
 }],
 "loop": true,
 "name": &"wait",
@@ -68,9 +61,8 @@ script = ExtResource("1_qavoq")
 SPEED = 4500
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.666667, -5.33333)
 sprite_frames = SubResource("SpriteFrames_i84xr")
-animation = &"jet"
+animation = &"wait"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.16667, 5.16667)

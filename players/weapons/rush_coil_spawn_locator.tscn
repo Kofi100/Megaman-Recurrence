@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://wi7trwba3ukx"]
+
+[ext_resource type="Script" uid="uid://8dgq68ikqaqn" path="res://players/weapons/rush_coil_spawn_locator.gd" id="1_bnytp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnytp"]
+size = Vector2(6, 6)
+
+[node name="rush_coil_spawn_locator" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_bnytp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bnytp")

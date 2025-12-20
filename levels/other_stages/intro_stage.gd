@@ -17,7 +17,7 @@ func _ready() -> void:
 			MegamanAndItems.weaponNumberEnabled[i] = false
 			#print(i)
 	#disable Rush Utilities
-	MegamanAndItems.weaponNumberEnabled[9] = false
+	MegamanAndItems.weaponNumberEnabled[9] = true
 	MegamanAndItems.weaponNumberEnabled[10] = false
 	MegamanAndItems.weaponNumberEnabled[11] = false
 	#re-enable Mega Buster if disabled
@@ -49,3 +49,8 @@ func _exit_tree() -> void:
 
 func _on_tree_exiting() -> void:
 	pass
+
+
+func _on_boss_entered_zone_detected_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_constants_checker_area2d"):
+		GlobalSignalBus.boss_trigger.emit()

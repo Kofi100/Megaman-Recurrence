@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhg77a2df8mnn"
+path="res://.godot/imported/Mega Man 5 (NES) Music - Gravity Man Stage.mp3-23fea4d02c3d14f96a55d5525e106f46.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Mega Man 5 (NES) Music - Gravity Man Stage.mp3"
+dest_files=["res://.godot/imported/Mega Man 5 (NES) Music - Gravity Man Stage.mp3-23fea4d02c3d14f96a55d5525e106f46.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

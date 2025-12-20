@@ -61,6 +61,8 @@ func _on_collision_monitor_area_entered(area):
 				area.get_parent().health-=damagevalue
 				area.get_parent().hasBeenHurt=true
 			elif body.is_boss==true:
+				health-=body.health
+				
 				body.health-=(damagevalue-body.BossDefenseShot1)
 			body.hasBeenHurt=true
 			GlobalScript.score+=30

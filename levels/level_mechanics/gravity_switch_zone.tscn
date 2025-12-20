@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://u7gu07mu4nwn"]
+
+[ext_resource type="Script" uid="uid://dakr6636ldaou" path="res://levels/level_mechanics/gravity_switch_zone.gd" id="1_244qb"]
+
+[node name="gravity_switch_zone" type="Area2D"]
+script = ExtResource("1_244qb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

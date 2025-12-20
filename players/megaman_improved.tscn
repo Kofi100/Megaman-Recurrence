@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dcf8w48reta7p"]
+[gd_scene load_steps=52 format=3 uid="uid://dcf8w48reta7p"]
 
 [ext_resource type="PackedScene" uid="uid://cg0w78j52jm2x" path="res://resources/state_engine.tscn" id="1_7e26b"]
 [ext_resource type="Script" uid="uid://b2chwqb0yvmvq" path="res://players/megaman_improved.gd" id="1_w5qg3"]
@@ -11,6 +11,17 @@
 [ext_resource type="Shader" uid="uid://ft7yd4ytenvd" path="res://players/megaman.gdshader" id="8_673mk"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="9_yttai"]
 [ext_resource type="Script" uid="uid://b526ykwjnnh66" path="res://players/MegamanImproved_States/attack_states/chargeshot.gd" id="11_reahm"]
+[ext_resource type="Script" uid="uid://c74xkm3wmjfxg" path="res://players/MegamanImproved_States/fall.gd" id="11_tltle"]
+[ext_resource type="AudioStream" uid="uid://crijrqyswqhij" path="res://assets/sounds/hurt.wav" id="12_1lm6h"]
+[ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="13_tltle"]
+[ext_resource type="AudioStream" uid="uid://d1n3khoiibs67" path="res://assets/sounds/shoot.wav" id="14_a8sec"]
+[ext_resource type="AudioStream" uid="uid://dgrixbrecs045" path="res://assets/sounds/chargeeffect2.wav" id="15_5ar3e"]
+[ext_resource type="AudioStream" uid="uid://p80uexe8652b" path="res://assets/sounds/dead.wav" id="16_35610"]
+[ext_resource type="AudioStream" uid="uid://cnqebubvm8bvy" path="res://assets/sounds/mm5_halfchargeshot.wav" id="17_j4igw"]
+[ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="18_7102p"]
+[ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="19_fkfkf"]
+[ext_resource type="AudioStream" uid="uid://dbylvqio5n61y" path="res://assets/music/Stage_Clear.ogg" id="20_lpn3i"]
+[ext_resource type="AudioStream" uid="uid://de1fpvmyt0f4l" path="res://assets/sounds/SFX 098_MM10Land.mp3" id="21_mqe5o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_reahm"]
 shader = ExtResource("8_673mk")
@@ -315,7 +326,6 @@ offset = Vector2(0, 1)
 
 [node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_7e26b")]
 initial_state = NodePath("idle")
-show_debugging_info = true
 
 [node name="idle" type="Node" parent="State Engine"]
 script = ExtResource("3_6rr1a")
@@ -337,6 +347,10 @@ metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 script = ExtResource("7_3ewpo")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
+[node name="fall" type="Node" parent="State Engine"]
+script = ExtResource("11_tltle")
+metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
+
 [node name="Attack State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_7e26b")]
 initial_state = NodePath("chargeshot")
 show_debugging_info = true
@@ -355,6 +369,61 @@ shape = SubResource("RectangleShape2D_yttai")
 wait_time = 0.5
 one_shot = true
 
+[node name="all_proj_spawn_points" type="Node2D" parent="."]
+
+[node name="ground_left" type="Marker2D" parent="all_proj_spawn_points"]
+position = Vector2(-18, 2)
+
+[node name="ground_right" type="Marker2D" parent="all_proj_spawn_points"]
+position = Vector2(18, 2)
+
+[node name="air_left" type="Marker2D" parent="all_proj_spawn_points"]
+position = Vector2(-15.6667, -6.33333)
+
+[node name="air_right" type="Marker2D" parent="all_proj_spawn_points"]
+position = Vector2(17.7238, -6.42757)
+
+[node name="all_sounds" type="Node2D" parent="."]
+
+[node name="stun" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("12_1lm6h")
+script = ExtResource("13_tltle")
+
+[node name="shoot" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("14_a8sec")
+script = ExtResource("13_tltle")
+
+[node name="charge" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("15_5ar3e")
+script = ExtResource("13_tltle")
+
+[node name="dead" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("16_35610")
+script = ExtResource("13_tltle")
+
+[node name="halfcharge" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("17_j4igw")
+script = ExtResource("13_tltle")
+
+[node name="fullcharge" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("18_7102p")
+script = ExtResource("13_tltle")
+
+[node name="energyup" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("19_fkfkf")
+script = ExtResource("13_tltle")
+
+[node name="level_cleared" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("20_lpn3i")
+script = ExtResource("13_tltle")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
+
+[node name="mm10land" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("21_mqe5o")
+script = ExtResource("13_tltle")
+metadata/_custom_type_script = "uid://fcof0bm2obkl"
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 24)
+position = Vector2(0, 15)
+target_position = Vector2(0, 16)
 hit_from_inside = true

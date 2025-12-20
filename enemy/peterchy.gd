@@ -10,7 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	playerdamagevalue=3
-	health=8
+	health=3
 	state='move'
 	var distance_to_player=global_position-Vector2(GlobalScript.playerposx,GlobalScript.playerposy)
 	if distance_to_player.x<0:
@@ -21,8 +21,17 @@ func _ready():
 func _physics_process(delta):
 	#$Label.text=str(SPEED);$index.text=str(index)
 	var distance=GlobalScript.playerposx-global_position.x
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	var reverse_gravity=Player.playerCharacter.reverse_gravity
+	if reverse_gravity:
+		scale.y=-1
+	else:
+		scale.y=1
+	if reverse_gravity:
+		if not is_on_ceiling():
+			velocity.y-=gravity*delta
+	else:
+		if not is_on_floor():
+			velocity.y += gravity * delta
 	if velocity.x<0:animated_sprite_2d.flip_h=false
 	elif velocity.x>0:animated_sprite_2d.flip_h=true
 	if active:

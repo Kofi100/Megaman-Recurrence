@@ -63,7 +63,8 @@ layout_mode = 2
 [node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power4"]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
-hframes = 2
+vframes = 12
+frame = 3
 
 [node name="power5" type="Control" parent="abilities_grid"]
 layout_mode = 2

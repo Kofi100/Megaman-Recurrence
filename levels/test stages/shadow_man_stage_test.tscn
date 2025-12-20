@@ -864,10 +864,9 @@ position = Vector2(384, 284)
 [node name="New Camera System Addon4" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2137.88, 1703.43)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("Camera2D")
+zone_camera_2d = NodePath("@Camera2D@22039")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 player_transition_direction_y = "DOWN"
 allowed_transition_movement = {
 "down": true,
@@ -890,9 +889,8 @@ shape = SubResource("RectangleShape2D_popf6")
 position = Vector2(2369.73, 1676.74)
 scale = Vector2(0.3, 0.3)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("Camera2D")
+zone_camera_2d = NodePath("@Camera2D@22040")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 player_transition_direction_x = ""
 player_transition_direction_y = ""
 
@@ -906,10 +904,9 @@ limit_bottom = 387
 [node name="New Camera System Addon3" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(464.456, 1440.8)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("Camera2D")
+zone_camera_2d = NodePath("@Camera2D@22041")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 player_transition_direction_y = "DOWN"
 allowed_transition_movement = {
 "down": true,
@@ -930,11 +927,10 @@ limit_top = 1265
 limit_right = 2143
 limit_bottom = 1536
 
-[node name="Camera_System4" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "GlobalTimerChecker")]
+[node name="Camera_System4" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d")]
 position = Vector2(109.553, 820.544)
 script = ExtResource("35_sk6yx")
 zone_camera_2d = NodePath("Camera2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
@@ -947,10 +943,9 @@ limit_bottom = 1073
 [node name="New Camera System Addon10" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(109.553, 820.544)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("@Camera2D@205839")
+zone_camera_2d = NodePath("@Camera2D@22042")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 allowed_transition_movement = {
 "down": true,
 "left": false,
@@ -964,11 +959,10 @@ position = Vector2(145.947, 123.456)
 shape = SubResource("RectangleShape2D_da2ck")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "GlobalTimerChecker")]
+[node name="Camera_System" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d")]
 position = Vector2(1, -62)
 script = ExtResource("35_sk6yx")
 zone_camera_2d = NodePath("Camera2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
@@ -982,10 +976,9 @@ limit_bottom = 206
 [node name="New Camera System Addon5" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(1, -62)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("@Camera2D@205840")
+zone_camera_2d = NodePath("@Camera2D@22043")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 player_transition_direction_x = ""
 player_transition_direction_y = "DOWN"
 allowed_transition_movement = {
@@ -1001,11 +994,10 @@ position = Vector2(127.5, 133)
 shape = SubResource("RectangleShape2D_c0q0l")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System2" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "GlobalTimerChecker")]
+[node name="Camera_System2" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d")]
 position = Vector2(139.239, 232.629)
 script = ExtResource("35_sk6yx")
 zone_camera_2d = NodePath("Camera2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="Node2D/Camera_System2"]
@@ -1017,10 +1009,9 @@ limit_bottom = 420
 [node name="New Camera System Addon6" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(139.239, 232.629)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("@Camera2D@205841")
+zone_camera_2d = NodePath("@Camera2D@22044")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 player_transition_direction_x = ""
 player_transition_direction_y = "DOWN"
 allowed_transition_movement = {
@@ -1036,11 +1027,10 @@ position = Vector2(-10.7394, 81.3709)
 shape = SubResource("RectangleShape2D_qt7ik")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System3" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "GlobalTimerChecker")]
+[node name="Camera_System3" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d")]
 position = Vector2(100.914, 508.326)
 script = ExtResource("35_sk6yx")
 zone_camera_2d = NodePath("Camera2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="Node2D/Camera_System3"]
@@ -1052,10 +1042,9 @@ limit_bottom = 734
 [node name="New Camera System Addon7" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(100.914, 508.326)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("@Camera2D@205842")
+zone_camera_2d = NodePath("@Camera2D@22045")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 player_transition_direction_y = "DOWN"
 allowed_transition_movement = {
 "down": true,
@@ -1073,10 +1062,9 @@ debug_color = Color(0.4, 0.2, 0.6, 0.5)
 [node name="New Camera System Addon" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(434.192, 1235.91)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("Camera2D")
+zone_camera_2d = NodePath("@Camera2D@22046")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 player_transition_direction_y = "DOWN"
 allowed_transition_movement = {
 "down": true,
@@ -1095,11 +1083,10 @@ limit_top = 1072
 limit_right = 511
 limit_bottom = 1313
 
-[node name="Camera_System5" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "GlobalTimerChecker")]
+[node name="Camera_System5" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d")]
 position = Vector2(4071.13, 1628.02)
 script = ExtResource("35_sk6yx")
 zone_camera_2d = NodePath("Camera2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
@@ -1112,10 +1099,9 @@ limit_bottom = 1791
 [node name="New Camera System Addon9" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4071.13, 1628.02)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("@Camera2D@205843")
+zone_camera_2d = NodePath("@Camera2D@22047")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 allowed_transition_movement = {
 "down": false,
 "left": true,
@@ -1132,10 +1118,9 @@ debug_color = Color(0.4, 0.2, 0.6, 0.5)
 [node name="New Camera System Addon8" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4356.72, 1654.04)
 script = ExtResource("35_4a4nc")
-zone_camera_2d = NodePath("@Camera2D@205844")
+zone_camera_2d = NodePath("@Camera2D@22048")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 allowed_transition_movement = {
 "down": false,
 "left": true,
@@ -1149,11 +1134,10 @@ position = Vector2(6.78076, 2.96436)
 shape = SubResource("RectangleShape2D_02amd")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System6" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "GlobalTimerChecker")]
+[node name="Camera_System6" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d")]
 position = Vector2(4356.72, 1654.04)
 script = ExtResource("35_sk6yx")
 zone_camera_2d = NodePath("Camera2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 

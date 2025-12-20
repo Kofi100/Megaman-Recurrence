@@ -1,0 +1,389 @@
+[gd_scene load_steps=38 format=4 uid="uid://3rvprhrviyj"]
+
+[ext_resource type="PackedScene" uid="uid://cp5iip7560xdt" path="res://levels/ldtk_experimental_levels/graffiti_man_stage.ldtk" id="1_e1bw5"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_jt6i4"]
+[ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="3_0ed3a"]
+[ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="3_4wvmb"]
+[ext_resource type="AudioStream" uid="uid://bhg77a2df8mnn" path="res://assets/music/Mega Man 5 (NES) Music - Gravity Man Stage.mp3" id="3_a63nd"]
+[ext_resource type="Texture2D" uid="uid://dfvpcnqk4ir01" path="res://assets/sprites/tilesets/side_stages/gravity_man_tiles_16x8px_bg_lights.png" id="4_2xsfu"]
+[ext_resource type="Texture2D" uid="uid://c5brgsti1p1qv" path="res://assets/sprites/tilesets/side_stages/gravity_man_tiles_8px_bg_lights.png" id="5_kysb1"]
+[ext_resource type="Texture2D" uid="uid://bkchi5oswjq03" path="res://assets/sprites/tilesets/side_stages/gravity_man_tiles_animated_16px.png" id="6_7uw4j"]
+[ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="6_a63nd"]
+[ext_resource type="PackedScene" uid="uid://u7gu07mu4nwn" path="res://levels/level_mechanics/gravity_switch_zone.tscn" id="6_nno8f"]
+[ext_resource type="PackedScene" uid="uid://c12ytesumw43d" path="res://levels/level_mechanics/deathzones.tscn" id="8_5wljm"]
+[ext_resource type="PackedScene" uid="uid://bkflp1spldgrk" path="res://resources/screen_grid.tscn" id="9_mt0nv"]
+[ext_resource type="PackedScene" uid="uid://cl7ig40fdqhx4" path="res://levels/level_mechanics/gravity_switch_timer.tscn" id="12_ah3qe"]
+[ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="13_afbwa"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="15_36q2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xsfu"]
+size = Vector2(768, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdyop"]
+size = Vector2(768, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ah3qe"]
+size = Vector2(256, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36q2r"]
+size = Vector2(256, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j65im"]
+size = Vector2(256, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14i0q"]
+size = Vector2(256, 224)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kysb1"]
+texture = ExtResource("4_2xsfu")
+texture_region_size = Vector2i(16, 8)
+1:0/animation_frame_0/duration = 0.5
+1:0/animation_frame_1/duration = 0.5
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nno8f"]
+tile_size = Vector2i(16, 8)
+sources/0 = SubResource("TileSetAtlasSource_kysb1")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nno8f"]
+texture = ExtResource("5_kysb1")
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(8, 8)
+1:5/animation_frame_0/duration = 1.0
+1:5/animation_frame_1/duration = 1.0
+1:5/0 = 0
+1:4/animation_frame_0/duration = 1.0
+1:4/animation_frame_1/duration = 1.0
+1:4/0 = 0
+1:3/animation_frame_0/duration = 1.0
+1:3/animation_frame_1/duration = 1.0
+1:3/0 = 0
+1:2/animation_frame_0/duration = 1.0
+1:2/animation_frame_1/duration = 1.0
+1:2/0 = 0
+1:1/animation_frame_0/duration = 1.0
+1:1/animation_frame_1/duration = 1.0
+1:1/0 = 0
+1:0/animation_frame_0/duration = 1.0
+1:0/animation_frame_1/duration = 1.0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7uw4j"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_nno8f")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5wljm"]
+texture = ExtResource("6_7uw4j")
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fdyop"]
+sources/0 = SubResource("TileSetAtlasSource_5wljm")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uw4j"]
+size = Vector2(48.7193, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afbwa"]
+size = Vector2(48.7193, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ed3a"]
+size = Vector2(48.7193, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wljm"]
+size = Vector2(64.3597, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6d42"]
+size = Vector2(64.3597, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a63nd"]
+size = Vector2(1402, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ywbc"]
+size = Vector2(135.43701, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mt0nv"]
+size = Vector2(1988, 19)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ah3qe"]
+texture = ExtResource("13_afbwa")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_36q2r"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ah3qe")
+
+[node name="graffiti_man_stage" instance=ExtResource("1_e1bw5")]
+
+[node name="screenGrid" parent="." index="0" instance=ExtResource("9_mt0nv")]
+position = Vector2(0, -32)
+tile_map_data = PackedByteArray("AAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAAFAP//AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAA=")
+GridNumber = 15
+
+[node name="Music" type="Node2D" parent="." index="9"]
+
+[node name="BGM" type="AudioStreamPlayer" parent="Music" index="0"]
+process_mode = 3
+stream = ExtResource("3_a63nd")
+autoplay = true
+parameters/looping = true
+script = ExtResource("3_0ed3a")
+metadata/_custom_type_script = "uid://cik7cc71o2ep7"
+
+[node name="all_cameras" type="Node2D" parent="." index="10"]
+z_index = 1
+
+[node name="New Camera System Addon" type="Area2D" parent="all_cameras" index="0" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("3_4wvmb")
+zone_camera_2d = NodePath("@Camera2D@93254")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon" index="0"]
+position = Vector2(384, 80)
+shape = SubResource("RectangleShape2D_2xsfu")
+
+[node name="New Camera System Addon2" type="Area2D" parent="all_cameras" index="1" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("3_4wvmb")
+zone_camera_2d = NodePath("@Camera2D@93255")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+allowed_transition_movement = {
+"down": false,
+"left": true,
+"right": true,
+"up": false
+}
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon2" index="0"]
+position = Vector2(1152, 80)
+shape = SubResource("RectangleShape2D_fdyop")
+
+[node name="New Camera System Addon3" type="Area2D" parent="all_cameras" index="2" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("3_4wvmb")
+zone_camera_2d = NodePath("@Camera2D@93256")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+allowed_transition_movement = {
+"down": true,
+"left": false,
+"right": true,
+"up": true
+}
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon3" index="0"]
+position = Vector2(1664, 80)
+shape = SubResource("RectangleShape2D_ah3qe")
+
+[node name="New Camera System Addon4" type="Area2D" parent="all_cameras" index="3" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("3_4wvmb")
+zone_camera_2d = NodePath("@Camera2D@93257")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon4" index="0"]
+position = Vector2(1664, -144)
+shape = SubResource("RectangleShape2D_36q2r")
+
+[node name="New Camera System Addon5" type="Area2D" parent="all_cameras" index="4" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("3_4wvmb")
+zone_camera_2d = NodePath("@Camera2D@93258")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon5" index="0"]
+position = Vector2(1408, -145)
+shape = SubResource("RectangleShape2D_j65im")
+
+[node name="New Camera System Addon6" type="Area2D" parent="all_cameras" index="5" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("3_4wvmb")
+zone_camera_2d = NodePath("@Camera2D@93259")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon6" index="0"]
+position = Vector2(1152, -144)
+shape = SubResource("RectangleShape2D_14i0q")
+
+[node name="New Camera System Addon7" type="Area2D" parent="all_cameras" index="6" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+position = Vector2(-256, -1)
+script = ExtResource("3_4wvmb")
+zone_camera_2d = NodePath("@Camera2D@96016")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+metadata/_custom_type_script = "uid://lta1kuu87vs6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon7" index="0"]
+position = Vector2(1152, -144)
+shape = SubResource("RectangleShape2D_14i0q")
+
+[node name="BG_Lights2" type="TileMapLayer" parent="." index="11"]
+position = Vector2(0, 1)
+tile_map_data = PackedByteArray("AAAGAAIAAAABAAAAAAAXAAQAAAABAAAAAAA7AAIAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_nno8f")
+
+[node name="BG_Lights" type="TileMapLayer" parent="." index="12"]
+tile_map_data = PackedByteArray("AAAFAAcAAAABAAUAAAAEAAYAAAABAAUAAAAGAAYAAAABAAUAAAAGAAgAAAABAAUAAAAHAAkAAAABAAUAAAAHAAcAAAABAAUAAAAIAAgAAAABAAUAAAAIAAYAAAABAAUAAAAJAAcAAAABAAUAAAAKAAgAAAABAAUAAAAJAAkAAAABAAUAAAAKAAYAAAABAAUAAAAEAAcAAAABAAQAAAAGAAcAAAABAAQAAAAKAAkAAAABAAQAAAALAAkAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAAsAAgAAAABAAQAAAAtAAgAAAABAAQAAAAuAAgAAAABAAQAAAAvAAgAAAABAAQAAAAvAAoAAAABAAQAAAAuAAsAAAABAAQAAAAtAAsAAAABAAQAAAAsAAoAAAABAAQAAABqAAgAAAABAAUAAABpAAkAAAABAAUAAABrAAkAAAABAAUAAABsAAgAAAABAAUAAABtAAkAAAABAAUAAABuAAgAAAABAAUAAABvAAkAAAABAAUAAABxAAoAAAABAAUAAAByAAoAAAABAAUAAABzAAsAAAABAAUAAAB0AAoAAAABAAUAAAB1AAsAAAABAAUAAABnAAoAAAABAAQAAABoAAsAAAABAAQAAABpAAoAAAABAAQAAABqAAsAAAABAAQAAABrAAoAAAABAAQAAABmAAsAAAABAAQAAAB4ABIAAAABAAUAAAB3ABMAAAABAAUAAAB3ABEAAAABAAUAAAB5ABEAAAABAAUAAAB5ABMAAAABAAUAAAB6ABIAAAABAAUAAAB7ABMAAAABAAUAAAB8ABIAAAABAAUAAAB9ABMAAAABAAUAAACHAAcAAAABAAUAAACHAAkAAAABAAUAAACIAAgAAAABAAUAAACJAAcAAAABAAUAAACJAAkAAAABAAUAAAB+AAYAAAABAAQAAAB/AAcAAAABAAQAAACAAAcAAAABAAQAAAB/AAkAAAABAAQAAACBAAkAAAABAAQAAACCAAkAAAABAAQAAACCAAcAAAABAAQAAACBAAYAAAABAAQAAACDAAYAAAABAAQAAACEAAYAAAABAAQAAACEAAkAAAABAAQAAAClAAYAAAABAAQAAACmAAcAAAABAAQAAACnAAYAAAABAAQAAACoAAcAAAABAAQAAACoAAgAAAABAAQAAACnAAkAAAABAAQAAACpAAkAAAABAAQAAACrAAkAAAABAAQAAACqAAgAAAABAAQAAACqAAcAAAABAAQAAACpAAYAAAABAAQAAAAKAAIAAAABAAIAAAALAAMAAAABAAIAAAAOAAIAAAABAAIAAAAIAAEAAAABAAMAAAAqAAMAAAABAAMAAAByAAEAAAABAAMAAAAsAAQAAAABAAIAAAAtAAUAAAABAAIAAAB0AAIAAAABAAIAAAB1AAMAAAABAAIAAAB4AAIAAAABAAIAAACvAAcAAAABAAUAAACwAAgAAAABAAUAAACxAAgAAAABAAUAAACyAAcAAAABAAUAAACzAAgAAAABAAUAAAC0AAcAAAABAAUAAACwAAYAAAABAAQAAACvAAkAAAABAAQAAACyAAkAAAABAAQAAACyAAYAAAABAAQAAAC0AAkAAAABAAQAAAC0AAYAAAABAAQAAAA=")
+tile_set = SubResource("TileSet_7uw4j")
+
+[node name="BG_Tiles_Animated_16px" type="TileMapLayer" parent="." index="13"]
+tile_map_data = PackedByteArray("AAAqAAYAAAAAAAEAACAqAAcAAAAAAAAAACArAAYAAAAAAAEAACArAAcAAAAAAAAAACAsAAYAAAAAAAEAACAsAAcAAAAAAAAAACAtAAYAAAAAAAEAACAtAAcAAAAAAAAAACAdAAQAAAAAAAAAAAAdAAUAAAAAAAEAAAAeAAQAAAAAAAAAAAAeAAUAAAAAAAEAAAAfAAQAAAAAAAAAAAAfAAUAAAAAAAEAAAANAAIAAAAAAAAAAAANAAMAAAAAAAEAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAEAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAEAAABKAAMAAAAAAAAAAABKAAQAAAAAAAEAAABLAAMAAAAAAAAAAABLAAQAAAAAAAEAAABMAAMAAAAAAAAAAABMAAQAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_fdyop")
+
+[node name="Player" type="Node2D" parent="." index="14"]
+
+[node name="megaman" parent="Player" index="0" instance=ExtResource("2_jt6i4")]
+position = Vector2(1299.6364, -127.272736)
+
+[node name="Enemies" type="Node2D" parent="." index="15"]
+
+[node name="enemy_spawner" parent="Enemies" index="0" instance=ExtResource("6_a63nd")]
+position = Vector2(845, 117)
+
+[node name="enemy_spawner10" parent="Enemies" index="1" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(929, 88)
+enemy_to_spawn = "peterchy"
+enemy_Preview = NodePath("peterchy")
+
+[node name="enemy_spawner7" parent="Enemies" index="2" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(1100, 87)
+enemy_to_spawn = "peterchy"
+enemy_Preview = NodePath("peterchy")
+
+[node name="enemy_spawner2" parent="Enemies" index="3" instance=ExtResource("6_a63nd")]
+position = Vector2(435, 73)
+SetinitialDirection = "up"
+InitialDirection_Mini = "up"
+
+[node name="enemy_spawner3" parent="Enemies" index="4" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(416, 72)
+enemy_to_spawn = "octopus_battery"
+SetinitialDirection = "up"
+InitialDirection_Mini = "down"
+enemy_Preview = NodePath("octopus_battery")
+
+[node name="enemy_spawner4" parent="Enemies" index="5" instance=ExtResource("6_a63nd")]
+position = Vector2(591, 25)
+SetinitialDirection = "up"
+InitialDirection_Mini = "down"
+
+[node name="enemy_spawner12" parent="Enemies" index="6" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(651, 151)
+enemy_to_spawn = "peterchy"
+SetinitialDirection = "up"
+InitialDirection_Mini = "down"
+enemy_Preview = NodePath("peterchy")
+
+[node name="enemy_spawner11" parent="Enemies" index="7" instance=ExtResource("6_a63nd")]
+position = Vector2(272, 87)
+SetinitialDirection = "up"
+InitialDirection_Mini = "down"
+
+[node name="enemy_spawner8" parent="Enemies" index="8" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(1615, 151)
+enemy_to_spawn = "octopus_battery"
+SetinitialDirection = "up"
+InitialDirection_Mini = "down"
+enemy_Preview = NodePath("octopus_battery")
+
+[node name="enemy_spawner13" parent="Enemies" index="9" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(1651, 40)
+enemy_to_spawn = "octopus_battery"
+SetinitialDirection = "up"
+InitialDirection_Mini = "up"
+enemy_Preview = NodePath("octopus_battery")
+
+[node name="enemy_spawner9" parent="Enemies" index="10" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(1424, -8)
+enemy_to_spawn = "octopus_battery"
+SetinitialDirection = "up"
+InitialDirection_Mini = "up"
+enemy_Preview = NodePath("octopus_battery")
+
+[node name="enemy_spawner5" parent="Enemies" index="11" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(523, 41)
+enemy_to_spawn = "octopus_battery"
+SetinitialDirection = "up"
+InitialDirection_Mini = "up"
+enemy_Preview = NodePath("octopus_battery")
+
+[node name="enemy_spawner6" parent="Enemies" index="12" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+position = Vector2(499, 151)
+enemy_to_spawn = "octopus_battery"
+SetinitialDirection = "up"
+InitialDirection_Mini = "down"
+enemy_Preview = NodePath("octopus_battery")
+
+[node name="Mechanics" type="Node2D" parent="." index="16"]
+
+[node name="Gravity Switching" type="Node2D" parent="Mechanics" index="0"]
+
+[node name="gravity_switch_zone_up" parent="Mechanics/Gravity Switching" index="0" instance=ExtResource("6_nno8f")]
+reverse_gravity_up = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="1"]
+position = Vector2(488, 96)
+shape = SubResource("RectangleShape2D_7uw4j")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="2"]
+position = Vector2(232, 65)
+shape = SubResource("RectangleShape2D_afbwa")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="3"]
+position = Vector2(1208, 80)
+shape = SubResource("RectangleShape2D_0ed3a")
+
+[node name="gravity_switch_zone2" parent="Mechanics/Gravity Switching" index="1" instance=ExtResource("6_nno8f")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone2" index="1"]
+position = Vector2(703.82, 97)
+shape = SubResource("RectangleShape2D_5wljm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone2" index="2"]
+position = Vector2(1408, -158)
+shape = SubResource("RectangleShape2D_u6d42")
+
+[node name="gravity_switch_timer" parent="Mechanics/Gravity Switching" index="2" instance=ExtResource("12_ah3qe")]
+position = Vector2(1158, -416)
+starting_frame = 1
+
+[node name="gravity_switch_timer2" parent="Mechanics/Gravity Switching" index="3" instance=ExtResource("12_ah3qe")]
+position = Vector2(900, -405)
+
+[node name="Deathzones" type="Node2D" parent="Mechanics" index="1"]
+
+[node name="deathzones" parent="Mechanics/Deathzones" index="0" instance=ExtResource("8_5wljm")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="0"]
+position = Vector2(696, -35.5)
+shape = SubResource("RectangleShape2D_a63nd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="1"]
+position = Vector2(1747, -276)
+shape = SubResource("RectangleShape2D_2ywbc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="2"]
+position = Vector2(840, 220.5)
+shape = SubResource("RectangleShape2D_mt0nv")
+
+[node name="Spikes" type="Node2D" parent="Mechanics" index="2"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Mechanics/Spikes" index="0" groups=["spikeTiles", "spikeZone"]]
+visible = false
+tile_map_data = PackedByteArray("AABiAP7/AAABAAAAACBjAP7/AAABAAAAACBkAP7/AAABAAAAACBlAP7/AAABAAAAACBJAP7/AAABAAAAACBIAP7/AAABAAAAACAdAP7/AAABAAAAACAcAP7/AAABAAAAACBWAP7/AAABAAAAACBVAP7/AAABAAAAACBUAP7/AAABAAAAACBUAP3/AAABAAAAAABVAP3/AAABAAAAAABAAPD/AAABAAAAACBBAPD/AAABAAAAACBCAPD/AAABAAAAACBDAPD/AAABAAAAACA4APD/AAABAAAAACA5APD/AAABAAAAACA6APD/AAABAAAAACA7APD/AAABAAAAACBAAP3/AAABAAAAAABBAP3/AAABAAAAAABEAP3/AAABAAAAAABFAP3/AAABAAAAAABGAP3/AAABAAAAAABHAP3/AAABAAAAAABpAP7/AAABAAAAACBoAP7/AAABAAAAACBmAPD/AAABAAAAACBsAPD/AAABAAAAACBnAPD/AAABAAAAACBtAPD/AAABAAAAACBKAP3/AAABAAAAAABLAP3/AAABAAAAAAA=")
+tile_set = SubResource("TileSet_36q2r")
+
+[node name="Savepoints" type="Node2D" parent="Mechanics" index="3"]
+
+[node name="savepoint" parent="Mechanics/Savepoints" index="0" instance=ExtResource("15_36q2r")]
+position = Vector2(887, -96)

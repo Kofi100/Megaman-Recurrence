@@ -1,6 +1,6 @@
 extends Node2D
 
-var isSaving: bool = true
+var isSaving: bool = false
 var confirm_choice: bool = false
 var confirm_box_show: bool = false
 var file_option: int = 0
@@ -11,7 +11,7 @@ func _ready() -> void:
 	$arrow_blink_timer.start()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Update view data for current file option
 	if file_option <= 4:
 		viewData(GlobalScript.SAVEFILE_PATHS[file_option])

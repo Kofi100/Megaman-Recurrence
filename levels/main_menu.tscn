@@ -211,7 +211,14 @@ text = "Intro Stage Try"
 [node name="slumberMan_Stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
-text = "Slumber Man Stage"
+text = "Slumber Man 
+Stage"
+
+[node name="graffitiMan_Stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ns6ek")
+text = "Gravity Man 
+Stage Extra"
 
 [node name="side_note_stages" type="RichTextLabel" parent="stage_buttons"]
 visible = false
@@ -322,6 +329,8 @@ autoplay = "zoom_in_out"
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/intro_Stage" to="." method="_on_intro_stage_pressed"]
 [connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/slumberMan_Stage" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/slumberMan_Stage" to="." method="_on_slumber_man_stage_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/graffitiMan_Stage" to="." method="play_sound_when_mouse_over_button"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/graffitiMan_Stage" to="." method="_on_graffiti_man_stage_pressed"]
 [connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]
 [connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="confirmed" from="Quit_ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

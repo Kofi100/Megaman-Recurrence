@@ -199,7 +199,13 @@ func saveData(file_path: String) -> bool:
 	
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	if file == null:
-		push_error("Failed to open file for writing: %s. Error: %s" % [file_path, FileAccess.get_open_error()])
+		push_error("Failed to open file for writing: %s. Error: %s" % 
+		[file_path, FileAccess.get_open_error()])
+		
+		GlobalLogger.warn(name,
+		"Failed to open file for writing: %s. Error: %s" %
+		[file_path, FileAccess.get_open_error()])
+		
 		return false
 	
 	# Create a versioned save dictionary
@@ -214,18 +220,23 @@ func saveData(file_path: String) -> bool:
 	file.store_var(save_data)
 	file.close()
 	
-	print("Successfully saved data to: ", file_path)
+	GlobalLogger.info(name,"Successfully saved data to:%s " % file_path)
 	return true
 
 func loadData(file_path: String) -> bool:
 	if not FileAccess.file_exists(file_path):
-		print("Save file doesn't exist, creating new: ", file_path)
+		GlobalLogger.warn(name,"Save file doesn't exist, creating new: " % file_path)
 		file_exists = false
 		return saveData(file_path)  # Create new save file
 	
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if file == null:
 		push_error("Failed to open file for reading: %s. Error: %s" % [file_path, FileAccess.get_open_error()])
+		
+		GlobalLogger.warn(name,
+		"Failed to open file for reading: %s. Error: %s" % 
+		[file_path, FileAccess.get_open_error()])
+		
 		return false
 	
 	var save_data = file.get_var()
@@ -233,6 +244,7 @@ func loadData(file_path: String) -> bool:
 	
 	if not save_data is Dictionary:
 		push_error("Invalid save data format in file: ", file_path)
+		GlobalLogger.warn(name,"Invalid save data format in file:%s "% file_path)
 		return false
 	
 	# Validate and load data with fallbacks
@@ -241,7 +253,7 @@ func loadData(file_path: String) -> bool:
 	#weaponEnergy = save_data.get("weapon_energy", weaponEnergy.duplicate())  # Keep current if not found
 	
 	file_exists = true
-	print("Successfully loaded data from: ", file_path)
+	GlobalLogger.info(name,"Successfully loaded data from: %s"% file_path)
 	return true
 
 

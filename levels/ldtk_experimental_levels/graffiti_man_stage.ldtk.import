@@ -1,0 +1,37 @@
+[remap]
+
+importer="ldtk.import"
+type="PackedScene"
+uid="uid://cp5iip7560xdt"
+path="res://.godot/imported/graffiti_man_stage.ldtk-e7d150776618222f1d55ca42901a9c0e.scn"
+
+[deps]
+
+files=["res://levels/ldtk_experimental_levels/tilesets/tileset_32px.res", "res://levels/ldtk_experimental_levels/tilesets/tileset_16px.res", "res://levels/ldtk_experimental_levels/tilesets/tileset_8px.res", "res://levels/ldtk_experimental_levels/levels/Level_0.scn", "res://levels/ldtk_experimental_levels/levels/Level_1.scn", "res://levels/ldtk_experimental_levels/levels/Level_2.scn", "res://levels/ldtk_experimental_levels/levels/Level_3.scn", "res://levels/ldtk_experimental_levels/levels/Level_4.scn", "res://levels/ldtk_experimental_levels/levels/Level_5.scn", "res://levels/ldtk_experimental_levels/levels/Level_6.scn", "res://levels/ldtk_experimental_levels/levels/Level_7.scn", "res://.godot/imported/graffiti_man_stage.ldtk-e7d150776618222f1d55ca42901a9c0e.scn"]
+
+source_file="res://levels/ldtk_experimental_levels/graffiti_man_stage.ldtk"
+dest_files=["res://.godot/imported/graffiti_man_stage.ldtk-e7d150776618222f1d55ca42901a9c0e.scn", "res://levels/ldtk_experimental_levels/tilesets/tileset_32px.res", "res://levels/ldtk_experimental_levels/tilesets/tileset_16px.res", "res://levels/ldtk_experimental_levels/tilesets/tileset_8px.res", "res://levels/ldtk_experimental_levels/levels/Level_0.scn", "res://levels/ldtk_experimental_levels/levels/Level_1.scn", "res://levels/ldtk_experimental_levels/levels/Level_2.scn", "res://levels/ldtk_experimental_levels/levels/Level_3.scn", "res://levels/ldtk_experimental_levels/levels/Level_4.scn", "res://levels/ldtk_experimental_levels/levels/Level_5.scn", "res://levels/ldtk_experimental_levels/levels/Level_6.scn", "res://levels/ldtk_experimental_levels/levels/Level_7.scn", "res://.godot/imported/graffiti_man_stage.ldtk-e7d150776618222f1d55ca42901a9c0e.scn"]
+
+[params]
+
+World=""
+group_world_layers=false
+Level=""
+pack_levels=true
+Layer=""
+layers_always_visible=false
+Tileset=""
+tileset_custom_data=false
+integer_grid_tilesets=false
+atlas_texture_type=0
+Entity=""
+resolve_entityrefs=true
+use_entity_placeholders=false
+Post Import=""
+tileset_post_import=""
+entities_post_import=""
+level_post_import=""
+world_post_import=""
+Debug=""
+force_tileset_reimport=false
+verbose_output=false

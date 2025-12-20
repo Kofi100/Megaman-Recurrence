@@ -1,6 +1,7 @@
 extends State
 @onready var megaman_improved: CharacterBody2D = $"../.."
 @onready var animations: AnimatedSprite2D = $"../../animations"
+@onready var player_context_megaman: Node2D = $"../../player_context_megaman"
 
 @onready var dash_timer: Timer = $"../../Timers/dash_timer"
 var direction
@@ -9,7 +10,8 @@ func _ready():
 	pass # Replace with function body.
 	dash_timer.timeout.connect(_dash_timer_timeout)
 func Enter():
-	animations.play("dash")
+	#animations.play("dash")
+	player_context_megaman.request_animation("dash",70)
 	dash_timer.start()
 	pass
 

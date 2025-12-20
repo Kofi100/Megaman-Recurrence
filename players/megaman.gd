@@ -81,7 +81,7 @@ var player_transition_direction_y:String
 	"left":true,"right":true,"up":true,"down":true
 }
 var transition_velocity:Vector2
-
+var player_on_floor_condition:bool=false
 func _ready():
 	playerCharacter = self
 	GlobalSignalBus.connect("player_knockback", _on_knockback_signal)
@@ -172,7 +172,7 @@ func leaving(delta):
 
 	else:
 		velocity.y += gravity * delta
-		if not is_on_floor():
+		if not player_on_floor_condition:
 			anim.play("jump")
 		else:
 			anim.play("idle")
@@ -202,18 +202,43 @@ func moveWhenStoppedOnScreenTransition():
 	if not GlobalScreenTransitionTimer.is_stopped():
 		if velocity.x==0:
 			pass
+
+var reverse_gravity:bool=false
+func reverse_gravity_function():
+	if reverse_gravity:
+		scale.y=-1
+		#anim.flip_v=true
+		#gravity=-980
+		JUMP_VELOCITY=abs(JUMP_VELOCITY)
+		
+	else:
+		scale.y=1
+		#anim.flip_v=false
+		#gravity=980
+		JUMP_VELOCITY=-abs(JUMP_VELOCITY)
+func check_if_player_on_floor():
+	if reverse_gravity:
+		player_on_floor_condition = is_on_ceiling()
+	else:
+		player_on_floor_condition = is_on_floor()
+	
 func _physics_process(delta):
+	GlobalScript.player = self
+	deltaAlt=delta
+	check_if_player_on_floor()
 #region reverse Gravity
 	#code for reverse gravity
 	#gravity=-980
 	#self.scale.y=-1
+	
+	reverse_gravity_function()
 #endregion
 	#if $RayCastLeft.get_collider() != null:
 	#print($RayCastLeft.get_collider().is_in_group("iceTiles"))
 	#print("onIce:", onIce)
 	#print("velocity,speed:", SPEED)
-	GlobalScript.player = self
-	deltaAlt=delta
+	
+	
 	if playLeaveBGM==false:
 			leave_timer.wait_time=.2
 	#print($leave_timer.wait_time)
@@ -247,7 +272,7 @@ func _physics_process(delta):
 	##
 #endregion
 	#Limit gravity
-	velocity.y = clampf(velocity.y, -420, 420)  #since velocity is actually a value *delta
+	velocity.y = clampf(velocity.y, -20000, 420)  #since velocity is actually a value *delta
 	#velocity.y = clampf(velocity.y, -25200 * delta, 25200 * delta) 
 	#if velocity.y>25200*delta:
 	#velocity.y=25200*delta
@@ -343,21 +368,21 @@ func _physics_process(delta):
 	GlobalScript.playerposx = global_position.x
 	GlobalScript.playerposy = global_position.y
 
-	if dash.is_dashing() and is_on_floor():
+	if dash.is_dashing() and player_on_floor_condition:
 		SPEED = dashspeed
 	else:
 		SPEED = normalspeed
 	#elif on_conveyor:
 	#SPEED = normalspeed - conveyor_push
 	# Add the gravity.
-	if is_on_floor():
+	if player_on_floor_condition:
 		if jump_play_effect_timer < 5:
 			jump_play_effect_timer += 1
 			if jump_play_effect_timer == 1:
 				$all_sounds/mm10land.play()
 				pass
 				#animation_player_2.play('screen_shake') #for testing screen shake later
-	elif not is_on_floor():
+	elif not player_on_floor_condition:
 		jump_play_effect_timer = 0
 	#var tween=create_tween()
 	
@@ -455,14 +480,14 @@ func _physics_process(delta):
 			#if jump_buffer_timer.tree_exiting():
 			#print("jumpBuffer getting destroyed")
 			#if tree_exiting()
-			if Input.is_action_just_pressed("jump") and jump_buffer_timer.time_left <= 0:  # is_on_floor():#and !is_on_floor(): #and is_on_floor():# and is_on_floor():
+			if Input.is_action_just_pressed("jump") and jump_buffer_timer.time_left <= 0:  # player_on_floor_condition:#and !is_on_floor(): #and is_on_floor():# and is_on_floor():
 				jump_buffer_timer.start()
 				anim.play("jump")
 				#velocity.y = JUMP_VELOCITY*delta
 			#print(jump_buffer_timer.time_left)
 
 #region Coyote Jumping(not active)
-			#if is_on_floor():jumpAvble=true
+			#if player_on_floor_condition:jumpAvble=true
 			#if !is_on_floor() and velocity.y>0 and velocity.y<=15 and coyoteJumpTime.time_left<=0 and jumpAvble==true:
 			#coyoteJumpTime.start()
 			#jumpAvble=false
@@ -474,14 +499,17 @@ func _physics_process(delta):
 
 			#print("Mega:velocity.y",velocity.y)
 			#print("Mega:velocity*delta=i think,pixel/frame/second",velocity*Vector2(delta,delta))
-			if jump_buffer_timer.time_left > 0 and is_on_floor():
+			if jump_buffer_timer.time_left > 0 and player_on_floor_condition:
 				#print(name+":"+Jump Buffer Time Left:"+jump_buffer_timer.time_left)
 				velocity.y = JUMP_VELOCITY #* delta
 				jump_buffer_timer.stop()
 
-			if Input.is_action_just_released("jump") and velocity.y < 0:
-				velocity.y = 0
-			#if Input.is_action_pressed("dash") and is_on_floor():#anim.animation=="dash":
+			if Input.is_action_just_released("jump"):
+				if not reverse_gravity:
+					if velocity.y < 0: velocity.y = 0
+				else:
+					if velocity.y>0: velocity.y=0
+			#if Input.is_action_pressed("dash") and player_on_floor_condition:#anim.animation=="dash":
 				#anim.offset.y=3
 			if onrush == false:
 				
@@ -497,9 +525,14 @@ func _physics_process(delta):
 					if near_ladder:
 						if Input.is_action_pressed("move_up"):
 							climb = true
-
-					if not is_on_floor():
-						velocity.y += gravity * delta
+					#GlobalLogger.debug(name,"velocity:%s"%velocity)
+					#GlobalLogger.debug(name,"player_on_floor_cdn:%s"%player_on_floor_condition)
+					if reverse_gravity==false:
+						if not player_on_floor_condition:
+							velocity.y += gravity * delta
+					elif reverse_gravity:
+						if not player_on_floor_condition:
+							velocity.y -= gravity*delta
 					if inWater:
 						gravity=500
 						anim.speed_scale=0.8
@@ -598,7 +631,7 @@ func apply_movement_x(delta):
 		lastDirectionCase = direction
 	if direction and not disable_input:
 		move_an_inch_checker += 1
-		if not is_on_floor():
+		if not player_on_floor_condition:
 			velocity.x = direction * SPEED * delta
 		else:
 			if move_an_inch_checker < 10:
@@ -696,13 +729,13 @@ var stun_effect:Node2D
 		##velocity.x = knockback_velocity.x + (is_stunned ? stun_speed * (anim.flip_h ? -1 : 1) : 0)
 		##if velocity.y<0:
 			##velocity.y=0
-		#if not is_on_floor():
+		#if not player_on_floor_condition:
 			#velocity.y+=gravity*_delta 
 		#else:
 			#velocity.y=0
-		##velocity.y = knockback_velocity.y + (80 if !is_on_floor() else 0)
+		##velocity.y = knockback_velocity.y + (80 if !player_on_floor_condition else 0)
 #
-		##if not is_on_floor():
+		##if not player_on_floor_condition:
 			##velocity.y=80#*delta#WIP 
 		#move_and_slide()
 	#elif GlobalScript.health <= 0:
@@ -747,13 +780,18 @@ func stun(_delta):
 			#velocity = Vector2(-stun_speed, 0) * delta
 		velocity.x = knockback_velocity.x +(stun_speed if anim.flip_h==false else -stun_speed)
 		#velocity.x = knockback_velocity.x + (is_stunned ? stun_speed * (anim.flip_h ? -1 : 1) : 0)
-		if velocity.y<0:
-			velocity.y=0
-		if not is_on_floor():
+		if not reverse_gravity:
+			if velocity.y<0:
+				velocity.y=0
+		else:
+			if velocity.y>0:
+				velocity.y=0
+			
+		if not player_on_floor_condition:
 			velocity.y+=gravity*_delta 
-		#velocity.y = knockback_velocity.y + (80 if !is_on_floor() else 0)
+		#velocity.y = knockback_velocity.y + (80 if !player_on_floor_condition else 0)
 
-		#if not is_on_floor():
+		#if not player_on_floor_condition:
 			#velocity.y=80#*delta#WIP 
 		move_and_slide()
 	elif GlobalScript.health <= 0:
@@ -813,7 +851,7 @@ func play_animations():
 		frameNo = $anim.frame
 	#print("FrameNo:", frameNo)
 	
-	if is_on_floor():
+	if player_on_floor_condition:
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 			if anim.animation != "stun_air":
 				if move_an_inch_checker >= 10:
@@ -852,7 +890,7 @@ func play_animations():
 					if anim.animation != "shoot_idle": #and anim.animation!="move_by_inch":
 						anim.play("shoot_idle")
 
-	elif not is_on_floor():
+	elif not player_on_floor_condition:
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 			if $anim.animation != "shoot_in_air" and anim.animation != "stun_air" and anim.animation!="climb_transition":
 				$anim.play("jump")
@@ -892,7 +930,7 @@ func shoot_and_charge():
 		if projectile != null:
 			get_parent().add_child(projectile)
 
-			if is_on_floor():
+			if player_on_floor_condition:
 				MegamanAndItems.charge_timer = 0
 				if $anim.flip_h == false:
 					#lemon_ins=lemon.instantiate()
@@ -904,7 +942,7 @@ func shoot_and_charge():
 					#get_parent().add_child(projectile)
 					projectile.direction = "right"
 					projectile.global_position = $all_proj_spawn_points/ground_right.global_position
-			elif not is_on_floor():
+			elif not player_on_floor_condition:
 				MegamanAndItems.charge_timer = 0
 				if $anim.flip_h == false:
 					projectile.direction = "left"
@@ -960,7 +998,7 @@ var is_dashing:bool=false
 func dash_function(delta):
 	#if anim.animation=="dash":
 		#anim.offset.y=3
-	if is_on_floor():
+	if player_on_floor_condition:
 		if Input.is_action_just_pressed("dash") and $dash/Timer.time_left <= 0:
 			dash.start_dash(.5)
 			anim.offset.y=3
@@ -996,7 +1034,7 @@ func dash_function(delta):
 		$all_timers/check_dash_released_timer.start()
 		$dash/Timer.stop()
 		
-	#if not is_on_floor() and not $dash/Timer.is_stopped():
+	#if not player_on_floor_condition and not $dash/Timer.is_stopped():
 		#$check_dash_released_timer.start()
 		#$dash/Timer.stop()
 
@@ -1076,9 +1114,11 @@ func create_weapons():
 				
 				#if MegamanAndItems.weapon1energy > 0 and rCoilNo == 0:
 					#MegamanAndItems.weapon1energy -= 3
-				if WeaponEnergyGreaterThanZero():
+				if WeaponEnergyGreaterThanZero() and rCoilNo==0:
 					rCoilNo += 1
-					rush_coil_instance = rush_coil.instantiate()
+					#var test_proj=preload("res://players/weapons/rush_coil_spawn_locator.tscn")
+					var rush=preload("res://players/weapons/rush_coil.tscn")
+					rush_coil_instance = rush.instantiate()
 					get_parent().add_child(rush_coil_instance)
 					if anim.flip_h == true:
 						rush_coil_instance.global_position = Vector2(global_position.x + 20, global_position.y - 50)
@@ -1093,16 +1133,16 @@ func create_weapons():
 					get_parent().add_child(projectile)
 					if anim.flip_h==false:
 						projectile.direction="left"
-						if is_on_floor():
+						if player_on_floor_condition:
 							projectile.global_position = $all_proj_spawn_points/ground_left.global_position
-						elif not is_on_floor():
+						elif not player_on_floor_condition:
 							anim.play("shoot_in_air")
 							projectile.global_position = $all_proj_spawn_points/air_left.global_position
 					else:
 						projectile.direction="right"
-						if is_on_floor():
+						if player_on_floor_condition:
 							projectile.global_position = $all_proj_spawn_points/ground_right.global_position
-						elif not is_on_floor():
+						elif not player_on_floor_condition:
 							anim.play("shoot_in_air")
 							projectile.global_position = $all_proj_spawn_points/air_right.global_position
 					$all_sounds/shoot.play()
@@ -1132,9 +1172,10 @@ func create_weapons():
 							missile_instance.direction = "left"
 		
 	#activeUseOfWeaponSection
-	if rush_coil_instance!=null and rush_coil_instance.just_landed==true:
-		useBuster_WhenRCoil=true
-	else:useBuster_WhenRCoil=false
+	#if "just_landed" in rush_coil_instance:
+		#if rush_coil_instance!=null and rush_coil_instance.just_landed==true:
+			#useBuster_WhenRCoil=true
+	#else:useBuster_WhenRCoil=false
 	#if GlobalScript.weapon_number==1:
 			#if alarmSignalInstance!=null and alarmSignalInstance.changeState==false and alarmSignalInstance2!=null and alarmSignalInstance2.changeState==false:
 				#alarmSignalInstance.global_position=global_position+Vector2(-20,-20)
@@ -1217,12 +1258,12 @@ func _on_anim_animation_finished():
 			disable_input = false
 			is_stunned = false
 			stop = false
-			if is_on_floor():
+			if player_on_floor_condition:
 				anim.play("idle")
-			elif not is_on_floor():
+			elif not player_on_floor_condition:
 				anim.play("jump")
 		"climb_transition":
-			if is_on_floor():
+			if player_on_floor_condition:
 				anim.play("idle")
 			else:
 				anim.play("jump")

@@ -90,8 +90,8 @@ func _process(delta):
 	#if collision_limits_camera != null:
 		
 
-	if no_back_track_area == null:
-		no_back_track_area = get_node_or_null("StaticBody2D")
+	#if no_back_track_area == null:
+		#no_back_track_area = get_node_or_null("StaticBody2D")
 
 	if no_back_track_area:
 		if not Engine.is_editor_hint():

@@ -5,7 +5,7 @@ func _ready() -> void:
 	health=27
 	bossCharacter=self
 	#is_boss=true
-
+var deactivate_gravity:bool=false
 func _physics_process(delta: float) -> void:
 	calculate_player_distance()
 	spawn_collectables()
@@ -16,8 +16,9 @@ func _physics_process(delta: float) -> void:
 	#$hitbox.monitoring
 	$hitbox_hurt/CollisionShape2D.set_deferred("disabled",!$Timers/hit_cooldown_timer.is_stopped())#= 
 	#print($AnimatedSprite2D.animation)
-	if not is_on_floor():
-		velocity.y+=get_gravity().y*delta
+	if not deactivate_gravity:
+		if not is_on_floor():
+			velocity.y+=get_gravity().y*delta
 	if is_on_floor():
 		if distance_x<0:
 			$AnimatedSprite2D.flip_h=false

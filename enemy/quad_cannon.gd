@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y+=get_gravity().y*delta
 	calculate_player_distance()
 	spawn_collectables()
+	hurtFlash($AnimatedSprite2D)
 	$shoot_Timer.wait_time=.3
 	if distance_x<0:
 		$AnimatedSprite2D.flip_h=false

@@ -78,6 +78,7 @@ waterTiles=""
 player_projectiles_Main=""
 FallingBridgeTile=""
 fire_projectile=""
+rush_spawn_effect=""
 
 [input]
 
