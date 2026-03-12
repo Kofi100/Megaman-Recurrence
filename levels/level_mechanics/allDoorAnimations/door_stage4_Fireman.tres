@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://br2kiqmc3lg4i"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://br2kiqmc3lg4i"]
 
 [ext_resource type="Texture2D" uid="uid://3bqkvravfl6c" path="res://assets/sprites/miscelleaneous/doorAnimations/door_spritesheet_Stage4_Fireman.png" id="1_s2weq"]
 

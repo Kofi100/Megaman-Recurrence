@@ -41,10 +41,10 @@ func _ready():
 	pass  # Replace with function body.
 	collision_limits_camera = get_node_or_null("CollisionShape2D")
 	#zone_camera_2d = get_node_or_null("Camera2D")  #%Camera2D
-	
-	camera = Camera2D.new()
-	add_child(camera)
-	zone_camera_2d = camera
+	if zone_camera_2d==null:
+		camera = Camera2D.new()
+		add_child(camera)
+		zone_camera_2d = camera
 	
 	if not area_entered.is_connected(_on_area_entered):
 		connect("area_entered", _on_area_entered)
@@ -70,9 +70,11 @@ func _process(delta):
 	if collision_limits_camera == null:
 		collision_limits_camera = get_node_or_null("CollisionShape2D")
 		return
-	
+	if zone_camera_2d==null:
+		zone_camera_2d=get_node_or_null("Camera2D")
+		return
 	#if collision_limits_camera and collision_limits_camera.shape:
-		#if not collision_limits_camera.shape.changed.is_connected(update_camera_limits):
+		#if not collision_limits_camera.shape.changed.is_connected(update_cam	era_limits):
 			#collision_limits_camera.shape.changed.connect(update_camera_limits)
 			#
 	var shape = collision_limits_camera.shape
@@ -147,7 +149,8 @@ func _on_area_entered(area):
 		#print(name, ": Player entered me.")
 		#await get_tree().create_timer(.1).timeout
 		if player_camera != null:
-			zone_camera_2d.set("zone_camera_2d.limit_right", limit_r)
+			#zone_camera_2d.set("zone_camera_2d.limit_right", limit_r)
+			zone_camera_2d.limit_left=limit_l
 			zone_camera_2d.limit_right = limit_r
 			zone_camera_2d.limit_top = limit_u
 			zone_camera_2d.limit_bottom = limit_d

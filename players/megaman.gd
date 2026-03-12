@@ -1073,6 +1073,7 @@ func chargeeffect():
 			$anim.material.set_shader_parameter("outlinecolor", (Vector4(0.0, 98.0, 247.0, 255.0)) / 255)
 
 
+
 var rush_jet = preload("res://players/weapons/rush_jet.tscn")
 var rush_jet_instance
 var rCoilNo = 0

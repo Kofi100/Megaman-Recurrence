@@ -17,7 +17,7 @@ func _on_fps_15_pressed() -> void:
 
 
 func _on_fps_30_pressed() -> void:
-	Engine.set_max_fps(39)
+	Engine.set_max_fps(30)
 
 
 func _on_fps_60_pressed() -> void:

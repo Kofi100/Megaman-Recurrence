@@ -8,6 +8,10 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Megaman Recurrence"
@@ -15,7 +19,7 @@ config/description="A WIP
 "
 config/tags=PackedStringArray("megaman")
 run/main_scene="uid://cju6hrw6xsta7"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
@@ -24,6 +28,10 @@ config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Sa
 [aseprite_importers]
 
 aseprite_executable_path="C:/Users/Dr. Dominic Otchere/Desktop/Media/Programs/Aseprite.v1.3.7/Aseprite.v1.3.7/Aseprite.v1.3.7/Aseprite.exe"
+
+[audio]
+
+buses/default_bus_layout="uid://c6rbelc6navg2"
 
 [autoload]
 

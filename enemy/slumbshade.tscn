@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://du060q4kniil1"]
+
+[ext_resource type="Script" uid="uid://cqnie624yee7t" path="res://enemy/slumbshade.gd" id="1_jxiou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hljxx"]
+size = Vector2(16, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxiou"]
+size = Vector2(16, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w2rj"]
+size = Vector2(352, 251)
+
+[node name="slumbshade" type="CharacterBody2D" unique_id=5276046]
+collision_layer = 0
+script = ExtResource("1_jxiou")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1770610395]
+offset_left = -8.0
+offset_top = -29.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2027369631]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=594610528]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_hljxx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=28323979]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_jxiou")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=1192711385]
+visible = false
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=552487652]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_5w2rj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

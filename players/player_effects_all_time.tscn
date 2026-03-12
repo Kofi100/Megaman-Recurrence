@@ -4,3 +4,9 @@
 
 [node name="PlayerEffectsAllTime" type="Node2D"]
 script = ExtResource("1_x0ibh")
+
+[node name="scarymare_spawn_time" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="scarymare_spawn_time" to="." method="_on_scarymare_spawn_time_timeout"]

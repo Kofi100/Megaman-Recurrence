@@ -68,6 +68,8 @@ var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "
 var SAVEFILE_PATHS:Array[String] = ["user://savefile1.txt", "user://savefile2.txt", "user://savefile3.txt", "user://savefile4.txt", "user://savefile5.txt"]
 var previous_current_scene
 var current_scene
+
+var slumbshade_darkness_active:bool=false
 func _ready():
 	#Signal Connections
 	get_tree().scene_changed.connect(log_changed_scenes)
@@ -96,6 +98,9 @@ func _ready():
 		#if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN:
 			#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	DisplayServer.window_set_size(Vector2(256,224) * resolution)
+	get_tree().scene_changed.emit()
+
+
 
 var array = [null, null, null]
 
@@ -103,6 +108,9 @@ var array = [null, null, null]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	previous_current_scene=get_tree().current_scene
+	#if Engine.get_frames_per_second()>60:
+		#Engine.set_frames_per_second()
+	#print(Engine.max_fps)
 	#print(GlobalScript.max_lives)
 	#print(playerhitcooldowntimer)
 	if playerhasbeenhit:
@@ -338,4 +346,6 @@ func load_gamepad_bindings():
 
 ## Function to log changed scenes for debugging sake,especially in the final versions of the game.
 func log_changed_scenes():
+	GlobalLogger.info("","-------------------------------")
 	GlobalLogger.info(name,"Game moved to: %s" % get_tree().current_scene)
+	GlobalLogger.info("","-------------------------------")

@@ -6,7 +6,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and pressedPause==false:
 		$main_Menu_BGM.stop()
 		$press_Start/blink_Timer.stop()
@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 		$inputReceived.play()
 		$boxArtOrTitle.play("default")
 		pressedPause=true
+	#$GitDescribeLabel.
 
 
 func _on_blink_timer_timeout() -> void:
