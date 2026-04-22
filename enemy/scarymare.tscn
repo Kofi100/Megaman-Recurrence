@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://co1cgsccg1hr6"]
+[gd_scene format=3 uid="uid://co1cgsccg1hr6"]
 
 [ext_resource type="Script" uid="uid://dobt266g8gspc" path="res://enemy/scarymare.gd" id="1_3cc1m"]
 [ext_resource type="Texture2D" uid="uid://qwx4kcis8cf5" path="res://assets/sprites/enemies/1Scarymares.png" id="1_agh7r"]
+[ext_resource type="Texture2D" uid="uid://ditkqu083jxt5" path="res://resources/light_gradient_final_forvisibleobjects.tres" id="3_hlvup"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3cc1m"]
 atlas = ExtResource("1_agh7r")
@@ -85,23 +86,38 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cc1m"]
 size = Vector2(12, 13)
 
-[node name="scarymare" type="CharacterBody2D"]
+[node name="scarymare" type="CharacterBody2D" unique_id=1417649748]
 script = ExtResource("1_3cc1m")
 reengage_distance = 100.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=941714392]
+visible = false
+offset_left = -170.0
+offset_top = -150.0
+offset_right = 165.0
+offset_bottom = 167.0
+color = Color(0.10945, 0.11, 0.099, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=469242496]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_01f0n")
 animation = &"default3"
 
-[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=1244579834 groups=["enemy"]]
 collision_layer = 7
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=436965148]
 shape = SubResource("RectangleShape2D_3cc1m")
 
-[node name="stun_cooldown_timer" type="Timer" parent="."]
+[node name="stun_cooldown_timer" type="Timer" parent="." unique_id=710986887]
 wait_time = 3.0
 one_shot = true
+
+[node name="light_radius" type="PointLight2D" parent="." unique_id=1695118688]
+visible = false
+z_index = -1
+range_z_min = 1
+texture = ExtResource("3_hlvup")
 
 [connection signal="timeout" from="stun_cooldown_timer" to="." method="_on_stun_cooldown_timer_timeout"]

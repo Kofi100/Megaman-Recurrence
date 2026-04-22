@@ -458,9 +458,9 @@ z_index = -1
 
 [node name="background_color" type="ColorRect" parent="Background" unique_id=79814733]
 offset_left = -227.0
-offset_top = -551.0
+offset_top = -544.0
 offset_right = 4957.0
-offset_bottom = 288.0
+offset_bottom = 295.0
 color = Color(6.01634e-08, 0, 0.111867, 1)
 
 [node name="background_parallax" type="Parallax2D" parent="Background" unique_id=1505598962]
@@ -482,8 +482,14 @@ sprite_frames = SubResource("SpriteFrames_b1mqt")
 autoplay = "default"
 centered = false
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1572034804]
+offset_left = 408.0
+offset_top = -321.0
+offset_right = 620.0
+offset_bottom = -237.0
+
 [node name="megaman" parent="." unique_id=1819285132 instance=ExtResource("2_mabb1")]
-position = Vector2(471, -254)
+position = Vector2(3814, 207)
 
 [node name="level" type="TileMapLayer" parent="." unique_id=2107321803]
 use_parent_material = true
@@ -535,13 +541,15 @@ position = Vector2(76, 179)
 shape = SubResource("RectangleShape2D_63urt")
 
 [node name="all_camera" type="Node2D" parent="." unique_id=1927849823]
+visible = false
 
 [node name="New Camera System Addon" type="Area2D" parent="all_camera" unique_id=388838192 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@41447")
+zone_camera_2d = NodePath("@Camera2D@48084")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon" unique_id=23826411]
@@ -552,9 +560,10 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@41448")
+zone_camera_2d = NodePath("@Camera2D@48085")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon2" unique_id=1083638503]
@@ -564,9 +573,10 @@ shape = SubResource("RectangleShape2D_bkubj")
 [node name="New Camera System Addon3" type="Area2D" parent="all_camera" unique_id=320051659 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@41449")
+zone_camera_2d = NodePath("@Camera2D@48086")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="Camera2D" type="Camera2D" parent="all_camera/New Camera System Addon3" unique_id=440514555]
@@ -582,9 +592,10 @@ shape = SubResource("RectangleShape2D_i2788")
 [node name="New Camera System Addon4" type="Area2D" parent="all_camera" unique_id=1823077834 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@41450")
+zone_camera_2d = NodePath("@Camera2D@48087")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="Camera2D" type="Camera2D" parent="all_camera/New Camera System Addon4" unique_id=335830151]
@@ -712,12 +723,10 @@ position = Vector2(3551, -30)
 position = Vector2(3419, 18)
 
 [node name="enemy_spawner9" parent="all_enemies" unique_id=859775312 instance=ExtResource("11_06gft")]
-position = Vector2(3887, 205)
+position = Vector2(3886, 209)
 
-[node name="enemy_spawner12" parent="all_enemies" unique_id=751337364 node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
-position = Vector2(3930, 203)
-enemy_to_spawn = "heavy_brawler"
-enemy_Preview = NodePath("heavy_brawler")
+[node name="enemy_spawner12" parent="all_enemies" unique_id=751337364 instance=ExtResource("11_06gft")]
+position = Vector2(3961, 177)
 
 [node name="enemy_spawner10" parent="all_enemies" unique_id=476707999 instance=ExtResource("11_06gft")]
 position = Vector2(4015, 172)
@@ -891,7 +900,7 @@ arrayOfLasers = [NodePath("../laserWallMechanic"), NodePath("../laserWallMechani
 position = Vector2(3415, 135)
 
 [node name="energy_tank" parent="." unique_id=1810806894 instance=ExtResource("10_j6rho")]
-position = Vector2(3772.13, 145.106)
+position = Vector2(3770, 214)
 
 [node name="conveyorBeltMain" parent="." unique_id=1302932719 instance=ExtResource("40_dlh6p")]
 tile_map_data = PackedByteArray("AADTAAsAAAAAAAEAAADhAAsAAAAAAAEAAADgAAsAAAAAAAIAAADfAAsAAAAAAAIAAADeAAsAAAAAAAIAAADdAAsAAAAAAAIAAADcAAsAAAAAAAIAAADbAAsAAAAAAAIAAADaAAsAAAAAAAIAAADZAAsAAAAAAAIAAADYAAsAAAAAAAIAAADXAAsAAAAAAAIAAADWAAsAAAAAAAIAAADVAAsAAAAAAAIAAADUAAsAAAAAAAIAAAA=")
@@ -1018,13 +1027,13 @@ position = Vector2(728, -272)
 is_boss_door = true
 
 [node name="spring_mechanic" parent="." unique_id=1173507183 instance=ExtResource("48_wao4h")]
-position = Vector2(3769, 208)
+position = Vector2(3886, 200)
 
 [node name="flameman" parent="." unique_id=1677941379 instance=ExtResource("49_4maf2")]
-position = Vector2(518, -253)
+position = Vector2(575, -251)
 
 [node name="slumbshade" parent="." unique_id=777170336 node_paths=PackedStringArray("universal_canvas_modulate") instance=ExtResource("50_qdabw")]
-position = Vector2(554.85205, -287.7719)
+position = Vector2(626, -240)
 universal_canvas_modulate = NodePath("../UniversalCanvasModulate")
 
 [node name="UniversalCanvasModulate" parent="." unique_id=1501179459 instance=ExtResource("51_f38wt")]

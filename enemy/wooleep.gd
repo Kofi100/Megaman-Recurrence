@@ -28,6 +28,15 @@ func _physics_process(delta: float) -> void:
 		foundPlayer=true
 	if not is_on_floor():
 		velocity.y+=get_gravity().y*delta
+	if direction=="left":
+		$AnimatedSprite2D.flip_h=false
+	elif direction=="right":
+		$AnimatedSprite2D.flip_h=true
+	if is_on_wall_only():
+		if direction=="left":
+			direction="right"
+		elif direction=="right":
+			direction="left"
 	match state:
 		"spawnIn":
 			velocity.x=0

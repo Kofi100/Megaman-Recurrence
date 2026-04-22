@@ -1,10 +1,11 @@
 extends enemy
 var shootOnce:bool=false
 var originalPos
+var projectile_count:int=0
 func _ready() -> void:
 	
 	health=2
-	playerdamagevalue=1
+	playerdamagevalue=2
 	originalPos=Vector2(global_position.x,global_position.y)#Player.playerCharacter.global_position.y)
 	calculate_player_distance()
 	
@@ -40,7 +41,10 @@ func _physics_process(delta: float) -> void:
 	calculate_player_distance()
 	hurtFlash($AnimatedSprite2D)
 	spawn_collectables()
-	if (global_position==originalPos):
+	if (global_position==originalPos) and $shoot_timer.is_stopped():
+		$shoot_timer.start(3)
+	if (global_position==originalPos) and $AnimatedSprite2D.animation=="playing":
+		#$shoot_timer.start()
 		$AnimatedSprite2D.play("playing")
 		if distance_x<0:
 			$AnimatedSprite2D.flip_h=false
@@ -52,11 +56,14 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.set_offset(Vector2(-9,0))
 			$hitbox/L.disabled=true
 			$hitbox/R.disabled=false
-		if $AnimatedSprite2D.frame:
+		if $AnimatedSprite2D.frame and $VisibleOnScreenNotifier2D.is_on_screen(): #%2 ==1
 			if shootOnce==false:
 				var proj=preload("res://enemy/sleepy_harper_projectile.tscn").instantiate()
 				proj.position=position
+				proj.up_direction_variant=projectile_count%5
 				get_tree().current_scene.add_child(proj)
+				
+				projectile_count+=1
 				shootOnce=true
 		#else:shootOnce=false
 
@@ -70,3 +77,14 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	shootOnce=false
+
+
+func _on_shoot_timer_timeout() -> void:
+	shootOnce=false
+	$AnimatedSprite2D.play("sleepy")
+	$pause_timer.start()
+	projectile_count=0
+
+
+func _on_pause_timer_timeout() -> void:
+	$AnimatedSprite2D.play("playing")

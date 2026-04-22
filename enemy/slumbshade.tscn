@@ -1,45 +1,141 @@
 [gd_scene format=3 uid="uid://du060q4kniil1"]
 
 [ext_resource type="Script" uid="uid://cqnie624yee7t" path="res://enemy/slumbshade.gd" id="1_jxiou"]
+[ext_resource type="Texture2D" uid="uid://dybu1h7r6te2e" path="res://assets/sprites/enemies/1Slumbshade.png" id="2_5w2rj"]
+[ext_resource type="Texture2D" uid="uid://ditkqu083jxt5" path="res://resources/light_gradient_final_forvisibleobjects.tres" id="3_yfj0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hljxx"]
-size = Vector2(16, 37)
+size = Vector2(16, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxiou"]
-size = Vector2(16, 37)
+size = Vector2(16, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w2rj"]
-size = Vector2(352, 251)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfj0s"]
+atlas = ExtResource("2_5w2rj")
+region = Rect2(0, 0, 18, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eh80"]
+atlas = ExtResource("2_5w2rj")
+region = Rect2(36, 0, 18, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc4ct"]
+atlas = ExtResource("2_5w2rj")
+region = Rect2(72, 0, 18, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w2rj"]
+atlas = ExtResource("2_5w2rj")
+region = Rect2(72, 0, 18, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8veq"]
+atlas = ExtResource("2_5w2rj")
+region = Rect2(36, 0, 18, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcpk3"]
+atlas = ExtResource("2_5w2rj")
+region = Rect2(0, 0, 18, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8kw0s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfj0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eh80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc4ct")
+}],
+"loop": false,
+"name": &"close_eyes",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w2rj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w2rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8veq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcpk3")
+}],
+"loop": false,
+"name": &"open_eyes",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfj0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w2rj")
+}],
+"loop": true,
+"name": &"opened_eyes",
+"speed": 5.0
+}]
 
 [node name="slumbshade" type="CharacterBody2D" unique_id=5276046]
 collision_layer = 0
 script = ExtResource("1_jxiou")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1770610395]
+visible = false
 offset_left = -8.0
-offset_top = -29.0
+offset_top = -37.0
 offset_right = 8.0
-offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1961722387]
+visible = false
+offset_left = -84.0
+offset_top = -74.0
+offset_right = 94.0
+offset_bottom = 46.0
+color = Color(0.08468992, 0.08468992, 0.08468992, 1)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2027369631]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=594610528]
-position = Vector2(0, -10.5)
+position = Vector2(0, -16.5)
 shape = SubResource("RectangleShape2D_hljxx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=28323979]
-position = Vector2(0, -11)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_jxiou")
 
 [node name="Area2D2" type="Area2D" parent="." unique_id=1192711385]
-visible = false
 collision_layer = 7
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=552487652]
-position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_5w2rj")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=946269483]
+z_index = 1
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_8kw0s")
+animation = &"opened_eyes"
+
+[node name="switch_state_cooldown_timer" type="Timer" parent="." unique_id=643626570]
+wait_time = 1.5
+one_shot = true
+
+[node name="light_radius" type="PointLight2D" parent="." unique_id=1189975230]
+z_index = -1
+position = Vector2(0, -16)
+blend_mode = 2
+range_z_min = 1
+texture = ExtResource("3_yfj0s")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="switch_state_cooldown_timer" to="." method="_on_switch_state_cooldown_timer_timeout"]

@@ -4,7 +4,7 @@ var randomChance
 var playerCollectedItem:bool=false
 
 func _ready() -> void:
-	bounce_up_upon_spawning()
+	#bounce_up_upon_spawning()
 	$delete_spawnable_timer.start()
 	randomChance=randi_range(1,100)
 	if randomChance<=5:

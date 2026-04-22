@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cwmi8wrkuvx1s"]
+
+[ext_resource type="Script" uid="uid://u718rcm5auc0" path="res://enemy/musibot.gd" id="1_v4j33"]
+[ext_resource type="Texture2D" uid="uid://bean6ytojbixr" path="res://assets/sprites/enemies/1Musibot.png" id="2_uio5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ebbi"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(111, 0, 37, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swheo"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(74, 0, 37, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xob1u"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(37, 0, 37, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs8xk"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(0, 0, 37, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vc38"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(0, 0, 37, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dqfh"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(37, 0, 37, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34cq7"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(74, 0, 37, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7p80"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(111, 0, 37, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylphg"]
+atlas = ExtResource("2_uio5r")
+region = Rect2(148, 0, 37, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ry16v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ebbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swheo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xob1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs8xk")
+}],
+"loop": false,
+"name": &"closing",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vc38")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vc38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dqfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34cq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7p80")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7p80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylphg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7p80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylphg")
+}],
+"loop": false,
+"name": &"playing",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4j33"]
+size = Vector2(18, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uio5r"]
+size = Vector2(10, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ebbi"]
+size = Vector2(18, 12)
+
+[node name="musibot" type="CharacterBody2D" unique_id=1674932782]
+collision_layer = 0
+script = ExtResource("1_v4j33")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=976039975]
+sprite_frames = SubResource("SpriteFrames_ry16v")
+animation = &"playing"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1144864597]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_v4j33")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2063649640 groups=["enemy"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1758863712]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_uio5r")
+
+[node name="block_area" type="Area2D" parent="." unique_id=1697080164 groups=["blockables"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="block_area" unique_id=1340091428]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_5ebbi")
+debug_color = Color(0.7938492, 0.42650753, 9.62615e-07, 0.41960785)
+
+[node name="attack_cooldown_timer" type="Timer" parent="." unique_id=1821151966]
+one_shot = true
+
+[node name="shoot_Marker2D_L" type="Marker2D" parent="." unique_id=1348755321]
+position = Vector2(-17, -2)
+
+[node name="shoot_Marker2D_R" type="Marker2D" parent="." unique_id=25893744]
+position = Vector2(17, -2)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=988191790]
+position = Vector2(38, 2)
+rect = Rect2(-113, -77, 150, 150)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

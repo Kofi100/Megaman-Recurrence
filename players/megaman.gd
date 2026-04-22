@@ -12,7 +12,7 @@ static var playerCharacter: Player
 ##This is the default speed which can be adjusted by dashing.
 @export var SPEED = 0
 ##This value deterimines how high a person can jump.
-@export var JUMP_VELOCITY = -3000  #-340#-4950#orig: -333*3 almost=1000
+@export var JUMP_VELOCITY = -300  #-340#-4950#orig: -333*3 almost=1000
 ##This value defines how much gravity is applied by the engine to the player.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var gravity = 900  #1000#3000
@@ -622,10 +622,10 @@ func _physics_process(delta):
 
 var dead_effect_timer = 0
 var stun_timer = 0
-@export var stun_speed = 1200
+@export var stun_speed = 25
 
 func apply_movement_x(delta):
-	stun_speed=25
+	#stun_speed=25
 	direction = Input.get_axis("move_left", "move_right")
 	if direction != 0:
 		lastDirectionCase = direction

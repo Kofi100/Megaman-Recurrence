@@ -2,7 +2,8 @@ extends Collectable
 var energy_added=2
 
 func _ready() -> void:
-	bounce_up_upon_spawning()
+	#bounce_up_upon_spawning()
+	pass
 
 func _physics_process(delta):
 	if not is_on_floor():

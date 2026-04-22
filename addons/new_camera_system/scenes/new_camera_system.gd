@@ -30,12 +30,14 @@ var limit_d = 0
 @export var allowed_transition_movement:Dictionary={
 	"left":true,"right":true,"up":true,"down":true
 }
+@export var universal_canvas_modulate:CanvasModulate
+@export var is_darkness_area:bool=false
+
 var camera
 var cached_last_shape: Shape2D #For lightweight 
 
 # Called when the node enters the scene tree for the first time.
 ## A custom made Area2D node that handles camera movement and limits using a Camera2D node and a CollisionShape2D node. Requires a GlobalTransitionTimer to work.
-
 
 func _ready():
 	pass  # Replace with function body.
@@ -186,3 +188,14 @@ func switch_camera(main_camera: Camera2D, camera_to_switch: Camera2D):
 	main_camera.limit_right = camera_to_switch.limit_right
 	main_camera.limit_top = camera_to_switch.limit_top
 	main_camera.limit_bottom = camera_to_switch.limit_bottom
+	if is_darkness_area: #and universal_canvas_modulate
+		#var tween=create_tween()
+		#tween.tween_property(universal_canvas_modulate,"color",Color.DIM_GRAY,1.0)
+		GlobalScript.slumbshade_darkness_active=true
+
+	elif not is_darkness_area: # and universal_canvas_modulate
+		
+		#if universal_canvas_modulate.color==Color.DIM_GRAY:
+			#var tween=create_tween()
+			#tween.tween_property(universal_canvas_modulate,"color",Color.WHITE,1.0)
+			GlobalScript.slumbshade_darkness_active=false

@@ -34,6 +34,10 @@ func _physics_process(_delta):
 	if not GlobalScript. slumbshade_darkness_active:
 		queue_free()
 		return
+	
+	$light_radius.visible=GlobalScript.slumbshade_darkness_active
+	$light_radius.range_z_min=1
+	$light_radius.blend_mode=2
 	if health<=0:
 		health=0
 		$Area2D/CollisionShape2D.set_deferred("disabled",true)

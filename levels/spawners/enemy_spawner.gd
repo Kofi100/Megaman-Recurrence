@@ -9,7 +9,7 @@ var new_node
 "upndown","enemy_2","buster","count_bomb","grenade_man","burner_joe",
 "screw_bomber","ice_telly","bombomb","ice_joe","returningmachine_joe",
 "punk_riot","shield_riot","dyna_riot","batallion_balloon","batallion_balloon_delivery","koptar",
-"wooleep","sleepy_harper","floor_sweeper","quad_cannon","cribler","heavy_brawler") var enemy_to_spawn: String = "" :
+"wooleep","sleepy_harper","floor_sweeper","quad_cannon","cribler","heavy_brawler","musibot") var enemy_to_spawn: String = "" :
 	#detect changes in enemy_to_spawn
 	#to prevent overlapping old and new enemies
 	set(value):
@@ -73,7 +73,8 @@ var enemy_dictionary: Dictionary = {
 	"floor_sweeper":preload("res://enemy/floor_sweeper.tscn"),
 	"quad_cannon":preload("res://enemy/quad_cannon.tscn"),
 	"cribler":preload("res://enemy/cribler.tscn"),
-	"heavy_brawler":preload("res://enemy/heavy_brawler.tscn")
+	"heavy_brawler":preload("res://enemy/heavy_brawler.tscn"),
+	"musibot":preload("res://enemy/musibot.tscn")
 }
 #@export
 

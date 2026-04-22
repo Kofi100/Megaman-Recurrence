@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bvcrcaue0pg1l"]
+
+[ext_resource type="Script" uid="uid://klg46twkfbj6" path="res://enemy/musibot_projectile.gd" id="1_sklvy"]
+[ext_resource type="Texture2D" uid="uid://bean6ytojbixr" path="res://assets/sprites/enemies/1Musibot.png" id="1_xkffr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sklvy"]
+atlas = ExtResource("1_xkffr")
+region = Rect2(185, 0, 37, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_47dkq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sklvy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sklvy"]
+size = Vector2(12, 14)
+
+[node name="musibot_projectile" type="CharacterBody2D" unique_id=1755994724]
+position = Vector2(34, 93)
+script = ExtResource("1_sklvy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1888558830]
+sprite_frames = SubResource("SpriteFrames_47dkq")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=687948746]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=29489540 groups=["enemy", "enemy_Projectile"]]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=37403060]
+shape = SubResource("RectangleShape2D_sklvy")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

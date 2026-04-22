@@ -1,93 +1,98 @@
-[gd_scene load_steps=4 format=3 uid="uid://crjvedup64d32"]
+[gd_scene format=3 uid="uid://crjvedup64d32"]
 
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_d44ei"]
 [ext_resource type="Script" uid="uid://dovbg5jv0oi24" path="res://miscellenaous/hud_debug.gd" id="1_r0tjs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0tjs"]
 
-[node name="HUD_Debug" type="CanvasLayer"]
+[node name="HUD_Debug" type="CanvasLayer" unique_id=818286433]
 process_mode = 3
 layer = 2
 script = ExtResource("1_r0tjs")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=2049003448]
 offset_left = 163.0
 offset_top = 14.0
 offset_right = 257.0
 offset_bottom = 29.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r0tjs")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=523296288]
 layout_mode = 0
 offset_right = 372.0
 offset_bottom = 35.0
 scale = Vector2(0.25, 0.25)
 alignment = 2
 
-[node name="debug_menu" type="Button" parent="Panel/HBoxContainer"]
+[node name="debug_menu" type="Button" parent="Panel/HBoxContainer" unique_id=292107477]
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_d44ei")
 text = "DEV MODE"
 
-[node name="debug_settings" type="Panel" parent="."]
-offset_left = 162.0
+[node name="debug_settings" type="Panel" parent="." unique_id=1773090488]
+offset_left = 175.0
 offset_top = 27.0
 offset_right = 256.0
 offset_bottom = 104.0
 
-[node name="GridContainer" type="GridContainer" parent="debug_settings"]
+[node name="GridContainer" type="GridContainer" parent="debug_settings" unique_id=548359699]
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HFlowContainer" type="GridContainer" parent="debug_settings"]
+[node name="HFlowContainer" type="GridContainer" parent="debug_settings" unique_id=1437607244]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 444.0
+offset_right = 314.0
 offset_bottom = 294.0
 scale = Vector2(0.25, 0.25)
 columns = 2
 
-[node name="restart_level" type="Button" parent="debug_settings/HFlowContainer"]
+[node name="restart_level" type="Button" parent="debug_settings/HFlowContainer" unique_id=940896517]
 layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = "Restart"
 
-[node name="go_debug_menu" type="Button" parent="debug_settings/HFlowContainer"]
+[node name="go_debug_menu" type="Button" parent="debug_settings/HFlowContainer" unique_id=883221415]
 layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = ">Debug Menu"
 
-[node name="god_mode" type="Button" parent="debug_settings/HFlowContainer"]
+[node name="god_mode" type="Button" parent="debug_settings/HFlowContainer" unique_id=1789194563]
 layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = "god mode"
 
-[node name="fps15" type="Button" parent="debug_settings/HFlowContainer"]
+[node name="mute_unmute_bgm" type="Button" parent="debug_settings/HFlowContainer" unique_id=1640198861]
+layout_mode = 2
+theme = ExtResource("1_d44ei")
+text = "MUTE BGM"
+
+[node name="fps15" type="Button" parent="debug_settings/HFlowContainer" unique_id=167604792]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = "fps 15"
 
-[node name="fps30" type="Button" parent="debug_settings/HFlowContainer"]
+[node name="fps30" type="Button" parent="debug_settings/HFlowContainer" unique_id=1820743083]
 layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = "fps 30"
 
-[node name="fps60" type="Button" parent="debug_settings/HFlowContainer"]
+[node name="fps60" type="Button" parent="debug_settings/HFlowContainer" unique_id=1512927604]
 layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = "fps 60"
 
-[node name="exit_game" type="Button" parent="debug_settings/HFlowContainer"]
+[node name="exit_game" type="Button" parent="debug_settings/HFlowContainer" unique_id=1084846715]
 layout_mode = 2
 theme = ExtResource("1_d44ei")
 text = "Exit GAME"
 
-[node name="player_animation_display" type="Label" parent="."]
+[node name="player_animation_display" type="Label" parent="." unique_id=831493389]
 offset_left = 163.0
 offset_top = 16.0
 offset_right = 293.0
@@ -100,6 +105,7 @@ text = "Animation"
 [connection signal="pressed" from="debug_settings/HFlowContainer/restart_level" to="." method="_on_restart_level_pressed"]
 [connection signal="pressed" from="debug_settings/HFlowContainer/go_debug_menu" to="." method="_on_go_debug_menu_pressed"]
 [connection signal="pressed" from="debug_settings/HFlowContainer/god_mode" to="." method="_on_god_mode_pressed"]
+[connection signal="pressed" from="debug_settings/HFlowContainer/mute_unmute_bgm" to="." method="_on_mute_unmute_bgm_pressed"]
 [connection signal="pressed" from="debug_settings/HFlowContainer/fps15" to="." method="_on_fps_15_pressed"]
 [connection signal="pressed" from="debug_settings/HFlowContainer/fps30" to="." method="_on_fps_30_pressed"]
 [connection signal="pressed" from="debug_settings/HFlowContainer/fps60" to="." method="_on_fps_60_pressed"]
