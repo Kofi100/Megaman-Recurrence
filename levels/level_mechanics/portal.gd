@@ -1,4 +1,4 @@
-@tool
+#@tool
 @icon("res://assets/sprites/miscelleaneous/icons/nodes/portal_icon.png")
 class_name Portal
 extends Node2D

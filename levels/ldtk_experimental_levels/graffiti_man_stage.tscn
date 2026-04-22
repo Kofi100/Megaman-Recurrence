@@ -134,12 +134,17 @@ parameters/looping = true
 script = ExtResource("3_0ed3a")
 metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
-[node name="all_cameras" type="Node2D" parent="." index="10"]
+[node name="Player" type="Node2D" parent="." index="10"]
+
+[node name="megaman" parent="Player" index="0" instance=ExtResource("2_jt6i4")]
+position = Vector2(1030.1194, 80.81629)
+
+[node name="all_cameras" type="Node2D" parent="." index="11"]
 z_index = 1
 
 [node name="New Camera System Addon" type="Area2D" parent="all_cameras" index="0" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
-zone_camera_2d = NodePath("@Camera2D@93254")
+zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
@@ -148,9 +153,15 @@ metadata/_custom_type_script = "uid://lta1kuu87vs6"
 position = Vector2(384, 80)
 shape = SubResource("RectangleShape2D_2xsfu")
 
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon" index="1"]
+limit_left = 0
+limit_top = -32
+limit_right = 768
+limit_bottom = 192
+
 [node name="New Camera System Addon2" type="Area2D" parent="all_cameras" index="1" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
-zone_camera_2d = NodePath("@Camera2D@93255")
+zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 allowed_transition_movement = {
@@ -165,9 +176,15 @@ metadata/_custom_type_script = "uid://lta1kuu87vs6"
 position = Vector2(1152, 80)
 shape = SubResource("RectangleShape2D_fdyop")
 
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon2" index="1"]
+limit_left = 768
+limit_top = -32
+limit_right = 1536
+limit_bottom = 192
+
 [node name="New Camera System Addon3" type="Area2D" parent="all_cameras" index="2" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
-zone_camera_2d = NodePath("@Camera2D@93256")
+zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 allowed_transition_movement = {
@@ -178,24 +195,36 @@ allowed_transition_movement = {
 }
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon3" index="0"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon3" index="0"]
+limit_left = 1536
+limit_top = -32
+limit_right = 1792
+limit_bottom = 192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon3" index="1"]
 position = Vector2(1664, 80)
 shape = SubResource("RectangleShape2D_ah3qe")
 
 [node name="New Camera System Addon4" type="Area2D" parent="all_cameras" index="3" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
-zone_camera_2d = NodePath("@Camera2D@93257")
+zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon4" index="0"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon4" index="0"]
+limit_left = 1536
+limit_top = -256
+limit_right = 1792
+limit_bottom = -32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon4" index="1"]
 position = Vector2(1664, -144)
 shape = SubResource("RectangleShape2D_36q2r")
 
 [node name="New Camera System Addon5" type="Area2D" parent="all_cameras" index="4" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
-zone_camera_2d = NodePath("@Camera2D@93258")
+zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
@@ -204,9 +233,15 @@ metadata/_custom_type_script = "uid://lta1kuu87vs6"
 position = Vector2(1408, -145)
 shape = SubResource("RectangleShape2D_j65im")
 
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon5" index="1"]
+limit_left = 1280
+limit_top = -257
+limit_right = 1536
+limit_bottom = -33
+
 [node name="New Camera System Addon6" type="Area2D" parent="all_cameras" index="5" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
-zone_camera_2d = NodePath("@Camera2D@93259")
+zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
@@ -215,35 +250,42 @@ metadata/_custom_type_script = "uid://lta1kuu87vs6"
 position = Vector2(1152, -144)
 shape = SubResource("RectangleShape2D_14i0q")
 
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon6" index="1"]
+limit_left = 1024
+limit_top = -256
+limit_right = 1280
+limit_bottom = -32
+
 [node name="New Camera System Addon7" type="Area2D" parent="all_cameras" index="6" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(-256, -1)
 script = ExtResource("3_4wvmb")
-zone_camera_2d = NodePath("@Camera2D@96016")
+zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon7" index="0"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon7" index="0"]
+limit_left = 768
+limit_top = -257
+limit_right = 1024
+limit_bottom = -33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon7" index="1"]
 position = Vector2(1152, -144)
 shape = SubResource("RectangleShape2D_14i0q")
 
-[node name="BG_Lights2" type="TileMapLayer" parent="." index="11"]
+[node name="BG_Lights2" type="TileMapLayer" parent="." index="12"]
 position = Vector2(0, 1)
 tile_map_data = PackedByteArray("AAAGAAIAAAABAAAAAAAXAAQAAAABAAAAAAA7AAIAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_nno8f")
 
-[node name="BG_Lights" type="TileMapLayer" parent="." index="12"]
+[node name="BG_Lights" type="TileMapLayer" parent="." index="13"]
 tile_map_data = PackedByteArray("AAAFAAcAAAABAAUAAAAEAAYAAAABAAUAAAAGAAYAAAABAAUAAAAGAAgAAAABAAUAAAAHAAkAAAABAAUAAAAHAAcAAAABAAUAAAAIAAgAAAABAAUAAAAIAAYAAAABAAUAAAAJAAcAAAABAAUAAAAKAAgAAAABAAUAAAAJAAkAAAABAAUAAAAKAAYAAAABAAUAAAAEAAcAAAABAAQAAAAGAAcAAAABAAQAAAAKAAkAAAABAAQAAAALAAkAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAAsAAgAAAABAAQAAAAtAAgAAAABAAQAAAAuAAgAAAABAAQAAAAvAAgAAAABAAQAAAAvAAoAAAABAAQAAAAuAAsAAAABAAQAAAAtAAsAAAABAAQAAAAsAAoAAAABAAQAAABqAAgAAAABAAUAAABpAAkAAAABAAUAAABrAAkAAAABAAUAAABsAAgAAAABAAUAAABtAAkAAAABAAUAAABuAAgAAAABAAUAAABvAAkAAAABAAUAAABxAAoAAAABAAUAAAByAAoAAAABAAUAAABzAAsAAAABAAUAAAB0AAoAAAABAAUAAAB1AAsAAAABAAUAAABnAAoAAAABAAQAAABoAAsAAAABAAQAAABpAAoAAAABAAQAAABqAAsAAAABAAQAAABrAAoAAAABAAQAAABmAAsAAAABAAQAAAB4ABIAAAABAAUAAAB3ABMAAAABAAUAAAB3ABEAAAABAAUAAAB5ABEAAAABAAUAAAB5ABMAAAABAAUAAAB6ABIAAAABAAUAAAB7ABMAAAABAAUAAAB8ABIAAAABAAUAAAB9ABMAAAABAAUAAACHAAcAAAABAAUAAACHAAkAAAABAAUAAACIAAgAAAABAAUAAACJAAcAAAABAAUAAACJAAkAAAABAAUAAAB+AAYAAAABAAQAAAB/AAcAAAABAAQAAACAAAcAAAABAAQAAAB/AAkAAAABAAQAAACBAAkAAAABAAQAAACCAAkAAAABAAQAAACCAAcAAAABAAQAAACBAAYAAAABAAQAAACDAAYAAAABAAQAAACEAAYAAAABAAQAAACEAAkAAAABAAQAAAClAAYAAAABAAQAAACmAAcAAAABAAQAAACnAAYAAAABAAQAAACoAAcAAAABAAQAAACoAAgAAAABAAQAAACnAAkAAAABAAQAAACpAAkAAAABAAQAAACrAAkAAAABAAQAAACqAAgAAAABAAQAAACqAAcAAAABAAQAAACpAAYAAAABAAQAAAAKAAIAAAABAAIAAAALAAMAAAABAAIAAAAOAAIAAAABAAIAAAAIAAEAAAABAAMAAAAqAAMAAAABAAMAAAByAAEAAAABAAMAAAAsAAQAAAABAAIAAAAtAAUAAAABAAIAAAB0AAIAAAABAAIAAAB1AAMAAAABAAIAAAB4AAIAAAABAAIAAACvAAcAAAABAAUAAACwAAgAAAABAAUAAACxAAgAAAABAAUAAACyAAcAAAABAAUAAACzAAgAAAABAAUAAAC0AAcAAAABAAUAAACwAAYAAAABAAQAAACvAAkAAAABAAQAAACyAAkAAAABAAQAAACyAAYAAAABAAQAAAC0AAkAAAABAAQAAAC0AAYAAAABAAQAAAA=")
 tile_set = SubResource("TileSet_7uw4j")
 
-[node name="BG_Tiles_Animated_16px" type="TileMapLayer" parent="." index="13"]
+[node name="BG_Tiles_Animated_16px" type="TileMapLayer" parent="." index="14"]
 tile_map_data = PackedByteArray("AAAqAAYAAAAAAAEAACAqAAcAAAAAAAAAACArAAYAAAAAAAEAACArAAcAAAAAAAAAACAsAAYAAAAAAAEAACAsAAcAAAAAAAAAACAtAAYAAAAAAAEAACAtAAcAAAAAAAAAACAdAAQAAAAAAAAAAAAdAAUAAAAAAAEAAAAeAAQAAAAAAAAAAAAeAAUAAAAAAAEAAAAfAAQAAAAAAAAAAAAfAAUAAAAAAAEAAAANAAIAAAAAAAAAAAANAAMAAAAAAAEAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAEAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAEAAABKAAMAAAAAAAAAAABKAAQAAAAAAAEAAABLAAMAAAAAAAAAAABLAAQAAAAAAAEAAABMAAMAAAAAAAAAAABMAAQAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_fdyop")
-
-[node name="Player" type="Node2D" parent="." index="14"]
-
-[node name="megaman" parent="Player" index="0" instance=ExtResource("2_jt6i4")]
-position = Vector2(1299.6364, -127.272736)
 
 [node name="Enemies" type="Node2D" parent="." index="15"]
 

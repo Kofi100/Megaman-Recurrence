@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 	$PathFollow2D.progress += speed * delta
 	if $PathFollow2D.progress_ratio >= 0.999 and activateBomb == false:
 		visible = false
-		var exp = preload("res://enemy/boss/MM3_to_10_explosion_radius.tscn").instantiate()
+		var exp = preload("res://enemy/boss/mm3_to_10_explosion_radius.tscn").instantiate()
 		get_parent().add_child(exp)
 		exp.global_position = $PathFollow2D/CharacterBody2D.global_position
 		exp.parent = self

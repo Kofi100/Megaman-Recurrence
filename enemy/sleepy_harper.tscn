@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cujgw7o7hpbmi"]
+[gd_scene format=3 uid="uid://cujgw7o7hpbmi"]
 
 [ext_resource type="Script" uid="uid://3eunoerf2wex" path="res://enemy/sleepy_harper.gd" id="1_fhqpq"]
 [ext_resource type="Texture2D" uid="uid://bm5t5cu0w5gh2" path="res://assets/sprites/enemies/1SleepyHarper_Samuel_X7.png" id="1_kk3tm"]
@@ -30,6 +30,14 @@ animations = [{
 "loop": true,
 "name": &"playing",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eys3v")
+}],
+"loop": true,
+"name": &"sleepy",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kk3tm"]
@@ -41,37 +49,46 @@ size = Vector2(18, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6o31n"]
 size = Vector2(18, 24)
 
-[node name="sleepyHarper" type="CharacterBody2D"]
+[node name="sleepyHarper" type="CharacterBody2D" unique_id=1354857308]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_fhqpq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=943374812]
 sprite_frames = SubResource("SpriteFrames_256bk")
 animation = &"playing"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=679894089]
 position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_kk3tm")
 
-[node name="shootProjectile" type="Timer" parent="."]
+[node name="shootProjectile" type="Timer" parent="." unique_id=1211887307]
 autostart = true
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=1938072822 groups=["enemy"]]
 
-[node name="L" type="CollisionShape2D" parent="hitbox"]
+[node name="L" type="CollisionShape2D" parent="hitbox" unique_id=1035762976]
 position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_fhqpq")
 
-[node name="R" type="CollisionShape2D" parent="hitbox"]
+[node name="R" type="CollisionShape2D" parent="hitbox" unique_id=434568421]
 position = Vector2(-7, 2)
 shape = SubResource("RectangleShape2D_6o31n")
 disabled = true
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=852544696]
 position = Vector2(5.96046e-08, 0)
 scale = Vector2(3.25, 3.3)
+
+[node name="shoot_timer" type="Timer" parent="." unique_id=1090404648]
+wait_time = 2.0
+one_shot = true
+
+[node name="pause_timer" type="Timer" parent="." unique_id=2009797950]
+one_shot = true
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="shootProjectile" to="." method="_on_shoot_projectile_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="pause_timer" to="." method="_on_pause_timer_timeout"]

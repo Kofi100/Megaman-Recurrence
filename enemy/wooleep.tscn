@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drpu7l60ourvs"]
+[gd_scene format=3 uid="uid://drpu7l60ourvs"]
 
 [ext_resource type="Script" uid="uid://dqfhuu2ry3uk4" path="res://enemy/wooleep.gd" id="1_stigf"]
 [ext_resource type="Texture2D" uid="uid://ctfyocnvtijad" path="res://assets/sprites/enemies/1Wooleep.png" id="2_vfqbg"]
@@ -81,29 +81,29 @@ size = Vector2(33, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stigf"]
 size = Vector2(29, 23)
 
-[node name="wooleep" type="CharacterBody2D"]
+[node name="wooleep" type="CharacterBody2D" unique_id=1245023764]
 collision_layer = 0
 script = ExtResource("1_stigf")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=728853683]
 sprite_frames = SubResource("SpriteFrames_xwpda")
 animation = &"spawnIn"
 frame = 2
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=419995933]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_6idl3")
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=65164833 groups=["enemy"]]
 collision_layer = 6
 collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=2020937289]
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_stigf")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=466956962]
 position = Vector2(-27, -27)
 scale = Vector2(5.4, 4.2)
 rect = Rect2(-10, -10, 30, 30)

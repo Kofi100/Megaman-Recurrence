@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" uid="uid://0j8k3bpxe6qj" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -477,70 +477,68 @@ size = Vector2(15, 23)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufrn6"]
 size = Vector2(18.5, 2)
 
-[node name="megaman" type="CharacterBody2D" groups=["player"]]
+[node name="megaman" type="CharacterBody2D" unique_id=1903069122 groups=["player"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_acsaa")
-JUMP_VELOCITY = -300
-stun_speed = 25
 
-[node name="dash" parent="." instance=ExtResource("2_oa303")]
+[node name="dash" parent="." unique_id=1620187822 instance=ExtResource("2_oa303")]
 
 [node name="Timer" parent="dash" index="0"]
 wait_time = 3.0
 
-[node name="HUD" parent="." instance=ExtResource("3_ov4w5")]
+[node name="HUD" parent="." unique_id=76253688 instance=ExtResource("3_ov4w5")]
 
-[node name="HUD_Debug" parent="." instance=ExtResource("19_2t5wp")]
+[node name="HUD_Debug" parent="." unique_id=1247523426 instance=ExtResource("19_2t5wp")]
 layer = 3
 
-[node name="player_camera" type="Camera2D" parent="."]
+[node name="player_camera" type="Camera2D" parent="." unique_id=839390566]
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 editor_draw_limits = true
 script = ExtResource("5_gw1ah")
 
-[node name="stun_effects" type="Node2D" parent="."]
+[node name="stun_effects" type="Node2D" parent="." unique_id=1318639008]
 
-[node name="MegamanStunEffects" parent="stun_effects" instance=ExtResource("6_tckas")]
+[node name="MegamanStunEffects" parent="stun_effects" unique_id=1713669342 instance=ExtResource("6_tckas")]
 position = Vector2(0, 2)
 
-[node name="dusts" type="Node2D" parent="stun_effects"]
+[node name="dusts" type="Node2D" parent="stun_effects" unique_id=1562531838]
 visible = false
 
-[node name="dust" parent="stun_effects/dusts" instance=ExtResource("7_tckas")]
+[node name="dust" parent="stun_effects/dusts" unique_id=1128590326 instance=ExtResource("7_tckas")]
 visible = false
 position = Vector2(-15, -4)
 
-[node name="dust2" type="AnimatedSprite2D" parent="stun_effects/dusts"]
+[node name="dust2" type="AnimatedSprite2D" parent="stun_effects/dusts" unique_id=1761108499]
 visible = false
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_fedgr")
 animation = &"dust"
 
-[node name="dust3" type="AnimatedSprite2D" parent="stun_effects/dusts"]
+[node name="dust3" type="AnimatedSprite2D" parent="stun_effects/dusts" unique_id=262015657]
 visible = false
 position = Vector2(14, -4)
 sprite_frames = SubResource("SpriteFrames_fedgr")
 animation = &"dust"
 
-[node name="stun_effects_positions" type="Node2D" parent="."]
+[node name="stun_effects_positions" type="Node2D" parent="." unique_id=805956985]
 
-[node name="position1" type="Marker2D" parent="stun_effects_positions"]
+[node name="position1" type="Marker2D" parent="stun_effects_positions" unique_id=250014284]
 modulate = Color(0, 1, 1, 1)
 position = Vector2(-16, -3)
 
-[node name="position2" type="Marker2D" parent="stun_effects_positions"]
+[node name="position2" type="Marker2D" parent="stun_effects_positions" unique_id=409119505]
 modulate = Color(0, 1, 1, 1)
 position = Vector2(0, -11)
 
-[node name="position3" type="Marker2D" parent="stun_effects_positions"]
+[node name="position3" type="Marker2D" parent="stun_effects_positions" unique_id=421497667]
 modulate = Color(0, 1, 1, 1)
 position = Vector2(13, -3)
 
-[node name="anim" type="AnimatedSprite2D" parent="."]
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=816993862]
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
@@ -548,7 +546,7 @@ animation = &"dash"
 offset = Vector2(0, 1)
 flip_h = true
 
-[node name="anim2" type="AnimatedSprite2D" parent="."]
+[node name="anim2" type="AnimatedSprite2D" parent="." unique_id=365274182]
 visible = false
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
@@ -556,34 +554,34 @@ sprite_frames = SubResource("SpriteFrames_pfkfs")
 animation = &"idle"
 flip_h = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=309855037]
 visible = false
 position = Vector2(-0.333333, -1)
 texture = ExtResource("6_6oq1v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2042054789]
 position = Vector2(-0.33333, 3.33333)
 shape = SubResource("RectangleShape2D_mk5kj")
 debug_color = Color(0.639216, 0.678431, 0, 0.568627)
 
-[node name="marker_checker" type="Marker2D" parent="."]
+[node name="marker_checker" type="Marker2D" parent="." unique_id=1312769701]
 position = Vector2(0.666667, 13.6667)
 
-[node name="all_proj_spawn_points" type="Node2D" parent="."]
+[node name="all_proj_spawn_points" type="Node2D" parent="." unique_id=1475216129]
 
-[node name="ground_left" type="Marker2D" parent="all_proj_spawn_points"]
+[node name="ground_left" type="Marker2D" parent="all_proj_spawn_points" unique_id=698345047]
 position = Vector2(-18, 2)
 
-[node name="ground_right" type="Marker2D" parent="all_proj_spawn_points"]
+[node name="ground_right" type="Marker2D" parent="all_proj_spawn_points" unique_id=2001347081]
 position = Vector2(18, 2)
 
-[node name="air_left" type="Marker2D" parent="all_proj_spawn_points"]
+[node name="air_left" type="Marker2D" parent="all_proj_spawn_points" unique_id=1673903407]
 position = Vector2(-15.6667, -6.33333)
 
-[node name="air_right" type="Marker2D" parent="all_proj_spawn_points"]
+[node name="air_right" type="Marker2D" parent="all_proj_spawn_points" unique_id=870944546]
 position = Vector2(17.7238, -6.42757)
 
-[node name="charge_timer" type="Label" parent="."]
+[node name="charge_timer" type="Label" parent="." unique_id=2133866566]
 visible = false
 offset_left = -21.6667
 offset_top = -21.6667
@@ -593,7 +591,7 @@ scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "charge_time"
 
-[node name="text" type="Label" parent="charge_timer"]
+[node name="text" type="Label" parent="charge_timer" unique_id=1816289578]
 layout_mode = 0
 offset_left = -189.333
 offset_top = 0.666733
@@ -602,7 +600,7 @@ offset_bottom = 23.6667
 theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "Charge Timer:"
 
-[node name="speed" type="Label" parent="."]
+[node name="speed" type="Label" parent="." unique_id=1168134898]
 visible = false
 offset_left = -2.66667
 offset_top = -31.3333
@@ -612,7 +610,7 @@ scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "speed"
 
-[node name="speed_text" type="Label" parent="speed"]
+[node name="speed_text" type="Label" parent="speed" unique_id=1802572482]
 layout_mode = 0
 offset_left = -94.0
 offset_right = -2.0
@@ -620,151 +618,147 @@ offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "Speed:"
 
-[node name="change_climb_detector" type="Area2D" parent="."]
+[node name="change_climb_detector" type="Area2D" parent="." unique_id=1334581259]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="change_climb_detector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="change_climb_detector" unique_id=1798300560]
 position = Vector2(2.5, 3)
 shape = SubResource("RectangleShape2D_8tm2b")
 debug_color = Color(0.960784, 0, 0.505882, 0.419608)
 
-[node name="hitbox" type="Area2D" parent="." groups=["player_hitbox"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=1398452834 groups=["player_hitbox"]]
 collision_layer = 2
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1902127777]
 position = Vector2(-1.66667, 3.66667)
 shape = SubResource("RectangleShape2D_thm8m")
 debug_color = Color(0.988235, 0.109804, 0, 0.32549)
 
-[node name="all_sounds" type="Node2D" parent="."]
+[node name="all_sounds" type="Node2D" parent="." unique_id=564412977]
 
-[node name="stun" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="stun" type="AudioStreamPlayer" parent="all_sounds" unique_id=1445629977]
 stream = ExtResource("6_n1lyq")
 script = ExtResource("8_d6231")
 
-[node name="shoot" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="shoot" type="AudioStreamPlayer" parent="all_sounds" unique_id=1030000544]
 stream = ExtResource("7_im07x")
 script = ExtResource("8_d6231")
 
-[node name="charge" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="charge" type="AudioStreamPlayer" parent="all_sounds" unique_id=109770393]
 stream = ExtResource("10_2l2k5")
 script = ExtResource("8_d6231")
 
-[node name="dead" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="dead" type="AudioStreamPlayer" parent="all_sounds" unique_id=305706170]
 stream = ExtResource("10_qghej")
 script = ExtResource("8_d6231")
 
-[node name="halfcharge" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="halfcharge" type="AudioStreamPlayer" parent="all_sounds" unique_id=1801285096]
 stream = ExtResource("12_8ofs0")
 script = ExtResource("8_d6231")
 
-[node name="fullcharge" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="fullcharge" type="AudioStreamPlayer" parent="all_sounds" unique_id=336057176]
 stream = ExtResource("13_ljqus")
 script = ExtResource("8_d6231")
 
-[node name="energyup" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="energyup" type="AudioStreamPlayer" parent="all_sounds" unique_id=1712464395]
 stream = ExtResource("14_m8qn1")
 script = ExtResource("8_d6231")
 
-[node name="level_cleared" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="level_cleared" type="AudioStreamPlayer" parent="all_sounds" unique_id=1861933321]
 stream = ExtResource("15_2ctiv")
 script = ExtResource("8_d6231")
 metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
-[node name="mm10land" type="AudioStreamPlayer" parent="all_sounds"]
+[node name="mm10land" type="AudioStreamPlayer" parent="all_sounds" unique_id=1876343861]
 stream = ExtResource("16_2ctiv")
 script = ExtResource("8_d6231")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
-[node name="all_timers" type="Node2D" parent="."]
+[node name="all_timers" type="Node2D" parent="." unique_id=1397011666]
 
-[node name="leave_timer" type="Timer" parent="all_timers"]
+[node name="leave_timer" type="Timer" parent="all_timers" unique_id=1247758982]
 wait_time = 8.0
 one_shot = true
 
-[node name="trigger_leave_timer" type="Timer" parent="all_timers"]
+[node name="trigger_leave_timer" type="Timer" parent="all_timers" unique_id=352448018]
 wait_time = 3.5
 one_shot = true
 
-[node name="reset_cam_entry" type="Timer" parent="all_timers"]
+[node name="reset_cam_entry" type="Timer" parent="all_timers" unique_id=471518928]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="whistle_idle_trigger_timer" type="Timer" parent="all_timers"]
+[node name="whistle_idle_trigger_timer" type="Timer" parent="all_timers" unique_id=82065438]
 wait_time = 30.0
 one_shot = true
 
-[node name="wasOnIceButOnDiffFloorNowTimer" type="Timer" parent="all_timers"]
+[node name="wasOnIceButOnDiffFloorNowTimer" type="Timer" parent="all_timers" unique_id=1607280818]
 one_shot = true
 
-[node name="hit_blink_timer" type="Timer" parent="all_timers"]
+[node name="hit_blink_timer" type="Timer" parent="all_timers" unique_id=513058410]
 wait_time = 0.1
 
-[node name="jump_buffer_timer" type="Timer" parent="all_timers"]
-wait_time = 0.1
-one_shot = true
-
-[node name="check_dash_released_timer" type="Timer" parent="all_timers"]
+[node name="jump_buffer_timer" type="Timer" parent="all_timers" unique_id=1690148960]
 wait_time = 0.1
 one_shot = true
 
-[node name="restart_timer" type="Timer" parent="all_timers"]
+[node name="check_dash_released_timer" type="Timer" parent="all_timers" unique_id=927598831]
+wait_time = 0.1
+one_shot = true
 
-[node name="buster_cooldown_timer" type="Timer" parent="all_timers"]
+[node name="restart_timer" type="Timer" parent="all_timers" unique_id=497456102]
+
+[node name="buster_cooldown_timer" type="Timer" parent="all_timers" unique_id=2131299573]
 wait_time = 0.05
 one_shot = true
 
-[node name="timer_switch_cameras" type="Timer" parent="all_timers"]
+[node name="timer_switch_cameras" type="Timer" parent="all_timers" unique_id=644755941]
 one_shot = true
 
-[node name="jump_Timer" type="Timer" parent="all_timers"]
+[node name="jump_Timer" type="Timer" parent="all_timers" unique_id=2015309593]
 wait_time = 0.02
 one_shot = true
 
-[node name="weapon_display" type="Sprite2D" parent="."]
+[node name="weapon_display" type="Sprite2D" parent="." unique_id=686648522]
 position = Vector2(-1.33333, -26)
 texture = ExtResource("16_2l2k5")
 vframes = 12
 
-[node name="display_timer" type="Timer" parent="weapon_display"]
+[node name="display_timer" type="Timer" parent="weapon_display" unique_id=571430492]
 wait_time = 0.5
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_hedug")
-}
-autoplay = "others"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1643711789]
+libraries/ = SubResource("AnimationLibrary_hedug")
+autoplay = &"others"
 
-[node name="dash_positions" type="Node2D" parent="."]
+[node name="dash_positions" type="Node2D" parent="." unique_id=94585338]
 
-[node name="left" type="Marker2D" parent="dash_positions"]
+[node name="left" type="Marker2D" parent="dash_positions" unique_id=921995198]
 position = Vector2(-3.53095, 11.3037)
 
-[node name="right" type="Marker2D" parent="dash_positions"]
+[node name="right" type="Marker2D" parent="dash_positions" unique_id=1896739720]
 position = Vector2(5.43555, 11.4275)
 
-[node name="player_constants_checker_area2d" type="Area2D" parent="." groups=["player_constants_checker_area2d"]]
+[node name="player_constants_checker_area2d" type="Area2D" parent="." unique_id=1001917416 groups=["player_constants_checker_area2d"]]
 collision_mask = 17
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player_constants_checker_area2d"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_constants_checker_area2d" unique_id=1204574234]
 position = Vector2(-1, 3.5)
 shape = SubResource("RectangleShape2D_qjlgr")
 
-[node name="start_timer" type="Timer" parent="."]
+[node name="start_timer" type="Timer" parent="." unique_id=973447152]
 one_shot = true
 autostart = true
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_eyb8q")
-}
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=108051038]
+libraries/ = SubResource("AnimationLibrary_eyb8q")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=349207347]
 
-[node name="speed_y" type="Label" parent="."]
+[node name="speed_y" type="Label" parent="." unique_id=396735726]
 visible = false
 offset_left = 1.0
 offset_top = -42.0
@@ -774,7 +768,7 @@ scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "speed_y"
 
-[node name="text" type="Label" parent="speed_y"]
+[node name="text" type="Label" parent="speed_y" unique_id=1585593136]
 layout_mode = 0
 offset_left = -116.0
 offset_top = 1.0
@@ -783,56 +777,56 @@ offset_bottom = 24.0
 theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "SPEED Y:"
 
-[node name="detect_water_zones" type="Area2D" parent="."]
+[node name="detect_water_zones" type="Area2D" parent="." unique_id=1858164446]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_water_zones"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_water_zones" unique_id=1520433637]
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_s5fq1")
 
-[node name="detectFloorTypesArea" type="Area2D" parent="."]
+[node name="detectFloorTypesArea" type="Area2D" parent="." unique_id=184881549]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detectFloorTypesArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectFloorTypesArea" unique_id=1649907218]
 position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_ufrn6")
 
-[node name="RayCastLeft" type="RayCast2D" parent="."]
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=792963233]
 position = Vector2(-8, 0)
 target_position = Vector2(0, 17)
 hit_from_inside = true
 
-[node name="RayCastRight" type="RayCast2D" parent="."]
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=850418320]
 position = Vector2(10, 0)
 target_position = Vector2(0, 17)
 
-[node name="Megaman_RefImage" type="Sprite2D" parent="."]
+[node name="Megaman_RefImage" type="Sprite2D" parent="." unique_id=1238534108]
 visible = false
 position = Vector2(30, 97)
 texture = ExtResource("1_si1fv")
 
-[node name="weaponNodes" type="Node2D" parent="."]
+[node name="weaponNodes" type="Node2D" parent="." unique_id=1460269256]
 
-[node name="timers" type="Node2D" parent="weaponNodes"]
+[node name="timers" type="Node2D" parent="weaponNodes" unique_id=720166267]
 
-[node name="alarmWeaponSwitchPosTimer" type="Timer" parent="weaponNodes/timers"]
+[node name="alarmWeaponSwitchPosTimer" type="Timer" parent="weaponNodes/timers" unique_id=1253852007]
 wait_time = 0.5
 
-[node name="alarmWeaponTimeOutTimer" type="Timer" parent="weaponNodes/timers"]
+[node name="alarmWeaponTimeOutTimer" type="Timer" parent="weaponNodes/timers" unique_id=645548016]
 wait_time = 3.0
 one_shot = true
 
-[node name="checkIfStuckNodes" type="Node2D" parent="."]
+[node name="checkIfStuckNodes" type="Node2D" parent="." unique_id=63941528]
 
-[node name="RayCast2D" type="RayCast2D" parent="checkIfStuckNodes"]
+[node name="RayCast2D" type="RayCast2D" parent="checkIfStuckNodes" unique_id=862253792]
 position = Vector2(0, -6)
 target_position = Vector2(0, 17)
 
-[node name="RayCast2D2" type="RayCast2D" parent="checkIfStuckNodes"]
+[node name="RayCast2D2" type="RayCast2D" parent="checkIfStuckNodes" unique_id=705656148]
 position = Vector2(-4, 4)
 rotation = -1.57079
 target_position = Vector2(1.57356e-05, 7)
 
-[node name="PlayerEffectsAllTime" parent="." instance=ExtResource("20_sprfd")]
+[node name="PlayerEffectsAllTime" parent="." unique_id=1394263026 instance=ExtResource("20_sprfd")]
 
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]

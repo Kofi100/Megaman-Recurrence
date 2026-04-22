@@ -1,0 +1,37 @@
+[remap]
+
+importer="ldtk.import"
+type="PackedScene"
+uid="uid://70up05bimxxp"
+path="res://.godot/imported/graffiti_man_stage.ldtk-4352f4bcbd07536e1e525de848c6830e.scn"
+
+[deps]
+
+files=["res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_0.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_1.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_2.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_3.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_4.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_5.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_6.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_7.scn", "res://.godot/imported/graffiti_man_stage.ldtk-4352f4bcbd07536e1e525de848c6830e.scn"]
+
+source_file="res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/graffiti_man_stage.ldtk"
+dest_files=["res://.godot/imported/graffiti_man_stage.ldtk-4352f4bcbd07536e1e525de848c6830e.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_0.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_1.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_2.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_3.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_4.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_5.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_6.scn", "res://levels/ldtk_experimental_levels/graffiti_man_stage/backups/a7e89660-ac70-11f0-82d2-0b893d2c7465_2025-12-23_13-51-24/levels/Level_7.scn", "res://.godot/imported/graffiti_man_stage.ldtk-4352f4bcbd07536e1e525de848c6830e.scn"]
+
+[params]
+
+World=""
+group_world_layers=false
+Level=""
+pack_levels=true
+Layer=""
+layers_always_visible=false
+Tileset=""
+tileset_custom_data=false
+integer_grid_tilesets=false
+atlas_texture_type=0
+Entity=""
+resolve_entityrefs=true
+use_entity_placeholders=false
+Post Import=""
+tileset_post_import=""
+entities_post_import=""
+level_post_import=""
+world_post_import=""
+Debug=""
+force_tileset_reimport=false
+verbose_output=false

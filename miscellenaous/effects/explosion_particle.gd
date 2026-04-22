@@ -37,7 +37,7 @@ func _physics_process(delta):
 			velocity.y=-SPEED*delta
 
 	move_and_slide()
-
+	$light_radius.visible=GlobalScript.slumbshade_darkness_active
 
 func _on_life_timer_timeout() -> void:
 	queue_free()

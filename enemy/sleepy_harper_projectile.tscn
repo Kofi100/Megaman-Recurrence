@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ca8w3ja1pqep2"]
+[gd_scene format=3 uid="uid://ca8w3ja1pqep2"]
 
 [ext_resource type="Script" uid="uid://ledf78hjeprd" path="res://enemy/sleepy_harper_projectile.gd" id="1_h1gbw"]
 [ext_resource type="Texture2D" uid="uid://bm5t5cu0w5gh2" path="res://assets/sprites/enemies/1SleepyHarper_Samuel_X7.png" id="1_ye8wr"]
@@ -49,23 +49,28 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1gbw"]
 size = Vector2(8, 11)
 
-[node name="sleepyHarper_Projectile" type="CharacterBody2D"]
+[node name="sleepyHarper_Projectile" type="CharacterBody2D" unique_id=644105587]
 script = ExtResource("1_h1gbw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1403501968]
 sprite_frames = SubResource("SpriteFrames_gjjph")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=911608517]
 position = Vector2(0, -0.5)
 scale = Vector2(0.6, 0.65)
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy", "enemy_Projectile"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=257792276 groups=["enemy", "enemy_Projectile"]]
 collision_layer = 6
 collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=606953327]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_h1gbw")
 
+[node name="stay_timer" type="Timer" parent="." unique_id=167383853]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="stay_timer" to="." method="_on_stay_timer_timeout"]

@@ -5,8 +5,8 @@ extends Collectable
 
 func _ready():
 	#animation_player.set_autoplay('active')
-	bounce_up_upon_spawning()
-	
+	#bounce_up_upon_spawning()
+	pass
 func _process(delta):
 	if not is_on_floor():
 		velocity.y+=get_gravity().y*delta

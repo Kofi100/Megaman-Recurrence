@@ -1,6 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2f76ripo2nyb"]
+[gd_scene format=3 uid="uid://c2f76ripo2nyb"]
 
 [ext_resource type="Script" uid="uid://b8b7su1a674d4" path="res://players/player_effects_all_time.gd" id="1_x0ibh"]
+[ext_resource type="Texture2D" uid="uid://f34ubap3s65q" path="res://assets/sprites/miscelleaneous/lighting_sprite_32_32.png" id="2_ovpvi"]
+[ext_resource type="Texture2D" uid="uid://ckkoqomj2n5hq" path="res://resources/light_gradient_final.tres" id="3_j4jbo"]
 
-[node name="PlayerEffectsAllTime" type="Node2D"]
+[node name="PlayerEffectsAllTime" type="Node2D" unique_id=1069322145]
 script = ExtResource("1_x0ibh")
+
+[node name="scarymare_spawn_time" type="Timer" parent="." unique_id=195257264]
+wait_time = 15.0
+one_shot = true
+
+[node name="testing_lights_bg" type="ColorRect" parent="." unique_id=1219861060]
+visible = false
+z_index = -1
+offset_left = -170.0
+offset_top = -150.0
+offset_right = 165.0
+offset_bottom = 167.0
+color = Color(0.3779188, 0.37791887, 0.37791884, 1)
+
+[node name="light_radius_megaman_test" type="PointLight2D" parent="." unique_id=870891563]
+visible = false
+z_index = -1
+texture_filter = 2
+scale = Vector2(2.25, 2.25)
+color = Color(0.9999998, 0.7607919, 0.26781654, 1)
+texture = ExtResource("2_ovpvi")
+
+[node name="light_radius_megaman" type="PointLight2D" parent="." unique_id=1824480686]
+visible = false
+z_index = -1
+texture_filter = 2
+range_z_min = -2
+texture = ExtResource("3_j4jbo")
+texture_scale = 1.5
+
+[connection signal="timeout" from="scarymare_spawn_time" to="." method="_on_scarymare_spawn_time_timeout"]

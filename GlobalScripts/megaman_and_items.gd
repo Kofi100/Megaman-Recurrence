@@ -225,7 +225,7 @@ func saveData(file_path: String) -> bool:
 
 func loadData(file_path: String) -> bool:
 	if not FileAccess.file_exists(file_path):
-		GlobalLogger.warn(name,"Save file doesn't exist, creating new: " % file_path)
+		GlobalLogger.warn(name,"Save file doesn't exist, creating new: %s " % file_path)
 		file_exists = false
 		return saveData(file_path)  # Create new save file
 	

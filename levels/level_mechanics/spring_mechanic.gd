@@ -17,9 +17,13 @@ func _on_spring_area_area_entered(area: Area2D) -> void:
 		#print("%s : %s entered spring" % [name+"[not needed]",area.get_parent()])
 		return
 	var body=area.get_parent()
-	if body is CharacterBody2D and body!=self  and not body is enemy:
+	if body is Player and body!=self  and not body is enemy:
 		#print("%s : %s entered spring" % [name,body])
-		body.velocity.y=-500
+		#print(Player.playerCharacter.JUMP_VELOCITY)
+		body.velocity.y=body.JUMP_VELOCITY*1.4 #-500/1.2
+		$AnimatedSprite2D.play("default")
+		#Target Velocity: -420 ,for "dreamy" feel
+		#print(body.velocity.y)
 
 
 func _on_spring_area_body_entered(body: Node2D) -> void:

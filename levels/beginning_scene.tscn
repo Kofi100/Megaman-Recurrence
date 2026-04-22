@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7qvqf2las08t"]
+[gd_scene load_steps=13 format=3 uid="uid://b7qvqf2las08t"]
 
 [ext_resource type="Texture2D" uid="uid://sjntmg6ajse5" path="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png" id="1_2kwlq"]
 [ext_resource type="Script" uid="uid://cjw203u45k6wp" path="res://levels/beginning_scene.gd" id="1_ts5or"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="5_dfu3o"]
 [ext_resource type="Texture2D" uid="uid://csbm53joufv0" path="res://assets/sprites/miscelleaneous/1BoxArt_Samuel_X7.png" id="6_l66ht"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="7_clrv8"]
+[ext_resource type="Script" uid="uid://cwjb3x45e2r4k" path="res://addons/git_describe/label/git_describe_label.gd" id="8_clrv8"]
 [ext_resource type="Script" uid="uid://fcof0bm2obkl" path="res://levels/sfx_group.gd" id="8_nuyax"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05wmg"]
@@ -75,6 +76,17 @@ sprite_frames = SubResource("SpriteFrames_xvutv")
 stream = ExtResource("7_clrv8")
 script = ExtResource("8_nuyax")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"
+
+[node name="GitDescribeLabel" type="Label" parent="."]
+clip_contents = true
+offset_left = 201.0
+offset_top = 211.0
+offset_right = 309.0
+offset_bottom = 234.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_p55fo")
+script = ExtResource("8_clrv8")
+metadata/_custom_type_script = "uid://cwjb3x45e2r4k"
 
 [connection signal="timeout" from="press_Start/blink_Timer" to="." method="_on_blink_timer_timeout"]
 [connection signal="animation_finished" from="boxArtOrTitle" to="." method="_on_box_art_or_title_animation_finished"]

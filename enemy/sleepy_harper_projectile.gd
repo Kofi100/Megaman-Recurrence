@@ -1,20 +1,30 @@
 extends enemy
 var foundPlayer:bool=false
+var up_direction_variant:int=0
 func _ready() -> void:
-	playerdamagevalue=2
+	playerdamagevalue=1
 	health=1
+	$AnimatedSprite2D.frame=up_direction_variant#randi_range(0,4)
+	$stay_timer.start(1.2)
 func _physics_process(delta: float) -> void:
 	calculate_player_distance()
 	spawn_collectables()
-	if health<=0:
-		GlobalScript.spawn_collectable_no=100
+	#if health<=0:
+		#GlobalScript.spawn_collectable_no=100
 	if not foundPlayer:
 		if distance_x<0:
 			velocity.x=-2200*delta
 		elif distance_x>=0:
 			velocity.x=2200*delta
-		velocity.y=randi_range(-1500,1500)*delta
-		$AnimatedSprite2D.frame=randi_range(0,4)
+		match up_direction_variant:
+			0: velocity.y=-20#150
+			1:velocity.y=-10
+			2:velocity.y=0
+			3:velocity.y=10
+			4:velocity.y=20#150
+		#velocity.y=randi_range(-1500,1500)*delta
+		
+		
 		foundPlayer=true
 	
 	move_and_slide()
@@ -38,3 +48,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		#queue_free()
 		pass
 		
+
+
+func _on_stay_timer_timeout() -> void:
+	queue_free()

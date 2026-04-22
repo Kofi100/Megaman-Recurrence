@@ -1,37 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://4rn054oxik8i"]
+[gd_scene format=3 uid="uid://4rn054oxik8i"]
 
 [ext_resource type="Script" uid="uid://dto33iu864t1i" path="res://levels/level_mechanics/spring_mechanic.gd" id="1_wa2lo"]
+[ext_resource type="Texture2D" uid="uid://1hsbgei5olc3" path="res://assets/sprites/miscelleaneous/spring_clouds.png" id="2_e4vem"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq55y"]
+atlas = ExtResource("2_e4vem")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8qtt"]
+atlas = ExtResource("2_e4vem")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c2pvp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq55y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8qtt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wa2lo"]
-size = Vector2(16, 16)
+size = Vector2(60, 12)
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_wa2lo"]
-length = 12.0
+length = 18.0
 
-[node name="spring_mechanic" type="CharacterBody2D"]
+[node name="spring_mechanic" type="CharacterBody2D" unique_id=1275738401]
 script = ExtResource("1_wa2lo")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=992228746]
+visible = false
 offset_left = -8.0
 offset_right = 8.0
 offset_bottom = 16.0
 color = Color(0.0705882, 0.584314, 1, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1891043728]
+visible = false
 offset_left = -8.0
 offset_top = -4.0
 offset_right = 8.0
 color = Color(0.360784, 1, 1, 1)
 
-[node name="spring_area" type="Area2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=598748970]
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_c2pvp")
+frame = 1
+frame_progress = 1.0
+
+[node name="spring_area" type="Area2D" parent="." unique_id=1512055703]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spring_area"]
-position = Vector2(0, 4)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spring_area" unique_id=1757760700]
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_wa2lo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=487066743]
 position = Vector2(0, 4)
 shape = SubResource("SeparationRayShape2D_wa2lo")
 

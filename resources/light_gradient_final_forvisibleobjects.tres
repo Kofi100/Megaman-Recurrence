@@ -1,0 +1,7 @@
+[gd_resource type="GradientTexture2D" format=3 uid="uid://ditkqu083jxt5"]
+
+[ext_resource type="Gradient" uid="uid://cb5a2nmwdaxpe" path="res://resources/colourfor_light_gradient_final_forvisibleobjects.tres" id="1_wg5wj"]
+
+[resource]
+gradient = ExtResource("1_wg5wj")
+fill_from = Vector2(1, 0)
