@@ -1,17 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxj53cronljqm"]
+[gd_scene format=3 uid="uid://dxj53cronljqm"]
 
 [ext_resource type="Script" uid="uid://2mina58wfkjo" path="res://players/weapons/rush_coil_spawn_effect.gd" id="1_gcfhw"]
-[ext_resource type="Texture2D" uid="uid://cravk65d6m07q" path="res://assets/sprites/player/weapons/megaman/rush_coil.png" id="1_ktgi2"]
+[ext_resource type="Texture2D" uid="uid://5q4yor0abvyf" path="res://assets/sprites/player/weapons/megaman/rush_coil_jet_redesign.png" id="2_gcfhw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gcfhw"]
-atlas = ExtResource("1_ktgi2")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxfet"]
+atlas = ExtResource("2_gcfhw")
 region = Rect2(0, 0, 57, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rxfet"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gcfhw")
+"texture": SubResource("AtlasTexture_rxfet")
 }],
 "loop": true,
 "name": &"default",
@@ -21,19 +21,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sne7f"]
 size = Vector2(6, 29)
 
-[node name="rush_coil_spawn_effect" type="CharacterBody2D"]
+[node name="rush_coil_spawn_effect" type="CharacterBody2D" unique_id=1083030362]
 script = ExtResource("1_gcfhw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=908694311]
 sprite_frames = SubResource("SpriteFrames_rxfet")
 
-[node name="Area2D" type="Area2D" parent="." groups=["rush_spawn_effect"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=658490465 groups=["rush_spawn_effect"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1508394144]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_sne7f")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=639885313]
 rect = Rect2(-4, -17, 8, 29)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

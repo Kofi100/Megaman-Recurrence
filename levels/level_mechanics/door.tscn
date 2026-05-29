@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg1ncj10ftjy5"]
+[gd_scene format=3 uid="uid://bg1ncj10ftjy5"]
 
 [ext_resource type="Script" uid="uid://111xxat81cn" path="res://levels/level_mechanics/door.gd" id="1_5oyk0"]
 [ext_resource type="Shader" uid="uid://be5cw6khneqd0" path="res://levels/level_mechanics/door.gdshader" id="2_k24ax"]
@@ -31,45 +31,45 @@ size = Vector2(7.66667, 42)
 a = Vector2(-0.249981, -32.6667)
 b = Vector2(-0.249981, 34.3333)
 
-[node name="door" type="StaticBody2D"]
+[node name="door" type="StaticBody2D" unique_id=743437651]
 script = ExtResource("1_5oyk0")
 whiteReplacement = Color(1, 0.988235, 0.988235, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=668204384]
 material = SubResource("ShaderMaterial_w7pih")
 sprite_frames = ExtResource("3_w7pih")
 animation = &"open_close"
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=922730039]
 material = SubResource("ShaderMaterial_m3g4l")
 position = Vector2(16, 0)
 sprite_frames = ExtResource("3_w7pih")
 animation = &"open_close"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809903507]
 visible = false
 position = Vector2(8, 1.90735e-06)
 shape = SubResource("RectangleShape2D_wt0ex")
 
-[node name="detect_left" type="Area2D" parent="."]
+[node name="detect_left" type="Area2D" parent="." unique_id=714423438]
 position = Vector2(-18.3333, -0.666667)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_left"]
-position = Vector2(6.3333, 2.66667)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_left" unique_id=156147166]
+position = Vector2(6.3332996, 2.66667)
 shape = SubResource("RectangleShape2D_k1aof")
 
-[node name="detect_right" type="Area2D" parent="."]
+[node name="detect_right" type="Area2D" parent="." unique_id=401513446]
 position = Vector2(31, -0.666667)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="detect_right"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="detect_right" unique_id=1586215148]
 position = Vector2(-5, -0.333333)
 shape = SubResource("SegmentShape2D_7s8it")
 
-[node name="door_enter_close" type="AudioStreamPlayer" parent="."]
+[node name="door_enter_close" type="AudioStreamPlayer" parent="." unique_id=1918432525]
 stream = ExtResource("4_bnbxy")
 
 [connection signal="body_entered" from="detect_left" to="." method="_on_detect_left_body_entered"]

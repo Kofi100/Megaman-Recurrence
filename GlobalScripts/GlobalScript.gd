@@ -69,6 +69,9 @@ var SAVEFILE_PATHS:Array[String] = ["user://savefile1.txt", "user://savefile2.tx
 var previous_current_scene
 var current_scene
 
+var _last_applied_resolution: int = -1
+var _last_applied_fullscreen: bool = false
+
 var slumbshade_darkness_active:bool=false
 func _ready():
 	#Signal Connections
@@ -97,7 +100,7 @@ func _ready():
 	#el:
 		#if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN:
 			#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	DisplayServer.window_set_size(Vector2(256,224) * resolution)
+	apply_window_settings(true)
 	get_tree().scene_changed.emit()
 
 
@@ -107,7 +110,6 @@ var array = [null, null, null]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	previous_current_scene=get_tree().current_scene
 	#if Engine.get_frames_per_second()>60:
 		#Engine.set_frames_per_second()
 	#print(Engine.max_fps)
@@ -126,20 +128,25 @@ func _process(delta):
 		if second_level >= 60:
 			minute_level += 1
 			second_level = 0
-	
-	DisplayServer.window_set_size(Vector2(256,224) * resolution)
-	#added if cdns because of hicon error
-	if fullscreen:
-		if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_WINDOWED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+	apply_window_settings()
 	
 	#print(previous_current_scene==get_tree().current_scene)
 	#if previous_current_scene!=get_tree().current_scene:
 	#await get_tree().scene_changed
 	#GlobalLogger.info(name,"Game moved to: %s" % get_tree().current_scene)
+
+
+func apply_window_settings(force: bool = false):
+	if force or _last_applied_resolution != resolution:
+		DisplayServer.window_set_size(Vector2(256,224) * resolution)
+		_last_applied_resolution = resolution
+
+	if force or _last_applied_fullscreen != fullscreen:
+		var target_mode = DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
+		if DisplayServer.window_get_mode() != target_mode:
+			DisplayServer.window_set_mode(target_mode)
+		_last_applied_fullscreen = fullscreen
 
 func start_level_timer():
 	level_timer_start = true

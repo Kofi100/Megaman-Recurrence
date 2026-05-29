@@ -4,13 +4,19 @@ var WentThruLeftDoor:bool=false
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animated_sprite_2d_2 = $AnimatedSprite2D2
 
-@export var spriteframes:SpriteFrames
+@export var spriteframes:SpriteFrames:
+	set(value):
+		spriteframes = value
+		if is_node_ready():
+			_refresh_spriteframes()
 @export var whiteReplacement:Color
 @export var bossToWaitFor:CharacterBody2D
 @export var is_boss_door:bool=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	_refresh_spriteframes()
+	if Engine.is_editor_hint():
+		set_process(false)
 	# Make materials unique and local to scene
 	#animated_sprite_2d.material = animated_sprite_2d.material.duplicate()
 	#animated_sprite_2d.material.resource_local_to_scene = true
@@ -20,25 +26,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
-	#code here is supposed to run in and outta editor
-	#makes material and shader code to run in editor
-	#by settign it to be local to scene
-	#can also be done in the shaderMaterial by going
-	#to Resource>Local To Scene
-	#animated_sprite_2d.material.resource_local_to_scene=true
-	#animated_sprite_2d_2.material.resource_local_to_scene=true
-	#change_color(animated_sprite_2d,greyReplacement,whiteReplacement)
-	#change_color(animated_sprite_2d_2,greyReplacement,whiteReplacement)
-	if spriteframes!=null:
-		$AnimatedSprite2D.sprite_frames=spriteframes
-		$AnimatedSprite2D2.sprite_frames=spriteframes
-	else:
-		$AnimatedSprite2D.sprite_frames=load("res://levels/level_mechanics/doorAnimationTemplate.tres")
-		$AnimatedSprite2D2.sprite_frames=load("res://levels/level_mechanics/doorAnimationTemplate.tres")
 	if Engine.is_editor_hint():
-		pass
-	elif not Engine.is_editor_hint():
+		return
+	else:
 		if animated_sprite_2d.animation=='open_close':
 			if animated_sprite_2d.frame==4:
 				$CollisionShape2D.disabled=true
@@ -56,6 +46,14 @@ func _process(_delta):
 					$detect_left/CollisionShape2D.disabled=false
 		else:
 			$detect_left/CollisionShape2D.disabled=false
+
+
+func _refresh_spriteframes() -> void:
+	var frames = spriteframes
+	if frames == null:
+		frames = preload("res://levels/level_mechanics/doorAnimationTemplate.tres")
+	animated_sprite_2d.sprite_frames = frames
+	animated_sprite_2d_2.sprite_frames = frames
 	
 
 

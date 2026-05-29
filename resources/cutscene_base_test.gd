@@ -16,11 +16,17 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
 		#if not cutscene_triggered:
 		#var body=area.get_parent()
+			#if Player.playerCharacter.velocity.x>0:
+			#Player.playerCharacter.disable_input=true
+		$Area2D.set_deferred("monitoring",false)
 		Player.playerCharacter.disable_input=true
+		var normalSpeed=Player.playerCharacter.normalspeed
+		Player.playerCharacter.cutscene_velocity=Vector2(normalSpeed,0)
+		await get_tree().create_timer(2).timeout
 		#Player.playerCharacter.stop=true
 		#if area.col
+		Player.playerCharacter.cutscene_velocity=Vector2.ZERO
 		
-		$Area2D.set_deferred("monitoring",false)
 		#cutscene_triggered=true
 		await get_tree().create_timer(1).timeout
 		spawn_rush()
@@ -35,7 +41,15 @@ func _on_cutscene_animation_finished(anim_name: StringName) -> void:
 			$cutscene.play("fade_out")
 		"fade_out":
 			$cutscene.play("RESET")
-			Player.playerCharacter.disable_input=false
+			Player.playerCharacter.disable_input=true
+			
+			var normalSpeed=Player.playerCharacter.normalspeed
+			Player.playerCharacter.cutscene_velocity=Vector2.ZERO
+			await get_tree().create_timer(1).timeout
+			Player.playerCharacter.cutscene_velocity=Vector2(normalSpeed,-300)
+			
+			await get_tree().create_timer(.5).timeout
+			
 			#Player.playerCharacter.stop=false
 var rush_coil_instance
 func spawn_rush():
@@ -62,6 +76,7 @@ func _on_detect_when_mega_gone_up_area_entered(area: Area2D) -> void:
 		#$cutscene.play("fade_out_alt")
 		
 		Player.playerCharacter.disable_input=true
+		Player.playerCharacter.cutscene_velocity=Vector2.ZERO
 		Player.playerCharacter.stop=true
 		Player.playerCharacter.visible=false
 		await get_tree().create_timer(1).timeout
@@ -77,6 +92,30 @@ func _on_detect_when_mega_gone_up_area_entered(area: Area2D) -> void:
 		Player.playerCharacter.anim.play("idle")
 		Player.playerCharacter.velocity.x=0
 		#await $cutscene.animation_finished
-		
+		#wait for .5s,move right for .5s
+		await get_tree().create_timer(.5).timeout
+		var normalSpeed=Player.playerCharacter.normalspeed
+		Player.playerCharacter.cutscene_velocity=Vector2(normalSpeed,0)
+		await get_tree().create_timer(.5).timeout
+		#stop moving,wait for 1s
+		Player.playerCharacter.cutscene_velocity=Vector2.ZERO
+		await get_tree().create_timer(1).timeout
+		#move left for .5s
+		Player.playerCharacter.cutscene_velocity=Vector2(-normalSpeed,0)
+		await get_tree().create_timer(.5).timeout
+		#stop moving,wait for 1s
+		Player.playerCharacter.cutscene_velocity=Vector2.ZERO
+		await get_tree().create_timer(1).timeout
+		#trigger boss
+		GlobalSignalBus.boss_trigger.emit()
+		#turn right (for a shortwhile) and stop
+		await get_tree().create_timer(.7).timeout
+		Player.playerCharacter.cutscene_velocity=Vector2(1,0)
+		await get_tree().create_timer(.1).timeout
+		Player.playerCharacter.cutscene_velocity=Vector2.ZERO
+		#GlobalLogger.debug(name,"boss triggered?")
+		#wait for boss bar to fill up
+		await GlobalSignalBus.boss_bar_filled_up
+		#reenable player input
 		Player.playerCharacter.disable_input=false
 		Player.playerCharacter.stop=false

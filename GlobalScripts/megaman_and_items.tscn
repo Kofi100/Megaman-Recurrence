@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhd0rwq10coyk"]
+[gd_scene format=3 uid="uid://dhd0rwq10coyk"]
 
 [ext_resource type="Script" uid="uid://bosmhx8vfetoy" path="res://GlobalScripts/megaman_and_items.gd" id="1_f63vt"]
 [ext_resource type="Script" uid="uid://0pdrrcvqglff" path="res://GlobalScripts/colorPalette.gd" id="2_p0dni"]
@@ -7,7 +7,7 @@
 script = ExtResource("2_p0dni")
 metadata/_custom_type_script = "uid://0pdrrcvqglff"
 
-[node name="Megaman and Items" type="Node2D"]
+[node name="Megaman and Items" type="Node2D" unique_id=279440672]
 script = ExtResource("1_f63vt")
 colorPalette = SubResource("Resource_evad5")
 weaponEnergyCost = {

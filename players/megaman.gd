@@ -82,6 +82,7 @@ var player_transition_direction_y:String
 }
 var transition_velocity:Vector2
 var player_on_floor_condition:bool=false
+@export var player_body:CollisionShape2D
 func _ready():
 	playerCharacter = self
 	GlobalSignalBus.connect("player_knockback", _on_knockback_signal)
@@ -144,6 +145,7 @@ func _ready():
 
 var onrush = false
 var disable_input = false
+var cutscene_velocity: Vector2 = Vector2.ZERO
 var switch_state = 0
 var door_transition = false
 
@@ -499,7 +501,7 @@ func _physics_process(delta):
 
 			#print("Mega:velocity.y",velocity.y)
 			#print("Mega:velocity*delta=i think,pixel/frame/second",velocity*Vector2(delta,delta))
-			if jump_buffer_timer.time_left > 0 and player_on_floor_condition:
+			if jump_buffer_timer.time_left > 0 and player_on_floor_condition and not disable_input:
 				#print(name+":"+Jump Buffer Time Left:"+jump_buffer_timer.time_left)
 				velocity.y = JUMP_VELOCITY #* delta
 				jump_buffer_timer.stop()
@@ -512,16 +514,15 @@ func _physics_process(delta):
 			#if Input.is_action_pressed("dash") and player_on_floor_condition:#anim.animation=="dash":
 				#anim.offset.y=3
 			if onrush == false:
-				
-				if GlobalScript.weapon_number == 0:
-					if buster_cooldown_timer.time_left <= 0:
-						shoot_and_charge()
-						
-				else:
-					#MegamanAndItems.change_palette($anim)
-					create_weapons()
-				
-				if climb == false:
+				if climb==false:
+					if not disable_input:
+						if GlobalScript.weapon_number == 0:
+							if buster_cooldown_timer.time_left <= 0:
+								shoot_and_charge()
+								
+						else:
+							#MegamanAndItems.change_palette($anim)
+							create_weapons()
 					if near_ladder:
 						if Input.is_action_pressed("move_up"):
 							climb = true
@@ -629,6 +630,12 @@ func apply_movement_x(delta):
 	direction = Input.get_axis("move_left", "move_right")
 	if direction != 0:
 		lastDirectionCase = direction
+	if cutscene_velocity.x != 0 and disable_input:
+		direction = sign(cutscene_velocity.x)
+		lastDirectionCase = direction
+		move_an_inch_checker = 10
+		velocity.x = cutscene_velocity.x * delta
+		return
 	if direction and not disable_input:
 		move_an_inch_checker += 1
 		if not player_on_floor_condition:
@@ -670,6 +677,7 @@ func offsetAnimationFunction():
 		and anim.animation != "shoot_in_air"
 		and anim.animation != "run"
 		and anim.animation != "stun"
+		#and anim.animation !="shoot_idle"
 	):
 		$anim.offset.x = 0
 		$anim.offset.y = 0
@@ -689,6 +697,10 @@ func offsetAnimationFunction():
 					$anim.offset.x = 3
 			"run":
 				$anim.offset.y = 0
+			#"shoot_idle":
+				#match $anim.flip_h:
+					#false: $anim.offset.x = -4
+					#true: $anim.offset.x = 4
 			#"stun":
 				#$anim.offset.y=3
 var stun_effect_created:bool=false
@@ -880,7 +892,7 @@ func play_animations():
 						#$jump_Timer.start()
 						#MegamanAndItems.charge_timer=0
 
-		elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0:
+		elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0 and not disable_input:
 			if anim.animation != "stun_air":
 				if move_an_inch_checker >= 10:
 					if anim.animation != "shoot_run":
@@ -894,7 +906,7 @@ func play_animations():
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 			if $anim.animation != "shoot_in_air" and anim.animation != "stun_air" and anim.animation!="climb_transition":
 				$anim.play("jump")
-		elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0:
+		elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0 and not disable_input:
 			if anim.animation != "shoot_in_air" and anim.animation != "stun_air":
 				$anim.play("shoot_in_air")
 
@@ -909,7 +921,7 @@ func shoot_and_charge():
 	if Input.is_action_pressed("shoot"):
 		MegamanAndItems.charge_timer += 1
 
-	elif Input.is_action_just_released("shoot"):
+	elif Input.is_action_just_released("shoot") and not disable_input:
 		$all_sounds/charge.stop()
 		if MegamanAndItems.charge_timer < MegamanAndItems.charge_buster_times[1]:  #30
 			projectile = lemon.instantiate()
@@ -998,10 +1010,10 @@ var is_dashing:bool=false
 func dash_function(delta):
 	#if anim.animation=="dash":
 		#anim.offset.y=3
-	if player_on_floor_condition:
+	if player_on_floor_condition and not disable_input:
 		if Input.is_action_just_pressed("dash") and $dash/Timer.time_left <= 0:
 			dash.start_dash(.5)
-			anim.offset.y=3
+			#anim.offset.y=3
 			is_dashing=true
 			var dash_effect = preload("res://players/effects/dash_effect.tscn")
 			var dash_effect_instance = dash_effect.instantiate()
@@ -1020,6 +1032,8 @@ func dash_function(delta):
 		if Input.is_action_pressed("dash") and $dash/Timer.time_left > 0:
 			anim.play("dash")
 			#anim.frame=
+			#offset is set here for animation to look good and to be consistent too.
+			anim.offset.y=3
 			if anim.flip_h==false:
 				velocity.x=-dashspeed*delta
 			elif anim.flip_h==true:

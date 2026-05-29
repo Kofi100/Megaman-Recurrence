@@ -28,8 +28,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wa2lo"]
 size = Vector2(60, 12)
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_wa2lo"]
-length = 18.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4vem"]
+size = Vector2(64, 19)
 
 [node name="spring_mechanic" type="CharacterBody2D" unique_id=1275738401]
 script = ExtResource("1_wa2lo")
@@ -63,8 +63,8 @@ position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_wa2lo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=487066743]
-position = Vector2(0, 4)
-shape = SubResource("SeparationRayShape2D_wa2lo")
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_e4vem")
 
 [connection signal="area_entered" from="spring_area" to="." method="_on_spring_area_area_entered"]
 [connection signal="body_entered" from="spring_area" to="." method="_on_spring_area_body_entered"]

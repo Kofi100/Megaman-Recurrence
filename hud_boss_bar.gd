@@ -50,6 +50,7 @@ func BossReady():
 		get_tree().set_pause(true)
 		print(name,":Froze Physics of Scene")
 		var tween=create_tween()
+		tween.finished.connect(trigger_Global_Boss_fill_up_signal)
 		tween.connect("finished",TweenFinished)
 		if usingBossTextBar==false:
 			$ProgressBar.visible=true
@@ -57,7 +58,8 @@ func BossReady():
 		elif usingBossTextBar==true and BosstextureProgressBar:
 			BosstextureProgressBar.visible=true
 			tween.tween_property(BosstextureProgressBar,"value",BosstextureProgressBar.max_value,1).from(0)
-
+func trigger_Global_Boss_fill_up_signal():
+	GlobalSignalBus.boss_bar_filled_up.emit()
 func BossDefeated_Function():
 	if is_instance_valid(Boss.bossCharacter):
 		if Boss.bossCharacter.health<=0:

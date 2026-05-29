@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://nnieex6nqieu"]
+[gd_scene format=3 uid="uid://nnieex6nqieu"]
 
 [ext_resource type="Texture2D" uid="uid://1po1uqg1g6am" path="res://assets/sprites/miscelleaneous/1KofiMenu_Save_Load_Menu.png" id="1_8ayqx"]
 [ext_resource type="Script" uid="uid://cgcwum5wxrspf" path="res://levels/save_load_menu.gd" id="1_38jbt"]
@@ -11,19 +11,19 @@
 [ext_resource type="Texture2D" uid="uid://xcbpmjf38vc4" path="res://assets/sprites/miscelleaneous/menus/weapon_Icon_Spritesheets/slumberPillow.png" id="8_4qfsl"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="10_4knt1"]
 
-[node name="save_load_menu" type="Node2D"]
+[node name="save_load_menu" type="Node2D" unique_id=1160934963]
 script = ExtResource("1_38jbt")
 
-[node name="1KofiMenuSaveLoadMenu" type="Sprite2D" parent="."]
+[node name="1KofiMenuSaveLoadMenu" type="Sprite2D" parent="." unique_id=478647878]
 texture = ExtResource("1_8ayqx")
 centered = false
 
-[node name="SelectArrow" type="Sprite2D" parent="."]
+[node name="SelectArrow" type="Sprite2D" parent="." unique_id=1862468760]
 position = Vector2(28, 71)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_bew58")
 
-[node name="abilities_grid" type="GridContainer" parent="."]
+[node name="abilities_grid" type="GridContainer" parent="." unique_id=629522091]
 offset_left = 134.0
 offset_top = 63.0
 offset_right = 230.0
@@ -32,130 +32,130 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 5
 
-[node name="power1" type="Control" parent="abilities_grid"]
+[node name="power1" type="Control" parent="abilities_grid" unique_id=1297266987]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power1"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power1" unique_id=1049374588]
 position = Vector2(8, 8)
 texture = ExtResource("3_msfbp")
 hframes = 2
 
-[node name="power2" type="Control" parent="abilities_grid"]
+[node name="power2" type="Control" parent="abilities_grid" unique_id=1714697065]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power2"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power2" unique_id=563720098]
 position = Vector2(8, 8)
 texture = ExtResource("4_pacdd")
 hframes = 2
 
-[node name="power3" type="Control" parent="abilities_grid"]
+[node name="power3" type="Control" parent="abilities_grid" unique_id=184569008]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power3"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power3" unique_id=2101874726]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
 vframes = 12
 frame = 2
 
-[node name="power4" type="Control" parent="abilities_grid"]
+[node name="power4" type="Control" parent="abilities_grid" unique_id=859816811]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power4"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power4" unique_id=476692191]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
 vframes = 12
 frame = 3
 
-[node name="power5" type="Control" parent="abilities_grid"]
+[node name="power5" type="Control" parent="abilities_grid" unique_id=236677800]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power5"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power5" unique_id=1541468561]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
 vframes = 12
 frame = 4
 
-[node name="power6" type="Control" parent="abilities_grid"]
+[node name="power6" type="Control" parent="abilities_grid" unique_id=1759444869]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power6"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power6" unique_id=1365977771]
 position = Vector2(8, 8)
 texture = ExtResource("6_pacdd")
 hframes = 2
 
-[node name="power7" type="Control" parent="abilities_grid"]
+[node name="power7" type="Control" parent="abilities_grid" unique_id=299532497]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power7"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power7" unique_id=1546439346]
 position = Vector2(8, 8)
 texture = ExtResource("7_veoq2")
 hframes = 2
 
-[node name="power8" type="Control" parent="abilities_grid"]
+[node name="power8" type="Control" parent="abilities_grid" unique_id=1132785399]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power8"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power8" unique_id=1955377047]
 position = Vector2(8, 8)
 texture = ExtResource("8_4qfsl")
 hframes = 2
 
-[node name="power9" type="Control" parent="abilities_grid"]
+[node name="power9" type="Control" parent="abilities_grid" unique_id=360177694]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power9"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power9" unique_id=101781981]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
 vframes = 12
 frame = 8
 
-[node name="power10" type="Control" parent="abilities_grid"]
+[node name="power10" type="Control" parent="abilities_grid" unique_id=474882560]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power10"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power10" unique_id=1220333126]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
 vframes = 12
 frame = 9
 
-[node name="power11" type="Control" parent="abilities_grid"]
+[node name="power11" type="Control" parent="abilities_grid" unique_id=160823333]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power11"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power11" unique_id=2072817627]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
 vframes = 12
 frame = 10
 
-[node name="power12" type="Control" parent="abilities_grid"]
+[node name="power12" type="Control" parent="abilities_grid" unique_id=1957181383]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power12"]
+[node name="Sprite2D" type="Sprite2D" parent="abilities_grid/power12" unique_id=519913536]
 position = Vector2(8, 8)
 texture = ExtResource("2_57e3f")
 vframes = 12
 frame = 11
 
-[node name="allMarker2Ds" type="Node2D" parent="."]
+[node name="allMarker2Ds" type="Node2D" parent="." unique_id=1151871897]
 
-[node name="Marker2D" type="Marker2D" parent="allMarker2Ds"]
+[node name="Marker2D" type="Marker2D" parent="allMarker2Ds" unique_id=40875178]
 position = Vector2(28, 71)
 
-[node name="Marker2D2" type="Marker2D" parent="allMarker2Ds"]
+[node name="Marker2D2" type="Marker2D" parent="allMarker2Ds" unique_id=1424881575]
 position = Vector2(28, 83)
 
-[node name="Marker2D3" type="Marker2D" parent="allMarker2Ds"]
+[node name="Marker2D3" type="Marker2D" parent="allMarker2Ds" unique_id=1642861282]
 position = Vector2(28, 95)
 
-[node name="Marker2D4" type="Marker2D" parent="allMarker2Ds"]
+[node name="Marker2D4" type="Marker2D" parent="allMarker2Ds" unique_id=1990842500]
 position = Vector2(28, 108)
 
-[node name="Marker2D5" type="Marker2D" parent="allMarker2Ds"]
+[node name="Marker2D5" type="Marker2D" parent="allMarker2Ds" unique_id=218831743]
 position = Vector2(28, 121)
 
-[node name="Marker2D6" type="Marker2D" parent="allMarker2Ds"]
+[node name="Marker2D6" type="Marker2D" parent="allMarker2Ds" unique_id=986764730]
 position = Vector2(28, 172)
 
-[node name="confirmBox" type="ColorRect" parent="."]
+[node name="confirmBox" type="ColorRect" parent="." unique_id=1532969089]
 visible = false
 offset_left = 18.0
 offset_top = 65.0
@@ -163,7 +163,7 @@ offset_right = 237.0
 offset_bottom = 140.0
 color = Color(0.203922, 0.529412, 0.976471, 1)
 
-[node name="title" type="Label" parent="confirmBox"]
+[node name="title" type="Label" parent="confirmBox" unique_id=486527726]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 14.0
@@ -174,7 +174,7 @@ theme = ExtResource("10_4knt1")
 text = "ARE YOU SURE YOU WANT TO SAVE?"
 autowrap_mode = 1
 
-[node name="yes" type="Label" parent="confirmBox"]
+[node name="yes" type="Label" parent="confirmBox" unique_id=449659187]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 43.0
@@ -185,7 +185,7 @@ theme = ExtResource("10_4knt1")
 text = "yes"
 autowrap_mode = 1
 
-[node name="no" type="Label" parent="confirmBox"]
+[node name="no" type="Label" parent="confirmBox" unique_id=129658363]
 layout_mode = 0
 offset_left = 136.0
 offset_top = 43.0
@@ -196,22 +196,22 @@ theme = ExtResource("10_4knt1")
 text = "no"
 autowrap_mode = 1
 
-[node name="confirm_select_arrow" type="Sprite2D" parent="confirmBox"]
+[node name="confirm_select_arrow" type="Sprite2D" parent="confirmBox" unique_id=11868912]
 position = Vector2(50, 48)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_bew58")
 
-[node name="Marker2D" type="Marker2D" parent="confirmBox"]
+[node name="Marker2D" type="Marker2D" parent="confirmBox" unique_id=533650864]
 position = Vector2(50, 48)
 
-[node name="Marker2D2" type="Marker2D" parent="confirmBox"]
+[node name="Marker2D2" type="Marker2D" parent="confirmBox" unique_id=1039916934]
 position = Vector2(129, 48)
 
-[node name="input_cooldown_timer" type="Timer" parent="."]
+[node name="input_cooldown_timer" type="Timer" parent="." unique_id=877760843]
 wait_time = 0.5
 one_shot = true
 
-[node name="input_switch_w_left" type="Label" parent="."]
+[node name="input_switch_w_left" type="Label" parent="." unique_id=84494576]
 offset_left = 56.0
 offset_top = 48.0
 offset_right = 84.0
@@ -220,7 +220,7 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("10_4knt1")
 text = "A:"
 
-[node name="input_switch_w_right" type="Label" parent="."]
+[node name="input_switch_w_right" type="Label" parent="." unique_id=403538155]
 offset_left = 182.0
 offset_top = 48.0
 offset_right = 210.0
@@ -229,7 +229,7 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("10_4knt1")
 text = ":A"
 
-[node name="input_switch_w_right2" type="Label" parent="."]
+[node name="input_switch_w_right2" type="Label" parent="." unique_id=1427627727]
 offset_left = 32.0
 offset_top = 167.0
 offset_right = 60.0
@@ -238,7 +238,7 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("10_4knt1")
 text = "EXIT"
 
-[node name="arrow_blink_timer" type="Timer" parent="."]
+[node name="arrow_blink_timer" type="Timer" parent="." unique_id=780758741]
 wait_time = 0.2
 
 [connection signal="timeout" from="arrow_blink_timer" to="." method="_on_arrow_blink_timer_timeout"]

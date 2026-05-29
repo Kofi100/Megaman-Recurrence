@@ -29,7 +29,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"playing",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -57,6 +57,7 @@ script = ExtResource("1_fhqpq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=943374812]
 sprite_frames = SubResource("SpriteFrames_256bk")
 animation = &"playing"
+frame_progress = 0.6921081
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=679894089]
 position = Vector2(-1, 2)
@@ -81,10 +82,11 @@ position = Vector2(5.96046e-08, 0)
 scale = Vector2(3.25, 3.3)
 
 [node name="shoot_timer" type="Timer" parent="." unique_id=1090404648]
-wait_time = 2.0
+wait_time = 1.5
 one_shot = true
 
 [node name="pause_timer" type="Timer" parent="." unique_id=2009797950]
+wait_time = 2.0
 one_shot = true
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

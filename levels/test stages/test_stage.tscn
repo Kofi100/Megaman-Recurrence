@@ -489,7 +489,7 @@ offset_right = 620.0
 offset_bottom = -237.0
 
 [node name="megaman" parent="." unique_id=1819285132 instance=ExtResource("2_mabb1")]
-position = Vector2(3814, 207)
+position = Vector2(663, -256)
 
 [node name="level" type="TileMapLayer" parent="." unique_id=2107321803]
 use_parent_material = true
@@ -546,10 +546,9 @@ visible = false
 [node name="New Camera System Addon" type="Area2D" parent="all_camera" unique_id=388838192 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@48084")
+zone_camera_2d = NodePath("@Camera2D@32483")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon" unique_id=23826411]
@@ -560,10 +559,9 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@48085")
+zone_camera_2d = NodePath("@Camera2D@32484")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon2" unique_id=1083638503]
@@ -573,10 +571,9 @@ shape = SubResource("RectangleShape2D_bkubj")
 [node name="New Camera System Addon3" type="Area2D" parent="all_camera" unique_id=320051659 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@48086")
+zone_camera_2d = NodePath("@Camera2D@32485")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="Camera2D" type="Camera2D" parent="all_camera/New Camera System Addon3" unique_id=440514555]
@@ -592,10 +589,9 @@ shape = SubResource("RectangleShape2D_i2788")
 [node name="New Camera System Addon4" type="Area2D" parent="all_camera" unique_id=1823077834 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@48087")
+zone_camera_2d = NodePath("@Camera2D@32486")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="Camera2D" type="Camera2D" parent="all_camera/New Camera System Addon4" unique_id=335830151]
@@ -610,19 +606,17 @@ shape = SubResource("RectangleShape2D_qo5kr")
 
 [node name="all_enemies" type="Node2D" parent="." unique_id=1919206526]
 
-[node name="enemy_spawner" parent="all_enemies" unique_id=686532746 node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner" parent="all_enemies" unique_id=686532746 instance=ExtResource("11_06gft")]
 position = Vector2(165, 215)
 enemy_to_spawn = "screw_bomber"
 enemyVariant = "fire"
-enemy_Preview = NodePath("screw_bomber")
 
 [node name="electric_gabyoall" parent="all_enemies" unique_id=1449660841 instance=ExtResource("8_ycmm6")]
 position = Vector2(296, 32)
 
-[node name="enemy_spawner2" parent="all_enemies" unique_id=475844807 node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner2" parent="all_enemies" unique_id=475844807 instance=ExtResource("11_06gft")]
 position = Vector2(440, 215)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
 [node name="enemy_spawner3" parent="all_enemies" unique_id=1966175915 instance=ExtResource("11_06gft")]
 position = Vector2(331, 219)
@@ -701,10 +695,9 @@ arrayOfLasers = [NodePath("../laserWallMechanic8"), NodePath("../laserWallMechan
 [node name="laserWallSwitch5" parent="all_enemies" unique_id=2079962551 instance=ExtResource("33_6toia")]
 position = Vector2(2418, 413)
 
-[node name="enemy_spawner4" parent="all_enemies" unique_id=818134297 node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("11_06gft")]
+[node name="enemy_spawner4" parent="all_enemies" unique_id=818134297 instance=ExtResource("11_06gft")]
 position = Vector2(2745, 175)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
 [node name="enemy_spawner5" parent="all_enemies" unique_id=1394019405 instance=ExtResource("11_06gft")]
 position = Vector2(3050, 13)
@@ -900,7 +893,7 @@ arrayOfLasers = [NodePath("../laserWallMechanic"), NodePath("../laserWallMechani
 position = Vector2(3415, 135)
 
 [node name="energy_tank" parent="." unique_id=1810806894 instance=ExtResource("10_j6rho")]
-position = Vector2(3770, 214)
+position = Vector2(3886, 155)
 
 [node name="conveyorBeltMain" parent="." unique_id=1302932719 instance=ExtResource("40_dlh6p")]
 tile_map_data = PackedByteArray("AADTAAsAAAAAAAEAAADhAAsAAAAAAAEAAADgAAsAAAAAAAIAAADfAAsAAAAAAAIAAADeAAsAAAAAAAIAAADdAAsAAAAAAAIAAADcAAsAAAAAAAIAAADbAAsAAAAAAAIAAADaAAsAAAAAAAIAAADZAAsAAAAAAAIAAADYAAsAAAAAAAIAAADXAAsAAAAAAAIAAADWAAsAAAAAAAIAAADVAAsAAAAAAAIAAADUAAsAAAAAAAIAAAA=")

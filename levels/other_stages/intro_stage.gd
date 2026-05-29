@@ -53,4 +53,14 @@ func _on_tree_exiting() -> void:
 
 func _on_boss_entered_zone_detected_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_constants_checker_area2d"):
-		GlobalSignalBus.boss_trigger.emit()
+		#await get_tree().create_timer(8).timeout
+		#GlobalSignalBus.boss_trigger.emit()
+		#GlobalLogger.debug(name,"boss trigger connected:%s" %[GlobalSignalBus.boss_trigger.has_connections()])
+		pass
+
+
+func _on_detect_mega_cutscene_movement_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_constants_checker_area2d"):
+		pass
+			
+		

@@ -45,7 +45,7 @@ func Physics_Update(_delta:float):
 
 func start_boss_intro_or_wait_timer():
 	#intro_timer.start()
-	await GlobalScreenTransitionTimer.timeout
+	#await GlobalScreenTransitionTimer.timeout
 	state=MiniState.FALL
 	#animated_sprite_2d.play("intro")
 

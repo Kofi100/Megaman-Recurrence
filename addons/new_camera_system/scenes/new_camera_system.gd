@@ -41,6 +41,7 @@ var cached_last_shape: Shape2D #For lightweight
 
 func _ready():
 	pass  # Replace with function body.
+	set_notify_transform(true)
 	collision_limits_camera = get_node_or_null("CollisionShape2D")
 	#zone_camera_2d = get_node_or_null("Camera2D")  #%Camera2D
 	if zone_camera_2d==null:
@@ -55,6 +56,9 @@ func _ready():
 		#if not collision_limits_camera.shape.changed.is_connected(update_camera_limits):
 		collision_limits_camera.shape.changed.connect(update_camera_limits)
 		update_camera_limits()
+
+	if Engine.is_editor_hint():
+		set_process(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -133,8 +137,8 @@ func update_camera_limits():
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		#print("cchnaged")
-		pass
+		if Engine.is_editor_hint():
+			update_camera_limits()
 
 func _on_area_entered(area):
 	if area.is_in_group("player_constants_checker_area2d"):  #and area.get_parent().player_ready==true

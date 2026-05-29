@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dlxfmi6i1icxx"]
+[gd_scene format=3 uid="uid://dlxfmi6i1icxx"]
 
 [ext_resource type="Script" uid="uid://bvrhiunsxie7n" path="res://enemy/boss/rogue_riot.gd" id="1_15n20"]
 [ext_resource type="Texture2D" uid="uid://dkudsw56vb4jr" path="res://assets/sprites/enemies/bosses/1RogueRiot.png" id="2_nv4jw"]
@@ -384,7 +384,7 @@ _data = {
 &"boss_level_up": SubResource("Animation_f5x0v")
 }
 
-[node name="rogue_riot" type="CharacterBody2D"]
+[node name="rogue_riot" type="CharacterBody2D" unique_id=1653437189]
 collision_layer = 0
 script = ExtResource("1_15n20")
 is_boss = true
@@ -393,117 +393,117 @@ BossDefenseShot1 = 1
 BossDefenseShot2 = 2
 metadata/_custom_type_script = "uid://blqd77u3c7yor"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1936501892]
 rotation = 0.00308247
 sprite_frames = SubResource("SpriteFrames_pmkgq")
 animation = &"fall_down"
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=2064794866 groups=["enemy"]]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1919689767]
 position = Vector2(2, 8.5)
 shape = SubResource("RectangleShape2D_dls4r")
 
-[node name="hitbox_hurt" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox_hurt" type="Area2D" parent="." unique_id=1799989072 groups=["enemy"]]
 collision_layer = 6
 collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_hurt"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_hurt" unique_id=259969974]
 position = Vector2(2, 8.5)
 shape = SubResource("RectangleShape2D_r0awv")
 
-[node name="State Engine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_n4umb")]
+[node name="State Engine" parent="." unique_id=1291025267 node_paths=PackedStringArray("initial_state") instance=ExtResource("3_n4umb")]
 initial_state = NodePath("intro")
 
-[node name="idle" type="Node" parent="State Engine" node_paths=PackedStringArray("rogue_riot", "timer")]
+[node name="idle" type="Node" parent="State Engine" unique_id=282619876 node_paths=PackedStringArray("rogue_riot", "timer")]
 script = ExtResource("4_1vm1i")
 rogue_riot = NodePath("../..")
 timer = NodePath("../../Timers/attack_timer")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
-[node name="ground_stomp" type="Node" parent="State Engine"]
+[node name="ground_stomp" type="Node" parent="State Engine" unique_id=1485813359]
 script = ExtResource("5_83g40")
 
-[node name="jump" type="Node" parent="State Engine"]
+[node name="jump" type="Node" parent="State Engine" unique_id=478933550]
 script = ExtResource("6_5qp2x")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
-[node name="laser_attack" type="Node" parent="State Engine"]
+[node name="laser_attack" type="Node" parent="State Engine" unique_id=1581435864]
 script = ExtResource("7_2erqm")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
-[node name="spiky_ball" type="Node" parent="State Engine"]
+[node name="spiky_ball" type="Node" parent="State Engine" unique_id=1961924211]
 script = ExtResource("8_dls4r")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
-[node name="intro" type="Node" parent="State Engine"]
+[node name="intro" type="Node" parent="State Engine" unique_id=1014779621]
 script = ExtResource("9_r0awv")
 metadata/_custom_type_script = "uid://ci8lmp5q6whc4"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274212887]
 position = Vector2(-1, 11)
 shape = SubResource("RectangleShape2D_5qp2x")
 
-[node name="Timers" type="Node2D" parent="."]
+[node name="Timers" type="Node2D" parent="." unique_id=1304507454]
 
-[node name="attack_timer" type="Timer" parent="Timers"]
+[node name="attack_timer" type="Timer" parent="Timers" unique_id=285168576]
 wait_time = 1.5
 one_shot = true
 
-[node name="hit_cooldown_timer" type="Timer" parent="Timers"]
+[node name="hit_cooldown_timer" type="Timer" parent="Timers" unique_id=98338373]
 wait_time = 0.75
 one_shot = true
 
-[node name="intro_timer" type="Timer" parent="Timers"]
+[node name="intro_timer" type="Timer" parent="Timers" unique_id=600558702]
 wait_time = 3.0
 one_shot = true
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="." unique_id=1941142763]
 visible = false
 position = Vector2(-10, -26)
 points = PackedVector2Array(0, 0, -103, 60)
 width = 2.0
 width_curve = SubResource("Curve_dls4r")
 
-[node name="guideline_laser_attack" type="Line2D" parent="."]
+[node name="guideline_laser_attack" type="Line2D" parent="." unique_id=1947949342]
 visible = false
 position = Vector2(-200, -183)
 points = PackedVector2Array(-2, 1, 373, 1)
 
-[node name="guideline_laser_attack2" type="Line2D" parent="."]
+[node name="guideline_laser_attack2" type="Line2D" parent="." unique_id=354584659]
 visible = false
 position = Vector2(-226, 94)
 points = PackedVector2Array(-60, 1, 459, 1)
 
-[node name="guideline_laser_attack3" type="Line2D" parent="."]
+[node name="guideline_laser_attack3" type="Line2D" parent="." unique_id=533824281]
 visible = false
 position = Vector2(-216.727, 75)
 scale = Vector2(1.1039, 1)
 points = PackedVector2Array(-60, 1, 459, 1)
 
-[node name="guidelines_attack_distance" type="Line2D" parent="."]
+[node name="guidelines_attack_distance" type="Line2D" parent="." unique_id=1227483432]
 visible = false
 position = Vector2(0, 75)
 points = PackedVector2Array(0, -43, 256, -43)
 default_color = Color(0.0352941, 0.337255, 0.545098, 1)
 
-[node name="guidelines_attack_distance2" type="Line2D" parent="."]
+[node name="guidelines_attack_distance2" type="Line2D" parent="." unique_id=1541234000]
 visible = false
 position = Vector2(0, 86)
 scale = Vector2(1.1039, 1)
 points = PackedVector2Array(0, -43, 70, -43)
 default_color = Color(0.483411, 0.256122, 0.0210304, 1)
 
-[node name="guidelines_attack_distance3" type="Line2D" parent="."]
+[node name="guidelines_attack_distance3" type="Line2D" parent="." unique_id=1232924801]
 visible = false
 position = Vector2(0, 100)
 scale = Vector2(1.1039, 1)
 points = PackedVector2Array(0, -43, 140, -43)
 default_color = Color(0.637156, 0.600871, 0.0522335, 1)
 
-[node name="laser_attack_visual" type="Line2D" parent="."]
+[node name="laser_attack_visual" type="Line2D" parent="." unique_id=849047787]
 position = Vector2(-13.5363, -26.2172)
 rotation = -0.605629
 points = PackedVector2Array(0, 0, -103, 60)
@@ -511,26 +511,24 @@ width = 2.0
 width_curve = SubResource("Curve_dls4r")
 default_color = Color(0.894118, 0.188235, 0.027451, 1)
 
-[node name="laser_attack_raycast2d" type="RayCast2D" parent="."]
+[node name="laser_attack_raycast2d" type="RayCast2D" parent="." unique_id=2002001626]
 position = Vector2(-13.5363, -26.2172)
 rotation = 1.8326
 target_position = Vector2(-103, 220)
 collision_mask = 6
 
-[node name="main_animation_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fh34c")
-}
+[node name="main_animation_player" type="AnimationPlayer" parent="." unique_id=1436288621]
+libraries/ = SubResource("AnimationLibrary_fh34c")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1227107077]
 position = Vector2(-200, -183)
 
-[node name="HUD_BossBar" parent="." node_paths=PackedStringArray("BosstextureProgressBar", "boss_health_label") instance=ExtResource("9_fh34c")]
+[node name="HUD_BossBar" parent="." unique_id=1277151316 node_paths=PackedStringArray("BosstextureProgressBar", "boss_health_label") instance=ExtResource("9_fh34c")]
 BosstextureProgressBar = NodePath("boss_healthbar")
 boss_health_label = NodePath("boss_healthbar/text_health_display")
 usingBossTextBar = true
 
-[node name="boss_healthbar" type="TextureProgressBar" parent="HUD_BossBar"]
+[node name="boss_healthbar" type="TextureProgressBar" parent="HUD_BossBar" unique_id=293817836]
 offset_left = 234.0
 offset_top = 16.0
 offset_right = 242.0
@@ -541,7 +539,7 @@ fill_mode = 3
 texture_under = ExtResource("12_ro4s4")
 texture_progress = ExtResource("13_pmkgq")
 
-[node name="text_health_display" type="Label" parent="HUD_BossBar/boss_healthbar"]
+[node name="text_health_display" type="Label" parent="HUD_BossBar/boss_healthbar" unique_id=1419732008]
 layout_mode = 0
 offset_top = 57.0
 offset_right = 32.0
@@ -550,24 +548,22 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("11_40tfw")
 text = "00"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD_BossBar/boss_healthbar"]
-libraries = {
-&"": SubResource("AnimationLibrary_460xm")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD_BossBar/boss_healthbar" unique_id=1626231440]
+libraries/ = SubResource("AnimationLibrary_460xm")
 
-[node name="timer" type="Timer" parent="HUD_BossBar/boss_healthbar"]
+[node name="timer" type="Timer" parent="HUD_BossBar/boss_healthbar" unique_id=1715770837]
 wait_time = 3.0
 one_shot = true
 
-[node name="ground_wave_spawn_position_right" type="Marker2D" parent="."]
+[node name="ground_wave_spawn_position_right" type="Marker2D" parent="." unique_id=1943323080]
 position = Vector2(24, 30)
 
-[node name="ground_wave_spawn_position_left" type="Marker2D" parent="."]
+[node name="ground_wave_spawn_position_left" type="Marker2D" parent="." unique_id=213669154]
 position = Vector2(-22, 30)
 
-[node name="SFX" type="Node2D" parent="."]
+[node name="SFX" type="Node2D" parent="." unique_id=1887659359]
 
-[node name="stomp" type="AudioStreamPlayer" parent="SFX"]
+[node name="stomp" type="AudioStreamPlayer" parent="SFX" unique_id=1137785971]
 stream = ExtResource("14_pmkgq")
 script = ExtResource("15_c5ck5")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"

@@ -29,10 +29,12 @@ func _process(_delta: float) -> void:
 	# Handle mode switching
 	if Input.is_action_just_pressed("switch_weapon_left"):
 		isSaving = true
-
+		$input_switch_w_left.set_modulate(Color.YELLOW)
+		$input_switch_w_right.set_modulate(Color.WHITE)
 	elif Input.is_action_just_pressed("switch_weapon_right"):
 		isSaving = false
-
+		$input_switch_w_left.set_modulate(Color.WHITE)
+		$input_switch_w_right.set_modulate(Color.YELLOW)
 	# Handle file selection
 	if Input.is_action_just_pressed("move_up"):
 		file_option -= 1

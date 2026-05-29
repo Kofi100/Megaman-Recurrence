@@ -34,6 +34,16 @@ var new_enemy
 			_update_disappear_nodes()
 	
 @export var visibility_enemy_display = false
+@export var show_enemy_preview_in_editor: bool = false:
+	set(value):
+		show_enemy_preview_in_editor = value
+		if Engine.is_editor_hint():
+			_update_editor_preview()
+@export var show_lightweight_preview_in_editor: bool = true:
+	set(value):
+		show_lightweight_preview_in_editor = value
+		if Engine.is_editor_hint():
+			_update_editor_preview()
 #@export
 var enemy_dictionary: Dictionary = {
 	"new_shotman": preload("res://enemy/new_shotman.tscn"),
@@ -94,7 +104,12 @@ var spawn_timer: int = 0
 
 
 func _ready():
-	pass
+	var is_editor = Engine.is_editor_hint()
+	set_process(not is_editor)
+	set_physics_process(not is_editor)
+	if is_editor:
+		display_node = get_node_or_null("enemy_display_sprite")
+		_update_editor_preview()
 
 #func _enter_tree() -> void:
 	#
@@ -102,6 +117,7 @@ func _ready():
 var spawn_homer = false
 var has_enemy_spawned = false
 var display_node
+var lightweight_enemy_preview: Node2D
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -117,12 +133,14 @@ func _enter_tree():
 #func _update_editor_preview():
 	#pass
 func _process(_delta):
+	if Engine.is_editor_hint():
+		print(Engine.get_frames_per_second())
 	if not Engine.is_editor_hint():
 		visibility=false
 		#print(GlobalScreenTransitionTimer.time_left)
 		display_node = get_node_or_null("enemy_display_sprite")
 
-
+	
 		#to be used later
 
 	#	if GlobalScript.spawn_enemy:
@@ -220,18 +238,110 @@ func _process(_delta):
 func _on_enemy_changed():
 	if Engine.is_editor_hint():
 		visibility=true
-		
-		if enemy_dictionary.has(enemy_to_spawn) and enemy_Preview==null:
-			enemy_Preview=enemy_dictionary[enemy_to_spawn].instantiate()
-			add_child(enemy_Preview)
-		elif !enemy_dictionary.has(enemy_to_spawn):
-			if enemy_Preview!=null:
-				enemy_Preview.queue_free()
-		
-		if enemy_Preview!=null:
-			enemy_Preview.global_position=global_position
-			if enemy_to_spawn=="batallion_balloon_delivery":
-				enemy_Preview.riotToDeliver=riotToDeliver
+		_update_editor_preview()
+
+
+func _update_editor_preview():
+	if not Engine.is_editor_hint():
+		return
+
+	_clear_editor_preview_nodes()
+
+	if not enemy_dictionary.has(enemy_to_spawn):
+		return
+
+	if show_enemy_preview_in_editor:
+		enemy_Preview = enemy_dictionary[enemy_to_spawn].instantiate()
+		add_child(enemy_Preview)
+		enemy_Preview.global_position = global_position
+		if enemy_to_spawn == "batallion_balloon_delivery":
+			enemy_Preview.riotToDeliver = riotToDeliver
+		return
+
+	if not show_lightweight_preview_in_editor:
+		return
+
+	lightweight_enemy_preview = _build_lightweight_preview(enemy_dictionary[enemy_to_spawn])
+	if lightweight_enemy_preview != null:
+		add_child(lightweight_enemy_preview)
+
+
+func _clear_editor_preview_nodes():
+	if enemy_Preview != null:
+		enemy_Preview.queue_free()
+		enemy_Preview = null
+
+	if lightweight_enemy_preview != null:
+		lightweight_enemy_preview.queue_free()
+		lightweight_enemy_preview = null
+
+	if display_node == null:
+		display_node = get_node_or_null("enemy_display_sprite")
+	if display_node != null:
+		display_node.visible = false
+
+
+func _build_lightweight_preview(enemy_scene: PackedScene) -> Node2D:
+	var temp_enemy = enemy_scene.instantiate()
+	var preview_source = _find_preview_source(temp_enemy)
+	if preview_source == null:
+		temp_enemy.free()
+		return null
+
+	var preview_visual = preview_source.duplicate() as Node2D
+	if preview_visual == null:
+		temp_enemy.free()
+		return null
+
+	preview_visual.name = "enemy_preview_visual"
+	preview_visual.transform = _get_relative_transform(preview_source, temp_enemy)
+	preview_visual.process_mode = Node.PROCESS_MODE_DISABLED
+
+	if preview_visual is AnimatedSprite2D:
+		var animated_preview = preview_visual as AnimatedSprite2D
+		animated_preview.stop()
+		animated_preview.animation = _pick_preview_animation(animated_preview.sprite_frames)
+		animated_preview.frame = 0
+
+	temp_enemy.free()
+	return preview_visual
+
+
+func _find_preview_source(node: Node) -> Node2D:
+	if node is AnimatedSprite2D or node is Sprite2D:
+		return node as Node2D
+
+	for child in node.get_children():
+		var preview_source = _find_preview_source(child)
+		if preview_source != null:
+			return preview_source
+
+	return null
+
+
+func _get_relative_transform(target: Node2D, root: Node) -> Transform2D:
+	var relative_transform = target.transform
+	var current = target.get_parent()
+	while current != null and current != root:
+		if current is Node2D:
+			relative_transform = (current as Node2D).transform * relative_transform
+		current = current.get_parent()
+	return relative_transform
+
+
+func _pick_preview_animation(sprite_frames: SpriteFrames) -> StringName:
+	if sprite_frames == null:
+		return &"default"
+
+	var preferred_animations: Array[StringName] = [&"idle", &"default", &"walk", &"flying", &"open_close"]
+	for animation_name in preferred_animations:
+		if sprite_frames.has_animation(animation_name):
+			return animation_name
+
+	var animation_names = sprite_frames.get_animation_names()
+	if animation_names.is_empty():
+		return &"default"
+	return animation_names[0]
 
 func _update_disappear_nodes():
 	for i in disappear_nodes:

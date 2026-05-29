@@ -1,37 +1,36 @@
-[gd_scene load_steps=13 format=3 uid="uid://qe848qfv3emu"]
+[gd_scene format=3 uid="uid://qe848qfv3emu"]
 
 [ext_resource type="Script" uid="uid://dvjy6mrthpndu" path="res://players/weapons/rush_coil.gd" id="1_edrj1"]
-[ext_resource type="Texture2D" uid="uid://cravk65d6m07q" path="res://assets/sprites/player/weapons/megaman/rush_coil.png" id="1_wo7ha"]
-[ext_resource type="Texture2D" uid="uid://un8jlc2yqw6" path="res://assets/sprites/player/weapons/megaman/rush_coil_jet.png" id="2_u8v80"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6qfbf"]
-atlas = ExtResource("2_u8v80")
-region = Rect2(171, 0, 57, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ynruw"]
-atlas = ExtResource("2_u8v80")
-region = Rect2(228, 0, 57, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8oy7a"]
-atlas = ExtResource("1_wo7ha")
-region = Rect2(57, 0, 57, 50)
+[ext_resource type="Texture2D" uid="uid://5q4yor0abvyf" path="res://assets/sprites/player/weapons/megaman/rush_coil_jet_redesign.png" id="2_8oy7a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8v80"]
-atlas = ExtResource("1_wo7ha")
-region = Rect2(114, 0, 57, 50)
+atlas = ExtResource("2_8oy7a")
+region = Rect2(171, 0, 57, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qfbf"]
+atlas = ExtResource("2_8oy7a")
+region = Rect2(228, 0, 57, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhdle"]
-atlas = ExtResource("1_wo7ha")
-region = Rect2(228, 0, 57, 50)
+atlas = ExtResource("2_8oy7a")
+region = Rect2(57, 0, 57, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynruw"]
+atlas = ExtResource("2_8oy7a")
+region = Rect2(114, 0, 57, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b87hu"]
+atlas = ExtResource("2_8oy7a")
+region = Rect2(285, 0, 57, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_emuap"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6qfbf")
+"texture": SubResource("AtlasTexture_u8v80")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ynruw")
+"texture": SubResource("AtlasTexture_6qfbf")
 }],
 "loop": true,
 "name": &"idle",
@@ -39,10 +38,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8oy7a")
+"texture": SubResource("AtlasTexture_mhdle")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u8v80")
+"texture": SubResource("AtlasTexture_ynruw")
 }],
 "loop": false,
 "name": &"spawn",
@@ -50,7 +49,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mhdle")
+"texture": SubResource("AtlasTexture_b87hu")
 }],
 "loop": false,
 "name": &"spring",
@@ -66,42 +65,42 @@ size = Vector2(7.66667, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8oy7a"]
 size = Vector2(20, 13)
 
-[node name="rush_coil" type="CharacterBody2D" groups=["rush_coil"]]
+[node name="rush_coil" type="CharacterBody2D" unique_id=1635485666 groups=["rush_coil"]]
 collision_layer = 0
 collision_mask = 9
 script = ExtResource("1_edrj1")
 spawn_in_speed = 10000
 spawn_back_speed = 40000
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1548049549]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=147485108]
 sprite_frames = SubResource("SpriteFrames_emuap")
-animation = &"spawn"
+animation = &"spring"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=815376803]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_0i0m0")
 
-[node name="jump_zone" type="Area2D" parent="." groups=["spring"]]
+[node name="jump_zone" type="Area2D" parent="." unique_id=357870440 groups=["spring"]]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="jump_zone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jump_zone" unique_id=564093212]
 position = Vector2(3.83333, -5.66667)
 shape = SubResource("RectangleShape2D_rvs0a")
 
-[node name="move_back_timer" type="Timer" parent="."]
+[node name="move_back_timer" type="Timer" parent="." unique_id=906259213]
 wait_time = 1.5
 one_shot = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1847783342]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1713807607]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_8oy7a")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1855088110]
 visible = false
 offset_left = -9.0
 offset_top = -26.0
