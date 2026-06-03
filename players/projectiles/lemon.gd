@@ -1,6 +1,5 @@
 extends Player_Projectile
 #class_name Player_Projectile
-
 #@export var SPEED = 50000.0
 #const JUMP_VELOCITY = -400.0
 #@export var direction = "left"
@@ -16,6 +15,8 @@ func _ready():
 			$anim.flip_h=false
 		"right":
 			$anim.flip_h=true
+	add_light_effect(.3)
+
 
 
 func _physics_process(delta):
@@ -38,6 +39,8 @@ func _physics_process(delta):
 			velocity.x = 0
 			$collision_monitor/CollisionShape2D.disabled = true
 			$anim.visible = false
+	#$light_radius.visible=GlobalScript.slumbshade_darkness_active and $anim.visible
+	light_active_effect($anim)
 	move_and_slide()
 
 

@@ -14,7 +14,7 @@ func _ready() -> void:
 	state="idle"
 	$idle_timer.wait_time=.3
 	$idle_timer.start()
-	health=15
+	health=10
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	playerdamagevalue=3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://gry1wgnl5o88"]
+[gd_scene format=3 uid="uid://gry1wgnl5o88"]
 
 [ext_resource type="Script" uid="uid://d264ut6yyt1so" path="res://players/projectiles/chargeshot_lv_2.gd" id="1_bkydj"]
 [ext_resource type="Texture2D" uid="uid://bekajfg2v56fi" path="res://assets/sprites/player/projectiles/all bullets.png" id="1_ski7p"]
@@ -173,41 +173,41 @@ size = Vector2(11.1667, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tmx5"]
 size = Vector2(8.58335, 21)
 
-[node name="chargeshot_lv2" type="CharacterBody2D"]
+[node name="chargeshot_lv2" type="CharacterBody2D" unique_id=1334176887]
 z_index = 1
 script = ExtResource("1_bkydj")
 SPEED = 15000.0
 damagevalue = 5.0
 health = 5
 
-[node name="anim" type="AnimatedSprite2D" parent="."]
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=2128335557]
 sprite_frames = SubResource("SpriteFrames_4y8vj")
 animation = &"chargeshot_lv2_mm5"
 frame = 1
 frame_progress = 0.561775
 flip_h = true
 
-[node name="collision_monitor" type="Area2D" parent="." groups=["player_projectiles", "player_projectiles_Main"]]
+[node name="collision_monitor" type="Area2D" parent="." unique_id=1561521865 groups=["player_projectiles", "player_projectiles_Main"]]
 collision_layer = 5
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor" unique_id=378155316]
 position = Vector2(-5, -0.5)
 shape = SubResource("RectangleShape2D_xlhgy")
 
-[node name="CollisionShape2D_R" type="CollisionShape2D" parent="collision_monitor"]
+[node name="CollisionShape2D_R" type="CollisionShape2D" parent="collision_monitor" unique_id=1068087283]
 position = Vector2(5.70832, -0.5)
 shape = SubResource("RectangleShape2D_2tmx5")
 
-[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="." unique_id=22141758]
 position = Vector2(1.19209e-06, -0.499999)
 scale = Vector2(1.2, 1.25)
 
-[node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="."]
+[node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="." unique_id=1441056695]
 stream = ExtResource("4_hcxnq")
 script = ExtResource("6_hnfkj")
 
-[node name="bounce" type="AudioStreamPlayer" parent="."]
+[node name="bounce" type="AudioStreamPlayer" parent="." unique_id=1078004400]
 stream = ExtResource("7_6ao6r")
 script = ExtResource("6_hnfkj")
 

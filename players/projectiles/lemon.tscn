@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7ertpcm3wt14"]
+[gd_scene format=3 uid="uid://b7ertpcm3wt14"]
 
 [ext_resource type="Script" uid="uid://driocrxfhmiyg" path="res://players/projectiles/lemon.gd" id="1_s36o1"]
 [ext_resource type="Texture2D" uid="uid://buqfoy276yjql" path="res://assets/sprites/player/projectiles/1Normal_SamuelX7.png" id="2_6fh7j"]
@@ -25,35 +25,40 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_paodp"]
 size = Vector2(8, 6)
 
-[node name="lemon" type="CharacterBody2D"]
+[node name="lemon" type="CharacterBody2D" unique_id=1539882207]
 z_index = 1
 script = ExtResource("1_s36o1")
 SPEED = 15000.0
+direction = null
+state = null
+damagevalue = null
+health = null
+shouldBeDestroyedByLaserSwitch = null
 
-[node name="anim" type="AnimatedSprite2D" parent="."]
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=859065111]
 sprite_frames = SubResource("SpriteFrames_lwm67")
 animation = &"lemon"
 
-[node name="collision_monitor" type="Area2D" parent="." groups=["player_projectiles", "player_projectiles_Main"]]
+[node name="collision_monitor" type="Area2D" parent="." unique_id=1048199253 groups=["player_projectiles", "player_projectiles_Main"]]
 collision_layer = 5
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor" unique_id=1630732486]
 shape = SubResource("RectangleShape2D_paodp")
 
-[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="." unique_id=1005197364]
 position = Vector2(-2.38419e-07, 0)
 scale = Vector2(0.4, 0.3)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1511958831]
 visible = false
 texture = ExtResource("3_nncff")
 
-[node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="."]
+[node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="." unique_id=1640144705]
 stream = ExtResource("4_gu0qf")
 script = ExtResource("5_l2jwy")
 
-[node name="bounce" type="AudioStreamPlayer" parent="."]
+[node name="bounce" type="AudioStreamPlayer" parent="." unique_id=1312854262]
 stream = ExtResource("6_i2fb4")
 script = ExtResource("5_l2jwy")
 

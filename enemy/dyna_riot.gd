@@ -33,6 +33,8 @@ func _physics_process(delta: float) -> void:
 			velocity.y=-10000*delta
 			$CollisionShape2D_Idle.set_deferred("disabled",true)
 			$CollisionShape2D_Jump.set_deferred("disabled",true)
+			if velocity.y>0:
+				velocity.y+=10
 			if $Timer.is_stopped():
 				$Timer.start()
 				#print($Timer.is_stopped())

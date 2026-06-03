@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bpp2st5aqvy5g"]
+[gd_scene format=3 uid="uid://bpp2st5aqvy5g"]
 
 [ext_resource type="Script" uid="uid://cffx0fktv7rn" path="res://enemy/heavy_brawler.gd" id="1_jlyui"]
 [ext_resource type="Texture2D" uid="uid://t1q57nnxxvl7" path="res://enemy/1Heavy_Brawler.png" id="2_jlyui"]
@@ -97,7 +97,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punch1",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -111,7 +111,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punch2",
-"speed": 10.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2xml"]
@@ -123,15 +123,15 @@ size = Vector2(72, 70)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aflbh"]
 size = Vector2(26, 38)
 
-[node name="heavy_brawler" type="CharacterBody2D"]
+[node name="heavy_brawler" type="CharacterBody2D" unique_id=183886719]
 collision_layer = 0
 script = ExtResource("1_jlyui")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2113699726]
 texture_filter = 1
 position = Vector2(-2, -6)
 sprite_frames = SubResource("SpriteFrames_15yex")
-animation = &"idle"
+animation = &"punch1"
 flip_h = true
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
@@ -143,51 +143,51 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://assets/sprites/enemies/1Heavy_Brawler.aseprite"
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139996367]
 position = Vector2(-2, 2.5)
 shape = SubResource("RectangleShape2D_c2xml")
 
-[node name="idle_timer" type="Timer" parent="."]
+[node name="idle_timer" type="Timer" parent="." unique_id=974003559]
 wait_time = 0.3
 one_shot = true
 
-[node name="jump_cooldown_timer" type="Timer" parent="."]
+[node name="jump_cooldown_timer" type="Timer" parent="." unique_id=1926623428]
 one_shot = true
 
-[node name="knockback_hitbox" type="Area2D" parent="."]
+[node name="knockback_hitbox" type="Area2D" parent="." unique_id=300845040]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="knockback_hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="knockback_hitbox" unique_id=214648489]
 position = Vector2(-2, -14)
 shape = SubResource("RectangleShape2D_jlyui")
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=567773414 groups=["enemy"]]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=2140272723]
 position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_aflbh")
 
-[node name="wave_spawn_marker_L" type="Marker2D" parent="."]
+[node name="wave_spawn_marker_L" type="Marker2D" parent="." unique_id=2019356604]
 position = Vector2(-23, 21)
 
-[node name="wave_spawn_marker_R" type="Marker2D" parent="."]
+[node name="wave_spawn_marker_R" type="Marker2D" parent="." unique_id=232877381]
 position = Vector2(16, 21)
 
-[node name="punch_spawn_marker_L" type="Marker2D" parent="."]
+[node name="punch_spawn_marker_L" type="Marker2D" parent="." unique_id=1919301039]
 position = Vector2(-31, -7)
 
-[node name="punch_spawn_marker_R" type="Marker2D" parent="."]
+[node name="punch_spawn_marker_R" type="Marker2D" parent="." unique_id=862602149]
 position = Vector2(26, -5)
 
-[node name="stomp" type="AudioStreamPlayer" parent="."]
+[node name="stomp" type="AudioStreamPlayer" parent="." unique_id=525366769]
 stream = ExtResource("3_aflbh")
 script = ExtResource("4_4cgne")
 metadata/_custom_type_script = "uid://fcof0bm2obkl"
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1922561047]
 position = Vector2(-4.41074e-06, -0.500004)
 scale = Vector2(7.8, 7.65)
 

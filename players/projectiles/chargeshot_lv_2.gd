@@ -19,7 +19,7 @@ func _ready():
 			$collision_monitor/CollisionShape2D.set_deferred("disabled",true)
 			$collision_monitor/CollisionShape2D_R.set_deferred("disabled",false)
 	$anim.play("chargeshot_lv2_mm5")
-	
+	add_light_effect(.7)
 
 
 func _physics_process(delta):
@@ -50,6 +50,7 @@ func _physics_process(delta):
 			$anim.visible=false
 	if state!='stopped' and health<=0:
 		state='stopped'
+	light_active_effect($anim)
 	move_and_slide()
 
 

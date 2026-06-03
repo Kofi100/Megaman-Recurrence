@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c168kb8g4tb1j"]
+[gd_scene format=3 uid="uid://c168kb8g4tb1j"]
 
 [ext_resource type="Script" uid="uid://c6bs00815m3s6" path="res://players/projectiles/chargeshot_lv_1.gd" id="1_kmh8a"]
 [ext_resource type="Texture2D" uid="uid://dwm7msnrvym47" path="res://assets/sprites/player/projectiles/1Charge1_SamuelX7.png" id="2_5cgws"]
@@ -24,7 +24,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43w6s"]
 size = Vector2(10, 10)
 
-[node name="chargeshot_lv1" type="CharacterBody2D"]
+[node name="chargeshot_lv1" type="CharacterBody2D" unique_id=205121631]
 z_index = 1
 position = Vector2(1.90735e-06, 0)
 script = ExtResource("1_kmh8a")
@@ -32,28 +32,28 @@ SPEED = 15000.0
 damagevalue = 3.0
 health = 3
 
-[node name="anim" type="AnimatedSprite2D" parent="."]
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=1140451696]
 sprite_frames = SubResource("SpriteFrames_ibpir")
 animation = &"chargeshot_lv1"
 frame_progress = 0.397225
 
-[node name="collision_monitor" type="Area2D" parent="." groups=["player_projectiles", "player_projectiles_Main"]]
+[node name="collision_monitor" type="Area2D" parent="." unique_id=1465711215 groups=["player_projectiles", "player_projectiles_Main"]]
 collision_layer = 5
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor" unique_id=971509809]
 position = Vector2(-7.94729e-07, 0)
 shape = SubResource("RectangleShape2D_43w6s")
 
-[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="." unique_id=1999636635]
 position = Vector2(-0.166667, 2.38419e-07)
 scale = Vector2(0.45, 0.5)
 
-[node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="."]
+[node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="." unique_id=913070947]
 stream = ExtResource("3_t5chd")
 script = ExtResource("4_bhgv0")
 
-[node name="bounce" type="AudioStreamPlayer" parent="."]
+[node name="bounce" type="AudioStreamPlayer" parent="." unique_id=10055619]
 stream = ExtResource("5_8pwpq")
 script = ExtResource("4_bhgv0")
 

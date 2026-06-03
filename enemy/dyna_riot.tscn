@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx04n6opjbceh"]
+[gd_scene format=3 uid="uid://bx04n6opjbceh"]
 
 [ext_resource type="Texture2D" uid="uid://b6h6ay2mxala1" path="res://assets/sprites/enemies/1Rad-Riots_Samuel_X7.png" id="1_iu8uc"]
 [ext_resource type="Script" uid="uid://corsmfrbt01ev" path="res://enemy/dyna_riot.gd" id="1_oeuj1"]
@@ -37,7 +37,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"artISANEXPLOSION",
-"speed": 12.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -65,34 +65,36 @@ size = Vector2(14, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gt6kk"]
 size = Vector2(16, 23)
 
-[node name="dyna_Riot" type="CharacterBody2D"]
+[node name="dyna_Riot" type="CharacterBody2D" unique_id=384787184]
 collision_layer = 0
 script = ExtResource("1_oeuj1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=395411926]
 sprite_frames = SubResource("SpriteFrames_bu326")
-animation = &"idle"
+animation = &"artISANEXPLOSION"
+frame = 2
+frame_progress = 1.0
 
-[node name="CollisionShape2D_Idle" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D_Idle" type="CollisionShape2D" parent="." unique_id=1345831078]
 position = Vector2(-1, 4.5)
 shape = SubResource("RectangleShape2D_oeuj1")
 
-[node name="CollisionShape2D_Jump" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D_Jump" type="CollisionShape2D" parent="." unique_id=1305097375]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_yjij5")
 disabled = true
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=50354013 groups=["enemy"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=273424208]
 position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_gt6kk")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=588885278]
 wait_time = 0.5
 one_shot = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=11206059]
 position = Vector2(0, 35)
 target_position = Vector2(0, 11)
 

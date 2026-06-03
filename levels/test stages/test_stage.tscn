@@ -9,14 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="4_p7my6"]
 [ext_resource type="Texture2D" uid="uid://dsjojjibskmxl" path="res://assets/sprites/tilesets/test_stages/debug_tileset_basic2.2.png" id="5_wn5xw"]
 [ext_resource type="Texture2D" uid="uid://bkj8wgmmraq63" path="res://assets/sprites/tilesets/test_stages/megaman2_bubbleman.png" id="6_7gdq8"]
+[ext_resource type="Texture2D" uid="uid://ctv15kuityrn2" path="res://miscellenaous/bg_grid_vertical.png" id="7_0he0c"]
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="7_4xtf2"]
 [ext_resource type="Texture2D" uid="uid://cf415o5cbw1ly" path="res://assets/sprites/tilesets/test_stages/water_Surface_Debug.png" id="7_w0tqa"]
 [ext_resource type="PackedScene" uid="uid://dsrq7ljrj02jw" path="res://enemy/sniper_joe.tscn" id="8_60iu1"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="8_ghi0x"]
 [ext_resource type="PackedScene" uid="uid://ctdj2q3rpw4o1" path="res://enemy/original/electric_gabyoall.tscn" id="8_ycmm6"]
 [ext_resource type="PackedScene" uid="uid://b64mf8xlqq2oc" path="res://levels/level_mechanics/conveyor_belt_body.tscn" id="9_ctirt"]
 [ext_resource type="PackedScene" uid="uid://cjqb26cj5laga" path="res://miscellenaous/energy_tank.tscn" id="10_j6rho"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="11_06gft"]
-[ext_resource type="AudioStream" uid="uid://xsktqaiv31rt" path="res://assets/music/Dominic Ninmark - Gravity Circuit Original Soundtrack - 37 A True Hero Emerges - Ark Stage 2.mp3" id="11_b1mqt"]
+[ext_resource type="AudioStream" uid="uid://bgtv3v8b4v21m" path="res://assets/music/Dominic Ninmark - Gravity Circuit Original Soundtrack - 34 Destiny - Ark Stage 1.mp3" id="11_f38wt"]
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="12_2bvdr"]
 [ext_resource type="Texture2D" uid="uid://bnm45vf1cmict" path="res://assets/sprites/enemies/bosses/robot masters concept art-by His Grace.png" id="12_5xn54"]
 [ext_resource type="Texture2D" uid="uid://vxk7p03b556m" path="res://assets/sprites/enemies/bosses/shadow man test display.png" id="13_dco8f"]
@@ -458,12 +460,13 @@ z_index = -1
 
 [node name="background_color" type="ColorRect" parent="Background" unique_id=79814733]
 offset_left = -227.0
-offset_top = -544.0
+offset_top = -539.0
 offset_right = 4957.0
-offset_bottom = 295.0
+offset_bottom = 300.0
 color = Color(6.01634e-08, 0, 0.111867, 1)
 
 [node name="background_parallax" type="Parallax2D" parent="Background" unique_id=1505598962]
+visible = false
 scroll_scale = Vector2(0.2, 0.5)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
@@ -482,14 +485,49 @@ sprite_frames = SubResource("SpriteFrames_b1mqt")
 autoplay = "default"
 centered = false
 
+[node name="Parallax2DV" type="Parallax2D" parent="Background" unique_id=875143670]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(32, 256)
+autoscroll = Vector2(5, 10)
+repeat_times = 20
+
+[node name="BgGridVertical" type="Sprite2D" parent="Background/Parallax2DV" unique_id=1807637018]
+modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(49, 116)
+texture = ExtResource("7_0he0c")
+
+[node name="Parallax2DH" type="Parallax2D" parent="Background" unique_id=1913522778]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(256, 32)
+autoscroll = Vector2(5, 10)
+repeat_times = 20
+
+[node name="BgGridHorizontal" type="Sprite2D" parent="Background/Parallax2DH" unique_id=1311115728]
+modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(49, 116)
+rotation = 1.5707964
+texture = ExtResource("7_0he0c")
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1572034804]
 offset_left = 408.0
 offset_top = -321.0
-offset_right = 620.0
+offset_right = 485.0
 offset_bottom = -237.0
 
+[node name="Label" type="Label" parent="ColorRect" unique_id=189931520]
+visible = false
+layout_mode = 0
+offset_right = 256.66663
+offset_bottom = 23.0
+scale = Vector2(0.3, 0.3)
+theme = ExtResource("8_ghi0x")
+theme_override_colors/font_color = Color(0.35128698, 0.56637836, 0.9551589, 1)
+text = "TEST LIGHT BG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="megaman" parent="." unique_id=1819285132 instance=ExtResource("2_mabb1")]
-position = Vector2(663, -256)
+position = Vector2(3759.2537, 201.57893)
 
 [node name="level" type="TileMapLayer" parent="." unique_id=2107321803]
 use_parent_material = true
@@ -523,7 +561,7 @@ shape = SubResource("RectangleShape2D_1e4c0")
 
 [node name="bgm" type="AudioStreamPlayer" parent="." unique_id=1919878512 groups=["bgm"]]
 process_mode = 3
-stream = ExtResource("11_b1mqt")
+stream = ExtResource("11_f38wt")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
@@ -546,9 +584,10 @@ visible = false
 [node name="New Camera System Addon" type="Area2D" parent="all_camera" unique_id=388838192 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(35, -390)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@32483")
+zone_camera_2d = NodePath("@Camera2D@18848")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon" unique_id=23826411]
@@ -559,9 +598,10 @@ shape = SubResource("RectangleShape2D_vtlt1")
 visible = false
 position = Vector2(36, 42)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@32484")
+zone_camera_2d = NodePath("@Camera2D@18849")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera/New Camera System Addon2" unique_id=1083638503]
@@ -571,9 +611,10 @@ shape = SubResource("RectangleShape2D_bkubj")
 [node name="New Camera System Addon3" type="Area2D" parent="all_camera" unique_id=320051659 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@32485")
+zone_camera_2d = NodePath("@Camera2D@18850")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="Camera2D" type="Camera2D" parent="all_camera/New Camera System Addon3" unique_id=440514555]
@@ -589,9 +630,10 @@ shape = SubResource("RectangleShape2D_i2788")
 [node name="New Camera System Addon4" type="Area2D" parent="all_camera" unique_id=1823077834 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(819.208, -369.177)
 script = ExtResource("15_bkubj")
-zone_camera_2d = NodePath("@Camera2D@32486")
+zone_camera_2d = NodePath("@Camera2D@18851")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
+timer_exists = true
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
 [node name="Camera2D" type="Camera2D" parent="all_camera/New Camera System Addon4" unique_id=335830151]

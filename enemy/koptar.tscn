@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cfxvhbgax335h"]
+[gd_scene format=3 uid="uid://cfxvhbgax335h"]
 
 [ext_resource type="Script" uid="uid://bcrgvftik8q2q" path="res://enemy/koptar.gd" id="1_cu2fr"]
 [ext_resource type="Texture2D" uid="uid://cvx56fha573ck" path="res://assets/sprites/enemies/1Koptar.png" id="1_nhiml"]
@@ -142,37 +142,37 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bas1m"]
 size = Vector2(20, 25)
 
-[node name="koptar" type="CharacterBody2D"]
+[node name="koptar" type="CharacterBody2D" unique_id=530190439]
 script = ExtResource("1_cu2fr")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1546857176]
 sprite_frames = SubResource("SpriteFrames_pb6uv")
 animation = &"triggered_Move"
 frame_progress = 0.98116
 
-[node name="koptaSpikyBall" parent="." instance=ExtResource("3_bas1m")]
+[node name="koptaSpikyBall" parent="." unique_id=527690952 instance=ExtResource("3_bas1m")]
 position = Vector2(1, 25)
 
-[node name="ballReleaseTimer" type="Timer" parent="."]
-wait_time = 1.5
+[node name="ballReleaseTimer" type="Timer" parent="." unique_id=428594670]
+wait_time = 1.2
 one_shot = true
 autostart = true
 
-[node name="retreatTimer" type="Timer" parent="."]
+[node name="retreatTimer" type="Timer" parent="." unique_id=1811165080]
 wait_time = 2.0
 one_shot = true
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=290203726 groups=["enemy"]]
 collision_layer = 6
 collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1735152074]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_bas1m")
 
-[node name="triggeredTimer" type="Timer" parent="."]
+[node name="triggeredTimer" type="Timer" parent="." unique_id=1957586524]
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=909053952]
 position = Vector2(5, 0)
 scale = Vector2(15.85, 14.05)
 

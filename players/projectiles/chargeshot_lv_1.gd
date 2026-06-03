@@ -11,6 +11,7 @@ func _ready():
 		"right":
 			pass
 	$anim.play("chargeshot_lv1")
+	add_light_effect(0.5)
 	
 
 
@@ -38,6 +39,7 @@ func _physics_process(delta):
 			$anim.visible=false
 	if state!='stopped' and health<=0:
 		state='stopped'
+	light_active_effect($anim)
 	move_and_slide()
 
 
