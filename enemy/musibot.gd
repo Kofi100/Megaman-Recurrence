@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h=false
 	elif distance_x>=0:
 		$AnimatedSprite2D.flip_h=true
-	if abs(distance_x)<100 and abs(distance_y)<70:
+	if abs(distance_x)<100 and abs(distance_y)<50:
 		if $AnimatedSprite2D.animation=="idle" and $attack_cooldown_timer.is_stopped():
 			$AnimatedSprite2D.play("opening")
 	
