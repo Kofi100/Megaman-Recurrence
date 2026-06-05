@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 				#if GlobalScript.slumbshade_darkness_active==false:
 					#GlobalScript.slumbshade_darkness_active=true
 		if universal_canvas_modulate:
-			universal_canvas_modulate.color = Color.WHITE if not GlobalScript.slumbshade_darkness_active else Color(Color.BLACK,0.8)
+			universal_canvas_modulate.color = Color.WHITE if not GlobalScript.slumbshade_darkness_active else Color(0.151, 0.151, 0.151, 1.0)#Color(Color.BLACK,0.8)
 			pass
 		$light_radius.visible=GlobalScript.slumbshade_darkness_active
 	if not GlobalScreenTransitionTimer.is_stopped():
