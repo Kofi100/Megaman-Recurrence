@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b1b7b1r0diol4"]
+[gd_scene format=3 uid="uid://b1b7b1r0diol4"]
 
 [ext_resource type="Texture2D" uid="uid://b6ottyj6jtygc" path="res://assets/sprites/tilesets/debug_tileset_basic.png" id="1_pejg5"]
 [ext_resource type="Script" uid="uid://ckk56fj5k81dj" path="res://levels/other_stages/tutorial_stage.gd" id="1_wdx3c"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://don2dmvdf4eux" path="res://assets/sprites/miscelleaneous/dash_preview.png" id="7_v2mjm"]
 [ext_resource type="PackedScene" uid="uid://v3cirfwgjkwo" path="res://levels/level_mechanics/new_camera_system.tscn" id="7_w1i48"]
 [ext_resource type="Texture2D" uid="uid://rrv21tel3s7j" path="res://assets/sprites/miscelleaneous/jump_preview.png" id="8_2wcc0"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="11_upoqq"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="11_upoqq"]
 [ext_resource type="PackedScene" uid="uid://bpkbb02gj5i58" path="res://miscellenaous/target_practise.tscn" id="12_mlgq2"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="13_x6j0u"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="14_j1eu4"]

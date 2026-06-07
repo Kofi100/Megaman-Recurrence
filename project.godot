@@ -24,7 +24,6 @@ run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://sjntmg6ajse5"
 config/icon="res://assets/sprites/miscelleaneous/1MegamanRecurrence_StartMenu_Samuel_X7_.png"
-config/git_describe="f004611"
 
 [aseprite_importers]
 
@@ -63,7 +62,7 @@ project/assembly_name="MegaRedone- Rebirth (Engine Wip)"
 
 [editor]
 
-movie_writer/movie_file="/home/kofi/Desktop/test.avi"
+movie_writer/movie_file="/home/kofi/Desktop/test_gif.png"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 

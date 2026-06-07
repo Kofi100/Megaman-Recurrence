@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dfsjawjvn4ghp"]
+
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_nt185"]
+[ext_resource type="Script" uid="uid://oeg52c38m5i3" path="res://miscellenaous/saved_label_for_savepoint.gd" id="2_770mg"]
+
+[node name="saved_label_main" type="Node2D" unique_id=1270428745]
+
+[node name="saved_label" type="Label" parent="." unique_id=757886255]
+offset_left = -14.0
+offset_top = -4.0
+offset_right = 80.0
+offset_bottom = 19.0
+scale = Vector2(0.3, 0.3)
+theme = ExtResource("1_nt185")
+text = "SAVED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_770mg")
+
+[node name="Timer" type="Timer" parent="saved_label" unique_id=465487041]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="saved_label/Timer" to="saved_label" method="_on_timer_timeout"]

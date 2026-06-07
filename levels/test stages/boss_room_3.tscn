@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://csi6248lvsbko"]
+[gd_scene format=3 uid="uid://csi6248lvsbko"]
 
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_22mmi"]
 [ext_resource type="Script" uid="uid://dmn7jt8egwen4" path="res://levels/test stages/boss_room_3.gd" id="1_m1664"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cn4nfvmm8ja7q" path="res://assets/sprites/miscelleaneous/custom_healthbars/wily7health-50.png" id="4_bo52j"]
 [ext_resource type="AudioStream" uid="uid://b5b448p0iuy70" path="res://assets/music/Final Wily Battle - Mega Man 7 [OST].ogg" id="5_ov4h5"]
 [ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="6_3k1q1"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="7_jue8g"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="7_jue8g"]
 [ext_resource type="PackedScene" uid="uid://c86rlo00ectxx" path="res://hud_boss_bar.tscn" id="8_eyi58"]
 [ext_resource type="Script" uid="uid://cik7cc71o2ep7" path="res://resources/bgm_group.gd" id="8_mafl1"]
 

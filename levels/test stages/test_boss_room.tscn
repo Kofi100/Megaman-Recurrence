@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://blempj6txufhc"]
+[gd_scene format=4 uid="uid://blempj6txufhc"]
 
 [ext_resource type="Script" uid="uid://c8map0fmu8lwi" path="res://levels/test stages/test_boss_room.gd" id="1_uib38"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_v5jq7"]
@@ -15,7 +15,7 @@
 [ext_resource type="Shader" uid="uid://be5cw6khneqd0" path="res://levels/level_mechanics/door.gdshader" id="10_n20f6"]
 [ext_resource type="Texture2D" uid="uid://cyjdvobomffd5" path="res://assets/sprites/miscelleaneous/warning_boss_spritesheet.png" id="10_ywneq"]
 [ext_resource type="AudioStream" uid="uid://ctbsmv5q15mig" path="res://assets/music/Mega Man II (GB) Title Theme & Wily Stage 02 (Xstyle remix).mp3" id="13_f4hip"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="14_yr53m"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="14_yr53m"]
 [ext_resource type="AudioStream" uid="uid://dmnv8fvx6dbi6" path="res://assets/sounds/Mega Man X4-X5【ロックマンX4-X5】- Warning.mp3" id="15_1mu5e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5hk0p"]

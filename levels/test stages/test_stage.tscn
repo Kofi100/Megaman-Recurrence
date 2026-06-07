@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://vxk7p03b556m" path="res://assets/sprites/enemies/bosses/shadow man test display.png" id="13_dco8f"]
 [ext_resource type="PackedScene" uid="uid://die537ieus3fp" path="res://enemy/original/laser_test.tscn" id="14_28iij"]
 [ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="15_bkubj"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="15_wlqon"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="15_wlqon"]
 [ext_resource type="PackedScene" uid="uid://r0q5qrdcqeo6" path="res://enemy/press.tscn" id="16_msnav"]
 [ext_resource type="PackedScene" uid="uid://b2t2agmjcu5y8" path="res://levels/level_mechanics/locked_door.tscn" id="17_xjbpy"]
 [ext_resource type="PackedScene" uid="uid://2ctria5jyvy2" path="res://levels/level_mechanics/key.tscn" id="18_37g2q"]

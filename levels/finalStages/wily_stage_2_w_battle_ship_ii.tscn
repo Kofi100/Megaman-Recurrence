@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dffui0far5bar"]
+[gd_scene format=3 uid="uid://dffui0far5bar"]
 
 [ext_resource type="PackedScene" uid="uid://bdjbquyil6ca" path="res://assets/sprites/tilesets/test_stages/tiledProject1/wily_battleship_ii_map.tscn" id="1_puahp"]
 [ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="2_o07xv"]
@@ -147,14 +147,14 @@ size = Vector2(16, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4tle"]
 size = Vector2(16.0002, 64)
 
-[node name="wilyStage2_WBattleShipII" type="Node2D"]
+[node name="wilyStage2_WBattleShipII" type="Node2D" unique_id=1120871634]
 
-[node name="wily_battleship_ii_map" parent="." instance=ExtResource("1_puahp")]
+[node name="wily_battleship_ii_map" parent="." unique_id=1859831412 instance=ExtResource("1_puahp")]
 
-[node name="megaman" parent="." instance=ExtResource("3_4qflo")]
+[node name="megaman" parent="." unique_id=778216132 instance=ExtResource("3_4qflo")]
 position = Vector2(34, 178)
 
-[node name="wip_Label" type="Label" parent="."]
+[node name="wip_Label" type="Label" parent="." unique_id=1821387418]
 offset_left = 5289.0
 offset_top = 519.0
 offset_right = 5359.0
@@ -162,519 +162,477 @@ offset_bottom = 542.0
 theme = ExtResource("4_v0i2c")
 text = "TBC..."
 
-[node name="allCameras" type="Node2D" parent="."]
+[node name="allCameras" type="Node2D" parent="." unique_id=176579802]
 
-[node name="New Camera System Addon" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon" type="Area2D" parent="allCameras" unique_id=31530828 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon" unique_id=410534544]
 limit_left = 0
 limit_top = 0
 limit_right = 2560
 limit_bottom = 223
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon" unique_id=2130572921]
 position = Vector2(1280, 111.5)
 shape = SubResource("RectangleShape2D_yhpi0")
 
-[node name="New Camera System Addon2" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon2" type="Area2D" parent="allCameras" unique_id=205628993 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2561, 0)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon2"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon2" unique_id=2069820840]
 limit_left = 2560
 limit_top = 0
 limit_right = 2816
 limit_bottom = 223
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon2" unique_id=1776600051]
 position = Vector2(127, 112)
 shape = SubResource("RectangleShape2D_2cfac")
 
-[node name="New Camera System Addon3" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon3" type="Area2D" parent="allCameras" unique_id=1847707000 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2817, 0)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon3"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon3" unique_id=1499396581]
 limit_left = 2816
 limit_top = 0
 limit_right = 3072
 limit_bottom = 223
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon3" unique_id=19917034]
 position = Vector2(127, 112)
 shape = SubResource("RectangleShape2D_prt11")
 
-[node name="New Camera System Addon4" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon4" type="Area2D" parent="allCameras" unique_id=1561456205 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2817, 223)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon4"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon4" unique_id=388897271]
 limit_left = 2816
 limit_top = 223
 limit_right = 3072
 limit_bottom = 446
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon4" unique_id=2024907895]
 position = Vector2(127, 112)
 shape = SubResource("RectangleShape2D_prt11")
 
-[node name="New Camera System Addon5" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon5" type="Area2D" parent="allCameras" unique_id=1887787436 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2817, 223)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon5"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon5" unique_id=2081941418]
 limit_left = 2816
 limit_top = 447
 limit_right = 3072
 limit_bottom = 670
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon5" unique_id=331981301]
 position = Vector2(127, 336)
 shape = SubResource("RectangleShape2D_yv5jj")
 
-[node name="New Camera System Addon6" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon6" type="Area2D" parent="allCameras" unique_id=1185205353 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(2817, 223)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon6"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon6" unique_id=2045636796]
 limit_left = 3072
 limit_top = 448
 limit_right = 3792
 limit_bottom = 672
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon6" unique_id=232769466]
 position = Vector2(615, 337)
 shape = SubResource("RectangleShape2D_6508b")
 
-[node name="New Camera System Addon7" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon7" type="Area2D" parent="allCameras" unique_id=487636415 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(3792, 448)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon7"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon7" unique_id=1260206001]
 limit_left = 3792
 limit_top = 448
 limit_right = 4048
 limit_bottom = 672
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon7" unique_id=1498224128]
 position = Vector2(128, 112)
 shape = SubResource("RectangleShape2D_mjpfd")
 
-[node name="New Camera System Addon8" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon8" type="Area2D" parent="allCameras" unique_id=492595538 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4048, 448)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon8"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon8" unique_id=272548584]
 limit_left = 4048
 limit_top = 448
 limit_right = 4304
 limit_bottom = 672
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon8" unique_id=1633985466]
 position = Vector2(128, 112)
 shape = SubResource("RectangleShape2D_l53id")
 
-[node name="New Camera System Addon9" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon9" type="Area2D" parent="allCameras" unique_id=1529313685 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4304, 448)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon9"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon9" unique_id=1917336898]
 limit_left = 4304
 limit_top = 448
 limit_right = 4864
 limit_bottom = 672
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon9"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon9" unique_id=1920047481]
 position = Vector2(280, 112)
 shape = SubResource("RectangleShape2D_hp6n1")
 
-[node name="New Camera System Addon10" type="Area2D" parent="allCameras" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon10" type="Area2D" parent="allCameras" unique_id=587476079 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(4864, 448)
 script = ExtResource("2_o07xv")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
-timer_exists = true
 
-[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon10"]
+[node name="Camera2D" type="Camera2D" parent="allCameras/New Camera System Addon10" unique_id=1468615774]
 limit_left = 4864
 limit_top = 448
 limit_right = 5376
 limit_bottom = 672
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon10"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="allCameras/New Camera System Addon10" unique_id=1707809073]
 position = Vector2(256, 112)
 shape = SubResource("RectangleShape2D_br1tr")
 
-[node name="allEnemies" type="Node2D" parent="."]
+[node name="allEnemies" type="Node2D" parent="." unique_id=399709498]
 
-[node name="enemy_spawner" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner" parent="allEnemies" unique_id=1813537164 instance=ExtResource("4_2epy0")]
 position = Vector2(416, 117)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner2" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner2" parent="allEnemies" unique_id=1878116827 instance=ExtResource("4_2epy0")]
 position = Vector2(551, 149)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner4" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner4" parent="allEnemies" unique_id=562210211 instance=ExtResource("4_2epy0")]
 position = Vector2(736, 134)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner5" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner5" parent="allEnemies" unique_id=91650907 instance=ExtResource("4_2epy0")]
 position = Vector2(785, 98)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner3" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner3" parent="allEnemies" unique_id=2016899230 instance=ExtResource("4_2epy0")]
 position = Vector2(672, 104)
 enemy_to_spawn = "ceiling_shooter"
-enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner6" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner6" parent="allEnemies" unique_id=343644904 instance=ExtResource("4_2epy0")]
 position = Vector2(838, 168)
 enemy_to_spawn = "spikyoall"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner7" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner7" parent="allEnemies" unique_id=576585469 instance=ExtResource("4_2epy0")]
 position = Vector2(1059, 150)
 enemy_to_spawn = "spikyoall"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner8" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner8" parent="allEnemies" unique_id=1988172800 instance=ExtResource("4_2epy0")]
 position = Vector2(1108, 117)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner9" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner9" parent="allEnemies" unique_id=1909301393 instance=ExtResource("4_2epy0")]
 position = Vector2(1297, 120)
 enemy_to_spawn = "spikyoall"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner10" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner10" parent="allEnemies" unique_id=1234191804 instance=ExtResource("4_2epy0")]
 position = Vector2(1345, 56)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner11" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner11" parent="allEnemies" unique_id=1090653 instance=ExtResource("4_2epy0")]
 position = Vector2(1378, 197)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner12" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner12" parent="allEnemies" unique_id=1585301582 instance=ExtResource("4_2epy0")]
 position = Vector2(1713, 197)
 enemy_to_spawn = "spikyoall"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner13" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner13" parent="allEnemies" unique_id=808871290 instance=ExtResource("4_2epy0")]
 position = Vector2(1872, 120)
 enemy_to_spawn = "ceiling_shooter"
-enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner14" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner14" parent="allEnemies" unique_id=1774816023 instance=ExtResource("4_2epy0")]
 position = Vector2(1600, 168)
 enemy_to_spawn = "ceiling_shooter"
-enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner15" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner15" parent="allEnemies" unique_id=593462513 instance=ExtResource("4_2epy0")]
 position = Vector2(1633, 100)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner16" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner16" parent="allEnemies" unique_id=1204921699 instance=ExtResource("4_2epy0")]
 position = Vector2(2010, 120)
 enemy_to_spawn = "ceiling_shooter"
-enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner17" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner17" parent="allEnemies" unique_id=1590072037 instance=ExtResource("4_2epy0")]
 position = Vector2(2160, 151)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner18" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner18" parent="allEnemies" unique_id=1059686374 instance=ExtResource("4_2epy0")]
 position = Vector2(2272, 120)
 enemy_to_spawn = "ceiling_shooter"
-enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner20" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner20" parent="allEnemies" unique_id=1623264136 instance=ExtResource("4_2epy0")]
 position = Vector2(2392, 197)
 enemy_to_spawn = "spikyoall"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner21" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner21" parent="allEnemies" unique_id=805778303 instance=ExtResource("4_2epy0")]
 position = Vector2(2992, 614)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner22" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner22" parent="allEnemies" unique_id=1643455287 instance=ExtResource("4_2epy0")]
 position = Vector2(2935, 294)
 enemy_to_spawn = "spikyoall"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="enemy_spawner23" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner23" parent="allEnemies" unique_id=2012483303 instance=ExtResource("4_2epy0")]
 position = Vector2(2935, 392)
 enemy_to_spawn = "ceiling_shooter"
-enemy_Preview = NodePath("ceiling_shooter")
 
-[node name="enemy_spawner24" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner24" parent="allEnemies" unique_id=1210789205 instance=ExtResource("4_2epy0")]
 position = Vector2(2945, 518)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner25" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner25" parent="allEnemies" unique_id=1782415042 instance=ExtResource("4_2epy0")]
 position = Vector2(3280, 646)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner26" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner26" parent="allEnemies" unique_id=1031312230 instance=ExtResource("4_2epy0")]
 position = Vector2(3424, 646)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner27" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner27" parent="allEnemies" unique_id=486642078 instance=ExtResource("4_2epy0")]
 position = Vector2(3552, 646)
 enemy_to_spawn = "sniper_joe"
-enemy_Preview = NodePath("sniper_joe")
 
-[node name="enemy_spawner28" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner28" parent="allEnemies" unique_id=826847761 instance=ExtResource("4_2epy0")]
 position = Vector2(3728, 615)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner30" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner30" parent="allEnemies" unique_id=1248136592 instance=ExtResource("4_2epy0")]
 position = Vector2(4720, 599)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner32" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner32" parent="allEnemies" unique_id=951835233 instance=ExtResource("4_2epy0")]
 position = Vector2(4449, 568)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner33" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner33" parent="allEnemies" unique_id=1122194744 instance=ExtResource("4_2epy0")]
 position = Vector2(4519, 536)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner31" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner31" parent="allEnemies" unique_id=1315563509 instance=ExtResource("4_2epy0")]
 position = Vector2(5072, 614)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner29" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner29" parent="allEnemies" unique_id=1313941230 instance=ExtResource("4_2epy0")]
 position = Vector2(2912, 102)
 enemy_to_spawn = "returningmachine_joe"
-enemy_Preview = NodePath("ReturningMachineJoe")
 
-[node name="enemy_spawner19" parent="allEnemies" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("4_2epy0")]
+[node name="enemy_spawner19" parent="allEnemies" unique_id=1211252657 instance=ExtResource("4_2epy0")]
 position = Vector2(2240, 197)
 enemy_to_spawn = "spikyoall"
-enemy_Preview = NodePath("spikyoall")
 
-[node name="landMine" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine" parent="allEnemies" unique_id=758704014 instance=ExtResource("5_3iu8o")]
 position = Vector2(944, 197)
 
-[node name="landMine2" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine2" parent="allEnemies" unique_id=1392821039 instance=ExtResource("5_3iu8o")]
 position = Vector2(999, 197)
 
-[node name="landMine3" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine3" parent="allEnemies" unique_id=1099649480 instance=ExtResource("5_3iu8o")]
 position = Vector2(3200, 647)
 
-[node name="landMine4" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine4" parent="allEnemies" unique_id=1673126472 instance=ExtResource("5_3iu8o")]
 position = Vector2(3322, 647)
 
-[node name="landMine5" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine5" parent="allEnemies" unique_id=1208095859 instance=ExtResource("5_3iu8o")]
 position = Vector2(3373, 647)
 
-[node name="landMine6" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine6" parent="allEnemies" unique_id=2084553333 instance=ExtResource("5_3iu8o")]
 position = Vector2(3494, 647)
 
-[node name="landMine7" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine7" parent="allEnemies" unique_id=1909734697 instance=ExtResource("5_3iu8o")]
 position = Vector2(3616, 646)
 
-[node name="landMine8" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine8" parent="allEnemies" unique_id=207645324 instance=ExtResource("5_3iu8o")]
 position = Vector2(3680, 646)
 
-[node name="landMine9" parent="allEnemies" instance=ExtResource("5_3iu8o")]
+[node name="landMine9" parent="allEnemies" unique_id=352508133 instance=ExtResource("5_3iu8o")]
 position = Vector2(3738, 616)
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1350391933]
 process_mode = 3
 stream = ExtResource("6_a5jn4")
+pitch_scale = 0.95
 autoplay = true
 parameters/looping = true
 script = ExtResource("7_t2d6f")
 
-[node name="ladder" parent="." instance=ExtResource("8_8tve8")]
+[node name="ladder" parent="." unique_id=1545690072 instance=ExtResource("8_8tve8")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder/ontop_platforms" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder/ontop_platforms" index="0" unique_id=1420940084]
 position = Vector2(1336, 128)
 shape = SubResource("CapsuleShape2D_pqos7")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder/ontop_platforms" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder/ontop_platforms" index="1" unique_id=231131420]
 position = Vector2(2104, 160)
 shape = SubResource("CapsuleShape2D_2802p")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder/ontop_platforms" index="2"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder/ontop_platforms" index="2" unique_id=932770296]
 position = Vector2(2216, 160)
 shape = SubResource("CapsuleShape2D_e6f08")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder/ontop_platforms" index="3"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder/ontop_platforms" index="3" unique_id=830669633]
 position = Vector2(2935, 192)
 shape = SubResource("CapsuleShape2D_ysgf6")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder/ontop_platforms" index="4"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder/ontop_platforms" index="4" unique_id=1656395573]
 position = Vector2(2999, 416)
 shape = SubResource("CapsuleShape2D_sp48b")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder/ontop_platforms" index="5"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder/ontop_platforms" index="5" unique_id=1650270005]
 position = Vector2(2920, 528)
 shape = SubResource("CapsuleShape2D_8p6op")
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder/ontop_platforms" index="6"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder/ontop_platforms" index="6" unique_id=1061078832]
 position = Vector2(4152, 528)
 shape = SubResource("CapsuleShape2D_wf5f5")
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder/ontop_platforms" index="7"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder/ontop_platforms" index="7" unique_id=1878837775]
 position = Vector2(3959.15, 528.078)
 shape = SubResource("CapsuleShape2D_gb8lo")
 
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder/ontop_platforms" index="8"]
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder/ontop_platforms" index="8" unique_id=1936870383]
 position = Vector2(3928.86, 608.119)
 shape = SubResource("CapsuleShape2D_044cn")
 
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder/ontop_platforms" index="9"]
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder/ontop_platforms" index="9" unique_id=323738406]
 position = Vector2(4487, 576)
 shape = SubResource("CapsuleShape2D_bla7a")
 
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder/ontop_platforms" index="10"]
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder/ontop_platforms" index="10" unique_id=1619454074]
 position = Vector2(4567, 576)
 shape = SubResource("CapsuleShape2D_b2ea7")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder/top_platforms" index="0"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder/top_platforms" index="0" unique_id=454828775]
 position = Vector2(2936.17, 199)
 shape = SubResource("RectangleShape2D_ekh5m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder/top_platforms" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder/top_platforms" index="1" unique_id=2011099988]
 position = Vector2(1336, 136)
 shape = SubResource("RectangleShape2D_grrsi")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder/top_platforms" index="2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder/top_platforms" index="2" unique_id=1685560297]
 position = Vector2(2103.5, 165.5)
 shape = SubResource("RectangleShape2D_wou1t")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder/top_platforms" index="3"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder/top_platforms" index="3" unique_id=1821110304]
 position = Vector2(2215.5, 166.93)
 shape = SubResource("RectangleShape2D_lfg8v")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder/top_platforms" index="4"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder/top_platforms" index="4" unique_id=1342801419]
 position = Vector2(2999.5, 423.928)
 shape = SubResource("RectangleShape2D_rxyvn")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder/top_platforms" index="5"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder/top_platforms" index="5" unique_id=28348309]
 position = Vector2(2920, 536)
 shape = SubResource("RectangleShape2D_5hn4g")
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder/top_platforms" index="6"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder/top_platforms" index="6" unique_id=868422276]
 position = Vector2(4152, 534.138)
 shape = SubResource("RectangleShape2D_j22uy")
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder/top_platforms" index="7"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder/top_platforms" index="7" unique_id=325095511]
 position = Vector2(3959.5, 533.5)
 shape = SubResource("RectangleShape2D_hrkne")
 
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder/top_platforms" index="8"]
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder/top_platforms" index="8" unique_id=1769359798]
 position = Vector2(3928, 613.982)
 shape = SubResource("RectangleShape2D_k8gha")
 
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder/top_platforms" index="9"]
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder/top_platforms" index="9" unique_id=1502701168]
 position = Vector2(4488, 584)
 shape = SubResource("RectangleShape2D_vtwu2")
 
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder/top_platforms" index="10"]
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder/top_platforms" index="10" unique_id=1836626826]
 position = Vector2(4567.76, 583.544)
 shape = SubResource("RectangleShape2D_rckgi")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder" unique_id=1896812454]
 position = Vector2(2215.5, 184)
 shape = SubResource("RectangleShape2D_kvdpq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder" unique_id=1612663004]
 position = Vector2(2103.5, 184)
 shape = SubResource("RectangleShape2D_4ydca")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder" unique_id=795438502]
 position = Vector2(2936, 232)
 shape = SubResource("RectangleShape2D_6j6lx")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder" unique_id=1882471955]
 position = Vector2(3000, 464)
 shape = SubResource("RectangleShape2D_slaek")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder" unique_id=1642573784]
 position = Vector2(2920, 560)
 shape = SubResource("RectangleShape2D_deq2f")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder" unique_id=458606249]
 position = Vector2(1336, 160)
 shape = SubResource("RectangleShape2D_ydx6k")
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="ladder" unique_id=627346685]
 position = Vector2(3960, 552)
 shape = SubResource("RectangleShape2D_e7pa4")
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="ladder" unique_id=1292500680]
 position = Vector2(3928, 632)
 shape = SubResource("RectangleShape2D_0x4lk")
 
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="ladder" unique_id=1633922264]
 position = Vector2(4152, 592)
 shape = SubResource("RectangleShape2D_8mbt4")
 
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="ladder" unique_id=1214494373]
 position = Vector2(4488, 608)
 shape = SubResource("RectangleShape2D_047mx")
 
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder"]
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="ladder" unique_id=1232561868]
 position = Vector2(4568, 608)
 shape = SubResource("RectangleShape2D_a4tle")
 

@@ -1,11 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://xoof52f20b11"]
+[gd_scene format=3 uid="uid://xoof52f20b11"]
 
 [ext_resource type="Texture2D" uid="uid://kl2ut8nv6sbx" path="res://assets/sprites/tilesets/test_stages/junkman_tilemap_practise.png" id="1_a1p1b"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="2_44nhn"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_bf6ay"]
 [ext_resource type="Texture2D" uid="uid://bt3slka3yfu63" path="res://assets/sprites/tilesets/test_stages/lava_junkman.png" id="3_2atve"]
 [ext_resource type="Texture2D" uid="uid://6b58q7t85jrk" path="res://assets/sprites/tilesets/test_stages/backgrounds/background_junkman_practise.png" id="3_ancrr"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="4_84qek"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="4_84qek"]
 [ext_resource type="Script" uid="uid://b175n3wljl706" path="res://levels/level_mechanics/new_camera_system.gd" id="5_2sq5r"]
 [ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="7_047d1"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="8_h5pfx"]

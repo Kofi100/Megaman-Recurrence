@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		if GlobalScript.slumbshade_darkness_active and $AnimatedSprite2D.animation=="open_eyes":
 			$AnimatedSprite2D.play("default")
 		if not GlobalScript.slumbshade_darkness_active and $AnimatedSprite2D.animation=="close_eyes":
-			$AnimatedSprite2D.play("opened_eyes")
+			$AnimatedSprite2D.play("open_eyes")
 	move_and_slide()
 
 

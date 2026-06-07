@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://lesxovs1oh87"]
+[gd_scene format=3 uid="uid://lesxovs1oh87"]
 
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_8u0xw"]
 [ext_resource type="Texture2D" uid="uid://c3xedxw4lb0tw" path="res://assets/sprites/miscelleaneous/screen_checker_256x240.png" id="2_5psa8"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://lta1kuu87vs6" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="4_0e3aj"]
 [ext_resource type="Texture2D" uid="uid://bukwrs1qttio" path="res://assets/sprites/tilesets/test_stages/animated/waterfall1_splash_bubbleman.png" id="4_5ph4f"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="4_lu8iw"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="5_fw4nu"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="5_fw4nu"]
 [ext_resource type="PackedScene" uid="uid://c12ytesumw43d" path="res://levels/level_mechanics/deathzones.tscn" id="7_nexks"]
 [ext_resource type="PackedScene" uid="uid://dqpowbf5t4nxt" path="res://levels/level_mechanics/waterzone.tscn" id="10_ibfap"]
 

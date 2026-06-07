@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cwsow3c7kbmrg"]
+[gd_scene format=3 uid="uid://cwsow3c7kbmrg"]
 
 [ext_resource type="Texture2D" uid="uid://cp3c8f7rg6l83" path="res://assets/sprites/tilesets/stage1_tileset.png" id="1_dj070"]
 [ext_resource type="Script" uid="uid://usmp8snh08k7" path="res://levels/test stages/stage_1.gd" id="1_wyl27"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c12ytesumw43d" path="res://levels/level_mechanics/deathzones.tscn" id="11_bkqum"]
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="14_d1nac"]
 [ext_resource type="Texture2D" uid="uid://c3xedxw4lb0tw" path="res://assets/sprites/miscelleaneous/screen_checker_256x240.png" id="17_kr2cb"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="18_7r5vi"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="18_7r5vi"]
 [ext_resource type="PackedScene" uid="uid://v3cirfwgjkwo" path="res://levels/level_mechanics/new_camera_system.tscn" id="18_k3ore"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5m36q"]

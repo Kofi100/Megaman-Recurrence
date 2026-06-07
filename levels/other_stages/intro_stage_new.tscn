@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="15_u5wki"]
 [ext_resource type="PackedScene" uid="uid://dlxfmi6i1icxx" path="res://enemy/boss/rogue_riot.tscn" id="21_s26kj"]
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="22_vx7qd"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="23_ivecb"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="23_ivecb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vx7qd"]
 texture = ExtResource("5_bsib1")

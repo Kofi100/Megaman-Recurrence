@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://3rvprhrviyj"]
+[gd_scene format=4 uid="uid://3rvprhrviyj"]
 
 [ext_resource type="PackedScene" uid="uid://cp5iip7560xdt" path="res://levels/ldtk_experimental_levels/graffiti_man_stage.ldtk" id="1_e1bw5"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_jt6i4"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bkflp1spldgrk" path="res://resources/screen_grid.tscn" id="9_mt0nv"]
 [ext_resource type="PackedScene" uid="uid://cl7ig40fdqhx4" path="res://levels/level_mechanics/gravity_switch_timer.tscn" id="12_ah3qe"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="13_afbwa"]
-[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="15_36q2r"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://miscellenaous/savepoint.tscn" id="15_36q2r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xsfu"]
 size = Vector2(768, 224)
