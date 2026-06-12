@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://r2ousuioekam"]
 
-[node name="GlobalScreenTransitionTimer" type="Timer"]
+[ext_resource type="Script" uid="uid://b6rrkgroyyjc2" path="res://GlobalScripts/global_screen_transition_timer.gd" id="1_w42do"]
+
+[node name="GlobalScreenTransitionTimer" type="Timer" unique_id=395501670]
 wait_time = 1.5
 one_shot = true
+script = ExtResource("1_w42do")

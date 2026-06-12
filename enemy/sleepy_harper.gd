@@ -5,7 +5,7 @@ var projectile_count:int=0
 var is_at_position:bool=false
 func _ready() -> void:
 	
-	health=2
+	health=1
 	playerdamagevalue=2
 	originalPos=Vector2(global_position.x,global_position.y)#Player.playerCharacter.global_position.y)
 	calculate_player_distance()

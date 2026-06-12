@@ -16,6 +16,33 @@ var is_keyboard_binding: bool = true
 
 @onready var ui_elements = {
 	# Keyboard bindings
+	0: $keyboard_Bindings/up,
+	1: $keyboard_Bindings/down,
+	2: $keyboard_Bindings/left,
+	3: $keyboard_Bindings/right,
+	4: $keyboard_Bindings/jump,
+	5: $keyboard_Bindings/dash,
+	6: $keyboard_Bindings/shoot,
+	7: $keyboard_Bindings/pause,
+	8: $keyboard_Bindings/switchWeaponL,
+	9: $keyboard_Bindings/switchWeaponR,
+	# Gamepad bindings
+	10: $gamepad_Bindings/up,
+	11: $gamepad_Bindings/down,
+	12: $gamepad_Bindings/left,
+	13: $gamepad_Bindings/right,
+	14: $gamepad_Bindings/jump,
+	15: $gamepad_Bindings/dash,
+	16: $gamepad_Bindings/shoot,
+	17: $gamepad_Bindings/pause,
+	18: $gamepad_Bindings/switchWeaponL,
+	19: $gamepad_Bindings/switchWeaponR,
+	# Main menu
+	20: $main_menu
+}
+
+@onready var actual_ui_elements = {
+	# Keyboard bindings
 	0: $keyboard_Settings/up,
 	1: $keyboard_Settings/down,
 	2: $keyboard_Settings/left,
@@ -47,13 +74,14 @@ var action_names = ["move_up", "move_down", "move_left", "move_right", "jump", "
 func _ready():
 	load_bindings()
 	update_ui_display()
-	$selectArrow.position = ui_elements[0].position - Vector2(10, 0)
+	$selectArrow.position = actual_ui_elements[0].position - Vector2(10, 0)
 
 
 func _process(_delta):
 	if is_waiting_for_input:
 		return
 	$mega_spin.play("spinnnn")
+	$mega_spin2.play("spinnnn")
 	handle_navigation_input()
 	update_selection_arrow()
 	handle_confirmation_input()
@@ -75,14 +103,14 @@ func handle_navigation_input():
 
 func update_selection_arrow():
 	if current_selection in ui_elements:
-		$selectArrow.position = ui_elements[current_selection].position - Vector2(23, 0)
+		$selectArrow.position = actual_ui_elements[current_selection].position - Vector2(23, 0)
 		if current_selection > 9 and current_selection <= 19:
-			$selectArrow.position = ui_elements[current_selection].position + Vector2(100, 0)
+			$selectArrow.position = actual_ui_elements[current_selection].position + Vector2(100, 0)
 		#print(ui_elements[current_selection])
 
 
 func handle_confirmation_input():
-	if Input.is_action_just_released("shoot"):
+	if Input.is_action_just_released("pause"):
 		if current_selection in range(0, 20):
 			start_rebinding()
 		elif current_selection == 20:
@@ -294,7 +322,7 @@ func update_keyboard_button_display(index: int):
 			var string = event_to_string(event)
 			#if action=="move_up" :
 			#print(event)
-			button.text = str(action) + ":" + event_to_string(event)
+			button.text = event_to_string(event)
 	#if event is InputEventAction or event_to_string(event)==null:
 	#button.text = str(action)+":"+"NULL"
 	#return
@@ -313,7 +341,7 @@ func update_gamepad_button_display(index: int):
 		action = "switch W L"
 	if action == "switch_weapon_right":
 		action = "switch W R"
-	button.text = str(action) + ":" + event_to_string(event)
+	button.text = event_to_string(event)
 
 
 func get_first_keyboard_event(action: String) -> InputEvent:

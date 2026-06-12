@@ -7,7 +7,7 @@ var direction="left"
 func _ready() -> void:
 	$AnimatedSprite2D.play("spawnIn")
 	state="spawnIn"
-	health=7
+	health=5
 	playerdamagevalue=2
 	calculate_player_distance()
 

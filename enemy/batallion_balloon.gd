@@ -1,19 +1,26 @@
 extends enemy
 var setDirection:bool=false
+var spawned_bomb:bool=false
+var speed_horizontal=40*2
 func _ready() -> void:
 	$AnimatedSprite2D.play("flying")
 	health=3
 func _physics_process(delta: float) -> void:
 	calculate_player_distance()
+	if abs(distance_x)<=2 and not spawned_bomb:
+		var bomb=preload("res://enemy/batallion_balloon_bomb.tscn").instantiate()
+		bomb.global_position=$bombSpawnMarker2D.global_position
+		get_parent().add_child(bomb)
+		spawned_bomb=true
 	spawn_collectables()
 	hurtFlash($AnimatedSprite2D)
 	playerdamagevalue=3
 	$bomb_Timer.wait_time=.7
 	if not setDirection:
 		if distance_x<0:
-			velocity.x=-40
+			velocity.x=-speed_horizontal
 		elif distance_x>=0:
-			velocity.x=40
+			velocity.x=speed_horizontal
 		setDirection=true
 	
 	if velocity.x<0:

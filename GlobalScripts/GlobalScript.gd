@@ -130,7 +130,7 @@ func _process(delta):
 			second_level = 0
 
 	apply_window_settings()
-	
+
 	#print(previous_current_scene==get_tree().current_scene)
 	#if previous_current_scene!=get_tree().current_scene:
 	#await get_tree().scene_changed

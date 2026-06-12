@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjgmp3dha5tlw"]
+[gd_scene format=3 uid="uid://bjgmp3dha5tlw"]
 
 [ext_resource type="Texture2D" uid="uid://d2yv6wj6fr2ob" path="res://assets/sprites/enemies/1BattalionBalloon_Main_OmegaPrime_Samuel_X7.png" id="1_2ed52"]
 [ext_resource type="Script" uid="uid://c8v66p43na5jn" path="res://enemy/batallion_balloon.gd" id="1_oxumf"]
@@ -45,33 +45,32 @@ radius = 39.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxumf"]
 size = Vector2(30, 26)
 
-[node name="batallion_Balloon" type="CharacterBody2D"]
+[node name="batallion_Balloon" type="CharacterBody2D" unique_id=11612583]
 script = ExtResource("1_oxumf")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1096828156]
 position = Vector2(0.500003, -0.499999)
 scale = Vector2(5.45, 6.55)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1951148986]
 sprite_frames = SubResource("SpriteFrames_3ompu")
 animation = &"flying"
 
-[node name="bomb_Timer" type="Timer" parent="."]
-autostart = true
+[node name="bomb_Timer" type="Timer" parent="." unique_id=169228334]
 
-[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+[node name="hitbox" type="Area2D" parent="." unique_id=30801475 groups=["enemy"]]
 collision_layer = 6
 collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=18513563]
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_oxumf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox" unique_id=1137301001]
 position = Vector2(0, 52)
 shape = SubResource("RectangleShape2D_oxumf")
 
-[node name="bombSpawnMarker2D" type="Marker2D" parent="."]
+[node name="bombSpawnMarker2D" type="Marker2D" parent="." unique_id=1909828065]
 position = Vector2(0, 39)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

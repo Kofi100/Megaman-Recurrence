@@ -35,7 +35,7 @@ func _process(_delta):
 		$press_up_timer.stop()
 	
 	for ring in rings_collection:
-		if global_position.distance_to(ring.global_position)>224:
+		if $Rings_collection.global_position.distance_to(ring.global_position)>64:
 			ring.position=Vector2.ZERO
 	
 	match saved_player_position:
@@ -64,7 +64,7 @@ func _on_spawn_ring_timer_timeout() -> void:
 
 func _on_press_up_timer_timeout() -> void:
 	GlobalScript.playerposx = global_position.x
-	GlobalScript.playerposy = global_position.y - 16
+	GlobalScript.playerposy = global_position.y - 32
 	GlobalScript.save_savepoint_data()
 	saved_player_position = true
 	var saved_label:Node2D=preload("res://miscellenaous/saved_label_for_savepoint.tscn").instantiate()

@@ -1,7 +1,7 @@
 extends enemy
 var grabFlip_HOfParent:bool=false
 func _ready() -> void:
-	health=5
+	health=2
 
 func _physics_process(_delta: float) -> void:
 	hurtFlash($AnimatedSprite2D)

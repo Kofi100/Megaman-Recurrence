@@ -6,7 +6,7 @@ func _ready() -> void:
 	#$AnimatedSprite2D.frame=2
 	
 	#$defend_Timer.start()
-	health=5
+	health=1
 	playerdamagevalue=3
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

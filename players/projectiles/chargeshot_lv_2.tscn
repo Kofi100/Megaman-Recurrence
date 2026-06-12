@@ -178,7 +178,7 @@ z_index = 1
 script = ExtResource("1_bkydj")
 SPEED = 15000.0
 damagevalue = 5.0
-health = 5
+health = 3
 
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=2128335557]
 sprite_frames = SubResource("SpriteFrames_4y8vj")

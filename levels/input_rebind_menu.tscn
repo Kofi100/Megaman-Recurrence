@@ -1,9 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2k6ofydycgiy"]
+[gd_scene format=3 uid="uid://b2k6ofydycgiy"]
 
 [ext_resource type="Script" uid="uid://38apb2khd8pc" path="res://levels/input_rebind_menu.gd" id="1_87vqm"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="2_1p3mi"]
 [ext_resource type="Texture2D" uid="uid://chhq4su6fi50s" path="res://assets/sprites/miscelleaneous/background_input_menu.png" id="2_3qgwf"]
-[ext_resource type="Texture2D" uid="uid://dgd1vwspunt10" path="res://assets/sprites/miscelleaneous/menus/template/background Color.png" id="3_7yj3i"]
+[ext_resource type="Texture2D" uid="uid://ctv15kuityrn2" path="res://miscellenaous/bg_grid_vertical.png" id="3_ijw4e"]
 [ext_resource type="Texture2D" uid="uid://celwj44lsursi" path="res://assets/sprites/player/mega_spin.png" id="3_paamk"]
 [ext_resource type="Texture2D" uid="uid://cni3rqym7alh1" path="res://assets/sprites/miscelleaneous/menus/template/outer Borders.png" id="4_ugcoh"]
 [ext_resource type="Texture2D" uid="uid://dk1kmvaxvym5l" path="res://assets/sprites/miscelleaneous/menus/template/border Small.png" id="5_5kxoo"]
@@ -76,78 +76,100 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="input_rebind_menu" type="Node2D"]
+[node name="input_rebind_menu" type="Node2D" unique_id=1849842809]
 script = ExtResource("1_87vqm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=391904525]
 visible = false
 texture = ExtResource("2_3qgwf")
 centered = false
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=479938457]
 
-[node name="BackgroundColor" type="Sprite2D" parent="Node2D"]
+[node name="BackgroundColor" type="Sprite2D" parent="Node2D" unique_id=171883726]
 visible = false
-texture = ExtResource("3_7yj3i")
 centered = false
 
-[node name="ColorRect" type="ColorRect" parent="Node2D"]
+[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=2030037137]
 offset_right = 256.0
 offset_bottom = 224.0
-color = Color(0, 0.909804, 0.847059, 1)
+color = Color(0.05490196, 0.05490196, 0.05490196, 1)
 
-[node name="OuterBorders" type="Sprite2D" parent="Node2D"]
+[node name="OuterBorders" type="Sprite2D" parent="Node2D" unique_id=457718397]
 texture = ExtResource("4_ugcoh")
 centered = false
 
-[node name="BorderSmall" type="Sprite2D" parent="Node2D"]
+[node name="BorderSmall" type="Sprite2D" parent="Node2D" unique_id=1966486816]
 position = Vector2(3, 18)
 scale = Vector2(3.08642, 1)
 texture = ExtResource("5_5kxoo")
 centered = false
 
-[node name="BorderSmall2" type="Sprite2D" parent="Node2D"]
+[node name="BorderSmall2" type="Sprite2D" parent="Node2D" unique_id=221901643]
 position = Vector2(3, 37)
 scale = Vector2(3.08642, 1)
 texture = ExtResource("5_5kxoo")
 centered = false
 
-[node name="BorderSmall3" type="Sprite2D" parent="Node2D"]
+[node name="BorderSmall3" type="Sprite2D" parent="Node2D" unique_id=21325326]
 position = Vector2(128, 20.9727)
 rotation = 1.5708
 scale = Vector2(2.22176, 1)
 texture = ExtResource("5_5kxoo")
 centered = false
 
-[node name="BorderSmall4" type="Sprite2D" parent="Node2D"]
+[node name="BorderSmall4" type="Sprite2D" parent="Node2D" unique_id=1157411483]
 position = Vector2(3, 201)
 scale = Vector2(3.08642, 1)
 texture = ExtResource("5_5kxoo")
 centered = false
 
-[node name="keyboard_Settings" type="Node2D" parent="."]
+[node name="BGEffect" type="Node2D" parent="." unique_id=1207173396]
+
+[node name="Parallax2DV" type="Parallax2D" parent="BGEffect" unique_id=1477677882]
+repeat_size = Vector2(32, 256)
+autoscroll = Vector2(10, 5)
+repeat_times = 15
+
+[node name="BgGridVertical" type="Sprite2D" parent="BGEffect/Parallax2DV" unique_id=1156616542]
+modulate = Color(1, 1, 1, 0.24705882)
+position = Vector2(16, 89)
+texture = ExtResource("3_ijw4e")
+
+[node name="Parallax2DH" type="Parallax2D" parent="BGEffect" unique_id=576566619]
+repeat_size = Vector2(256, 32)
+autoscroll = Vector2(10, 5)
+repeat_times = 15
+
+[node name="BgGridVertical" type="Sprite2D" parent="BGEffect/Parallax2DH" unique_id=632074945]
+modulate = Color(1, 1, 1, 0.24705882)
+position = Vector2(16, 89)
+rotation = 1.5707964
+texture = ExtResource("3_ijw4e")
+
+[node name="keyboard_Settings" type="Node2D" parent="." unique_id=351968616]
 position = Vector2(-13, 0)
 
-[node name="up" type="Label" parent="keyboard_Settings"]
+[node name="up" type="Label" parent="keyboard_Settings" unique_id=1713077716]
 offset_left = 30.0
 offset_top = 49.0
-offset_right = 108.0
-offset_bottom = 65.0
+offset_right = 62.0
+offset_bottom = 66.14287
 scale = Vector2(0.35, 0.35)
 focus_next = NodePath("../down")
 theme = ExtResource("2_1p3mi")
-text = "up"
+text = "up:"
 
-[node name="down" type="Label" parent="keyboard_Settings"]
+[node name="down" type="Label" parent="keyboard_Settings" unique_id=1712385087]
 offset_left = 30.0
 offset_top = 58.0
 offset_right = 108.0
 offset_bottom = 74.0
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("2_1p3mi")
-text = "down"
+text = "down:"
 
-[node name="left" type="Label" parent="keyboard_Settings"]
+[node name="left" type="Label" parent="keyboard_Settings" unique_id=1517858172]
 offset_left = 30.0
 offset_top = 66.0
 offset_right = 108.0
@@ -156,9 +178,9 @@ scale = Vector2(0.35, 0.35)
 focus_next = NodePath("../right")
 focus_previous = NodePath("../down")
 theme = ExtResource("2_1p3mi")
-text = "left"
+text = "left:"
 
-[node name="right" type="Label" parent="keyboard_Settings"]
+[node name="right" type="Label" parent="keyboard_Settings" unique_id=919255214]
 offset_left = 30.0
 offset_top = 74.0
 offset_right = 108.0
@@ -167,9 +189,9 @@ scale = Vector2(0.35, 0.35)
 focus_next = NodePath("../jump")
 focus_previous = NodePath("../left")
 theme = ExtResource("2_1p3mi")
-text = "right"
+text = "right:"
 
-[node name="jump" type="Label" parent="keyboard_Settings"]
+[node name="jump" type="Label" parent="keyboard_Settings" unique_id=1395528124]
 offset_left = 30.0
 offset_top = 82.0
 offset_right = 108.0
@@ -178,18 +200,18 @@ scale = Vector2(0.35, 0.35)
 focus_next = NodePath("../dash")
 focus_previous = NodePath("../right")
 theme = ExtResource("2_1p3mi")
-text = "jump"
+text = "jump:"
 
-[node name="dash" type="Label" parent="keyboard_Settings"]
+[node name="dash" type="Label" parent="keyboard_Settings" unique_id=462368517]
 offset_left = 30.0
 offset_top = 90.0
 offset_right = 108.0
 offset_bottom = 106.0
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("2_1p3mi")
-text = "dash"
+text = "dash:"
 
-[node name="shoot" type="Label" parent="keyboard_Settings"]
+[node name="shoot" type="Label" parent="keyboard_Settings" unique_id=1090877438]
 offset_left = 30.0
 offset_top = 98.0
 offset_right = 108.0
@@ -197,42 +219,146 @@ offset_bottom = 114.0
 scale = Vector2(0.35, 0.35)
 focus_previous = NodePath("../dash")
 theme = ExtResource("2_1p3mi")
-text = "shoot"
+text = "shoot:"
 
-[node name="pause" type="Label" parent="keyboard_Settings"]
+[node name="pause" type="Label" parent="keyboard_Settings" unique_id=1163235529]
 offset_left = 30.0
 offset_top = 106.0
-offset_right = 194.0
+offset_right = 118.57143
 offset_bottom = 122.0
 scale = Vector2(0.35, 0.35)
 focus_previous = NodePath("../dash")
 theme = ExtResource("2_1p3mi")
-text = "START"
+text = "START:"
 
-[node name="switchWeaponL" type="Label" parent="keyboard_Settings"]
+[node name="switchWeaponL" type="Label" parent="keyboard_Settings" unique_id=32242623]
 offset_left = 30.0
 offset_top = 115.0
-offset_right = 194.0
+offset_right = 152.0
 offset_bottom = 131.0
 scale = Vector2(0.35, 0.35)
 focus_previous = NodePath("../dash")
 theme = ExtResource("2_1p3mi")
-text = "sw. weapon L"
+text = "switch L:"
 
-[node name="switchWeaponR" type="Label" parent="keyboard_Settings"]
+[node name="switchWeaponR" type="Label" parent="keyboard_Settings" unique_id=1944608787]
 offset_left = 30.0
 offset_top = 125.0
-offset_right = 194.0
+offset_right = 152.0
 offset_bottom = 141.0
 scale = Vector2(0.35, 0.35)
 focus_previous = NodePath("../dash")
 theme = ExtResource("2_1p3mi")
-text = "sw. weapon R"
+text = "switch R:"
 
-[node name="gampad_Settings" type="Node2D" parent="."]
+[node name="keyboard_Bindings" type="Node2D" parent="." unique_id=1969406247]
+position = Vector2(5, 0)
+
+[node name="up" type="Label" parent="keyboard_Bindings" unique_id=10489882]
+offset_left = 30.0
+offset_top = 49.0
+offset_right = 62.0
+offset_bottom = 66.14287
+scale = Vector2(0.35, 0.35)
+focus_next = NodePath("../down")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="down" type="Label" parent="keyboard_Bindings" unique_id=703845766]
+offset_left = 41.0
+offset_top = 58.0
+offset_right = 119.0
+offset_bottom = 74.0
+scale = Vector2(0.35, 0.35)
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="left" type="Label" parent="keyboard_Bindings" unique_id=1651335196]
+offset_left = 39.0
+offset_top = 66.0
+offset_right = 117.0
+offset_bottom = 82.0
+scale = Vector2(0.35, 0.35)
+focus_next = NodePath("../right")
+focus_previous = NodePath("../down")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="right" type="Label" parent="keyboard_Bindings" unique_id=628360199]
+offset_left = 44.0
+offset_top = 74.0
+offset_right = 122.0
+offset_bottom = 90.0
+scale = Vector2(0.35, 0.35)
+focus_next = NodePath("../jump")
+focus_previous = NodePath("../left")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="jump" type="Label" parent="keyboard_Bindings" unique_id=1747386802]
+offset_left = 39.0
+offset_top = 82.0
+offset_right = 127.0
+offset_bottom = 98.0
+scale = Vector2(0.35, 0.35)
+focus_next = NodePath("../dash")
+focus_previous = NodePath("../right")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="dash" type="Label" parent="keyboard_Bindings" unique_id=1470269882]
+offset_left = 41.0
+offset_top = 90.00001
+offset_right = 119.0
+offset_bottom = 106.00001
+scale = Vector2(0.35, 0.35)
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="shoot" type="Label" parent="keyboard_Bindings" unique_id=1001134740]
+offset_left = 44.0
+offset_top = 98.0
+offset_right = 122.0
+offset_bottom = 114.0
+scale = Vector2(0.35, 0.35)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="pause" type="Label" parent="keyboard_Bindings" unique_id=1650231536]
+offset_left = 44.0
+offset_top = 106.0
+offset_right = 120.0
+offset_bottom = 122.0
+scale = Vector2(0.35, 0.35)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="switchWeaponL" type="Label" parent="keyboard_Bindings" unique_id=1861557615]
+offset_left = 56.0
+offset_top = 115.0
+offset_right = 166.0
+offset_bottom = 131.0
+scale = Vector2(0.35, 0.35)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="switchWeaponR" type="Label" parent="keyboard_Bindings" unique_id=1164474188]
+offset_left = 55.0
+offset_top = 124.99999
+offset_right = 143.0
+offset_bottom = 141.0
+scale = Vector2(0.35, 0.35)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="gampad_Settings" type="Node2D" parent="." unique_id=292250302]
 position = Vector2(108, 0)
 
-[node name="up" type="Label" parent="gampad_Settings"]
+[node name="up" type="Label" parent="gampad_Settings" unique_id=1959919227]
 offset_left = 30.0
 offset_top = 49.0
 offset_right = 108.0
@@ -240,18 +366,18 @@ offset_bottom = 65.0
 scale = Vector2(0.35, 0.35)
 focus_next = NodePath("../down")
 theme = ExtResource("2_1p3mi")
-text = "up"
+text = "up:"
 
-[node name="down" type="Label" parent="gampad_Settings"]
+[node name="down" type="Label" parent="gampad_Settings" unique_id=548468883]
 offset_left = 30.0
 offset_top = 58.0
 offset_right = 108.0
 offset_bottom = 74.0
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("2_1p3mi")
-text = "down"
+text = "down:"
 
-[node name="left" type="Label" parent="gampad_Settings"]
+[node name="left" type="Label" parent="gampad_Settings" unique_id=784104679]
 offset_left = 30.0
 offset_top = 66.0
 offset_right = 108.0
@@ -260,9 +386,9 @@ scale = Vector2(0.35, 0.35)
 focus_next = NodePath("../right")
 focus_previous = NodePath("../down")
 theme = ExtResource("2_1p3mi")
-text = "left"
+text = "left:"
 
-[node name="right" type="Label" parent="gampad_Settings"]
+[node name="right" type="Label" parent="gampad_Settings" unique_id=1820537003]
 offset_left = 30.0
 offset_top = 74.0
 offset_right = 108.0
@@ -271,9 +397,9 @@ scale = Vector2(0.35, 0.35)
 focus_next = NodePath("../jump")
 focus_previous = NodePath("../left")
 theme = ExtResource("2_1p3mi")
-text = "right"
+text = "right:"
 
-[node name="jump" type="Label" parent="gampad_Settings"]
+[node name="jump" type="Label" parent="gampad_Settings" unique_id=2005800104]
 offset_left = 30.0
 offset_top = 82.0
 offset_right = 108.0
@@ -282,18 +408,18 @@ scale = Vector2(0.35, 0.35)
 focus_next = NodePath("../dash")
 focus_previous = NodePath("../right")
 theme = ExtResource("2_1p3mi")
-text = "jump"
+text = "jump:"
 
-[node name="dash" type="Label" parent="gampad_Settings"]
+[node name="dash" type="Label" parent="gampad_Settings" unique_id=530451062]
 offset_left = 30.0
 offset_top = 90.0
 offset_right = 108.0
 offset_bottom = 106.0
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("2_1p3mi")
-text = "dash"
+text = "dash:"
 
-[node name="shoot" type="Label" parent="gampad_Settings"]
+[node name="shoot" type="Label" parent="gampad_Settings" unique_id=1588212931]
 offset_left = 30.0
 offset_top = 98.0
 offset_right = 108.0
@@ -301,9 +427,9 @@ offset_bottom = 114.0
 scale = Vector2(0.35, 0.35)
 focus_previous = NodePath("../dash")
 theme = ExtResource("2_1p3mi")
-text = "shoot"
+text = "shoot:"
 
-[node name="pause" type="Label" parent="gampad_Settings"]
+[node name="pause" type="Label" parent="gampad_Settings" unique_id=368538448]
 offset_left = 30.0
 offset_top = 106.0
 offset_right = 194.0
@@ -311,9 +437,9 @@ offset_bottom = 122.0
 scale = Vector2(0.35, 0.35)
 focus_previous = NodePath("../../keyboard_Settings/dash")
 theme = ExtResource("2_1p3mi")
-text = "START"
+text = "START:"
 
-[node name="switchWeaponL" type="Label" parent="gampad_Settings"]
+[node name="switchWeaponL" type="Label" parent="gampad_Settings" unique_id=141743840]
 offset_left = 30.0
 offset_top = 115.0
 offset_right = 194.0
@@ -321,9 +447,9 @@ offset_bottom = 131.0
 scale = Vector2(0.35, 0.35)
 focus_previous = NodePath("../../keyboard_Settings/dash")
 theme = ExtResource("2_1p3mi")
-text = "sw. weapon L"
+text = "switch L:"
 
-[node name="switchWeaponR" type="Label" parent="gampad_Settings"]
+[node name="switchWeaponR" type="Label" parent="gampad_Settings" unique_id=1225693383]
 offset_left = 30.0
 offset_top = 125.0
 offset_right = 194.0
@@ -331,16 +457,120 @@ offset_bottom = 141.0
 scale = Vector2(0.35, 0.35)
 focus_previous = NodePath("../../keyboard_Settings/dash")
 theme = ExtResource("2_1p3mi")
-text = "sw. weapon R"
+text = "switch R:"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="gamepad_Bindings" type="Node2D" parent="." unique_id=277612806]
+position = Vector2(5, 0)
+
+[node name="up" type="Label" parent="gamepad_Bindings" unique_id=1232956751]
+offset_left = 151.00002
+offset_top = 49.0
+offset_right = 239.00003
+offset_bottom = 66.14287
+scale = Vector2(0.35, 0.35)
+focus_next = NodePath("../down")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="down" type="Label" parent="gamepad_Bindings" unique_id=441971772]
+offset_left = 162.00005
+offset_top = 58.000004
+offset_right = 250.00005
+offset_bottom = 74.0
+scale = Vector2(0.35, 0.35)
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="left" type="Label" parent="gamepad_Bindings" unique_id=1482364110]
+offset_left = 162.0
+offset_top = 66.00001
+offset_right = 250.0
+offset_bottom = 82.00001
+scale = Vector2(0.35, 0.35)
+focus_next = NodePath("../right")
+focus_previous = NodePath("../down")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="right" type="Label" parent="gamepad_Bindings" unique_id=97405161]
+offset_left = 167.00006
+offset_top = 74.00001
+offset_right = 255.00008
+offset_bottom = 90.00001
+scale = Vector2(0.35, 0.35)
+focus_next = NodePath("../jump")
+focus_previous = NodePath("../left")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="jump" type="Label" parent="gamepad_Bindings" unique_id=1368157199]
+offset_left = 162.0
+offset_top = 82.00001
+offset_right = 250.0
+offset_bottom = 98.00001
+scale = Vector2(0.35, 0.35)
+focus_next = NodePath("../dash")
+focus_previous = NodePath("../right")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="dash" type="Label" parent="gamepad_Bindings" unique_id=1771317461]
+offset_left = 164.00006
+offset_top = 90.00001
+offset_right = 252.00006
+offset_bottom = 106.00001
+scale = Vector2(0.35, 0.35)
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="shoot" type="Label" parent="gamepad_Bindings" unique_id=1181067709]
+offset_left = 167.00003
+offset_top = 98.00001
+offset_right = 255.00003
+offset_bottom = 114.00001
+scale = Vector2(0.35, 0.35)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="pause" type="Label" parent="gamepad_Bindings" unique_id=932165902]
+offset_left = 167.00003
+offset_top = 106.00001
+offset_right = 255.00003
+offset_bottom = 122.00001
+scale = Vector2(0.35, 0.35)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="switchWeaponL" type="Label" parent="gamepad_Bindings" unique_id=1202010776]
+offset_left = 178.99988
+offset_top = 115.00001
+offset_right = 288.99994
+offset_bottom = 131.0
+scale = Vector2(0.35, 0.35)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="switchWeaponR" type="Label" parent="gamepad_Bindings" unique_id=1600721080]
+offset_left = 177.99994
+offset_top = 124.99998
+offset_right = 266.0
+offset_bottom = 141.0
+scale = Vector2(0.35, 0.35)
+focus_previous = NodePath("../dash")
+theme = ExtResource("2_1p3mi")
+text = "action"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=190496846]
 offset_left = 3.0
-offset_top = 138.0
-offset_right = 253.0
-offset_bottom = 201.0
-color = Color(0.327447, 0.00678206, 0.321747, 1)
+offset_top = 139.0
+offset_right = 254.0
+offset_bottom = 202.0
+color = Color(0.056291588, 0.056291603, 0.056291595, 1)
 
-[node name="Label2" type="RichTextLabel" parent="."]
+[node name="Label2" type="RichTextLabel" parent="." unique_id=2071035175]
 offset_left = 51.0
 offset_top = 146.0
 offset_right = 531.0
@@ -348,7 +578,7 @@ offset_bottom = 303.0
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("2_1p3mi")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o8l4n")
-text = "Press the shoot button
+text = "Press the PAUSE button
 and upon the prompt on your screen,
 select the keyboard button or your gamepad button/joystick
 to your preferred control.
@@ -356,22 +586,30 @@ to your preferred control.
 Press the escape key to reset 
 your option."
 
-[node name="main_menu" type="Label" parent="."]
-offset_left = 165.0
+[node name="main_menu" type="Label" parent="." unique_id=1338767925]
+offset_left = 178.0
 offset_top = 208.0
-offset_right = 319.0
+offset_right = 306.0
 offset_bottom = 226.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("2_1p3mi")
-text = "<main_menu"
+text = "main menu"
 
-[node name="mega_spin" type="AnimatedSprite2D" parent="."]
-position = Vector2(49, 212)
+[node name="mega_spin" type="AnimatedSprite2D" parent="." unique_id=1893543257]
+position = Vector2(16, 176)
 scale = Vector2(0.647727, 0.647727)
 sprite_frames = SubResource("SpriteFrames_wnmvy")
 animation = &"spinnnn"
+centered = false
 
-[node name="title" type="Label" parent="."]
+[node name="mega_spin2" type="AnimatedSprite2D" parent="." unique_id=567752109]
+position = Vector2(224, 176.00002)
+scale = Vector2(0.647727, 0.647727)
+sprite_frames = SubResource("SpriteFrames_wnmvy")
+animation = &"spinnnn"
+centered = false
+
+[node name="title" type="Label" parent="." unique_id=1782496320]
 offset_left = 49.0
 offset_top = 2.0
 offset_right = 287.0
@@ -382,7 +620,7 @@ text = "INPUT REBIND MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="keyboard" type="Label" parent="."]
+[node name="keyboard" type="Label" parent="." unique_id=450302442]
 offset_left = 21.0
 offset_top = 22.0
 offset_right = 145.0
@@ -393,7 +631,7 @@ text = "KEYBOARD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="controller" type="Label" parent="."]
+[node name="controller" type="Label" parent="." unique_id=1370145989]
 offset_left = 135.0
 offset_top = 22.0
 offset_right = 293.0
@@ -404,38 +642,40 @@ text = "CONTROLLER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=384093412]
 stream = ExtResource("5_eglmy")
 volume_db = -3.0
 autoplay = true
 
-[node name="Node" type="Node" parent="."]
+[node name="Node" type="Node" parent="." unique_id=629082854]
 
-[node name="selectArrow" type="Sprite2D" parent="."]
+[node name="selectArrow" type="Sprite2D" parent="." unique_id=1714604563]
 position = Vector2(8, 49)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_y8vdx")
 centered = false
 
-[node name="waiting_text_BG_Color_Rect" type="ColorRect" parent="."]
+[node name="waiting_text_BG_Color_Rect" type="ColorRect" parent="." unique_id=166910803]
 visible = false
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 253.0
 offset_bottom = 221.0
-color = Color(0, 0.0980392, 1, 1)
+color = Color(0.10980392, 0.10980392, 0.09803922, 1)
 
-[node name="waiting_text_label" type="Label" parent="."]
+[node name="waiting_text_label" type="Label" parent="." unique_id=196836217]
 visible = false
-offset_left = 7.0
+offset_left = 2.0000005
 offset_top = 109.0
-offset_right = 249.0
+offset_right = 360.5714
 offset_bottom = 144.0
+scale = Vector2(0.7, 0.7)
 theme = ExtResource("2_1p3mi")
-text = "WAITING FOR INPUT:
-...."
+text = "WAITING FOR INPUT: ...."
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="delayInputTimer" type="Timer" parent="."]
+[node name="delayInputTimer" type="Timer" parent="." unique_id=407928588]
 wait_time = 2.0
 one_shot = true
 autostart = true

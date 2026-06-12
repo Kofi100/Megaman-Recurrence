@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://rve227akbvrl" path="res://assets/sprites/miscelleaneous/savepoint_arrows_up.png" id="2_ktus5"]
 [ext_resource type="PackedScene" uid="uid://cn0w4bgpclif0" path="res://miscellenaous/savepoint_energy_ring.tscn" id="3_mqg5q"]
 [ext_resource type="Texture2D" uid="uid://crn5v3xoxtm7f" path="res://assets/sprites/miscelleaneous/save_instruction_picture.png" id="4_416cd"]
+[ext_resource type="Texture2D" uid="uid://chxvugu0oq7vf" path="res://assets/sprites/miscelleaneous/savepoint_capsule.png" id="5_61bbe"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="5_a6t1f"]
+[ext_resource type="Script" uid="uid://bmwgg1qx1b8mm" path="res://resources/adjustable_collision_shape_2d.gd" id="5_ttwih"]
 
 [sub_resource type="Gradient" id="Gradient_hhkl5"]
 offsets = PackedFloat32Array(0)
@@ -50,13 +52,31 @@ _data = {
 &"red": SubResource("Animation_43ahs")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvfra"]
+size = Vector2(48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttwih"]
+atlas = ExtResource("5_61bbe")
+region = Rect2(0, 0, 48, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pvfra"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttwih")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="savepoint" type="Node2D" unique_id=80057147]
 position = Vector2(129, 218)
 script = ExtResource("1_0gdel")
 
 [node name="detect_player_ShapeCast2D" type="RayCast2D" parent="." unique_id=2037016742]
-scale = Vector2(5, 5)
-target_position = Vector2(0, -256)
+position = Vector2(0, -12.999999)
+target_position = Vector2(0, -16)
 collision_mask = 7
 
 [node name="line_rep" type="Line2D" parent="." unique_id=2146945592]
@@ -99,7 +119,21 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("5_a6t1f")
 text = "SAVE"
 
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1329758782]
+
+[node name="AdjustableCollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1645967602]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_pvfra")
+script = ExtResource("5_ttwih")
+sizeBy16px_Width = 3.0
+metadata/_custom_type_script = "uid://bmwgg1qx1b8mm"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=546058810]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_pvfra")
+
 [node name="Rings_collection" type="Node2D" parent="." unique_id=2037462082]
+position = Vector2(0, -13)
 
 [node name="SavepointEnergyRing" parent="Rings_collection" unique_id=1781738491 instance=ExtResource("3_mqg5q")]
 
@@ -109,28 +143,40 @@ position = Vector2(0, -20)
 [node name="SavepointEnergyRing3" parent="Rings_collection" unique_id=719653096 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -40)
 
-[node name="SavepointEnergyRing4" parent="Rings_collection" unique_id=1127122381 instance=ExtResource("3_mqg5q")]
+[node name="Rings_collection2" type="Node2D" parent="." unique_id=1081907116]
+visible = false
+position = Vector2(0, -13)
+
+[node name="SavepointEnergyRing" parent="Rings_collection2" unique_id=1014086268 instance=ExtResource("3_mqg5q")]
+
+[node name="SavepointEnergyRing2" parent="Rings_collection2" unique_id=1462615220 instance=ExtResource("3_mqg5q")]
+position = Vector2(0, -20)
+
+[node name="SavepointEnergyRing3" parent="Rings_collection2" unique_id=572731436 instance=ExtResource("3_mqg5q")]
+position = Vector2(0, -40)
+
+[node name="SavepointEnergyRing4" parent="Rings_collection2" unique_id=1502171989 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -60)
 
-[node name="SavepointEnergyRing5" parent="Rings_collection" unique_id=18749486 instance=ExtResource("3_mqg5q")]
+[node name="SavepointEnergyRing5" parent="Rings_collection2" unique_id=159189311 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -80)
 
-[node name="SavepointEnergyRing6" parent="Rings_collection" unique_id=2021681464 instance=ExtResource("3_mqg5q")]
+[node name="SavepointEnergyRing6" parent="Rings_collection2" unique_id=1197166078 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -100)
 
-[node name="SavepointEnergyRing7" parent="Rings_collection" unique_id=88142073 instance=ExtResource("3_mqg5q")]
+[node name="SavepointEnergyRing7" parent="Rings_collection2" unique_id=233251235 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -120)
 
-[node name="SavepointEnergyRing8" parent="Rings_collection" unique_id=1137570938 instance=ExtResource("3_mqg5q")]
+[node name="SavepointEnergyRing8" parent="Rings_collection2" unique_id=1071055246 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -140)
 
-[node name="SavepointEnergyRing9" parent="Rings_collection" unique_id=1676586014 instance=ExtResource("3_mqg5q")]
+[node name="SavepointEnergyRing9" parent="Rings_collection2" unique_id=1800374319 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -160)
 
-[node name="SavepointEnergyRing10" parent="Rings_collection" unique_id=2056995288 instance=ExtResource("3_mqg5q")]
+[node name="SavepointEnergyRing10" parent="Rings_collection2" unique_id=1329085889 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -180)
 
-[node name="SavepointEnergyRing11" parent="Rings_collection" unique_id=50221120 instance=ExtResource("3_mqg5q")]
+[node name="SavepointEnergyRing11" parent="Rings_collection2" unique_id=1191499872 instance=ExtResource("3_mqg5q")]
 position = Vector2(0, -200)
 
 [connection signal="timeout" from="spawn_ring_timer" to="." method="_on_spawn_ring_timer_timeout"]

@@ -30,7 +30,7 @@ position = Vector2(1.90735e-06, 0)
 script = ExtResource("1_kmh8a")
 SPEED = 15000.0
 damagevalue = 3.0
-health = 3
+health = 2
 
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=1140451696]
 sprite_frames = SubResource("SpriteFrames_ibpir")
