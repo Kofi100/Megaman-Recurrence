@@ -56,10 +56,20 @@ func _process(_delta):
 			#queue_free()
 		elif GlobalScreenTransitionTimer.time_left <= 0:
 			set_physics_process(true)
-
+	
+		velocity+=knockback_velocity
+		knockback_velocity=knockback_velocity.move_toward(Vector2.ZERO,800*_delta)
+		if abs(knockback_velocity.x)>0:
+			set_collision_layer_value(1,false)
+			set_collision_mask_value(1,false)
 
 var collectable
 
+var knockback_velocity:Vector2
+func knockback_enemy(knockback:Vector2):
+	pass
+
+	
 
 func calculate_player_distance():
 	distance_x = GlobalScript.playerposx - global_position.x

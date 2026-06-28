@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://rve227akbvrl" path="res://assets/sprites/miscelleaneous/savepoint_arrows_up.png" id="2_ktus5"]
 [ext_resource type="PackedScene" uid="uid://cn0w4bgpclif0" path="res://miscellenaous/savepoint_energy_ring.tscn" id="3_mqg5q"]
 [ext_resource type="Texture2D" uid="uid://crn5v3xoxtm7f" path="res://assets/sprites/miscelleaneous/save_instruction_picture.png" id="4_416cd"]
-[ext_resource type="Texture2D" uid="uid://chxvugu0oq7vf" path="res://assets/sprites/miscelleaneous/savepoint_capsule.png" id="5_61bbe"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="5_a6t1f"]
 [ext_resource type="Script" uid="uid://bmwgg1qx1b8mm" path="res://resources/adjustable_collision_shape_2d.gd" id="5_ttwih"]
+[ext_resource type="Texture2D" uid="uid://d4ltju8otunvg" path="res://assets/sprites/miscelleaneous/1SavePlatform.png" id="6_61bbe"]
 
 [sub_resource type="Gradient" id="Gradient_hhkl5"]
 offsets = PackedFloat32Array(0)
@@ -56,8 +56,8 @@ _data = {
 size = Vector2(48, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ttwih"]
-atlas = ExtResource("5_61bbe")
-region = Rect2(0, 0, 48, 22)
+atlas = ExtResource("6_61bbe")
+region = Rect2(0, 0, 48, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pvfra"]
 animations = [{
@@ -70,8 +70,51 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvfra"]
+atlas = ExtResource("6_61bbe")
+region = Rect2(48, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnm3h"]
+atlas = ExtResource("6_61bbe")
+region = Rect2(96, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61bbe"]
+atlas = ExtResource("6_61bbe")
+region = Rect2(144, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tu1c"]
+atlas = ExtResource("6_61bbe")
+region = Rect2(192, 0, 48, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8tu1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvfra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnm3h")
+}],
+"loop": true,
+"name": &"not_saved",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61bbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tu1c")
+}],
+"loop": true,
+"name": &"saved",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61bbe"]
+size = Vector2(37, 6)
+
 [node name="savepoint" type="Node2D" unique_id=80057147]
-position = Vector2(129, 218)
 script = ExtResource("1_0gdel")
 
 [node name="detect_player_ShapeCast2D" type="RayCast2D" parent="." unique_id=2037016742]
@@ -129,19 +172,41 @@ sizeBy16px_Width = 3.0
 metadata/_custom_type_script = "uid://bmwgg1qx1b8mm"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=546058810]
-position = Vector2(0, -11)
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_pvfra")
+
+[node name="antennas" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=2083751084]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_8tu1c")
+animation = &"not_saved"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=771102806]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1256910193]
+position = Vector2(0.5, -19)
+shape = SubResource("RectangleShape2D_61bbe")
 
 [node name="Rings_collection" type="Node2D" parent="." unique_id=2037462082]
 position = Vector2(0, -13)
 
 [node name="SavepointEnergyRing" parent="Rings_collection" unique_id=1781738491 instance=ExtResource("3_mqg5q")]
+position = Vector2(-17, -12)
+scale = Vector2(0.5, 0.5)
+display_ring = true
+speed_of_scaling = 0.5
+max_scale = 0.5
 
 [node name="SavepointEnergyRing2" parent="Rings_collection" unique_id=1009822952 instance=ExtResource("3_mqg5q")]
-position = Vector2(0, -20)
+position = Vector2(17, -12)
+scale = Vector2(0.5, 0.5)
+display_ring = true
+speed_of_scaling = 0.5
+max_scale = 0.5
 
 [node name="SavepointEnergyRing3" parent="Rings_collection" unique_id=719653096 instance=ExtResource("3_mqg5q")]
-position = Vector2(0, -40)
+position = Vector2(-16, -51.75)
+scale = Vector2(0.5, 0.5)
+display_ring = true
 
 [node name="Rings_collection2" type="Node2D" parent="." unique_id=1081907116]
 visible = false
@@ -181,3 +246,5 @@ position = Vector2(0, -200)
 
 [connection signal="timeout" from="spawn_ring_timer" to="." method="_on_spawn_ring_timer_timeout"]
 [connection signal="timeout" from="press_up_timer" to="." method="_on_press_up_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

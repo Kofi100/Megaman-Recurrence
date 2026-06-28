@@ -29,7 +29,7 @@ func _process(_delta):
 	
 	
 	#debugging
-	if $fireman_boss.health<=0:
+	if is_instance_valid($fireman_boss) and $fireman_boss.health<=0:
 		boss_defeated()
 var left=false
 

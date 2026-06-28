@@ -124,7 +124,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_40tfw")
 }, {
-"duration": 30.0,
+"duration": 10.0,
 "texture": SubResource("AtlasTexture_ro4s4")
 }],
 "loop": false,
@@ -396,7 +396,7 @@ metadata/_custom_type_script = "uid://blqd77u3c7yor"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1936501892]
 rotation = 0.00308247
 sprite_frames = SubResource("SpriteFrames_pmkgq")
-animation = &"fall_down"
+animation = &"intro"
 
 [node name="hitbox" type="Area2D" parent="." unique_id=2064794866 groups=["enemy"]]
 collision_layer = 2
@@ -453,7 +453,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="hit_cooldown_timer" type="Timer" parent="Timers" unique_id=98338373]
-wait_time = 0.75
+wait_time = 0.3
 one_shot = true
 
 [node name="intro_timer" type="Timer" parent="Timers" unique_id=600558702]

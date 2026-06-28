@@ -117,16 +117,16 @@ texture = ExtResource("13_afbwa")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ah3qe")
 
-[node name="graffiti_man_stage" instance=ExtResource("1_e1bw5")]
+[node name="graffiti_man_stage" unique_id=1105849214 instance=ExtResource("1_e1bw5")]
 
-[node name="screenGrid" parent="." index="0" instance=ExtResource("9_mt0nv")]
+[node name="screenGrid" parent="." index="0" unique_id=2038209837 instance=ExtResource("9_mt0nv")]
 position = Vector2(0, -32)
 tile_map_data = PackedByteArray("AAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAAFAP//AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAA=")
 GridNumber = 15
 
-[node name="Music" type="Node2D" parent="." index="9"]
+[node name="Music" type="Node2D" parent="." index="9" unique_id=1111192266]
 
-[node name="BGM" type="AudioStreamPlayer" parent="Music" index="0"]
+[node name="BGM" type="AudioStreamPlayer" parent="Music" index="0" unique_id=1393220323]
 process_mode = 3
 stream = ExtResource("3_a63nd")
 autoplay = true
@@ -134,32 +134,32 @@ parameters/looping = true
 script = ExtResource("3_0ed3a")
 metadata/_custom_type_script = "uid://cik7cc71o2ep7"
 
-[node name="Player" type="Node2D" parent="." index="10"]
+[node name="Player" type="Node2D" parent="." index="10" unique_id=375990116]
 
-[node name="megaman" parent="Player" index="0" instance=ExtResource("2_jt6i4")]
-position = Vector2(1030.1194, 80.81629)
+[node name="megaman" parent="Player" index="0" unique_id=1302790861 instance=ExtResource("2_jt6i4")]
+position = Vector2(72, 112)
 
-[node name="all_cameras" type="Node2D" parent="." index="11"]
+[node name="all_cameras" type="Node2D" parent="." index="11" unique_id=966776730]
 z_index = 1
 
-[node name="New Camera System Addon" type="Area2D" parent="all_cameras" index="0" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon" type="Area2D" parent="all_cameras" index="0" unique_id=1834386992 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon" index="0" unique_id=414525247]
 position = Vector2(384, 80)
 shape = SubResource("RectangleShape2D_2xsfu")
 
-[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon" index="1"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon" index="1" unique_id=1037609008]
 limit_left = 0
 limit_top = -32
 limit_right = 768
 limit_bottom = 192
 
-[node name="New Camera System Addon2" type="Area2D" parent="all_cameras" index="1" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon2" type="Area2D" parent="all_cameras" index="1" unique_id=78321037 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
@@ -172,17 +172,17 @@ allowed_transition_movement = {
 }
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon2" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon2" index="0" unique_id=1010411]
 position = Vector2(1152, 80)
 shape = SubResource("RectangleShape2D_fdyop")
 
-[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon2" index="1"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon2" index="1" unique_id=757023741]
 limit_left = 768
 limit_top = -32
 limit_right = 1536
 limit_bottom = 192
 
-[node name="New Camera System Addon3" type="Area2D" parent="all_cameras" index="2" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon3" type="Area2D" parent="all_cameras" index="2" unique_id=1503641627 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
@@ -195,68 +195,68 @@ allowed_transition_movement = {
 }
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon3" index="0"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon3" index="0" unique_id=846516453]
 limit_left = 1536
 limit_top = -32
 limit_right = 1792
 limit_bottom = 192
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon3" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon3" index="1" unique_id=1606785410]
 position = Vector2(1664, 80)
 shape = SubResource("RectangleShape2D_ah3qe")
 
-[node name="New Camera System Addon4" type="Area2D" parent="all_cameras" index="3" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon4" type="Area2D" parent="all_cameras" index="3" unique_id=459161088 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon4" index="0"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon4" index="0" unique_id=1157740987]
 limit_left = 1536
 limit_top = -256
 limit_right = 1792
 limit_bottom = -32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon4" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon4" index="1" unique_id=740485637]
 position = Vector2(1664, -144)
 shape = SubResource("RectangleShape2D_36q2r")
 
-[node name="New Camera System Addon5" type="Area2D" parent="all_cameras" index="4" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon5" type="Area2D" parent="all_cameras" index="4" unique_id=1743278801 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon5" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon5" index="0" unique_id=41143099]
 position = Vector2(1408, -145)
 shape = SubResource("RectangleShape2D_j65im")
 
-[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon5" index="1"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon5" index="1" unique_id=1698654423]
 limit_left = 1280
 limit_top = -257
 limit_right = 1536
 limit_bottom = -33
 
-[node name="New Camera System Addon6" type="Area2D" parent="all_cameras" index="5" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon6" type="Area2D" parent="all_cameras" index="5" unique_id=59438198 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 script = ExtResource("3_4wvmb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon6" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon6" index="0" unique_id=1629044102]
 position = Vector2(1152, -144)
 shape = SubResource("RectangleShape2D_14i0q")
 
-[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon6" index="1"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon6" index="1" unique_id=697194543]
 limit_left = 1024
 limit_top = -256
 limit_right = 1280
 limit_bottom = -32
 
-[node name="New Camera System Addon7" type="Area2D" parent="all_cameras" index="6" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon7" type="Area2D" parent="all_cameras" index="6" unique_id=1572008779 node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 position = Vector2(-256, -1)
 script = ExtResource("3_4wvmb")
 zone_camera_2d = NodePath("Camera2D")
@@ -264,168 +264,159 @@ collision_limits_camera = NodePath("CollisionShape2D")
 GlobalTimerChecker = NodePath("")
 metadata/_custom_type_script = "uid://lta1kuu87vs6"
 
-[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon7" index="0"]
+[node name="Camera2D" type="Camera2D" parent="all_cameras/New Camera System Addon7" index="0" unique_id=229066332]
 limit_left = 768
 limit_top = -257
 limit_right = 1024
 limit_bottom = -33
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon7" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/New Camera System Addon7" index="1" unique_id=13147223]
 position = Vector2(1152, -144)
 shape = SubResource("RectangleShape2D_14i0q")
 
-[node name="BG_Lights2" type="TileMapLayer" parent="." index="12"]
+[node name="BG_Lights2" type="TileMapLayer" parent="." index="12" unique_id=286428938]
 position = Vector2(0, 1)
 tile_map_data = PackedByteArray("AAAGAAIAAAABAAAAAAAXAAQAAAABAAAAAAA7AAIAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_nno8f")
 
-[node name="BG_Lights" type="TileMapLayer" parent="." index="13"]
+[node name="BG_Lights" type="TileMapLayer" parent="." index="13" unique_id=1069615199]
 tile_map_data = PackedByteArray("AAAFAAcAAAABAAUAAAAEAAYAAAABAAUAAAAGAAYAAAABAAUAAAAGAAgAAAABAAUAAAAHAAkAAAABAAUAAAAHAAcAAAABAAUAAAAIAAgAAAABAAUAAAAIAAYAAAABAAUAAAAJAAcAAAABAAUAAAAKAAgAAAABAAUAAAAJAAkAAAABAAUAAAAKAAYAAAABAAUAAAAEAAcAAAABAAQAAAAGAAcAAAABAAQAAAAKAAkAAAABAAQAAAALAAkAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAAsAAgAAAABAAQAAAAtAAgAAAABAAQAAAAuAAgAAAABAAQAAAAvAAgAAAABAAQAAAAvAAoAAAABAAQAAAAuAAsAAAABAAQAAAAtAAsAAAABAAQAAAAsAAoAAAABAAQAAABqAAgAAAABAAUAAABpAAkAAAABAAUAAABrAAkAAAABAAUAAABsAAgAAAABAAUAAABtAAkAAAABAAUAAABuAAgAAAABAAUAAABvAAkAAAABAAUAAABxAAoAAAABAAUAAAByAAoAAAABAAUAAABzAAsAAAABAAUAAAB0AAoAAAABAAUAAAB1AAsAAAABAAUAAABnAAoAAAABAAQAAABoAAsAAAABAAQAAABpAAoAAAABAAQAAABqAAsAAAABAAQAAABrAAoAAAABAAQAAABmAAsAAAABAAQAAAB4ABIAAAABAAUAAAB3ABMAAAABAAUAAAB3ABEAAAABAAUAAAB5ABEAAAABAAUAAAB5ABMAAAABAAUAAAB6ABIAAAABAAUAAAB7ABMAAAABAAUAAAB8ABIAAAABAAUAAAB9ABMAAAABAAUAAACHAAcAAAABAAUAAACHAAkAAAABAAUAAACIAAgAAAABAAUAAACJAAcAAAABAAUAAACJAAkAAAABAAUAAAB+AAYAAAABAAQAAAB/AAcAAAABAAQAAACAAAcAAAABAAQAAAB/AAkAAAABAAQAAACBAAkAAAABAAQAAACCAAkAAAABAAQAAACCAAcAAAABAAQAAACBAAYAAAABAAQAAACDAAYAAAABAAQAAACEAAYAAAABAAQAAACEAAkAAAABAAQAAAClAAYAAAABAAQAAACmAAcAAAABAAQAAACnAAYAAAABAAQAAACoAAcAAAABAAQAAACoAAgAAAABAAQAAACnAAkAAAABAAQAAACpAAkAAAABAAQAAACrAAkAAAABAAQAAACqAAgAAAABAAQAAACqAAcAAAABAAQAAACpAAYAAAABAAQAAAAKAAIAAAABAAIAAAALAAMAAAABAAIAAAAOAAIAAAABAAIAAAAIAAEAAAABAAMAAAAqAAMAAAABAAMAAAByAAEAAAABAAMAAAAsAAQAAAABAAIAAAAtAAUAAAABAAIAAAB0AAIAAAABAAIAAAB1AAMAAAABAAIAAAB4AAIAAAABAAIAAACvAAcAAAABAAUAAACwAAgAAAABAAUAAACxAAgAAAABAAUAAACyAAcAAAABAAUAAACzAAgAAAABAAUAAAC0AAcAAAABAAUAAACwAAYAAAABAAQAAACvAAkAAAABAAQAAACyAAkAAAABAAQAAACyAAYAAAABAAQAAAC0AAkAAAABAAQAAAC0AAYAAAABAAQAAAA=")
 tile_set = SubResource("TileSet_7uw4j")
 
-[node name="BG_Tiles_Animated_16px" type="TileMapLayer" parent="." index="14"]
+[node name="BG_Tiles_Animated_16px" type="TileMapLayer" parent="." index="14" unique_id=1994847367]
 tile_map_data = PackedByteArray("AAAqAAYAAAAAAAEAACAqAAcAAAAAAAAAACArAAYAAAAAAAEAACArAAcAAAAAAAAAACAsAAYAAAAAAAEAACAsAAcAAAAAAAAAACAtAAYAAAAAAAEAACAtAAcAAAAAAAAAACAdAAQAAAAAAAAAAAAdAAUAAAAAAAEAAAAeAAQAAAAAAAAAAAAeAAUAAAAAAAEAAAAfAAQAAAAAAAAAAAAfAAUAAAAAAAEAAAANAAIAAAAAAAAAAAANAAMAAAAAAAEAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAEAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAEAAABKAAMAAAAAAAAAAABKAAQAAAAAAAEAAABLAAMAAAAAAAAAAABLAAQAAAAAAAEAAABMAAMAAAAAAAAAAABMAAQAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_fdyop")
 
-[node name="Enemies" type="Node2D" parent="." index="15"]
+[node name="Enemies" type="Node2D" parent="." index="15" unique_id=2082824540]
 
-[node name="enemy_spawner" parent="Enemies" index="0" instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner" parent="Enemies" index="0" unique_id=1473703098 instance=ExtResource("6_a63nd")]
 position = Vector2(845, 117)
 
-[node name="enemy_spawner10" parent="Enemies" index="1" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner10" parent="Enemies" index="1" unique_id=1448007868 instance=ExtResource("6_a63nd")]
 position = Vector2(929, 88)
 enemy_to_spawn = "peterchy"
-enemy_Preview = NodePath("peterchy")
 
-[node name="enemy_spawner7" parent="Enemies" index="2" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner7" parent="Enemies" index="2" unique_id=501334598 instance=ExtResource("6_a63nd")]
 position = Vector2(1100, 87)
 enemy_to_spawn = "peterchy"
-enemy_Preview = NodePath("peterchy")
 
-[node name="enemy_spawner2" parent="Enemies" index="3" instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner2" parent="Enemies" index="3" unique_id=455919083 instance=ExtResource("6_a63nd")]
 position = Vector2(435, 73)
 SetinitialDirection = "up"
 InitialDirection_Mini = "up"
 
-[node name="enemy_spawner3" parent="Enemies" index="4" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner3" parent="Enemies" index="4" unique_id=1290547589 instance=ExtResource("6_a63nd")]
 position = Vector2(416, 72)
 enemy_to_spawn = "octopus_battery"
 SetinitialDirection = "up"
 InitialDirection_Mini = "down"
-enemy_Preview = NodePath("octopus_battery")
 
-[node name="enemy_spawner4" parent="Enemies" index="5" instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner4" parent="Enemies" index="5" unique_id=924004590 instance=ExtResource("6_a63nd")]
 position = Vector2(591, 25)
 SetinitialDirection = "up"
 InitialDirection_Mini = "down"
 
-[node name="enemy_spawner12" parent="Enemies" index="6" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner12" parent="Enemies" index="6" unique_id=1415032453 instance=ExtResource("6_a63nd")]
 position = Vector2(651, 151)
 enemy_to_spawn = "peterchy"
 SetinitialDirection = "up"
 InitialDirection_Mini = "down"
-enemy_Preview = NodePath("peterchy")
 
-[node name="enemy_spawner11" parent="Enemies" index="7" instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner11" parent="Enemies" index="7" unique_id=2076884262 instance=ExtResource("6_a63nd")]
 position = Vector2(272, 87)
 SetinitialDirection = "up"
 InitialDirection_Mini = "down"
 
-[node name="enemy_spawner8" parent="Enemies" index="8" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner8" parent="Enemies" index="8" unique_id=1217975586 instance=ExtResource("6_a63nd")]
 position = Vector2(1615, 151)
 enemy_to_spawn = "octopus_battery"
 SetinitialDirection = "up"
 InitialDirection_Mini = "down"
-enemy_Preview = NodePath("octopus_battery")
 
-[node name="enemy_spawner13" parent="Enemies" index="9" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner13" parent="Enemies" index="9" unique_id=1001374548 instance=ExtResource("6_a63nd")]
 position = Vector2(1651, 40)
 enemy_to_spawn = "octopus_battery"
 SetinitialDirection = "up"
 InitialDirection_Mini = "up"
-enemy_Preview = NodePath("octopus_battery")
 
-[node name="enemy_spawner9" parent="Enemies" index="10" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner9" parent="Enemies" index="10" unique_id=1187729619 instance=ExtResource("6_a63nd")]
 position = Vector2(1424, -8)
 enemy_to_spawn = "octopus_battery"
 SetinitialDirection = "up"
 InitialDirection_Mini = "up"
-enemy_Preview = NodePath("octopus_battery")
 
-[node name="enemy_spawner5" parent="Enemies" index="11" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner5" parent="Enemies" index="11" unique_id=1342628276 instance=ExtResource("6_a63nd")]
 position = Vector2(523, 41)
 enemy_to_spawn = "octopus_battery"
 SetinitialDirection = "up"
 InitialDirection_Mini = "up"
-enemy_Preview = NodePath("octopus_battery")
 
-[node name="enemy_spawner6" parent="Enemies" index="12" node_paths=PackedStringArray("enemy_Preview") instance=ExtResource("6_a63nd")]
+[node name="enemy_spawner6" parent="Enemies" index="12" unique_id=1477954699 instance=ExtResource("6_a63nd")]
 position = Vector2(499, 151)
 enemy_to_spawn = "octopus_battery"
 SetinitialDirection = "up"
 InitialDirection_Mini = "down"
-enemy_Preview = NodePath("octopus_battery")
 
-[node name="Mechanics" type="Node2D" parent="." index="16"]
+[node name="Mechanics" type="Node2D" parent="." index="16" unique_id=318095911]
 
-[node name="Gravity Switching" type="Node2D" parent="Mechanics" index="0"]
+[node name="Gravity Switching" type="Node2D" parent="Mechanics" index="0" unique_id=856151308]
 
-[node name="gravity_switch_zone_up" parent="Mechanics/Gravity Switching" index="0" instance=ExtResource("6_nno8f")]
+[node name="gravity_switch_zone_up" parent="Mechanics/Gravity Switching" index="0" unique_id=110771469 instance=ExtResource("6_nno8f")]
 reverse_gravity_up = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="1" unique_id=566932952]
 position = Vector2(488, 96)
 shape = SubResource("RectangleShape2D_7uw4j")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="2"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="2" unique_id=1232123449]
 position = Vector2(232, 65)
 shape = SubResource("RectangleShape2D_afbwa")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="3"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone_up" index="3" unique_id=97193334]
 position = Vector2(1208, 80)
 shape = SubResource("RectangleShape2D_0ed3a")
 
-[node name="gravity_switch_zone2" parent="Mechanics/Gravity Switching" index="1" instance=ExtResource("6_nno8f")]
+[node name="gravity_switch_zone2" parent="Mechanics/Gravity Switching" index="1" unique_id=921272719 instance=ExtResource("6_nno8f")]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone2" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone2" index="1" unique_id=2054007776]
 position = Vector2(703.82, 97)
 shape = SubResource("RectangleShape2D_5wljm")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone2" index="2"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Gravity Switching/gravity_switch_zone2" index="2" unique_id=1127670673]
 position = Vector2(1408, -158)
 shape = SubResource("RectangleShape2D_u6d42")
 
-[node name="gravity_switch_timer" parent="Mechanics/Gravity Switching" index="2" instance=ExtResource("12_ah3qe")]
+[node name="gravity_switch_timer" parent="Mechanics/Gravity Switching" index="2" unique_id=1748443841 instance=ExtResource("12_ah3qe")]
 position = Vector2(1158, -416)
 starting_frame = 1
 
-[node name="gravity_switch_timer2" parent="Mechanics/Gravity Switching" index="3" instance=ExtResource("12_ah3qe")]
+[node name="gravity_switch_timer2" parent="Mechanics/Gravity Switching" index="3" unique_id=1041892379 instance=ExtResource("12_ah3qe")]
 position = Vector2(900, -405)
 
-[node name="Deathzones" type="Node2D" parent="Mechanics" index="1"]
+[node name="Deathzones" type="Node2D" parent="Mechanics" index="1" unique_id=1849914806]
 
-[node name="deathzones" parent="Mechanics/Deathzones" index="0" instance=ExtResource("8_5wljm")]
+[node name="deathzones" parent="Mechanics/Deathzones" index="0" unique_id=585134762 instance=ExtResource("8_5wljm")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="0" unique_id=879967272]
 position = Vector2(696, -35.5)
 shape = SubResource("RectangleShape2D_a63nd")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="1"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="1" unique_id=1874293495]
 position = Vector2(1747, -276)
 shape = SubResource("RectangleShape2D_2ywbc")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mechanics/Deathzones/deathzones" index="2" unique_id=1213068898]
 position = Vector2(840, 220.5)
 shape = SubResource("RectangleShape2D_mt0nv")
 
-[node name="Spikes" type="Node2D" parent="Mechanics" index="2"]
+[node name="Spikes" type="Node2D" parent="Mechanics" index="2" unique_id=254243642]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Mechanics/Spikes" index="0" groups=["spikeTiles", "spikeZone"]]
+[node name="TileMapLayer" type="TileMapLayer" parent="Mechanics/Spikes" index="0" unique_id=1489978988 groups=["spikeTiles", "spikeZone"]]
 visible = false
 tile_map_data = PackedByteArray("AABiAP7/AAABAAAAACBjAP7/AAABAAAAACBkAP7/AAABAAAAACBlAP7/AAABAAAAACBJAP7/AAABAAAAACBIAP7/AAABAAAAACAdAP7/AAABAAAAACAcAP7/AAABAAAAACBWAP7/AAABAAAAACBVAP7/AAABAAAAACBUAP7/AAABAAAAACBUAP3/AAABAAAAAABVAP3/AAABAAAAAABAAPD/AAABAAAAACBBAPD/AAABAAAAACBCAPD/AAABAAAAACBDAPD/AAABAAAAACA4APD/AAABAAAAACA5APD/AAABAAAAACA6APD/AAABAAAAACA7APD/AAABAAAAACBAAP3/AAABAAAAAABBAP3/AAABAAAAAABEAP3/AAABAAAAAABFAP3/AAABAAAAAABGAP3/AAABAAAAAABHAP3/AAABAAAAAABpAP7/AAABAAAAACBoAP7/AAABAAAAACBmAPD/AAABAAAAACBsAPD/AAABAAAAACBnAPD/AAABAAAAACBtAPD/AAABAAAAACBKAP3/AAABAAAAAABLAP3/AAABAAAAAAA=")
 tile_set = SubResource("TileSet_36q2r")
 
-[node name="Savepoints" type="Node2D" parent="Mechanics" index="3"]
+[node name="Savepoints" type="Node2D" parent="Mechanics" index="3" unique_id=435786486]
 
-[node name="savepoint" parent="Mechanics/Savepoints" index="0" instance=ExtResource("15_36q2r")]
+[node name="savepoint" parent="Mechanics/Savepoints" index="0" unique_id=216110258 instance=ExtResource("15_36q2r")]
 position = Vector2(887, -96)

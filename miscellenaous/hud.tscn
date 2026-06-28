@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" uid="uid://c2d8ca2gmbv22" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://ceiqj8bjouqre" path="res://assets/sprites/miscelleaneous/pause_screen_setup3.png" id="2_jxh0c"]
@@ -324,7 +324,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=915213025]
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1
@@ -332,19 +332,17 @@ layer = 2
 script = ExtResource("1_32714")
 colorPalette = SubResource("Resource_li0i3")
 
-[node name="fade_out_effect" type="ColorRect" parent="."]
-offset_left = -4.0
-offset_top = -2.0
-offset_right = 260.0
-offset_bottom = 227.0
+[node name="fade_out_effect" type="ColorRect" parent="." unique_id=158462167]
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 232.0
+offset_bottom = 213.0
 color = Color(0, 0, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="fade_out_effect"]
-libraries = {
-&"": SubResource("AnimationLibrary_phch0")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fade_out_effect" unique_id=1781754955]
+libraries/ = SubResource("AnimationLibrary_phch0")
 
-[node name="weapon_energy" type="TextureProgressBar" parent="."]
+[node name="weapon_energy" type="TextureProgressBar" parent="." unique_id=319458685]
 material = SubResource("ShaderMaterial_be7r0")
 offset_left = 12.0
 offset_top = 16.0
@@ -356,7 +354,7 @@ fill_mode = 3
 texture_under = ExtResource("5_eted2")
 texture_progress = ExtResource("6_io84m")
 
-[node name="text_weapon_energy" type="Label" parent="weapon_energy"]
+[node name="text_weapon_energy" type="Label" parent="weapon_energy" unique_id=1553703694]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -8.0
@@ -366,12 +364,12 @@ scale = Vector2(0.35, 0.35)
 theme = ExtResource("7_ixl55")
 text = "27"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1891912769]
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="healthbar" type="TextureProgressBar" parent="."]
+[node name="healthbar" type="TextureProgressBar" parent="." unique_id=356577443]
 offset_left = 2.0
 offset_top = 16.0
 offset_right = 10.0
@@ -383,7 +381,7 @@ fill_mode = 3
 texture_under = ExtResource("5_eted2")
 texture_progress = ExtResource("6_io84m")
 
-[node name="text_health_display" type="Label" parent="healthbar"]
+[node name="text_health_display" type="Label" parent="healthbar" unique_id=543562679]
 layout_mode = 0
 offset_left = -1.0
 offset_top = -8.0
@@ -393,7 +391,7 @@ scale = Vector2(0.35, 0.35)
 theme = ExtResource("7_ixl55")
 text = "24"
 
-[node name="text_lives" type="Label" parent="healthbar"]
+[node name="text_lives" type="Label" parent="healthbar" unique_id=1988664581]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 69.0
@@ -403,7 +401,7 @@ scale = Vector2(0.35, 0.35)
 theme = ExtResource("7_ixl55")
 text = "3"
 
-[node name="Sprite2D" type="Sprite2D" parent="healthbar"]
+[node name="Sprite2D" type="Sprite2D" parent="healthbar" unique_id=2039559237]
 position = Vector2(-2, 57)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_dueoh")
@@ -411,7 +409,7 @@ centered = false
 hframes = 2
 frame = 1
 
-[node name="healthbar2" type="ProgressBar" parent="."]
+[node name="healthbar2" type="ProgressBar" parent="." unique_id=934043346]
 visible = false
 offset_left = 24.0
 offset_right = 36.0
@@ -424,14 +422,14 @@ max_value = 20.0
 value = 20.0
 fill_mode = 3
 
-[node name="fade_out_rectangle" type="ColorRect" parent="."]
+[node name="fade_out_rectangle" type="ColorRect" parent="." unique_id=1011278085]
 visible = false
 z_index = 1
 offset_right = 258.0
 offset_bottom = 245.0
 color = Color(0, 0, 0, 1)
 
-[node name="boss_healthbar" type="TextureProgressBar" parent="."]
+[node name="boss_healthbar" type="TextureProgressBar" parent="." unique_id=1740847657]
 offset_left = 234.0
 offset_top = 16.0
 offset_right = 242.0
@@ -442,7 +440,7 @@ fill_mode = 3
 texture_under = ExtResource("5_eted2")
 texture_progress = ExtResource("6_io84m")
 
-[node name="text_health_display" type="Label" parent="boss_healthbar"]
+[node name="text_health_display" type="Label" parent="boss_healthbar" unique_id=1026026235]
 layout_mode = 0
 offset_top = 57.0
 offset_right = 32.0
@@ -451,43 +449,40 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "00"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="boss_healthbar"]
-libraries = {
-&"": SubResource("AnimationLibrary_460xm")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="boss_healthbar" unique_id=1498905056]
+libraries/ = SubResource("AnimationLibrary_460xm")
 
-[node name="timer" type="Timer" parent="boss_healthbar"]
+[node name="timer" type="Timer" parent="boss_healthbar" unique_id=376360850]
 wait_time = 3.0
 one_shot = true
 
-[node name="pause_screen_setup_old" type="Sprite2D" parent="."]
+[node name="pause_screen_setup_old" type="Sprite2D" parent="." unique_id=63486517]
 visible = false
 texture = ExtResource("2_jxh0c")
 centered = false
 
-[node name="pause_screen_setup" type="Sprite2D" parent="."]
-visible = false
+[node name="pause_screen_setup" type="Sprite2D" parent="." unique_id=632672516]
 texture = ExtResource("9_lhw3c")
 centered = false
 
-[node name="BGHider" type="ColorRect" parent="pause_screen_setup"]
+[node name="BGHider" type="ColorRect" parent="pause_screen_setup" unique_id=990946022]
 offset_left = 29.0
 offset_top = 62.0
 offset_right = 236.0
 offset_bottom = 161.0
 color = Color(0, 0, 0, 1)
 
-[node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
+[node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup" unique_id=682282363]
 position = Vector2(32, 192)
 sprite_frames = SubResource("SpriteFrames_g8a33")
 animation = &"selected"
 
-[node name="w_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
+[node name="w_tank" type="AnimatedSprite2D" parent="pause_screen_setup" unique_id=1474810250]
 position = Vector2(89, 192)
 sprite_frames = SubResource("SpriteFrames_twexw")
 animation = &"not_selected"
 
-[node name="e_tank_left" type="Label" parent="pause_screen_setup"]
+[node name="e_tank_left" type="Label" parent="pause_screen_setup" unique_id=1170495615]
 anchors_preset = -1
 anchor_left = -0.246094
 anchor_top = -0.357143
@@ -503,7 +498,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "9"
 metadata/_edit_use_anchors_ = true
 
-[node name="text" type="Label" parent="pause_screen_setup/e_tank_left"]
+[node name="text" type="Label" parent="pause_screen_setup/e_tank_left" unique_id=722574629]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.0468751
@@ -515,7 +510,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "X"
 metadata/_edit_use_anchors_ = true
 
-[node name="w_tank_left" type="Label" parent="pause_screen_setup"]
+[node name="w_tank_left" type="Label" parent="pause_screen_setup" unique_id=1478746070]
 anchors_preset = -1
 anchor_left = -0.253906
 anchor_top = -0.357143
@@ -530,7 +525,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "x"
 metadata/_edit_use_anchors_ = true
 
-[node name="text" type="Label" parent="pause_screen_setup/w_tank_left"]
+[node name="text" type="Label" parent="pause_screen_setup/w_tank_left" unique_id=1480462309]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.142857
@@ -542,13 +537,13 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "X"
 metadata/_edit_use_anchors_ = true
 
-[node name="life_icon" type="Sprite2D" parent="pause_screen_setup"]
+[node name="life_icon" type="Sprite2D" parent="pause_screen_setup" unique_id=385561155]
 position = Vector2(-113, 68)
 texture = ExtResource("7_65oho")
 hframes = 14
 frame = 10
 
-[node name="Label" type="Label" parent="pause_screen_setup/life_icon"]
+[node name="Label" type="Label" parent="pause_screen_setup/life_icon" unique_id=531866559]
 offset_left = 238.0
 offset_top = -46.0
 offset_right = 278.0
@@ -558,7 +553,7 @@ theme = ExtResource("7_ixl55")
 text = "X3"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup" unique_id=289685677]
 offset_left = 82.0
 offset_top = 34.0
 offset_right = 139.0
@@ -569,15 +564,15 @@ value = 28.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="weapons" type="Node2D" parent="pause_screen_setup"]
+[node name="weapons" type="Node2D" parent="pause_screen_setup" unique_id=1750202549]
 position = Vector2(-160, -115)
 
-[node name="mm_buster" type="Sprite2D" parent="pause_screen_setup/weapons"]
+[node name="mm_buster" type="Sprite2D" parent="pause_screen_setup/weapons" unique_id=1804556365]
 position = Vector2(200, 187)
 texture = ExtResource("14_4sr84")
 hframes = 2
 
-[node name="Label" type="Label" parent="pause_screen_setup/weapons/mm_buster"]
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/mm_buster" unique_id=1137080695]
 modulate = Color(1, 0.843137, 0.439216, 1)
 anchors_preset = -1
 anchor_top = -0.3125
@@ -592,7 +587,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "M. Buster"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/mm_buster"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/mm_buster" unique_id=1555316725]
 anchors_preset = -1
 anchor_left = -0.863283
 anchor_top = -3.29786
@@ -608,12 +603,12 @@ value = 28.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="r_Alarm" type="Sprite2D" parent="pause_screen_setup/weapons"]
+[node name="r_Alarm" type="Sprite2D" parent="pause_screen_setup/weapons" unique_id=274539257]
 position = Vector2(200, 203)
 texture = ExtResource("15_4hidn")
 hframes = 2
 
-[node name="Label" type="Label" parent="pause_screen_setup/weapons/r_Alarm"]
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/r_Alarm" unique_id=352470801]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -627,7 +622,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "R. ALARM"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/r_Alarm"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/r_Alarm" unique_id=937739053]
 anchors_preset = -1
 anchor_left = -0.863283
 anchor_top = -3.29786
@@ -643,12 +638,12 @@ value = 28.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="o_Stomper" type="Sprite2D" parent="pause_screen_setup/weapons"]
+[node name="o_Stomper" type="Sprite2D" parent="pause_screen_setup/weapons" unique_id=1756615050]
 position = Vector2(200, 267)
 texture = ExtResource("16_4hidn")
 hframes = 2
 
-[node name="Label" type="Label" parent="pause_screen_setup/weapons/o_Stomper"]
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/o_Stomper" unique_id=1321292962]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -662,7 +657,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "o. stomper"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/o_Stomper"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/o_Stomper" unique_id=1469989736]
 anchors_preset = -1
 anchor_left = -0.863283
 anchor_top = -3.29786
@@ -678,18 +673,18 @@ value = 28.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="s_Strike" type="Sprite2D" parent="pause_screen_setup/weapons"]
+[node name="s_Strike" type="Sprite2D" parent="pause_screen_setup/weapons" unique_id=1931948240]
 position = Vector2(312, 187)
 texture = ExtResource("17_ft544")
 hframes = 2
 
-[node name="ColorRect" type="ColorRect" parent="pause_screen_setup/weapons/s_Strike"]
+[node name="ColorRect" type="ColorRect" parent="pause_screen_setup/weapons/s_Strike" unique_id=580111622]
 offset_left = 15.0
 offset_top = -9.0
 offset_right = 82.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="pause_screen_setup/weapons/s_Strike"]
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/s_Strike" unique_id=231276215]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -703,7 +698,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "S. STRIKE"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/s_Strike"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/s_Strike" unique_id=910394356]
 anchors_preset = -1
 anchor_left = -0.863283
 anchor_top = -3.29786
@@ -719,19 +714,19 @@ value = 28.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="s_Pillow" type="Sprite2D" parent="pause_screen_setup/weapons"]
+[node name="s_Pillow" type="Sprite2D" parent="pause_screen_setup/weapons" unique_id=791068546]
 position = Vector2(312, 203)
 texture = ExtResource("18_88lmw")
 hframes = 2
 
-[node name="ColorRect2" type="ColorRect" parent="pause_screen_setup/weapons/s_Pillow"]
+[node name="ColorRect2" type="ColorRect" parent="pause_screen_setup/weapons/s_Pillow" unique_id=387123558]
 offset_left = 15.0
 offset_top = -8.0
 offset_right = 82.0
 offset_bottom = -1.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="pause_screen_setup/weapons/s_Pillow"]
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/s_Pillow" unique_id=403346704]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -745,7 +740,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "S. PILLOW"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/s_Pillow"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/s_Pillow" unique_id=712958525]
 anchors_preset = -1
 anchor_left = -0.863283
 anchor_top = -3.29786
@@ -761,12 +756,12 @@ value = 28.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="rush_coil" type="Sprite2D" parent="pause_screen_setup/weapons"]
+[node name="rush_coil" type="Sprite2D" parent="pause_screen_setup/weapons" unique_id=462020608]
 position = Vector2(312, 235)
 texture = ExtResource("20_6r330")
 hframes = 2
 
-[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_coil"]
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_coil" unique_id=199262978]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -780,7 +775,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "R.coil"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_coil"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_coil" unique_id=406730697]
 offset_left = 17.0
 offset_right = 74.0
 offset_bottom = 8.0
@@ -790,12 +785,12 @@ value = 27.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="rush_jet" type="Sprite2D" parent="pause_screen_setup/weapons"]
+[node name="rush_jet" type="Sprite2D" parent="pause_screen_setup/weapons" unique_id=1452618727]
 position = Vector2(312, 251)
 texture = ExtResource("21_hbjph")
 hframes = 2
 
-[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_jet"]
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_jet" unique_id=1571768950]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -809,7 +804,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "R.jet"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_jet"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_jet" unique_id=1245208258]
 offset_left = 17.0
 offset_top = -1.0
 offset_right = 74.0
@@ -820,13 +815,13 @@ value = 27.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="rush_search" type="Sprite2D" parent="pause_screen_setup/weapons"]
+[node name="rush_search" type="Sprite2D" parent="pause_screen_setup/weapons" unique_id=2166826]
 position = Vector2(312, 267)
 texture = ExtResource("19_kw0r2")
 vframes = 12
 frame = 11
 
-[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_search"]
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_search" unique_id=1937363006]
 anchors_preset = -1
 anchor_top = -0.3125
 anchor_bottom = -0.3125
@@ -840,7 +835,7 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 text = "R.search"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_search"]
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_search" unique_id=1523926378]
 offset_left = 17.0
 offset_top = -1.0
 offset_right = 74.0
@@ -851,7 +846,7 @@ value = 27.0
 texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
-[node name="quit_button" type="Button" parent="pause_screen_setup"]
+[node name="quit_button" type="Button" parent="pause_screen_setup" unique_id=1288671302]
 process_mode = 3
 process_priority = 1
 offset_left = 275.0
@@ -867,7 +862,7 @@ shortcut = SubResource("Shortcut_rlxve")
 text = "quit"
 metadata/_edit_use_anchors_ = true
 
-[node name="options_btn" type="Button" parent="pause_screen_setup"]
+[node name="options_btn" type="Button" parent="pause_screen_setup" unique_id=2127610566]
 process_mode = 3
 process_priority = 1
 offset_left = 267.0
@@ -883,7 +878,7 @@ shortcut = SubResource("Shortcut_rlxve")
 text = "options"
 metadata/_edit_use_anchors_ = true
 
-[node name="restart_level_btn" type="Button" parent="pause_screen_setup"]
+[node name="restart_level_btn" type="Button" parent="pause_screen_setup" unique_id=304057275]
 anchors_preset = -1
 anchor_left = -0.367188
 anchor_right = -0.367188
@@ -897,7 +892,7 @@ text = "restart
 level"
 metadata/_edit_use_anchors_ = true
 
-[node name="go_to_menu_btn" type="Button" parent="pause_screen_setup"]
+[node name="go_to_menu_btn" type="Button" parent="pause_screen_setup" unique_id=553722760]
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1
@@ -914,12 +909,12 @@ text = "go to
 menu"
 metadata/_edit_use_anchors_ = true
 
-[node name="settings" type="Node2D" parent="pause_screen_setup"]
+[node name="settings" type="Node2D" parent="pause_screen_setup" unique_id=1903893452]
 position = Vector2(-160, -115)
 
-[node name="volume" type="Node2D" parent="pause_screen_setup/settings"]
+[node name="volume" type="Node2D" parent="pause_screen_setup/settings" unique_id=1424390984]
 
-[node name="volume_music" type="HSlider" parent="pause_screen_setup/settings/volume"]
+[node name="volume_music" type="HSlider" parent="pause_screen_setup/settings/volume" unique_id=2062231874]
 offset_left = 7.0
 offset_top = 243.0
 offset_right = 217.0
@@ -929,7 +924,7 @@ min_value = -60.0
 max_value = 0.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="pause_screen_setup/settings/volume/volume_music"]
+[node name="Label" type="Label" parent="pause_screen_setup/settings/volume/volume_music" unique_id=803028530]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.619048
@@ -943,9 +938,9 @@ theme = ExtResource("7_ixl55")
 text = "BG MUSIC:"
 metadata/_edit_use_anchors_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="pause_screen_setup"]
+[node name="CanvasLayer" type="CanvasLayer" parent="pause_screen_setup" unique_id=1962936020]
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="pause_screen_setup"]
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="pause_screen_setup" unique_id=1911830813]
 title = "Leaving..."
 position = Vector2i(25, 75)
 size = Vector2i(200, 109)
@@ -956,21 +951,21 @@ You Want to
 Leave?"
 cancel_button_text = "No"
 
-[node name="buttons" type="Node2D" parent="pause_screen_setup"]
+[node name="buttons" type="Node2D" parent="pause_screen_setup" unique_id=160102583]
 position = Vector2(222, 179)
 
-[node name="moveNextScreenbtn" type="AnimatedSprite2D" parent="pause_screen_setup/buttons"]
+[node name="moveNextScreenbtn" type="AnimatedSprite2D" parent="pause_screen_setup/buttons" unique_id=578328315]
 process_mode = 3
 position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_imstj")
 animation = &"selected"
 
-[node name="quitStageBtn" type="AnimatedSprite2D" parent="pause_screen_setup/buttons"]
+[node name="quitStageBtn" type="AnimatedSprite2D" parent="pause_screen_setup/buttons" unique_id=1825682368]
 position = Vector2(0, 21)
 sprite_frames = SubResource("SpriteFrames_i6tc0")
 animation = &"notSelected"
 
-[node name="PauseScreenTimer" type="Label" parent="pause_screen_setup"]
+[node name="PauseScreenTimer" type="Label" parent="pause_screen_setup" unique_id=410995072]
 offset_left = 160.0
 offset_top = 22.0
 offset_right = 312.0
@@ -979,27 +974,27 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "Timer:xx:xx"
 
-[node name="Node2D" type="Node2D" parent="pause_screen_setup"]
+[node name="Node2D" type="Node2D" parent="pause_screen_setup" unique_id=264844572]
 
-[node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
+[node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="." unique_id=1190931237]
 stream = ExtResource("5_vp1wl")
 max_distance = 1e+16
 
-[node name="switch_menu_option_sound" type="AudioStreamPlayer2D" parent="."]
+[node name="switch_menu_option_sound" type="AudioStreamPlayer2D" parent="." unique_id=1878216283]
 stream = ExtResource("6_ja50w")
 max_distance = 1e+15
 
-[node name="increase_health" type="AudioStreamPlayer2D" parent="."]
+[node name="increase_health" type="AudioStreamPlayer2D" parent="." unique_id=973363544]
 stream = ExtResource("8_80bcg")
 
-[node name="map" type="ColorRect" parent="."]
+[node name="map" type="ColorRect" parent="." unique_id=619969173]
 visible = false
 offset_left = 474.0
 offset_top = 4.0
 offset_right = 674.0
 offset_bottom = 104.0
 
-[node name="player" type="ColorRect" parent="map"]
+[node name="player" type="ColorRect" parent="map" unique_id=131030092]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 11.0
@@ -1007,10 +1002,10 @@ offset_right = 25.0
 offset_bottom = 26.0
 color = Color(1, 0.054902, 0, 1)
 
-[node name="timer" type="Node2D" parent="."]
+[node name="timer" type="Node2D" parent="." unique_id=1998422762]
 scale = Vector2(0.3, 0.3)
 
-[node name="minutes" type="Label" parent="timer"]
+[node name="minutes" type="Label" parent="timer" unique_id=77632016]
 offset_left = -286.667
 offset_top = 106.667
 offset_right = -246.667
@@ -1019,7 +1014,7 @@ scale = Vector2(1.2, 1.2)
 theme = ExtResource("7_ixl55")
 text = "xx"
 
-[node name="seconds" type="Label" parent="timer"]
+[node name="seconds" type="Label" parent="timer" unique_id=1438579024]
 offset_left = -326.667
 offset_top = 106.667
 offset_right = -286.667
@@ -1028,10 +1023,10 @@ scale = Vector2(1.2, 1.2)
 theme = ExtResource("7_ixl55")
 text = "xx"
 
-[node name="seconds_timer" type="Timer" parent="timer"]
+[node name="seconds_timer" type="Timer" parent="timer" unique_id=928714629]
 autostart = true
 
-[node name="millsecs" type="Label" parent="timer"]
+[node name="millsecs" type="Label" parent="timer" unique_id=1761536664]
 visible = false
 offset_left = 644.0
 offset_top = 16.0
@@ -1040,7 +1035,7 @@ offset_bottom = 39.0
 theme = ExtResource("7_ixl55")
 text = "aaa"
 
-[node name="InGame" type="Label" parent="timer"]
+[node name="InGame" type="Label" parent="timer" unique_id=472432575]
 offset_left = 656.667
 offset_top = 27.0
 offset_right = 808.667
@@ -1049,7 +1044,7 @@ scale = Vector2(1.2, 1.2)
 theme = ExtResource("7_ixl55")
 text = "Timer:xx:xx"
 
-[node name="fps_Display" type="Label" parent="."]
+[node name="fps_Display" type="Label" parent="." unique_id=1993523242]
 offset_left = 244.0
 offset_top = 217.0
 offset_right = 276.0
@@ -1059,7 +1054,7 @@ theme = ExtResource("7_ixl55")
 text = "60"
 horizontal_alignment = 2
 
-[node name="stage_name" type="Label" parent="."]
+[node name="stage_name" type="Label" parent="." unique_id=806416528]
 visible = false
 offset_left = 47.0
 offset_top = 91.0
@@ -1072,12 +1067,12 @@ STAGE"
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="stage_display_timer" type="Timer" parent="stage_name"]
+[node name="stage_display_timer" type="Timer" parent="stage_name" unique_id=1906322530]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="score" type="Label" parent="."]
+[node name="score" type="Label" parent="." unique_id=1236523931]
 visible = false
 offset_left = 176.0
 offset_top = 14.0
@@ -1087,11 +1082,11 @@ scale = Vector2(0.4, 0.4)
 theme = ExtResource("7_ixl55")
 text = "SCORE:000"
 
-[node name="justDiedTimer" type="Timer" parent="."]
+[node name="justDiedTimer" type="Timer" parent="." unique_id=340528023]
 wait_time = 0.2
 one_shot = true
 
-[node name="ready_Text" type="AnimatedSprite2D" parent="."]
+[node name="ready_Text" type="AnimatedSprite2D" parent="." unique_id=1489704594]
 visible = false
 position = Vector2(154, 128)
 scale = Vector2(2, 2)
@@ -1099,15 +1094,29 @@ sprite_frames = SubResource("SpriteFrames_m2nqk")
 frame = 11
 frame_progress = 1.0
 
-[node name="playReadyTimer" type="Timer" parent="."]
+[node name="playReadyTimer" type="Timer" parent="." unique_id=1727297511]
 one_shot = true
 autostart = true
 
-[node name="fadeInRect" type="ColorRect" parent="."]
+[node name="fadeInRect" type="ColorRect" parent="." unique_id=1661688104]
 visible = false
 offset_right = 260.0
 offset_bottom = 226.0
 color = Color(0, 0, 0, 1)
+
+[node name="ready_Label" type="Label" parent="." unique_id=878873930]
+offset_left = 108.0
+offset_top = 123.0
+offset_right = 147.0
+offset_bottom = 132.0
+theme = ExtResource("7_ixl55")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 8
+text = "READY"
+
+[node name="blink_Timer" type="Timer" parent="ready_Label" unique_id=1087247047]
+wait_time = 0.2
+autostart = true
 
 [connection signal="animation_finished" from="boss_healthbar/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="boss_healthbar/timer" to="." method="_on_timer_timeout"]
@@ -1120,3 +1129,4 @@ color = Color(0, 0, 0, 1)
 [connection signal="timeout" from="timer/seconds_timer" to="." method="_on_seconds_timer_timeout"]
 [connection signal="timeout" from="justDiedTimer" to="." method="_on_just_died_timer_timeout"]
 [connection signal="timeout" from="playReadyTimer" to="." method="_on_play_ready_timer_timeout"]
+[connection signal="timeout" from="ready_Label/blink_Timer" to="." method="_on_ready_label_blink_timer_timeout"]

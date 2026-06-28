@@ -4,6 +4,7 @@ var saved_player_position = false
 @onready var animation_player = $AnimationPlayer
 var rings:Array[Sprite2D]
 @onready var rings_collection = $Rings_collection.get_children()
+var is_player_on_top:bool=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass  # Replace with function body.
@@ -16,9 +17,10 @@ func _process(_delta):
 		$line_rep.set_point_position(1, detect_player_shape_cast_2d.get_collision_point() - global_position)
 	else:
 		$line_rep.set_point_position(1, (global_position - Vector2(0, 240)) - global_position)
-	if detect_player_shape_cast_2d.is_colliding():
-		var body = detect_player_shape_cast_2d.get_collider()  #get_collider(1)
-		if body != null and body.is_in_group("player"): #and saved_player_position == false:
+	#if detect_player_shape_cast_2d.is_colliding():
+	if is_player_on_top:
+		#var body = detect_player_shape_cast_2d.get_collider()  #get_collider(1)
+		#if body != null and body.is_in_group("player"): #and saved_player_position == false:
 			#save code old
 			#GlobalScript.playerposx = global_position.x
 			#GlobalScript.playerposy = global_position.y - 16
@@ -35,23 +37,26 @@ func _process(_delta):
 		$press_up_timer.stop()
 	
 	for ring in rings_collection:
-		if $Rings_collection.global_position.distance_to(ring.global_position)>64:
-			ring.position=Vector2.ZERO
+		if $Rings_collection.global_position.distance_to(ring.global_position)>32:
+			ring.position.y=0
 	
 	match saved_player_position:
 		false:  #$line_rep.default_color=Color.RED#(ffffff)
 			#animation_player.play("red")
 			#$line_rep.default_color=Color.RED
-			for single_ring in rings_collection:#rings:
-				if is_instance_valid(single_ring):
-					single_ring.set_modulate(Color.RED)
+			#for single_ring in rings_collection:#rings:
+				#if is_instance_valid(single_ring):
+					#single_ring.set_modulate(Color.RED)
+			$AnimatedSprite2D/antennas.play("not_saved")
+			pass
 		true:
 			pass
 			#$line_rep.default_color=Color.GREEN
 			#animation_player.play("green")
-			for single_ring in rings_collection:#rings:
-				if is_instance_valid(single_ring):
-					single_ring.set_modulate(Color.GREEN)
+			#for single_ring in rings_collection:#rings:
+				#if is_instance_valid(single_ring):
+					#single_ring.set_modulate(Color.GREEN)
+			$AnimatedSprite2D/antennas.play("saved")
 
 
 func _on_spawn_ring_timer_timeout() -> void:
@@ -67,7 +72,17 @@ func _on_press_up_timer_timeout() -> void:
 	GlobalScript.playerposy = global_position.y - 32
 	GlobalScript.save_savepoint_data()
 	saved_player_position = true
-	var saved_label:Node2D=preload("res://miscellenaous/saved_label_for_savepoint.tscn").instantiate()
-	var player=Player.playerCharacter
-	player.add_child(saved_label)
-	saved_label.global_position.y=player.global_position.y-20
+	#var saved_label:Node2D=preload("res://miscellenaous/saved_label_for_savepoint.tscn").instantiate()
+	#var player=Player.playerCharacter
+	#player.add_child(saved_label)
+	#saved_label.global_position.y=player.global_position.y-20
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_constants_checker_area2d"):
+		is_player_on_top=true
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.is_in_group("player_constants_checker_area2d"):
+		is_player_on_top=false

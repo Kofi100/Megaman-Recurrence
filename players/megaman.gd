@@ -83,9 +83,11 @@ var player_transition_direction_y:String
 var transition_velocity:Vector2
 var player_on_floor_condition:bool=false
 @export var player_body:CollisionShape2D
+@onready var player_camera:Camera2D= $player_camera
 func _ready():
 	playerCharacter = self
 	GlobalSignalBus.connect("player_knockback", _on_knockback_signal)
+	GlobalSignalBus.connect("player_is_ready",create_spawn_effect)
 	#health
 	#key_dictionary.resize(9)
 	GlobalScript.lemons_on_screen_no = 0
@@ -523,6 +525,10 @@ func _physics_process(delta):
 						else:
 							#MegamanAndItems.change_palette($anim)
 							create_weapons()
+							if GlobalScript.weapon_number!=7:
+								mode_of_animation=AttackAnimations.CHARGE
+							else:
+								mode_of_animation=AttackAnimations.THROW
 					if near_ladder:
 						if Input.is_action_pressed("move_up"):
 							climb = true
@@ -559,6 +565,7 @@ func _physics_process(delta):
 						velocity.x = 0
 						global_position.x = ladder_collider.global_position.x
 					play_animation_ladder()
+					shoot_and_charge()
 					#these codes are for playing animations
 					direction = Input.get_axis("move_up", "move_down")
 					if direction and anim.animation != "shoot_on_ladder" and not disable_input:
@@ -675,7 +682,7 @@ func offsetAnimationFunction():
 		#and anim.animation != "shoot_run"
 		and anim.animation != "jump"
 		and anim.animation != "shoot_in_air"
-		and anim.animation != "run"
+		#and anim.animation != "run"
 		and anim.animation != "stun"
 		#and anim.animation !="shoot_idle"
 	):
@@ -695,8 +702,8 @@ func offsetAnimationFunction():
 					$anim.offset.x = -3
 				elif $anim.flip_h == true:
 					$anim.offset.x = 3
-			"run":
-				$anim.offset.y = 0
+			#"run":
+				#$anim.offset.y = 0
 			#"shoot_idle":
 				#match $anim.flip_h:
 					#false: $anim.offset.x = -4
@@ -854,6 +861,9 @@ func knockback_decay(delta):
 		# Optional: reduce vertical knockback gradually
 		knockback_velocity.y = move_toward(knockback_velocity.y, 0, knockback_friction * delta)
 
+enum AttackAnimations {CHARGE,RAPIDSHOT,THROW}
+var mode_of_animation=AttackAnimations.CHARGE
+
 func play_animations():
 	if direction == -1:
 		$anim.flip_h = false
@@ -862,54 +872,102 @@ func play_animations():
 	if $anim.animation == "run":
 		frameNo = $anim.frame
 	#print("FrameNo:", frameNo)
-	
-	if player_on_floor_condition:
-		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
-			if anim.animation != "stun_air":
-				if move_an_inch_checker >= 10:
-					if not is_dashing and $all_timers/check_dash_released_timer.is_stopped():
-						if anim.animation != "shoot_run" :
-							anim.play("run")
-						#prevents dash from playing when run is supposed to 
-						#after the dash timer runs out
-						elif  $dash/Timer.is_stopped() and anim.animation == "dash":
-							if $all_timers/check_dash_released_timer.is_stopped():
-								anim.play("run")
-				
-				elif move_an_inch_checker < 10:
-					#make sure that shoot_idle animation plays when player
-					#releases shoot button while moving an inch
-					if velocity.x != 0 and anim.animation!="shoot_idle":
-						$anim.play("move_by_inch")
-					elif velocity.x == 0:
-						#soln1
-						if $anim.animation != "shoot_idle" and anim.animation != "whistle_idle" and anim.animation!="climb_transition":
-							$anim.play("idle")
-							#$jump_Timer.start()
-							#soln2
-						#if $anim.animation != "shoot_idle" and anim.animation != "idle" and $jump_Timer.is_stopped() == true:
-						##$anim.play("idle")
-						#$jump_Timer.start()
-						#MegamanAndItems.charge_timer=0
+	match mode_of_animation:
+		AttackAnimations.CHARGE:
+			if player_on_floor_condition:
+				if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
+					if anim.animation != "stun_air":
+						if move_an_inch_checker >= 10:
+							if not is_dashing and $all_timers/check_dash_released_timer.is_stopped():
+								if anim.animation != "shoot_run" :
+									anim.play("run")
+								#prevents dash from playing when run is supposed to 
+								#after the dash timer runs out
+								elif  $dash/Timer.is_stopped() and anim.animation == "dash":
+									if $all_timers/check_dash_released_timer.is_stopped():
+										anim.play("run")
+						
+						elif move_an_inch_checker < 10:
+							#make sure that shoot_idle animation plays when player
+							#releases shoot button while moving an inch
+							if velocity.x != 0 and anim.animation!="shoot_idle":
+								$anim.play("move_by_inch")
+							elif velocity.x == 0:
+								#soln1
+								if $anim.animation != "shoot_idle" and anim.animation != "whistle_idle" and anim.animation!="climb_transition":
+									$anim.play("idle")
+									#$jump_Timer.start()
+									#soln2
+								#if $anim.animation != "shoot_idle" and anim.animation != "idle" and $jump_Timer.is_stopped() == true:
+								##$anim.play("idle")
+								#$jump_Timer.start()
+								#MegamanAndItems.charge_timer=0
 
-		elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0 and not disable_input:
-			if anim.animation != "stun_air":
-				if move_an_inch_checker >= 10:
-					if anim.animation != "shoot_run":
-						anim.play("shoot_run")
-						$anim.frame = frameNo
-				if move_an_inch_checker < 10:
-					if anim.animation != "shoot_idle": #and anim.animation!="move_by_inch":
-						anim.play("shoot_idle")
+				elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0 and not disable_input:
+					if anim.animation != "stun_air":
+						if move_an_inch_checker >= 10:
+							if anim.animation != "shoot_run":
+								anim.play("shoot_run")
+								$anim.frame = frameNo
+						if move_an_inch_checker < 10:
+							if anim.animation != "shoot_idle": #and anim.animation!="move_by_inch":
+								anim.play("shoot_idle")
 
-	elif not player_on_floor_condition:
-		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
-			if $anim.animation != "shoot_in_air" and anim.animation != "stun_air" and anim.animation!="climb_transition":
-				$anim.play("jump")
-		elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0 and not disable_input:
-			if anim.animation != "shoot_in_air" and anim.animation != "stun_air":
-				$anim.play("shoot_in_air")
+			elif not player_on_floor_condition:
+				if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
+					if $anim.animation != "shoot_in_air" and anim.animation != "stun_air" and anim.animation!="climb_transition":
+						$anim.play("jump")
+				elif Input.is_action_just_released("shoot") and buster_cooldown_timer.time_left <= 0 and not disable_input:
+					if anim.animation != "shoot_in_air" and anim.animation != "stun_air":
+						$anim.play("shoot_in_air")
+		AttackAnimations.RAPIDSHOT:
+			pass
+		AttackAnimations.THROW:
+			if player_on_floor_condition:
+				if not Input.is_action_pressed("shoot"):
+					if anim.animation != "stun_air":
+						if move_an_inch_checker >= 10:
+							if not is_dashing and $all_timers/check_dash_released_timer.is_stopped():
+								if anim.animation != "shoot_run" :
+									anim.play("run")
+								#prevents dash from playing when run is supposed to 
+								#after the dash timer runs out
+								elif  $dash/Timer.is_stopped() and anim.animation == "dash":
+									if $all_timers/check_dash_released_timer.is_stopped():
+										anim.play("run")
+						
+						elif move_an_inch_checker < 10:
+							#make sure that shoot_idle animation plays when player
+							#releases shoot button while moving an inch
+							if velocity.x != 0 and anim.animation!="shoot_idle":
+								$anim.play("move_by_inch")
+							elif velocity.x == 0:
+								#soln1
+								if $anim.animation != "shoot_idle" and anim.animation != "whistle_idle" and anim.animation!="climb_transition":
+									$anim.play("idle")
 
+				elif Input.is_action_pressed("shoot") and not disable_input:
+					if anim.animation != "stun_air":
+						if move_an_inch_checker >= 10:
+							if anim.animation != "shoot_run":
+								anim.play("shoot_run")
+								$anim.frame = frameNo
+						if move_an_inch_checker < 10:
+							if anim.animation != "shoot_idle": #and anim.animation!="move_by_inch":
+								anim.play("shoot_idle")
+
+			elif not player_on_floor_condition:
+				if not Input.is_action_pressed("shoot"):
+					if $anim.animation != "shoot_in_air" and anim.animation != "stun_air" and anim.animation!="climb_transition":
+						$anim.play("jump")
+				elif Input.is_action_pressed("shoot") and not disable_input:
+					if anim.animation != "shoot_in_air" and anim.animation != "stun_air":
+						$anim.play("shoot_in_air")
+	#if anim.animation=="shoot_idle" and MegamanAndItems.charge_timer==0:
+		#anim.play("idle")
+	if Input.is_action_just_pressed("shoot") or Input.is_action_just_released("shoot"):
+		if is_on_floor() and velocity.x==0:
+			$shoot_idle_timer.start()
 
 var projectile
 var coolDownTrigger = false
@@ -1118,13 +1176,37 @@ func create_weapons():
 				elif alarmMain!=null:
 					if alarmMain.changeState==false:
 						alarmMain.changeState=true
-			6:
+			#satellite strike
+			6: 
 				if WeaponEnergyGreaterThanZero():#checkIfWeaponEnergyLessEqualZero()==false:
 					if satellite_SatelliteMini==null:
 						satellite_SatelliteMini=satellite_Weapon.instantiate()
 						add_child(satellite_SatelliteMini)
 						satellite_SatelliteMini.global_position=global_position-Vector2(0,20)
 						deductWeaponEnergy()
+			#slumber pillow
+			7:
+				if WeaponEnergyGreaterThanZero():
+					var slumber_pillow:Node2D=preload("res://players/weapons/slumber_pillow_weapon.tscn").instantiate()
+					get_tree().current_scene.add_child(slumber_pillow)
+					if anim.flip_h:
+						slumber_pillow.global_position=$all_proj_spawn_points/ground_right.global_position
+						if Input.is_action_pressed("move_up"):
+							slumber_pillow._throwProjectile(Vector2(global_position.x+50,global_position.y),100)
+						#elif Input.is_action_pressed("move_down"):
+							#slumber_pillow._throwProjectile(Vector2(global_position.x+150,global_position.y),25)
+						else:
+							slumber_pillow._throwProjectile(Vector2(global_position.x+100,global_position.y),50)
+					else:
+						slumber_pillow.global_position=$all_proj_spawn_points/ground_left.global_position
+						if Input.is_action_pressed("move_up"):
+							slumber_pillow._throwProjectile(Vector2(global_position.x-50,global_position.y),100)
+						#elif Input.is_action_pressed("move_down"):
+							#slumber_pillow._throwProjectile(Vector2(global_position.x-150,global_position.y),25)
+						else:
+							slumber_pillow._throwProjectile(Vector2(global_position.x-100,global_position.y),50)
+
+					deductWeaponEnergy()
 			9:
 				
 				#if MegamanAndItems.weapon1energy > 0 and rCoilNo == 0:
@@ -1220,7 +1302,7 @@ func activeUseOfWeapons():
 			satellite_SatelliteMini.queue_free()
 func WeaponEnergyGreaterThanZero():
 	if MegamanAndItems.weaponEnergy.has(GlobalScript.weapon_number):
-		return MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]>0
+		return MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]>0 and MegamanAndItems.weaponEnergy[GlobalScript.weapon_number]-MegamanAndItems.weaponEnergyCost[GlobalScript.weapon_number]>=0
 	
 func deductWeaponEnergy():
 	if MegamanAndItems.weaponEnergy.has(GlobalScript.weapon_number):
@@ -1258,8 +1340,9 @@ func _on_anim_animation_finished():
 			$anim.play("run")
 
 		"shoot_idle":
-			$anim.play("idle")
-
+			if not Input.is_action_pressed("shoot") or Input.is_action_just_released("shoot"):
+				$anim.play("idle")
+		
 		"shoot_in_air":
 			$anim.play("jump")
 		"shoot_on_ladder":
@@ -1393,6 +1476,8 @@ func change_collisions():
 
 func _on_start_timer_timeout():
 	pass  # Replace with function body.
+
+func create_spawn_effect():
 	const SPAWN_IN_EFFECT = preload("res://miscellenaous/effects/spawn_in_effect.tscn")
 	var spawn_in_effect_instance = SPAWN_IN_EFFECT.instantiate()
 	spawn_in_effect_instance.global_position.x = global_position.x
@@ -1402,7 +1487,6 @@ func _on_start_timer_timeout():
 	#might activate again if ejterign or restarting levels causes issues.
 	if GlobalScript.restarted_level == false:  
 		GlobalScript.save_savepoint_data()
-
 
 func _on_animation_player_animation_finished(_anim_name):
 	pass  # Replace with function body.
@@ -1504,3 +1588,18 @@ func _on_check_dash_released_timer_timeout() -> void:
 	#if not Input.is_action_pressed("dash"):
 		#$dash/Timer.stop()
 	pass
+
+
+func _on_anim_frame_changed() -> void:
+	match anim.animation:
+		"run","shoot_run":
+			if anim.frame==0 or anim.frame==2:
+				#anim.offset.y-=1
+				pass
+			else:
+				anim.offset.y=0
+
+
+func _on_shoot_idle_timer_timeout() -> void:
+	if anim.animation!="stun_air" and player_on_floor_condition:
+		anim.play("idle")

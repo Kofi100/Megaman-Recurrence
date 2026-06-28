@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5bo84mjudcfp"]
+[gd_scene format=3 uid="uid://b5bo84mjudcfp"]
 
 [ext_resource type="Script" uid="uid://d1py076l2nw7m" path="res://GlobalScripts/global_signal_bus.gd" id="1_7oa3e"]
 
-[node name="GlobalSignalBus" type="Node2D"]
+[node name="GlobalSignalBus" type="Node2D" unique_id=1025042933]
 script = ExtResource("1_7oa3e")

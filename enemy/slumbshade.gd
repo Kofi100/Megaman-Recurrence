@@ -40,6 +40,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				$AnimatedSprite2D.play("open_eyes")
 			elif !GlobalScript.slumbshade_darkness_active:
 				$AnimatedSprite2D.play("close_eyes")
+		area.get_parent().queue_free()
 		#universal_canvas_modulate.color = Color.WHITE if not GlobalScript.slumbshade_darkness_active else Color.DIM_GRAY
 	#if area.is_in_group('player_constants_checker_area2d') and universal_canvas_modulate:
 		##GlobalLogger.info(name,"code works!")

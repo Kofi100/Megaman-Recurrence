@@ -177,7 +177,7 @@ size = Vector2(8.58335, 21)
 z_index = 1
 script = ExtResource("1_bkydj")
 SPEED = 15000.0
-damagevalue = 5.0
+damagevalue = 3.0
 health = 3
 
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=2128335557]

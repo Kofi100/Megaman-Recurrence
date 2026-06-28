@@ -70,8 +70,9 @@ func _on_collision_monitor_area_entered(area):
 				health-=body.health
 				body.health-=(damagevalue-body.BossDefenseShot2)
 			body.hasBeenHurt=true
-			GlobalScript.score+=50
-			#state='stopped'
+			#GlobalScript.score+=50
+			if health<=0:
+				state='stopped'
 			$hurt_enemy_effect.play()
 			#queue_free()
 	if area.is_in_group("blockables"):
@@ -89,4 +90,5 @@ func _on_onscreen_screen_exited():
 
 
 func _on_hurt_enemy_effect_finished():
-	queue_free()
+	if health<=0:
+		queue_free()

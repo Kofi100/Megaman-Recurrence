@@ -8,11 +8,12 @@ var player: Node2D
 var move_direction: Vector2
 var default_animation_randomizer:int
 var default_animation="default"
+var chase_player=false
 
 func _ready():
 	player = Player.playerCharacter
 	#move_direction = Vector2.ZERO
-	health=3
+	health=2
 	playerdamagevalue=2
 	default_animation_randomizer=randi_range(0,2)
 	match default_animation_randomizer:
@@ -20,7 +21,13 @@ func _ready():
 		1: default_animation = "default2"
 		2: default_animation = "default3"
 	$AnimatedSprite2D.play(default_animation)
-	await get_tree().create_timer(.1).timeout
+	
+	calculate_player_distance()
+	if distance_x>0:$AnimatedSprite2D.flip_h=true
+	else:$AnimatedSprite2D.flip_h=false
+	
+	await get_tree().create_timer(1).timeout
+	chase_player=true
 	var to_player = player.global_position - global_position
 	#move_direction = to_player.normalized()
 	move_direction = move_direction.lerp(to_player.normalized(), 0.1).normalized()
@@ -28,6 +35,7 @@ func _ready():
 	
 	
 func _physics_process(_delta):
+	calculate_player_distance()
 	if player == null:
 		GlobalLogger.warn(name,"player cannot be found")
 		return
@@ -45,14 +53,14 @@ func _physics_process(_delta):
 			$stun_cooldown_timer.start()
 			$AnimatedSprite2D.play("stun")
 		return
-
-	var to_player = player.global_position - global_position
-	var distance = to_player.length()
-	$AnimatedSprite2D.play(default_animation)
-	# Only re-aim if we are far enough
-	if distance > reengage_distance:
-		#move_direction = to_player.normalized()
-		move_direction = move_direction.lerp(to_player.normalized(), 0.1).normalized()
+	if chase_player:
+		var to_player = player.global_position - global_position
+		var distance = to_player.length()
+		$AnimatedSprite2D.play(default_animation)
+		# Only re-aim if we are far enough
+		if distance > reengage_distance:
+			#move_direction = to_player.normalized()
+			move_direction = move_direction.lerp(to_player.normalized(), 0.1).normalized()
 	
 	if velocity.x>0:$AnimatedSprite2D.flip_h=true
 	else:$AnimatedSprite2D.flip_h=false
@@ -65,5 +73,5 @@ func _physics_process(_delta):
 
 
 func _on_stun_cooldown_timer_timeout() -> void:
-	health=3
+	health=2
 	$Area2D/CollisionShape2D.set_deferred("disabled",false)

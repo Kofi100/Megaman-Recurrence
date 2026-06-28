@@ -16,6 +16,7 @@ var screen2
 @export var colorPalette:ColorPaletteResource
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#GlobalSignalBus.player_is_ready.connect()
 	GlobalScript.trigger_boss = false
 	#$pause_screen_setup/ConfirmationDialog.hide()
 	color = $fade_out_rectangle.color
@@ -202,12 +203,40 @@ func _process(_delta):
 					#selection_index+=1
 					#GlobalScript.weapon_number+=1
 		#print(GlobalScript.weapon_number,selection_index)
+		elif Input.is_action_just_pressed("move_right"):
+			# only switch to right from first set of weapons on left (0-5)
+			if selection_index>=0 and selection_index<=5:
+				selection_index +=6
+				
+				if MegamanAndItems.weaponNumberEnabled.has(selection_index):
+					while selection_index>=0 and (selection_index<13 and not MegamanAndItems.weaponNumberEnabled[selection_index]):
+						selection_index-=1
+						if selection_index==-1:
+							selection_index=12
+			if selection_index>=12 and selection_index<=15:
+				selection_index+=1
+			$switch_menu_option_sound.play(0)
+		elif Input.is_action_just_pressed("move_left"):
+			# only switch to left from second set of weapons on right (6-11)
+			if selection_index>=6 and selection_index<=11:
+				selection_index -=6
+				
+				if MegamanAndItems.weaponNumberEnabled.has(selection_index):
+					while selection_index>=0 and (selection_index<13 and not MegamanAndItems.weaponNumberEnabled[selection_index]):
+						selection_index-=1
+						if selection_index==-1:
+							selection_index=12
+			if selection_index>=12 and selection_index<=15:
+				selection_index-=1
+			$switch_menu_option_sound.play(0)
 	elif justPausedGameManually==false:
 	#checks if e tank and other options were selected before 
 	#resetting the selection Index and weapon Number since weapons get affected too
 		if selection_index>=12:
 			selection_index = 0
 			GlobalScript.weapon_number=0
+		if GlobalScript.weapon_number>=0 and GlobalScript.weapon_number<=11:
+			selection_index=GlobalScript.weapon_number
 	if justPausedGameManually == true:
 		if selection_index<13:
 			GlobalScript.weapon_number=selection_index
@@ -432,5 +461,15 @@ func _on_just_died_timer_timeout():
 
 
 func _on_play_ready_timer_timeout() -> void:
-	$ready_Text.visible=true
-	$ready_Text.play("default")
+	#$ready_Text.visible=true
+	#$ready_Text.play("default")
+	deactivate_ready_text_activate_player()
+	
+
+func deactivate_ready_text_activate_player():
+	#await get_tree().create_timer(1).timeout
+	$ready_Label.queue_free()
+	GlobalSignalBus.player_is_ready.emit()
+
+func _on_ready_label_blink_timer_timeout() -> void:
+	$ready_Label.visible=!$ready_Label.visible

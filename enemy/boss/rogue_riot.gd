@@ -9,6 +9,7 @@ var deactivate_gravity:bool=false
 func _physics_process(delta: float) -> void:
 	calculate_player_distance()
 	spawn_collectables()
+	#print($Timers/hit_cooldown_timer.wait_time)
 	hurtFlash($AnimatedSprite2D)
 	playerdamagevalue=5
 	#print($Timers/hit_cooldown_timer.time_left)

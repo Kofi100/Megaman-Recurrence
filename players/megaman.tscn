@@ -247,11 +247,19 @@ animations = [{
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 2.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7yoj6")
 }],
 "loop": false,
 "name": &"shoot_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_7yoj6")
+}],
+"loop": false,
+"name": &"shoot_idle_throw",
 "speed": 5.0
 }, {
 "frames": [{
@@ -968,7 +976,7 @@ position = Vector2(13, -3)
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"spawn"
+animation = &"shoot_idle"
 offset = Vector2(0, 1)
 flip_h = true
 
@@ -1006,10 +1014,10 @@ position = Vector2(0.666667, 13.6667)
 [node name="all_proj_spawn_points" type="Node2D" parent="." unique_id=1475216129]
 
 [node name="ground_left" type="Marker2D" parent="all_proj_spawn_points" unique_id=698345047]
-position = Vector2(-18, 2)
+position = Vector2(-19, 2)
 
 [node name="ground_right" type="Marker2D" parent="all_proj_spawn_points" unique_id=2001347081]
-position = Vector2(18, 2)
+position = Vector2(19, 2)
 
 [node name="air_left" type="Marker2D" parent="all_proj_spawn_points" unique_id=1673903407]
 position = Vector2(-15.6667, -6.33333)
@@ -1266,8 +1274,13 @@ target_position = Vector2(1.57356e-05, 7)
 
 [node name="PlayerEffectsAllTime" parent="." unique_id=1394263026 instance=ExtResource("20_sprfd")]
 
+[node name="shoot_idle_timer" type="Timer" parent="." unique_id=2022560217]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="frame_changed" from="anim" to="." method="_on_anim_frame_changed"]
 [connection signal="animation_finished" from="anim2" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
 [connection signal="area_exited" from="change_climb_detector" to="." method="_on_change_climb_detector_area_exited"]
@@ -1288,10 +1301,10 @@ target_position = Vector2(1.57356e-05, 7)
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="player_constants_checker_area2d" to="." method="_on_player_constants_checker_area_2d_body_entered"]
 [connection signal="body_exited" from="player_constants_checker_area2d" to="." method="_on_player_constants_checker_area_2d_body_exited"]
-[connection signal="timeout" from="start_timer" to="." method="_on_start_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_entered"]
 [connection signal="body_exited" from="detectFloorTypesArea" to="." method="_on_detect_floor_types_area_body_exited"]
+[connection signal="timeout" from="shoot_idle_timer" to="." method="_on_shoot_idle_timer_timeout"]
 
 [editable path="dash"]

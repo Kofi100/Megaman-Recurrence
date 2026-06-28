@@ -30,13 +30,13 @@ func Physics_Update(_delta:float):
 			if rogue_riot.is_on_floor():
 				state=MiniState.STOMP
 				animated_sprite_2d.play("intro")
-				GlobalSignalBus.emit_signal("trigger_camera_shake", 5, .15)
+				GlobalSignalBus.emit_signal("trigger_camera_shake", 3, .15)
 		MiniState.STOMP:
 			pass
 			match animated_sprite_2d.frame:
 				1,3,5,6:
 					if triggered_camera_shake==false:
-						GlobalSignalBus.emit_signal("trigger_camera_shake", 2, .1)
+						GlobalSignalBus.emit_signal("trigger_camera_shake", 1.5, .1)
 						triggered_camera_shake=true
 				0,2,4:
 					triggered_camera_shake=false

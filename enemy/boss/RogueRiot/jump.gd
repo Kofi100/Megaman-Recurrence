@@ -44,7 +44,7 @@ func Physics_Update(_delta:float):
 		rogue_riot.velocity.x=0
 		animated_sprite_2d.frame=1
 		animated_sprite_2d.offset.y=1
-		GlobalSignalBus.emit_signal("trigger_camera_shake",8,.1)
+		GlobalSignalBus.emit_signal("trigger_camera_shake",3,.1)
 		stomp_sound.play()
 		if Player.playerCharacter.is_on_floor():
 			Player.playerCharacter.stun_temporarily(.5)
